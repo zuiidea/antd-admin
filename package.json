@@ -2,8 +2,15 @@
   "name": "antd-demo",
   "version": "1.0.0",
   "entry": {
-    "index": "./src/entry/index.jsx"
+    "index": "./src/entry/index.jsx",
+    "admin/index": ["./src/entry/admin/index.jsx"],
+    "admin/user": ["./src/entry/admin/user.jsx"]
   },
+  "output": {
+    "path": "dist",
+    "filename": "index_bundle.js"
+  },
+  "plugins": "[new HtmlWebpackPlugin()]",
   "dependencies": {
     "antd": "0.11.x",
     "atool-build": "0.4.x",
@@ -20,6 +27,7 @@
     "eslint": "~1.10.3",
     "eslint-config-airbnb": "~2.1.0",
     "eslint-plugin-react": "~3.11.3",
+    "html-webpack-plugin": "^2.7.2",
     "pre-commit": "1.x"
   },
   "pre-commit": [
@@ -28,6 +36,6 @@
   "scripts": {
     "dev": "dora -p 8001 --plugins atool-build,proxy,hmr",
     "lint": "eslint --ext .js,.jsx src",
-    "build": "atool-build -o ./dist/${npm_package_family}/${npm_package_name/{npm_package_version}"
+    "build": "atool-build -o ./dist"
   }
 }

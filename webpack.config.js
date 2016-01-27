@@ -1,4 +1,10 @@
+// require('./admin/index.html');
+
 module.exports = function(webpackConfig) {
+  webpackConfig.module.loaders.push({
+    test: /\.html$/,
+    loader: 'file?name=[name].[ext]'
+  });
   webpackConfig.module.loaders.forEach(function(loader) {
     if (loader.loader === 'babel') {
       // https://github.com/ant-design/babel-plugin-antd
