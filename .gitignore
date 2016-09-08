@@ -1,20 +1,14 @@
+# Intellij
+.idea
 *.iml
-.idea/
-.ipr
-.iws
-*~
-~*
-*.diff
-*.patch
-*.bak
+*.iws
+
+# Mac
 .DS_Store
-Thumbs.db
-.project
-.*proj
-.svn/
-*.swp
-*.swo
-*.pyc
-*.pyo
+
+# node
 node_modules
+npm-debug.log
+
+# other
 dist

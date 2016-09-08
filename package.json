@@ -1,41 +1,60 @@
 {
-  "name": "antd-demo",
+  "name": "react-antd-admin",
   "version": "1.0.0",
-  "entry": {
-    "index": "./src/entry/index.jsx",
-    "admin/index": ["./src/entry/admin/index.jsx"],
-    "admin/user": ["./src/entry/admin/user.jsx"]
+  "description": "React Admin Boilerplate, with React + Ant Design",
+  "author": "jiangxy <foolbeargm@gmail.com>",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=5.0 <7",
+    "npm": ">=3.3 <4"
   },
-  "output": {
-    "path": "dist",
-    "filename": "index_bundle.js"
-  },
-  "plugins": "[new HtmlWebpackPlugin()]",
-  "dependencies": {
-    "antd": "0.11.x",
-    "atool-build": "0.4.x",
-    "babel-plugin-antd": "^0.1.2",
-    "es3ify-loader": "^0.1.0",
-    "react": "~0.14.3",
-    "react-dom": "~0.14.3"
-  },
-  "devDependencies": {
-    "dora": "0.2.x",
-    "dora-plugin-atool-build": "0.4.x",
-    "dora-plugin-hmr": "0.3.x",
-    "dora-plugin-proxy": "0.5.x",
-    "eslint": "~1.10.3",
-    "eslint-config-airbnb": "~2.1.0",
-    "eslint-plugin-react": "~3.11.3",
-    "html-webpack-plugin": "^2.7.2",
-    "pre-commit": "1.x"
-  },
-  "pre-commit": [
-    "lint"
+  "keywords": [
+    "ant",
+    "react",
+    "admin",
+    "frontend"
   ],
+  "devDependencies": {
+    "antd": "1.10.0",
+    "babel-core": "6.4.5",
+    "babel-eslint": "6.0.0",
+    "babel-loader": "6.2.1",
+    "babel-plugin-antd": "0.4.0",
+    "babel-polyfill": "6.9.1",
+    "babel-preset-es2015": "6.3.13",
+    "babel-preset-react": "6.3.13",
+    "babel-preset-stage-0": "6.5.0",
+    "css-loader": "0.23.1",
+    "eslint": "2.7.0",
+    "eslint-config-airbnb": "6.x",
+    "eslint-plugin-react": "4.x",
+    "file-loader": "0.9.0",
+    "less": "2.7.1",
+    "less-loader": "2.2.3",
+    "lesshint": "2.0.2",
+    "react": "15.0.2",
+    "react-cookie": "0.4.7",
+    "react-dom": "15.0.2",
+    "react-hot-loader": "1.3.0",
+    "react-router": "2.0.1",
+    "strip-loader": "0.1.2",
+    "style-loader": "0.13.1",
+    "stylelint": "6.6.0",
+    "stylelint-config-standard": "9.0.0",
+    "url-loader": "0.5.7",
+    "webpack": "1.12.12",
+    "webpack-dev-server": "1.14.1"
+  },
+  "dependencies": {
+    "superagent": "2.0.0"
+  },
   "scripts": {
-    "dev": "dora -p 8001 --plugins atool-build,proxy,hmr",
-    "lint": "eslint --ext .js,.jsx src",
-    "build": "atool-build -o ./dist"
+    "build": "webpack --progress --colors --display-error-details",
+    "prod": "NODE_ENV=production webpack --progress --colors --config webpack.config.prod.js -p --display-error-details",
+    "clean": "rm dist/bundle*",
+    "dev": "webpack-dev-server --devtool eval --progress --colors --content-base dist --hot --inline --display-error-details",
+    "eslint": "eslint --ext .js,.jsx src",
+    "stylelint": "stylelint \"src/**/*.css\"",
+    "lesshint": "lesshint src/"
   }
 }
