@@ -7,8 +7,8 @@
 // 遵循统一的规范, 好维护, 交给其他人也比较简单
 
 module.exports = {
-  name: 'OOXX管理后台',  // 项目的名字
-  footer: 'xxx版权所有 © 2015-2099',  // footer中显示的字
+  name: 'Antd管理后台',  // 项目的名字
+  footer: 'Antd版权所有 © 2016',  // footer中显示的字
 
   debug: true,  // 是否开启debug模式, 不会请求后端接口, 使用mock的数据
   logLevel: 'info',  // 日志级别, 目前支持debug/info/warn/error 4种级别

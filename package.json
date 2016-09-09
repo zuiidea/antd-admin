@@ -1,8 +1,7 @@
 {
-  "name": "react-antd-admin",
+  "name": "antd-admin",
   "version": "1.0.0",
   "description": "React Admin Boilerplate, with React + Ant Design",
-  "author": "jiangxy <foolbeargm@gmail.com>",
   "license": "Apache-2.0",
   "engines": {
     "node": ">=5.0 <7",
