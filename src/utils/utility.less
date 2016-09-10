@@ -1,0 +1,470 @@
+
+/* ==========================================================================
+   Component: Utility
+ ============================================================================ */
+.scrollable-horizontal {
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  -webkit-overflow-scrolling: touch;
+}
+.scrollable-vertical {
+  height: 240px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  resize: vertical;
+}
+/* Border-radius*/
+.square {
+  border-radius: 0;
+}
+.radius {
+  border-radius: 2px;
+}
+.round {
+  border-radius: 1000px;
+}
+.circle {
+  border-radius: 50%;
+}
+/* Float blocks*/
+.cf:before,
+.cf:after {
+  content: " ";
+  display: table;
+}
+.cf:after {
+  clear: both;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.nbfc {
+  overflow: hidden;
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Display */
+.block {
+  display: block !important;
+}
+.inline {
+  display: inline !important;
+}
+.inline-block {
+  display: inline-block !important;
+}
+.hide {
+  display: none !important;
+  visibility: hidden !important;
+}
+/*
+* Remove whitespace between child elements when using `inline-block`
+*/
+.vertical-align {
+  font-size: 0.001px;
+}
+/*
+* The `vertical-align` container needs a specific height
+*/
+.vertical-align:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+/*
+* Sub-object which can have any height
+* 1. Reset whitespace hack
+*/
+.vertical-align-middle,
+.vertical-align-bottom {
+  display: inline-block;
+  font-size: 1.6rem;
+  /* 1 */
+  max-width: 100%;
+}
+.vertical-align-middle {
+  vertical-align: middle;
+}
+.vertical-align-bottom {
+  vertical-align: bottom;
+}
+.responsive-width {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  max-width: 100%;
+  height: auto;
+}
+/* Margin helpers */
+.mg {
+  margin: 1.6rem;
+}
+.mg-0 {
+  margin: 0!important;
+}
+.mg-xs {
+  margin: 0.5rem;
+}
+.mg-sm {
+  margin: 1rem;
+}
+.mg-lg {
+  margin: 2.4rem;
+}
+.mg-xl {
+  margin: 3.2rem;
+}
+.m-x {
+  margin-left: 1.6rem;
+  margin-right: 1.6rem;
+}
+.m-x-0 {
+  margin-left: 0!important;
+  margin-right: 0!important;
+}
+.m-x-xs {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+.m-x-sm {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.m-x-lg {
+  margin-left: 2.4rem;
+  margin-right: 2.4rem;
+}
+.m-x-xl {
+  margin-left: 3.2rem;
+  margin-right: 3.2rem;
+}
+.m-y {
+  margin-top: 1.6rem;
+  margin-bottom: 1.6rem;
+}
+.m-y-0 {
+  margin-top: 0!important;
+  margin-bottom: 0!important;
+}
+.m-y-xs {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.m-y-sm {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.m-y-lg {
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
+}
+.m-y-xl {
+  margin-top: 3.2rem;
+  margin-bottom: 3.2rem;
+}
+.mt {
+  margin-top: 1.6rem;
+}
+.mt-0 {
+  margin-top: 0!important;
+}
+.mt-xs {
+  margin-top: 0.5rem;
+}
+.mt-sm {
+  margin-top: 1rem;
+}
+.mt-lg {
+  margin-top: 2.4rem;
+}
+.mt-xl {
+  margin-top: 3.2rem;
+}
+.mb {
+  margin-bottom: 1.6rem;
+}
+.mb-0 {
+  margin-bottom: 0!important;
+}
+.mb-xs {
+  margin-bottom: 0.5rem;
+}
+.mb-sm {
+  margin-bottom: 1rem;
+}
+.mb-lg {
+  margin-bottom: 2.4rem;
+}
+.mb-xl {
+  margin-bottom: 3.2rem;
+}
+.ml {
+  margin-left: 1.6rem;
+}
+.ml-0 {
+  margin-left: 0!important;
+}
+.ml-xs {
+  margin-left: 0.5rem;
+}
+.ml-sm {
+  margin-left: 1rem;
+}
+.ml-lg {
+  margin-left: 2.4rem;
+}
+.ml-xl {
+  margin-left: 3.2rem;
+}
+.mr {
+  margin-right: 1.6rem;
+}
+.mr-0 {
+  margin-right: 0!important;
+}
+.mr-xs {
+  margin-right: 0.5rem;
+}
+.mr-sm {
+  margin-right: 1rem;
+}
+.mr-lg {
+  margin-right: 2.4rem;
+}
+.mr-xl {
+  margin-right: 3.2rem;
+}
+/* Padding helpers */
+.pd {
+  padding: 1.6rem;
+}
+.pd-0 {
+  padding: 0!important;
+}
+.pd-xs {
+  padding: 0.5rem;
+}
+.pd-sm {
+  padding: 1rem;
+}
+.pd-lg {
+  padding: 2.4rem;
+}
+.pd-xl {
+  padding: 3.2rem;
+}
+.p-x {
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+}
+.p-x-0 {
+  padding-left: 0!important;
+  padding-right: 0!important;
+}
+.p-x-xs {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.p-x-sm {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.p-x-lg {
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
+}
+.p-x-xl {
+  padding-left: 3.2rem;
+  padding-right: 3.2rem;
+}
+.p-y {
+  padding-top: 1.6rem;
+  padding-bottom: 1.6rem;
+}
+.p-y-0 {
+  padding-top: 0!important;
+  padding-bottom: 0!important;
+}
+.p-y-xs {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.p-y-sm {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.p-y-lg {
+  padding-top: 2.4rem;
+  padding-bottom: 2.4rem;
+}
+.p-y-xl {
+  padding-top: 3.2rem;
+  padding-bottom: 3.2rem;
+}
+.pt {
+  padding-top: 1.6rem;
+}
+.pt-0 {
+  padding-top: 0!important;
+}
+.pt-xs {
+  padding-top: 0.5rem;
+}
+.pt-sm {
+  padding-top: 1rem;
+}
+.pt-lg {
+  padding-top: 2.4rem;
+}
+.pt-xl {
+  padding-top: 3.2rem;
+}
+.pb {
+  padding-bottom: 1.6rem;
+}
+.pb-0 {
+  padding-bottom: 0!important;
+}
+.pb-xs {
+  padding-bottom: 0.5rem;
+}
+.pb-sm {
+  padding-bottom: 1rem;
+}
+.pb-lg {
+  padding-bottom: 2.4rem;
+}
+.pb-xl {
+  padding-bottom: 3.2rem;
+}
+.pl {
+  padding-left: 1.6rem;
+}
+.pl-0 {
+  padding-left: 0!important;
+}
+.pl-xs {
+  padding-left: 0.5rem;
+}
+.pl-sm {
+  padding-left: 1rem;
+}
+.pl-lg {
+  padding-left: 2.4rem;
+}
+.pl-xl {
+  padding-left: 3.2rem;
+}
+.pr {
+  padding-right: 1.6rem;
+}
+.pr-0 {
+  padding-right: 0!important;
+}
+.pr-xs {
+  padding-right: 0.5rem;
+}
+.pr-sm {
+  padding-right: 1rem;
+}
+.pr-lg {
+  padding-right: 2.4rem;
+}
+.pr-xl {
+  padding-right: 3.2rem;
+}
+
+.text-primary {
+  color: #0e90d2;
+}
+.text-secondary {
+  color: #3bb4f2;
+}
+.text-success {
+  color: #5eb95e;
+}
+.text-warning {
+  color: #F37B1D;
+}
+.text-danger {
+  color: #dd514c;
+}
+.link-muted {
+  color: #666;
+}
+.link-muted a {
+  color: #666;
+}
+.link-muted:hover,
+.link-muted a:hover {
+  color: #555;
+}
+.text-default {
+  font-size: 1.6rem;
+}
+
+.text-xs {
+  font-size: 1.2rem;
+}
+.text-sm {
+  font-size: 1.4rem;
+}
+.text-lg {
+  font-size: 1.8rem;
+}
+.text-xl {
+  font-size: 2.4rem;
+}
+.text-xxl {
+  font-size: 3.2rem;
+}
+.text-xxxl {
+  font-size: 4.2rem;
+}
+.ellipsis,
+.text-truncate {
+  word-wrap: normal;
+  /* for IE */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.text-break {
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+.text-nowrap {
+  white-space: nowrap;
+}
+/** Only display content to screen readers
+ * See: http://a11yproject.com/posts/how-to-hide-content/
+ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+/* Text Image Replacement */
+.text-ir {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}

@@ -5,10 +5,6 @@ import { Icon, message, Button, Row, Col, Form, Input, Select} from 'antd'
 import './signIn.less'
 
 const FormItem = Form.Item;
-const formItemLayout = {
-  labelCol: {span: 8},
-  wrapperCol: {span: 16}
-};
 
 let SignIn = React.createClass({
   getInitialState(){
@@ -16,8 +12,12 @@ let SignIn = React.createClass({
       loading: false
     }
   },
-  handleSubmit(){
-
+  handleSubmit(e){
+    var _this = this;
+    e.preventDefault();
+    this.props.form.validateFieldsAndScroll((errors, values) => {
+      console.log(values);
+    })
   },
   render(){
     const { getFieldProps } = this.props.form;
@@ -33,27 +33,29 @@ let SignIn = React.createClass({
     });
     return (
       <div className="signIn-from">
-      <Form horizontal onSubmit={this.handleSubmit} form={this.props.form}>
-        <FormItem
-          {...formItemLayout}
-          label="账户："
-          hasFeedback>
-          <Input
-            {...username}
-            placeholder="请输入用户名"/>
-        </FormItem>
-        <FormItem
-          {...formItemLayout}
-          label="密码："
-          hasFeedback>
-          <Input
-            {...password}
-            placeholder="请输入密码"/>
-        </FormItem>
-        <Row className="self-modal-footer">
-         <Button type="primary" onClick={this.handleSubmit} loading={this.state.loading}>登录</Button>
-        </Row>
-      </Form>
+        <div className="logo mb">
+          <img src="https://t.alipayobjects.com/images/rmsweb/T1B9hfXcdvXXXXXXXX.svg"/>
+          <span>Ant Design</span>
+        </div>
+        <form horizontal onSubmit={this.handleSubmit} form={this.props.form}>
+          <FormItem
+            hasFeedback>
+            <Input
+              {...username}
+              size="large"
+              placeholder="账户"/>
+          </FormItem>
+          <FormItem
+            hasFeedback>
+            <Input
+              {...password}
+              size="large"
+              placeholder="密码"/>
+          </FormItem>
+          <Row className="self-modal-footer">
+           <Button type="primary" size="large" onClick={this.handleSubmit} loading={this.state.loading}>登录</Button>
+          </Row>
+        </form>
       </div>
     )
   }
