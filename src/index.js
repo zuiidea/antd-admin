@@ -10,6 +10,7 @@ import './utils/index.js';  // 引入各种prototype辅助方法
 // 开始引入各种自定义的组件
 // import App from './components/App';
 import App from './view/index';
+import SignIn from './view/user/signIn';
 import Welcome from './components/Welcome';
 import Error from './components/Error';
 import Hello from './components/Hello';
@@ -19,7 +20,6 @@ const routes = (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={Welcome}/>
-
       <Route path="index">
         <Route path="option1" tableName="test" component={DBTable}/>
         <Route path="option2" tableName="testSms" component={DBTable}/>

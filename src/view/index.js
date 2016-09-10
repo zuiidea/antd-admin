@@ -22,19 +22,19 @@ const App = React.createClass({
   },
   componentDidMount(){
     if (!this.state.login) {
-      const hide = message.loading('正在获取用户信息...', 0)
+      // const hide = message.loading('正在获取用户信息...', 0)
       ajax.get(`${config.getAPIPath()}${config.login.getCurrentUser}`).end((err, res) => {
         if (ajax.isSuccess(res) && !config.debug) {
-          hide()
+          // hide()
           this.loginSuccess(res.body.data)
         } else {
           if (config.isSSO()) {
-            hide()
+            // hide()
             // logger.debug('not login, redirect to SSO login page')
             const redirect = encodeURIComponent(window.location.href)
             window.location.href = `${config.login.sso}${redirect}`
           } else {
-            hide()
+            // hide()
             message.error('获取用户信息失败, 请重新登录')
             // logger.debug('not login, redirect to Login component')
             this.setState({loading: false, login: false})
@@ -44,9 +44,9 @@ const App = React.createClass({
     }
   },
   render(){
-    if (this.state.loading) {
-      return <Spin spinning={this.state.loading} size="large"/>;
-    }
+    // if (this.state.loading) {
+    //   return <Spin spinning={this.state.loading} size="large"/>;
+    // }
 
     if (!this.state.login) {
       return <SignIn loginSuccess={this.loginSuccess}/>;
