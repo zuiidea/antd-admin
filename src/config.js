@@ -7,14 +7,14 @@
 // 遵循统一的规范, 好维护, 交给其他人也比较简单
 
 module.exports = {
-  name: 'Antd管理后台',  // 项目的名字
-  footer: 'Antd版权所有 © 2016',  // footer中显示的字
+  name: 'Ant Design管理后台',  // 项目的名字
+  footer: 'Ant Design版权所有 © 2016',  // footer中显示的字
 
   debug: true,  // 是否开启debug模式, 不会请求后端接口, 使用mock的数据
-  logLevel: 'info',  // 日志级别, 目前支持debug/info/warn/error 4种级别
+  logLevel: 'debug',  // 日志级别, 目前支持debug/info/warn/error 4种级别
 
   api: {  // 对后端请求的相关配置
-    host: 'http://remoteHost:8080',  // 调用ajax接口的地址, 默认值空, 如果是跨域的, 服务端要支持CORS
+    host: 'http://localhost',  // 调用ajax接口的地址, 默认值空, 如果是跨域的, 服务端要支持CORS
     path: '/api',  // ajax请求的路径
     timeout: 15000,  // 请求的超时时间, 单位毫秒
   },

@@ -4,7 +4,7 @@ import { ajax, config, logger } from '../../utils/lib'
 import { Icon, message, Button, Row, Col, Form, Input, Select} from 'antd'
 import './signIn.less'
 
-const FormItem = Form.Item;
+const FormItem = Form.Item
 
 let SignIn = React.createClass({
   getInitialState(){
@@ -13,24 +13,36 @@ let SignIn = React.createClass({
     }
   },
   handleSubmit(e){
-    var _this = this;
-    e.preventDefault();
+    var _this = this
+    e.preventDefault()
     this.props.form.validateFieldsAndScroll((errors, values) => {
-      console.log(values);
+      if (!!errors) {
+        return
+      }
+      ajax.post(`${config.getAPIPath()}${config.login.validate}`).type('form').send(values).end((err, res) => {
+        if (ajax.isSuccess(res)) {
+          if (this.props.loginSuccess)
+            this.props.loginSuccess(res.body.data, true)
+          else
+            message.info(`登录成功, 用户名: ${res.body.data}`)
+        } else {
+           message.error(`登录失败: ${res.body.message}, 请联系管理员`)
+        }
+      })
     })
   },
   render(){
-    const { getFieldProps } = this.props.form;
+    const { getFieldProps } = this.props.form
     const username = getFieldProps('username', {
       rules: [
         {required: true, message: '不能为空'}
       ]
-    });
+    })
     const password = getFieldProps('password', {
       rules: [
         {required: true, message: '不能为空'}
       ]
-    });
+    })
     return (
       <div className="signIn-from">
         <div className="logo mb">
@@ -50,6 +62,7 @@ let SignIn = React.createClass({
             <Input
               {...password}
               size="large"
+              type="password"
               placeholder="密码"/>
           </FormItem>
           <Row className="self-modal-footer">
