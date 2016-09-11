@@ -7,13 +7,12 @@ const babelLoaderConfig = {
 
 module.exports = {
   entry: [
-    // 可能需要polyfill
     './src/index.js',
   ],
 
   output: {
     path: __dirname + '/dist',
-    filename: 'bundle.min.js',
+    filename: 'bundle.js',
     // publicPath: 'http://mycdn.com/', // require时用来生成图片的地址
   },
 
@@ -26,7 +25,6 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        // 删除一些debug语句
         loaders: ['babel-loader?' + JSON.stringify(babelLoaderConfig), 'strip-loader?strip[]=logger.debug,strip[]=console.log,strip[]=console.debug'],
         exclude: /node_modules/,
       }, {
@@ -43,22 +41,19 @@ module.exports = {
   },
 
   plugins: [
-    // 代码压缩
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
       compress: {warnings: false},
     }),
-
-    // 抽离公共部分
-    // webpack.optimize.CommonsChunkPlugin
-
+    new HtmlWebpackPlugin({
+      title: 'Ant Design Admin',
+      filename: 'index.html',
+      template: './src/index.html'
+    }),
     new webpack.optimize.DedupePlugin(),
-    // 比对id的使用频率和分布来得出最短的id分配给使用频率高的模块
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
-    // 允许错误不打断程序
     new webpack.NoErrorsPlugin(),
-
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       __DEV__: JSON.stringify(JSON.parse(process.env.NODE_ENV === 'production' ? 'false' : 'true')),

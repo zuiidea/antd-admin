@@ -28,6 +28,7 @@
     "eslint-config-airbnb": "6.x",
     "eslint-plugin-react": "4.x",
     "file-loader": "0.9.0",
+    "html-webpack-plugin": "^2.22.0",
     "less": "2.7.1",
     "less-loader": "2.2.3",
     "lesshint": "2.0.2",
