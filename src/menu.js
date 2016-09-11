@@ -10,9 +10,9 @@
 
 module.exports = [
   {
-    key: 'index',  // route时url中的值
-    name: '菜单哈哈哈',  // 在菜单中显示的名称
-    icon: 'smile',  // 只有顶层菜单可以带图标
+    key: 'index',
+    name: '菜单一',
+    icon: 'user',
     child: [
       {
         key: 'option1',
@@ -30,8 +30,8 @@ module.exports = [
   },
   {
     key: 'daohang',
-    name: '导航',
-    icon: 'appstore',
+    name: '菜单二',
+    icon: 'setting',
     child: [
       {
         key: '555',
@@ -63,8 +63,8 @@ module.exports = [
   },
   {
     key: 'test',
-    name: '测试',
-    icon: 'eye',
+    name: '菜单三',
+    icon: 'laptop',
     child: [
       {
         key: 'aaa',
@@ -95,6 +95,42 @@ module.exports = [
           {
             key: '666bb',
             name: '选项6',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    key: 'menu4',
+    name: '菜单四',
+    icon: 'notification',
+    child: [
+      {
+        key: 'menu4',
+        name: '菜单四一',
+      },
+     ],
+  },
+  {
+    key: 'menu5',
+    name: '菜单五',
+    icon: 'folder',
+    child: [
+      {
+        key: 'menu51',
+        name: '菜单五一',
+      },
+      {
+        key: 'menu52',
+        name: '菜单五二',
+      },
+      {
+        key: 'menu53',
+        name: '菜单五三',
+        child: [
+          {
+            key: 'menu531',
+            name: '菜单五三一',
           },
         ],
       },

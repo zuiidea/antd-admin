@@ -1,4 +1,6 @@
-const webpack = require('webpack');
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 const babelLoaderConfig = {
   presets: ['es2015', 'stage-0', 'react'],
@@ -13,7 +15,7 @@ module.exports = {
   output: {
     path: __dirname + '/dist',
     filename: 'bundle.js',
-    // publicPath: 'http://mycdn.com/', // require时用来生成图片的地址
+    // publicPath: 'http://mycdn.com/',
   },
 
   resolve: {
@@ -27,15 +29,23 @@ module.exports = {
         test: /\.jsx?$/,
         loaders: ['babel-loader?' + JSON.stringify(babelLoaderConfig), 'strip-loader?strip[]=logger.debug,strip[]=console.log,strip[]=console.debug'],
         exclude: /node_modules/,
-      }, {
-        test: /\.css$/,
-        loader: 'style!css',
-      }, {
-        test: /\.less$/,
-        loader: 'style!css!less',
-      }, {
+      },
+      // {
+      //   test: /\.css$/,
+      //   loader: 'style!css',
+      // }, {
+      //   test: /\.less$/,
+      //   loader: 'style!css!less',
+      // },
+      {
         test: /\.(png|jpg|svg)$/,
         loader: 'url?limit=25000',
+      },{
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+      }, {
+        test: /\.less$/,
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
       },
     ],
   },
@@ -50,6 +60,7 @@ module.exports = {
       filename: 'index.html',
       template: './src/index.html'
     }),
+    new ExtractTextPlugin("[name].css"),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),

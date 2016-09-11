@@ -8,7 +8,6 @@ import {Router, Route, IndexRoute, hashHistory} from 'react-router';
 import './utils/index.js';  // 引入各种prototype辅助方法
 
 // 开始引入各种自定义的组件
-// import App from './components/App';
 import App from './view/index';
 import SignIn from './view/user/signIn';
 import Welcome from './components/Welcome';

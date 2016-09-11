@@ -5,8 +5,9 @@ import Footer from '../components/Footer'
 import Sidebar from '../components/Sidebar'
 import SignIn from './user/SignIn'
 import Breadcrumb from '../components/Breadcrumb'
+import './index.less'
 import { ajax, config, logger } from '../utils/lib.js'
-import { Spin, message } from 'antd'
+import { Spin, message, Icon } from 'antd'
 
 const App = React.createClass({
   getInitialState() {
@@ -16,6 +17,7 @@ const App = React.createClass({
       loading: false,
       login: true,
       userName: '未登录',
+      collapse: false,
     }
   },
   componentDidMount() {
@@ -63,20 +65,32 @@ const App = React.createClass({
     } else if (!this.state.login) {
       return <SignIn loginSuccess={this.loginSuccess} />
     }
+    const collapse = this.state.collapse
     return (
-      <div className="ant-layout-aside">
+      <div className={collapse ? "ant-layout-aside ant-layout-aside-collapse" : "ant-layout-aside"}>
+      <aside className="ant-layout-sider">
         <Sidebar />
-        <div id="main-content-div" className="ant-layout-main">
-          <Spin spinning={this.state.loading} size="large">
+        <div className="ant-aside-action" onClick={this.onCollapseChange}>
+          {collapse ? <Icon type="right" /> : <Icon type="left" />}
+        </div>
+        </aside>
+        <div className="ant-layout-main">
+          <div className="ant-layout-header">
             <Header userName={this.state.userName} />
+          </div>
+          <div className="ant-layout-breadcrumb">
             <Breadcrumb {...this.props} />
-            <div className="ant-layout-container">
-              <div className="ant-layout-content">
-                {this.state.loading ? '' : this.props.children}
+          </div>
+          <div className="ant-layout-container">
+            <div className="ant-layout-content">
+              <div style={{ height: 220 }}>
+              {this.props.children}
               </div>
             </div>
-            <Footer />
-          </Spin>
+          </div>
+          <div className="ant-layout-footer">
+            Ant Design 版权所有 © 2015 由蚂蚁金服体验技术部支持
+          </div>
         </div>
       </div>
     )
