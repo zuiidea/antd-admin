@@ -4,13 +4,12 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Sidebar from '../components/Sidebar'
 import SignIn from './user/SignIn'
-// import SignIn from '../components/Login'
 import Breadcrumb from '../components/Breadcrumb'
-import {ajax,config,logger} from '../utils/lib.js'
-import {Spin, message} from 'antd'
+import { ajax, config, logger } from '../utils/lib.js'
+import { Spin, message } from 'antd'
 
 const App = React.createClass({
-  getInitialState: function () {
+  getInitialState() {
     return {
       // loading: true,
       // login: false,
@@ -19,10 +18,7 @@ const App = React.createClass({
       userName: '未登录',
     }
   },
-  componentWillMount() {
-
-  },
-  componentDidMount(){
+  componentDidMount() {
     if (!this.state.login) {
       const hide = message.loading('正在获取用户信息...', 0)
       ajax.get(`${config.getAPIPath()}${config.login.getCurrentUser}`).end((err, res) => {
@@ -39,43 +35,52 @@ const App = React.createClass({
             hide()
             message.error('获取用户信息失败, 请重新登录')
             logger.debug('not login, redirect to Login component')
-            this.setState({loading: false, login: false})
+            this.setState({
+              loading: false,
+              login: false,
+            })
           }
         }
       })
     }
   },
-  loginSuccess (name, showMsg){
+  loginSuccess(name, showMsg) {
     logger.debug('callback logingSuccess, name = %s', name)
-    if (showMsg)
+    if (showMsg) {
       message.success('登录成功')
-      this.setState({loading: false, login: true, userName: name})
-  },
-  render(){
-    if (this.state.loading) {
-      return <Spin spinning={this.state.loading} size="large"><SignIn loginSuccess={this.loginSuccess}/></Spin>
-    } else if (!this.state.login) {
-      return <SignIn loginSuccess={this.loginSuccess}/>
     }
-
+    this.setState({
+      loading: false,
+      login: true,
+      userName: name,
+    })
+  },
+  render() {
+    if (this.state.loading) {
+      return (<Spin spinning={this.state.loading} size="large">
+                <SignIn loginSuccess= {this.loginSuccess} />
+              </Spin>)
+    } else if (!this.state.login) {
+      return <SignIn loginSuccess={this.loginSuccess} />
+    }
     return (
       <div className="ant-layout-aside">
-        <Sidebar/>
+        <Sidebar />
         <div id="main-content-div" className="ant-layout-main">
           <Spin spinning={this.state.loading} size="large">
-            <Header userName={this.state.userName}/>
+            <Header userName={this.state.userName} />
             <Breadcrumb {...this.props} />
             <div className="ant-layout-container">
               <div className="ant-layout-content">
                 {this.state.loading ? '' : this.props.children}
               </div>
             </div>
-            <Footer/>
+            <Footer />
           </Spin>
         </div>
       </div>
     )
-  }
+  },
 })
 
 module.exports = App

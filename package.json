@@ -52,7 +52,7 @@
     "prod": "NODE_ENV=production webpack --progress --colors --config webpack.config.prod.js -p --display-error-details",
     "clean": "rm dist/bundle*",
     "dev": "webpack-dev-server --devtool eval --progress --colors --content-base dist --hot --inline --display-error-details",
-    "eslint": "eslint --ext .js,.jsx src",
+    "eslint": "eslint --ext .js,.jsx src/view",
     "stylelint": "stylelint \"src/**/*.css\"",
     "lesshint": "lesshint src/"
   }
