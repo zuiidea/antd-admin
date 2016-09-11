@@ -104,7 +104,10 @@ const Sider = React.createClass({
     const collapse = this.state.collapse
     return (
         <div>
-          <div className="ant-layout-logo"></div>
+          <div className="ant-layout-logo m-y">
+            <img src="https://t.alipayobjects.com/images/rmsweb/T1B9hfXcdvXXXXXXXX.svg" />
+            <span>Ant Design</span>
+         </div>
           <Menu mode="inline" theme="dark" defaultSelectedKeys={['user']}>
             {this.menu}
           </Menu>
