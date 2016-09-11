@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 const babelLoaderConfig = {
   presets: ['es2015', 'stage-0', 'react'],
@@ -20,7 +21,7 @@ module.exports = {
 
   output: {
     path: __dirname + '/dist',
-    filename: 'js/bundle.js',
+    filename: 'bundle.js',
   },
 
   resolve: {
@@ -33,19 +34,29 @@ module.exports = {
 
   module: {
     loaders: [{
-      test: /\.jsx?$/,
-      loaders: ['react-hot', 'babel-loader?' + JSON.stringify(babelLoaderConfig)],
-      exclude: /node_modules/,
-    }, {
-      test: /\.css$/,
-      loader: 'style!css',
-    }, {
-      test: /\.less$/,
-      loader: 'style!css!less',
-    }, {
-      test: /\.(png|jpg|svg)$/,
-      loader: 'url?limit=25000',
-    }, ],
+        test: /\.jsx?$/,
+        loaders: ['react-hot', 'babel-loader?' + JSON.stringify(babelLoaderConfig)],
+        exclude: /node_modules/,
+      },
+      // {
+      //   test: /\.css$/,
+      //   loader: 'style!css',
+      // }, {
+      //   test: /\.less$/,
+      //   loader: 'style!css!less',
+      // },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+      }, {
+        test: /\.less$/,
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
+      },
+      {
+        test: /\.(png|jpg|svg)$/,
+        loader: 'url?limit=25000',
+      },
+    ],
   },
 
   plugins: [
@@ -54,6 +65,7 @@ module.exports = {
       filename: 'index.html',
       template: './src/index.html'
     }),
+    new ExtractTextPlugin("[name].css"),
     new webpack.DefinePlugin({
       __DEV__: JSON.stringify(JSON.parse(process.env.NODE_ENV === 'production' ? 'false' : 'true')),
     }),
