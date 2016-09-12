@@ -12,10 +12,10 @@ import { Spin, message, Icon } from 'antd'
 const App = React.createClass({
   getInitialState() {
     return {
-      // loading: true,
-      // login: false,
-      loading: false,
-      login: true,
+      loading: true,
+      login: false,
+      // loading: false,
+      // login: true,
       userName: '未登录',
       collapse: false,
     }

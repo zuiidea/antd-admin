@@ -19,8 +19,10 @@ let SignIn = React.createClass({
       if (!!errors) {
         return
       }
+      _this.setState({ loading: true })
       ajax.post(`${config.getAPIPath()}${config.login.validate}`)
       .type('form').send(values).end((err, res) => {
+        _this.setState({ loading: false })
         if (ajax.isSuccess(res)) {
           if (this.props.loginSuccess) {
             this.props.loginSuccess(res.body.data, true)
@@ -69,6 +71,10 @@ let SignIn = React.createClass({
              登录
            </Button>
           </Row>
+          <p style={{color:'#ccc',textAlign:'center'}} className='m-y-sm'>
+            <span className='mr'>账号：guest</span>
+            <span>密码：guest</span>
+          </p>
         </form>
       </div>
     )
