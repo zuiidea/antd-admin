@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { ajax, config, logger } from '../../utils/lib'
+import { ajax, config, Logger } from '../../utils/lib'
 import { Icon, message, Button, Row, Col, Form, Input, Select } from 'antd'
 import './signIn.less'
 
 const FormItem = Form.Item
+const logger = Logger.getLogger('SignIn')
 
 let SignIn = React.createClass({
   getInitialState() {

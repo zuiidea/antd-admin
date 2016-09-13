@@ -6,8 +6,10 @@ import Sidebar from '../components/Sidebar'
 import SignIn from './user/SignIn'
 import Breadcrumb from '../components/Breadcrumb'
 import './index.less'
-import { ajax, config, logger } from '../utils/lib.js'
+import { ajax, config, Logger } from '../utils/lib.js'
 import { Spin, message, Icon } from 'antd'
+
+const logger = Logger.getLogger('App')
 
 const App = React.createClass({
   getInitialState() {
