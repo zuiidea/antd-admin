@@ -15,6 +15,10 @@ module.exports = [
     icon: 'user',
     child: [
       {
+        key: 'list',
+        name: '数据列表',
+      },
+      {
         key: 'option1',
         name: '模拟CRUD',
       },
