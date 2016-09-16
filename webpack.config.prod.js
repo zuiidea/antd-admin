@@ -30,13 +30,6 @@ module.exports = {
         loaders: ['babel-loader?' + JSON.stringify(babelLoaderConfig), 'strip-loader?strip[]=logger.debug,strip[]=console.log,strip[]=console.debug'],
         exclude: /node_modules/,
       },
-      // {
-      //   test: /\.css$/,
-      //   loader: 'style!css',
-      // }, {
-      //   test: /\.less$/,
-      //   loader: 'style!css!less',
-      // },
       {
         test: /\.(png|jpg|svg)$/,
         loader: 'url?limit=25000',

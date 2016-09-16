@@ -38,13 +38,6 @@ module.exports = {
         loaders: ['react-hot', 'babel-loader?' + JSON.stringify(babelLoaderConfig)],
         exclude: /node_modules/,
       },
-      // {
-      //   test: /\.css$/,
-      //   loader: 'style!css',
-      // }, {
-      //   test: /\.less$/,
-      //   loader: 'style!css!less',
-      // },
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract("style-loader", "css-loader")

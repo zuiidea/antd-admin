@@ -13,6 +13,7 @@ module.exports = {
   logoText:'Ant Design',
   debug: true,  // 是否开启debug模式, 不会请求后端接口, 使用mock的数据
   logLevel: 'debug',  // 日志级别, 目前支持debug/info/warn/error 4种级别
+  needLogin:false,
 
   api: {
     host: 'http://localhost',  // 调用ajax接口的地址, 默认值空, 如果是跨域的, 服务端要支持CORS

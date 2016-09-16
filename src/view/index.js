@@ -13,11 +13,15 @@ const logger = Logger.getLogger('App')
 
 const App = React.createClass({
   getInitialState() {
+    let loading=false,
+        login=true
+    if (config.needLogin){
+        loading=true
+        login=false
+    }
     return {
-      loading: true,
-      login: false,
-      // loading: false,
-      // login: true,
+      loading,
+      login,
       userName: '未登录',
       collapse: false,
     }

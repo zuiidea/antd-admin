@@ -51,7 +51,7 @@
   },
   "scripts": {
     "build": "webpack --progress --colors --display-error-details",
-    "prod": "NODE_ENV=production webpack --progress --colors --config webpack.config.prod.js -p --display-error-details",
+    "prod": "set NODE_ENV=production&&webpack --progress --colors --config webpack.config.prod.js -p --display-error-details",
     "clean": "rd /s /q dist",
     "dev": "webpack-dev-server --devtool eval --progress --colors --content-base dist --hot --inline --display-error-details",
     "eslint": "eslint --ext .js,.jsx src/view",
