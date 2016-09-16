@@ -8,7 +8,10 @@ const logger = Logger.getLogger('List')
 
 let List = React.createClass({
   getInitialState() {
+    logger.info()
+    const tableName = this.props.routes.pop().tableName
     return {
+      tableName,
       pager:{
         showSizeChanger: true,
         showQuickJumper: true,
@@ -24,6 +27,11 @@ let List = React.createClass({
   fetch() {
     const _this = this
     this.setState({loading: true})
+
+    fetch('https://randomuser.me/api/')
+    .then(function(response) {
+      console.log(response);
+    })
     // Ajax({
     //   url: contextPath + '/talent/index',
     //   data: {
@@ -39,17 +47,19 @@ let List = React.createClass({
   },
   render() {
     return (
-      <Table
-        bordered
-        columns={columns}
-        rowKey={record => record.id}
-        dataSource={this.state.data}
-        pagination={this.state.pager}
-        loading={this.state.loading}
-        onChange={this.handleTableChange}
-        size="small" />
+     <div />
     )
   },
 })
 
 module.exports = List
+
+// <Table
+//   bordered
+//   columns={columns}
+//   rowKey={record => record.id}
+//   dataSource={this.state.data}
+//   pagination={this.state.pager}
+//   loading={this.state.loading}
+//   onChange={this.handleTableChange}
+//   size="small" />
