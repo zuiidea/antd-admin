@@ -27,36 +27,25 @@ const App = React.createClass({
     }
   },
   componentDidMount() {
+    const _this = this
     if (!this.state.login) {
-      const hide = message.loading('正在获取用户信息...', 0)
-      ajax.get(`${config.getAPIPath()}${config.login.getCurrentUser}`).end((err, res) => {
-        if (ajax.isSuccess(res) && !config.debug) {
-          hide()
-          this.loginSuccess(res.body.data)
-        } else {
-          if (config.isSSO()) {
-            hide()
-            logger.debug('not login, redirect to SSO login page')
-            const redirect = encodeURIComponent(window.location.href)
-            window.location.href = `${config.login.sso}${redirect}`
+      const loading = message.loading('正在获取用户信息...', 0)
+      ajax({
+        url: config.user.info,
+        success: function (result) {
+          if (result.isSuccess) {
+            loading()
+            _this.loginSuccess(result.userName)
           } else {
-            hide()
-            message.error('获取用户信息失败, 请重新登录')
-            logger.debug('not login, redirect to Login component')
-            this.setState({
-              loading: false,
-              login: false,
-            })
+            loading()
+            _this.setState({loading: false})
           }
         }
       })
     }
   },
-  loginSuccess(name, showMsg) {
+  loginSuccess(name) {
     logger.debug('callback logingSuccess, name = %s', name)
-    if (showMsg) {
-      message.success('登录成功')
-    }
     this.setState({
       loading: false,
       login: true,

@@ -21,17 +21,18 @@ let SignIn = React.createClass({
         return
       }
       _this.setState({ loading: true })
-      ajax.post(`${config.getAPIPath()}${config.login.validate}`)
-      .type('form').send(values).end((err, res) => {
-        _this.setState({ loading: false })
-        if (ajax.isSuccess(res)) {
-          if (this.props.loginSuccess) {
-            this.props.loginSuccess(res.body.data, true)
-          } else {
-            message.info(`登录成功, 用户名: ${res.body.data}`)
+      ajax({
+        url:config.user.signIn,
+        data:values,
+        success:function(result){
+          if(result.isSuccess){
+            _this.props.loginSuccess(result.userName, true)
+          }else {
+            message.error(`登录失败: ${result.message}, 请联系管理员`)
           }
-        } else {
-          message.error(`登录失败: ${res.body.message}, 请联系管理员`)
+        },
+        complete:function(){
+          _this.setState({ loading: false })
         }
       })
     })
