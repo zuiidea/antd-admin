@@ -18,6 +18,7 @@ let List = React.createClass({
         showTotal: total => `共 ${total} 条`
       },
       data:{},
+      params:{},
       loading: false,
     };
   },
@@ -27,23 +28,19 @@ let List = React.createClass({
   fetch() {
     const _this = this
     this.setState({loading: true})
-
-    fetch('https://randomuser.me/api/')
-    .then(function(response) {
-      console.log(response);
+    ajax({
+      url: 'https://randomuser.me/api/',
+      data: {
+        ..._this.state.params
+      },
+      success: function (result) {
+        console.log(result);
+        const pager = _this.state.pager
+        const params = _this.state.params
+        pager.total = result.total
+        _this.setState({loading: false, data: result.talentList, pager, params})
+      }
     })
-    // Ajax({
-    //   url: contextPath + '/talent/index',
-    //   data: {
-    //     ..._this.state.params
-    //   },
-    //   success: function (result) {
-    //     const pager = _this.state.pager
-    //     const params = _this.state.params
-    //     pager.total = result.total
-    //     _this.setState({loading: false, data: result.talentList, pager, params})
-    //   }
-    // })
   },
   render() {
     return (

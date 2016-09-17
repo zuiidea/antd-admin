@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import { Menu, Icon } from 'antd'
-import Logo from '../Logo'
-import Logger from '../../utils/Logger'
+import Logger from '../../utils/logger'
 import items from 'menu.js'
 
 const SubMenu = Menu.SubMenu
@@ -47,7 +46,6 @@ const Sider = React.createClass({
   },
   transFormMenuItem(obj, paths) {
     const parentPath = paths.join('/')
-    logger.debug('transform %o to path %s', obj, parentPath)
     return (
       <MenuItem key={obj.key}>
         {obj.child ? obj.name : <Link to={`/${parentPath}`}>{obj.name}</Link> }

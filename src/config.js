@@ -1,31 +1,23 @@
-/**
- * 定义整个项目的全局配置
- */
-
-// 约定优于配置
-// 我可以提供尽量多的配置, 但尽量不要太个性化, 接口的路径/名称/格式之类的
-// 遵循统一的规范, 好维护, 交给其他人也比较简单
-
 module.exports = {
   name: 'Ant Design 管理后台',
   footer: 'Ant Design Admin 版权所有 © 2016 由zuiidea支持',
   logoImg:'https://t.alipayobjects.com/images/rmsweb/T1B9hfXcdvXXXXXXXX.svg',
   logoText:'Ant Design',
-  debug: true,  // 是否开启debug模式, 不会请求后端接口, 使用mock的数据
-  logLevel: 'debug',  // 日志级别, 目前支持debug/info/warn/error 4种级别
+  debug: true,
+  logLevel: 'debug',
   needLogin:false,
 
   api: {
-    host: 'http://localhost',  // 调用ajax接口的地址, 默认值空, 如果是跨域的, 服务端要支持CORS
-    path: '/api',  // ajax请求的路径
-    timeout: 15000,  // 请求的超时时间, 单位毫秒
+    host: 'http://localhost',
+    path: '/api',
+    timeout: 15000,
   },
 
-  login: {  // 登录相关配置
-    getCurrentUser: '/getCurrentUser',  // 后端必须要提供接口校验当前用户的身份, 如果拿不到用户信息, 才会尝试登录
-    sso: '',  // 是否使用单点登录? 是的话我会把地址encode后加到后面, 然后跳转, 如果这个是空字符串, 说明不使用单点登录
-    validate: '/login',  // 校验用户信息, 表单的submit地址. 如果登录成功, 必须返回用户名
-    logout: '/logout',  // 退出的url, 用户点击退出时, 浏览器会直接跳转到这个链接
+  login: {
+    getCurrentUser: '/getCurrentUser',
+    sso: '',
+    validate: '/login',
+    logout: '/logout',
   },
 
   /**
@@ -106,5 +98,4 @@ module.exports = {
     this.tmpApiPath = tmpApiPath;
     return tmpApiPath;
   },
-
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Breadcrumb, Icon} from 'antd';
 import items from 'menu.js';
-import Logger from '../../utils/Logger';
+import Logger from '../../utils/logger';
 
 const Item = Breadcrumb.Item;
 const logger = Logger.getLogger('Breadcrumb');
