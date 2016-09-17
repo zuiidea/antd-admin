@@ -5,7 +5,7 @@ import './lib.less'
 
 function ajax(data){
 
-  if(config.debug){
+  if(config.debug && data.url.indexOf('http')<0){
     setTimeout(function(){
       if(data.url==config.user.info){
         if(localStorage.getItem("username")&&localStorage.getItem("username")=="guest"&&
