@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { ajax, config, Logger } from '../../utils/lib'
-import { Icon, message, Table, Button, Row, Col } from 'antd'
+import { Icon, message, Table, Button, Row, Col, Dropdown, Menu } from 'antd'
 import './list.less'
 
 const logger = Logger.getLogger('List')
@@ -61,12 +61,18 @@ let List = React.createClass({
     })
   },
   render() {
-    const columns = [{
+    const columns = [
+      {
+        title: '头像',
+        dataIndex: 'picture',
+        width:64,
+        className:'avatar-col',
+        render: text => <img width='24' src={text.thumbnail} />,
+      },{
       title: '姓名',
       dataIndex: 'name',
       sorter: true,
-      render: name => `${name.first} ${name.last}`,
-      width: '20%',
+      render: text => `${text.first} ${text.last}`,
     }, {
       title: '性别',
       dataIndex: 'gender',
@@ -74,10 +80,46 @@ let List = React.createClass({
         { text: 'Male', value: 'male' },
         { text: 'Female', value: 'female' },
       ],
-      width: '20%',
     }, {
+      title: '座机',
+      dataIndex: 'cell',
+    }, {
+      title: '国家',
+      dataIndex: 'nat',
+    }, {
+      title: '城市',
+      dataIndex: 'location',
+      render: text => text.city,
+    },{
+      title: '手机',
+      dataIndex: 'phone',
+    },{
       title: '邮箱',
       dataIndex: 'email',
+    },{
+      title: '时间',
+      dataIndex: 'dob',
+      render: text => new Date(text).format("yyyy-MM-dd hh:mm:ss"),
+    },{
+      title: '操作',
+      dataIndex: 'login',
+      render: (text,it) => {
+        const menu = (
+          <Menu>
+            <Menu.Item>
+              <a href='javascript:;'>编辑</a>
+            </Menu.Item>
+            <Menu.Item>
+              <a href='javascript:;'>删除</a>
+            </Menu.Item>
+          </Menu>
+        )
+        return <Dropdown overlay={menu}>
+                <a className="ant-dropdown-link" href="javascript:;">
+                  操作 <Icon type="down" />
+                </a>
+              </Dropdown>
+      },
     }]
     return (
       <div>
@@ -89,6 +131,7 @@ let List = React.createClass({
         pagination={this.state.pager}
         loading={this.state.loading}
         onChange={this.handleTableChange}
+        className="list-table"
         size="small" />
     </div>
     )

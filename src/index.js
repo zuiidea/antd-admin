@@ -8,6 +8,7 @@ import SignIn from './view/user/signIn'
 import List from './view/data/list'
 import Error from './components/Error'
 import Hello from './components/Hello'
+import './utils/lib.less'
 
 const routes = (
   <Router history={hashHistory}>
