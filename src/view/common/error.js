@@ -1,13 +1,8 @@
-import React from 'react';
-import {Icon} from 'antd';
-import './index.less';
+import React from 'react'
+import { Icon } from 'antd'
+import './error.less'
 
-/**
- * 显示错误信息
- * 可以当404页来用
- */
-class Error extends React.Component {
-
+const Error = React.createClass({
   render() {
     return (
       <div className="not-found">
@@ -16,7 +11,6 @@ class Error extends React.Component {
       </div>
     );
   }
+})
 
-}
-
-export default Error;
+module.exports = Error

@@ -5,7 +5,7 @@ import './index.less';
 
 const SubMenu = Menu.SubMenu;
 
-let Header = React.createClass({
+const Header = React.createClass({
   signOut(){
     ajax({
       url:config.user.signOut

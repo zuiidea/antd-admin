@@ -1,37 +1,17 @@
 import React from 'react';
 import {BackTop} from 'antd';
-import globalConfig from 'config.js';
+import {config} from '../../utils/lib.js'
 
-/**
- * 定义Footer组件
- */
-class Footer extends React.Component {
-
+const Footer = React.createClass({
   render() {
-    // FIXME: gross hack
-    // footer组件第一次render的时候, 不能返回BackTop, 因为main-content-div还没render
-    if (this.inited) {
-      return (
-        <div>
-          <BackTop target={() => document.getElementById('main-content-div')}/>
-          <div className="ant-layout-footer">
-            {globalConfig.footer || 'footer被弄丢啦!'}
-          </div>
+    return (
+      <div>
+        <div className="ant-layout-footer">
+          {config.footer}
         </div>
-      );
-    } else {
-      this.inited = true;
-      return (
-        <div>
-          <div className="ant-layout-footer">
-            {globalConfig.footer || 'footer被弄丢啦!'}
-          </div>
-        </div>
-      );
-    }
-
+      </div>
+    )
   }
-
-}
+})
 
 export default Footer;

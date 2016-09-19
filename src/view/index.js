@@ -28,6 +28,11 @@ const App = React.createClass({
   },
   componentDidMount() {
     const _this = this
+    if(localStorage.getItem("username")&&localStorage.getItem("username")=="guest"&&
+        localStorage.getItem("password")&&localStorage.getItem("password")=='guest'){
+      _this.loginSuccess("guest")
+      return
+    }
     if (!this.state.login) {
       const loading = message.loading('正在获取用户信息...', 0)
       ajax({
@@ -70,22 +75,14 @@ const App = React.createClass({
         </div>
         </aside>
         <div className="ant-layout-main">
-          <div className="ant-layout-header">
-            <Header userName={this.state.userName} />
-          </div>
-          <div className="ant-layout-breadcrumb">
-            <Breadcrumb {...this.props} />
-          </div>
+          <Header userName={this.state.userName} />
+          <Breadcrumb {...this.props} />
           <div className="ant-layout-container">
             <div className="ant-layout-content">
-              <div style={{ height: 220 }}>
               {this.props.children}
-              </div>
             </div>
           </div>
-          <div className="ant-layout-footer">
-            Ant Design 版权所有 © 2015 由蚂蚁金服体验技术部支持
-          </div>
+          <Footer />
         </div>
       </div>
     )

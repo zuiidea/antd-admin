@@ -12,49 +12,12 @@ const Sider = React.createClass({
   getInitialState() {
     let fixed=false;
     let fixedText="固定";
+    const paths = []
+    const defaultOpenKeys = []
     if(window.localStorage.getItem("mgFixedSider")&&window.localStorage.getItem("mgFixedSider")=="true"){
       fixed=true;
       fixedText="取消";
     }
-    return {
-      fixed:fixed,
-      collapse: true,
-      fixedText:fixedText
-    }
-  },
-  onCollapseChange() {
-    this.setState({
-      collapse: !this.state.collapse,
-    })
-  },
-  switchFixed(){
-    window.localStorage.setItem("mgFixedSider",!this.state.fixed);
-    this.setState({
-      fixed: !this.state.fixed
-    });
-    if(this.state.fixedText=="固定"){
-      this.setState({
-        fixed: !this.state.fixed,
-        fixedText:"取消"
-      });
-    } else {
-      this.setState({
-        fixed: !this.state.fixed,
-        fixedText:"固定"
-      });
-    }
-  },
-  transFormMenuItem(obj, paths) {
-    const parentPath = paths.join('/')
-    return (
-      <MenuItem key={obj.key}>
-        {obj.child ? obj.name : <Link to={`/${parentPath}`}>{obj.name}</Link> }
-      </MenuItem>
-    )
-  },
-  componentWillMount() {
-    const paths = []
-    const defaultOpenKeys = []
     const menu = items.map((level1) => {
       paths.push(level1.key)
       if (defaultOpenKeys.length === 0) {
@@ -84,7 +47,7 @@ const Sider = React.createClass({
         })
         paths.pop()
         return (
-          <SubMenu key={level1.key} title={<span><Icon type={level1.icon} />{level1.name}</span>}>
+          <SubMenu key={level1.key} title={<span> <Icon type={level1.icon} />{level1.name}</span>}>
             {level2menu}
           </SubMenu>
         )
@@ -95,8 +58,42 @@ const Sider = React.createClass({
         return tmp
       }
     })
-    this.menu = menu
-    this.defaultOpenKeys = defaultOpenKeys
+    return {
+      fixed:fixed,
+      collapse: true,
+      fixedText:fixedText,
+      menu,
+    }
+  },
+  onCollapseChange() {
+    this.setState({
+      collapse: !this.state.collapse,
+    })
+  },
+  switchFixed(){
+    window.localStorage.setItem("mgFixedSider",!this.state.fixed);
+    this.setState({
+      fixed: !this.state.fixed
+    });
+    if(this.state.fixedText=="固定"){
+      this.setState({
+        fixed: !this.state.fixed,
+        fixedText:"取消"
+      });
+    } else {
+      this.setState({
+        fixed: !this.state.fixed,
+        fixedText:"固定"
+      });
+    }
+  },
+  transFormMenuItem(obj, paths) {
+    const parentPath = paths.join('/')
+    return (
+      <MenuItem key={obj.key}>
+        {obj.child ? obj.name : <Link to={`/${parentPath}`}> {obj.icon ? <Icon type={obj.icon} /> : ''} {obj.name}</Link> }
+      </MenuItem>
+    )
   },
   render() {
     const collapse = this.state.collapse
@@ -106,8 +103,8 @@ const Sider = React.createClass({
             <img src="https://t.alipayobjects.com/images/rmsweb/T1B9hfXcdvXXXXXXXX.svg" />
             <span>Ant Design</span>
          </div>
-          <Menu mode="inline" theme="dark" defaultSelectedKeys={['user']}>
-            {this.menu}
+          <Menu mode="inline" theme="dark" defaultSelectedKeys={['dashboard']}>
+            {this.state.menu}
           </Menu>
           <div className="ant-aside-action" onClick={this.onCollapseChange}>
             {collapse ? <Icon type="right" /> : <Icon type="left" />}

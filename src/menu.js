@@ -1,8 +1,13 @@
 module.exports = [
   {
+    key: 'dashboard',
+    name: '仪表盘',
+    icon: 'laptop'
+  },
+  {
     key: 'index',
     name: '数据相关',
-    icon: 'user',
+    icon: 'file-text',
     child: [
       {
         key: 'list',

@@ -1,23 +1,25 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {Router, Route, IndexRoute, hashHistory} from 'react-router'
+import {Router, Route, IndexRoute,IndexRedirect,Redirect,hashHistory} from 'react-router'
 import './utils/index.js'
 
 import App from './view/index'
 import SignIn from './view/user/signIn'
 import List from './view/data/list'
-import Error from './components/Error'
-import Hello from './components/Hello'
+import Dashboard from './view/user/dashboard'
+import Error from './view/common/error'
 import './utils/lib.less'
 
 const routes = (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={List}/>
+       <IndexRedirect to="/dashboard" />
+      <Route path="dashboard" tableName="dashboard" component={Dashboard}/>
       <Route path="index">
         <Route path="list" tableName="list" component={List}/>
       </Route>
-      <Route path="*" component={Error}/>
+      <Route path="error" tableName="error" component={Error}/>
+      <Redirect from="*" to="error" />
     </Route>
   </Router>
 )

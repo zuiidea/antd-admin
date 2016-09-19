@@ -28,15 +28,14 @@ let List = React.createClass({
   handleTableChange(pagination, filters, sorter) {
     let pager = this.state.pager
     pager.current = pagination.current
-    this.setState({
-      pagination: pager,
-      params:{
-        results: pagination.pageSize,
-        page: pagination.current,
-        sortField: sorter.field,
-        sortOrder: sorter.order,
-        ...filters
-      }})
+    this.state.pager = pager
+    this.state.params = {
+      results: pagination.pageSize,
+      page: pagination.current,
+      sortField: sorter.field,
+      sortOrder: sorter.order,
+      ...filters
+    }
     this.fetch()
   },
   fetch() {

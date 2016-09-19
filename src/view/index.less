@@ -96,7 +96,8 @@ body {
     .ant-layout-content {
       background: #fff;
       padding: 24px;
-      height: e("calc(100vh - 168px)");
+      min-height: e("calc(100vh - 168px)");
+      position: relative;
     }
   }
 
@@ -157,4 +158,8 @@ body {
       }
     }
   }
+}
+.ant-layout-main{
+  height: 100vh;
+  overflow-y:auto;
 }
