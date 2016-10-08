@@ -1,27 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import {Router, Route, IndexRoute,IndexRedirect,Redirect,hashHistory} from 'react-router'
-import './utils/index.js'
+import './index.html';
+import './index.less';
+import dva from 'dva';
 
-import App from './view/index'
-import SignIn from './view/user/signIn'
-import List from './view/data/list'
-import Dashboard from './view/user/dashboard'
-import Error from './view/common/error'
-import './utils/lib.less'
+// 1. Initialize
+const app = dva();
 
-const routes = (
-  <Router history={hashHistory}>
-    <Route path="/" component={App}>
-       <IndexRedirect to="/dashboard" />
-      <Route path="dashboard" tableName="dashboard" component={Dashboard}/>
-      <Route path="index">
-        <Route path="list" tableName="list" component={List}/>
-      </Route>
-      <Route path="error" tableName="error" component={Error}/>
-      <Redirect from="*" to="error" />
-    </Route>
-  </Router>
-)
+// 2. Plugins
+//app.use({});
 
-ReactDOM.render(routes, document.getElementById('view'))
+// 3. Model
+//app.model(require('./models/example'));
+
+// 4. Router
+app.router(require('./router'));
+
+// 5. Start
+app.start('#root');
