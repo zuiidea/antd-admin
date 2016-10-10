@@ -5,6 +5,7 @@
   },
   "dependencies": {
     "dva": "^1.0.0",
+    "keymaster": "^1.6.2",
     "react": "^15.1.0",
     "react-dom": "^15.1.0"
   },
