@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react';
-import { Table, Popconfirm, Pagination } from 'antd';
+import React, { PropTypes } from 'react'
+import { Table, Popconfirm, Pagination } from 'antd'
 
 function UserList({
   total, current, loading, dataSource,
@@ -32,7 +32,7 @@ function UserList({
         </Popconfirm>
       </p>
     ),
-  }];
+  }]
 
   return (
     <div>
@@ -51,7 +51,7 @@ function UserList({
         onChange={onPageChange}
       />
     </div>
-  );
+  )
 }
 
 UserList.propTypes = {
@@ -62,6 +62,6 @@ UserList.propTypes = {
   loading: PropTypes.any,
   total: PropTypes.any,
   current: PropTypes.any,
-};
+}
 
-export default UserList;
+export default UserList
