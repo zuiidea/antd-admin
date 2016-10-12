@@ -38,3 +38,8 @@ https://github.com/dvajs/dva/tree/master/examples/user-dashboard
 ├── package.json     # 项目信息
 └── proxy.config.js  # 数据mock配置
 ```
+## Screenshot
+
+![](assets/anrd-admin-login.png)
+
+![](assets/anrd-admin-dataList.png)
