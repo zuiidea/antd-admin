@@ -1,0 +1,77 @@
+.layout {
+  position: relative;
+  height: 100vh;
+
+  .sider {
+    width: 224px;
+    background: #404040;
+    position: absolute;
+    overflow: visible;
+    padding-bottom: 24px;
+    height: 100vh;
+    transition: all 0.3s ease;
+
+    .logo {
+      text-align: center;
+      height: 40px;
+      line-height: 40px;
+      cursor: pointer;
+      margin: 16px 0;
+
+      img {
+        width: 40px;
+        margin-right: 8px;
+      }
+
+      span {
+        vertical-align: text-bottom;
+        font-size: 16px;
+        text-transform: uppercase;
+        display: inline-block;
+      }
+    }
+  }
+
+  .header {
+    :global(.ant-menu-horizontal) {
+      border: none;
+    }
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .bread {
+    height: 48px;
+    line-height: 48px;
+    padding: 0 16px;
+    margin-bottom: -24px;
+  }
+
+  .main {
+    margin-left: 224px;
+    transition: all 0.3s ease;
+    overflow: auto;
+    height: 100vh;
+
+    .container {
+      margin: 24px 16px;
+
+      .content {
+        background: #fff;
+        padding: 24px;
+        min-height: e("calc(100vh - 168px)");
+        position: relative;
+      }
+    }
+  }
+
+  .footer {
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+    background: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    width: 100%;
+  }
+}

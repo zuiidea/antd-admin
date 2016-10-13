@@ -5,6 +5,7 @@
   },
   "dependencies": {
     "antd": "^2.0.1",
+    "classnames": "^2.2.5",
     "dva": "1.0.0",
     "qs": "^6.2.0",
     "react": "^15.1.0",

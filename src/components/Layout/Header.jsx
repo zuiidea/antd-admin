@@ -1,41 +1,36 @@
-import React, { PropTypes } from 'react';
-import { Menu, Icon } from 'antd';
-import { Link } from 'dva/router';
+import React, { PropTypes } from 'react'
+import { Menu, Icon } from 'antd'
+import { Link } from 'dva/router'
+import styles from './main.less'
+
+const SubMenu = Menu.SubMenu
 
 function getMenuKeyFromUrl(pathname) {
-  let key = '';
+  let key = ''
   try {
-    key = pathname.match(/\/([^\/]*)/i)[1];
+    key = pathname.match(/\/([^\/]*)/i)[1]
     /* eslint no-empty:0 */
   } catch (e) {}
-  return key;
+  return key
 }
 
 function Header({ location }) {
+  console.log(getMenuKeyFromUrl(location.pathname),location.pathname);
   return (
-    <Menu
-      selectedKeys={[getMenuKeyFromUrl(location.pathname)]}
-      mode="horizontal"
-      theme="dark"
-    >
-      <Menu.Item key="users">
-        <Link to="/users"><Icon type="bars" />Users</Link>
-      </Menu.Item>
-      <Menu.Item key="home">
-        <Link to="/"><Icon type="home" />Home</Link>
-      </Menu.Item>
-      <Menu.Item key="404">
-        <Link to="/page-you-dont-know"><Icon type="frown-circle" />404</Link>
-      </Menu.Item>
-      <Menu.Item key="antd">
-        <a href="https://github.com/dvajs/dva" target="_blank">dva</a>
-      </Menu.Item>
-    </Menu>
-  );
+    <div className={styles.header}>
+      <Menu className="header-menu" mode="horizontal">
+        <SubMenu title={<span><Icon type="user" />吴彦祖</span>}>
+          <Menu.Item key="signOut">
+            <a>注销</a>
+          </Menu.Item>
+        </SubMenu>
+      </Menu>
+    </div>
+  )
 }
 
 Header.propTypes = {
   location: PropTypes.object,
-};
+}
 
-export default Header;
+export default Header

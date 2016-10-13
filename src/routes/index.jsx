@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'dva/router';
-import styles from './HomePage.less';
+import React from 'react'
+import { Link } from 'dva/router'
+import styles from './Index.less'
 
 function HomePage() {
   return (
@@ -11,10 +11,10 @@ function HomePage() {
         <li>You can go to <Link to="/users">/users</Link></li>
       </ul>
     </div>
-  );
+  )
 }
 
 HomePage.propTypes = {
-};
+}
 
-export default HomePage;
+export default HomePage
