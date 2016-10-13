@@ -86,13 +86,11 @@ function Users({ location, dispatch, users }) {
     <UserModal {...userModalProps} />
 
   return (
-    <Main location={location}>
-      <div className={styles.normal}>
-        <UserSearch {...userSearchProps} />
-        <UserList {...userListProps} />
-        <UserModalGen />
-      </div>
-    </Main>
+    <div className={styles.normal}>
+      <UserSearch {...userSearchProps} />
+      <UserList {...userListProps} />
+      <UserModalGen />
+    </div>
   )
 }
 

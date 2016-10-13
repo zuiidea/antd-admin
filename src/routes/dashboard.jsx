@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { Link } from 'dva/router'
-import styles from './Index.less'
+import Main from '../components/layout/main'
+import styles from './app.less'
 
-function HomePage() {
+function Dashboard() {
   return (
     <div className={styles.normal}>
       <h1>Hello Antd.</h1>
@@ -14,7 +15,8 @@ function HomePage() {
   )
 }
 
-HomePage.propTypes = {
+Dashboard.propTypes = {
+  location: PropTypes.object,
 }
 
-export default HomePage
+export default Dashboard
