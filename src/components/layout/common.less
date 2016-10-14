@@ -4,6 +4,7 @@ body {
   background-color: #f8f8f8;
 }
 // scrollbar
+
 ::-webkit-scrollbar-corner {
   background-color: transparent;
 }
@@ -31,4 +32,19 @@ body {
 
 ::-webkit-scrollbar:hover {
   background-color: transparent;
+}
+
+:global .ant-breadcrumb {
+  & > span {
+    &:last-child {
+      color: #999;
+      font-weight: normal;
+    }
+  }
+}
+
+:global .ant-breadcrumb-link {
+  .anticon + span {
+    margin-left: 4px;
+  }
 }

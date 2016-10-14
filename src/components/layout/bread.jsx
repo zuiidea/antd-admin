@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react'
 import {Breadcrumb, Icon} from 'antd'
-import {Link} from 'dva/router'
 import styles from './main.less'
 import {config, menu} from '../../utils'
 
@@ -31,13 +30,11 @@ function Bread({location}) {
   })
   const breads = pathNames.map((item, key) => {
     return (
-      <Breadcrumb.Item key={key}>
-        <Link to={pathSet[item].path}>
-          {pathSet[item].icon
-            ? <Icon type={pathSet[item].icon}/>
-            : ''}
-          {pathSet[item].name}
-        </Link>
+      <Breadcrumb.Item key={key} {...pathNames.length - 1 == key ? '': { href:"#" + pathSet[item].path }}>
+        {pathSet[item].icon
+          ? <Icon type={pathSet[item].icon}/>
+          : ''}
+        <span>{pathSet[item].name}</span>
       </Breadcrumb.Item>
     )
   })
@@ -45,7 +42,9 @@ function Bread({location}) {
   return (
     <div className={styles.bread}>
       <Breadcrumb>
-        <Breadcrumb.Item>仪表盘</Breadcrumb.Item>
+        <Breadcrumb.Item href="#/"><Icon type="home"/>
+          <span>主页</span>
+        </Breadcrumb.Item>
         {breads}
       </Breadcrumb>
     </div>
