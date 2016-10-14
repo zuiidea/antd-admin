@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react'
-import styles from './main.less'
 import classnames from 'classnames'
 import Header from './header'
 import Bread from './bread'
 import Footer from './footer'
 import Sider from './sider'
+import styles from './main.less'
 import './common.less'
 
 function Main({ children, location }) {

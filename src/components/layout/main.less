@@ -1,3 +1,5 @@
+@import "./vars.less";
+
 .layout {
   position: relative;
   height: 100vh;
@@ -73,5 +75,38 @@
     background: #fff;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
     width: 100%;
+  }
+}
+
+:global .ant-menu-dark {
+  .ant-menu-submenu-title:hover,
+  .ant-menu-submenu:hover{
+    color: @primary-color;
+  }
+  .ant-menu-submenu-selected{
+    color: @primary-color;
+    &:not(.ant-menu-submenu-open){
+      background-color: rgba(255,255,255,0.05);
+    }
+  }
+
+  .ant-menu-item {
+    &:hover > a {
+      color: @primary-color;
+    }
+  }
+
+  &.ant-menu-inline {
+    .ant-menu-item-selected {
+      background-color: rgba(255,255,255,0.05);
+
+      & > a {
+        color: @primary-color;
+      }
+    }
+  }
+
+  .ant-menu-item-selected {
+    color: @primary-color;
   }
 }
