@@ -19,7 +19,7 @@ function Header({ location }) {
   return (
     <div className={styles.header}>
       <Menu className="header-menu" mode="horizontal">
-        <SubMenu title={<span><Icon type="user" />吴彦祖</span>}>
+        <SubMenu style={{float:'right'}} title={<span><Icon type="user" />吴彦祖</span>}>
           <Menu.Item key="signOut">
             <a>注销</a>
           </Menu.Item>

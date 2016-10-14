@@ -3,6 +3,7 @@
 .layout {
   position: relative;
   height: 100vh;
+  min-width: 1200px;
 
   .sider {
     width: 224px;
@@ -35,7 +36,10 @@
   }
 
   .header {
-    :global(.ant-menu-horizontal) {
+    :global .ant-menu-horizontal {
+      & > .ant-menu-submenu {
+        float: right;
+      }
       border: none;
     }
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
@@ -80,12 +84,14 @@
 
 :global .ant-menu-dark {
   .ant-menu-submenu-title:hover,
-  .ant-menu-submenu:hover{
+  .ant-menu-submenu:hover {
     color: @primary-color;
   }
-  .ant-menu-submenu-selected{
+
+  .ant-menu-submenu-selected {
     color: @primary-color;
-    &:not(.ant-menu-submenu-open){
+
+    &:not(.ant-menu-submenu-open) {
       background-color: rgba(255,255,255,0.05);
     }
   }
