@@ -1,4 +1,4 @@
-import request from '../utils/request'
+import { request } from '../utils'
 import qs from 'qs'
 
 export async function query(params) {

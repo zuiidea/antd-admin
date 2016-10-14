@@ -1,49 +1,47 @@
-import React, { PropTypes } from 'react'
-import { Menu, Icon } from 'antd'
+import React, {PropTypes} from 'react'
+import {Menu, Icon} from 'antd'
+import { Link } from 'dva/router'
 import styles from './main.less'
+import {config, menu} from '../../utils'
 
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
+const getMenus = function (menuArray,parentPath){
+  parentPath = parentPath || '/'
+  return menuArray.map(item =>{
+    if(!!item.child){
+      return (
+        <Menu.SubMenu key={item.key} title={<span>{item.icon ? <Icon type={item.icon}/>: ''} {item.name}</span>}>
+          {getMenus(item.child,parentPath + item.key + '/')}
+        </Menu.SubMenu>
+      )
+    }else {
+      return (
+        <Menu.Item key={item.key}>
+          <Link to={parentPath + item.key}>
+            {item.icon ? <Icon type={item.icon}/>: ''}
+            {item.name}
+          </Link>
+        </Menu.Item>
+      )
+    }
+  })
+}
 
-function Sider({ location }) {
+function Sider({location}) {
   return (
     <div>
       <div className={styles.logo}>
-        <img src="https://t.alipayobjects.com/images/rmsweb/T1B9hfXcdvXXXXXXXX.svg" />
-        <span>Ant Design</span>
-     </div>
-     <Menu mode="inline" theme="dark" defaultSelectedKeys={['dashboard']}>
-     <SubMenu key="sub1" title={<span><Icon type="mail" /><span>Navigation One</span></span>}>
-         <MenuItemGroup title="Item 1">
-           <Menu.Item key="1">Option 1</Menu.Item>
-           <Menu.Item key="2">Option 2</Menu.Item>
-         </MenuItemGroup>
-         <MenuItemGroup title="Item 2">
-           <Menu.Item key="3">Option 3</Menu.Item>
-           <Menu.Item key="4">Option 4</Menu.Item>
-         </MenuItemGroup>
-       </SubMenu>
-       <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>Navigation Two</span></span>}>
-         <Menu.Item key="5">Option 5</Menu.Item>
-         <Menu.Item key="6">Option 6</Menu.Item>
-         <SubMenu key="sub3" title="Submenu">
-           <Menu.Item key="7">Option 7</Menu.Item>
-           <Menu.Item key="8">Option 8</Menu.Item>
-         </SubMenu>
-       </SubMenu>
-       <SubMenu key="sub4" title={<span><Icon type="setting" /><span>Navigation Three</span></span>}>
-         <Menu.Item key="9">Option 9</Menu.Item>
-         <Menu.Item key="10">Option 10</Menu.Item>
-         <Menu.Item key="11">Option 11</Menu.Item>
-         <Menu.Item key="12">Option 12</Menu.Item>
-       </SubMenu>
-     </Menu>
+        <img src={config.logoSrc}/>
+        <span>{config.logoText}</span>
+      </div>
+      <Menu mode="inline" theme="dark" defaultSelectedKeys={['dashboard']}>
+        {getMenus(menu)}
+      </Menu>
     </div>
   )
 }
 
 Sider.propTypes = {
-  location: PropTypes.object,
+  location: PropTypes.object
 }
 
 export default Sider
