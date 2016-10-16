@@ -79,14 +79,11 @@ function Users({ location, dispatch, users }) {
     },
   }
 
-  // 解决 Form.create initialValue 的问题
-  // 每次创建一个全新的组件, 而不做diff
-  // 如果你使用了redux, 请移步 http://react-component.github.io/form/examples/redux.html
   const UserModalGen = () =>
     <UserModal {...userModalProps} />
 
   return (
-    <div className={styles.normal}>
+    <div>
       <UserSearch {...userSearchProps} />
       <UserList {...userListProps} />
       <UserModalGen />
