@@ -2,6 +2,7 @@ import { request } from '../utils'
 import qs from 'qs'
 
 export async function query(params) {
+  console.log(params);
   return request(`/api/users?${qs.stringify(params)}`)
 }
 

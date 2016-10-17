@@ -8,11 +8,16 @@ export default {
   state: {
     list: [],
     loading: false,
-    total: null,
-    current: 1,
     currentItem: {},
     modalVisible: false,
     modalType: 'create',
+    pagination:{
+      showSizeChanger: true,
+      showQuickJumper: true,
+      showTotal: total => `共 ${total} 条`,
+      current:1,
+      total:null,
+    }
   },
 
   subscriptions: {
@@ -37,8 +42,10 @@ export default {
           type: 'querySuccess',
           payload: {
             list: data.data,
-            total: data.page.total,
-            current: data.page.current,
+            pagination:{
+              total: data.page.total,
+              current: data.page.current,
+            }
           },
         })
       }

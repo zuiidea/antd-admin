@@ -9,7 +9,7 @@ import UserModal from '../components/users/modal'
 
 function Users({ location, dispatch, users }) {
   const {
-    loading, list, total, current,
+    loading, list, total, current, pagination,
     currentItem, modalVisible, modalType,
     } = users
 
@@ -35,12 +35,14 @@ function Users({ location, dispatch, users }) {
   const userListProps = {
     dataSource: list,
     loading,
-    total,
-    current,
+    pagination:pagination,
     onPageChange(page) {
       dispatch(routerRedux.push({
         pathname: '/users',
-        query: { page },
+        query: {
+          page:page.current,
+          pageSize:page.pageSize
+         },
       }))
     },
     onDeleteItem(id) {

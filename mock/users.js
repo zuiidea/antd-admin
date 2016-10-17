@@ -10,8 +10,14 @@ if (!global.tableListData) {
     'data|100': [{
       'id|+1': 1,
       name: '@cname',
+      nickName:'@name',
+      phone:/^1[34578]\d{9}$/,
       'age|11-99': 1,
-      address: '@region'
+      address: '@county(true)',
+      isMale:'@boolean',
+      email:'@email',
+      createTime:'@datetime',
+      avatar:mockjs.Random.image('100x100'),
     }],
     page: {
       total: 100,
@@ -28,7 +34,7 @@ module.exports = {
 
   'GET /api/users' (req, res) {
     const page = qs.parse(req.query)
-    const pageSize = page.pageSize || 10
+    const pageSize = page.pageSize || 20
     const currentPage = page.page || 1
 
     let data

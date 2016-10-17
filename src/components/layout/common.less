@@ -48,3 +48,35 @@ body {
     margin-left: 4px;
   }
 }
+
+:global .ant-table {
+  .ant-table-thead > tr > th {
+    text-align: center;
+  }
+
+  .ant-table-tbody > tr > td {
+    text-align: center;
+  }
+
+  &.ant-table-small {
+    .ant-table-thead > tr > th {
+      background: #f7f7f7;
+    }
+
+    .ant-table-body > table {
+      padding: 0;
+    }
+  }
+}
+
+:global .ant-table-pagination {
+  float: none!important;
+  display: table;
+  margin: 16px auto !important;
+}
+
+:global .ant-popover-inner {
+  border: none;
+  border-radius: 0;
+  box-shadow: 0 0 20px rgba(100, 100, 100, 0.2);
+}
