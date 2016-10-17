@@ -66,6 +66,7 @@ function Users({ location, dispatch, users }) {
     field,
     keyword,
     onSearch(fieldsValue) {
+      console.log(fieldsValue);
       dispatch({
         type: 'users/query',
         payload: fieldsValue,

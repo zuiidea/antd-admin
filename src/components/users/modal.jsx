@@ -11,7 +11,7 @@ const formItemLayout = {
   },
 }
 
-const UserModal = ({
+const modal = ({
   visible,
   item = {},
   onOk,
@@ -98,7 +98,7 @@ const UserModal = ({
   )
 }
 
-UserModal.propTypes = {
+modal.propTypes = {
   visible: PropTypes.any,
   form: PropTypes.object,
   item: PropTypes.object,
@@ -106,4 +106,4 @@ UserModal.propTypes = {
   onCancel: PropTypes.func,
 }
 
-export default Form.create()(UserModal)
+export default Form.create()(modal)

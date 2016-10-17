@@ -17,7 +17,7 @@ if (!global.tableListData) {
       isMale:'@boolean',
       email:'@email',
       createTime:'@datetime',
-      avatar:mockjs.Random.image('100x100'),
+      avatar:mockjs.Random.image('100x100',mockjs.Random.color()),
     }],
     page: {
       total: 100,

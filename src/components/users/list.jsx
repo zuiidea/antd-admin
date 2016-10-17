@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react'
 import {Table, Popconfirm, Pagination} from 'antd'
 import styles from './list.less'
 
-function UserList({
+function list({
   loading,
   dataSource,
   pagination,
@@ -85,7 +85,7 @@ function UserList({
   )
 }
 
-UserList.propTypes = {
+list.propTypes = {
   onPageChange: PropTypes.func,
   onDeleteItem: PropTypes.func,
   onEditItem: PropTypes.func,
@@ -94,4 +94,4 @@ UserList.propTypes = {
   pagination: PropTypes.any
 }
 
-export default UserList
+export default list

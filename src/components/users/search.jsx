@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react'
 import {Form, Input, Button, Select} from 'antd'
 import styles from './search.less'
 
-const UserSearch = ({
+const search = ({
   field,
   keyword,
   onSearch,
@@ -40,11 +40,9 @@ const UserSearch = ({
           <Form.Item hasFeedback>
             {getFieldDecorator('keyword', {
               initialValue: keyword || ''
-            })(<Input type="text"/>)}
+            })(<Input/>)}
           </Form.Item>
-          <Button style={{
-            marginRight: '10px'
-          }} type="primary" htmlType="submit">搜索</Button>
+          <Button type="primary" htmlType="submit">搜索</Button>
         </Form>
       </div>
       <div className={styles.create}>
@@ -54,7 +52,7 @@ const UserSearch = ({
   )
 }
 
-UserSearch.propTypes = {
+search.propTypes = {
   form: PropTypes.object.isRequired,
   onSearch: PropTypes.func,
   onAdd: PropTypes.func,
@@ -62,4 +60,4 @@ UserSearch.propTypes = {
   keyword: PropTypes.string
 }
 
-export default Form.create()(UserSearch)
+export default Form.create()(search)
