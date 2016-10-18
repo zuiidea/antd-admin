@@ -1,6 +1,7 @@
 import config from './config'
 import menu from './menu'
 import request from './request'
+require('./mock.js');
 
 // 连字符转驼峰
 String.prototype.hyphenToHump = function () {
