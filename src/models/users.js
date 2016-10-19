@@ -36,7 +36,8 @@ export default {
   effects: {
     *query({ payload }, { call, put }) {
       yield put({ type: 'showLoading' })
-      const { data } = yield call(query, parse(payload))
+      const data = yield call(query, parse(payload))
+      console.log("modae",data);
       if (data) {
         yield put({
           type: 'querySuccess',

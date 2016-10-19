@@ -61,15 +61,19 @@ module.exports = {
         total: tableListData.page.total
       }
     }
+   res.json({
+     success: true,
+     data,
+     page: newPage
+   })
 
-
-    setTimeout(function () {
-      res.json({
-        success: true,
-        data,
-        page: newPage
-      })
-    }, 500)
+    // setTimeout(function () {
+    //   res.json({
+    //     success: true,
+    //     data,
+    //     page: newPage
+    //   })
+    // }, 500)
   },
 
   'POST /api/users' (req, res) {

@@ -1,27 +1,29 @@
-'use strict'
-
 const qs = require('qs')
-const fs = require('fs')
 const Mock = require('mockjs')
-const Ajax = require("robe-ajax")
+const mockUser = require("../../mock/users")
 
-Mock.mock(/\.json/, function (options) {
-  console.log(options);
-  return options
-})
+function serialize(str) {
+  let paramArray = str.split("&")
+  let query = {}
+  for (let i in paramArray) {
+    query[paramArray[i].split("=")[0]] = paramArray[i].split("=")[1]
+  }
+  return query
+}
 
-const mock = {};
-console.log(fs);
-
-
-Ajax.ajax({
-    url: 'hello.json',
-    dataType: 'json',
-    data: {
-        foo: 1,
-        bar: 2,
-        faz: 3
+for (let key in mockUser) {
+  Mock.mock(eval("/" + key.split(" ")[1]), key.split(" ")[0].toLowerCase(), function (options) {
+    options.query = !!options.url.split("?")[1]
+      ? serialize(options.url.split("?")[1])
+      : {}
+    let res = {}
+    let result = {}
+    res.json = function (data) {
+      result = data
     }
-}).done(function(data, status, jqXHR) {
-  console.log(data)
-})
+    mockUser[key](options, res)
+    return result
+  })
+}
+
+Mock.setup({timeout: 400})
