@@ -37,7 +37,6 @@ export default {
     *query({ payload }, { call, put }) {
       yield put({ type: 'showLoading' })
       const data = yield call(query, parse(payload))
-      console.log("modae",data);
       if (data) {
         yield put({
           type: 'querySuccess',
@@ -53,7 +52,7 @@ export default {
     },
     *'delete'({ payload }, { call, put }) {
       yield put({ type: 'showLoading' })
-      const { data } = yield call(remove, { id: payload })
+      const data = yield call(remove, { id: payload })
       if (data && data.success) {
         yield put({
           type: 'deleteSuccess',
@@ -64,7 +63,7 @@ export default {
     *create({ payload }, { call, put }) {
       yield put({ type: 'hideModal' })
       yield put({ type: 'showLoading' })
-      const { data } = yield call(create, payload)
+      const data = yield call(create, payload)
       if (data && data.success) {
         yield put({
           type: 'createSuccess',
@@ -77,7 +76,7 @@ export default {
       yield put({ type: 'showLoading' })
       const id = yield select(({ users }) => users.currentItem.id)
       const newUser = { ...payload, id }
-      const { data } = yield call(update, newUser)
+      const data = yield call(update, newUser)
       if (data && data.success) {
         yield put({
           type: 'updateSuccess',

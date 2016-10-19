@@ -1,6 +1,6 @@
-const qs = require('qs')
 const Mock = require('mockjs')
 const mockUser = require("../../mock/users")
+const mockData = [require("../../mock/users")]
 
 function serialize(str) {
   let paramArray = str.split("&")
@@ -11,19 +11,19 @@ function serialize(str) {
   return query
 }
 
-for (let key in mockUser) {
-  Mock.mock(eval("/" + key.split(" ")[1]), key.split(" ")[0].toLowerCase(), function (options) {
-    options.query = !!options.url.split("?")[1]
-      ? serialize(options.url.split("?")[1])
-      : {}
-    let res = {}
-    let result = {}
-    res.json = function (data) {
-      result = data
-    }
-    mockUser[key](options, res)
-    return result
-  })
+for (let i in mockData) {
+  for (let key in mockData[i]) {
+    Mock.mock(eval("/" + key.split(" ")[1]), key.split(" ")[0].toLowerCase(), function (options) {
+      options.query = !!options.url.split("?")[1] ? serialize(options.url.split("?")[1]) : (!!options.body ? serialize(options.body) : {})
+      let res = {}
+      let result = {}
+      res.json = function (data) {
+        result = data
+      }
+      mockUser[key](options, res)
+      return result
+    })
+  }
 }
 
 Mock.setup({timeout: 400})

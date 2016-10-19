@@ -7,7 +7,6 @@ export async function query(params) {
     body: qs.stringify(params),
     data:params,
   })
-  // return request(`/api/users?${qs.stringify(params)}`)
 }
 
 export async function create(params) {
@@ -30,6 +29,6 @@ export async function update(params) {
   return request('/api/users', {
     method: 'put',
     body: qs.stringify(params),
-    data:params,
+    data: params,
   })
 }

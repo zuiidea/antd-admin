@@ -1,4 +1,3 @@
-import fetch from 'dva/fetch'
 const Ajax = require("robe-ajax")
 
 function parseJSON(response) {
@@ -23,14 +22,6 @@ function checkStatus(response) {
  * @return {object}           An object containing either "data" or "err"
  */
 export default function request(url, options) {
-  // return fetch(url, options)
-  //   .then(checkStatus)
-  //   .then(parseJSON)
-  //   .then((data) => {
-  //     console.log(data);
-  //     return data
-  //   })
-    // .catch((err) => ({ err }))
 
   return Ajax.ajax({
       url: url,
