@@ -33,4 +33,5 @@ export default function request(url, options) {
     console.log(data);
     return data
   })
+
 }

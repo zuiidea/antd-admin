@@ -55,8 +55,14 @@ export default {
       const data = yield call(remove, { id: payload })
       if (data && data.success) {
         yield put({
-          type: 'deleteSuccess',
-          payload,
+          type: 'querySuccess',
+          payload: {
+            list: data.data,
+            pagination:{
+              total: data.page.total,
+              current: data.page.current,
+            }
+          },
         })
       }
     },
@@ -66,8 +72,14 @@ export default {
       const data = yield call(create, payload)
       if (data && data.success) {
         yield put({
-          type: 'createSuccess',
-          payload,
+          type: 'querySuccess',
+          payload: {
+            list: data.data,
+            pagination:{
+              total: data.page.total,
+              current: data.page.current,
+            }
+          },
         })
       }
     },
@@ -79,8 +91,14 @@ export default {
       const data = yield call(update, newUser)
       if (data && data.success) {
         yield put({
-          type: 'updateSuccess',
-          payload: newUser,
+          type: 'querySuccess',
+          payload: {
+            list: data.data,
+            pagination:{
+              total: data.page.total,
+              current: data.page.current,
+            }
+          },
         })
       }
     },
@@ -89,25 +107,6 @@ export default {
   reducers: {
     showLoading(state) {
       return { ...state, loading: true }
-    },
-    createSuccess(state, action) {
-      const newUser = action.payload
-      return { ...state, list: [newUser, ...state.list], loading: false }
-    },
-    deleteSuccess(state, action) {
-      const id = action.payload
-      const newList = state.list.filter(user => user.id !== id)
-      return { ...state, list: newList, loading: false }
-    },
-    updateSuccess(state, action) {
-      const updateUser = action.payload
-      const newList = state.list.map(user => {
-        if (user.id === updateUser.id) {
-          return { ...user, ...updateUser }
-        }
-        return user
-      })
-      return { ...state, list: newList, loading: false }
     },
     querySuccess(state, action) {
       return { ...state, ...action.payload, loading: false }

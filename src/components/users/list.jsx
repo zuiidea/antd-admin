@@ -74,6 +74,7 @@ function list({
   return (
     <div>
       <Table size="small"
+      className={styles.table}
       bordered
       columns={columns}
       dataSource={dataSource}

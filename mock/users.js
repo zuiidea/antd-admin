@@ -1,36 +1,45 @@
-'use strict'
-
 const qs = require('qs')
-const mockjs = require('mockjs')
+const Mock = require('mockjs')
+const Watch = require("watchjs")
 
-// 数据持久
-let tableListData = {}
-if (!global.tableListData) {
-  const data = mockjs.mock({
-    'data|100': [
-      {
-        'id|+1': 1,
-        name: '@cname',
-        nickName: '@name',
-        phone: /^1[34578]\d{9}$/,
-        'age|11-99': 1,
-        address: '@county(true)',
-        isMale: '@boolean',
-        email: '@email',
-        createTime: '@datetime',
-        avatar: mockjs.Random.image('100x100', mockjs.Random.color())
+let usersListData = {}
+if (!global.usersListData) {
+  const data = !!localStorage.getItem("antdUsersListData")
+    ? JSON.parse(localStorage.getItem("antdUsersListData"))
+    : Mock.mock({
+      'data|100': [
+        {
+          'id|+1': 1,
+          name: '@cname',
+          nickName: '@last',
+          phone: /^1[34578]\d{9}$/,
+          'age|11-99': 1,
+          address: '@county(true)',
+          isMale: '@boolean',
+          email: '@email',
+          createTime: '@datetime',
+          avatar: function(){
+            return Mock.Random.image('100x100', Mock.Random.color(),"#757575",'png',this.nickName.substr(0,1))
+          }
+        }
+      ],
+      page: {
+        total: 100,
+        current: 1
       }
-    ],
-    page: {
-      total: 100,
-      current: 1
-    }
-  })
-  tableListData = data
-  global.tableListData = tableListData
+    })
+  usersListData = data
+  global.usersListData = usersListData
+  if (!localStorage.getItem("antdUsersListData")) {
+    localStorage.setItem("antdUsersListData", JSON.stringify(usersListData))
+  }
 } else {
-  tableListData = global.tableListData
+  usersListData = global.usersListData
 }
+
+Watch.watch(usersListData, function () {
+  localStorage.setItem("antdUsersListData", JSON.stringify(usersListData))
+})
 
 module.exports = {
 
@@ -42,7 +51,7 @@ module.exports = {
     let data
     let newPage
 
-    let newData = tableListData.data.concat()
+    let newData = usersListData.data.concat()
 
     if (page.field) {
       const d = newData.filter(function (item) {
@@ -56,11 +65,11 @@ module.exports = {
         total: d.length
       }
     } else {
-      data = tableListData.data.slice((currentPage - 1) * pageSize, currentPage * pageSize)
-      tableListData.page.current = currentPage * 1
+      data = usersListData.data.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+      usersListData.page.current = currentPage * 1
       newPage = {
-        current: tableListData.page.current,
-        total: tableListData.page.total
+        current: usersListData.page.current,
+        total: usersListData.page.total
       }
     }
     res.json({success: true, data, page: newPage})
@@ -69,44 +78,44 @@ module.exports = {
   'POST /api/users' (req, res) {
     const newData = qs.parse(req.body)
 
-    newData.id = tableListData.data.length + 1
-    tableListData.data.unshift(newData)
+    newData.id = usersListData.data.length + 1
+    usersListData.data.unshift(newData)
 
-    tableListData.page.total = tableListData.data.length
-    tableListData.page.current = 1
+    usersListData.page.total = usersListData.data.length
+    usersListData.page.current = 1
 
-    global.tableListData = tableListData
-    res.json({success: true, data: tableListData.data, page: tableListData.page})
+    global.usersListData = usersListData
+    res.json({success: true, data: usersListData.data, page: usersListData.page})
   },
 
   'DELETE /api/users' (req, res) {
     const deleteItem = qs.parse(req.body)
 
-    tableListData.data = tableListData.data.filter(function (item) {
+    usersListData.data = usersListData.data.filter(function (item) {
       if (item.id == deleteItem.id) {
         return false
       }
       return true
     })
 
-    tableListData.page.total = tableListData.data.length
+    usersListData.page.total = usersListData.data.length
 
-    global.tableListData = tableListData
-    res.json({success: true, data: tableListData.data, page: tableListData.page})
+    global.usersListData = usersListData
+    res.json({success: true, data: usersListData.data, page: usersListData.page})
   },
 
   'PUT /api/users' (req, res) {
     const editItem = qs.parse(req.body)
 
-    tableListData.data = tableListData.data.map(function (item) {
+    usersListData.data = usersListData.data.map(function (item) {
       if (item.id == editItem.id) {
         return editItem
       }
       return item
     })
 
-    global.tableListData = tableListData
-    res.json({success: true, data: tableListData.data, page: tableListData.page})
+    global.usersListData = usersListData
+    res.json({success: true, data: usersListData.data, page: usersListData.page})
   }
 
 }

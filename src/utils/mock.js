@@ -13,7 +13,7 @@ function serialize(str) {
 
 for (let i in mockData) {
   for (let key in mockData[i]) {
-    Mock.mock(eval("/" + key.split(" ")[1]), key.split(" ")[0].toLowerCase(), function (options) {
+    Mock.mock(eval("/"+key.split(" ")[1].replace(/\//g,"\\\/")+"/"), key.split(" ")[0].toLowerCase(), function (options) {
       options.query = !!options.url.split("?")[1] ? serialize(options.url.split("?")[1]) : (!!options.body ? serialize(options.body) : {})
       let res = {}
       let result = {}

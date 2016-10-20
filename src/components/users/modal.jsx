@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Form, Input, Modal } from 'antd'
+import { Form, Input, InputNumber, Radio, Modal } from 'antd'
 const FormItem = Form.Item
 
 const formItemLayout = {
@@ -32,19 +32,12 @@ const modal = ({
     })
   }
 
-  function checkNumber(rule, value, callback) {
-    if (!/^[\d]{1,2}$/.test(value)) {
-      callback(new Error('年龄不合法'))
-    } else {
-      callback()
-    }
-  }
-
   const modalOpts = {
     title: '修改用户',
     visible,
     onOk: handleOk,
     onCancel,
+    wrapClassName:"vertical-center-modal"
   }
 
   return (
@@ -58,11 +51,28 @@ const modal = ({
           {getFieldDecorator('name', {
             initialValue: item.name,
             rules: [
-              { required: true, message: '名称未填写' },
+              { required: true, message: '姓名未填写' },
             ],
           })(
-            <Input type="text" />
+            <Input/>
           )}
+        </FormItem>
+        <FormItem
+          label="性别"
+          hasFeedback
+          {...formItemLayout}
+        >
+        {getFieldDecorator('isMale', {
+          initialValue: item.isMale,
+          rules: [
+            { required: true, message: '请选择性别' },
+          ],
+        })(
+          <Radio.Group>
+            <Radio value={true}>男</Radio>
+            <Radio value={false}>女</Radio>
+          </Radio.Group>
+        )}
         </FormItem>
         <FormItem
           label="年龄："
@@ -71,12 +81,41 @@ const modal = ({
         >
           {getFieldDecorator('age', {
             initialValue: item.age,
-            rules: [
-              { required: true, message: '年龄未填写' },
-              { validator: checkNumber },
+            rules: [{
+              required: true,
+              type:'number',
+              message: '年龄未填写' },
             ],
           })(
-            <Input type="text" />
+            <InputNumber min={18} max={100}/>
+          )}
+        </FormItem>
+        <FormItem
+          label="电话："
+          hasFeedback
+          {...formItemLayout}
+        >
+          {getFieldDecorator('phone', {
+            initialValue: item.phone,
+            rules: [
+              { required: true, message: '不能为空' },
+            ],
+          })(
+            <Input/>
+          )}
+        </FormItem>
+        <FormItem
+          label="邮箱："
+          hasFeedback
+          {...formItemLayout}
+        >
+          {getFieldDecorator('email', {
+            initialValue: item.email,
+            rules: [
+              { required: true, message: '不能为空' },
+            ],
+          })(
+            <Input/>
           )}
         </FormItem>
         <FormItem
@@ -90,7 +129,7 @@ const modal = ({
               { required: true, message: '不能为空' },
             ],
           })(
-            <Input type="address" />
+            <Input/>
           )}
         </FormItem>
       </Form>
