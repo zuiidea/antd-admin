@@ -39,7 +39,7 @@ function Users({ location, dispatch, users }) {
     onPageChange(page) {
       dispatch(routerRedux.push({
         pathname: '/users',
-        query: {
+        payload: {
           page:page.current,
           pageSize:page.pageSize
          },

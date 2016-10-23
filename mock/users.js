@@ -45,6 +45,8 @@ module.exports = {
 
   'GET /api/users' (req, res) {
     const page = qs.parse(req.query)
+
+    console.log(page,req);
     const pageSize = page.pageSize || 20
     const currentPage = page.page || 1
 
@@ -77,6 +79,12 @@ module.exports = {
 
   'POST /api/users' (req, res) {
     const newData = qs.parse(req.body)
+    console.log(req,res);
+
+    console.log(newData);
+
+    newData.createTime=Mock.mock('@now')
+    newData.avatar=Mock.Random.image('100x100', Mock.Random.color(),"#757575",'png',newData.nickName.substr(0,1))
 
     newData.id = usersListData.data.length + 1
     usersListData.data.unshift(newData)
@@ -106,6 +114,9 @@ module.exports = {
 
   'PUT /api/users' (req, res) {
     const editItem = qs.parse(req.body)
+
+    editItem.createTime=Mock.mock('@now')
+    editItem.avatar=Mock.Random.image('100x100', Mock.Random.color(),"#757575",'png',editItem.nickName.substr(0,1))
 
     usersListData.data = usersListData.data.map(function (item) {
       if (item.id == editItem.id) {

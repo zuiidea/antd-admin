@@ -10,6 +10,7 @@ export async function query(params) {
 }
 
 export async function create(params) {
+  console.log(params);
   return request('/api/users', {
     method: 'post',
     body: qs.stringify(params),
