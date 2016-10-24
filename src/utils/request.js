@@ -25,12 +25,12 @@ export default function request(url, options) {
 
   return Ajax.ajax({
       url: url,
-      method:options.method||'GET',
+      method:options.method||'get',
       data:options.data||{},
-      dataType:'json',
+      processData:options.method=='get'?true:false,
+      dataType:'JSON',
   })
   .done((data) => {
-    console.log(data);
     return data
   })
 

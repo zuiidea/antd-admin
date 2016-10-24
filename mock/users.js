@@ -45,8 +45,6 @@ module.exports = {
 
   'GET /api/users' (req, res) {
     const page = qs.parse(req.query)
-
-    console.log(page,req);
     const pageSize = page.pageSize || 20
     const currentPage = page.page || 1
 
@@ -78,11 +76,7 @@ module.exports = {
   },
 
   'POST /api/users' (req, res) {
-    const newData = qs.parse(req.body)
-    console.log(req,res);
-
-    console.log(newData);
-
+    const newData = req.body
     newData.createTime=Mock.mock('@now')
     newData.avatar=Mock.Random.image('100x100', Mock.Random.color(),"#757575",'png',newData.nickName.substr(0,1))
 
@@ -97,7 +91,7 @@ module.exports = {
   },
 
   'DELETE /api/users' (req, res) {
-    const deleteItem = qs.parse(req.body)
+    const deleteItem = req.body
 
     usersListData.data = usersListData.data.filter(function (item) {
       if (item.id == deleteItem.id) {
@@ -113,7 +107,7 @@ module.exports = {
   },
 
   'PUT /api/users' (req, res) {
-    const editItem = qs.parse(req.body)
+    const editItem = req.body
 
     editItem.createTime=Mock.mock('@now')
     editItem.avatar=Mock.Random.image('100x100', Mock.Random.color(),"#757575",'png',editItem.nickName.substr(0,1))
