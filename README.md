@@ -57,11 +57,6 @@ npm i
 开发：
 
 ```bash
-npm start      # 使用dora-plugin-proxy产生代理服务器
-```
-或者
-
-```bash
 npm run dev    # 使用mock拦截请求，数据存储在localStroge里
 ```
 
