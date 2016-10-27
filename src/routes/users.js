@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react'
 import { routerRedux } from 'dva/router'
 import { connect } from 'dva'
-import Main from '../components/layout/main'
 import styles from './users.less'
 import UserList from '../components/users/list'
 import UserSearch from '../components/users/search'

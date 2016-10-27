@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'dva/router'
-import Main from '../components/layout/main'
 
 function Dashboard() {
   return (

@@ -1,13 +1,13 @@
 import React, { PropTypes } from 'react'
 import classnames from 'classnames'
-import Header from './header'
-import Bread from './bread'
-import Footer from './footer'
-import Sider from './sider'
-import styles from './main.less'
-import './common.less'
+import Header from '../components/layout/header'
+import Bread from '../components/layout/bread'
+import Footer from '../components/layout/footer'
+import Sider from '../components/layout/sider'
+import styles from '../components/layout/main.less'
+import '../components/layout/common.less'
 
-function Main({ children, location }) {
+function App({ children, location }) {
   return (
     <div className={styles.layout}>
       <aside className={styles.sider}>
@@ -27,9 +27,9 @@ function Main({ children, location }) {
   )
 }
 
-Main.propTypes = {
+App.propTypes = {
   children: PropTypes.element.isRequired,
   location: PropTypes.object,
 }
 
-export default Main
+export default App
