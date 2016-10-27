@@ -1,6 +1,5 @@
 const Mock = require('mockjs')
-const mockUser = require("../../mock/users")
-const mockData = [require("../../mock/users")]
+const mockData = [require("../../mock/users"),require("../../mock/app")]
 
 function serialize(str) {
   let paramArray = str.split("&")
@@ -22,7 +21,7 @@ for (let i in mockData) {
       res.json = function (data) {
         result = data
       }
-      mockUser[key](options, res)
+      mockData[i][key](options, res)
       return result
     })
   }
