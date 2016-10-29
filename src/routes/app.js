@@ -10,7 +10,7 @@ import styles from '../components/layout/main.less'
 import '../components/layout/common.less'
 
 function App({children, location, dispatch,app}) {
-  const {login, loading,loginButtonLoading} = app
+  const {login, loading,loginButtonLoading,userName} = app
   const loginProps = {
     loading,
     loginButtonLoading,
@@ -18,6 +18,15 @@ function App({children, location, dispatch,app}) {
       dispatch({
         type: 'app/login',
         payload: data,
+      })
+    },
+  }
+
+  const breadProps = {
+    userName,
+    loginOut() {
+      dispatch({
+        type: 'app/loginOut'
       })
     },
   }
@@ -48,8 +57,9 @@ App.propTypes = {
   location: PropTypes.object,
   dispatch: PropTypes.func,
   loading: PropTypes.object,
-  loginButtonLoading:PropTypes.object,
-  login: PropTypes.object,
+  loginButtonLoading:PropTypes.bool,
+  login: PropTypes.bool,
+  userName:PropTypes.object,
 }
 
 function mapStateToProps({app}) {

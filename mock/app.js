@@ -1,6 +1,7 @@
 const qs = require('qs')
 const Mock = require('mockjs')
 const Watch = require("watchjs")
+const Cookie = require("js-cookie")
 
 let adminUsersData = {}
 if (!global.adminUsersData) {
@@ -28,9 +29,13 @@ Watch.watch(adminUsersData, function () {
 
 module.exports = {
   'POST /api/login'  (req, res) {
-    console.log(req);
-    console.log(res);
-    console.log("858484");
+    const now = new Date()
+    now.setDate(now.getDate()+1)
+    Cookie.set('user_session', now.getTime())
+    res.json({success: true})
+  },
+
+  'GET /api/userInfo'  (req, res) {
     res.json({success: true})
   },
 }

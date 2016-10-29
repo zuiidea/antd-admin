@@ -45,17 +45,17 @@ const login = ({
             rules: [
               {
                 required: true,
-                message: '姓名未填写'
+                message: '请填写用户名'
               }
             ]
-          })(<Input size="large" placeholder="账户"/>)}
+          })(<Input size="large" placeholder="用户名"/>)}
         </FormItem>
         <FormItem hasFeedback>
           {getFieldDecorator('password', {
             rules: [
               {
                 required: true,
-                message: '姓名未填写'
+                message: '请填写密码'
               }
             ]
           })(<Input size="large" placeholder="密码"/>)}
@@ -76,7 +76,7 @@ const login = ({
 
 login.propTypes = {
   form: PropTypes.object,
-  loginButtonLoading:PropTypes.object,
+  loginButtonLoading:PropTypes.bool,
   onOk: PropTypes.func
 }
 
