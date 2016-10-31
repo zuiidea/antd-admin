@@ -29,13 +29,27 @@ Watch.watch(adminUsersData, function () {
 
 module.exports = {
   'POST /api/login'  (req, res) {
+    const userItem = req.body
+    const d = adminUsersData.filter(function (item) {
+      return item.username==userItem.username
+    })
+    if(!!d.length){
+      if(d[0].password==userItem.password){
+
+      }else {
+
+      }
+    }else {
+
+    }
     const now = new Date()
     now.setDate(now.getDate()+1)
     Cookie.set('user_session', now.getTime())
+    Cookie.set('user_name', userItem.username)
     res.json({success: true})
   },
 
   'GET /api/userInfo'  (req, res) {
-    res.json({success: true})
+    res.json({success: true,username:"吴彦祖"})
   },
 }

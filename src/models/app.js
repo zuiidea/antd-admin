@@ -2,8 +2,6 @@ import {login, userInfo} from '../services/app'
 import {parse} from 'qs'
 import Cookie from 'js-cookie'
 
-console.log(Cookie.get('user_session'));
-
 export default {
   namespace : 'app',
   state : {
@@ -11,18 +9,30 @@ export default {
       ? true
       : false,
     loading: false,
+    user:{
+      name:"吴彦祖",
+    },
     loginButtonLoading: false
   },
   effects : {
     *login({
       payload
     }, {call, put}) {
-      yield put({type: 'showButtonLoading'})
+      yield put({type: 'showLoginButtonLoading'})
       const data = yield call(login, parse(payload))
       if (data) {
         yield put({type: 'loginSuccess', payload: {
             data
           }})
+      }
+    },
+    *userInfo({
+      payload
+    }, {call, put}) {
+      yield put({type: 'showLoading'})
+      const data = yield call(login, parse(payload))
+      if (data) {
+        console.log(data);
       }
     }
   },
@@ -30,10 +40,16 @@ export default {
     loginSuccess(state) {
       return {login: true, loading: false, loginButtonLoading: false}
     },
-    showLoading(state) {
+    showLoginButtonLoading(state) {
       return {
         ...state,
         loginButtonLoading: true
+      }
+    },
+    showLoading(state) {
+      return {
+        ...state,
+        loading: true
       }
     }
   }
