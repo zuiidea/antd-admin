@@ -5,14 +5,20 @@ import Cookie from 'js-cookie'
 export default {
   namespace : 'app',
   state : {
-    login: Cookie.get('user_session') > new Date().getTime()
-      ? true
-      : false,
+    login: false,
     loading: false,
-    user:{
-      name:"吴彦祖",
+    user: {
+      name: "吴彦祖"
     },
     loginButtonLoading: false
+  },
+  subscriptions: {
+    setup({dispatch}) {
+      dispatch({
+        type: 'queryUser',
+        payload: location.query,
+      })
+    }
   },
   effects : {
     *login({
@@ -20,25 +26,46 @@ export default {
     }, {call, put}) {
       yield put({type: 'showLoginButtonLoading'})
       const data = yield call(login, parse(payload))
-      if (data) {
+      if (data.success) {
         yield put({type: 'loginSuccess', payload: {
+            data
+          }})
+      } else {
+        yield put({type: 'loginFail', payload: {
             data
           }})
       }
     },
-    *userInfo({
-      payload
-    }, {call, put}) {
+    *queryUser({payload}, {call, put}) {
       yield put({type: 'showLoading'})
-      const data = yield call(login, parse(payload))
-      if (data) {
+      const data = yield call(userInfo, parse(payload))
+      if (data.success) {
         console.log(data);
+        yield put({type: 'loginSuccess', payload: {
+            user:{
+              name:data.username
+            }
+        }})
+      }else {
+
       }
     }
   },
   reducers : {
-    loginSuccess(state) {
-      return {login: true, loading: false, loginButtonLoading: false}
+    loginSuccess(state,action) {
+      return {
+        ...state,
+        ...action.payload,
+        login: true,
+        loginButtonLoading: false
+      }
+    },
+    loginFail(state) {
+      return {
+        ...state,
+        login: false,
+        loginButtonLoading: false
+      }
     },
     showLoginButtonLoading(state) {
       return {

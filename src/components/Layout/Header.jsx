@@ -5,13 +5,13 @@ import styles from './main.less'
 
 const SubMenu = Menu.SubMenu
 
-function Header({location}) {
+function Header({location,user}) {
   return (
     <div className={styles.header}>
       <Menu className="header-menu" mode="horizontal">
         <SubMenu style={{
           float: 'right'
-        }} title={< span > <Icon type="user"/>吴彦祖 < /span>}>
+        }} title={< span > <Icon type="user"/>{user.name}< /span>}>
           <Menu.Item key="signOut">
             <a>注销</a>
           </Menu.Item>

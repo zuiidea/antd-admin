@@ -10,7 +10,7 @@ import styles from '../components/layout/main.less'
 import '../components/layout/common.less'
 
 function App({children, location, dispatch,app}) {
-  const {login, loading,loginButtonLoading,userName} = app
+  const {login, loading,loginButtonLoading,user} = app
   const loginProps = {
     loading,
     loginButtonLoading,
@@ -22,8 +22,9 @@ function App({children, location, dispatch,app}) {
     },
   }
 
-  const breadProps = {
-    userName,
+  const headerProps = {
+    user,
+    location,
     loginOut() {
       dispatch({
         type: 'app/loginOut'
@@ -38,7 +39,7 @@ function App({children, location, dispatch,app}) {
               <Sider/>
             </aside>
             <div className={styles.main}>
-              <Header location={location}/>
+              <Header {...headerProps}/>
               <Bread location={location}/>
               <div className={styles.container}>
                 <div className={styles.content}>
@@ -59,7 +60,7 @@ App.propTypes = {
   loading: PropTypes.object,
   loginButtonLoading:PropTypes.bool,
   login: PropTypes.bool,
-  userName:PropTypes.object,
+  user:PropTypes.object,
 }
 
 function mapStateToProps({app}) {
