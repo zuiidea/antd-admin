@@ -11,6 +11,10 @@ if (!global.adminUsersData) {
       {
         username: 'guest',
         password: 'guest'
+      },
+      {
+        username: '吴彦祖',
+        password: '123456'
       }
     ]
   adminUsersData = data
@@ -28,7 +32,6 @@ Watch.watch(adminUsersData, function () {
 
 module.exports = {
   'POST /api/login' (req, res) {
-    console.log(req);
     const userItem = req.body
     const response = {
       success: false,

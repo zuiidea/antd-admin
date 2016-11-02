@@ -22,7 +22,6 @@ const login = ({
     validateFieldsAndScroll
   }
 }) => {
-  console.log(loginButtonLoading);
 
   function handleOk() {
     validateFieldsAndScroll((errors, values) => {
@@ -58,7 +57,7 @@ const login = ({
                 message: '请填写密码'
               }
             ]
-          })(<Input size="large" placeholder="密码"/>)}
+          })(<Input size="large" type="password" placeholder="密码"/>)}
         </FormItem>
         <Row>
           <Button type="primary" size="large" onClick={handleOk} loading={loginButtonLoading}>
