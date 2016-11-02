@@ -1,4 +1,4 @@
-import {login, userInfo} from '../services/app'
+import {login, userInfo, logout} from '../services/app'
 import {parse} from 'qs'
 import Cookie from 'js-cookie'
 
@@ -12,12 +12,9 @@ export default {
     },
     loginButtonLoading: false
   },
-  subscriptions: {
+  subscriptions : {
     setup({dispatch}) {
-      dispatch({
-        type: 'queryUser',
-        payload: location.query,
-      })
+      dispatch({type: 'queryUser'})
     }
   },
   effects : {
@@ -36,28 +33,46 @@ export default {
           }})
       }
     },
-    *queryUser({payload}, {call, put}) {
+    *queryUser({
+      payload
+    }, {call, put}) {
       yield put({type: 'showLoading'})
       const data = yield call(userInfo, parse(payload))
       if (data.success) {
-        console.log(data);
-        yield put({type: 'loginSuccess', payload: {
-            user:{
-              name:data.username
+        yield put({
+          type: 'loginSuccess',
+          payload: {
+            user: {
+              name: data.username
             }
-        }})
-      }else {
-
+          }
+        })
+      } else {}
+    },
+    *logout({
+      payload
+    }, {call, put}) {
+      const data = yield call(logout, parse(payload))
+      if(data.success){
+        yield put({
+          type: 'logoutSuccess'
+        })
       }
     }
   },
   reducers : {
-    loginSuccess(state,action) {
+    loginSuccess(state, action) {
       return {
         ...state,
         ...action.payload,
         login: true,
         loginButtonLoading: false
+      }
+    },
+    logoutSuccess(state){
+      return {
+        ...state,
+        login: false
       }
     },
     loginFail(state) {

@@ -28,6 +28,7 @@ Watch.watch(adminUsersData, function () {
 
 module.exports = {
   'POST /api/login' (req, res) {
+    console.log(req);
     const userItem = req.body
     const response = {
       success: false,
@@ -60,5 +61,14 @@ module.exports = {
       message: ""
     }
     res.json(response)
+  },
+
+  'POST /api/logout' (req, res) {
+    Cookie.remove('user_session', { path: '' })
+    Cookie.remove('user_name', { path: '' })
+    res.json({
+      success: true,
+      message: "退出成功"
+    })
   }
 }

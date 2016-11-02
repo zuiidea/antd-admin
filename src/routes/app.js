@@ -25,9 +25,9 @@ function App({children, location, dispatch,app}) {
   const headerProps = {
     user,
     location,
-    loginOut() {
+    logout() {
       dispatch({
-        type: 'app/loginOut'
+        type: 'app/logout'
       })
     },
   }

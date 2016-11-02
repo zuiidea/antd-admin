@@ -8,8 +8,8 @@ export async function login(params) {
   })
 }
 
-export async function loginOut(params) {
-  return request('/api/loginOut', {
+export async function logout(params) {
+  return request('/api/logout', {
     method: 'post',
     data:params,
   })
