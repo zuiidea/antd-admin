@@ -8,28 +8,23 @@ import Footer from '../components/layout/footer'
 import Sider from '../components/layout/sider'
 import styles from '../components/layout/main.less'
 import '../components/layout/common.less'
-
-function App({children, location, dispatch,app}) {
-  const {login, loading,loginButtonLoading,user} = app
+import {Spin,message} from 'antd'
+function App({children, location, dispatch, app}) {
+  const {login, loading, loginButtonLoading, user} = app
   const loginProps = {
     loading,
     loginButtonLoading,
     onOk(data) {
-      dispatch({
-        type: 'app/login',
-        payload: data,
-      })
-    },
+      dispatch({type: 'app/login', payload: data})
+    }
   }
 
   const headerProps = {
     user,
     location,
     logout() {
-      dispatch({
-        type: 'app/logout'
-      })
-    },
+      dispatch({type: 'app/logout'})
+    }
   }
 
   return (
@@ -49,7 +44,7 @@ function App({children, location, dispatch,app}) {
               <Footer/>
             </div>
           </div>
-        : <Login {...loginProps}/>}</div>
+        : <Spin tip="加载用户信息..." className={styles.spin} spinning={loading} size="large"><Login {...loginProps}/></Spin>}</div>
   )
 }
 
@@ -58,9 +53,9 @@ App.propTypes = {
   location: PropTypes.object,
   dispatch: PropTypes.func,
   loading: PropTypes.object,
-  loginButtonLoading:PropTypes.bool,
+  loginButtonLoading: PropTypes.bool,
   login: PropTypes.bool,
-  user:PropTypes.object,
+  user: PropTypes.object
 }
 
 function mapStateToProps({app}) {

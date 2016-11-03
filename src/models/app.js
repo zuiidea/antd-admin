@@ -47,7 +47,9 @@ export default {
             }
           }
         })
-      } else {}
+      } else {
+        yield put({type: 'hideLoading'})
+      }
     },
     *logout({
       payload
@@ -92,6 +94,12 @@ export default {
       return {
         ...state,
         loading: true
+      }
+    },
+    hideLoading(state) {
+      return {
+        ...state,
+        loading: false
       }
     }
   }
