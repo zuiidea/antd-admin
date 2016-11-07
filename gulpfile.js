@@ -2,7 +2,7 @@ var gulp = require('gulp')
 var clean = require('gulp-clean')
 
 gulp.task('copy', function() {
-  return gulp.src(["dist/**/*.*","!dist/**/*.map"])
+  return gulp.src(["dist/**/*.*"])
     .pipe(gulp.dest(''))
 });
 
