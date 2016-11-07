@@ -44,7 +44,7 @@ function App({children, location, dispatch, app}) {
               <Footer/>
             </div>
           </div>
-        : <Spin tip="加载用户信息..." className={styles.spin} spinning={loading} size="large"><Login {...loginProps}/></Spin>}</div>
+        : <div className={styles.spin}><Spin tip="加载用户信息..." spinning={loading} size="large"><Login {...loginProps}/></Spin></div>}</div>
   )
 }
 
