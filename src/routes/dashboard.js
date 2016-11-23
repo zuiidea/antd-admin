@@ -1,14 +1,25 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'dva/router'
+import { Row, Col, Icon } from 'antd'
+import NumberCard from '../components/dashboard/numberCard'
 
 function Dashboard() {
   return (
     <div>
-      <h1>Hello Antd.</h1>
-      <hr />
-      <ul>
-        <li>You can go to <Link to="/users">/users</Link></li>
-      </ul>
+      <Row type="flex" justify="space-between">
+       <Col span={5}>
+         <NumberCard icon='dot-chart' />
+       </Col>
+       <Col span={5}>
+         <NumberCard icon='dot-chart' />
+       </Col>
+       <Col span={5}>
+         <NumberCard icon='dot-chart' />
+       </Col>
+       <Col span={5}>
+         <NumberCard icon='dot-chart' />
+       </Col>
+     </Row>
     </div>
   )
 }
