@@ -1,11 +1,9 @@
 @import "./vars.less";
 :global{
-  .ant-card{
-    box-shadow: @shadow-1;
-    transition: @transition-ease-in;
-    &:hover{
-      box-shadow: @shadow-2;
-      transform: translateY(-2px);
-    }
+  .ant-modal-mask{
+    background-color: rgba(55, 55, 55, 0.2);
+  }
+  .ant-modal-content{
+    box-shadow: none;
   }
 }

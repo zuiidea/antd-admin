@@ -7,8 +7,8 @@ import Bread from '../components/layout/bread'
 import Footer from '../components/layout/footer'
 import Sider from '../components/layout/sider'
 import styles from '../components/layout/main.less'
-import '../components/layout/common.less'
 import {Spin,message} from 'antd'
+import '../components/layout/common.less'
 
 function App({children, location, dispatch, app}) {
   const {login, loading, loginButtonLoading, user} = app
