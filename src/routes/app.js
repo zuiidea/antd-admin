@@ -10,6 +10,7 @@ import styles from '../components/layout/main.less'
 import '../components/layout/common.less'
 import {Spin,message} from 'antd'
 function App({children, location, dispatch, app}) {
+  console.log(children);
   const {login, loading, loginButtonLoading, user} = app
   const loginProps = {
     loading,

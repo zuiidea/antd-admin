@@ -1,5 +1,5 @@
-import React, {PropTypes} from 'react'
-import {Form, Input, Button, Select} from 'antd'
+import React, { PropTypes } from 'react'
+import { Form, Input, Button, Select } from 'antd'
 import styles from './search.less'
 
 const search = ({
@@ -10,8 +10,8 @@ const search = ({
   form: {
     getFieldDecorator,
     validateFields,
-    getFieldsValue
-  }
+    getFieldsValue,
+  },
 }) => {
   function handleSubmit(e) {
     e.preventDefault()
@@ -29,7 +29,7 @@ const search = ({
         <Form inline onSubmit={handleSubmit}>
           <Form.Item>
             {getFieldDecorator('field', {
-              initialValue: field || 'name'
+              initialValue: field || 'name',
             })(
               <Select>
                 <Select.Option value="name">名字</Select.Option>
@@ -39,8 +39,8 @@ const search = ({
           </Form.Item>
           <Form.Item hasFeedback>
             {getFieldDecorator('keyword', {
-              initialValue: keyword || ''
-            })(<Input/>)}
+              initialValue: keyword || '',
+            })(<Input />)}
           </Form.Item>
           <Button type="primary" htmlType="submit">搜索</Button>
         </Form>
@@ -57,7 +57,7 @@ search.propTypes = {
   onSearch: PropTypes.func,
   onAdd: PropTypes.func,
   field: PropTypes.string,
-  keyword: PropTypes.string
+  keyword: PropTypes.string,
 }
 
 export default Form.create()(search)

@@ -1,5 +1,5 @@
-import React, {PropTypes} from 'react'
-import {Table, Popconfirm, Pagination} from 'antd'
+import React, { PropTypes } from 'react'
+import { Table, Popconfirm, Pagination } from 'antd'
 import styles from './list.less'
 
 function list({
@@ -8,7 +8,7 @@ function list({
   pagination,
   onPageChange,
   onDeleteItem,
-  onEditItem
+  onEditItem,
 }) {
   const columns = [
     {
@@ -17,43 +17,43 @@ function list({
       key: 'avatar',
       width: 64,
       className: styles.avatar,
-      render: (text) => <img width={24} src={text}/>
+      render: (text) => <img width={24} src={text} />,
     }, {
       title: '姓名',
       dataIndex: 'name',
-      key: 'name'
+      key: 'name',
     }, {
       title: '昵称',
       dataIndex: 'nickName',
-      key: 'nickName'
-    },{
+      key: 'nickName',
+    }, {
       title: '年龄',
       dataIndex: 'age',
       key: 'age',
-      render: (text) => <span>{text}岁</span>
+      render: (text) => <span>{text}岁</span>,
     }, {
       title: '性别',
       dataIndex: 'isMale',
       key: 'isMale',
       render: (text) => <span>{text
             ? '男'
-            : '女'}</span>
-    },{
+            : '女'}</span>,
+    }, {
       title: '电话',
       dataIndex: 'phone',
-      key: 'phone'
-    },{
+      key: 'phone',
+    }, {
       title: '邮箱',
       dataIndex: 'email',
-      key: 'email'
+      key: 'email',
     }, {
       title: '住址',
       dataIndex: 'address',
-      key: 'address'
+      key: 'address',
     }, {
       title: '创建时间',
       dataIndex: 'createTime',
-      key: 'createTime'
+      key: 'createTime',
     }, {
       title: '操作',
       key: 'operation',
@@ -61,27 +61,28 @@ function list({
       render: (text, record) => (
         <p>
           <a onClick={() => onEditItem(record)} style={{
-            marginRight: 4
+            marginRight: 4,
           }}>编辑</a>
           <Popconfirm title="确定要删除吗？" onConfirm={() => onDeleteItem(record.id)}>
             <a>删除</a>
           </Popconfirm>
         </p>
-      )
-    }
+      ),
+    },
   ]
 
   return (
     <div>
       <Table size="small"
-      className={styles.table}
-      bordered
-      columns={columns}
-      dataSource={dataSource}
-      loading={loading}
-      onChange={onPageChange}
-      pagination={pagination}
-      rowKey={record => record.id}/>
+        className={styles.table}
+        bordered
+        columns={columns}
+        dataSource={dataSource}
+        loading={loading}
+        onChange={onPageChange}
+        pagination={pagination}
+        rowKey={record => record.id}
+      />
     </div>
   )
 }
@@ -92,7 +93,7 @@ list.propTypes = {
   onEditItem: PropTypes.func,
   dataSource: PropTypes.array,
   loading: PropTypes.any,
-  pagination: PropTypes.any
+  pagination: PropTypes.any,
 }
 
 export default list

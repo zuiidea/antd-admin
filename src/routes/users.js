@@ -84,7 +84,7 @@ function Users({ location, dispatch, users }) {
     <UserModal {...userModalProps} />
 
   return (
-    <div>
+    <div className="content-inner">
       <UserSearch {...userSearchProps} />
       <UserList {...userListProps} />
       <UserModalGen />

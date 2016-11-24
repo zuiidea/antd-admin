@@ -62,10 +62,13 @@
       margin: 24px 16px;
 
       .content {
-        background: #fff;
-        padding: 24px;
         min-height: e("calc(100vh - 168px)");
         position: relative;
+        :global .content-inner{
+          background: #fff;
+          padding: 24px;
+          min-height: e("calc(100vh - 168px)");
+        }
       }
     }
   }
