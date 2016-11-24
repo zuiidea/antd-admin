@@ -1,0 +1,11 @@
+@import "./vars.less";
+:global{
+  .ant-card{
+    box-shadow: @shadow-1;
+    transition: @transition-ease-in;
+    &:hover{
+      box-shadow: @shadow-2;
+      transform: translateY(-2px);
+    }
+  }
+}

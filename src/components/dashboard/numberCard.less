@@ -1,9 +1,16 @@
+@import "../vars.less";
 .numberCard{
-  box-shadow: 2px 2px 10px 0 rgba(0,0,0,0.01);
+  box-shadow: @shadow-1;
   padding: 32px;
   font-family: monospace;
   background-color: #fff;
   margin-bottom: 24px;
+  cursor: pointer;
+  transition: @transition-ease-in;
+  &:hover{
+    box-shadow: @shadow-2;
+    transform: translateY(-2px);
+  }
   .iconWarp{
     font-size: 54px;
     float: left;
@@ -25,10 +32,4 @@
       .text-overflow();
     }
   }
-}
-
-.text-overflow(){
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space:nowrap;
 }

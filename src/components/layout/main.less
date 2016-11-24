@@ -46,9 +46,9 @@
   }
 
   .bread {
-    height: 48px;
-    line-height: 48px;
-    padding: 0 16px;
+    height: 64px;
+    line-height: 64px;
+    padding: 0 24px;
     margin-bottom: -24px;
   }
 
@@ -59,15 +59,16 @@
     height: 100vh;
 
     .container {
-      margin: 24px 16px;
+      margin: 24px;
 
       .content {
-        min-height: e("calc(100vh - 168px)");
+        min-height: e("calc(100vh - 184px)");
         position: relative;
         :global .content-inner{
           background: #fff;
           padding: 24px;
-          min-height: e("calc(100vh - 168px)");
+          box-shadow: @shadow-1;
+          min-height: e("calc(100vh - 184px)");
         }
       }
     }

@@ -1,12 +1,10 @@
 import React, {PropTypes} from 'react'
 import {Link} from 'dva/router'
-import {Row, Col, Icon} from 'antd'
+import {Row, Col, Icon, Card} from 'antd'
 import NumberCard from '../components/dashboard/numberCard'
+import Sales from '../components/dashboard/sales'
 
-const [colorGreen,
-  colorBlue,
-  colorPurple,
-  colorRed] = ['#64ea91', '#8fc9fb', '#d897eb', '#f69899']
+const [colorGreen,colorBlue,colorPurple,colorRed] = ['#64ea91', '#8fc9fb', '#d897eb', '#f69899']
 
 const numberCardData = [
   {
@@ -43,6 +41,13 @@ function Dashboard() {
     <div>
       <Row gutter={24}>
         {numberCards}
+      </Row>
+      <Row gutter={24}>
+        <Col lg={18} md={24}>
+          <Card bordered={false} bodyStyle={{padding:0}}>
+           <Sales />
+          </Card>
+        </Col>
       </Row>
     </div>
   )
