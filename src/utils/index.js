@@ -1,6 +1,7 @@
 import config from './config'
 import menu from './menu'
 import request from './request'
+import {color} from './theme'
 require('./mock.js')
 
 // 连字符转驼峰
@@ -18,5 +19,6 @@ String.prototype.humpToHyphen = function () {
 module.exports = {
   config,
   menu,
-  request
+  request,
+  color
 }
