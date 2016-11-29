@@ -10,7 +10,8 @@ export default {
     user: {
       name: "吴彦祖"
     },
-    loginButtonLoading: false
+    loginButtonLoading: false,
+    siderFold:true
   },
   subscriptions : {
     setup({dispatch}) {

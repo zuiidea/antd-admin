@@ -26,14 +26,18 @@ const getMenus = function (menuArray, parentPath) {
   })
 }
 
-function Sider({ location }) {
+function Sider({ location,siderFold }) {
+  console.log(location,siderFold);
   return (
     <div>
       <div className={styles.logo}>
         <img src={config.logoSrc} />
         <span>{config.logoText}</span>
       </div>
-      <Menu mode="inline" theme="dark" defaultSelectedKeys={['dashboard']}>
+      <Menu
+        mode="inline"
+        theme="dark"
+        defaultSelectedKeys={['dashboard']}>
         {getMenus(menu)}
       </Menu>
     </div>
@@ -42,6 +46,7 @@ function Sider({ location }) {
 
 Sider.propTypes = {
   location: PropTypes.object,
+  siderFold: PropTypes.bool,
 }
 
 export default Sider

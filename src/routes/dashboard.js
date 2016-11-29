@@ -55,10 +55,10 @@ function Dashboard() {
            </Row>
           </Col>
           <Col lg={12} md={24}>
-            <Card bordered={false} bodyStyle={{padding:0,height:432,background:color.red}}></Card>
+            <Card bordered={false} bodyStyle={{padding:0,height:432,background:'#fff'}}></Card>
           </Col>
           <Col lg={12} md={24}>
-            <Card bordered={false} bodyStyle={{padding:0,height:432,background:color.green}}></Card>
+            <Card bordered={false} bodyStyle={{padding:0,height:432,background:'#fff'}}></Card>
           </Col>
           <Col lg={24} md={24}>
             <Card bordered={false} bodyStyle={{padding:0,height:432,background:'#fff'}}></Card>

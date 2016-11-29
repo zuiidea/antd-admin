@@ -1,6 +1,7 @@
 import config from './config'
 import menu from './menu'
 import request from './request'
+import classnames from 'classnames'
 import {color} from './theme'
 require('./mock.js')
 
@@ -20,5 +21,6 @@ module.exports = {
   config,
   menu,
   request,
-  color
+  color,
+  classnames,
 }

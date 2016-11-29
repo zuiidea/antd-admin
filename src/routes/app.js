@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react'
 import {connect} from 'dva'
-import classnames from 'classnames'
 import Login from './login'
 import Header from '../components/layout/header'
 import Bread from '../components/layout/bread'
@@ -8,10 +7,11 @@ import Footer from '../components/layout/footer'
 import Sider from '../components/layout/sider'
 import styles from '../components/layout/main.less'
 import {Spin,message} from 'antd'
+import {classnames} from '../utils'
 import '../components/layout/common.less'
 
 function App({children, location, dispatch, app}) {
-  const {login, loading, loginButtonLoading, user} = app
+  const {login, loading, loginButtonLoading, user, siderFold} = app
   const loginProps = {
     loading,
     loginButtonLoading,
@@ -28,9 +28,13 @@ function App({children, location, dispatch, app}) {
     }
   }
 
+  const siderProps = {
+    siderFold,
+  }
+
   return (
     <div>{login
-        ? <div className={styles.layout}>
+        ? <div className={classnames(styles.layout,{[styles.fold]:siderFold})}>
             <aside className={styles.sider}>
               <Sider/>
             </aside>
@@ -56,11 +60,8 @@ App.propTypes = {
   loading: PropTypes.object,
   loginButtonLoading: PropTypes.bool,
   login: PropTypes.bool,
-  user: PropTypes.object
+  user: PropTypes.object,
+  siderFold:PropTypes.bool,
 }
 
-function mapStateToProps({app}) {
-  return {app}
-}
-
-export default connect(mapStateToProps)(App)
+export default connect(({app}) => ({app}))(App)
