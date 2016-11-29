@@ -11,7 +11,7 @@ import {classnames} from '../utils'
 import '../components/layout/common.less'
 
 function App({children, location, dispatch, app}) {
-  const {login, loading, loginButtonLoading, user, siderFold} = app
+  const {login, loading, loginButtonLoading, user, siderFold, darkTheme} = app
   const loginProps = {
     loading,
     loginButtonLoading,
@@ -30,13 +30,14 @@ function App({children, location, dispatch, app}) {
 
   const siderProps = {
     siderFold,
+    darkTheme,
   }
 
   return (
     <div>{login
         ? <div className={classnames(styles.layout,{[styles.fold]:siderFold})}>
             <aside className={styles.sider}>
-              <Sider/>
+              <Sider {...siderProps}/>
             </aside>
             <div className={styles.main}>
               <Header {...headerProps}/>
@@ -62,6 +63,7 @@ App.propTypes = {
   login: PropTypes.bool,
   user: PropTypes.object,
   siderFold:PropTypes.bool,
+  darkTheme:PropTypes.bool,
 }
 
 export default connect(({app}) => ({app}))(App)

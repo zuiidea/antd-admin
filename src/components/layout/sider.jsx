@@ -4,13 +4,15 @@ import { Link } from 'dva/router'
 import styles from './main.less'
 import { config, menu } from '../../utils'
 
-const getMenus = function (menuArray, parentPath) {
+
+const topMenus = menu.map( item => item.key)
+const getMenus = function (menuArray,siderFold,parentPath) {
   parentPath = parentPath || '/'
   return menuArray.map(item => {
     if (!!item.child) {
       return (
-        <Menu.SubMenu key={item.key} title={<span>{item.icon ? <Icon type={item.icon} /> : ''} {item.name}</span>}>
-          {getMenus(item.child, parentPath + item.key + '/')}
+        <Menu.SubMenu key={item.key} title={<span>{item.icon ? <Icon type={item.icon} /> : ''}{siderFold&&topMenus.indexOf(item.key)>=0 ? '' : item.name}</span>}>
+          {getMenus(item.child,siderFold,parentPath + item.key + '/')}
         </Menu.SubMenu>
       )
     } else {
@@ -18,7 +20,7 @@ const getMenus = function (menuArray, parentPath) {
         <Menu.Item key={item.key}>
           <Link to={parentPath + item.key}>
             {item.icon ? <Icon type={item.icon} /> : ''}
-            {item.name}
+            {siderFold&&topMenus.indexOf(item.key)>=0 ? '' : item.name}
           </Link>
         </Menu.Item>
       )
@@ -26,27 +28,26 @@ const getMenus = function (menuArray, parentPath) {
   })
 }
 
-function Sider({ location,siderFold }) {
-  console.log(location,siderFold);
+function Sider({ siderFold,darkTheme }) {
   return (
     <div>
       <div className={styles.logo}>
         <img src={config.logoSrc} />
-        <span>{config.logoText}</span>
+        {siderFold?'':<span>{config.logoText}</span>}
       </div>
       <Menu
-        mode="inline"
-        theme="dark"
+        mode={siderFold?"vertical":"inline"}
+        theme={darkTheme?"dark":"light"}
         defaultSelectedKeys={['dashboard']}>
-        {getMenus(menu)}
+        {getMenus(menu,siderFold)}
       </Menu>
     </div>
   )
 }
 
 Sider.propTypes = {
-  location: PropTypes.object,
   siderFold: PropTypes.bool,
+  darkTheme: PropTypes.bool
 }
 
 export default Sider

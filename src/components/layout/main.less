@@ -6,7 +6,45 @@
   min-width: 1200px;
 
   &.fold{
-    color: #666; 
+    .sider{
+      width: 42px;
+      .logo{
+        margin: 4px 0;
+        img{
+          width: 28px;
+          margin: 6px 7px;
+        }
+      }
+
+      :global{
+        .ant-menu-root{
+          &>.ant-menu-item {
+            padding: 0;
+            text-align: center;
+            .anticon{
+              font-size: 14px;
+              margin-right: 0;
+            }
+          }
+          &>.ant-menu-submenu{
+            &>.ant-menu-submenu-title{
+              padding: 0;
+              text-align: center;
+              .anticon{
+                font-size: 14px;
+                margin-right: 0;
+              }
+              &::after{
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+    .main{
+      margin-left: 42px;
+    }
   }
 
   .sider {
@@ -24,10 +62,12 @@
       line-height: 40px;
       cursor: pointer;
       margin: 28px 0;
+      transition: @transition-ease-in;
 
       img {
         width: 40px;
         margin-right: 8px;
+        transition: @transition-ease-in;
       }
 
       span {
