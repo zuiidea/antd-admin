@@ -5,9 +5,8 @@ import styles from './main.less'
 
 const SubMenu = Menu.SubMenu
 
-function Header({ location, user, logout }) {
+function Header({ location, user, logout, switchSider }) {
   let handleClickMenu = e => e.key === 'logout' && logout()
-  let switchSider = () => {}
   return (
     <div className={styles.header}>
       <div className={styles.siderbutton} onClick={switchSider}>

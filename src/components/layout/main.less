@@ -7,9 +7,10 @@
 
   &.fold{
     .sider{
-      width: 42px;
+      // width: 42px;
+      transform: translateX(-182px);
       .logo{
-        margin: 4px 0;
+        // margin: 4px 0;
         img{
           width: 28px;
           margin: 6px 7px;
@@ -49,12 +50,13 @@
 
   .sider {
     width: 224px;
+    transform: translateX(0);
     background: #404040;
     position: absolute;
     overflow: visible;
     padding-bottom: 24px;
     height: 100vh;
-    transition: all 0.3s ease;
+    transition: @transition-ease-in;
 
     .logo {
       text-align: center;
@@ -113,7 +115,7 @@
 
   .main {
     margin-left: 224px;
-    transition: all 0.3s ease;
+    transition: @transition-ease-in;
     overflow: auto;
     height: 100vh;
 

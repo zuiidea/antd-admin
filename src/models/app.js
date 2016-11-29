@@ -62,6 +62,13 @@ export default {
           type: 'logoutSuccess'
         })
       }
+    },
+    *switchSider({
+      payload
+    }, {put}) {
+      yield put({
+        type: 'switchSider'
+      })
     }
   },
   reducers : {
@@ -102,6 +109,12 @@ export default {
       return {
         ...state,
         loading: false
+      }
+    },
+    switchSider(state) {
+      return {
+        ...state,
+        siderFold: !state.siderFold
       }
     }
   }

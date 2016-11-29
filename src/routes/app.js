@@ -25,6 +25,9 @@ function App({children, location, dispatch, app}) {
     location,
     logout() {
       dispatch({type: 'app/logout'})
+    },
+    switchSider() {
+      dispatch({type: 'app/switchSider'})
     }
   }
 
