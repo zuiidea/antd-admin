@@ -9,7 +9,6 @@
     .sider{
       width: 42px;
       .logo{
-        // margin: 4px 0;
         img{
           width: 28px;
           margin: 6px 7px;
@@ -54,7 +53,6 @@
     overflow: visible;
     padding-bottom: 24px;
     height: 100vh;
-    transition: @transition-ease-in;
 
     .logo {
       text-align: center;
@@ -62,12 +60,12 @@
       line-height: 40px;
       cursor: pointer;
       margin: 28px 0;
-      transition: @transition-ease-in;
+      transition: @transition-ease-in-out;
 
       img {
         width: 40px;
         margin-right: 8px;
-        transition: @transition-ease-in;
+        transition: @transition-ease-in-out;
       }
 
       span {
@@ -75,6 +73,10 @@
         font-size: 16px;
         text-transform: uppercase;
         display: inline-block;
+      }
+
+      .anticon{
+        transition: @transition-ease-in-out;
       }
     }
   }
@@ -113,7 +115,6 @@
 
   .main {
     margin-left: 224px;
-    transition: @transition-ease-in;
     overflow: auto;
     height: 100vh;
 
@@ -168,15 +169,18 @@
   &.ant-menu-inline {
     .ant-menu-item-selected {
       background-color: rgba(255,255,255,0.05);
-
-      & > a {
-        color: @primary-color;
-      }
     }
   }
 
   .ant-menu-item-selected {
     color: @primary-color;
+    background-color: rgba(255,255,255,0.05);
+    & > a {
+      color: @primary-color;
+    }
+    &:hover{
+     background-color: rgba(255,255,255,0.05);
+    }
   }
 }
 

@@ -11,7 +11,7 @@ export default {
       name: "吴彦祖"
     },
     loginButtonLoading: false,
-    siderFold:true,
+    siderFold:false,
     darkTheme:true,
   },
   subscriptions : {
