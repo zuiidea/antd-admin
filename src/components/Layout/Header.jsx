@@ -5,12 +5,12 @@ import styles from './main.less'
 
 const SubMenu = Menu.SubMenu
 
-function Header({ location, user, logout, switchSider }) {
+function Header({  user, logout, switchSider, siderFold }) {
   let handleClickMenu = e => e.key === 'logout' && logout()
   return (
     <div className={styles.header}>
       <div className={styles.siderbutton} onClick={switchSider}>
-        <Icon type="menu-fold" />
+        <Icon type={siderFold?"menu-unfold":"menu-fold"} />
       </div>
       <Menu className="header-menu" mode="horizontal" onClick={handleClickMenu}>
         <SubMenu style={{ float: 'right' }}
@@ -23,10 +23,6 @@ function Header({ location, user, logout, switchSider }) {
       </Menu>
     </div>
   )
-}
-
-Header.propTypes = {
-  location: PropTypes.object,
 }
 
 export default Header

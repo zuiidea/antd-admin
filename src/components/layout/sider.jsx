@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Menu, Icon } from 'antd'
+import { Menu, Icon, Switch } from 'antd'
 import { Link } from 'dva/router'
 import styles from './main.less'
 import { config, menu } from '../../utils'
@@ -28,7 +28,7 @@ const getMenus = function (menuArray,siderFold,parentPath) {
   })
 }
 
-function Sider({ siderFold,darkTheme }) {
+function Sider({ siderFold,darkTheme,changeTheme }) {
   return (
     <div>
       <div className={styles.logo}>
@@ -41,13 +41,12 @@ function Sider({ siderFold,darkTheme }) {
         defaultSelectedKeys={['dashboard']}>
         {getMenus(menu,siderFold)}
       </Menu>
+      {!siderFold?<div className={styles.switchtheme}>
+        <span><Icon type="bulb" />切换主题</span>
+        <Switch onChange={changeTheme} defaultChecked={true} checkedChildren="黑" unCheckedChildren="白" />
+      </div>:''}
     </div>
   )
-}
-
-Sider.propTypes = {
-  siderFold: PropTypes.bool,
-  darkTheme: PropTypes.bool
 }
 
 export default Sider

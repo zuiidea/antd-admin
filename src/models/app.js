@@ -69,7 +69,14 @@ export default {
       yield put({
         type: 'switchSider'
       })
-    }
+    },
+    *changeTheme({
+      payload
+    }, {put}) {
+      yield put({
+        type: 'changeTheme'
+      })
+    },
   },
   reducers : {
     loginSuccess(state, action) {
@@ -116,6 +123,12 @@ export default {
         ...state,
         siderFold: !state.siderFold
       }
-    }
+    },
+    changeTheme(state) {
+      return {
+        ...state,
+        darkTheme: !state.darkTheme
+      }
+    },
   }
 }
