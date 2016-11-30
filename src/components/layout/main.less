@@ -17,6 +17,7 @@
 
       :global{
         .ant-menu-root{
+          width: 100%;
           &>.ant-menu-item {
             padding: 0;
             text-align: center;
@@ -48,11 +49,12 @@
 
   .sider {
     width: 224px;
-    background: #404040;
+    background: @heading-color;
     position: absolute;
     overflow: visible;
     padding-bottom: 24px;
     height: 100vh;
+    transition: @transition-ease-out;
 
     .logo {
       text-align: center;
@@ -60,12 +62,13 @@
       line-height: 40px;
       cursor: pointer;
       margin: 28px 0;
-      transition: @transition-ease-in-out;
+      transition: @transition-ease-out;
+      overflow: hidden;
 
       img {
         width: 40px;
         margin-right: 8px;
-        transition: @transition-ease-in-out;
+        transition: @transition-ease-out;
       }
 
       span {
@@ -76,7 +79,7 @@
       }
 
       .anticon{
-        transition: @transition-ease-in-out;
+        transition: @transition-ease-out;
       }
     }
     .switchtheme{
@@ -84,16 +87,31 @@
       position: absolute;
       bottom: 0;
       height: 42px;
-      background-color: #494949;
+      background-color: @dark-half;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 0 16px 0 24px;
+      overflow: hidden;
+
+      span{
+        white-space: nowrap;
+        overflow: hidden;
+      }
       :global{
         .anticon{
           min-width: 14px;
           margin-right: 8px;
           font-size: 14px;
+        }
+      }
+    }
+    :global{
+      .ant-menu{
+        transition: @transition-ease-out;
+        .ant-menu-item, .ant-menu-submenu-title{
+          overflow: hidden;
+          white-space: normal;
         }
       }
     }
@@ -106,7 +124,7 @@
       }
       border: none;
     }
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    box-shadow: @shadow-2;
     position: relative;
     .siderbutton{
       height: 47px;
@@ -135,6 +153,7 @@
     margin-left: 224px;
     overflow: auto;
     height: 100vh;
+    transition: @transition-ease-out;
 
     .container {
       margin: 24px;
@@ -159,7 +178,7 @@
     font-size: 12px;
     color: #999;
     background: #fff;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    box-shadow: @shadow-2;
     width: 100%;
   }
 }
@@ -174,7 +193,7 @@
     color: @primary-color;
 
     &:not(.ant-menu-submenu-open) {
-      background-color: rgba(255,255,255,0.05);
+      background-color: @dark-half;
     }
   }
 
@@ -186,18 +205,18 @@
 
   &.ant-menu-inline {
     .ant-menu-item-selected {
-      background-color: rgba(255,255,255,0.05);
+      background-color: @dark-half;
     }
   }
 
   .ant-menu-item-selected {
     color: @primary-color;
-    background-color: rgba(255,255,255,0.05);
+    background-color: @dark-half;
     & > a {
       color: @primary-color;
     }
     &:hover{
-     background-color: rgba(255,255,255,0.05);
+     background-color: @dark-half;
     }
   }
 }
