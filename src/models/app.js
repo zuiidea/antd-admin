@@ -66,15 +66,17 @@ export default {
     *switchSider({
       payload
     }, {put}) {
+      console.log("switchSider");
       yield put({
-        type: 'switchSider'
+        type: 'handleSwitchSider'
       })
     },
     *changeTheme({
       payload
     }, {put}) {
+      console.log("changeTheme");
       yield put({
-        type: 'changeTheme'
+        type: 'handleChangeTheme'
       })
     },
   },
@@ -118,13 +120,15 @@ export default {
         loading: false
       }
     },
-    switchSider(state) {
+    handleSwitchSider(state) {
+      console.log(state);
       return {
         ...state,
         siderFold: !state.siderFold
       }
     },
-    changeTheme(state) {
+    handleChangeTheme(state) {
+      console.log(state);
       return {
         ...state,
         darkTheme: !state.darkTheme
