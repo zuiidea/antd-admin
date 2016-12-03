@@ -73,6 +73,8 @@ https://github.com/dvajs/dva/tree/master/examples/user-dashboard
 
 ## 截屏
 
+![](assets/demo.gif)
+
 ![](assets/anrd-admin-login.png)
 
 ![](assets/anrd-admin-dataList.png)
