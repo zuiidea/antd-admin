@@ -32,6 +32,8 @@ const login = ({
     })
   }
 
+  document.onkeyup = e => e.keyCode===13 &&  handleOk()
+
   return (
     <div className={styles.form}>
       <div className={styles.logo}>
