@@ -22,7 +22,6 @@ function App({children, location, dispatch, app}) {
 
   const headerProps = {
     user,
-    location,
     siderFold,
     logout() {
       dispatch({type: 'app/logout'})
@@ -35,6 +34,7 @@ function App({children, location, dispatch, app}) {
   const siderProps = {
     siderFold,
     darkTheme,
+    location,
     changeTheme(){
       dispatch({type: 'app/changeTheme'})
     }

@@ -28,7 +28,8 @@ const getMenus = function (menuArray,siderFold,parentPath) {
   })
 }
 
-function Sider({ siderFold,darkTheme,changeTheme }) {
+function Sider({ siderFold,darkTheme,location,changeTheme }) {
+  console.log(location);
   return (
     <div>
       <div className={styles.logo}>
@@ -38,7 +39,7 @@ function Sider({ siderFold,darkTheme,changeTheme }) {
       <Menu
         mode={siderFold?"vertical":"inline"}
         theme={darkTheme?"dark":"light"}
-        defaultSelectedKeys={['dashboard']}>
+        defaultSelectedKeys={[location.pathname.split('/')[location.pathname.split('/').length - 1]||'dashboard']}>
         {getMenus(menu,siderFold)}
       </Menu>
       {!siderFold?<div className={styles.switchtheme}>
