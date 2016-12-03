@@ -55,6 +55,15 @@
     padding-bottom: 24px;
     height: 100vh;
     transition: @transition-ease-out;
+    box-shadow: @shadow-1;
+
+    &.light{
+      background: #fff;
+      .switchtheme{
+        background: #fff;
+        border-top: solid 1px #f8f8f8;
+      }
+    }
 
     .logo {
       text-align: center;
@@ -86,7 +95,7 @@
       width: 100%;
       position: absolute;
       bottom: 0;
-      height: 42px;
+      height: 48px;
       background-color: @dark-half;
       display: flex;
       justify-content: space-between;

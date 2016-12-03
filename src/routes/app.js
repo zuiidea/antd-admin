@@ -43,7 +43,7 @@ function App({children, location, dispatch, app}) {
   return (
     <div>{login
         ? <div className={classnames(styles.layout,{[styles.fold]:siderFold})}>
-            <aside className={styles.sider}>
+            <aside  className={classnames(styles.sider,{[styles.light]:!darkTheme})}>
               <Sider {...siderProps}/>
             </aside>
             <div className={styles.main}>
