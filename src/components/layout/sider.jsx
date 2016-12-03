@@ -29,7 +29,6 @@ const getMenus = function (menuArray,siderFold,parentPath) {
 }
 
 function Sider({ siderFold,darkTheme,location,changeTheme }) {
-  console.log(location);
   return (
     <div>
       <div className={styles.logo}>
@@ -44,7 +43,7 @@ function Sider({ siderFold,darkTheme,location,changeTheme }) {
       </Menu>
       {!siderFold?<div className={styles.switchtheme}>
         <span><Icon type="bulb" />切换主题</span>
-        <Switch onChange={changeTheme} defaultChecked={true} checkedChildren="黑" unCheckedChildren="白" />
+        <Switch onChange={changeTheme} defaultChecked={darkTheme} checkedChildren="黑" unCheckedChildren="白" />
       </div>:''}
     </div>
   )

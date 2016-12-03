@@ -121,14 +121,12 @@ export default {
       }
     },
     handleSwitchSider(state) {
-      console.log(state);
       return {
         ...state,
         siderFold: !state.siderFold
       }
     },
     handleChangeTheme(state) {
-      console.log(state);
       return {
         ...state,
         darkTheme: !state.darkTheme
