@@ -11,8 +11,8 @@ export default {
       name: "吴彦祖"
     },
     loginButtonLoading: false,
-    siderFold:false,
-    darkTheme:true,
+    siderFold:localStorage.getItem("antdAdminSiderFold")==="true"?true:false,
+    darkTheme:localStorage.getItem("antdAdminDarkTheme")==="false"?false:true,
   },
   subscriptions : {
     setup({dispatch}) {
@@ -121,12 +121,14 @@ export default {
       }
     },
     handleSwitchSider(state) {
+      localStorage.setItem("antdAdminSiderFold",!state.darkTheme)
       return {
         ...state,
         siderFold: !state.siderFold
       }
     },
     handleChangeTheme(state) {
+      localStorage.setItem("antdAdminDarkTheme",!state.darkTheme)
       return {
         ...state,
         darkTheme: !state.darkTheme
