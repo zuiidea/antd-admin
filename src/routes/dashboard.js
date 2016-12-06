@@ -34,16 +34,18 @@ const numberCardData = [
   }
 ]
 
+const quoteProps={
+  name:'Joho Doe',
+  title:'Graphic Designer',
+  content:`I'm selfish, impatient and a little insecure. I make mistakes, I am out of control and at times hard to handle. But if you can't handle me at my worst, then you sure as hell don't deserve me at my best.`,
+  avatar:'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236',
+}
+
 function Dashboard() {
   const numberCards = numberCardData.map((item,key) => <Col  key={key} lg={6} md={12}>
     <NumberCard {...item}/>
   </Col>)
-  const quoteProps={
-    name:'Joho Doe',
-    title:'Graphic Designer',
-    content:`I'm selfish, impatient and a little insecure. I make mistakes, I am out of control and at times hard to handle. But if you can't handle me at my worst, then you sure as hell don't deserve me at my best.`,
-    avatar:'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236',
-  }
+
   return (<Row gutter={24}>
           {numberCards}
           <Col lg={18} md={24}>
@@ -59,7 +61,7 @@ function Dashboard() {
                </Card>
              </Col>
              <Col lg={24} md={12}>
-               <Card bordered={false} bodyStyle={{padding:0,height:204,background:color.purple}}></Card>
+               <Card bordered={false} bodyStyle={{padding:0,height:204,background:color.red}}></Card>
              </Col>
            </Row>
           </Col>
