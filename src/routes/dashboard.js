@@ -11,25 +11,25 @@ const numberCardData = [
     icon: 'dot-chart',
     color: color.green,
     title:'Online Review',
-    number:'2,781'
+    number:2781
   },
   {
     icon: 'pay-circle-o',
     color: color.blue,
     title:'New Customers',
-    number:'3,241'
+    number:3241
   },
   {
     icon: 'message',
     color: color.purple,
     title:'Active Projects',
-    number:'253'
+    number:253
   },
   {
     icon: 'paper-clip',
     color: color.red,
     title:'Referrals',
-    number:'4,324'
+    number:4324
   }
 ]
 
