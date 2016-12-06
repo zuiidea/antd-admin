@@ -2,8 +2,6 @@
 
 演示地址 http://zuiidea.github.io/antd-admin/
 
-- 2.0大体框架实现了，可以完全脱离后端开发，如果你需要的话，构建生成的静态项目可以mock数据，并存储在localStroge中。:smile:
-
 - 接下来将会做一些功能完善和文档完善。:sweat_smile:
 
 ## 特性
@@ -59,12 +57,17 @@ npm i
 
 ```bash
 npm run dev    # 使用mock拦截请求，数据存储在localStroge里
+
+打开：http://localhost:8000
 ```
+
 
 构建：
 
 ```bash
 npm run build
+
+生成dist目录
 ```
 
 ## 参考
@@ -74,7 +77,3 @@ https://github.com/dvajs/dva/tree/master/examples/user-dashboard
 ## 截屏
 
 ![](assets/demo.gif)
-
-![](assets/anrd-admin-login.png)
-
-![](assets/anrd-admin-dataList.png)
