@@ -1,6 +1,6 @@
 # Antd Admin
 
-演示地址 http://zuiidea.github.io/antd-admin/
+当前主分支3.0，演示地址 http://zuiidea.github.io/antd-admin/
 
 - 接下来将会做一些功能完善和文档完善。:sweat_smile:
 
@@ -84,7 +84,7 @@ npm run build
 
 用户列表：https://github.com/dvajs/dva/tree/master/examples/user-dashboard
 
-dashboard设计稿：https://dribbble.com/shots/3108122-Dashboard-Admin
+dashboard设计稿：https://dribbble.com/shots/3108122-Dashboard-Admin （已征得作者同意）
 
 ## 截屏
 
