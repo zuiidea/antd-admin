@@ -4,6 +4,7 @@ import {Row, Col, Icon, Card} from 'antd'
 import NumberCard from '../components/dashboard/numberCard'
 import Quote from '../components/dashboard/quote'
 import Sales from '../components/dashboard/sales'
+import Weather from '../components/dashboard/weather'
 import styles from './dashboard.less'
 import {color} from '../utils'
 
@@ -41,6 +42,14 @@ const quoteProps={
   avatar:'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236',
 }
 
+// http://api.map.baidu.com/telematics/v3/weather?location=%E5%8C%97%E4%BA%AC&output=json&ak=E4805d16520de693a3fe707cdc962045
+const weatherProps={
+  weatherText:'雨',
+  weatherIcon:'雨',
+  location:'成都',
+
+}
+
 function Dashboard() {
   const numberCards = numberCardData.map((item,key) => <Col  key={key} lg={6} md={12}>
     <NumberCard {...item}/>
@@ -56,12 +65,14 @@ function Dashboard() {
           <Col lg={6} md={24}>
             <Row gutter={24}>
              <Col lg={24} md={12}>
-               <Card bordered={false} bodyStyle={{padding:0,height:204,background:color.blue}}>
+               <Card bordered={false} bodyStyle={{padding:0,height:204,background:color.red}}>
                  <Quote {...quoteProps}/>
                </Card>
              </Col>
              <Col lg={24} md={12}>
-               <Card bordered={false} bodyStyle={{padding:0,height:204,background:color.red}}></Card>
+               <Card bordered={false} bodyStyle={{padding:0,height:204,background:color.blue}}>
+                 <Weather  {...weatherProps}/>
+               </Card>
              </Col>
            </Row>
           </Col>
