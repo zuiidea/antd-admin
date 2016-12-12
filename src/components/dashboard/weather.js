@@ -9,12 +9,12 @@ const Weather = React.createClass({
     this.fetch()
   },
   fetch() {
-    Ajax.getJSON("http://query.yahooapis.com/v1/public/yql", {
-      q: "select * from json where url=\"http://www.zuimeitianqi.com/zuimei/myCity?flg=0\"",
-      format: "json"
-    }, function (data) {
-      console.log(data)
-    })
+    // Ajax.getJSON("http://query.yahooapis.com/v1/public/yql", {
+    //   q: "select * from json where url=\"http://www.zuimeitianqi.com/zuimei/myCity?flg=0\"",
+    //   format: "json"
+    // }, function (data) {
+    //   console.log(data)
+    // })
   },
   render() {
     return <div className={styles.weather}>

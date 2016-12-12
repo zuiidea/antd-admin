@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react'
+import {connect} from 'dva'
 import {Link} from 'dva/router'
 import {Row, Col, Icon, Card} from 'antd'
 import NumberCard from '../components/dashboard/numberCard'
@@ -101,4 +102,10 @@ Dashboard.propTypes = {
   location: PropTypes.object
 }
 
-export default Dashboard
+function mapStateToProps({ dashboard }) {
+  return { dashboard }
+}
+
+export default connect(mapStateToProps)(Dashboard)
+
+// export default connect(({dashboard}) => ({dashboard}))(Dashboard)

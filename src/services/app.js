@@ -21,10 +21,3 @@ export async function userInfo(params) {
     data:params,
   })
 }
-
-// export async function myCity() {
-//   return request('http://www.zuimeitianqi.com/zuimei/myCity', {
-//     method: 'get',
-//     data:{flg:0},
-//   })
-// }

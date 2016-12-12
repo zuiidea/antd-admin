@@ -8,16 +8,22 @@ const Ajax = require("robe-ajax")
  * @return {object}           An object containing either "data" or "err"
  */
 export default function request(url, options) {
-
-  return Ajax.ajax({
+  if (options.cross) {
+    return Ajax.getJSON("http://query.yahooapis.com/v1/public/yql", {
+      q: "select * from json where url=\'"+url+"?"+Ajax.param(options.data)+"\'",
+      format: "json"
+    })
+  } else {
+    return Ajax.ajax({
       url: url,
-      method:options.method||'get',
-      data:options.data||{},
-      processData:options.method=='get'?true:false,
-      dataType:'JSON',
-  })
-  .done((data) => {
-    return data
-  })
-
+      method: options.method || 'get',
+      data: options.data || {},
+      processData: options.method == 'get'
+        ? true
+        : false,
+      dataType: 'JSON'
+    }).done((data) => {
+      return data
+    })
+  }
 }
