@@ -2,19 +2,18 @@ import React, {PropTypes} from 'react'
 import {Icon} from 'antd'
 import styles from './weather.less'
 import {classnames, request} from '../../utils'
-
+const Ajax = require("robe-ajax")
 
 const Weather = React.createClass({
   componentDidMount() {
     this.fetch()
   },
   fetch() {
-    request('http://api.map.baidu.com/telematics/v3/weather?location=成都&output=json&ak=33MHEPwOLqG8YwynptbWCCFSqry9IEYb',{
-      method:'get',
-      dataType:'JSON',
-      success: function (res) {
-        console.log(res)
-      }
+    Ajax.getJSON("http://query.yahooapis.com/v1/public/yql", {
+      q: "select * from json where url=\"http://www.zuimeitianqi.com/zuimei/myCity?flg=0\"",
+      format: "json"
+    }, function (data) {
+      console.log(data)
     })
   },
   render() {
