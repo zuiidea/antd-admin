@@ -7,11 +7,7 @@ import Quote from '../components/dashboard/quote'
 import Sales from '../components/dashboard/sales'
 import Weather from '../components/dashboard/weather'
 import styles from './dashboard.less'
-import {color,mockStorge} from '../utils'
-
-mockStorge('Dashboard',{
-  a:6
-})
+import {color} from '../utils'
 
 const numberCardData = [
   {

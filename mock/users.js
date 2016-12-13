@@ -1,45 +1,34 @@
 const qs = require('qs')
 const Mock = require('mockjs')
 const Watch = require("watchjs")
+import mockStorge from '../src/utils/mockStorge'
 
-let usersListData = {}
-if (!global.usersListData) {
-  const data = !!localStorage.getItem("antdUsersListData")
-    ? JSON.parse(localStorage.getItem("antdUsersListData"))
-    : Mock.mock({
-      'data|100': [
-        {
-          'id|+1': 1,
-          name: '@cname',
-          nickName: '@last',
-          phone: /^1[34578]\d{9}$/,
-          'age|11-99': 1,
-          address: '@county(true)',
-          isMale: '@boolean',
-          email: '@email',
-          createTime: '@datetime',
-          avatar: function(){
-            return Mock.Random.image('100x100', Mock.Random.color(),"#757575",'png',this.nickName.substr(0,1))
-          }
-        }
-      ],
-      page: {
-        total: 100,
-        current: 1
+let dataKey = mockStorge('UsersList',Mock.mock({
+  'data|100': [
+    {
+      'id|+1': 1,
+      name: '@cname',
+      nickName: '@last',
+      phone: /^1[34578]\d{9}$/,
+      'age|11-99': 1,
+      address: '@county(true)',
+      isMale: '@boolean',
+      email: '@email',
+      createTime: '@datetime',
+      avatar: function(){
+        return Mock.Random.image('100x100', Mock.Random.color(),"#757575",'png',this.nickName.substr(0,1))
       }
-    })
-  usersListData = data
-  global.usersListData = usersListData
-  if (!localStorage.getItem("antdUsersListData")) {
-    localStorage.setItem("antdUsersListData", JSON.stringify(usersListData))
+    }
+  ],
+  page: {
+    total: 100,
+    current: 1
   }
-} else {
-  usersListData = global.usersListData
-}
+}))
 
-Watch.watch(usersListData, function () {
-  localStorage.setItem("antdUsersListData", JSON.stringify(usersListData))
-})
+let usersListData = global[dataKey]
+
+console.log(global[dataKey]);
 
 module.exports = {
 
@@ -86,7 +75,9 @@ module.exports = {
     usersListData.page.total = usersListData.data.length
     usersListData.page.current = 1
 
-    global.usersListData = usersListData
+    // global.usersListData = usersListData
+    global[dataKey] = usersListData
+
     res.json({success: true, data: usersListData.data, page: usersListData.page})
   },
 
@@ -102,7 +93,9 @@ module.exports = {
 
     usersListData.page.total = usersListData.data.length
 
-    global.usersListData = usersListData
+    // global.usersListData = usersListData
+    global[dataKey] = usersListData
+
     res.json({success: true, data: usersListData.data, page: usersListData.page})
   },
 
@@ -119,7 +112,8 @@ module.exports = {
       return item
     })
 
-    global.usersListData = usersListData
+    // global.usersListData = usersListData
+    global[dataKey] = usersListData
     res.json({success: true, data: usersListData.data, page: usersListData.page})
   }
 

@@ -24,5 +24,4 @@ module.exports = {
   request,
   color,
   classnames,
-  mockStorge,
 }

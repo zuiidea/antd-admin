@@ -2,33 +2,21 @@ const qs = require('qs')
 const Mock = require('mockjs')
 const Watch = require("watchjs")
 const Cookie = require("js-cookie")
+import mockStorge from '../src/utils/mockStorge'
 
-let adminUsersData = {}
-if (!global.adminUsersData) {
-  const data = !!localStorage.getItem("antdAdminUsersData")
-    ? JSON.parse(localStorage.getItem("antdAdminUsersData"))
-    : [
-      {
-        username: 'guest',
-        password: 'guest'
-      },
-      {
-        username: '吴彦祖',
-        password: '123456'
-      }
-    ]
-  adminUsersData = data
-  global.adminUsersData = adminUsersData
-  if (!localStorage.getItem("antdAdminUsersData")) {
-    localStorage.setItem("antdAdminUsersData", JSON.stringify(adminUsersData))
+
+let dataKey = mockStorge('AdminUsers',[
+  {
+    username: 'guest',
+    password: 'guest'
+  },
+  {
+    username: '吴彦祖',
+    password: '123456'
   }
-} else {
-  adminUsersData = global.adminUsersData
-}
+])
 
-Watch.watch(adminUsersData, function () {
-  localStorage.setItem("antdAdminUsersData", JSON.stringify(adminUsersData))
-})
+console.log(global[dataKey]);
 
 module.exports = {
   'POST /api/login' (req, res) {
@@ -37,7 +25,7 @@ module.exports = {
       success: false,
       message: ""
     }
-    const d = adminUsersData.filter(function (item) {
+    const d = global[dataKey].filter(function (item) {
       return item.username == userItem.username
     })
     if (!!d.length) {
