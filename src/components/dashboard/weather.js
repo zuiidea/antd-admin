@@ -9,7 +9,7 @@ function Weather(props) {
       <div className={styles.icon} style={{
         backgroundImage: `url(${icon})`
       }}></div>
-      <p style={styles.name}>{name}</p>
+      <p>{name}</p>
     </div>
     <div className={styles.right}>
       <h1 className={styles.temperature}>{temperature + '°'}</h1>
