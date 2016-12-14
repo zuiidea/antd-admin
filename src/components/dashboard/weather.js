@@ -6,7 +6,7 @@ function Weather(props) {
   const {city, icon, dateTime, temperature, name} = props
   return <div className={styles.weather}>
     <div className={styles.left}>
-      <div style={styles.icon} style={{
+      <div className={styles.icon} style={{
         backgroundImage: `url(${icon})`
       }}></div>
       <p style={styles.name}>{name}</p>

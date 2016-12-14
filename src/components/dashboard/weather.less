@@ -1,20 +1,41 @@
 @import "../vars.less";
-.weather{
+
+.weather {
   color: #fff;
-  .left{
-    .icon{
+  height: 204px;
+  padding: 24px;
+  justify-content: space-between;
+  display: flex;
 
-    }
-    .name{
+  .left {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
 
+    .icon {
+      width: 64px;
+      height: 64px;
+      background-position: center;
+      background-size: cover;
     }
+
+    .name {}
   }
-  .right{
-    .temperature{
 
+  .right {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    .temperature {
+      font-size: 36px;
+      text-align: right;
     }
-    .description{
 
+    .description {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-align: right;
     }
   }
 }

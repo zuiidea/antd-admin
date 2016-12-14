@@ -8,7 +8,7 @@ let zuimei = {
       icon: 'http://www.zuimeitianqi.com/res/icon/' + zuimei.GetIconName(actual.wea, "big"),
       name: zuimei.GetWeatherName(actual.wea),
       temperature: actual.tmp,
-      dateTime: new Date(actual.PTm).format('hh:mm')
+      dateTime: new Date(actual.PTm).format('MM-dd hh:mm')
     }
     return weather
   },
@@ -170,8 +170,8 @@ export default {
       city: '成都',
       temperature: '5',
       name: '晴',
-      icon: 'http://www.zuimeitianqi.com/res/icon/res/icon/0_big.png',
-      dateTime: new Date().format('hh:mm')
+      icon: 'http://www.zuimeitianqi.com/res/icon/0_big.png',
+      dateTime: new Date().format('MM-dd hh:mm')
     }
   },
   subscriptions : {
