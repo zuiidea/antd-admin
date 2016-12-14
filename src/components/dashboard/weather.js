@@ -1,26 +1,21 @@
 import React, {PropTypes} from 'react'
 import {Icon} from 'antd'
 import styles from './weather.less'
-import {classnames, request} from '../../utils'
-const Ajax = require("robe-ajax")
 
-const Weather = React.createClass({
-  componentDidMount() {
-    this.fetch()
-  },
-  fetch() {
-    // Ajax.getJSON("http://query.yahooapis.com/v1/public/yql", {
-    //   q: "select * from json where url=\"http://www.zuimeitianqi.com/zuimei/myCity?flg=0\"",
-    //   format: "json"
-    // }, function (data) {
-    //   console.log(data)
-    // })
-  },
-  render() {
-    return <div className={styles.weather}>
-      天气
+function Weather(props) {
+  const {city, icon, dateTime, temperature, name} = props
+  return <div className={styles.weather}>
+    <div className={styles.left}>
+      <div style={styles.icon} style={{
+        backgroundImage: `url(${icon})`
+      }}></div>
+      <p style={styles.name}>{name}</p>
     </div>
-  }
-})
+    <div className={styles.right}>
+      <h1 className={styles.temperature}>{temperature + '°'}</h1>
+      <p className={styles.description}>{city},{dateTime}</p>
+    </div>
+  </div>
+}
 
 export default Weather

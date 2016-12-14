@@ -43,15 +43,10 @@ const quoteProps={
   avatar:'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236',
 }
 
-// http://api.map.baidu.com/telematics/v3/weather?location=%E5%8C%97%E4%BA%AC&output=json&ak=E4805d16520de693a3fe707cdc962045
-const weatherProps={
-  weatherText:'雨',
-  weatherIcon:'雨',
-  location:'成都',
 
-}
 
-function Dashboard() {
+function Dashboard({dashboard}) {
+  const {weather} = dashboard
   const numberCards = numberCardData.map((item,key) => <Col  key={key} lg={6} md={12}>
     <NumberCard {...item}/>
   </Col>)
@@ -72,7 +67,7 @@ function Dashboard() {
              </Col>
              <Col lg={24} md={12}>
                <Card bordered={false} bodyStyle={{padding:0,height:204,background:color.blue}}>
-                 <Weather  {...weatherProps}/>
+                 <Weather  {...weather}/>
                </Card>
              </Col>
            </Row>
@@ -99,7 +94,7 @@ function Dashboard() {
       )}
 
 Dashboard.propTypes = {
-  location: PropTypes.object
+  dashboard: PropTypes.object
 }
 
 function mapStateToProps({ dashboard }) {
