@@ -1,4 +1,4 @@
-import {myCity} from '../services/dashboard'
+import {myCity,queryWeather} from '../services/dashboard'
 import {parse} from 'qs'
 
 export default {
@@ -17,8 +17,12 @@ export default {
     *queryWeather({
       payload
     }, {call, put}) {
-      const result = yield call(myCity, parse(payload))
+      const myCityResult = yield call(myCity, {flg:0})
+      const myCityData = myCityResult.query.results.json
+
+      const result = yield call(queryWeather, {cityCode:myCityData.selectCityCode})
       const data = result.query.results.json
+
       console.log(data)
       // if (data.success) {
       //   yield put({
