@@ -175,6 +175,7 @@ export default {
     },
     sales:[],
     quote:{},
+    numbers:[],
   },
   subscriptions : {
     setup({dispatch}) {
