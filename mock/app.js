@@ -16,7 +16,6 @@ let dataKey = mockStorge('AdminUsers',[
   }
 ])
 
-console.log(global[dataKey]);
 
 module.exports = {
   'POST /api/login' (req, res) {

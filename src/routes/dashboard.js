@@ -41,7 +41,7 @@ const quoteProps = {
 }
 
 function Dashboard({dashboard}) {
-  const {weather} = dashboard
+  const {weather,sales,quote} = dashboard
   const numberCards = numberCardData.map((item, key) => <Col key={key} lg={6} md={12}>
     <NumberCard {...item}/>
   </Col>)
@@ -53,7 +53,7 @@ function Dashboard({dashboard}) {
         <Card bordered={false} bodyStyle={{
           padding: '24px 36px 24px 0'
         }}>
-          <Sales/>
+          <Sales  data={sales}/>
         </Card>
       </Col>
       <Col lg={6} md={24}>
@@ -73,7 +73,7 @@ function Dashboard({dashboard}) {
               height: 204,
               background: color.red
             }}>
-              <Quote {...quoteProps}/>
+              <Quote {...quote}/>
             </Card>
           </Col>
         </Row>

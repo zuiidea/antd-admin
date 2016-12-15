@@ -16,3 +16,10 @@ export async function queryWeather(params) {
     data:params,
   })
 }
+
+export async function query(params) {
+  return request('/api/dashboard', {
+    method: 'get',
+    data:params,
+  })
+}

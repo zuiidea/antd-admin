@@ -1,4 +1,4 @@
-import {myCity, queryWeather} from '../services/dashboard'
+import {myCity, queryWeather , query} from '../services/dashboard'
 import {parse} from 'qs'
 
 // zuimei 摘自 http://www.zuimeitianqi.com/res/js/index.js
@@ -172,14 +172,23 @@ export default {
       name: '晴',
       icon: 'http://www.zuimeitianqi.com/res/icon/0_big.png',
       dateTime: new Date().format('MM-dd hh:mm')
-    }
+    },
+    sales:[],
+    quote:{},
   },
   subscriptions : {
     setup({dispatch}) {
       dispatch({type: 'queryWeather'})
+      dispatch({type: 'query'})
     }
   },
   effects : {
+    *query({
+      payload
+    }, {call, put}) {
+      const data = yield call(query, parse(payload))
+      yield put({type: 'queryWeather', payload: {...data}})
+    },
     *queryWeather({
       payload
     }, {call, put}) {
@@ -201,6 +210,12 @@ export default {
         ...state,
         ...action.payload
       }
-    }
+    },
+    queryWeather(state, action) {
+      return {
+        ...state,
+        ...action.payload
+      }
+    },
   }
 }

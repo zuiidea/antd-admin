@@ -4,23 +4,19 @@ import styles from './sales.less'
 import {color} from '../../utils'
 import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'recharts'
 
-const data = [
-      {name: '2000', Clothes: 400, Food: 240, Electronics: 240},
-      {name: '2011', Clothes: 300, Food: 198, Electronics: 220},
-      {name: '2012', Clothes: 200, Food: 980, Electronics: 229},
-      {name: '2013', Clothes: 278, Food: 398, Electronics: 200},
-      {name: '2014', Clothes: 189, Food: 480, Electronics: 281},
-      {name: '2015', Clothes: 239, Food: 380, Electronics: 250},
-      {name: '2016', Clothes: 349, Food: 430, Electronics: 210},
-];
-
 function Sales(props) {
   return (
     <div className={styles.sales}>
       <div className={styles.title}>Yearly Sales</div>
       <ResponsiveContainer minHeight={360}>
-      <LineChart data={data}>
-       <Legend  verticalAlign="top" align="right" height={36}/>
+      <LineChart data={props.data}>
+       <Legend verticalAlign="top"
+         content={props => {
+           const { payload } = props
+           return <ul className={styles.legend+' clearfix'}>
+             {payload.map((item,key) => <li key={key}><span className={styles.radiusdot} style={{background:item.color}}></span>{item.value}</li>) }
+           </ul>
+         }}/>
        <XAxis dataKey="name" axisLine={{stroke:color.borderBase,strokeWidth:1}}  tickLine={false}/>
        <YAxis axisLine={false} tickLine={false} />
        <CartesianGrid vertical={false} stroke={color.borderBase} strokeWidth={1} />

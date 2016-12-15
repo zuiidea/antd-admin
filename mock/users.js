@@ -28,8 +28,6 @@ let dataKey = mockStorge('UsersList',Mock.mock({
 
 let usersListData = global[dataKey]
 
-console.log(global[dataKey]);
-
 module.exports = {
 
   'GET /api/users' (req, res) {
