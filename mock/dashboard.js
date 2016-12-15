@@ -5,9 +5,9 @@ import mockStorge from '../src/utils/mockStorge'
 import {color} from '../src/utils/theme'
 
 let dataKey = mockStorge('Dashboard', Mock.mock({
-  'sales|16': [
+  'sales|12': [
     {
-      'name|+1': 2000,
+      'name|+1': 01,
       'Clothes|200-500': 1,
       'Food|180-700': 1,
       'Electronics|300-850': 1
