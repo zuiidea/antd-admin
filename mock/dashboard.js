@@ -5,9 +5,9 @@ import mockStorge from '../src/utils/mockStorge'
 import {color} from '../src/utils/theme'
 
 let dataKey = mockStorge('Dashboard', Mock.mock({
-  'sales|12': [
+  'sales|8': [
     {
-      'name|+1': 1,
+      'name|+1': 2008,
       'Clothes|200-500': 1,
       'Food|180-700': 1,
       'Electronics|300-850': 1
@@ -17,7 +17,7 @@ let dataKey = mockStorge('Dashboard', Mock.mock({
     {
       'id|+1': 1,
       name: '@last',
-      'status|1-5': 1,
+      'status|1-4': 1,
       date:function(){
         return Mock.Random.integer(2015, 2016)+'-'+Mock.Random.date('MM-dd')+' '+Mock.Random.time('HH:mm:ss')
       },

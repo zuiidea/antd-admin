@@ -41,7 +41,7 @@ function Dashboard({dashboard}) {
             <Card bordered={false} className={styles.quote} bodyStyle={{
               padding: 0,
               height: 204,
-              background: color.red
+              background: color.peach
             }}>
               <Quote {...quote}/>
             </Card>
@@ -50,7 +50,6 @@ function Dashboard({dashboard}) {
       </Col>
       <Col lg={12} md={24}>
         <Card bordered={false} bodyStyle={{
-          padding: 0,
           height: 432,
           background: '#fff'
         }}>
