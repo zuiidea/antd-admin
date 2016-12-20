@@ -7,10 +7,21 @@ import {color} from '../src/utils/theme'
 let dataKey = mockStorge('Dashboard', Mock.mock({
   'sales|12': [
     {
-      'name|+1': 01,
+      'name|+1': 1,
       'Clothes|200-500': 1,
       'Food|180-700': 1,
       'Electronics|300-850': 1
+    }
+  ],
+  'recentSales|36':[
+    {
+      'id|+1': 1,
+      name: '@last',
+      'status|1-5': 1,
+      date:function(){
+        return Mock.Random.integer(2015, 2016)+'-'+Mock.Random.date('MM-dd')+' '+Mock.Random.time('HH:mm:ss')
+      },
+      'price|10-200.1-2':1
     }
   ],
   quote: {
@@ -46,6 +57,7 @@ let dataKey = mockStorge('Dashboard', Mock.mock({
 
 module.exports = {
   'GET /api/dashboard' (req, res) {
+    console.log(global[dataKey].recentSales);
     res.json(global[dataKey])
   }
 }
