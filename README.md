@@ -92,4 +92,4 @@ dashboard设计稿：https://dribbble.com/shots/3108122-Dashboard-Admin （已�
 
 ## 截屏
 
-![](assets/demo.gif)
+![](assets/demo2.gif)
