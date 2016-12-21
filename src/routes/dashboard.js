@@ -7,11 +7,13 @@ import Quote from '../components/dashboard/quote'
 import Sales from '../components/dashboard/sales'
 import Weather from '../components/dashboard/weather'
 import RecentSales from '../components/dashboard/recentSales'
+import Comments from '../components/dashboard/comments'
+// import Completed from '../components/dashboard/completed'
 import styles from './dashboard.less'
 import {color} from '../utils'
 
 function Dashboard({dashboard}) {
-  const {weather, sales, quote, numbers, recentSales} = dashboard
+  const {weather, sales, quote, numbers, recentSales, comments, completed} = dashboard
   const numberCards = numbers.map((item, key) => <Col key={key} lg={6} md={12}>
     <NumberCard {...item}/>
   </Col>)
@@ -58,17 +60,18 @@ function Dashboard({dashboard}) {
       </Col>
       <Col lg={12} md={24}>
         <Card bordered={false} bodyStyle={{
-          padding: 0,
           height: 432,
           background: '#fff'
-        }}></Card>
+        }}>
+          <Comments data={comments}/>
+        </Card>
       </Col>
       <Col lg={24} md={24}>
         <Card bordered={false} bodyStyle={{
-          padding: 0,
-          height: 432,
-          background: '#fff'
-        }}></Card>
+          padding: '24px 36px 24px 0'
+        }}>
+          {/* <Completed data={completed}/> */}
+        </Card>
       </Col>
       <Col lg={8} md={24}>
         <Card bordered={false} bodyStyle={{

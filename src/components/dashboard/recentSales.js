@@ -23,7 +23,7 @@ const status = {
   }
 }
 
-function recentSales(props) {
+function RecentSales(props) {
   const columns = [
     {
       title: 'NAME',
@@ -49,4 +49,4 @@ function recentSales(props) {
   )
 }
 
-export default recentSales
+export default RecentSales

@@ -13,6 +13,26 @@ let dataKey = mockStorge('Dashboard', Mock.mock({
       'Electronics|300-850': 1
     }
   ],
+  'completed|12': [
+    {
+      'name|+1': 2008,
+      'Task complete|200-1000': 1,
+      'Cards Complete|200-1000': 1
+    }
+  ],
+  'comments|5': [
+    {
+      name: '@last',
+      'status|1-3': 1,
+      content:'@sentence',
+      avatar: function(){
+        return Mock.Random.image('100x100', Mock.Random.color(),"#757575",'png',this.name.substr(0,1))
+      },
+      date:function(){
+        return '2016-'+Mock.Random.date('MM-dd')+' '+Mock.Random.time('HH:mm:ss')
+      },
+    }
+  ],
   'recentSales|36':[
     {
       'id|+1': 1,
