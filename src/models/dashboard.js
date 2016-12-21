@@ -180,7 +180,9 @@ export default {
     numbers:[],
     recentSales:[],
     completed:[],
-    comments:[],
+    browser:[],
+    cpu:{},
+    user:{},
   },
   subscriptions : {
     setup({dispatch}) {

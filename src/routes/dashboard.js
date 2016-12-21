@@ -9,11 +9,19 @@ import Weather from '../components/dashboard/weather'
 import RecentSales from '../components/dashboard/recentSales'
 import Comments from '../components/dashboard/comments'
 import Completed from '../components/dashboard/completed'
+import Browser from '../components/dashboard/browser'
 import styles from './dashboard.less'
 import {color} from '../utils'
 
+const bodyStyle = {
+  bodyStyle:{
+    height: 432,
+    background: '#fff',
+  }
+}
+
 function Dashboard({dashboard}) {
-  const {weather, sales, quote, numbers, recentSales, comments, completed} = dashboard
+  const {weather, sales, quote, numbers, recentSales, comments, completed, browser, cpu, user} = dashboard
   const numberCards = numbers.map((item, key) => <Col key={key} lg={6} md={12}>
     <NumberCard {...item}/>
   </Col>)
@@ -51,18 +59,12 @@ function Dashboard({dashboard}) {
         </Row>
       </Col>
       <Col lg={12} md={24}>
-        <Card bordered={false} bodyStyle={{
-          height: 432,
-          background: '#fff'
-        }}>
+        <Card bordered={false} {...bodyStyle}>
           <RecentSales data={recentSales}/>
         </Card>
       </Col>
       <Col lg={12} md={24}>
-        <Card bordered={false} bodyStyle={{
-          height: 432,
-          background: '#fff'
-        }}>
+        <Card bordered={false} {...bodyStyle}>
           <Comments data={comments}/>
         </Card>
       </Col>
@@ -74,25 +76,19 @@ function Dashboard({dashboard}) {
         </Card>
       </Col>
       <Col lg={8} md={24}>
-        <Card bordered={false} bodyStyle={{
-          padding: 0,
-          height: 432,
-          background: '#fff'
-        }}></Card>
+        <Card bordered={false} {...bodyStyle}>
+          <Browser data={browser}/>
+        </Card>
       </Col>
       <Col lg={8} md={24}>
-        <Card bordered={false} bodyStyle={{
-          padding: 0,
-          height: 432,
-          background: '#fff'
-        }}></Card>
+        <Card bordered={false} {...bodyStyle}>
+          {/* <Cpu data={cpu}/> */}
+        </Card>
       </Col>
       <Col lg={8} md={24}>
-        <Card bordered={false} bodyStyle={{
-          padding: 0,
-          height: 432,
-          background: '#fff'
-        }}></Card>
+        <Card bordered={false} {...bodyStyle}>
+            {/* <User data={user}/> */}
+        </Card>
       </Col>
     </Row>
   )
