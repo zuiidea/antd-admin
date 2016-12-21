@@ -26,7 +26,7 @@ let dataKey = mockStorge('Dashboard', Mock.mock({
       'status|1-3': 1,
       content:'@sentence',
       avatar: function(){
-        return Mock.Random.image('100x100', Mock.Random.color(),"#757575",'png',this.name.substr(0,1))
+        return Mock.Random.image('48x48', Mock.Random.color(),"#757575",'png',this.name.substr(0,1))
       },
       date:function(){
         return '2016-'+Mock.Random.date('MM-dd')+' '+Mock.Random.time('HH:mm:ss')

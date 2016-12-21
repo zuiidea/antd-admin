@@ -25,7 +25,7 @@ function Comments(props) {
       title: 'avatar',
       dataIndex: 'avatar',
       width:48,
-      className:'avatarcolumn',
+      className:styles.avatarcolumn,
       render: text => <span style={{backgroundImage:`url(${text})`}} className={styles.avatar} ></span>,
     }, {
       title: 'content',
@@ -33,14 +33,13 @@ function Comments(props) {
       render:(text,it) => <div>
         <h5 className={styles.name}>{it.name}</h5>
         <p className={styles.content}>{it.content}</p>
-        <p className={styles.daterow}>
+        <div className={styles.daterow}>
           <Tag color={status[it.status].color}>{status[it.status].text}</Tag>
           <span className={styles.date}>{it.date}</span>
-        </p>
+        </div>
       </div>,
     },
   ]
-  console.log(props);
   return (
     <div className={styles.comments}>
       <Table pagination={false} showHeader={false} columns={columns} key={(record,key)=>key} dataSource={props.data.filter((item,key) => key<3)}/>
