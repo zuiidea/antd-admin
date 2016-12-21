@@ -7,6 +7,8 @@ module.exports = {
     yellow:'#f8c82e',
     peach:'#f797d6',
     borderBase:'#e5e5e5',
-    borderSplit:'#f4f4f4'
+    borderSplit:'#f4f4f4',
+    grass:"#d6fbb5",
+    sky:'#c1e0fc'
   }
 };

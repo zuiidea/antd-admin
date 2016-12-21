@@ -9,8 +9,8 @@ let dataKey = mockStorge('Dashboard', Mock.mock({
     {
       'name|+1': 2008,
       'Clothes|200-500': 1,
-      'Food|180-700': 1,
-      'Electronics|300-850': 1
+      'Food|180-400': 1,
+      'Electronics|300-550': 1
     }
   ],
   'completed|12': [

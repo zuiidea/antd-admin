@@ -19,7 +19,7 @@ function Sales(props) {
          }}/>
        <XAxis dataKey="name" axisLine={{stroke:color.borderBase,strokeWidth:1}}  tickLine={false}/>
        <YAxis axisLine={false} tickLine={false} />
-       <CartesianGrid vertical={false} stroke={color.borderBase} strokeWidth={1} />
+       <CartesianGrid vertical={false} stroke={color.borderBase} strokeDasharray="3 3" />
        <Tooltip
          wrapperStyle={{border:'none',boxShadow:'4px 4px 40px rgba(0, 0, 0, 0.05)'}}
          content={content => {

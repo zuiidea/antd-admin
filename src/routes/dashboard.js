@@ -8,7 +8,7 @@ import Sales from '../components/dashboard/sales'
 import Weather from '../components/dashboard/weather'
 import RecentSales from '../components/dashboard/recentSales'
 import Comments from '../components/dashboard/comments'
-// import Completed from '../components/dashboard/completed'
+import Completed from '../components/dashboard/completed'
 import styles from './dashboard.less'
 import {color} from '../utils'
 
@@ -70,7 +70,7 @@ function Dashboard({dashboard}) {
         <Card bordered={false} bodyStyle={{
           padding: '24px 36px 24px 0'
         }}>
-          {/* <Completed data={completed}/> */}
+          <Completed data={completed}/>
         </Card>
       </Col>
       <Col lg={8} md={24}>
