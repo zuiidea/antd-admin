@@ -10,6 +10,17 @@ module.exports = [
     icon: 'user',
   },
   {
+    key: 'components',
+    name: 'UI组件',
+    icon: 'laptop',
+    child:[
+      {
+        key: 'ico',
+        name: '业务图标',
+      },
+    ]
+  },
+  {
     key: 'navigation',
     name: '测试导航',
     icon: 'setting',
