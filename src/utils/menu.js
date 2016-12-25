@@ -10,9 +10,10 @@ module.exports = [
     icon: 'user',
   },
   {
-    key: 'components',
+    key: 'ui',
     name: 'UI组件',
     icon: 'laptop',
+    clickable:false,
     child:[
       {
         key: 'ico',

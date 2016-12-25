@@ -11,6 +11,7 @@ const getPathSet = function (menuArray, parentPath) {
       path: parentPath + item.key,
       name: item.name,
       icon: item.icon || '',
+      clickable:item.clickable==undefined?true:false
     }
     if (!!item.child) {
       getPathSet(item.child, parentPath + item.key + '/')
@@ -30,7 +31,7 @@ function Bread({ location }) {
   })
   const breads = pathNames.map((item, key) => {
     return (
-      <Breadcrumb.Item key={key} {...pathNames.length - 1 == key ? '' : { href: '#' + pathSet[item].path }}>
+      <Breadcrumb.Item key={key} {...((pathNames.length - 1 == key)||!pathSet[item].clickable)? '' : { href: '#' + pathSet[item].path }}>
         {pathSet[item].icon
           ? <Icon type={pathSet[item].icon} />
           : ''}
