@@ -12,7 +12,7 @@ module.exports = [
   {
     key: 'ui',
     name: 'UI组件',
-    icon: 'laptop',
+    icon: 'camera-o',
     clickable:false,
     child:[
       {
