@@ -10,6 +10,7 @@ import RecentSales from '../components/dashboard/recentSales'
 import Comments from '../components/dashboard/comments'
 import Completed from '../components/dashboard/completed'
 import Browser from '../components/dashboard/browser'
+import Cpu from '../components/dashboard/cpu'
 import styles from './dashboard.less'
 import {color} from '../utils'
 
@@ -82,7 +83,7 @@ function Dashboard({dashboard}) {
       </Col>
       <Col lg={8} md={24}>
         <Card bordered={false} {...bodyStyle}>
-          {/* <Cpu data={cpu}/> */}
+          <Cpu {...cpu}/>
         </Card>
       </Col>
       <Col lg={8} md={24}>

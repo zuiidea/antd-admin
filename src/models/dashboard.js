@@ -179,6 +179,7 @@ export default {
     },
     numbers:[],
     recentSales:[],
+    comments:[],
     completed:[],
     browser:[],
     cpu:{},
