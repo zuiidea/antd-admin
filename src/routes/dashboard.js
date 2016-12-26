@@ -11,6 +11,7 @@ import Comments from '../components/dashboard/comments'
 import Completed from '../components/dashboard/completed'
 import Browser from '../components/dashboard/browser'
 import Cpu from '../components/dashboard/cpu'
+import User from '../components/dashboard/user'
 import styles from './dashboard.less'
 import {color} from '../utils'
 
@@ -87,8 +88,8 @@ function Dashboard({dashboard}) {
         </Card>
       </Col>
       <Col lg={8} md={24}>
-        <Card bordered={false} {...bodyStyle}>
-            {/* <User data={user}/> */}
+        <Card bordered={false} bodyStyle={{...bodyStyle.bodyStyle,padding:0}}>
+            <User {...user}/>
         </Card>
       </Col>
     </Row>

@@ -1,23 +1,43 @@
 import React, {PropTypes} from 'react'
-import {Icon,Table,Tag} from 'antd'
 import styles from './cpu.less'
 import {classnames,color} from '../../utils'
+import CountUp from 'react-countup'
 import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'recharts'
+
+const countUpProps = {
+  start:0,
+  duration:2.75,
+  useEasing:true,
+  useGrouping:true,
+  separator:','
+}
 
 function Cpu(props) {
   return <div className={styles.cpu}>
     <div className={styles.number}>
       <div className={styles.item}>
         <p>usage</p>
-        <p>{props.usage}</p>
+        <p><CountUp
+            end={props.usage}
+            suffix="GB"
+            {...countUpProps}
+          /></p>
       </div>
       <div className={styles.item}>
         <p>space</p>
-        <p>{props.space}</p>
+        <p><CountUp
+            end={props.space}
+            suffix="GB"
+            {...countUpProps}
+          /></p>
       </div>
       <div className={styles.item}>
         <p>cpu</p>
-        <p>{props.cpu}</p>
+        <p><CountUp
+            end={props.cpu}
+            suffix="%"
+            {...countUpProps}
+          /></p>
       </div>
     </div>
     <ResponsiveContainer minHeight={300}>
