@@ -40,7 +40,7 @@
   },
   "scripts": {
     "start": "dora --plugins \"proxy,webpack,webpack-hmr\"",
-    "dev": "dora --plugins \"webpack,webpack-hmr,disableNpmInstall\"",
+    "dev": "dora --plugins \"webpack,webpack-hmr\"",
     "lint": "eslint --fix --ext .js,.jsx src/components/layout",
     "build": "atool-build"
   },
