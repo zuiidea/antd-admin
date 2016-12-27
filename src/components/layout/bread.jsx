@@ -32,20 +32,17 @@ function Bread({ location }) {
     }
   })
   const breads = pathNames.map((item, key) => {
-    if (item=='-'){
-      return <Breadcrumb.Item key={key}>
-        无
-      </Breadcrumb.Item>
-    }else {
-      return (
-        <Breadcrumb.Item key={key} {...((pathNames.length - 1 == key)||!pathSet[item].clickable)? '' : { href: '#' + pathSet[item].path }}>
-          {pathSet[item].icon
-            ? <Icon type={pathSet[item].icon} />
-            : ''}
-          <span>{pathSet[item].name}</span>
-        </Breadcrumb.Item>
-      )
+    if(item=='-'){
+       item='Dashboard'      
     }
+    return (
+      <Breadcrumb.Item key={key} {...((pathNames.length - 1 == key)||!pathSet[item].clickable)? '' : { href: '#' + pathSet[item].path }}>
+        {pathSet[item].icon
+          ? <Icon type={pathSet[item].icon} />
+          : ''}
+        <span>{pathSet[item].name}</span>
+      </Breadcrumb.Item>
+    )
   })
 
   return (

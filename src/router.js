@@ -1,7 +1,6 @@
 import React from 'react'
 import {Router} from 'dva/router'
 import App from './routes/app'
-import Error from './routes/error'
 
 export default function ({history, app}) {
 
@@ -9,9 +8,12 @@ export default function ({history, app}) {
     {
       path: '/',
       component: App,
-      // IndexRoute:{
-      //   component: Error,
-      // },
+      getIndexRoute(nextState, cb) {
+        require.ensure([], require => {
+          app.model(require('./models/dashboard'))
+          cb(null, {component: require('./routes/dashboard')})
+        })
+      },
       childRoutes: [
         {
           path: 'dashboard',
