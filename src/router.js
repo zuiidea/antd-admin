@@ -29,7 +29,8 @@ export default function ({history, app}) {
           name: 'users',
           getComponent(nextState, cb) {
             require.ensure([], require => {
-              cb(null, require('./routes/ui/ico'))
+              app.model(require('./models/users'))
+              cb(null, require('./routes/users'))
             })
           }
         }, {
@@ -37,8 +38,7 @@ export default function ({history, app}) {
           name: 'ui/ico',
           getComponent(nextState, cb) {
             require.ensure([], require => {
-              app.model(require('./models/users'))
-              cb(null, require('./routes/users'))
+              cb(null, require('./routes/ui/ico'))
             })
           }
         }, {
