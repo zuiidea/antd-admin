@@ -22,7 +22,8 @@ const bodyStyle = {
   }
 }
 
-function Dashboard({dashboard}) {
+function Dashboard({dashboard,dispatch}) {
+  console.log({dashboard,dispatch});
   const {weather, sales, quote, numbers, recentSales, comments, completed, browser, cpu, user} = dashboard
   const numberCards = numbers.map((item, key) => <Col key={key} lg={6} md={12}>
     <NumberCard {...item}/>
@@ -97,11 +98,16 @@ function Dashboard({dashboard}) {
 }
 
 Dashboard.propTypes = {
-  dashboard: PropTypes.object
+  weather: PropTypes.object,
+  sales: PropTypes.array,
+  quote: PropTypes.object,
+  numbers: PropTypes.array,
+  recentSales: PropTypes.array,
+  comments: PropTypes.array,
+  completed: PropTypes.array,
+  browser: PropTypes.array,
+  cpu: PropTypes.object,
+  user: PropTypes.object,
 }
 
-function mapStateToProps({dashboard}) {
-  return {dashboard}
-}
-
-export default connect(mapStateToProps)(Dashboard)
+export default connect(({dashboard}) => ({dashboard}))(Dashboard)

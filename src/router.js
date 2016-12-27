@@ -1,21 +1,56 @@
 import React from 'react'
-import { Router, Route , IndexRedirect } from 'dva/router'
+import {Router} from 'dva/router'
 import App from './routes/app'
 import Error from './routes/error'
-import Dashboard from './routes/dashboard'
-import Users from './routes/users'
-import Ico from './routes/ui/ico'
 
-export default function ({ history }) {
-  return (
-    <Router history={ history }>
-      <Route path="/" component={ App } >
-        <IndexRedirect to="/dashboard" />
-        <Route path="dashboard" component={ Dashboard }/>
-        <Route path="/users" component={ Users } />
-        <Route path="/ui/ico" component={Ico}/>
-        <Route path="*" component={ Error } />
-      </Route>
-    </Router>
-  )
+export default function ({history, app}) {
+
+  const routes = [
+    {
+      path: '/',
+      component: App,
+      // IndexRoute:{
+      //   component: Error,
+      // },
+      childRoutes: [
+        {
+          path: 'dashboard',
+          name: 'dashboard',
+          getComponent(nextState, cb) {
+            require.ensure([], require => {
+              app.model(require('./models/dashboard'))
+              cb(null, require('./routes/dashboard'))
+            })
+          }
+        }, {
+          path: 'users',
+          name: 'users',
+          getComponent(nextState, cb) {
+            require.ensure([], require => {
+              cb(null, require('./routes/ui/ico'))
+            })
+          }
+        }, {
+          path: 'ui/ico',
+          name: 'ui/ico',
+          getComponent(nextState, cb) {
+            require.ensure([], require => {
+              app.model(require('./models/users'))
+              cb(null, require('./routes/users'))
+            })
+          }
+        }, {
+          path: '*',
+          name: 'error',
+          getComponent(nextState, cb) {
+            require.ensure([], require => {
+              cb(null, require('./routes/error'))
+            })
+          }
+        }
+      ]
+    }
+  ]
+
+  return <Router history={history} routes={routes}/>
 }
