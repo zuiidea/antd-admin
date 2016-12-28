@@ -1,14 +1,13 @@
 # Antd Admin
 
-当前主分支3.0，演示地址 http://zuiidea.github.io/antd-admin/
-
-- 接下来将会做一些功能完善和文档完善。:sweat_smile:
+:sleepy: 当前主分支3.0，演示地址 http://zuiidea.github.io/antd-admin/
 
 ## 特性
 
-- 基于[React](https://github.com/facebook/react)，[Antd Design](https://github.com/ant-design/ant-design)，[dva](https://github.com/dvajs/dva)，[Mock](https://github.com/nuysoft/Mock) 企业级后台管理系统最佳实践
+- 基于[react](https://github.com/facebook/react)，[ant-design](https://github.com/ant-design/ant-design)，[dva](https://github.com/dvajs/dva)，[Mock](https://github.com/nuysoft/Mock) 企业级后台管理系统最佳实践
 - 基于[Mock](https://github.com/nuysoft/Mock)实现脱离后端独立开发
 - 基于Antd UI 设计语言，提供后台管理系统常见使用场景
+- 基于[dva](https://github.com/dvajs/dva)动态加载 Model 和路由，按需加载
 
 ## To do list
 - [x] 登录页面
