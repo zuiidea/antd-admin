@@ -74,7 +74,6 @@ export default {
     *changeTheme({
       payload
     }, {put}) {
-      console.log("changeTheme");
       yield put({
         type: 'handleChangeTheme'
       })

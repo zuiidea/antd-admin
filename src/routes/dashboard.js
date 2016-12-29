@@ -23,7 +23,7 @@ const bodyStyle = {
 }
 
 function Dashboard({dashboard,dispatch}) {
-  console.log({dashboard,dispatch});
+
   const {weather, sales, quote, numbers, recentSales, comments, completed, browser, cpu, user} = dashboard
   const numberCards = numbers.map((item, key) => <Col key={key} lg={6} md={12}>
     <NumberCard {...item}/>

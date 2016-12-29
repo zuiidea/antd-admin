@@ -183,7 +183,9 @@ export default {
     completed:[],
     browser:[],
     cpu:{},
-    user:{},
+    user:{
+      avatar: 'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236'
+    },
   },
   subscriptions : {
     setup({dispatch}) {

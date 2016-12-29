@@ -20,8 +20,6 @@ const getPathSet = function (menuArray, parentPath) {
 }
 getPathSet(menu)
 
-console.log(pathSet)
-
 function Bread({ location }) {
   let pathNames = []
   location.pathname.substr(1).split('/').map((item, key) => {
@@ -32,8 +30,8 @@ function Bread({ location }) {
     }
   })
   const breads = pathNames.map((item, key) => {
-    if(item=='-'){
-       item='Dashboard'      
+    if(!(item in pathSet)){
+       item='Dashboard'
     }
     return (
       <Breadcrumb.Item key={key} {...((pathNames.length - 1 == key)||!pathSet[item].clickable)? '' : { href: '#' + pathSet[item].path }}>
