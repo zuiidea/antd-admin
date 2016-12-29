@@ -1,21 +1,36 @@
-import React, { PropTypes } from 'react'
-import { Menu, Icon, Button } from 'antd'
-import { Link } from 'dva/router'
+import React, {PropTypes} from 'react'
+import {Menu, Icon, Popover} from 'antd'
+import {Link} from 'dva/router'
 import styles from './main.less'
+import Menus from './menu'
 
 const SubMenu = Menu.SubMenu
 
-function Header({  user, logout, switchSider, siderFold }) {
+function Header({user, logout, switchSider, siderFold, isNavbar ,location}) {
   let handleClickMenu = e => e.key === 'logout' && logout()
+  const menusProps = {
+    siderFold:false,
+    darkTheme:false,
+    isNavbar,
+    location
+  }
   return (
     <div className={styles.header}>
-      <div className={styles.siderbutton} onClick={switchSider}>
-        <Icon type={siderFold?"menu-unfold":"menu-fold"} />
-      </div>
+      {isNavbar
+        ? <Popover placement="bottomLeft" overlayClassName={styles.popovermenu} trigger="click" content={<Menus {...menusProps}/>}>
+          <div className={styles.siderbutton}>
+            <Icon type="bars"/>
+          </div>
+        </Popover>
+        : <div className={styles.siderbutton} onClick={switchSider}>
+          <Icon type={siderFold? 'menu-unfold': 'menu-fold'}/>
+        </div>}
+
       <Menu className="header-menu" mode="horizontal" onClick={handleClickMenu}>
-        <SubMenu style={{ float: 'right' }}
-          title={<span><Icon type="user" />{user.name}</span>}
-        >
+        <SubMenu style={{
+          float: 'right'
+        }} title={< span > <Icon type="user"/>
+          {user.name} < /span>}>
           <Menu.Item key="logout">
             <a>注销</a>
           </Menu.Item>

@@ -4,36 +4,48 @@
   position: relative;
   height: 100vh;
 
-  &.fold{
-    .sider{
+  &.withnavbar {
+    .main {
+      margin-left: 0;
+    }
+  }
+
+  &.fold {
+    .sider {
       width: 42px;
-      .logo{
-        img{
+
+      .logo {
+        img {
           width: 28px;
           margin: 6px 7px;
         }
       }
 
-      :global{
-        .ant-menu-root{
+      :global {
+        .ant-menu-root {
           width: 100%;
-          &>.ant-menu-item {
+
+          & > .ant-menu-item {
             padding: 0;
             text-align: center;
-            .anticon{
+
+            .anticon {
               font-size: 14px;
               margin-right: 0;
             }
           }
-          &>.ant-menu-submenu{
-            &>.ant-menu-submenu-title{
+
+          & > .ant-menu-submenu {
+            & > .ant-menu-submenu-title {
               padding: 0;
               text-align: center;
-              .anticon{
+
+              .anticon {
                 font-size: 14px;
                 margin-right: 0;
               }
-              &::after{
+
+              &::after {
                 display: none;
               }
             }
@@ -41,7 +53,8 @@
         }
       }
     }
-    .main{
+
+    .main {
       margin-left: 42px;
     }
   }
@@ -55,10 +68,12 @@
     height: 100vh;
     transition: @transition-ease-out;
     box-shadow: @shadow-1;
+    z-index: 1994;
 
-    &.light{
+    &.light {
       background: #fff;
-      .switchtheme{
+
+      .switchtheme {
         background: #fff;
         border-top: solid 1px #f8f8f8;
       }
@@ -86,11 +101,12 @@
         display: inline-block;
       }
 
-      .anticon{
+      .anticon {
         transition: @transition-ease-out;
       }
     }
-    .switchtheme{
+
+    .switchtheme {
       width: 100%;
       position: absolute;
       bottom: 0;
@@ -102,22 +118,26 @@
       padding: 0 16px 0 24px;
       overflow: hidden;
 
-      span{
+      span {
         white-space: nowrap;
         overflow: hidden;
       }
-      :global{
-        .anticon{
+
+      :global {
+        .anticon {
           min-width: 14px;
           margin-right: 8px;
           font-size: 14px;
         }
       }
     }
-    :global{
-      .ant-menu{
+
+    :global {
+      .ant-menu {
         transition: @transition-ease-out;
-        .ant-menu-item, .ant-menu-submenu-title{
+
+        .ant-menu-item,
+        .ant-menu-submenu-title {
           overflow: hidden;
           white-space: normal;
         }
@@ -134,7 +154,8 @@
     }
     box-shadow: @shadow-2;
     position: relative;
-    .siderbutton{
+
+    .siderbutton {
       height: 47px;
       width: 47px;
       line-height: 47px;
@@ -143,7 +164,8 @@
       cursor: pointer;
       position: absolute;
       transition: @transition-ease-in;
-      &:hover{
+
+      &:hover {
         color: @primary-color;
         background-color: fade(@primary-color, 15%);
       }
@@ -169,7 +191,8 @@
       .content {
         min-height: e("calc(100vh - 184px)");
         position: relative;
-        :global .content-inner{
+
+        :global .content-inner {
           background: #fff;
           padding: 24px;
           box-shadow: @shadow-1;
@@ -220,11 +243,30 @@
   .ant-menu-item-selected {
     color: @primary-color;
     background-color: @dark-half;
+
     & > a {
       color: @primary-color;
     }
-    &:hover{
-     background-color: @dark-half;
+
+    &:hover {
+      background-color: @dark-half;
+    }
+  }
+}
+
+.popovermenu {
+  width: 280px;
+  left: 12px!important;
+
+  :global .ant-popover-inner-content {
+    padding: 0;
+    .ant-menu-inline .ant-menu-item, .ant-menu-vertical .ant-menu-item{
+      border-right: 0;
+      height: 48px;
+      line-height: 48px;
+    }
+    .ant-menu-inline .ant-menu-selected, .ant-menu-inline .ant-menu-item-selected{
+      border-right: 0;
     }
   }
 }

@@ -13,10 +13,14 @@ export default {
     loginButtonLoading: false,
     siderFold:localStorage.getItem("antdAdminSiderFold")==="true"?true:false,
     darkTheme:localStorage.getItem("antdAdminDarkTheme")==="false"?false:true,
+    isNavbar:document.body.clientWidth<769?true:false,
   },
   subscriptions : {
     setup({dispatch}) {
       dispatch({type: 'queryUser'})
+      window.onresize = function(){
+        dispatch({type: 'changeNavbar'})
+      }
     }
   },
   effects : {
@@ -66,7 +70,6 @@ export default {
     *switchSider({
       payload
     }, {put}) {
-      console.log("switchSider");
       yield put({
         type: 'handleSwitchSider'
       })
@@ -77,6 +80,15 @@ export default {
       yield put({
         type: 'handleChangeTheme'
       })
+    },
+    *changeNavbar({
+      payload
+    }, {put}) {
+      if(document.body.clientWidth<769){
+        yield put({type: 'showNavbar'})
+      }else {
+        yield put({type: 'hideNavbar'})
+      }
     },
   },
   reducers : {
@@ -133,5 +145,17 @@ export default {
         darkTheme: !state.darkTheme
       }
     },
+    showNavbar(state) {
+      return {
+        ...state,
+        isNavbar: true
+      }
+    },
+    hideNavbar(state) {
+      return {
+        ...state,
+        isNavbar: false
+      }
+    }
   }
 }

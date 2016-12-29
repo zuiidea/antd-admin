@@ -11,7 +11,7 @@ import {classnames} from '../utils'
 import '../components/layout/common.less'
 
 function App({children, location, dispatch, app}) {
-  const {login, loading, loginButtonLoading, user, siderFold, darkTheme} = app
+  const {login, loading, loginButtonLoading, user, siderFold, darkTheme, isNavbar} = app
   const loginProps = {
     loading,
     loginButtonLoading,
@@ -23,6 +23,8 @@ function App({children, location, dispatch, app}) {
   const headerProps = {
     user,
     siderFold,
+    location,
+    isNavbar,
     logout() {
       dispatch({type: 'app/logout'})
     },
@@ -42,10 +44,10 @@ function App({children, location, dispatch, app}) {
 
   return (
     <div>{login
-        ? <div className={classnames(styles.layout,{[styles.fold]:siderFold})}>
-            <aside  className={classnames(styles.sider,{[styles.light]:!darkTheme})}>
+        ? <div className={classnames(styles.layout,{[styles.fold]:isNavbar?false:siderFold},{[styles.withnavbar]:isNavbar})}>
+            {!isNavbar?<aside className={classnames(styles.sider,{[styles.light]:!darkTheme})}>
               <Sider {...siderProps}/>
-            </aside>
+            </aside>:''}
             <div className={styles.main}>
               <Header {...headerProps}/>
               <Bread location={location}/>
