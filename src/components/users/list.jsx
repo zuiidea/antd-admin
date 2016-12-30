@@ -73,14 +73,16 @@ function list({
 
   return (
     <div>
-      <Table size="small"
+      <Table
         className={styles.table}
         bordered
+        scroll={{ x: 1200 }}
         columns={columns}
         dataSource={dataSource}
         loading={loading}
         onChange={onPageChange}
         pagination={pagination}
+        simple
         rowKey={record => record.id}
       />
     </div>
