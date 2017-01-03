@@ -1,48 +1,47 @@
-import React, {PropTypes} from 'react'
-import {Icon,Table,Tag} from 'antd'
+import React from 'react'
+import { Table, Tag } from 'antd'
 import styles from './comments.less'
-import {classnames,color} from '../../utils'
-
+import { color } from '../../utils'
 
 const status = {
-  1:{
-    color:color.green,
-    text:'APPROVED'
+  1: {
+    color: color.green,
+    text: 'APPROVED'
   },
-  2:{
-    color:color.yellow,
-    text:'PENDING'
+  2: {
+    color: color.yellow,
+    text: 'PENDING'
   },
-  3:{
-    color:color.red,
-    text:'REJECTED'
-  },
+  3: {
+    color: color.red,
+    text: 'REJECTED'
+  }
 }
 
-function Comments(props) {
+function Comments (props) {
   const columns = [
     {
       title: 'avatar',
       dataIndex: 'avatar',
-      width:48,
-      className:styles.avatarcolumn,
-      render: text => <span style={{backgroundImage:`url(${text})`}} className={styles.avatar} ></span>,
+      width: 48,
+      className: styles.avatarcolumn,
+      render: text => <span style={{backgroundImage: `url(${text})`}} className={styles.avatar} />
     }, {
       title: 'content',
       dataIndex: 'content',
-      render:(text,it) => <div>
+      render: (text, it) => <div>
         <h5 className={styles.name}>{it.name}</h5>
         <p className={styles.content}>{it.content}</p>
         <div className={styles.daterow}>
           <Tag color={status[it.status].color}>{status[it.status].text}</Tag>
           <span className={styles.date}>{it.date}</span>
         </div>
-      </div>,
-    },
+      </div>
+    }
   ]
   return (
     <div className={styles.comments}>
-      <Table pagination={false} showHeader={false} columns={columns} key={(record,key)=>key} dataSource={props.data.filter((item,key) => key<3)}/>
+      <Table pagination={false} showHeader={false} columns={columns} key={(record, key) => key} dataSource={props.data.filter((item, key) => key < 3)} />
     </div>
   )
 }

@@ -1,15 +1,6 @@
 import React, {PropTypes} from 'react'
-import {
-  Icon,
-  message,
-  Button,
-  Row,
-  Col,
-  Form,
-  Input,
-  Select
-} from 'antd'
-import {config} from '../utils'
+import { Button, Row, Form, Input } from 'antd'
+import { config } from '../utils'
 import styles from './login.less'
 
 const FormItem = Form.Item
@@ -22,8 +13,7 @@ const login = ({
     validateFieldsAndScroll
   }
 }) => {
-
-  function handleOk() {
+  function handleOk () {
     validateFieldsAndScroll((errors, values) => {
       if (errors) {
         return
@@ -32,12 +22,12 @@ const login = ({
     })
   }
 
-  document.onkeyup = e => e.keyCode===13 &&  handleOk()
+  document.onkeyup = e => e.keyCode === 13 && handleOk()
 
   return (
     <div className={styles.form}>
       <div className={styles.logo}>
-        <img src={config.logoSrc}/>
+        <img src={config.logoSrc} />
         <span>Ant Design</span>
       </div>
       <form>
@@ -49,7 +39,7 @@ const login = ({
                 message: '请填写用户名'
               }
             ]
-          })(<Input size="large" placeholder="用户名"/>)}
+          })(<Input size='large' placeholder='用户名' />)}
         </FormItem>
         <FormItem hasFeedback>
           {getFieldDecorator('password', {
@@ -59,10 +49,10 @@ const login = ({
                 message: '请填写密码'
               }
             ]
-          })(<Input size="large" type="password" placeholder="密码"/>)}
+          })(<Input size='large' type='password' placeholder='密码' />)}
         </FormItem>
         <Row>
-          <Button type="primary" size="large" onClick={handleOk} loading={loginButtonLoading}>
+          <Button type='primary' size='large' onClick={handleOk} loading={loginButtonLoading}>
             登录
           </Button>
         </Row>
@@ -77,7 +67,7 @@ const login = ({
 
 login.propTypes = {
   form: PropTypes.object,
-  loginButtonLoading:PropTypes.bool,
+  loginButtonLoading: PropTypes.bool,
   onOk: PropTypes.func
 }
 

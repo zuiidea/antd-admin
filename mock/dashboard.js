@@ -1,8 +1,6 @@
-const qs = require('qs')
-const Mock = require('mockjs')
-const Watch = require("watchjs")
-import mockStorge from '../src/utils/mockStorge'
 import {color} from '../src/utils/theme'
+const Mock = require('mockjs')
+import mockStorge from '../src/utils/mockStorge'
 
 let dataKey = mockStorge('Dashboard', Mock.mock({
   'sales|8': [
@@ -13,54 +11,54 @@ let dataKey = mockStorge('Dashboard', Mock.mock({
       'Electronics|300-550': 1
     }
   ],
-  'cpu':{
-    'usage|50-600':1,
-    space:825,
-    'cpu|40-90':1,
-    'data|20':[
+  'cpu': {
+    'usage|50-600': 1,
+    space: 825,
+    'cpu|40-90': 1,
+    'data|20': [
       {
-        'cpu|20-80':1
+        'cpu|20-80': 1
       }
-    ],
+    ]
   },
-  'browser':[
+  'browser': [
     {
-      name:'Google Chrome',
-      percent:43.3,
-      status:1
+      name: 'Google Chrome',
+      percent: 43.3,
+      status: 1
     },
     {
-      name:'Mozilla Firefox',
-      percent:33.4,
-      status:2
+      name: 'Mozilla Firefox',
+      percent: 33.4,
+      status: 2
     },
     {
-      name:'Apple Safari',
-      percent:34.6,
-      status:3
+      name: 'Apple Safari',
+      percent: 34.6,
+      status: 3
     },
     {
-      name:'Internet Explorer',
-      percent:12.3,
-      status:4
+      name: 'Internet Explorer',
+      percent: 12.3,
+      status: 4
     },
     {
-      name:'Opera Mini',
-      percent:3.3,
-      status:1
+      name: 'Opera Mini',
+      percent: 3.3,
+      status: 1
     },
     {
-      name:'Chromium',
-      percent:2.53,
-      status:1
-    },
+      name: 'Chromium',
+      percent: 2.53,
+      status: 1
+    }
   ],
-  user:{
-     name:'zuiidea',
-     email:'zuiiidea@.gmail.com',
-     sales:3241,
-     sold:3556,
-     avatar:'http://tva4.sinaimg.cn/crop.0.0.996.996.180/6ee6a3a3jw8f0ks5pk7btj20ro0rodi0.jpg'
+  user: {
+    name: 'zuiidea',
+    email: 'zuiiidea@.gmail.com',
+    sales: 3241,
+    sold: 3556,
+    avatar: 'http://tva4.sinaimg.cn/crop.0.0.996.996.180/6ee6a3a3jw8f0ks5pk7btj20ro0rodi0.jpg'
   },
   'completed|12': [
     {
@@ -73,24 +71,24 @@ let dataKey = mockStorge('Dashboard', Mock.mock({
     {
       name: '@last',
       'status|1-3': 1,
-      content:'@sentence',
-      avatar: function(){
-        return Mock.Random.image('48x48', Mock.Random.color(),"#757575",'png',this.name.substr(0,1))
+      content: '@sentence',
+      avatar: function () {
+        return Mock.Random.image('48x48', Mock.Random.color(), '#757575', 'png', this.name.substr(0, 1))
       },
-      date:function(){
-        return '2016-'+Mock.Random.date('MM-dd')+' '+Mock.Random.time('HH:mm:ss')
-      },
+      date: function () {
+        return '2016-' + Mock.Random.date('MM-dd') + ' ' + Mock.Random.time('HH:mm:ss')
+      }
     }
   ],
-  'recentSales|36':[
+  'recentSales|36': [
     {
       'id|+1': 1,
       name: '@last',
       'status|1-4': 1,
-      date:function(){
-        return Mock.Random.integer(2015, 2016)+'-'+Mock.Random.date('MM-dd')+' '+Mock.Random.time('HH:mm:ss')
+      date: function () {
+        return Mock.Random.integer(2015, 2016) + '-' + Mock.Random.date('MM-dd') + ' ' + Mock.Random.time('HH:mm:ss')
       },
-      'price|10-200.1-2':1
+      'price|10-200.1-2': 1
     }
   ],
   quote: {

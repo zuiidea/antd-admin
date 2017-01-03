@@ -1,45 +1,47 @@
 import {login, userInfo, logout} from '../services/app'
 import {parse} from 'qs'
-import Cookie from 'js-cookie'
 
 export default {
-  namespace : 'app',
-  state : {
+  namespace: 'app',
+  state: {
     login: false,
     loading: false,
     user: {
-      name: "吴彦祖"
+      name: '吴彦祖'
     },
     loginButtonLoading: false,
-    siderFold:localStorage.getItem("antdAdminSiderFold")==="true"?true:false,
-    darkTheme:localStorage.getItem("antdAdminDarkTheme")==="false"?false:true,
-    isNavbar:document.body.clientWidth<769?true:false,
+    siderFold: localStorage.getItem('antdAdminSiderFold') === 'true',
+    darkTheme: localStorage.getItem('antdAdminDarkTheme') !== 'false',
+    isNavbar: document.body.clientWidth < 769
   },
-  subscriptions : {
-    setup({dispatch}) {
+  subscriptions: {
+    setup ({dispatch}) {
       dispatch({type: 'queryUser'})
-      window.onresize = function(){
+      window.onresize = function () {
         dispatch({type: 'changeNavbar'})
       }
     }
   },
-  effects : {
-    *login({
+  effects: {
+    *login ({
       payload
     }, {call, put}) {
       yield put({type: 'showLoginButtonLoading'})
       const data = yield call(login, parse(payload))
       if (data.success) {
-        yield put({type: 'loginSuccess', payload: {
+        yield put({
+          type: 'loginSuccess',
+          payload: {
             data
           }})
       } else {
-        yield put({type: 'loginFail', payload: {
-            data
-          }})
+        yield put({
+          type: 'loginFail',
+          payload: {data}
+        })
       }
     },
-    *queryUser({
+    *queryUser ({
       payload
     }, {call, put}) {
       yield put({type: 'showLoading'})
@@ -57,42 +59,42 @@ export default {
         yield put({type: 'hideLoading'})
       }
     },
-    *logout({
+    *logout ({
       payload
     }, {call, put}) {
       const data = yield call(logout, parse(payload))
-      if(data.success){
+      if (data.success) {
         yield put({
           type: 'logoutSuccess'
         })
       }
     },
-    *switchSider({
+    *switchSider ({
       payload
     }, {put}) {
       yield put({
         type: 'handleSwitchSider'
       })
     },
-    *changeTheme({
+    *changeTheme ({
       payload
     }, {put}) {
       yield put({
         type: 'handleChangeTheme'
       })
     },
-    *changeNavbar({
+    *changeNavbar ({
       payload
     }, {put}) {
-      if(document.body.clientWidth<769){
+      if (document.body.clientWidth < 769) {
         yield put({type: 'showNavbar'})
-      }else {
+      } else {
         yield put({type: 'hideNavbar'})
       }
-    },
+    }
   },
-  reducers : {
-    loginSuccess(state, action) {
+  reducers: {
+    loginSuccess (state, action) {
       return {
         ...state,
         ...action.payload,
@@ -100,58 +102,58 @@ export default {
         loginButtonLoading: false
       }
     },
-    logoutSuccess(state){
+    logoutSuccess (state) {
       return {
         ...state,
         login: false
       }
     },
-    loginFail(state) {
+    loginFail (state) {
       return {
         ...state,
         login: false,
         loginButtonLoading: false
       }
     },
-    showLoginButtonLoading(state) {
+    showLoginButtonLoading (state) {
       return {
         ...state,
         loginButtonLoading: true
       }
     },
-    showLoading(state) {
+    showLoading (state) {
       return {
         ...state,
         loading: true
       }
     },
-    hideLoading(state) {
+    hideLoading (state) {
       return {
         ...state,
         loading: false
       }
     },
-    handleSwitchSider(state) {
-      localStorage.setItem("antdAdminSiderFold",!state.darkTheme)
+    handleSwitchSider (state) {
+      localStorage.setItem('antdAdminSiderFold', !state.darkTheme)
       return {
         ...state,
         siderFold: !state.siderFold
       }
     },
-    handleChangeTheme(state) {
-      localStorage.setItem("antdAdminDarkTheme",!state.darkTheme)
+    handleChangeTheme (state) {
+      localStorage.setItem('antdAdminDarkTheme', !state.darkTheme)
       return {
         ...state,
         darkTheme: !state.darkTheme
       }
     },
-    showNavbar(state) {
+    showNavbar (state) {
       return {
         ...state,
         isNavbar: true
       }
     },
-    hideNavbar(state) {
+    hideNavbar (state) {
       return {
         ...state,
         isNavbar: false

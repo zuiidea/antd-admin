@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react'
 import {connect} from 'dva'
-import {Link} from 'dva/router'
-import {Row, Col, Icon, Card} from 'antd'
+import {Row, Col, Card} from 'antd'
 import NumberCard from '../components/dashboard/numberCard'
 import Quote from '../components/dashboard/quote'
 import Sales from '../components/dashboard/sales'
@@ -16,17 +15,16 @@ import styles from './dashboard.less'
 import {color} from '../utils'
 
 const bodyStyle = {
-  bodyStyle:{
+  bodyStyle: {
     height: 432,
-    background: '#fff',
+    background: '#fff'
   }
 }
 
-function Dashboard({dashboard,dispatch}) {
-
+function Dashboard ({dashboard, dispatch}) {
   const {weather, sales, quote, numbers, recentSales, comments, completed, browser, cpu, user} = dashboard
   const numberCards = numbers.map((item, key) => <Col key={key} lg={6} md={12}>
-    <NumberCard {...item}/>
+    <NumberCard {...item} />
   </Col>)
 
   return (
@@ -36,7 +34,7 @@ function Dashboard({dashboard,dispatch}) {
         <Card bordered={false} bodyStyle={{
           padding: '24px 36px 24px 0'
         }}>
-          <Sales data={sales}/>
+          <Sales data={sales} />
         </Card>
       </Col>
       <Col lg={6} md={24}>
@@ -47,7 +45,7 @@ function Dashboard({dashboard,dispatch}) {
               height: 204,
               background: color.blue
             }}>
-              <Weather {...weather}/>
+              <Weather {...weather} />
             </Card>
           </Col>
           <Col lg={24} md={12}>
@@ -56,41 +54,41 @@ function Dashboard({dashboard,dispatch}) {
               height: 204,
               background: color.peach
             }}>
-              <Quote {...quote}/>
+              <Quote {...quote} />
             </Card>
           </Col>
         </Row>
       </Col>
       <Col lg={12} md={24}>
         <Card bordered={false} {...bodyStyle}>
-          <RecentSales data={recentSales}/>
+          <RecentSales data={recentSales} />
         </Card>
       </Col>
       <Col lg={12} md={24}>
         <Card bordered={false} {...bodyStyle}>
-          <Comments data={comments}/>
+          <Comments data={comments} />
         </Card>
       </Col>
       <Col lg={24} md={24}>
         <Card bordered={false} bodyStyle={{
           padding: '24px 36px 24px 0'
         }}>
-          <Completed data={completed}/>
+          <Completed data={completed} />
         </Card>
       </Col>
       <Col lg={8} md={24}>
         <Card bordered={false} {...bodyStyle}>
-          <Browser data={browser}/>
+          <Browser data={browser} />
         </Card>
       </Col>
       <Col lg={8} md={24}>
         <Card bordered={false} {...bodyStyle}>
-          <Cpu {...cpu}/>
+          <Cpu {...cpu} />
         </Card>
       </Col>
       <Col lg={8} md={24}>
-        <Card bordered={false} bodyStyle={{...bodyStyle.bodyStyle,padding:0}}>
-            <User {...user}/>
+        <Card bordered={false} bodyStyle={{...bodyStyle.bodyStyle, padding: 0}}>
+          <User {...user} />
         </Card>
       </Col>
     </Row>
@@ -107,7 +105,7 @@ Dashboard.propTypes = {
   completed: PropTypes.array,
   browser: PropTypes.array,
   cpu: PropTypes.object,
-  user: PropTypes.object,
+  user: PropTypes.object
 }
 
 export default connect(({dashboard}) => ({dashboard}))(Dashboard)

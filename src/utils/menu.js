@@ -7,18 +7,18 @@ module.exports = [
   {
     key: 'users',
     name: '用户管理',
-    icon: 'user',
+    icon: 'user'
   },
   {
     key: 'ui',
     name: 'UI组件',
     icon: 'camera-o',
-    clickable:false,
-    child:[
+    clickable: false,
+    child: [
       {
         key: 'ico',
-        name: '业务图标',
-      },
+        name: '业务图标'
+      }
     ]
   },
   {
@@ -28,7 +28,7 @@ module.exports = [
     child: [
       {
         key: 'navigation1',
-        name: '二级导航1',
+        name: '二级导航1'
       },
       {
         key: 'navigation2',
@@ -36,14 +36,14 @@ module.exports = [
         child: [
           {
             key: 'navigation21',
-            name: '三级导航1',
+            name: '三级导航1'
           },
           {
             key: 'navigation22',
-            name: '三级导航2',
-          },
-        ],
-      },
-    ],
-  },
-];
+            name: '三级导航2'
+          }
+        ]
+      }
+    ]
+  }
+]

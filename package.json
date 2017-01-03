@@ -44,5 +44,9 @@
     "lint": "eslint --fix --ext .js,.jsx src/components/layout",
     "build": "atool-build"
   },
-  "theme": "./src/theme.js"
+  "theme": "./src/theme.js",
+  "standard": {
+    "parser": "babel-eslint",
+    "globals":["location","localStorage"]
+  }
 }

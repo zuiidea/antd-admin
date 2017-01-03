@@ -1,9 +1,7 @@
-import React, { PropTypes } from 'react'
-import { Icon } from 'antd'
+import React from 'react'
 import styles from './quote.less'
-import {classnames} from '../../utils'
 
-function Quote(props) {
+function Quote (props) {
   const { name, content, title, avatar } = props
   return (
     <div className={styles.quote}>
@@ -15,7 +13,7 @@ function Quote(props) {
           <p>-{name}-</p>
           <p>{title}</p>
         </div>
-        <div className={styles.avatar} style={{backgroundImage:`url(${avatar})`}}></div>
+        <div className={styles.avatar} style={{backgroundImage: `url(${avatar})`}} />
       </div>
     </div>
   )

@@ -1,9 +1,8 @@
 const qs = require('qs')
 const Mock = require('mockjs')
-const Watch = require("watchjs")
 import mockStorge from '../src/utils/mockStorge'
 
-let dataKey = mockStorge('UsersList',Mock.mock({
+let dataKey = mockStorge('UsersList', Mock.mock({
   'data|100': [
     {
       'id|+1': 1,
@@ -15,8 +14,8 @@ let dataKey = mockStorge('UsersList',Mock.mock({
       isMale: '@boolean',
       email: '@email',
       createTime: '@datetime',
-      avatar: function(){
-        return Mock.Random.image('100x100', Mock.Random.color(),"#757575",'png',this.nickName.substr(0,1))
+      avatar: function () {
+        return Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', this.nickName.substr(0, 1))
       }
     }
   ],
@@ -64,8 +63,8 @@ module.exports = {
 
   'POST /api/users' (req, res) {
     const newData = req.body
-    newData.createTime=Mock.mock('@now')
-    newData.avatar=Mock.Random.image('100x100', Mock.Random.color(),"#757575",'png',newData.nickName.substr(0,1))
+    newData.createTime = Mock.mock('@now')
+    newData.avatar = Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', newData.nickName.substr(0, 1))
 
     newData.id = usersListData.data.length + 1
     usersListData.data.unshift(newData)
@@ -83,7 +82,7 @@ module.exports = {
     const deleteItem = req.body
 
     usersListData.data = usersListData.data.filter(function (item) {
-      if (item.id == deleteItem.id) {
+      if (item.id === deleteItem.id) {
         return false
       }
       return true
@@ -100,11 +99,11 @@ module.exports = {
   'PUT /api/users' (req, res) {
     const editItem = req.body
 
-    editItem.createTime=Mock.mock('@now')
-    editItem.avatar=Mock.Random.image('100x100', Mock.Random.color(),"#757575",'png',editItem.nickName.substr(0,1))
+    editItem.createTime = Mock.mock('@now')
+    editItem.avatar = Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', editItem.nickName.substr(0, 1))
 
     usersListData.data = usersListData.data.map(function (item) {
-      if (item.id == editItem.id) {
+      if (item.id === editItem.id) {
         return editItem
       }
       return item

@@ -1,14 +1,13 @@
-import React, {PropTypes} from 'react'
-import {Icon} from 'antd'
+import React from 'react'
 import styles from './weather.less'
 
-function Weather(props) {
+function Weather (props) {
   const {city, icon, dateTime, temperature, name} = props
   return <div className={styles.weather}>
     <div className={styles.left}>
       <div className={styles.icon} style={{
         backgroundImage: `url(${icon})`
-      }}></div>
+      }} />
       <p>{name}</p>
     </div>
     <div className={styles.right}>

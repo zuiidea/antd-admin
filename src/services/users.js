@@ -1,30 +1,29 @@
 import { request } from '../utils'
-import qs from 'qs'
 
-export async function query(params) {
+export async function query (params) {
   return request('/api/users', {
     method: 'get',
-    data:params,
+    data: params
   })
 }
 
-export async function create(params) {
+export async function create (params) {
   return request('/api/users', {
     method: 'post',
-    data:params,
+    data: params
   })
 }
 
-export async function remove(params) {
+export async function remove (params) {
   return request('/api/users', {
     method: 'delete',
-    data:params,
+    data: params
   })
 }
 
-export async function update(params) {
+export async function update (params) {
   return request('/api/users', {
     method: 'put',
-    data: params,
+    data: params
   })
 }

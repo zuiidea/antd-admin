@@ -5,85 +5,81 @@ import UserList from '../components/users/list'
 import UserSearch from '../components/users/search'
 import UserModal from '../components/users/modal'
 
-function Users({ location, dispatch, users }) {
-  const {
-    loading, list, total, current, pagination,
-    currentItem, modalVisible, modalType,
-    } = users
-
+function Users ({ location, dispatch, users }) {
+  const { loading, list, pagination, currentItem, modalVisible, modalType } = users
   const { field, keyword } = location.query
 
   const userModalProps = {
     item: modalType === 'create' ? {} : currentItem,
     type: modalType,
     visible: modalVisible,
-    onOk(data) {
+    onOk (data) {
       dispatch({
         type: `users/${modalType}`,
-        payload: data,
+        payload: data
       })
     },
-    onCancel() {
+    onCancel () {
       dispatch({
-        type: 'users/hideModal',
+        type: 'users/hideModal'
       })
-    },
+    }
   }
 
   const userListProps = {
     dataSource: list,
     loading,
-    pagination:pagination,
-    onPageChange(page) {
+    pagination: pagination,
+    onPageChange (page) {
       dispatch(routerRedux.push({
         pathname: '/users',
         query: {
-          page:page.current,
-          pageSize:page.pageSize
-         },
+          page: page.current,
+          pageSize: page.pageSize
+        }
       }))
     },
-    onDeleteItem(id) {
+    onDeleteItem (id) {
       dispatch({
         type: 'users/delete',
-        payload: id,
+        payload: id
       })
     },
-    onEditItem(item) {
+    onEditItem (item) {
       dispatch({
         type: 'users/showModal',
         payload: {
           modalType: 'update',
-          currentItem: item,
-        },
+          currentItem: item
+        }
       })
-    },
+    }
   }
 
   const userSearchProps = {
     field,
     keyword,
-    onSearch(fieldsValue) {
+    onSearch (fieldsValue) {
       dispatch({
         type: 'users/query',
-        payload: fieldsValue,
+        payload: fieldsValue
       })
     },
-    onAdd() {
+    onAdd () {
       dispatch({
         type: 'users/showModal',
         payload: {
-          modalType: 'create',
-        },
+          modalType: 'create'
+        }
       })
-    },
+    }
   }
 
   const UserModalGen = () =>
     <UserModal {...userModalProps} />
 
   return (
-    <div className="content-inner">
+    <div className='content-inner'>
       <UserSearch {...userSearchProps} />
       <UserList {...userListProps} />
       <UserModalGen />
@@ -94,10 +90,10 @@ function Users({ location, dispatch, users }) {
 Users.propTypes = {
   users: PropTypes.object,
   location: PropTypes.object,
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps ({ users }) {
   return { users }
 }
 

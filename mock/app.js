@@ -1,11 +1,7 @@
-const qs = require('qs')
-const Mock = require('mockjs')
-const Watch = require("watchjs")
-const Cookie = require("js-cookie")
+const Cookie = require('js-cookie')
 import mockStorge from '../src/utils/mockStorge'
 
-
-let dataKey = mockStorge('AdminUsers',[
+let dataKey = mockStorge('AdminUsers', [
   {
     username: 'guest',
     password: 'guest'
@@ -16,39 +12,38 @@ let dataKey = mockStorge('AdminUsers',[
   }
 ])
 
-
 module.exports = {
   'POST /api/login' (req, res) {
     const userItem = req.body
     const response = {
       success: false,
-      message: ""
+      message: ''
     }
     const d = global[dataKey].filter(function (item) {
-      return item.username == userItem.username
+      return item.username === userItem.username
     })
-    if (!!d.length) {
-      if (d[0].password == userItem.password) {
+    if (d.length) {
+      if (d[0].password === userItem.password) {
         const now = new Date()
         now.setDate(now.getDate() + 1)
         Cookie.set('user_session', now.getTime())
         Cookie.set('user_name', userItem.username)
-        response.message = "登录成功"
+        response.message = '登录成功'
         response.success = true
       } else {
-        response.message = "密码不正确"
+        response.message = '密码不正确'
       }
     } else {
-      response.message = "用户不存在"
+      response.message = '用户不存在'
     }
     res.json(response)
   },
 
   'GET /api/userInfo' (req, res) {
     const response = {
-      success: Cookie.get('user_session')&&Cookie.get('user_session') > new Date().getTime() ? true :false,
-      username: Cookie.get('user_name')||'',
-      message: ""
+      success: Cookie.get('user_session') && Cookie.get('user_session') > new Date().getTime(),
+      username: Cookie.get('user_name') || '',
+      message: ''
     }
     res.json(response)
   },
@@ -58,7 +53,7 @@ module.exports = {
     Cookie.remove('user_name', { path: '' })
     res.json({
       success: true,
-      message: "退出成功"
+      message: '退出成功'
     })
   }
 }

@@ -10,13 +10,13 @@ const search = ({
   form: {
     getFieldDecorator,
     validateFields,
-    getFieldsValue,
-  },
+    getFieldsValue
+  }
 }) => {
-  function handleSubmit(e) {
+  function handleSubmit (e) {
     e.preventDefault()
     validateFields((errors) => {
-      if (!!errors) {
+      if (errors) {
         return
       }
       onSearch(getFieldsValue())
@@ -29,24 +29,24 @@ const search = ({
         <Form inline onSubmit={handleSubmit}>
           <Form.Item>
             {getFieldDecorator('field', {
-              initialValue: field || 'name',
+              initialValue: field || 'name'
             })(
               <Select>
-                <Select.Option value="name">名字</Select.Option>
-                <Select.Option value="address">地址</Select.Option>
+                <Select.Option value='name'>名字</Select.Option>
+                <Select.Option value='address'>地址</Select.Option>
               </Select>
             )}
           </Form.Item>
           <Form.Item hasFeedback>
             {getFieldDecorator('keyword', {
-              initialValue: keyword || '',
+              initialValue: keyword || ''
             })(<Input />)}
           </Form.Item>
-          <Button type="primary" htmlType="submit">搜索</Button>
+          <Button type='primary' htmlType='submit'>搜索</Button>
         </Form>
       </div>
       <div className={styles.create}>
-        <Button type="ghost" onClick={onAdd}>添加</Button>
+        <Button type='ghost' onClick={onAdd}>添加</Button>
       </div>
     </div>
   )
@@ -57,7 +57,7 @@ search.propTypes = {
   onSearch: PropTypes.func,
   onAdd: PropTypes.func,
   field: PropTypes.string,
-  keyword: PropTypes.string,
+  keyword: PropTypes.string
 }
 
 export default Form.create()(search)

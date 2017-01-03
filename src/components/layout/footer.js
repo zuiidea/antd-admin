@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import styles from './main.less'
 import { config } from '../../utils'
 

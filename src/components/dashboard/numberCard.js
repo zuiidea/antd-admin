@@ -1,12 +1,12 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { Icon, Card } from 'antd'
 import CountUp from 'react-countup'
 import styles from './numberCard.less'
 
-function NumberCard(props) {
+function NumberCard (props) {
   const { icon, color, title, number } = props
   return (
-    <Card className={styles.numberCard}  bordered={false} bodyStyle={{padding:0}}>
+    <Card className={styles.numberCard} bordered={false} bodyStyle={{padding: 0}}>
       <Icon className={styles.iconWarp} style={{ color }} type={icon} />
       <div className={styles.content}>
         <p className={styles.title}>{title || 'No Title'}</p>
@@ -15,10 +15,10 @@ function NumberCard(props) {
             start={0}
             end={number}
             duration={2.75}
-            useEasing={true}
-            useGrouping={true}
-            separator=","
-            {...props.countUp||{}}
+            useEasing
+            useGrouping
+            separator=','
+            {...props.countUp || {}}
           />
         </p>
       </div>
