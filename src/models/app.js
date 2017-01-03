@@ -32,12 +32,13 @@ export default {
         yield put({
           type: 'loginSuccess',
           payload: {
-            data
+            user: {
+              name: payload.username
+            }
           }})
       } else {
         yield put({
-          type: 'loginFail',
-          payload: {data}
+          type: 'loginFail'
         })
       }
     },
