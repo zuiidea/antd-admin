@@ -2,7 +2,6 @@ import config from './config'
 import menu from './menu'
 import request from './request'
 import classnames from 'classnames'
-import mockStorge from './mockStorge'
 import {color} from './theme'
 require('./mock.js')
 

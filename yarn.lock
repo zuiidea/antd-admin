@@ -81,15 +81,15 @@ ansi-styles@^2.2.1:
   version "2.2.1"
   resolved "http://registry.npm.taobao.org/ansi-styles/download/ansi-styles-2.2.1.tgz#b432dd3358b634cf75e1e4664368240533c1ddbe"
 
-antd@^2.5.0:
-  version "2.5.0"
-  resolved "http://registry.npm.taobao.org/antd/download/antd-2.5.0.tgz#9c2bd8750b49fdc2c164cb5d184fa6f2c9d6208f"
+antd:
+  version "2.6.0"
+  resolved "http://registry.npm.taobao.org/antd/download/antd-2.6.0.tgz#44dd5d4854cb2a09e940b6ee0c47d3fd08806139"
   dependencies:
     array-tree-filter "~1.0.0"
     babel-runtime "6.x"
     classnames "~2.2.0"
     css-animation "^1.2.5"
-    moment "~2.15.1"
+    moment "~2.17.0"
     object-assign "~4.1.0"
     omit.js "^0.1.0"
     rc-animate "~2.3.0"
@@ -100,8 +100,8 @@ antd@^2.5.0:
     rc-dialog "~6.5.0"
     rc-dropdown "~1.4.8"
     rc-editor-mention "~0.3.0"
-    rc-form "~1.0.0"
-    rc-input-number "~2.7.0"
+    rc-form "~1.1.0"
+    rc-input-number "~2.8.3"
     rc-menu "~5.0.1"
     rc-notification "~1.3.4"
     rc-pagination "~1.6.0"
@@ -109,16 +109,16 @@ antd@^2.5.0:
     rc-radio "~2.0.0"
     rc-rate "~1.1.2"
     rc-select "~6.6.1"
-    rc-slider "~5.3.0"
+    rc-slider "~5.4.0"
     rc-steps "~2.2.0"
     rc-switch "~1.4.2"
     rc-table "~5.2.0"
-    rc-tabs "~7.0.5"
+    rc-tabs "~7.1.0"
     rc-time-picker "~2.2.1"
     rc-tooltip "~3.4.2"
     rc-tree "~1.4.0"
     rc-tree-select "~1.8.0"
-    rc-upload "~2.2.0"
+    rc-upload "~2.3.0"
     rc-util "^4.0.1"
     react-lazy-load "^3.0.10"
     react-slick "~0.14.2"
@@ -2992,6 +2992,14 @@ lodash.findindex@^4.3.0:
   version "4.6.0"
   resolved "http://registry.npm.taobao.org/lodash.findindex/download/lodash.findindex-4.6.0.tgz#a3245dee61fb9b6e0624b535125624bb69c11106"
 
+lodash.get@^4.4.2:
+  version "4.4.2"
+  resolved "http://registry.npm.taobao.org/lodash.get/download/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
+
+lodash.has@^4.5.2:
+  version "4.5.2"
+  resolved "http://registry.npm.taobao.org/lodash.has/download/lodash.has-4.5.2.tgz#d19f4dc1095058cccbe2b0cdf4ee0fe4aa37c862"
+
 lodash.indexof@^4.0.5:
   version "4.0.5"
   resolved "http://registry.npm.taobao.org/lodash.indexof/download/lodash.indexof-4.0.5.tgz#53714adc2cddd6ed87638f893aa9b6c24e31ef3c"
@@ -3026,6 +3034,10 @@ lodash.keys@^3.1.2:
 lodash.pickby@^4.0.0:
   version "4.6.0"
   resolved "http://registry.npm.taobao.org/lodash.pickby/download/lodash.pickby-4.6.0.tgz#7dea21d8c18d7703a27c704c15d3b84a67e33aff"
+
+lodash.set@^4.3.2:
+  version "4.3.2"
+  resolved "http://registry.npm.taobao.org/lodash.set/download/lodash.set-4.3.2.tgz#d8757b1da807dde24816b0d6a84bea1a76230b23"
 
 lodash.throttle@^4.0.0:
   version "4.1.1"
@@ -3200,9 +3212,9 @@ mockjs@^1.0.1-beta3:
   dependencies:
     commander "*"
 
-moment@~2.15.1:
-  version "2.15.2"
-  resolved "http://registry.npm.taobao.org/moment/download/moment-2.15.2.tgz#1bfdedf6a6e345f322fe956d5df5bd08a8ce84dc"
+moment@~2.17.0:
+  version "2.17.1"
+  resolved "http://registry.npm.taobao.org/moment/download/moment-2.17.1.tgz#fed9506063f36b10f066c8b59a144d7faebe1d82"
 
 moment@2.x:
   version "2.17.0"
@@ -4081,22 +4093,26 @@ rc-editor-plugin-image@0.0.3:
     rc-upload "^2.0.4"
     react-resizable "^1.4.2"
 
-rc-form@~1.0.0:
-  version "1.0.1"
-  resolved "http://registry.npm.taobao.org/rc-form/download/rc-form-1.0.1.tgz#f1186a627895701c7ebfe0b5f8e4206246e132bc"
+rc-form@~1.1.0:
+  version "1.1.0"
+  resolved "http://registry.npm.taobao.org/rc-form/download/rc-form-1.1.0.tgz#6815dc57bf2f02fda241fd4f9b9957c830261670"
   dependencies:
     async-validator "1.x"
     babel-runtime "6.x"
     dom-scroll-into-view "1.x"
     hoist-non-react-statics "1.x"
+    lodash.get "^4.4.2"
+    lodash.has "^4.5.2"
+    lodash.set "^4.3.2"
     warning "^3.0.0"
 
-rc-input-number@~2.7.0:
-  version "2.7.8"
-  resolved "http://registry.npm.taobao.org/rc-input-number/download/rc-input-number-2.7.8.tgz#64b01756daa98fd3ec092d0a0a99ddc4a9f4514e"
+rc-input-number@~2.8.3:
+  version "2.8.9"
+  resolved "http://registry.npm.taobao.org/rc-input-number/download/rc-input-number-2.8.9.tgz#8711e231c53c3bb9cf31af6c4d6b20eb03aa0f0e"
   dependencies:
     babel-runtime "6.x"
     classnames "^2.2.0"
+    rc-touchable "^1.0.0"
 
 rc-menu@~5.0.1, "rc-menu@5.x || 4.x":
   version "5.0.7"
@@ -4148,14 +4164,14 @@ rc-select@~6.6.1:
     rc-util "3.x"
     warning "2.x"
 
-rc-slider@~5.3.0:
-  version "5.3.5"
-  resolved "http://registry.npm.taobao.org/rc-slider/download/rc-slider-5.3.5.tgz#8398cadb044c90196d3c635b677583e50516a69b"
+rc-slider@~5.4.0:
+  version "5.4.3"
+  resolved "http://registry.npm.taobao.org/rc-slider/download/rc-slider-5.4.3.tgz#b4b93181f57398112303404b16782443771b279d"
   dependencies:
     babel-runtime "6.x"
     classnames "^2.2.5"
     rc-tooltip "^3.4.2"
-    rc-util "^3.2.1"
+    rc-util "^4.0.0"
     warning "^3.0.0"
 
 rc-steps@~2.2.0:
@@ -4178,9 +4194,9 @@ rc-table@~5.2.0:
     rc-util "3.x"
     shallowequal "^0.2.2"
 
-rc-tabs@~7.0.5:
-  version "7.0.13"
-  resolved "http://registry.npm.taobao.org/rc-tabs/download/rc-tabs-7.0.13.tgz#b656b5812c452029701a99f5a54de67dcbfc9588"
+rc-tabs@~7.1.0:
+  version "7.1.0"
+  resolved "http://registry.npm.taobao.org/rc-tabs/download/rc-tabs-7.1.0.tgz#e307b565d08c2f663b601686d2bb8b5030654fd8"
   dependencies:
     babel-runtime "6.x"
     classnames "2.x"
@@ -4200,6 +4216,13 @@ rc-tooltip@^3.4.2, rc-tooltip@~3.4.2:
   resolved "http://registry.npm.taobao.org/rc-tooltip/download/rc-tooltip-3.4.2.tgz#c5c89c347ed790f7f290ef825d5e24e8fb599166"
   dependencies:
     rc-trigger "1.x"
+
+rc-touchable@^1.0.0:
+  version "1.0.8"
+  resolved "http://registry.npm.taobao.org/rc-touchable/download/rc-touchable-1.0.8.tgz#948455909b943a05dda83967322d59d5d45fb586"
+  dependencies:
+    babel-runtime "6.x"
+    object-assign "^4.1.0"
 
 rc-tree-select@~1.8.0:
   version "1.8.6"
@@ -4229,7 +4252,7 @@ rc-trigger@^1.7.1, rc-trigger@1.x:
     rc-animate "2.x"
     rc-util "^3.3.x"
 
-rc-upload@^2.0.4, rc-upload@~2.2.0:
+rc-upload@^2.0.4:
   version "2.2.0"
   resolved "http://registry.npm.taobao.org/rc-upload/download/rc-upload-2.2.0.tgz#f22dd791acdc9a429bbec1223c9b4ea61c3ae6d6"
   dependencies:
@@ -4237,13 +4260,28 @@ rc-upload@^2.0.4, rc-upload@~2.2.0:
     classnames "^2.2.5"
     warning "2.x"
 
-rc-util@^3.1.2, rc-util@^3.2.1, rc-util@^3.3.x, rc-util@^3.4.1, rc-util@3.x:
+rc-upload@~2.3.0:
+  version "2.3.2"
+  resolved "http://registry.npm.taobao.org/rc-upload/download/rc-upload-2.3.2.tgz#feeb7b84e45762a9c76523c94c960664ab0d6541"
+  dependencies:
+    babel-runtime "6.x"
+    classnames "^2.2.5"
+    warning "2.x"
+
+rc-util@^3.1.2, rc-util@^3.3.x, rc-util@^3.4.1, rc-util@3.x:
   version "3.4.1"
   resolved "http://registry.npm.taobao.org/rc-util/download/rc-util-3.4.1.tgz#4b7e0b0c7593bdbcff8ed045d88fbbc773a7b061"
   dependencies:
     add-dom-event-listener "1.x"
     classnames "2.x"
     shallowequal "0.2.x"
+
+rc-util@^4.0.0:
+  version "4.0.2"
+  resolved "http://registry.npm.taobao.org/rc-util/download/rc-util-4.0.2.tgz#5804f8b141a13c8c14d7c265a7d21d298195af46"
+  dependencies:
+    add-dom-event-listener "1.x"
+    shallowequal "^0.2.2"
 
 rc-util@^4.0.1:
   version "4.0.1"
