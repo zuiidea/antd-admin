@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
-import { Form, Input, Button, Select  } from 'antd'
+import { Form, Input, Button, Select, Row, Col } from 'antd'
 import styles from './search.less'
+import SearchGroup from '../ui/search'
 
 const search = ({
   field,
@@ -13,52 +14,39 @@ const search = ({
     getFieldsValue
   }
 }) => {
-  function handleSubmit (e) {
-    e.preventDefault()
-    validateFields((errors) => {
-      if (errors) {
-        return
-      }
-      onSearch(getFieldsValue())
-    })
+  // function handleSubmit (e) {
+  //   e.preventDefault()
+  //   validateFields((errors) => {
+  //     if (errors) {
+  //       return
+  //     }
+  //     onSearch(getFieldsValue())
+  //   })
+  // }
+
+  const searchGroupProps ={
+    field,
+    keyword,
+    size:'large',
+    select:true,
+    selectOptions:[{value:'姓名'},{value:'地址'}],
+    selectProps:{
+      defaultValue:"姓名"
+    },
+    onSearch:(res) => {
+      console.log(res)
+    }
   }
 
   return (
-    <div className={styles.normal}>
-      <div style={{width:400}}>
-        <Input.Group compact>
-          <Select  size="large" style={{width:100}}>
-            <Select.Option value='name'>名字</Select.Option>
-            <Select.Option value='address'>地址</Select.Option>
-          </Select>
-          <Input size="large" style={{width:200}}/>
-          {/* <Button size="large" type='primary'>搜索</Button> */}
-        </Input.Group>
-      </div>
-      <div className={styles.search}>
-        <Form inline>
-          <Form.Item>
-            {getFieldDecorator('field', {
-              initialValue: field || 'name'
-            })(
-              <Select size="large">
-                <Select.Option value='name'>名字</Select.Option>
-                <Select.Option value='address'>地址</Select.Option>
-              </Select>
-            )}
-          </Form.Item>
-          <Form.Item hasFeedback>
-            {getFieldDecorator('keyword', {
-              initialValue: keyword || ''
-            })(<Input size="large" />)}
-          </Form.Item>
-          <Button type='primary' onClick={handleSubmit}>搜索</Button>
-        </Form>
-      </div>
-      <div className={styles.create}>
-        <Button size="large"  type='ghost' onClick={onAdd}>添加</Button>
-      </div>
-    </div>
+      <Row gutter={24}>
+        <Col lg={8} md={12} sm={16} xs={24} style={{marginBottom:16}}>
+          <SearchGroup {...searchGroupProps} />
+        </Col>
+        <Col lg={{offset:8,span:8}} md={12} sm={8} xs={24} style={{marginBottom:16,textAlign:'right'}}>
+          <Button size='large' type='ghost' onClick={onAdd}>添加</Button>
+        </Col>
+      </Row>
   )
 }
 

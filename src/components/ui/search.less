@@ -1,0 +1,54 @@
+.no-highlight() {
+  border-color: #e5e5e5;
+  box-shadow: none;
+}
+
+.search {
+  display: flex;
+  width: 100%;
+  position: relative;
+
+  :global {
+    .anticon-cross{
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      right: 84px;
+      cursor: pointer;
+      color: #fff;
+      line-height: 18px;
+      border-radius: 50%!important;
+      background-color: rgba(0, 0, 0, .16);
+      top:7px;
+      // opacity:
+    }
+    .ant-select {
+      width: 80px;
+      flex-shrink: 0;
+      flex-grow: 0;
+
+      &.ant-select-focused .ant-select-selection,
+      &.ant-select-open .ant-select-selection,
+      .ant-select-selection:active,
+      .ant-select-selection:focus,
+      .ant-select-selection:hover {
+        .no-highlight();
+      }
+    }
+
+    .ant-input {
+      &:focus,
+      &:hover {
+        .no-highlight();
+      }
+      flex-shrink: 1;
+      flex-grow: 1;
+    }
+
+    .ant-btn {
+      width: 80px;
+      flex-shrink: 0;
+      flex-grow: 0;
+    }
+  }
+}
