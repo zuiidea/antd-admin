@@ -135,7 +135,7 @@ export default {
       }
     },
     handleSwitchSider (state) {
-      localStorage.setItem('antdAdminSiderFold', !state.darkTheme)
+      localStorage.setItem('antdAdminSiderFold', !state.siderFold)
       return {
         ...state,
         siderFold: !state.siderFold
