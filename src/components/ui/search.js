@@ -1,29 +1,50 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import styles from './search.less'
 import { Input, Select, Button, Icon } from 'antd'
 
 class Search extends React.Component {
   state = {
-    clearVisible: false
+    clearVisible: false,
+    selectValue: this.props.selectProps.defaultValue || ''
   }
   handleSearch = () => {
-    // console.log(this.refs.searchInput)
+    const data = {
+      keyword: ReactDOM.findDOMNode(this.refs.searchInput).value
+    }
+    if (this.props.select) {
+      data.field = this.state.selectValue
+    }
+    this.props.onSearch(data)
   }
-  handleInputChange = (e) => {
-    console.log(e.target.value)
+  handleInputChange = e => {
+    this.setState({
+      ...this.state,
+      clearVisible: e.target.value !== ''
+    })
+  }
+  handeleSelectChange = value => {
+    this.setState({
+      ...this.state,
+      selectValue: value
+    })
   }
   handleClearInput = () => {
-
+    ReactDOM.findDOMNode(this.refs.searchInput).value = ''
+    this.setState({
+      clearVisible: false
+    })
+    this.handleSearch()
   }
   render () {
-    const {size, select, selectOptions, selectProps, onSearch} = this.props
+    const {size, select, selectOptions, selectProps} = this.props
     const {clearVisible} = this.state
     return (
       <Input.Group compact size={size} className={styles.search} >
-        {select && <Select size={size} {...selectProps}>
+        {select && <Select ref='searchSelect' onChange={this.handeleSelectChange} size={size} {...selectProps}>
           {selectOptions.map((item, key) => <Select.Option value={item.value} key={key}>{item.name || item.value}</Select.Option>)}
         </Select>}
-        <Input size={size} onChange={this.handleInputChange} />
+        <Input ref='searchInput' size={size} onChange={this.handleInputChange} />
         <Button size={size} type='primary' onClick={this.handleSearch}>搜索</Button>
         {clearVisible && <Icon type='cross' onClick={this.handleClearInput} />}
       </Input.Group>
