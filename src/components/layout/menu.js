@@ -26,12 +26,13 @@ const getMenus = function (menuArray, siderFold, parentPath) {
   })
 }
 
-function Menus ({ siderFold, darkTheme, location, isNavbar }) {
+function Menus ({ siderFold, darkTheme, location, isNavbar, handleClickNavMenu }) {
   const menuItems = getMenus(menu, siderFold)
   return (
     <Menu
       mode={siderFold ? 'vertical' : 'inline'}
       theme={darkTheme ? 'dark' : 'light'}
+      onClick={handleClickNavMenu}
       defaultOpenKeys={isNavbar ? menuItems.map(item => item.key) : []}
       defaultSelectedKeys={[location.pathname.split('/')[location.pathname.split('/').length - 1] || 'dashboard']}>
       {menuItems}

@@ -10,6 +10,7 @@ export default {
       name: '吴彦祖'
     },
     loginButtonLoading: false,
+    menuPopoverVisible: false,
     siderFold: localStorage.getItem('antdAdminSiderFold') === 'true',
     darkTheme: localStorage.getItem('antdAdminDarkTheme') !== 'false',
     isNavbar: document.body.clientWidth < 769
@@ -92,6 +93,13 @@ export default {
       } else {
         yield put({type: 'hideNavbar'})
       }
+    },
+    *switchMenuPopver ({
+      payload
+    }, {put}) {
+      yield put({
+        type: 'handleSwitchMenuPopver'
+      })
     }
   },
   reducers: {
@@ -158,6 +166,12 @@ export default {
       return {
         ...state,
         isNavbar: false
+      }
+    },
+    handleSwitchMenuPopver (state) {
+      return {
+        ...state,
+        menuPopoverVisible: !state.menuPopoverVisible
       }
     }
   }

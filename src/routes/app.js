@@ -11,7 +11,7 @@ import { classnames } from '../utils'
 import '../components/layout/common.less'
 
 function App ({children, location, dispatch, app}) {
-  const {login, loading, loginButtonLoading, user, siderFold, darkTheme, isNavbar} = app
+  const {login, loading, loginButtonLoading, user, siderFold, darkTheme, isNavbar, menuPopoverVisible} = app
   const loginProps = {
     loading,
     loginButtonLoading,
@@ -25,6 +25,10 @@ function App ({children, location, dispatch, app}) {
     siderFold,
     location,
     isNavbar,
+    menuPopoverVisible,
+    switchMenuPopover () {
+      dispatch({type: 'app/switchMenuPopver'})
+    },
     logout () {
       dispatch({type: 'app/logout'})
     },
