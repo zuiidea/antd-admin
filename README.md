@@ -8,6 +8,7 @@
 - 基于[Mock](https://github.com/nuysoft/Mock)实现脱离后端独立开发
 - 基于Antd UI 设计语言，提供后台管理系统常见使用场景
 - 基于[dva](https://github.com/dvajs/dva)动态加载 Model 和路由，按需加载
+- 浅度响应式设计
 
 ## To do list
 - [x] 登录页面
@@ -20,6 +21,7 @@
   - [ ] 交互动效
 - [x] 扩展UI组件
  - [x] Ico
+ - [x] Search
 - [ ] 可视化图表
 
 ## 开发及构建

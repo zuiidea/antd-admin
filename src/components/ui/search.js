@@ -6,7 +6,7 @@ import { Input, Select, Button, Icon } from 'antd'
 class Search extends React.Component {
   state = {
     clearVisible: false,
-    selectValue: this.props.selectProps.defaultValue || ''
+    selectValue: (this.props.select && this.props.selectProps) ? this.props.selectProps.defaultValue : ''
   }
   handleSearch = () => {
     const data = {
@@ -15,7 +15,7 @@ class Search extends React.Component {
     if (this.props.select) {
       data.field = this.state.selectValue
     }
-    this.props.onSearch(data)
+    this.props.onSearch && this.props.onSearch(data)
   }
   handleInputChange = e => {
     this.setState({
@@ -37,12 +37,12 @@ class Search extends React.Component {
     this.handleSearch()
   }
   render () {
-    const {size, select, selectOptions, selectProps} = this.props
+    const {size, select, selectOptions, selectProps, style} = this.props
     const {clearVisible} = this.state
     return (
-      <Input.Group compact size={size} className={styles.search} >
+      <Input.Group compact size={size} className={styles.search} style={style}>
         {select && <Select ref='searchSelect' onChange={this.handeleSelectChange} size={size} {...selectProps}>
-          {selectOptions.map((item, key) => <Select.Option value={item.value} key={key}>{item.name || item.value}</Select.Option>)}
+          {selectOptions && selectOptions.map((item, key) => <Select.Option value={item.value} key={key}>{item.name || item.value}</Select.Option>)}
         </Select>}
         <Input ref='searchInput' size={size} onChange={this.handleInputChange} />
         <Button size={size} type='primary' onClick={this.handleSearch}>搜索</Button>

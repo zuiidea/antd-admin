@@ -1,3 +1,4 @@
 import Ico from './ico.js'
+import Search from './search.js'
 
-export {Ico}
+export { Ico, Search }

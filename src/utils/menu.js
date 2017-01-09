@@ -17,7 +17,11 @@ module.exports = [
     child: [
       {
         key: 'ico',
-        name: '业务图标'
+        name: 'Ico 图标'
+      },
+      {
+        key: 'search',
+        name: 'Search 搜索'
       }
     ]
   },

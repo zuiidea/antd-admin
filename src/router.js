@@ -41,6 +41,14 @@ export default function ({history, app}) {
             })
           }
         }, {
+          path: 'ui/search',
+          name: 'ui/search',
+          getComponent (nextState, cb) {
+            require.ensure([], require => {
+              cb(null, require('./routes/ui/search'))
+            })
+          }
+        }, {
           path: '*',
           name: 'error',
           getComponent (nextState, cb) {
