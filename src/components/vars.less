@@ -1,5 +1,4 @@
-@import "../../node_modules/antd/lib/style/themes/default.less";
-// // Prefix
+@import "../../node_modules/antd/lib/style/themes/default.less"; // // Prefix
 // @ant-prefix             : ant;
 //
 // // Color
@@ -171,26 +170,18 @@
 // @input-disabled-bg           : @background-color-base;
 //
 // @form-item-margin-bottom     : 24px;
-
 /*========================*/
 /*=======Antd Admin=======*/
 /*========================*/
-
 //Color
+@dark-half: #494949;
+@purple: #d897eb; // Shadow
+@shadow-1: 4px 4px 20px 0 rgba(0,0,0,0.01);
+@shadow-2: 4px 4px 40px 0 rgba(0,0,0,0.05); //transition
+@transition-ease-in: all 0.3s @ease-in;
+@transition-ease-out: all 0.3s @ease-out; //mix
 
-@dark-half:#494949;
-@purple:#d897eb;
-
-// Shadow
-@shadow-1           : 4px 4px 20px 0 rgba(0,0,0,0.01);
-@shadow-2           : 4px 4px 40px 0 rgba(0,0,0,0.05);
-
-//transition
-@transition-ease-in : all .3s @ease-in;
-@transition-ease-out : all .3s @ease-out;
-
-//mix
-.text-overflow(){
+.text-overflow() {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
