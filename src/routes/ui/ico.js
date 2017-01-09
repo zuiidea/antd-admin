@@ -15,6 +15,7 @@ const IcoPage = () => <div className='content-inner'>
       <Table rowKey={(record, key) => key}
         pagination={false}
         bordered
+        scroll={{ x: 800 }}
         columns={[
           {
             title: '参数',
