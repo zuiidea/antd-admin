@@ -106,6 +106,13 @@
         transition: @transition-ease-out;
       }
     }
+    
+    .siderMenu {
+      position: absolute;
+      width: 100%;
+      max-height: ~"calc(100% - 88px)";  // https://github.com/less/less.js/issues/974
+      overflow-y: scroll;
+    }
 
     .switchtheme {
       width: 100%;
@@ -118,7 +125,8 @@
       align-items: center;
       padding: 0 16px 0 24px;
       overflow: hidden;
-
+      z-index: 1000;
+      
       span {
         white-space: nowrap;
         overflow: hidden;
