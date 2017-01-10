@@ -22,7 +22,7 @@ const login = ({
     })
   }
 
-  document.onkeyup = e => e.keyCode === 13 && handleOk()
+  // document.onkeyup = e => e.keyCode === 13 && handleOk()
 
   return (
     <div className={styles.form}>
@@ -39,7 +39,7 @@ const login = ({
                 message: '请填写用户名'
               }
             ]
-          })(<Input size='large' placeholder='用户名' />)}
+          })(<Input size='large' onPressEnter={handleOk} placeholder='用户名' />)}
         </FormItem>
         <FormItem hasFeedback>
           {getFieldDecorator('password', {
@@ -49,7 +49,7 @@ const login = ({
                 message: '请填写密码'
               }
             ]
-          })(<Input size='large' type='password' placeholder='密码' />)}
+          })(<Input size='large' type='password' onPressEnter={handleOk} placeholder='密码' />)}
         </FormItem>
         <Row>
           <Button type='primary' size='large' onClick={handleOk} loading={loginButtonLoading}>
