@@ -16,7 +16,7 @@ function Sider ({ siderFold, darkTheme, location, changeTheme }) {
         <img src={config.logoSrc} />
         {siderFold ? '' : <span>{config.logoText}</span>}
       </div>
-      <Menus {...menusProps} />
+      <Menus {...menusProps} className={styles.siderMenu} />
       {!siderFold ? <div className={styles.switchtheme}>
         <span><Icon type='bulb' />切换主题</span>
         <Switch onChange={changeTheme} defaultChecked={darkTheme} checkedChildren='黑' unCheckedChildren='白' />
