@@ -79,7 +79,7 @@ const SearchPage = () => <div className='content-inner'>
           },
           {
             props: 'onSearch',
-            desciption: '点击搜索按钮或者点击清除时的回调',
+            desciption: '点击搜索按钮, 按Enter键或者点击清除时的回调',
             type: 'Function({keyword:string,field:string})',
             default: '-'
           }]} />
