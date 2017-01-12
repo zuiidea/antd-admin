@@ -93,4 +93,10 @@ dashboard设计稿：https://dribbble.com/shots/3108122-Dashboard-Admin （已�
 
 ## 截屏
 
-![](assets/demo2.gif)
+web
+
+![](assets/demo4.gif)
+
+移动
+
+![](assets/demo3.gif)
