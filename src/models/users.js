@@ -42,10 +42,7 @@ export default {
           type: 'querySuccess',
           payload: {
             list: data.data,
-            pagination: {
-              total: data.page.total,
-              current: data.page.current
-            }
+            pagination: data.page
           }
         })
       }

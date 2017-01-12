@@ -53,12 +53,9 @@ module.exports = {
     } else {
       data = usersListData.data.slice((currentPage - 1) * pageSize, currentPage * pageSize)
       usersListData.page.current = currentPage * 1
-      newPage = {
-        current: usersListData.page.current,
-        total: usersListData.page.total
-      }
+      newPage = usersListData.page
     }
-    res.json({success: true, data, page: newPage})
+    res.json({success: true, data, page: {...newPage, pageSize: Number(pageSize)}})
   },
 
   'POST /api/users' (req, res) {
@@ -72,7 +69,6 @@ module.exports = {
     usersListData.page.total = usersListData.data.length
     usersListData.page.current = 1
 
-    // global.usersListData = usersListData
     global[dataKey] = usersListData
 
     res.json({success: true, data: usersListData.data, page: usersListData.page})
@@ -90,7 +86,6 @@ module.exports = {
 
     usersListData.page.total = usersListData.data.length
 
-    // global.usersListData = usersListData
     global[dataKey] = usersListData
 
     res.json({success: true, data: usersListData.data, page: usersListData.page})
@@ -109,7 +104,6 @@ module.exports = {
       return item
     })
 
-    // global.usersListData = usersListData
     global[dataKey] = usersListData
     res.json({success: true, data: usersListData.data, page: usersListData.page})
   }
