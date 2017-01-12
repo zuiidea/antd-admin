@@ -57,9 +57,9 @@ export default {
             }
           }
         })
-      } else {
-        yield put({type: 'hideLoading'})
       }
+
+      yield put({type: 'hideLoading'})
     },
     *logout ({
       payload
