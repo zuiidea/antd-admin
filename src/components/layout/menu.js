@@ -26,11 +26,10 @@ const getMenus = function (menuArray, siderFold, parentPath) {
   })
 }
 
-function Menus ({ siderFold, darkTheme, location, isNavbar, handleClickNavMenu, className }) {
+function Menus ({ siderFold, darkTheme, location, isNavbar, handleClickNavMenu }) {
   const menuItems = getMenus(menu, siderFold)
   return (
     <Menu
-      className={className}
       mode={siderFold ? 'vertical' : 'inline'}
       theme={darkTheme ? 'dark' : 'light'}
       onClick={handleClickNavMenu}

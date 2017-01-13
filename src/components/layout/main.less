@@ -107,18 +107,6 @@
       }
     }
 
-    .siderMenu {
-      position: absolute;
-      width: 100%;
-      max-height: ~"calc(100% - 88px)";
-      overflow-y: scroll;
-      overflow-x: hidden;
-
-      &::-webkit-scrollbar-thumb {
-        display: none;
-      }
-    }
-
     .switchtheme {
       width: 100%;
       position: absolute;
@@ -157,7 +145,7 @@
 
         .ant-menu-item,
         .ant-menu-submenu-title {
-          overflow: hidden;
+          overflow: auto;
           white-space: normal;
         }
       }
