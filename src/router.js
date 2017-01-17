@@ -9,7 +9,6 @@ export default function ({history, app}) {
       component: App,
       getIndexRoute (nextState, cb) {
         require.ensure([], require => {
-          app.model(require('./models/dashboard'))
           cb(null, {component: require('./routes/dashboard')})
         })
       },
@@ -19,7 +18,6 @@ export default function ({history, app}) {
           name: 'dashboard',
           getComponent (nextState, cb) {
             require.ensure([], require => {
-              app.model(require('./models/dashboard'))
               cb(null, require('./routes/dashboard'))
             })
           }
@@ -28,7 +26,6 @@ export default function ({history, app}) {
           name: 'users',
           getComponent (nextState, cb) {
             require.ensure([], require => {
-              app.model(require('./models/users'))
               cb(null, require('./routes/users'))
             })
           }
