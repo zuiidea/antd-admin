@@ -80,10 +80,10 @@ npm run build
 
 - 生产环境中，已有数据接口，请将`src/utils/index.js`第四行 `require('./mock.js')`注释
 - 开发环境中，如再mock目录新增文件，请在`src/utils/mock.js`第二行的`mockData`数组中添加
-- 如需重写异步请求函数，请修改`src/utils/request.js`
 - 如需重写antd样式配置，请修改`src/theme.js`
 - 项目配置文件在`src/utils/config.js`
-
+- 如需重写异步请求函数，请修改`src/utils/request.js`
+  （关于为什么使用robe-ajax而不是fetch：在一个无服务器的环境中模拟数据请求，[Mock](https://github.com/nuysoft/Mock)不能拦截Fetch，只能拦截XHR，所以我选了一个类似jquery Ajax的库robe-ajax）
 
 ## 参考
 
