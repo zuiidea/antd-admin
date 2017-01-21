@@ -26,8 +26,8 @@ module.exports = {
       if (d[0].password === userItem.password) {
         const now = new Date()
         now.setDate(now.getDate() + 1)
-        Cookie.set('user_session', now.getTime())
-        Cookie.set('user_name', userItem.username)
+        Cookie.set('user_session', now.getTime(), { path: '/' })
+        Cookie.set('user_name', userItem.username, { path: '/' })
         response.message = '登录成功'
         response.success = true
       } else {
@@ -49,8 +49,8 @@ module.exports = {
   },
 
   'POST /api/logout' (req, res) {
-    Cookie.remove('user_session', { path: '' })
-    Cookie.remove('user_name', { path: '' })
+    Cookie.remove('user_session', { path: '/' })
+    Cookie.remove('user_name', { path: '/' })
     res.json({
       success: true,
       message: '退出成功'

@@ -37,14 +37,14 @@ class Search extends React.Component {
     this.handleSearch()
   }
   render () {
-    const {size, select, selectOptions, selectProps, style} = this.props
+    const {size, select, selectOptions, selectProps, style, keyword} = this.props
     const {clearVisible} = this.state
     return (
       <Input.Group compact size={size} className={styles.search} style={style}>
         {select && <Select ref='searchSelect' onChange={this.handeleSelectChange} size={size} {...selectProps}>
           {selectOptions && selectOptions.map((item, key) => <Select.Option value={item.value} key={key}>{item.name || item.value}</Select.Option>)}
         </Select>}
-        <Input ref='searchInput' size={size} onChange={this.handleInputChange} onPressEnter={this.handleSearch}/>
+        <Input ref='searchInput' size={size} onChange={this.handleInputChange} onPressEnter={this.handleSearch} defaultValue={keyword}/>
         <Button size={size} type='primary' onClick={this.handleSearch}>搜索</Button>
         {clearVisible && <Icon type='cross' onClick={this.handleClearInput} />}
       </Input.Group>
