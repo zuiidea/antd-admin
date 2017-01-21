@@ -31,7 +31,7 @@ module.exports = {
 
   'GET /api/users' (req, res) {
     const page = qs.parse(req.query)
-    const pageSize = page.pageSize || 20
+    const pageSize = page.pageSize || 10
     const currentPage = page.page || 1
 
     let data

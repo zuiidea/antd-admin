@@ -106,7 +106,14 @@ export default {
       return { ...state, loading: true }
     },
     querySuccess (state, action) {
-      return { ...state, ...action.payload, loading: false }
+      const {list, pagination} = action.payload
+      return { ...state,
+        list,
+        loading: false,
+        pagination: {
+          ...state.pagination,
+          ...pagination
+        }}
     },
     showModal (state, action) {
       return { ...state, ...action.payload, modalVisible: true }
