@@ -20,7 +20,7 @@ const search = ({
     select: true,
     selectOptions: [{ value: 'name', name: '姓名' }, { value: 'address', name: '地址' }],
     selectProps: {
-      defaultValue: 'name'
+      defaultValue: field || 'name'
     },
     onSearch: (value) => {
       onSearch(value)
