@@ -24,6 +24,7 @@
       :global {
         .ant-menu-root {
           width: 100%;
+          overflow: visible;
 
           & > .ant-menu-item {
             padding: 0;
@@ -138,6 +139,11 @@
       .ant-menu-dark,
       .ant-menu-dark .ant-menu-sub {
         color: #999;
+      }
+
+      .ant-menu-root {
+        height: ~"calc(100vh - 144px)";
+        overflow-y: scroll;
       }
 
       .ant-menu {
