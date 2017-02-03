@@ -13,6 +13,7 @@ const formItemLayout = {
 
 const modal = ({
   visible,
+  type,
   item = {},
   onOk,
   onCancel,
@@ -36,7 +37,7 @@ const modal = ({
   }
 
   const modalOpts = {
-    title: '修改用户',
+    title: `${type === 'create' ? '新建用户' : '修改用户'}`,
     visible,
     onOk: handleOk,
     onCancel,
