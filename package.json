@@ -4,7 +4,7 @@
     "index": "./src/index.js"
   },
   "dependencies": {
-    "antd": "^2.6.0",
+    "antd": "^2.7.0",
     "classnames": "^2.2.5",
     "dva": "^1.1.0",
     "dva-loading": "^0.2.0",

@@ -43,7 +43,7 @@ function RecentSales (props) {
   ]
   return (
     <div className={styles.recentsales}>
-      <Table pagination={false} columns={columns} key={(record, key) => key} dataSource={props.data.filter((item, key) => key < 5)} />
+      <Table pagination={false} columns={columns} rowKey={(record, key) => key} dataSource={props.data.filter((item, key) => key < 5)} />
     </div>
   )
 }
