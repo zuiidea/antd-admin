@@ -30,14 +30,6 @@ export default function ({history, app}) {
             })
           }
         }, {
-          path: 'usersMotion',
-          name: 'usersMotion',
-          getComponent (nextState, cb) {
-            require.ensure([], require => {
-              cb(null, require('./routes/usersMotion'))
-            })
-          }
-        }, {
           path: 'ui/ico',
           name: 'ui/ico',
           getComponent (nextState, cb) {
