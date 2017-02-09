@@ -34,6 +34,7 @@
     "eslint-plugin-react": "^5.1.1",
     "glob": "^7.0.5",
     "mockjs": "^1.0.1-beta3",
+    "rc-tween-one": "^1.0.0",
     "redbox-react": "^1.2.10",
     "robe-ajax": "^1.0.0",
     "watchjs": "^0.0.0"
