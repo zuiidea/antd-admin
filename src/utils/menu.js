@@ -10,11 +10,6 @@ module.exports = [
     icon: 'user'
   },
   {
-    key: 'usersMotion',
-    name: '用户管理-动效',
-    icon: 'user'
-  },
-  {
     key: 'ui',
     name: 'UI组件',
     icon: 'camera-o',

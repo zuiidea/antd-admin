@@ -30,9 +30,9 @@ function Users ({ location, dispatch, users }) {
     dataSource: list,
     loading,
     pagination: pagination,
-    onPageChange (page) {
+    async onPageChange (page, callback) {
       const query = location.query
-      dispatch(routerRedux.push({
+      await dispatch(routerRedux.push({
         pathname: '/users',
         query: {
           ...query,
@@ -40,6 +40,7 @@ function Users ({ location, dispatch, users }) {
           pageSize: page.pageSize
         }
       }))
+      await callback && callback()
     },
     onDeleteItem (id) {
       dispatch({
@@ -62,15 +63,13 @@ function Users ({ location, dispatch, users }) {
     field,
     keyword,
     onSearch (fieldsValue) {
-      !!fieldsValue.keyword.length ?
-      dispatch(routerRedux.push({
+      fieldsValue.keyword.length ? dispatch(routerRedux.push({
         pathname: '/users',
         query: {
           field: fieldsValue.field,
           keyword: fieldsValue.keyword
         }
-      })) :
-      dispatch(routerRedux.push({
+      })) : dispatch(routerRedux.push({
         pathname: '/users'
       }))
     },

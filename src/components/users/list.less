@@ -1,8 +1,5 @@
 .table {
   td.avatar {
-    line-height: 1;
-    height: 59px;
-
     img {
       border-radius: 50%;
     }
@@ -11,6 +8,8 @@
   :global {
     .ant-table-tbody > tr > td,
     .ant-table-thead > tr > th {
+      height: 60px;
+
       &:nth-child(1) {
         width: 6%;
       }
@@ -28,7 +27,7 @@
       }
 
       &:nth-child(5) {
-        width: 4%;
+        width: 6%;
       }
 
       &:nth-child(6) {
@@ -40,22 +39,20 @@
       }
 
       &:nth-child(8) {
-        width: 18%;
+        width: 20%;
       }
 
       &:nth-child(9) {
-        width: 15%;
+        width: 14%;
       }
 
       &:nth-child(10) {
-        width: 11%;
+        width: 8%;
       }
     }
 
     .ant-table-thead {
       & > tr {
-        height: 60px;
-        line-height: 60px;
         transition: none;
         display: block;
 

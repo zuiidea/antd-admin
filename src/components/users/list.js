@@ -39,8 +39,9 @@ class list extends React.Component {
         ease: 'easeOutQuad'
       }
     ]
-    this.currentPage = 1
-    this.newPage = 1
+    const {current} = this.props.pagination
+    this.currentPage = current
+    this.newPage = current
   }
 
   getBodyWrapper = (body) => {
@@ -133,8 +134,9 @@ class list extends React.Component {
       <Table className={styles.table} bordered scroll={{
         x: 1200
       }} columns={columns} dataSource={dataSource} loading={loading} onChange={(page) => {
-        self.newPage = page.current
-        onPageChange(page)
+        onPageChange(page, () => {
+          self.newPage = page.current
+        })
       }} pagination={pagination} simple rowKey={record => record.id} getBodyWrapper={this.getBodyWrapper} />
     </div>
   }
