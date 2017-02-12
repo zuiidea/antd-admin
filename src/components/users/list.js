@@ -39,15 +39,13 @@ class list extends React.Component {
         ease: 'easeOutQuad'
       }
     ]
-    const {current} = this.props.pagination
-    this.currentPage = current
-    this.newPage = current
   }
 
   getBodyWrapper = (body) => {
     // 切换分页去除动画;
-    if (this.currentPage !== this.newPage) {
-      this.currentPage = this.newPage
+    const { page = 1 } = this.props.location.query
+    const { current  } = this.props.pagination
+    if(current != +page) {
       return body
     }
     return (
@@ -59,11 +57,6 @@ class list extends React.Component {
 
   onEnd = (e) => {
     e.target.style.height = 'auto'
-  }
-
-  async pageChange(pagination) {
-    await this.props.onPageChange(pagination)
-    this.newPage = pagination.current
   }
 
   render () {
@@ -139,7 +132,7 @@ class list extends React.Component {
     return <div>
       <Table className={styles.table} bordered scroll={{
         x: 1200
-      }} columns={columns} dataSource={dataSource} loading={loading} onChange={::this.pageChange} pagination={pagination} simple rowKey={record => record.id} getBodyWrapper={this.getBodyWrapper} />
+      }} columns={columns} dataSource={dataSource} loading={loading} onChange={onPageChange} pagination={pagination} simple rowKey={record => record.id} getBodyWrapper={this.getBodyWrapper} />
     </div>
   }
 }
