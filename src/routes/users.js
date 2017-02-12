@@ -30,17 +30,16 @@ function Users ({ location, dispatch, users }) {
     dataSource: list,
     loading,
     pagination: pagination,
-    async onPageChange (page, callback) {
-      const query = location.query
-      await dispatch(routerRedux.push({
-        pathname: '/users',
+    onPageChange (page) {
+      const { query, pathname } = location
+      dispatch(routerRedux.push({
+        pathname: pathname,
         query: {
           ...query,
           page: page.current,
           pageSize: page.pageSize
         }
       }))
-      await callback && callback()
     },
     onDeleteItem (id) {
       dispatch({
