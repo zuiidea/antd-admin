@@ -45,6 +45,7 @@ class list extends React.Component {
   }
 
   getBodyWrapper = (body) => {
+    // 切换分页去除动画;
     if (this.currentPage !== this.newPage) {
       this.currentPage = this.newPage
       return body
@@ -58,6 +59,11 @@ class list extends React.Component {
 
   onEnd = (e) => {
     e.target.style.height = 'auto'
+  }
+
+  async pageChange(pagination) {
+    await this.props.onPageChange(pagination)
+    this.newPage = pagination.current
   }
 
   render () {
@@ -133,11 +139,7 @@ class list extends React.Component {
     return <div>
       <Table className={styles.table} bordered scroll={{
         x: 1200
-      }} columns={columns} dataSource={dataSource} loading={loading} onChange={(page) => {
-        onPageChange(page, () => {
-          self.newPage = page.current
-        })
-      }} pagination={pagination} simple rowKey={record => record.id} getBodyWrapper={this.getBodyWrapper} />
+      }} columns={columns} dataSource={dataSource} loading={loading} onChange={::this.pageChange} pagination={pagination} simple rowKey={record => record.id} getBodyWrapper={this.getBodyWrapper} />
     </div>
   }
 }

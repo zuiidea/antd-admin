@@ -26,14 +26,42 @@ const getMenus = function (menuArray, siderFold, parentPath) {
   })
 }
 
-function Menus ({ siderFold, darkTheme, location, isNavbar, handleClickNavMenu }) {
+function Menus ({ siderFold, darkTheme, location, isNavbar, handleClickNavMenu, navOpenKeys, changeOpenKeys }) {
   const menuItems = getMenus(menu, siderFold)
+
+  const onOpenChange = (openKeys) => {
+    const latestOpenKey = openKeys.find(key => !(navOpenKeys.indexOf(key) > -1))
+    const latestCloseKey = navOpenKeys.find(key => !(openKeys.indexOf(key) > -1))
+    let nextOpenKeys = [];
+    if (latestOpenKey) {
+      nextOpenKeys = getAncestorKeys(latestOpenKey).concat(latestOpenKey)
+    }
+    if (latestCloseKey) {
+      nextOpenKeys = getAncestorKeys(latestCloseKey)
+    }
+    changeOpenKeys(nextOpenKeys)
+  }
+  const getAncestorKeys = (key) => {
+    const map = {
+      // navChildParent: ['navParent'],
+      navigation2: ['navigation']
+    }
+    return map[key] || []
+  }
+  let menuProps = {}
+  if(!siderFold) {//菜单栏收起时，不能操作openKeys
+    menuProps = {
+      onOpenChange: onOpenChange,
+      openKeys: navOpenKeys
+    }
+  }
+
   return (
     <Menu
+      {...menuProps}
       mode={siderFold ? 'vertical' : 'inline'}
       theme={darkTheme ? 'dark' : 'light'}
       onClick={handleClickNavMenu}
-      defaultOpenKeys={isNavbar ? menuItems.map(item => item.key) : []}
       defaultSelectedKeys={[location.pathname.split('/')[location.pathname.split('/').length - 1] || 'dashboard']}>
       {menuItems}
     </Menu>

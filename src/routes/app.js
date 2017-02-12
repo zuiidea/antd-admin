@@ -11,7 +11,7 @@ import { classnames } from '../utils'
 import '../components/layout/common.less'
 
 function App ({children, location, dispatch, app}) {
-  const {login, loading, loginButtonLoading, user, siderFold, darkTheme, isNavbar, menuPopoverVisible} = app
+  const {login, loading, loginButtonLoading, user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys} = app
   const loginProps = {
     loading,
     loginButtonLoading,
@@ -26,6 +26,7 @@ function App ({children, location, dispatch, app}) {
     location,
     isNavbar,
     menuPopoverVisible,
+    navOpenKeys,
     switchMenuPopover () {
       dispatch({type: 'app/switchMenuPopver'})
     },
@@ -34,6 +35,10 @@ function App ({children, location, dispatch, app}) {
     },
     switchSider () {
       dispatch({type: 'app/switchSider'})
+    },
+    changeOpenKeys(openKeys) {
+      localStorage.setItem('navOpenKeys', JSON.stringify(openKeys))
+      dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
     }
   }
 
@@ -41,8 +46,13 @@ function App ({children, location, dispatch, app}) {
     siderFold,
     darkTheme,
     location,
+    navOpenKeys,
     changeTheme () {
       dispatch({type: 'app/changeTheme'})
+    },
+    changeOpenKeys(openKeys) {
+      localStorage.setItem('navOpenKeys', JSON.stringify(openKeys))
+      dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
     }
   }
 
