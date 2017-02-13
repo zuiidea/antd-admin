@@ -61,7 +61,7 @@ class list extends React.Component {
     e.target.style.height = 'auto'
   }
 
-  async pageChange(pagination) {
+  async pageChange (pagination) {
     await this.props.onPageChange(pagination)
     this.newPage = pagination.current
   }
@@ -71,7 +71,6 @@ class list extends React.Component {
       loading,
       dataSource,
       pagination,
-      onPageChange,
       onDeleteItem,
       onEditItem
     } = this.props
@@ -135,7 +134,6 @@ class list extends React.Component {
         )
       }
     ]
-    const self = this
     return <div>
       <Table className={styles.table} bordered scroll={{
         x: 1200
