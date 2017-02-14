@@ -36,7 +36,7 @@ function App ({children, location, dispatch, app}) {
     switchSider () {
       dispatch({type: 'app/switchSider'})
     },
-    changeOpenKeys(openKeys) {
+    changeOpenKeys (openKeys) {
       localStorage.setItem('navOpenKeys', JSON.stringify(openKeys))
       dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
     }
@@ -50,7 +50,7 @@ function App ({children, location, dispatch, app}) {
     changeTheme () {
       dispatch({type: 'app/changeTheme'})
     },
-    changeOpenKeys(openKeys) {
+    changeOpenKeys (openKeys) {
       localStorage.setItem('navOpenKeys', JSON.stringify(openKeys))
       dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
     }

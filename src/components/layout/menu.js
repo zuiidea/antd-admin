@@ -32,7 +32,7 @@ function Menus ({ siderFold, darkTheme, location, isNavbar, handleClickNavMenu, 
   const onOpenChange = (openKeys) => {
     const latestOpenKey = openKeys.find(key => !(navOpenKeys.indexOf(key) > -1))
     const latestCloseKey = navOpenKeys.find(key => !(openKeys.indexOf(key) > -1))
-    let nextOpenKeys = [];
+    let nextOpenKeys = []
     if (latestOpenKey) {
       nextOpenKeys = getAncestorKeys(latestOpenKey).concat(latestOpenKey)
     }
@@ -43,18 +43,15 @@ function Menus ({ siderFold, darkTheme, location, isNavbar, handleClickNavMenu, 
   }
   const getAncestorKeys = (key) => {
     const map = {
-      // navChildParent: ['navParent'],
       navigation2: ['navigation']
     }
     return map[key] || []
   }
-  let menuProps = {}
-  if(!siderFold) {//菜单栏收起时，不能操作openKeys
-    menuProps = {
-      onOpenChange: onOpenChange,
-      openKeys: navOpenKeys
-    }
-  }
+  // 菜单栏收起时，不能操作openKeys
+  let menuProps = !siderFold ? {
+    onOpenChange,
+    openKeys: navOpenKeys
+  } : {}
 
   return (
     <Menu
