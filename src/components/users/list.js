@@ -1,7 +1,9 @@
 import React from 'react'
-import {Table, Popconfirm} from 'antd'
+import {Table, Dropdown, Button, Menu, Icon, Modal} from 'antd'
 import {TweenOneGroup} from 'rc-tween-one'
 import styles from './list.less'
+const confirm = Modal.confirm
+
 
 class list extends React.Component {
   constructor (props) {
@@ -56,6 +58,20 @@ class list extends React.Component {
       </TweenOneGroup>
     )
   }
+
+  handleMenuClick = (record, e) => {
+  const {onDeleteItem, onEditItem} = this.props
+  if (e.key === '1') {
+    onEditItem(record)
+  } else if (e.key === '2') {
+    confirm({
+      title: '您确定要删除这条记录吗?',
+      onOk () {
+        onDeleteItem(record.id)
+      }
+    })
+  }
+}
 
   onEnd = (e) => {
     e.target.style.height = 'auto'
@@ -122,16 +138,17 @@ class list extends React.Component {
         title: '操作',
         key: 'operation',
         width: 100,
-        render: (text, record) => (
-          <p>
-            <a onClick={() => onEditItem(record)} style={{
-              marginRight: 4
-            }}>编辑</a>
-            <Popconfirm title='确定要删除吗？' onConfirm={() => onDeleteItem(record.id)}>
-              <a>删除</a>
-            </Popconfirm>
-          </p>
-        )
+        render: (text, record) => {
+         return (<Dropdown overlay={<Menu onClick={this.handleMenuClick.bind(null, record)}>
+           <Menu.Item key='1'>编辑</Menu.Item>
+           <Menu.Item key='2'>删除</Menu.Item>
+         </Menu>}>
+           <Button style={{ border: 'none' }}>
+             <Icon style={{ marginRight: 2 }} type='bars' />
+             <Icon type='down' />
+           </Button>
+         </Dropdown>)
+       }
       }
     ]
     return <div>
