@@ -30,6 +30,7 @@ function Users ({ location, dispatch, users }) {
     dataSource: list,
     loading,
     pagination: pagination,
+    location,
     onPageChange (page) {
       const { query, pathname } = location
       dispatch(routerRedux.push({
