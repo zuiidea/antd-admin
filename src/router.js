@@ -2,6 +2,14 @@ import React from 'react'
 import {Router} from 'dva/router'
 import App from './routes/app'
 
+const cached = {};
+function registerModel(app, model) {
+  if (!cached[model.namespace]) {
+    app.model(model)
+    cached[model.namespace] = 1
+  }
+}
+
 export default function ({history, app}) {
   const routes = [
     {
@@ -18,6 +26,7 @@ export default function ({history, app}) {
           name: 'dashboard',
           getComponent (nextState, cb) {
             require.ensure([], require => {
+              registerModel(app, require('./models/dashboard'))
               cb(null, require('./routes/dashboard'))
             })
           }
@@ -26,6 +35,7 @@ export default function ({history, app}) {
           name: 'users',
           getComponent (nextState, cb) {
             require.ensure([], require => {
+              registerModel(app, require('./models/users'))
               cb(null, require('./routes/users'))
             })
           }
