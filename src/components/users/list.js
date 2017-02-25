@@ -5,7 +5,7 @@ import TableBodyWrapper from '../common/TableBodyWrapper'
 
 const confirm = Modal.confirm
 
-function list({
+function list ({
   loading,
   dataSource,
   pagination,
@@ -17,7 +17,6 @@ function list({
   onStatusItem,
   location
 }) {
-
   const handleMenuClick = (record, e) => {
     if (e.key === '1') {
       onEditItem(record)
@@ -80,16 +79,16 @@ function list({
       key: 'operation',
       width: 100,
       render: (text, record) => {
-       return (<Dropdown overlay={<Menu onClick={(e) => handleMenuClick(record, e)}>
-         <Menu.Item key='1'>编辑</Menu.Item>
-         <Menu.Item key='2'>删除</Menu.Item>
-       </Menu>}>
-         <Button style={{ border: 'none' }}>
-           <Icon style={{ marginRight: 2 }} type='bars' />
-           <Icon type='down' />
-         </Button>
-       </Dropdown>)
-     }
+        return (<Dropdown overlay={<Menu onClick={(e) => handleMenuClick(record, e)}>
+          <Menu.Item key='1'>编辑</Menu.Item>
+          <Menu.Item key='2'>删除</Menu.Item>
+        </Menu>}>
+          <Button style={{ border: 'none' }}>
+            <Icon style={{ marginRight: 2 }} type='bars' />
+            <Icon type='down' />
+          </Button>
+        </Dropdown>)
+      }
     }
   ]
 

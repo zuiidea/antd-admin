@@ -16,7 +16,7 @@ const enterAnim = [
     ease: 'easeOutQuad',
     onComplete: (e) => {
       e.target.style.height = 'auto'
-    },
+    }
   }, {
     opacity: 1,
     x: 0,
@@ -41,19 +41,18 @@ const leaveAnim = [
 ]
 
 const TableBodyWrapper = ({ body, page = 1, current }) => {
-
   // 切换分页去除动画;
-  if(current != +page) {
+  if (current !== +page) {
     return body
   }
 
   return (
     <TweenOneGroup
-    component="tbody"
-    className={body.props.className}
-    enter={enterAnim}
-    leave={leaveAnim}
-    appear={false}>
+      component='tbody'
+      className={body.props.className}
+      enter={enterAnim}
+      leave={leaveAnim}
+      appear={false}>
       {body.props.children}
     </TweenOneGroup>
   )

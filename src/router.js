@@ -2,8 +2,8 @@ import React from 'react'
 import {Router} from 'dva/router'
 import App from './routes/app'
 
-const cached = {};
-function registerModel(app, model) {
+const cached = {}
+const registerModel = (app, model) => {
   if (!cached[model.namespace]) {
     app.model(model)
     cached[model.namespace] = 1
@@ -17,6 +17,7 @@ export default function ({history, app}) {
       component: App,
       getIndexRoute (nextState, cb) {
         require.ensure([], require => {
+          registerModel(app, require('./models/dashboard'))
           cb(null, {component: require('./routes/dashboard')})
         })
       },
