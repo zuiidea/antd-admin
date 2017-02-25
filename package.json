@@ -23,10 +23,11 @@
     "babel-plugin-import": "^1.0.1",
     "babel-plugin-transform-runtime": "^6.9.0",
     "babel-runtime": "^6.9.2",
-    "dora": "0.3.x",
-    "dora-plugin-proxy": "^0.7.0",
-    "dora-plugin-webpack": "0.6.x",
-    "dora-plugin-webpack-hmr": "^0.1.0",
+    "dora": "^0.4.3",
+    "dora-plugin-browser-history": "^0.2.0",
+    "dora-plugin-proxy": "^0.8.5",
+    "dora-plugin-webpack": "^0.8.1",
+    "dora-plugin-webpack-hmr": "^0.2.1",
     "eslint": "^2.13.1",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.8.1",
@@ -40,8 +41,8 @@
     "watchjs": "^0.0.0"
   },
   "scripts": {
-    "start": "dora --plugins \"proxy,webpack,webpack-hmr\"",
-    "dev": "dora --plugins \"webpack,webpack-hmr\"",
+    "start": "dora --plugins \"proxy,webpack,webpack-hmr,browser-history?index=/src/index.html\"",
+    "dev": "dora --plugins \"webpack,webpack-hmr,browser-history?index=/src/index.html\"",
     "lint": "eslint --fix --ext .js,.jsx src/components/layout",
     "build": "atool-build"
   },
