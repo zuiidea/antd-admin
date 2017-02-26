@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react'
 import { TweenOneGroup } from 'rc-tween-one'
-import styles from './TableBodyWrapper.less'
 
 const enterAnim = [
   {
