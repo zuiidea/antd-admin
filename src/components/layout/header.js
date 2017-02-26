@@ -16,6 +16,7 @@ function Header ({user, logout, switchSider, siderFold, isNavbar, menuPopoverVis
     navOpenKeys,
     changeOpenKeys
   }
+  console.log(menuPopoverVisible)
   return (
     <div className={styles.header}>
       {isNavbar
