@@ -20,12 +20,6 @@ module.exports = function (webpackConfig, env) {
     webpackConfig.babel.plugins.push('dev-expression')
   }
 
-  webpackConfig.output = {
-    path: path.join(__dirname, '../dist'),
-    filename: '[name].js',
-    publicPath: '/'
-  }
-
   // Don't extract common.js and common.css
   webpackConfig.plugins = webpackConfig.plugins.filter(function (plugin) {
     return !(plugin instanceof webpack.optimize.CommonsChunkPlugin)
