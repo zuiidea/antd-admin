@@ -1,5 +1,4 @@
 const webpack = require('atool-build/lib/webpack')
-const path = require('path')
 
 module.exports = function (webpackConfig, env) {
   webpackConfig.babel.plugins.push('transform-runtime')
@@ -18,6 +17,7 @@ module.exports = function (webpackConfig, env) {
     }])
   } else {
     webpackConfig.babel.plugins.push('dev-expression')
+    webpackConfig.entry = {index: './src/_index.js'}
   }
 
   // Don't extract common.js and common.css
