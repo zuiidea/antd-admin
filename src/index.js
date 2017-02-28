@@ -5,8 +5,8 @@ import { browserHistory } from 'dva/router'
 // 1. Initialize
 const app = dva({
   history: browserHistory,
-  onError(error) {
-    console.error("app onError -- ", error)
+  onError (error) {
+    console.error('app onError -- ', error)
   }
 })
 

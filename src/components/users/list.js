@@ -1,23 +1,12 @@
 import React, {PropTypes} from 'react'
 import {Table, Dropdown, Button, Menu, Icon, Modal} from 'antd'
 import styles from './list.less'
+import classnames from 'classnames'
 import TableBodyWrapper from '../common/TableBodyWrapper'
 
 const confirm = Modal.confirm
 
-function list({
-  loading,
-  dataSource,
-  pagination,
-  updatePower,
-  deletePower,
-  onPageChange,
-  onDeleteItem,
-  onEditItem,
-  onStatusItem,
-  location
-}) {
-
+function list ({ loading, dataSource, pagination, updatePower, deletePower, onPageChange, onDeleteItem, onEditItem, onStatusItem, isMotion, location }) {
   const handleMenuClick = (record, e) => {
     if (e.key === '1') {
       onEditItem(record)
@@ -80,16 +69,16 @@ function list({
       key: 'operation',
       width: 100,
       render: (text, record) => {
-       return (<Dropdown overlay={<Menu onClick={(e) => handleMenuClick(record, e)}>
-         <Menu.Item key='1'>编辑</Menu.Item>
-         <Menu.Item key='2'>删除</Menu.Item>
-       </Menu>}>
-         <Button style={{ border: 'none' }}>
-           <Icon style={{ marginRight: 2 }} type='bars' />
-           <Icon type='down' />
-         </Button>
-       </Dropdown>)
-     }
+        return (<Dropdown overlay={<Menu onClick={(e) => handleMenuClick(record, e)}>
+          <Menu.Item key='1'>编辑</Menu.Item>
+          <Menu.Item key='2'>删除</Menu.Item>
+        </Menu>}>
+          <Button style={{ border: 'none' }}>
+            <Icon style={{ marginRight: 2 }} type='bars' />
+            <Icon type='down' />
+          </Button>
+        </Dropdown>)
+      }
     }
   ]
 
@@ -98,12 +87,14 @@ function list({
     current: pagination.current
   }
 
-  const getBodyWrapper = (body) => (<TableBodyWrapper {...getBodyWrapperProps} body={body} />)
+  console.log(isMotion)
+
+  const getBodyWrapper = body => isMotion ? <TableBodyWrapper {...getBodyWrapperProps} body={body} /> : body
 
   return (
     <div>
       <Table
-        className={styles.table}
+        className={classnames({[styles.table]: true, [styles.motion]: isMotion})}
         bordered
         scroll={{ x: 1200 }}
         columns={columns}
