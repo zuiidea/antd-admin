@@ -137,11 +137,10 @@ const modal = ({
 }
 
 modal.propTypes = {
-  visible: PropTypes.any,
-  form: PropTypes.object,
-  item: PropTypes.object,
-  onOk: PropTypes.func,
-  onCancel: PropTypes.func
+  form: PropTypes.object.isRequired,
+  visible: PropTypes.bool,
+  type: PropTypes.string,
+  item: PropTypes.object
 }
 
 export default Form.create()(modal)

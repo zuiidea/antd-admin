@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {PropTypes} from 'react'
 import { Menu, Icon, Popover } from 'antd'
 import styles from './main.less'
 import Menus from './menu'
@@ -40,6 +40,19 @@ function Header ({user, logout, switchSider, siderFold, isNavbar, menuPopoverVis
       </Menu>
     </div>
   )
+}
+
+Header.propTypes = {
+  user: PropTypes.object,
+  logout: PropTypes.func,
+  switchSider: PropTypes.func,
+  siderFold: PropTypes.bool,
+  isNavbar: PropTypes.bool,
+  menuPopoverVisible: PropTypes.bool,
+  location: PropTypes.object,
+  switchMenuPopover: PropTypes.func,
+  navOpenKeys: PropTypes.array,
+  changeOpenKeys: PropTypes.func
 }
 
 export default Header

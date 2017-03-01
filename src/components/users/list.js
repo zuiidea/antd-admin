@@ -6,7 +6,7 @@ import TableBodyWrapper from '../common/TableBodyWrapper'
 
 const confirm = Modal.confirm
 
-function list ({ loading, dataSource, pagination, updatePower, deletePower, onPageChange, onDeleteItem, onEditItem, onStatusItem, isMotion, location }) {
+function list ({ loading, dataSource, pagination, onPageChange, onDeleteItem, onEditItem, isMotion, location }) {
   const handleMenuClick = (record, e) => {
     if (e.key === '1') {
       onEditItem(record)
@@ -87,8 +87,6 @@ function list ({ loading, dataSource, pagination, updatePower, deletePower, onPa
     current: pagination.current
   }
 
-  console.log(isMotion)
-
   const getBodyWrapper = body => isMotion ? <TableBodyWrapper {...getBodyWrapperProps} body={body} /> : body
 
   return (
@@ -111,12 +109,14 @@ function list ({ loading, dataSource, pagination, updatePower, deletePower, onPa
 }
 
 list.propTypes = {
+  loading: PropTypes.bool,
+  dataSource: PropTypes.array,
+  pagination: PropTypes.object,
   onPageChange: PropTypes.func,
   onDeleteItem: PropTypes.func,
   onEditItem: PropTypes.func,
-  dataSource: PropTypes.array,
-  loading: PropTypes.any,
-  pagination: PropTypes.any
+  isMotion: PropTypes.bool,
+  location: PropTypes.object
 }
 
 export default list

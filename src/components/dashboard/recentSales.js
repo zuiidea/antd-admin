@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { Table, Tag } from 'antd'
 import styles from './recentSales.less'
 import { color } from '../../utils'
@@ -22,7 +22,7 @@ const status = {
   }
 }
 
-function RecentSales (props) {
+function RecentSales ({ data }) {
   const columns = [
     {
       title: 'NAME',
@@ -43,9 +43,13 @@ function RecentSales (props) {
   ]
   return (
     <div className={styles.recentsales}>
-      <Table pagination={false} columns={columns} rowKey={(record, key) => key} dataSource={props.data.filter((item, key) => key < 5)} />
+      <Table pagination={false} columns={columns} rowKey={(record, key) => key} dataSource={data.filter((item, key) => key < 5)} />
     </div>
   )
+}
+
+RecentSales.propTypes = {
+  data: PropTypes.array
 }
 
 export default RecentSales

@@ -81,12 +81,7 @@ App.propTypes = {
   children: PropTypes.element.isRequired,
   location: PropTypes.object,
   dispatch: PropTypes.func,
-  loading: PropTypes.object,
-  loginButtonLoading: PropTypes.bool,
-  login: PropTypes.bool,
-  user: PropTypes.object,
-  siderFold: PropTypes.bool,
-  darkTheme: PropTypes.bool
+  app: PropTypes.object
 }
 
 export default connect(({app}) => ({app}))(App)

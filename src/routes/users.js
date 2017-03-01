@@ -106,8 +106,4 @@ Users.propTypes = {
   dispatch: PropTypes.func
 }
 
-function mapStateToProps ({ users }) {
-  return { users }
-}
-
-export default connect(mapStateToProps)(Users)
+export default connect(({users}) => ({users}))(Users)
