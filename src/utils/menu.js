@@ -10,6 +10,11 @@ module.exports = [
     icon: 'user'
   },
   {
+    key: 'devices',
+    name: '设备管理',
+    icon: 'user'
+  },
+  {
     key: 'ui',
     name: 'UI组件',
     icon: 'camera-o',
@@ -31,23 +36,37 @@ module.exports = [
     icon: 'bar-chart',
     child: [
       {
-        key: 'ad_analysis',
-        name: '广告数据分析'
+        key: 'advertises',
+        name: '内容数据分析'
       },
       {
-        key: 'dev_analysis',
-        name: '设备数据分析',
-        child: [
-          {
-            key: 'dev_list',
-            name: '设备列表'
-          },
-          {
-            key: 'dev_details',
-            name: '设备详情'
-          }
-        ]
+        key: 'devices',
+        name: '设备数据分析'
       }
     ]
-  }
+  },
+  {
+    key: 'setting',
+    name: '设置',
+    icon: 'camera-o',
+    clickable: false,
+    child: [
+      {
+        key: 'account_info',
+        name: '账号信息'
+      },
+      {
+        key: 'account_status',
+        name: '账号状态'
+      },
+      {
+        key: 'account_setting',
+        name: '账号设置'
+      },
+      {
+        key: 'illegal_record',
+        name: '违规记录'
+      }
+    ]
+  },
 ]

@@ -143,6 +143,12 @@ export default {
         loading: false
       }
     },
+    setting (state) {
+      return {
+        ...state,
+        loading: false
+      }
+    },
     handleSwitchSider (state) {
       localStorage.setItem('antdAdminSiderFold', !state.siderFold)
       return {

@@ -6,7 +6,17 @@ import Menus from './menu'
 const SubMenu = Menu.SubMenu
 
 function Header ({user, logout, switchSider, siderFold, isNavbar, menuPopoverVisible, location, switchMenuPopover, navOpenKeys, changeOpenKeys}) {
-  let handleClickMenu = e => e.key === 'logout' && logout()
+  let handleClickMenu = e => {
+    switch(e.key){
+      case 'logout':
+        logout();
+        break;
+      case 'setting':
+        logout();
+        break;  
+    }
+  }
+
   const menusProps = {
     siderFold: false,
     darkTheme: false,
@@ -33,6 +43,9 @@ function Header ({user, logout, switchSider, siderFold, isNavbar, menuPopoverVis
           float: 'right'
         }} title={< span > <Icon type='user' />
           {user.name} < /span>}>
+          <Menu.Item key='setting'>
+            <a>设置</a>
+          </Menu.Item>
           <Menu.Item key='logout'>
             <a>注销</a>
           </Menu.Item>

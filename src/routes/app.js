@@ -33,6 +33,9 @@ function App ({children, location, dispatch, app}) {
     logout () {
       dispatch({type: 'app/logout'})
     },
+    setting () {
+      dispatch({type: 'setting/account_setting'})
+    },
     switchSider () {
       dispatch({type: 'app/switchSider'})
     },

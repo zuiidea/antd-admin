@@ -31,7 +31,18 @@ export default function ({history, app}) {
               cb(null, require('./routes/dashboard'))
             }, 'dashboard')
           }
-        }, {
+        }
+        , {
+          path: 'devices',
+          name: 'devices',
+          getComponent (nextState, cb) {
+            require.ensure([], require => {
+              registerModel(app, require('./models/devices'))
+              cb(null, require('./routes/devices'))
+            }, 'devices')
+          }
+        }
+        , {
           path: 'users',
           name: 'users',
           getComponent (nextState, cb) {
