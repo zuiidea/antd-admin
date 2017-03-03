@@ -1,8 +1,8 @@
 module.exports = {
-  name: 'Ant Design Admin',
-  prefix: 'antdAdmin',
-  footerText: 'Ant Design Admin 版权所有 © 2016 由 zuiidea 支持',
-  logoSrc: 'https://t.alipayobjects.com/images/rmsweb/T1B9hfXcdvXXXXXXXX.svg',
-  logoText: 'Antd Admin',
+  name: 'Dopool Cloud',
+  prefix: 'dopoolCloud',
+  footerText: 'Dopool Cloud 版权所有 © 2017 由 dopool 支持',
+  logoSrc: 'http://dopool-web.dopool.com/appkweb/iTFG8NfeCJR9/basic_model_02_notitle/img/logo1.png',
+  logoText: 'Dopool Big Screen Cloud',
   needLogin: true
 }
