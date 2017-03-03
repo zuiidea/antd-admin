@@ -6,7 +6,7 @@ import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsiv
 function Completed (props) {
   return (
     <div className={styles.sales}>
-      <div className={styles.title}>TEAM TOTAL COMPLETED</div>
+      <div className={styles.title}>整体任务完成状况</div>
       <ResponsiveContainer minHeight={360}>
         <AreaChart data={props.data}>
           <Legend verticalAlign='top'

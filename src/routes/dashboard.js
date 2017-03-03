@@ -10,6 +10,7 @@ import Comments from '../components/dashboard/comments'
 import Completed from '../components/dashboard/completed'
 import Browser from '../components/dashboard/browser'
 import Cpu from '../components/dashboard/cpu'
+import Orders from '../components/dashboard/orders'
 import User from '../components/dashboard/user'
 import styles from './dashboard.less'
 import {color} from '../utils'
@@ -22,14 +23,18 @@ const bodyStyle = {
 }
 
 function Dashboard ({dashboard, dispatch}) {
-  const {weather, sales, quote, numbers, recentSales, comments, completed, browser, cpu, user} = dashboard
+  const {weather, sales, quote, numbers, recentSales, comments, completed, browser, cpu, user, orders} = dashboard
   const numberCards = numbers.map((item, key) => <Col key={key} lg={6} md={12}>
     <NumberCard {...item} />
   </Col>)
-
   return (
     <Row gutter={24}>
       {numberCards}
+      <Col lg={18} md={24}>
+        <Card bordered={false} {...bodyStyle}>
+          <Orders data={orders} />
+        </Card>
+      </Col>
       <Col lg={18} md={24}>
         <Card bordered={false} bodyStyle={{
           padding: '24px 36px 24px 0'

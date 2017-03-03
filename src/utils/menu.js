@@ -1,7 +1,7 @@
 module.exports = [
   {
     key: 'dashboard',
-    name: '仪表盘',
+    name: '概要',
     icon: 'laptop'
   },
   {
@@ -26,25 +26,25 @@ module.exports = [
     ]
   },
   {
-    key: 'navigation',
-    name: '测试导航',
-    icon: 'setting',
+    key: 'analysis',
+    name: '数据分析',
+    icon: 'bar-chart',
     child: [
       {
-        key: 'navigation1',
-        name: '二级导航1'
+        key: 'ad_analysis',
+        name: '广告数据分析'
       },
       {
-        key: 'navigation2',
-        name: '二级导航2',
+        key: 'dev_analysis',
+        name: '设备数据分析',
         child: [
           {
-            key: 'navigation21',
-            name: '三级导航1'
+            key: 'dev_list',
+            name: '设备列表'
           },
           {
-            key: 'navigation22',
-            name: '三级导航2'
+            key: 'dev_details',
+            name: '设备详情'
           }
         ]
       }

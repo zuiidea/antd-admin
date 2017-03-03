@@ -9,6 +9,14 @@ let dataKey = mockStorge('AdminUsers', [
   {
     username: '吴彦祖',
     password: '123456'
+  },
+  {
+    username: 'dopool',
+    password: 'dopool'
+  },
+  {
+    username: '黄总',
+    password: '111111'
   }
 ])
 

@@ -6,7 +6,7 @@ import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsiv
 function Sales (props) {
   return (
     <div className={styles.sales}>
-      <div className={styles.title}>Yearly Sales</div>
+      <div className={styles.title}>月度趋势</div>
       <ResponsiveContainer minHeight={360}>
         <LineChart data={props.data}>
           <Legend verticalAlign='top'
@@ -25,9 +25,9 @@ function Sales (props) {
               const list = content.payload.map((item, key) => <li key={key} className={styles.tipitem}><span className={styles.radiusdot} style={{background: item.color}} />{item.name + ':' + item.value}</li>)
               return <div className={styles.tooltip}><p className={styles.tiptitle}>{content.label}</p><ul>{list}</ul></div>
             }} />
-          <Line type='monotone' dataKey='Food' stroke={color.purple} strokeWidth={3} dot={{fill: color.purple}} activeDot={{r: 5, strokeWidth: 0}} />
-          <Line type='monotone' dataKey='Clothes' stroke={color.red} strokeWidth={3} dot={{fill: color.red}} activeDot={{r: 5, strokeWidth: 0}} />
-          <Line type='monotone' dataKey='Electronics' stroke={color.green} strokeWidth={3} dot={{fill: color.green}} activeDot={{r: 5, strokeWidth: 0}} />
+          <Line type='monotone' dataKey='屏幕数' stroke={color.purple} strokeWidth={6} dot={{fill: color.purple}} activeDot={{r: 5, strokeWidth: 0}} />
+          <Line type='monotone' dataKey='内容数' stroke={color.red} strokeWidth={4} dot={{fill: color.red}} activeDot={{r: 5, strokeWidth: 0}} />
+          <Line type='monotone' dataKey='客户数' stroke={color.green} strokeWidth={2} dot={{fill: color.green}} activeDot={{r: 5, strokeWidth: 0}} />
         </LineChart>
       </ResponsiveContainer>
     </div>

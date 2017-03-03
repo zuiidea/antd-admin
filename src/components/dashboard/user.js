@@ -23,15 +23,15 @@ function User (props) {
     </div>
     <div className={styles.number}>
       <div className={styles.item}>
-        <p>EARNING SALES</p>
+        <p>收入</p>
         <p style={{color: color.green}}><CountUp
           end={props.sales}
-          prefix='$'
+          prefix='¥'
           {...countUpProps}
            /></p>
       </div>
       <div className={styles.item}>
-        <p>ITEM SOLD</p>
+        <p>屏幕数</p>
         <p style={{color: color.blue}}><CountUp
           end={props.sold}
           {...countUpProps}
