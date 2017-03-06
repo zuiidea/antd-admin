@@ -30,7 +30,7 @@ function list ({ loading, dataSource, pagination, updatePower, deletePower, onPa
       title: 'MAC',
       dataIndex: 'mac',
       key: 'mac',
-      width: 128
+      width: 96
     }, 
     {
       title: '状态',
@@ -41,16 +41,16 @@ function list ({ loading, dataSource, pagination, updatePower, deletePower, onPa
       title: '位置',
       dataIndex: 'address',
       key: 'address',
-      width: 256
+      width: 160
     }, {
       title: '创建时间',
       dataIndex: 'createTime',
       key: 'createTime',
-      width: 256
+      width: 160
     }, {
       title: '操作',
       key: 'operation',
-      width: 100,
+      width: 64,
       render: (text, record) => {
         return (<Dropdown overlay={<Menu onClick={(e) => handleMenuClick(record, e)}>
           <Menu.Item key='1'>编辑</Menu.Item>

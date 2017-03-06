@@ -36,11 +36,11 @@ module.exports = [
     icon: 'bar-chart',
     child: [
       {
-        key: 'advertises',
+        key: 'advertises_data',
         name: '内容数据分析'
       },
       {
-        key: 'devices',
+        key: 'devices_data',
         name: '设备数据分析'
       }
     ]
