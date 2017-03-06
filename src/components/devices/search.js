@@ -20,7 +20,7 @@ const search = ({
     keyword,
     size: 'large',
     select: true,
-    selectOptions: [{ value: 'mac', name: 'MAC' }, { value: 'address', name: '位置' }],
+    selectOptions: [{ value: 'mac', name: 'MAC' }, { value: 'status', name: '状态' }, { value: 'address', name: '位置' }],
     selectProps: {
       defaultValue: field || 'mac'
     },
