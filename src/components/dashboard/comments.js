@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { Table, Tag } from 'antd'
 import styles from './comments.less'
 import { color } from '../../utils'
@@ -18,7 +18,7 @@ const status = {
   }
 }
 
-function Comments (props) {
+function Comments ({ data }) {
   const columns = [
     {
       title: 'avatar',
@@ -41,9 +41,13 @@ function Comments (props) {
   ]
   return (
     <div className={styles.comments}>
-      <Table pagination={false} showHeader={false} columns={columns} rowKey={(record, key) => key} dataSource={props.data.filter((item, key) => key < 3)} />
+      <Table pagination={false} showHeader={false} columns={columns} rowKey={(record, key) => key} dataSource={data.filter((item, key) => key < 3)} />
     </div>
   )
+}
+
+Comments.propTypes = {
+  data: PropTypes.array
 }
 
 export default Comments

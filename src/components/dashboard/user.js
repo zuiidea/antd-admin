@@ -11,8 +11,7 @@ const countUpProps = {
   separator: ','
 }
 
-function User (props) {
-  const {avatar, name, email} = props
+function User ({avatar, name, email, sales, sold}) {
   return <div className={styles.user}>
     <div className={styles.header}>
       <div className={styles.headerinner}>
@@ -25,7 +24,7 @@ function User (props) {
       <div className={styles.item}>
         <p>EARNING SALES</p>
         <p style={{color: color.green}}><CountUp
-          end={props.sales}
+          end={sales}
           prefix='$'
           {...countUpProps}
            /></p>
@@ -33,7 +32,7 @@ function User (props) {
       <div className={styles.item}>
         <p>ITEM SOLD</p>
         <p style={{color: color.blue}}><CountUp
-          end={props.sold}
+          end={sold}
           {...countUpProps}
            /></p>
       </div>
@@ -45,7 +44,11 @@ function User (props) {
 }
 
 User.propTypes = {
-  props: PropTypes.object
+  avatar: PropTypes.string,
+  name: PropTypes.string,
+  email: PropTypes.string,
+  sales: PropTypes.number,
+  sold: PropTypes.number
 }
 
 export default User

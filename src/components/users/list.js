@@ -1,22 +1,12 @@
 import React, {PropTypes} from 'react'
 import {Table, Dropdown, Button, Menu, Icon, Modal} from 'antd'
 import styles from './list.less'
+import classnames from 'classnames'
 import TableBodyWrapper from '../common/TableBodyWrapper'
 
 const confirm = Modal.confirm
 
-function list ({
-  loading,
-  dataSource,
-  pagination,
-  updatePower,
-  deletePower,
-  onPageChange,
-  onDeleteItem,
-  onEditItem,
-  onStatusItem,
-  location
-}) {
+function list ({ loading, dataSource, pagination, onPageChange, onDeleteItem, onEditItem, isMotion, location }) {
   const handleMenuClick = (record, e) => {
     if (e.key === '1') {
       onEditItem(record)
@@ -97,12 +87,12 @@ function list ({
     current: pagination.current
   }
 
-  const getBodyWrapper = (body) => (<TableBodyWrapper {...getBodyWrapperProps} body={body} />)
+  const getBodyWrapper = body => isMotion ? <TableBodyWrapper {...getBodyWrapperProps} body={body} /> : body
 
   return (
     <div>
       <Table
-        className={styles.table}
+        className={classnames({[styles.table]: true, [styles.motion]: isMotion})}
         bordered
         scroll={{ x: 1200 }}
         columns={columns}
@@ -119,12 +109,14 @@ function list ({
 }
 
 list.propTypes = {
+  loading: PropTypes.bool,
+  dataSource: PropTypes.array,
+  pagination: PropTypes.object,
   onPageChange: PropTypes.func,
   onDeleteItem: PropTypes.func,
   onEditItem: PropTypes.func,
-  dataSource: PropTypes.array,
-  loading: PropTypes.any,
-  pagination: PropTypes.any
+  isMotion: PropTypes.bool,
+  location: PropTypes.object
 }
 
 export default list

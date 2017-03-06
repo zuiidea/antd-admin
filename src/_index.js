@@ -1,14 +1,8 @@
 import './index.html'
 import dva from 'dva'
-import { browserHistory } from 'dva/router'
 
 // 1. Initialize
-const app = dva({
-  history: browserHistory,
-  onError (error) {
-    console.error('app onError -- ', error)
-  }
-})
+const app = dva()
 
 // 2. Model
 app.model(require('./models/app'))

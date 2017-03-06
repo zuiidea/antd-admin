@@ -4,7 +4,7 @@
     "index": "./src/index.js"
   },
   "dependencies": {
-    "antd": "^2.7.2",
+    "antd": "^2.7.3",
     "classnames": "^2.2.5",
     "dva": "^1.1.0",
     "dva-loading": "^0.2.0",
@@ -41,8 +41,8 @@
     "watchjs": "^0.0.0"
   },
   "scripts": {
-    "start": "dora --plugins \"proxy,webpack,webpack-hmr,browser-history?index=/src/index.html\"",
-    "dev": "dora --plugins \"webpack,webpack-hmr,browser-history?index=/src/index.html\"",
+    "start": "dora --plugins \"proxy,webpack?publicPath=/,webpack-hmr,browser-history?index=/src/index.html\"",
+    "dev": "dora --plugins \"webpack?publicPath=/,webpack-hmr,browser-history?index=/src/index.html\"",
     "lint": "eslint --fix --ext .js,.jsx src/components/layout",
     "build": "atool-build"
   },
