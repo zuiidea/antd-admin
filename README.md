@@ -25,11 +25,17 @@
   - [x] 图表
 - [x] 用户列表页面
   - [x] 增删改查
-  - [ ] 交互动效
+  - [x] 交互动效
 - [x] 扩展UI组件
  - [x] Ico
  - [x] Search
-- [ ] 可视化图表
+- [ ] 数据可视化页面
+- [ ] 模拟消息收发
+
+
+- [ ] 升级dva-cli
+- [ ] 加入dva-loading
+- [ ] 规范代码，目前代码遵循[standardjs](http://standardjs.com/demo.html)
 
 ## 开发及构建
 
