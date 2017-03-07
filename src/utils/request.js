@@ -1,4 +1,5 @@
-const Ajax = require('robe-ajax')
+import Ajax from 'robe-ajax'
+const { param } = Ajax
 
 export default function request (url, options) {
   if (options.cross) {
@@ -10,7 +11,7 @@ export default function request (url, options) {
     return Ajax.ajax({
       url: url,
       method: options.method || 'get',
-      data: options.data || {},
+      data: param(options.data || {}),
       processData: options.method === 'get',
       dataType: 'JSON'
     }).done((data) => {
