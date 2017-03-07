@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react'
-import { Select, Form, Input, InputNumber, Radio, Modal } from 'antd'
-import Mock from 'mockjs';
-import addr from '../../utils/address_dict.js';
+import { Select, Form, Input, InputNumber, Radio, Modal, Cascader } from 'antd'
+//位置选择
+import addrOption from '../../utils/address_dict.js';
 const FormItem = Form.Item
 const Option = Select.Option;
 
-console.log('woqu', addr);
+console.log('woqu', addrOption);
 
 const formItemLayout = {
   labelCol: {
@@ -121,27 +121,44 @@ const modal = ({
               </Select>
           )}
         </FormItem>
-        <FormItem label='位置：' hasFeedback {...formItemLayout}>
-          {getFieldDecorator('email', {
-            initialValue: item.email,
+        <FormItem label='省/市/区：' hasFeedback {...formItemLayout}>
+          {getFieldDecorator('region', {
+            initialValue: item.region,
             rules: [
               {
                 required: true,
                 message: '不能为空'
               }
             ]
-          })(<Input />)}
+          })(
+            <Cascader
+              options={addrOption}
+              placeholder="Please select"
+              showSearch
+            />
+          )}
         </FormItem>
-        <FormItem label='住址：' hasFeedback {...formItemLayout}>
+        <FormItem label='地点：' hasFeedback {...formItemLayout}>
           {getFieldDecorator('address', {
-            initialValue: item.address,
+            initialValue: '',
             rules: [
               {
                 required: true,
                 message: '不能为空'
               }
             ]
-          })(<Input />)}
+          })(<Input type="textarea" rows={2}/>)}
+        </FormItem>
+        <FormItem label='备注：' hasFeedback {...formItemLayout}>
+          {getFieldDecorator('remark', {
+            initialValue: '',
+            rules: [
+              {
+                required: true,
+                message: '不能为空'
+              }
+            ]
+          })(<Input type="textarea" rows={4} />)}
         </FormItem>
       </Form>
     </Modal>

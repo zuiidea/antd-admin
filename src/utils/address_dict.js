@@ -4059,6 +4059,8 @@ var DICT_FIXED = function() {
         fixed.push({
             id: id,
             pid: pid,
+            value: DICT[id],
+            label: DICT[id], 
             name: DICT[id]
         })
     }
