@@ -12,7 +12,7 @@ function Header ({user, logout, switchSider, siderFold, isNavbar, menuPopoverVis
         logout();
         break;
       case 'setting':
-        logout();
+        ;
         break;  
     }
   }

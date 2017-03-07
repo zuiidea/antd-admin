@@ -2,10 +2,12 @@ import React, { PropTypes } from 'react'
 import { Select, Form, Input, InputNumber, Radio, Modal, Cascader } from 'antd'
 //位置选择
 import addrOption from '../../utils/address_dict.js';
+//mask
+import MaskedInput from 'react-text-mask';
+console.log(MaskedInput);
+
 const FormItem = Form.Item
 const Option = Select.Option;
-
-console.log('woqu', addrOption);
 
 const formItemLayout = {
   labelCol: {
@@ -61,7 +63,13 @@ const modal = ({
                 message: 'mac未填写'
               }
             ]
-          })(<Input />)}
+          })(
+            <Input
+              mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+              id='1'
+              type='text'
+            />)
+        }
         </FormItem>
         <FormItem label='状态：' hasFeedback {...formItemLayout}>
           {getFieldDecorator('nickName', {
