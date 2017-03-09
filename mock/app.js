@@ -1,3 +1,4 @@
+const qs = require('qs')
 const Cookie = require('js-cookie')
 import mockStorge from '../src/utils/mockStorge'
 
@@ -14,7 +15,7 @@ let dataKey = mockStorge('AdminUsers', [
 
 module.exports = {
   'POST /api/login' (req, res) {
-    const userItem = req.body
+    const userItem = qs.parse(req.body)
     const response = {
       success: false,
       message: ''
