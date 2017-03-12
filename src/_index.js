@@ -1,4 +1,5 @@
 import './index.html'
+import 'babel-polyfill'
 import dva from 'dva'
 
 // 1. Initialize

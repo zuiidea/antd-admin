@@ -1,4 +1,5 @@
 import './index.html'
+import 'babel-polyfill'
 import dva from 'dva'
 import { browserHistory } from 'dva/router'
 
