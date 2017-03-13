@@ -46,7 +46,6 @@ export default {
     *queryUser ({
       payload
     }, {call, put}) {
-      yield put({type: 'showLoading'})
       const data = yield call(userInfo, parse(payload))
       if (data.success) {
         yield put({
@@ -58,8 +57,6 @@ export default {
           }
         })
       }
-
-      yield put({type: 'hideLoading'})
     },
     *logout ({
       payload
