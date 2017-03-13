@@ -10,8 +10,8 @@ import { Spin } from 'antd'
 import { classnames } from '../utils'
 import '../components/layout/common.less'
 
-function App ({children, location, dispatch, app}) {
-  const {login, loading, loginButtonLoading, user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys} = app
+function App ({children, location, dispatch, app, loading}) {
+  const {login, loginButtonLoading, user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys} = app
   const loginProps = {
     loading,
     loginButtonLoading,
@@ -84,4 +84,4 @@ App.propTypes = {
   app: PropTypes.object
 }
 
-export default connect(({app}) => ({app}))(App)
+export default connect(({app, loading}) => ({app, loading: loading.models.app}))(App)

@@ -5,7 +5,6 @@ export default {
   namespace: 'app',
   state: {
     login: false,
-    loading: false,
     user: {
       name: '吴彦祖'
     },
@@ -129,18 +128,6 @@ export default {
       return {
         ...state,
         loginButtonLoading: true
-      }
-    },
-    showLoading (state) {
-      return {
-        ...state,
-        loading: true
-      }
-    },
-    hideLoading (state) {
-      return {
-        ...state,
-        loading: false
       }
     },
     handleSwitchSider (state) {

@@ -29,12 +29,13 @@
 - [x] 扩展UI组件
  - [x] Ico
  - [x] Search
+ - [x] dropOption
 - [ ] 数据可视化页面
 - [ ] 模拟消息收发
 
 
 - [ ] 升级dva-cli
-- [ ] 加入dva-loading
+- [x] 加入dva-loading
 - [ ] 规范代码，目前代码遵循[standardjs](http://standardjs.com/demo.html)
 
 ## 开发及构建
