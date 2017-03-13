@@ -22,6 +22,10 @@ module.exports = [
       {
         key: 'search',
         name: 'Search 搜索'
+      },
+      {
+        key: 'dropOption',
+        name: 'DropOption 下拉操作'
       }
     ]
   },
