@@ -3,4 +3,4 @@ import Search from './search.js'
 import DropOption from './dropOption.js'
 import Layer from './layer.js'
 
-export { Ico, Search, DropOption, Layer }
+export { Ico, Search, DropOption, Layer, }

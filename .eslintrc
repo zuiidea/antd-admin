@@ -1,3 +1,18 @@
 {
-  "extends": "standard"
+  "extends": "airbnb",
+  "rules": {
+        "semi": ["error", "never"],
+        "no-console": "off",
+        "comma-dangle": ["error", "always"],
+        "max-len": ["error", 200]
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 8,
+    "ecmaFeatures": {
+        "jsx": true,
+        "experimentalObjectRestSpread": true
+    }
+  }
 }
