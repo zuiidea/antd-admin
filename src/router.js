@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { Router } from 'dva/router'
 import App from './routes/app'
 
@@ -10,7 +10,7 @@ const registerModel = (app, model) => {
   }
 }
 
-export default function ({ history, app }) {
+const Routers = function ({ history, app }) {
   const routes = [
     {
       path: '/',
@@ -87,3 +87,10 @@ export default function ({ history, app }) {
 
   return <Router history={history} routes={routes} />
 }
+
+Routers.propTypes = {
+  history: PropTypes.object,
+  app: PropTypes.object,
+}
+
+export default Routers
