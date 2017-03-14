@@ -65,6 +65,14 @@ export default function ({history, app}) {
             }, 'ui-dropOption')
           }
         }, {
+          path: 'ui/layer',
+          name: 'ui/layer',
+          getComponent (nextState, cb) {
+            require.ensure([], require => {
+              cb(null, require('./routes/ui/layer'))
+            }, 'ui-layer')
+          }
+        }, {
           path: '*',
           name: 'error',
           getComponent (nextState, cb) {

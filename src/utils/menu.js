@@ -26,6 +26,10 @@ module.exports = [
       {
         key: 'dropOption',
         name: 'DropOption 下拉操作'
+      },
+      {
+        key: 'layer',
+        name: 'Layer 弹层'
       }
     ]
   },
