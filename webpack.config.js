@@ -4,7 +4,7 @@ module.exports = function (webpackConfig, env) {
   webpackConfig.babel.plugins.push('transform-runtime')
   webpackConfig.babel.plugins.push(['import', {
     libraryName: 'antd',
-    style: true
+    style: true,
   }])
 
   // Support hmr
@@ -12,22 +12,22 @@ module.exports = function (webpackConfig, env) {
     webpackConfig.devtool = '#eval'
     webpackConfig.babel.plugins.push(['dva-hmr', {
       entries: [
-        './src/index.js'
-      ]
+        './src/index.js',
+      ],
     }])
   } else {
     webpackConfig.babel.plugins.push('dev-expression')
-    webpackConfig.entry = {index: './src/_index.js'}
+    webpackConfig.entry = { index: './src/_index.js' }
   }
 
   // Don't extract common.js and common.css
-  webpackConfig.plugins = webpackConfig.plugins.filter(function (plugin) {
+  webpackConfig.plugins = webpackConfig.plugins.filter((plugin) => {
     return !(plugin instanceof webpack.optimize.CommonsChunkPlugin)
   })
 
   // Support CSS Modules
   // Parse all less files as css module.
-  webpackConfig.module.loaders.forEach(function (loader, index) {
+  webpackConfig.module.loaders.forEach((loader) => {
     if (typeof loader.test === 'function' && loader.test.toString().indexOf('\\.less$') > -1) {
       loader.include = /node_modules/
       loader.test = /\.less$/

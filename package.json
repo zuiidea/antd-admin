@@ -44,7 +44,7 @@
   "scripts": {
     "start": "dora --plugins \"proxy,webpack?publicPath=/,webpack-hmr,browser-history?index=/src/index.html\"",
     "dev": "dora --plugins \"webpack?publicPath=/,webpack-hmr,browser-history?index=/src/index.html\"",
-    "lint": "eslint --fix --ext .js,.jsx src/components/layout",
+    "lint": "eslint --fix --ext .js src",
     "build": "atool-build"
   },
   "theme": "./src/theme.js",

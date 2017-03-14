@@ -16,8 +16,8 @@ export default {
       showQuickJumper: true,
       showTotal: total => `共 ${total} 条`,
       current: 1,
-      total: null
-    }
+      total: null,
+    },
   },
 
   subscriptions: {
@@ -26,11 +26,11 @@ export default {
         if (location.pathname === '/users') {
           dispatch({
             type: 'query',
-            payload: location.query
+            payload: location.query,
           })
         }
       })
-    }
+    },
   },
 
   effects: {
@@ -41,8 +41,8 @@ export default {
           type: 'querySuccess',
           payload: {
             list: data.data,
-            pagination: data.page
-          }
+            pagination: data.page,
+          },
         })
       }
     },
@@ -55,9 +55,9 @@ export default {
             list: data.data,
             pagination: {
               total: data.page.total,
-              current: data.page.current
-            }
-          }
+              current: data.page.current,
+            },
+          },
         })
       }
     },
@@ -71,9 +71,9 @@ export default {
             list: data.data,
             pagination: {
               total: data.page.total,
-              current: data.page.current
-            }
-          }
+              current: data.page.current,
+            },
+          },
         })
       }
     },
@@ -89,30 +89,30 @@ export default {
             list: data.data,
             pagination: {
               total: data.page.total,
-              current: data.page.current
-            }
-          }
+              current: data.page.current,
+            },
+          },
         })
       }
     },
     *switchIsMotion ({
-      payload
-    }, {put}) {
+      payload,
+    }, { put }) {
       yield put({
-        type: 'handleSwitchIsMotion'
+        type: 'handleSwitchIsMotion',
       })
-    }
+    },
   },
 
   reducers: {
     querySuccess (state, action) {
-      const {list, pagination} = action.payload
+      const { list, pagination } = action.payload
       return { ...state,
         list,
         pagination: {
           ...state.pagination,
-          ...pagination
-        }}
+          ...pagination,
+        } }
     },
     showModal (state, action) {
       return { ...state, ...action.payload, modalVisible: true }
@@ -123,7 +123,7 @@ export default {
     handleSwitchIsMotion (state) {
       localStorage.setItem('antdAdminUserIsMotion', !state.isMotion)
       return { ...state, isMotion: !state.isMotion }
-    }
-  }
+    },
+  },
 
 }

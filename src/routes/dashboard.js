@@ -1,6 +1,6 @@
-import React, {PropTypes} from 'react'
-import {connect} from 'dva'
-import {Row, Col, Card} from 'antd'
+import React, { PropTypes } from 'react'
+import { connect } from 'dva'
+import { Row, Col, Card } from 'antd'
 import NumberCard from '../components/dashboard/numberCard'
 import Quote from '../components/dashboard/quote'
 import Sales from '../components/dashboard/sales'
@@ -12,17 +12,17 @@ import Browser from '../components/dashboard/browser'
 import Cpu from '../components/dashboard/cpu'
 import User from '../components/dashboard/user'
 import styles from './dashboard.less'
-import {color} from '../utils'
+import { color } from '../utils'
 
 const bodyStyle = {
   bodyStyle: {
     height: 432,
-    background: '#fff'
-  }
+    background: '#fff',
+  },
 }
 
-function Dashboard ({dashboard}) {
-  const {weather, sales, quote, numbers, recentSales, comments, completed, browser, cpu, user} = dashboard
+function Dashboard ({ dashboard }) {
+  const { weather, sales, quote, numbers, recentSales, comments, completed, browser, cpu, user } = dashboard
   const numberCards = numbers.map((item, key) => <Col key={key} lg={6} md={12}>
     <NumberCard {...item} />
   </Col>)
@@ -32,7 +32,7 @@ function Dashboard ({dashboard}) {
       {numberCards}
       <Col lg={18} md={24}>
         <Card bordered={false} bodyStyle={{
-          padding: '24px 36px 24px 0'
+          padding: '24px 36px 24px 0',
         }}>
           <Sales data={sales} />
         </Card>
@@ -43,7 +43,7 @@ function Dashboard ({dashboard}) {
             <Card bordered={false} className={styles.weather} bodyStyle={{
               padding: 0,
               height: 204,
-              background: color.blue
+              background: color.blue,
             }}>
               <Weather {...weather} />
             </Card>
@@ -52,7 +52,7 @@ function Dashboard ({dashboard}) {
             <Card bordered={false} className={styles.quote} bodyStyle={{
               padding: 0,
               height: 204,
-              background: color.peach
+              background: color.peach,
             }}>
               <Quote {...quote} />
             </Card>
@@ -71,7 +71,7 @@ function Dashboard ({dashboard}) {
       </Col>
       <Col lg={24} md={24}>
         <Card bordered={false} bodyStyle={{
-          padding: '24px 36px 24px 0'
+          padding: '24px 36px 24px 0',
         }}>
           <Completed data={completed} />
         </Card>
@@ -87,7 +87,7 @@ function Dashboard ({dashboard}) {
         </Card>
       </Col>
       <Col lg={8} md={24}>
-        <Card bordered={false} bodyStyle={{...bodyStyle.bodyStyle, padding: 0}}>
+        <Card bordered={false} bodyStyle={{ ...bodyStyle.bodyStyle, padding: 0 }}>
           <User {...user} />
         </Card>
       </Col>
@@ -96,7 +96,7 @@ function Dashboard ({dashboard}) {
 }
 
 Dashboard.propTypes = {
-  dashboard: PropTypes.object
+  dashboard: PropTypes.object,
 }
 
-export default connect(({dashboard}) => ({dashboard}))(Dashboard)
+export default connect(({ dashboard }) => ({ dashboard }))(Dashboard)

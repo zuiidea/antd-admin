@@ -6,7 +6,7 @@ const enterAnim = [
     opacity: 0,
     x: 30,
     backgroundColor: '#fffeee',
-    duration: 0
+    duration: 0,
   }, {
     height: 0,
     duration: 200,
@@ -15,28 +15,28 @@ const enterAnim = [
     ease: 'easeOutQuad',
     onComplete: (e) => {
       e.target.style.height = 'auto'
-    }
+    },
   }, {
     opacity: 1,
     x: 0,
     duration: 250,
-    ease: 'easeOutQuad'
+    ease: 'easeOutQuad',
   }, {
     delay: 1000,
-    backgroundColor: '#fff'
-  }
+    backgroundColor: '#fff',
+  },
 ]
 
 const leaveAnim = [
   {
     duration: 250,
     x: -30,
-    opacity: 0
+    opacity: 0,
   }, {
     height: 0,
     duration: 200,
-    ease: 'easeOutQuad'
-  }
+    ease: 'easeOutQuad',
+  },
 ]
 
 const TableBodyWrapper = ({ body, page = 1, current }) => {
@@ -47,11 +47,12 @@ const TableBodyWrapper = ({ body, page = 1, current }) => {
 
   return (
     <TweenOneGroup
-      component='tbody'
+      component="tbody"
       className={body.props.className}
       enter={enterAnim}
       leave={leaveAnim}
-      appear={false}>
+      appear={false}
+    >
       {body.props.children}
     </TweenOneGroup>
   )
@@ -60,7 +61,7 @@ const TableBodyWrapper = ({ body, page = 1, current }) => {
 TableBodyWrapper.propTypes = {
   body: PropTypes.element,
   page: PropTypes.any,
-  current: PropTypes.number.isRequired
+  current: PropTypes.number.isRequired,
 }
 
 export default TableBodyWrapper

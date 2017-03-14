@@ -1,51 +1,51 @@
-import {myCity, queryWeather, query} from '../services/dashboard'
-import {parse} from 'qs'
+import { myCity, queryWeather, query } from '../services/dashboard'
+import { parse } from 'qs'
 
 // zuimei 摘自 http://www.zuimeitianqi.com/res/js/index.js
 let zuimei = {
-  ParseActualData: function (actual, air) {
+  parseActualData (actual) {
     let weather = {
-      icon: 'http://www.zuimeitianqi.com/res/icon/' + zuimei.GetIconName(actual.wea, 'big'),
-      name: zuimei.GetWeatherName(actual.wea),
+      icon: `http://www.zuimeitianqi.com/res/icon/${zuimei.getIconName(actual.wea, 'big')}`,
+      name: zuimei.getWeatherName(actual.wea),
       temperature: actual.tmp,
-      dateTime: new Date(actual.PTm).format('MM-dd hh:mm')
+      dateTime: new Date(actual.PTm).format('MM-dd hh:mm'),
     }
     return weather
   },
 
-  GetIconName: function (wea, flg) {
+  getIconName (wea, flg) {
     let myDate = new Date()
     let hour = myDate.getHours()
     let num = 0
     if (wea.indexOf('/') !== -1) {
       let weas = wea.split('/')
       if (hour < 12) {
-        num = zuimei.ReplaceIcon(weas[0])
+        num = zuimei.replaceIcon(weas[0])
         if (num < 6) {
-          num = num + '_' + flg + '_night.png'
+          num = `${num}_${flg}_night.png`
         } else {
-          num = num + '_' + flg + '.png'
+          num = `${num}_${flg}.png`
         }
       } else if (hour >= 12) {
-        num = zuimei.ReplaceIcon(weas[1])
+        num = zuimei.replaceIcon(weas[1])
         if (hour >= 18) {
-          num = num + '_' + flg + '_night.png'
+          num = `${num}_${flg}_night.png`
         } else {
-          num = num + '_' + flg + '.png'
+          num = `${num}_${flg}.png`
         }
       }
     } else {
       if ((hour >= 18 && hour <= 23) || (hour >= 0 && hour <= 6)) {
-        num = num + '_' + flg + '_night.png'
+        num = `${num}_${flg}_night.png`
       } else {
-        num = num + '_' + flg + '.png'
+        num = `${num}_${flg}.png`
       }
     }
 
     return num
   },
 
-  ReplaceIcon: function (num) {
+  replaceIcon (num) {
     if (num === 21) {
       num = 7
     } else if (num === 22) {
@@ -67,19 +67,19 @@ let zuimei = {
     return num
   },
 
-  GetWeatherName: function (wea) {
+  getWeatherName (wea) {
     let name = ''
     if (wea.indexOf('/') !== -1) {
       let weas = wea.split('/')
-      name = zuimei.GetWeatherByCode(weas[0]) + '转' + zuimei.GetWeatherByCode(weas[1])
+      name = `${zuimei.getWeatherByCode(weas[0])}转${zuimei.getWeatherByCode(weas[1])}`
     } else {
-      name = zuimei.GetWeatherByCode(wea)
+      name = zuimei.getWeatherByCode(wea)
     }
 
     return name
   },
 
-  GetWeatherByCode: function (num) {
+  getWeatherByCode (num) {
     let wea = ''
     if (num === 0) {
       wea = '晴'
@@ -160,7 +160,7 @@ let zuimei = {
     }
 
     return wea
-  }
+  },
 }
 
 export default {
@@ -171,11 +171,11 @@ export default {
       temperature: '5',
       name: '晴',
       icon: 'http://www.zuimeitianqi.com/res/icon/0_big.png',
-      dateTime: new Date().format('MM-dd hh:mm')
+      dateTime: new Date().format('MM-dd hh:mm'),
     },
     sales: [],
     quote: {
-      avatar: 'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236'
+      avatar: 'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236',
     },
     numbers: [],
     recentSales: [],
@@ -184,49 +184,49 @@ export default {
     browser: [],
     cpu: {},
     user: {
-      avatar: 'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236'
-    }
+      avatar: 'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236',
+    },
   },
   subscriptions: {
-    setup ({dispatch}) {
-      dispatch({type: 'queryWeather'})
-      dispatch({type: 'query'})
-    }
+    setup ({ dispatch }) {
+      dispatch({ type: 'queryWeather' })
+      dispatch({ type: 'query' })
+    },
   },
   effects: {
     *query ({
-      payload
-    }, {call, put}) {
+      payload,
+    }, { call, put }) {
       const data = yield call(query, parse(payload))
-      yield put({type: 'queryWeather', payload: {...data}})
+      yield put({ type: 'queryWeather', payload: { ...data } })
     },
     *queryWeather ({
-      payload
-    }, {call, put}) {
-      const myCityResult = yield call(myCity, {flg: 0})
+      payload,
+    }, { call, put }) {
+      const myCityResult = yield call(myCity, { flg: 0 })
       const myCityData = myCityResult.query.results.json
-      const result = yield call(queryWeather, {cityCode: myCityData.selectCityCode})
+      const result = yield call(queryWeather, { cityCode: myCityData.selectCityCode })
       const data = result.query.results.json
-      const weather = zuimei.ParseActualData(data.data.actual)
+      const weather = zuimei.parseActualData(data.data.actual)
       weather.city = myCityData.selectCityName
 
-      yield put({type: 'queryWeatherSuccess', payload: {
-        weather
-      }})
-    }
+      yield put({ type: 'queryWeatherSuccess', payload: {
+        weather,
+      } })
+    },
   },
   reducers: {
     queryWeatherSuccess (state, action) {
       return {
         ...state,
-        ...action.payload
+        ...action.payload,
       }
     },
     queryWeather (state, action) {
       return {
         ...state,
-        ...action.payload
+        ...action.payload,
       }
-    }
-  }
+    },
+  },
 }

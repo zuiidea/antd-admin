@@ -12,7 +12,7 @@ function Quote ({ name, content, title, avatar }) {
           <p>-{name}-</p>
           <p>{title}</p>
         </div>
-        <div className={styles.avatar} style={{backgroundImage: `url(${avatar})`}} />
+        <div className={styles.avatar} style={{ backgroundImage: `url(${avatar})` }} />
       </div>
     </div>
   )
@@ -22,7 +22,7 @@ Quote.propTypes = {
   name: PropTypes.string,
   content: PropTypes.string,
   title: PropTypes.string,
-  avatar: PropTypes.string
+  avatar: PropTypes.string,
 }
 
 export default Quote

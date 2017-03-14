@@ -6,16 +6,16 @@ import { color } from '../../utils'
 const status = {
   1: {
     color: color.green,
-    text: 'APPROVED'
+    text: 'APPROVED',
   },
   2: {
     color: color.yellow,
-    text: 'PENDING'
+    text: 'PENDING',
   },
   3: {
     color: color.red,
-    text: 'REJECTED'
-  }
+    text: 'REJECTED',
+  },
 }
 
 function Comments ({ data }) {
@@ -25,7 +25,7 @@ function Comments ({ data }) {
       dataIndex: 'avatar',
       width: 48,
       className: styles.avatarcolumn,
-      render: text => <span style={{backgroundImage: `url(${text})`}} className={styles.avatar} />
+      render: text => <span style={{ backgroundImage: `url(${text})` }} className={styles.avatar} />,
     }, {
       title: 'content',
       dataIndex: 'content',
@@ -36,8 +36,8 @@ function Comments ({ data }) {
           <Tag color={status[it.status].color}>{status[it.status].text}</Tag>
           <span className={styles.date}>{it.date}</span>
         </div>
-      </div>
-    }
+      </div>,
+    },
   ]
   return (
     <div className={styles.comments}>
@@ -47,7 +47,7 @@ function Comments ({ data }) {
 }
 
 Comments.propTypes = {
-  data: PropTypes.array
+  data: PropTypes.array,
 }
 
 export default Comments

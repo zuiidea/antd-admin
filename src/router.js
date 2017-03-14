@@ -1,5 +1,5 @@
 import React from 'react'
-import {Router} from 'dva/router'
+import { Router } from 'dva/router'
 import App from './routes/app'
 
 const cached = {}
@@ -10,7 +10,7 @@ const registerModel = (app, model) => {
   }
 }
 
-export default function ({history, app}) {
+export default function ({ history, app }) {
   const routes = [
     {
       path: '/',
@@ -18,7 +18,7 @@ export default function ({history, app}) {
       getIndexRoute (nextState, cb) {
         require.ensure([], require => {
           registerModel(app, require('./models/dashboard'))
-          cb(null, {component: require('./routes/dashboard')})
+          cb(null, { component: require('./routes/dashboard') })
         }, 'dashboard')
       },
       childRoutes: [
@@ -30,7 +30,7 @@ export default function ({history, app}) {
               registerModel(app, require('./models/dashboard'))
               cb(null, require('./routes/dashboard'))
             }, 'dashboard')
-          }
+          },
         }, {
           path: 'users',
           name: 'users',
@@ -39,7 +39,7 @@ export default function ({history, app}) {
               registerModel(app, require('./models/users'))
               cb(null, require('./routes/users'))
             }, 'users')
-          }
+          },
         }, {
           path: 'ui/ico',
           name: 'ui/ico',
@@ -47,7 +47,7 @@ export default function ({history, app}) {
             require.ensure([], require => {
               cb(null, require('./routes/ui/ico'))
             }, 'ui-ico')
-          }
+          },
         }, {
           path: 'ui/search',
           name: 'ui/search',
@@ -55,7 +55,7 @@ export default function ({history, app}) {
             require.ensure([], require => {
               cb(null, require('./routes/ui/search'))
             }, 'ui-search')
-          }
+          },
         }, {
           path: 'ui/dropOption',
           name: 'ui/dropOption',
@@ -63,7 +63,7 @@ export default function ({history, app}) {
             require.ensure([], require => {
               cb(null, require('./routes/ui/dropOption'))
             }, 'ui-dropOption')
-          }
+          },
         }, {
           path: 'ui/layer',
           name: 'ui/layer',
@@ -71,7 +71,7 @@ export default function ({history, app}) {
             require.ensure([], require => {
               cb(null, require('./routes/ui/layer'))
             }, 'ui-layer')
-          }
+          },
         }, {
           path: '*',
           name: 'error',
@@ -79,10 +79,10 @@ export default function ({history, app}) {
             require.ensure([], require => {
               cb(null, require('./routes/error'))
             }, 'error')
-          }
-        }
-      ]
-    }
+          },
+        },
+      ],
+    },
   ]
 
   return <Router history={history} routes={routes} />

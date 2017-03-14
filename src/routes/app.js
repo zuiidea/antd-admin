@@ -10,14 +10,14 @@ import { Spin } from 'antd'
 import { classnames } from '../utils'
 import '../components/layout/common.less'
 
-function App ({children, location, dispatch, app, loading}) {
-  const {login, loginButtonLoading, user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys} = app
+function App ({ children, location, dispatch, app, loading }) {
+  const { login, loginButtonLoading, user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys } = app
   const loginProps = {
     loading,
     loginButtonLoading,
     onOk (data) {
-      dispatch({type: 'app/login', payload: data})
-    }
+      dispatch({ type: 'app/login', payload: data })
+    },
   }
 
   const headerProps = {
@@ -28,18 +28,18 @@ function App ({children, location, dispatch, app, loading}) {
     menuPopoverVisible,
     navOpenKeys,
     switchMenuPopover () {
-      dispatch({type: 'app/switchMenuPopver'})
+      dispatch({ type: 'app/switchMenuPopver' })
     },
     logout () {
-      dispatch({type: 'app/logout'})
+      dispatch({ type: 'app/logout' })
     },
     switchSider () {
-      dispatch({type: 'app/switchSider'})
+      dispatch({ type: 'app/switchSider' })
     },
     changeOpenKeys (openKeys) {
       localStorage.setItem('navOpenKeys', JSON.stringify(openKeys))
       dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
-    }
+    },
   }
 
   const siderProps = {
@@ -48,18 +48,18 @@ function App ({children, location, dispatch, app, loading}) {
     location,
     navOpenKeys,
     changeTheme () {
-      dispatch({type: 'app/changeTheme'})
+      dispatch({ type: 'app/changeTheme' })
     },
     changeOpenKeys (openKeys) {
       localStorage.setItem('navOpenKeys', JSON.stringify(openKeys))
       dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
-    }
+    },
   }
 
   return (
     <div>{login
-        ? <div className={classnames(styles.layout, {[styles.fold]: isNavbar ? false : siderFold}, {[styles.withnavbar]: isNavbar})}>
-          {!isNavbar ? <aside className={classnames(styles.sider, {[styles.light]: !darkTheme})}>
+        ? <div className={classnames(styles.layout, { [styles.fold]: isNavbar ? false : siderFold }, { [styles.withnavbar]: isNavbar })}>
+          {!isNavbar ? <aside className={classnames(styles.sider, { [styles.light]: !darkTheme })}>
             <Sider {...siderProps} />
           </aside> : ''}
           <div className={styles.main}>
@@ -73,7 +73,7 @@ function App ({children, location, dispatch, app, loading}) {
             <Footer />
           </div>
         </div>
-        : <div className={styles.spin}><Spin tip='加载用户信息...' spinning={loading} size='large'><Login {...loginProps} /></Spin></div>}</div>
+        : <div className={styles.spin}><Spin tip="加载用户信息..." spinning={loading} size="large"><Login {...loginProps} /></Spin></div>}</div>
   )
 }
 
@@ -81,7 +81,8 @@ App.propTypes = {
   children: PropTypes.element.isRequired,
   location: PropTypes.object,
   dispatch: PropTypes.func,
-  app: PropTypes.object
+  app: PropTypes.object,
+  loading: PropTypes.bool,
 }
 
-export default connect(({app, loading}) => ({app, loading: loading.models.app}))(App)
+export default connect(({ app, loading }) => ({ app, loading: loading.models.app }))(App)

@@ -10,24 +10,30 @@ const getMenus = function (menuArray, siderFold, parentPath) {
     if (item.child) {
       return (
         <Menu.SubMenu key={item.key} title={<span>{item.icon ? <Icon type={item.icon} /> : ''}{siderFold && topMenus.indexOf(item.key) >= 0 ? '' : item.name}</span>}>
-          {getMenus(item.child, siderFold, parentPath + item.key + '/')}
+          {getMenus(item.child, siderFold, `${parentPath}${item.key}/`)}
         </Menu.SubMenu>
       )
-    } else {
-      return (
-        <Menu.Item key={item.key}>
-          <Link to={parentPath + item.key}>
-            {item.icon ? <Icon type={item.icon} /> : ''}
-            {siderFold && topMenus.indexOf(item.key) >= 0 ? '' : item.name}
-          </Link>
-        </Menu.Item>
-      )
     }
+    return (
+      <Menu.Item key={item.key}>
+        <Link to={parentPath + item.key}>
+          {item.icon ? <Icon type={item.icon} /> : ''}
+          {siderFold && topMenus.indexOf(item.key) >= 0 ? '' : item.name}
+        </Link>
+      </Menu.Item>
+    )
   })
 }
 
-function Menus ({ siderFold, darkTheme, location, isNavbar, handleClickNavMenu, navOpenKeys, changeOpenKeys }) {
+function Menus ({ siderFold, darkTheme, location, handleClickNavMenu, navOpenKeys, changeOpenKeys }) {
   const menuItems = getMenus(menu, siderFold)
+
+  const getAncestorKeys = (key) => {
+    const map = {
+      navigation2: ['navigation'],
+    }
+    return map[key] || []
+  }
 
   const onOpenChange = (openKeys) => {
     const latestOpenKey = openKeys.find(key => !(navOpenKeys.indexOf(key) > -1))
@@ -41,16 +47,10 @@ function Menus ({ siderFold, darkTheme, location, isNavbar, handleClickNavMenu, 
     }
     changeOpenKeys(nextOpenKeys)
   }
-  const getAncestorKeys = (key) => {
-    const map = {
-      navigation2: ['navigation']
-    }
-    return map[key] || []
-  }
   // 菜单栏收起时，不能操作openKeys
   let menuProps = !siderFold ? {
     onOpenChange,
-    openKeys: navOpenKeys
+    openKeys: navOpenKeys,
   } : {}
 
   return (
@@ -59,7 +59,8 @@ function Menus ({ siderFold, darkTheme, location, isNavbar, handleClickNavMenu, 
       mode={siderFold ? 'vertical' : 'inline'}
       theme={darkTheme ? 'dark' : 'light'}
       onClick={handleClickNavMenu}
-      defaultSelectedKeys={[location.pathname.split('/')[location.pathname.split('/').length - 1] || 'dashboard']}>
+      defaultSelectedKeys={[location.pathname.split('/')[location.pathname.split('/').length - 1] || 'dashboard']}
+    >
       {menuItems}
     </Menu>
   )
@@ -72,7 +73,7 @@ Menus.propTypes = {
   isNavbar: PropTypes.bool,
   handleClickNavMenu: PropTypes.func,
   navOpenKeys: PropTypes.array,
-  changeOpenKeys: PropTypes.func
+  changeOpenKeys: PropTypes.func,
 }
 
 export default Menus

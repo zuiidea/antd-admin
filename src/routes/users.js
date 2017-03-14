@@ -16,37 +16,37 @@ function Users ({ location, dispatch, users, loading }) {
     onOk (data) {
       dispatch({
         type: `users/${modalType}`,
-        payload: data
+        payload: data,
       })
     },
     onCancel () {
       dispatch({
-        type: 'users/hideModal'
+        type: 'users/hideModal',
       })
-    }
+    },
   }
 
   const userListProps = {
     dataSource: list,
     loading,
-    pagination: pagination,
+    pagination,
     location,
     isMotion,
     onPageChange (page) {
       const { query, pathname } = location
       dispatch(routerRedux.push({
-        pathname: pathname,
+        pathname,
         query: {
           ...query,
           page: page.current,
-          pageSize: page.pageSize
-        }
+          pageSize: page.pageSize,
+        },
       }))
     },
     onDeleteItem (id) {
       dispatch({
         type: 'users/delete',
-        payload: id
+        payload: id,
       })
     },
     onEditItem (item) {
@@ -54,10 +54,10 @@ function Users ({ location, dispatch, users, loading }) {
         type: 'users/showModal',
         payload: {
           modalType: 'update',
-          currentItem: item
-        }
+          currentItem: item,
+        },
       })
-    }
+    },
   }
 
   const userSearchProps = {
@@ -69,30 +69,30 @@ function Users ({ location, dispatch, users, loading }) {
         pathname: '/users',
         query: {
           field: fieldsValue.field,
-          keyword: fieldsValue.keyword
-        }
+          keyword: fieldsValue.keyword,
+        },
       })) : dispatch(routerRedux.push({
-        pathname: '/users'
+        pathname: '/users',
       }))
     },
     onAdd () {
       dispatch({
         type: 'users/showModal',
         payload: {
-          modalType: 'create'
-        }
+          modalType: 'create',
+        },
       })
     },
     switchIsMotion () {
-      dispatch({type: 'users/switchIsMotion'})
-    }
+      dispatch({ type: 'users/switchIsMotion' })
+    },
   }
 
   const UserModalGen = () =>
     <UserModal {...userModalProps} />
 
   return (
-    <div className='content-inner'>
+    <div className="content-inner">
       <UserSearch {...userSearchProps} />
       <UserList {...userListProps} />
       <UserModalGen />
@@ -103,7 +103,8 @@ function Users ({ location, dispatch, users, loading }) {
 Users.propTypes = {
   users: PropTypes.object,
   location: PropTypes.object,
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
+  loading: PropTypes.bool,
 }
 
-export default connect(({users, loading}) => ({users, loading: loading.models.user}))(Users)
+export default connect(({ users, loading }) => ({ users, loading: loading.models.user }))(Users)
