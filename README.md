@@ -31,13 +31,12 @@
  - [x] Ico
  - [x] Search
  - [x] dropOption
+ - [x] 基于Modal封装的layer
+- [x] 加入dva-loading
+- [x] 规范代码，EsLint
 - [ ] 数据可视化页面
 - [ ] 模拟消息收发
-
-
 - [ ] 升级dva-cli
-- [x] 加入dva-loading
-- [ ] 规范代码，目前代码遵循[standardjs](http://standardjs.com/demo.html)
 
 ## 开发及构建
 
@@ -89,6 +88,12 @@ npm run dev    # 使用mock拦截请求，数据存储在localStroge里
 npm run build
 
 将会生成dist目录
+```
+
+代码检测：
+
+```bash
+npm run lint
 ```
 
 ### 注意事项
