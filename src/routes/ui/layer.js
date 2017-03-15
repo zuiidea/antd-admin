@@ -62,6 +62,12 @@ const IcoPage = () => {
           ]}
           dataSource={[
             {
+              props: 'content',
+              desciption: '内容',
+              type: 'string|ReactNode',
+              default: '无',
+            },
+            {
               props: 'title',
               desciption: '标题',
               type: 'string|ReactNode',
