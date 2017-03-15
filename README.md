@@ -64,7 +64,10 @@
 
 克隆项目文件:
 
-    git clone git@github.com:zuiidea/antd-admin.git
+
+```
+git clone https://github.com/zuiidea/antd-admin.git
+```
 
 进入目录安装依赖:
 
