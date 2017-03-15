@@ -1,4 +1,4 @@
-import './index.html'
+import './_index.html'
 import 'babel-polyfill'
 import createLoading from 'dva-loading'
 import dva from 'dva'
