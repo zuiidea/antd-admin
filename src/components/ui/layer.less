@@ -1,0 +1,14 @@
+.verticalCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  :global .ant-modal {
+    top: 0;
+    padding-bottom: 0;
+
+    .ant-modal-body {
+      overflow-y: auto;
+    }
+  }
+}

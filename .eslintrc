@@ -17,7 +17,8 @@
     "no-extend-native": 0,
     "no-param-reassign": 0,
     "no-restricted-syntax": 0,
-    "no-eval": 0
+    "no-eval": 0,
+    "react/jsx-no-bind": 0
   },
   "parser": "babel-eslint",
   "parserOptions": {
