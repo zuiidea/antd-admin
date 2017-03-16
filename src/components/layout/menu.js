@@ -4,19 +4,19 @@ import { Link } from 'dva/router'
 import { menu } from '../../utils'
 
 const topMenus = menu.map(item => item.key)
-const getMenus = function (menuArray, siderFold, parentPath) {
-  parentPath = parentPath || '/'
+const getMenus = function (menuArray, siderFold, parentPath = '/') {
   return menuArray.map(item => {
+    const linkTo = parentPath +item.key
     if (item.child) {
       return (
-        <Menu.SubMenu key={item.key} title={<span>{item.icon ? <Icon type={item.icon} /> : ''}{siderFold && topMenus.indexOf(item.key) >= 0 ? '' : item.name}</span>}>
-          {getMenus(item.child, siderFold, `${parentPath}${item.key}/`)}
+        <Menu.SubMenu key={linkTo} title={<span>{item.icon ? <Icon type={item.icon} /> : ''}{siderFold && topMenus.indexOf(item.key) >= 0 ? '' : item.name}</span>}>
+          {getMenus(item.child, siderFold, `${linkTo}/`)}
         </Menu.SubMenu>
       )
     }
     return (
-      <Menu.Item key={item.key}>
-        <Link to={parentPath + item.key}>
+      <Menu.Item key={linkTo}>
+        <Link to={linkTo}>
           {item.icon ? <Icon type={item.icon} /> : ''}
           {siderFold && topMenus.indexOf(item.key) >= 0 ? '' : item.name}
         </Link>
@@ -30,7 +30,7 @@ function Menus ({ siderFold, darkTheme, location, handleClickNavMenu, navOpenKey
 
   const getAncestorKeys = (key) => {
     const map = {
-      navigation2: ['navigation'],
+      '/navigation/navigation2': ['/navigation'],
     }
     return map[key] || []
   }
@@ -59,7 +59,7 @@ function Menus ({ siderFold, darkTheme, location, handleClickNavMenu, navOpenKey
       mode={siderFold ? 'vertical' : 'inline'}
       theme={darkTheme ? 'dark' : 'light'}
       onClick={handleClickNavMenu}
-      defaultSelectedKeys={[location.pathname.split('/')[location.pathname.split('/').length - 1] || 'dashboard']}
+      defaultSelectedKeys={[location.pathname !== "/" ? location.pathname : '/dashboard']}
     >
       {menuItems}
     </Menu>
