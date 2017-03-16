@@ -154,6 +154,19 @@
             background-color: rgba(0, 0, 0, 0.2);
           }
         }
+
+        &.ant-menu-vertical {
+          .ant-menu-sub {
+            opacity: 0;
+            transition: none;
+          }
+
+          .ant-menu-submenu-active {
+            .ant-menu-sub {
+              opacity: 1;
+            }
+          }
+        }
       }
 
       .ant-menu {
