@@ -4,12 +4,12 @@ import mockStorge from '../src/utils/mockStorge'
 let dataKey = mockStorge('AdminUsers', [
   {
     username: 'guest',
-    password: 'guest'
+    password: 'guest',
   },
   {
     username: '吴彦祖',
-    password: '123456'
-  }
+    password: '123456',
+  },
 ])
 
 module.exports = {
@@ -17,9 +17,9 @@ module.exports = {
     const userItem = req.body
     const response = {
       success: false,
-      message: ''
+      message: '',
     }
-    const d = global[dataKey].filter(function (item) {
+    const d = global[dataKey].filter((item) => {
       return item.username === userItem.username
     })
     if (d.length) {
@@ -43,7 +43,7 @@ module.exports = {
     const response = {
       success: Cookie.get('user_session') && Cookie.get('user_session') > new Date().getTime(),
       username: Cookie.get('user_name') || '',
-      message: ''
+      message: '',
     }
     res.json(response)
   },
@@ -53,7 +53,7 @@ module.exports = {
     Cookie.remove('user_name', { path: '/' })
     res.json({
       success: true,
-      message: '退出成功'
+      message: '退出成功',
     })
-  }
+  },
 }

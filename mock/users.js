@@ -14,15 +14,15 @@ let dataKey = mockStorge('UsersList', Mock.mock({
       isMale: '@boolean',
       email: '@email',
       createTime: '@datetime',
-      avatar: function () {
+      avatar () {
         return Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', this.nickName.substr(0, 1))
-      }
-    }
+      },
+    },
   ],
   page: {
     total: 100,
-    current: 1
-  }
+    current: 1,
+  },
 }))
 
 let usersListData = global[dataKey]
@@ -40,7 +40,7 @@ module.exports = {
     let newData = usersListData.data.concat()
 
     if (page.field) {
-      const d = newData.filter(function (item) {
+      const d = newData.filter((item) => {
         return item[page.field].indexOf(decodeURI(page.keyword)) > -1
       })
 
@@ -48,14 +48,14 @@ module.exports = {
 
       newPage = {
         current: currentPage * 1,
-        total: d.length
+        total: d.length,
       }
     } else {
       data = usersListData.data.slice((currentPage - 1) * pageSize, currentPage * pageSize)
       usersListData.page.current = currentPage * 1
       newPage = usersListData.page
     }
-    res.json({success: true, data, page: {...newPage, pageSize: Number(pageSize)}})
+    res.json({ success: true, data, page: { ...newPage, pageSize: Number(pageSize) } })
   },
 
   'POST /api/users' (req, res) {
@@ -71,13 +71,13 @@ module.exports = {
 
     global[dataKey] = usersListData
 
-    res.json({success: true, data: usersListData.data, page: usersListData.page})
+    res.json({ success: true, data: usersListData.data, page: usersListData.page })
   },
 
   'DELETE /api/users' (req, res) {
     const deleteItem = req.body
 
-    usersListData.data = usersListData.data.filter(function (item) {
+    usersListData.data = usersListData.data.filter((item) => {
       if (item.id === deleteItem.id) {
         return false
       }
@@ -88,7 +88,7 @@ module.exports = {
 
     global[dataKey] = usersListData
 
-    res.json({success: true, data: usersListData.data, page: usersListData.page})
+    res.json({ success: true, data: usersListData.data, page: usersListData.page })
   },
 
   'PUT /api/users' (req, res) {
@@ -97,7 +97,7 @@ module.exports = {
     editItem.createTime = Mock.mock('@now')
     editItem.avatar = Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', editItem.nickName.substr(0, 1))
 
-    usersListData.data = usersListData.data.map(function (item) {
+    usersListData.data = usersListData.data.map((item) => {
       if (item.id === editItem.id) {
         return editItem
       }
@@ -105,7 +105,7 @@ module.exports = {
     })
 
     global[dataKey] = usersListData
-    res.json({success: true, data: usersListData.data, page: usersListData.page})
-  }
+    res.json({ success: true, data: usersListData.data, page: usersListData.page })
+  },
 
 }
