@@ -18,7 +18,8 @@
     "no-param-reassign": 0,
     "no-restricted-syntax": 0,
     "no-eval": 0,
-    "react/jsx-no-bind": 0
+    "react/jsx-no-bind": 0,
+    "no-unused-vars": [2, { "ignoreRestSiblings": true }],
   },
   "parser": "babel-eslint",
   "parserOptions": {

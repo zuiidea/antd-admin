@@ -1,0 +1,6 @@
+{
+  "name": "table",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./DataTable.js"
+}

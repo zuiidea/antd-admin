@@ -73,6 +73,14 @@ const Routers = function ({ history, app }) {
             }, 'ui-layer')
           },
         }, {
+          path: 'ui/dataTable',
+          name: 'ui/dataTable',
+          getComponent (nextState, cb) {
+            require.ensure([], require => {
+              cb(null, require('./routes/ui/dataTable'))
+            }, 'ui-dataTable')
+          },
+        }, {
           path: '*',
           name: 'error',
           getComponent (nextState, cb) {

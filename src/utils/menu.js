@@ -31,6 +31,10 @@ module.exports = [
         key: 'layer',
         name: 'Layer 弹层',
       },
+      {
+        key: 'DataTable',
+        name: 'DataTable 数据表格',
+      },
     ],
   },
   {

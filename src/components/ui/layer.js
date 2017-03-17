@@ -35,7 +35,6 @@ layer.close = (index) => new Promise((resolve, reject) => {
   }
 })
 
-
 layer.closeAll = () => {
   const { prefixCls } = layer
   const references = document.querySelectorAll(`.${prefixCls}-reference`)
