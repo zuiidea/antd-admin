@@ -7,11 +7,12 @@ export default function request (url, options) {
       format: 'json',
     })
   }
+  const { method = 'get' } = options
   return Ajax.ajax({
     url,
-    method: options.method || 'get',
+    method,
     data: options.data || {},
-    processData: options.method === 'get',
+    processData: method === 'get',
     dataType: 'JSON',
   }).done((data) => {
     return data

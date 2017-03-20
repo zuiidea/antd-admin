@@ -51,7 +51,7 @@ class DataTable extends React.Component {
   }
 
   fetch = () => {
-    const { fetch: { url, data, dataKey } } = this.props
+    const { fetch: { url, data, dataKey, ...otherFetch } } = this.props
     const { fetchData } = this.state
     this.setState({ loading: true })
     request(url, {
@@ -60,6 +60,7 @@ class DataTable extends React.Component {
         ...data,
         ...fetchData,
       },
+      ...otherFetch,
     }).then((result) => {
       const { pagination } = this.state
       pagination.total = result.total || pagination.total
