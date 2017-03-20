@@ -7,18 +7,19 @@ import './DataTable.less'
 class DataTable extends React.Component {
   constructor (props) {
     super(props)
-    const { dataSource, pagination = false } = props
+    const { dataSource, pagination = {
+      showSizeChanger: true,
+      showQuickJumper: true,
+      showTotal: total => `共 ${total} 条`,
+      current: 1,
+      total: 100 },
+    } = props
     this.state = {
       loading: false,
       dataSource,
       fetchData: {},
-      pagination: pagination === true ? {
-        showSizeChanger: true,
-        showQuickJumper: true,
-        showTotal: total => `共 ${total} 条`,
-        current: 1,
-        total: 100,
-      } : pagination }
+      pagination,
+    }
   }
 
   componentDidMount () {
@@ -28,10 +29,19 @@ class DataTable extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (!lodash.isEqual(nextProps.fetch, this.props.fetch)) {
+    const staticNextProps = lodash.cloneDeep(nextProps)
+    delete staticNextProps.columns
+    const { columns, ...otherProps } = this.props
+
+    if (!lodash.isEqual(staticNextProps, otherProps)) {
       this.props = nextProps
       this.fetch()
     }
+
+    // if (!lodash.isEqual(nextProps.fetch, this.props.fetch)) {
+    //   this.props = nextProps
+    //   this.fetch()
+    // }
   }
 
   handleTableChange = (pagination, filters, sorter) => {
@@ -51,16 +61,16 @@ class DataTable extends React.Component {
   }
 
   fetch = () => {
-    const { fetch: { url, data, dataKey, ...otherFetch } } = this.props
+    const { fetch: { url, data, dataKey } } = this.props
     const { fetchData } = this.state
     this.setState({ loading: true })
+    console.log(data)
     request(url, {
       result: 10,
       data: {
         ...data,
         ...fetchData,
       },
-      ...otherFetch,
     }).then((result) => {
       const { pagination } = this.state
       pagination.total = result.total || pagination.total

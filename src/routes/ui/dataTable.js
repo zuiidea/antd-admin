@@ -22,6 +22,7 @@ class DataTablePage extends React.Component {
     const staticDataTableProps = {
       dataSource: [{ key: '1', name: 'John Brown', age: 24, address: 'New York' }, { key: '2', name: 'Jim Green', age: 23, address: 'London' }],
       columns: [{ title: 'name', dataIndex: 'name' }, { title: 'Age', dataIndex: 'age' }, { title: 'Address', dataIndex: 'address' }],
+      pagination: false,
     }
 
     const fetchDataTableProps = {
@@ -39,7 +40,6 @@ class DataTablePage extends React.Component {
         { title: 'Gender', dataIndex: 'gender' },
       ],
       rowKey: 'registered',
-      pagination: true,
     }
 
     const caseChangeDataTableProps = {
@@ -58,7 +58,6 @@ class DataTablePage extends React.Component {
         { title: 'Gender', dataIndex: 'gender' },
       ],
       rowKey: 'registered',
-      pagination: true,
     }
 
     return (<div className="content-inner">
