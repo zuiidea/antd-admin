@@ -18,7 +18,7 @@ const status = {
   }
 }
 
-function Browser (props) {
+function Browser ({ data }) {
   const columns = [
     {
       title: 'name',
@@ -31,11 +31,11 @@ function Browser (props) {
       render: (text, it) => <Tag color={status[it.status].color}>{text}%</Tag>
     }
   ]
-  return <Table pagination={false} showHeader={false} columns={columns} rowKey={(record, key) => key} dataSource={props.data} />
+  return <Table pagination={false} showHeader={false} columns={columns} rowKey={(record, key) => key} dataSource={data} />
 }
 
 Browser.propTypes = {
-  props: PropTypes.object
+  data: PropTypes.array
 }
 
 export default Browser

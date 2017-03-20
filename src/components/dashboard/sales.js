@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import styles from './sales.less'
 import {color} from '../../utils'
 import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'recharts'
 
-function Sales (props) {
+function Sales ({ data }) {
   return (
     <div className={styles.sales}>
       <div className={styles.title}>Yearly Sales</div>
       <ResponsiveContainer minHeight={360}>
-        <LineChart data={props.data}>
+        <LineChart data={data}>
           <Legend verticalAlign='top'
             content={props => {
               const { payload } = props
@@ -32,6 +32,10 @@ function Sales (props) {
       </ResponsiveContainer>
     </div>
   )
+}
+
+Sales.propTypes = {
+  data: PropTypes.array
 }
 
 export default Sales

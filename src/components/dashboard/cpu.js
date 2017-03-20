@@ -12,13 +12,13 @@ const countUpProps = {
   separator: ','
 }
 
-function Cpu (props) {
+function Cpu ({ usage, space, cpu, data }) {
   return <div className={styles.cpu}>
     <div className={styles.number}>
       <div className={styles.item}>
         <p>usage</p>
         <p><CountUp
-          end={props.usage}
+          end={usage}
           suffix='GB'
           {...countUpProps}
           /></p>
@@ -26,7 +26,7 @@ function Cpu (props) {
       <div className={styles.item}>
         <p>space</p>
         <p><CountUp
-          end={props.space}
+          end={space}
           suffix='GB'
           {...countUpProps}
           /></p>
@@ -34,14 +34,14 @@ function Cpu (props) {
       <div className={styles.item}>
         <p>cpu</p>
         <p><CountUp
-          end={props.cpu}
+          end={cpu}
           suffix='%'
           {...countUpProps}
           /></p>
       </div>
     </div>
     <ResponsiveContainer minHeight={300}>
-      <LineChart data={props.data} margin={{left: -40}}>
+      <LineChart data={data} margin={{left: -40}}>
         <XAxis dataKey='name' axisLine={{stroke: color.borderBase, strokeWidth: 1}} tickLine={false} />
         <YAxis axisLine={false} tickLine={false} />
         <CartesianGrid vertical={false} stroke={color.borderBase} strokeDasharray='3 3' />
@@ -52,7 +52,10 @@ function Cpu (props) {
 }
 
 Cpu.propTypes = {
-  props: PropTypes.object
+  data: PropTypes.array,
+  usage: PropTypes.number,
+  space: PropTypes.number,
+  cpu: PropTypes.number
 }
 
 export default Cpu

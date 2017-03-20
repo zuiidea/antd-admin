@@ -57,6 +57,14 @@ export default function ({history, app}) {
             }, 'ui-search')
           }
         }, {
+          path: 'ui/dropOption',
+          name: 'ui/dropOption',
+          getComponent (nextState, cb) {
+            require.ensure([], require => {
+              cb(null, require('./routes/ui/dropOption'))
+            }, 'ui-dropOption')
+          }
+        }, {
           path: '*',
           name: 'error',
           getComponent (nextState, cb) {

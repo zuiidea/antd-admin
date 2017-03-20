@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { Menu, Icon } from 'antd'
 import { Link } from 'dva/router'
 import { menu } from '../../utils'
@@ -63,6 +63,16 @@ function Menus ({ siderFold, darkTheme, location, isNavbar, handleClickNavMenu, 
       {menuItems}
     </Menu>
   )
+}
+
+Menus.propTypes = {
+  siderFold: PropTypes.bool,
+  darkTheme: PropTypes.bool,
+  location: PropTypes.object,
+  isNavbar: PropTypes.bool,
+  handleClickNavMenu: PropTypes.func,
+  navOpenKeys: PropTypes.array,
+  changeOpenKeys: PropTypes.func
 }
 
 export default Menus

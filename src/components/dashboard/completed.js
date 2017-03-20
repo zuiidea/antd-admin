@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import styles from './completed.less'
 import {color} from '../../utils'
 import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'recharts'
 
-function Completed (props) {
+function Completed ({ data }) {
   return (
     <div className={styles.sales}>
       <div className={styles.title}>TEAM TOTAL COMPLETED</div>
       <ResponsiveContainer minHeight={360}>
-        <AreaChart data={props.data}>
+        <AreaChart data={data}>
           <Legend verticalAlign='top'
             content={props => {
               const { payload } = props
@@ -31,6 +31,10 @@ function Completed (props) {
       </ResponsiveContainer>
     </div>
   )
+}
+
+Completed.propTypes = {
+  data: PropTypes.array
 }
 
 export default Completed

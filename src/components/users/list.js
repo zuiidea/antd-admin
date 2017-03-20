@@ -1,12 +1,13 @@
 import React, {PropTypes} from 'react'
-import {Table, Dropdown, Button, Menu, Icon, Modal} from 'antd'
+import {Table, Modal} from 'antd'
 import styles from './list.less'
 import classnames from 'classnames'
 import TableBodyWrapper from '../common/TableBodyWrapper'
+import {DropOption} from '../ui/index'
 
 const confirm = Modal.confirm
 
-function list ({ loading, dataSource, pagination, updatePower, deletePower, onPageChange, onDeleteItem, onEditItem, onStatusItem, isMotion, location }) {
+function list ({ loading, dataSource, pagination, onPageChange, onDeleteItem, onEditItem, isMotion, location }) {
   const handleMenuClick = (record, e) => {
     if (e.key === '1') {
       onEditItem(record)
@@ -69,15 +70,7 @@ function list ({ loading, dataSource, pagination, updatePower, deletePower, onPa
       key: 'operation',
       width: 100,
       render: (text, record) => {
-        return (<Dropdown overlay={<Menu onClick={(e) => handleMenuClick(record, e)}>
-          <Menu.Item key='1'>编辑</Menu.Item>
-          <Menu.Item key='2'>删除</Menu.Item>
-        </Menu>}>
-          <Button style={{ border: 'none' }}>
-            <Icon style={{ marginRight: 2 }} type='bars' />
-            <Icon type='down' />
-          </Button>
-        </Dropdown>)
+        return <DropOption onMenuClick={e => handleMenuClick(record, e)} menuOptions={[{key: '1', name: '编辑'}, {key: '2', name: '删除'}]} />
       }
     }
   ]
@@ -86,8 +79,6 @@ function list ({ loading, dataSource, pagination, updatePower, deletePower, onPa
     page: location.query.page,
     current: pagination.current
   }
-
-  console.log(isMotion)
 
   const getBodyWrapper = body => isMotion ? <TableBodyWrapper {...getBodyWrapperProps} body={body} /> : body
 
@@ -111,12 +102,14 @@ function list ({ loading, dataSource, pagination, updatePower, deletePower, onPa
 }
 
 list.propTypes = {
+  loading: PropTypes.bool,
+  dataSource: PropTypes.array,
+  pagination: PropTypes.object,
   onPageChange: PropTypes.func,
   onDeleteItem: PropTypes.func,
   onEditItem: PropTypes.func,
-  dataSource: PropTypes.array,
-  loading: PropTypes.any,
-  pagination: PropTypes.any
+  isMotion: PropTypes.bool,
+  location: PropTypes.object
 }
 
 export default list

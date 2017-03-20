@@ -1,4 +1,4 @@
-const Ajax = require('robe-ajax')
+import Ajax from 'robe-ajax'
 
 export default function request (url, options) {
   if (options.cross) {

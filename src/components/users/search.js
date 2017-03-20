@@ -47,7 +47,9 @@ search.propTypes = {
   onSearch: PropTypes.func,
   onAdd: PropTypes.func,
   field: PropTypes.string,
-  keyword: PropTypes.string
+  keyword: PropTypes.string,
+  isMotion: PropTypes.bool,
+  switchIsMotion: PropTypes.func
 }
 
 export default Form.create()(search)

@@ -21,7 +21,7 @@ const bodyStyle = {
   }
 }
 
-function Dashboard ({dashboard, dispatch}) {
+function Dashboard ({dashboard}) {
   const {weather, sales, quote, numbers, recentSales, comments, completed, browser, cpu, user} = dashboard
   const numberCards = numbers.map((item, key) => <Col key={key} lg={6} md={12}>
     <NumberCard {...item} />
@@ -96,16 +96,7 @@ function Dashboard ({dashboard, dispatch}) {
 }
 
 Dashboard.propTypes = {
-  weather: PropTypes.object,
-  sales: PropTypes.array,
-  quote: PropTypes.object,
-  numbers: PropTypes.array,
-  recentSales: PropTypes.array,
-  comments: PropTypes.array,
-  completed: PropTypes.array,
-  browser: PropTypes.array,
-  cpu: PropTypes.object,
-  user: PropTypes.object
+  dashboard: PropTypes.object
 }
 
 export default connect(({dashboard}) => ({dashboard}))(Dashboard)

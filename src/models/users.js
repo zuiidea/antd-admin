@@ -7,7 +7,6 @@ export default {
 
   state: {
     list: [],
-    loading: false,
     currentItem: {},
     modalVisible: false,
     modalType: 'create',
@@ -36,7 +35,6 @@ export default {
 
   effects: {
     *query ({ payload }, { call, put }) {
-      yield put({ type: 'showLoading' })
       const data = yield call(query, parse(payload))
       if (data) {
         yield put({
@@ -49,7 +47,6 @@ export default {
       }
     },
     *'delete' ({ payload }, { call, put }) {
-      yield put({ type: 'showLoading' })
       const data = yield call(remove, { id: payload })
       if (data && data.success) {
         yield put({
@@ -66,7 +63,6 @@ export default {
     },
     *create ({ payload }, { call, put }) {
       yield put({ type: 'hideModal' })
-      yield put({ type: 'showLoading' })
       const data = yield call(create, payload)
       if (data && data.success) {
         yield put({
@@ -83,7 +79,6 @@ export default {
     },
     *update ({ payload }, { select, call, put }) {
       yield put({ type: 'hideModal' })
-      yield put({ type: 'showLoading' })
       const id = yield select(({ users }) => users.currentItem.id)
       const newUser = { ...payload, id }
       const data = yield call(update, newUser)
@@ -110,14 +105,10 @@ export default {
   },
 
   reducers: {
-    showLoading (state) {
-      return { ...state, loading: true }
-    },
     querySuccess (state, action) {
       const {list, pagination} = action.payload
       return { ...state,
         list,
-        loading: false,
         pagination: {
           ...state.pagination,
           ...pagination

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { Icon, Switch } from 'antd'
 import styles from './main.less'
 import { config } from '../../utils'
@@ -25,6 +25,15 @@ function Sider ({ siderFold, darkTheme, location, changeTheme, navOpenKeys, chan
       </div> : ''}
     </div>
   )
+}
+
+Sider.propTypes = {
+  siderFold: PropTypes.bool,
+  darkTheme: PropTypes.bool,
+  location: PropTypes.object,
+  changeTheme: PropTypes.func,
+  navOpenKeys: PropTypes.array,
+  changeOpenKeys: PropTypes.func
 }
 
 export default Sider
