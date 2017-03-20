@@ -11,6 +11,7 @@ export default function request (url, options) {
     url,
     method: options.method || 'get',
     data: options.data || {},
+    processData: options.method === 'get',
     dataType: 'JSON',
   }).done((data) => {
     return data
