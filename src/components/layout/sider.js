@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react'
 import { Icon, Switch } from 'antd'
-import styles from './main.less'
+import styles from './Layout.less'
 import { config } from '../../utils'
-import Menus from './menu'
+import Menus from './Menu'
 
 function Sider ({ siderFold, darkTheme, location, changeTheme, navOpenKeys, changeOpenKeys }) {
   const menusProps = {

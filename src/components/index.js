@@ -1,3 +1,9 @@
 import DataTable from './DataTable'
+import DropOption from './DropOption'
+import Iconfont from './Iconfont'
+import Search from './Search'
+import * as Layout from './Layout/index.js'
 
-export { DataTable }
+import layer from './layer'
+
+export { Layout, DataTable, DropOption, Iconfont, Search, layer }
