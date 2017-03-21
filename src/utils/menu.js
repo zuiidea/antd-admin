@@ -10,30 +10,30 @@ module.exports = [
     icon: 'user',
   },
   {
-    key: 'ui',
+    key: 'UIElement',
     name: 'UI组件',
     icon: 'camera-o',
     clickable: false,
     child: [
       {
-        key: 'ico',
-        name: 'Ico 图标',
+        key: 'iconfont',
+        name: 'IconFont 字体图标',
       },
       {
-        key: 'search',
-        name: 'Search 搜索',
+        key: 'dataTable',
+        name: 'DataTable 数据表格',
       },
       {
         key: 'dropOption',
         name: 'DropOption 下拉操作',
       },
       {
-        key: 'layer',
-        name: 'Layer 弹层',
+        key: 'search',
+        name: 'Search 搜索',
       },
       {
-        key: 'DataTable',
-        name: 'DataTable 数据表格',
+        key: 'layer',
+        name: 'layer 弹层【方法】',
       },
     ],
   },

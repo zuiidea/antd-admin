@@ -18,7 +18,7 @@ const Routers = function ({ history, app }) {
       getIndexRoute (nextState, cb) {
         require.ensure([], require => {
           registerModel(app, require('./models/dashboard'))
-          cb(null, { component: require('./routes/dashboard') })
+          cb(null, { component: require('./routes/dashboard/') })
         }, 'dashboard')
       },
       childRoutes: [
@@ -28,7 +28,7 @@ const Routers = function ({ history, app }) {
           getComponent (nextState, cb) {
             require.ensure([], require => {
               registerModel(app, require('./models/dashboard'))
-              cb(null, require('./routes/dashboard'))
+              cb(null, require('./routes/dashboard/'))
             }, 'dashboard')
           },
         }, {
@@ -37,55 +37,55 @@ const Routers = function ({ history, app }) {
           getComponent (nextState, cb) {
             require.ensure([], require => {
               registerModel(app, require('./models/users'))
-              cb(null, require('./routes/users'))
+              cb(null, require('./routes/users/'))
             }, 'users')
           },
         }, {
-          path: 'ui/ico',
-          name: 'ui/ico',
+          path: 'UIElement/iconfont',
+          name: 'UIElement/iconfont',
           getComponent (nextState, cb) {
             require.ensure([], require => {
-              cb(null, require('./routes/ui/ico'))
-            }, 'ui-ico')
+              cb(null, require('./routes/UIElement/iconfont/'))
+            }, 'UIElement-iconfont')
           },
         }, {
-          path: 'ui/search',
-          name: 'ui/search',
+          path: 'UIElement/search',
+          name: 'UIElement/search',
           getComponent (nextState, cb) {
             require.ensure([], require => {
-              cb(null, require('./routes/ui/search'))
-            }, 'ui-search')
+              cb(null, require('./routes/UIElement/search/'))
+            }, 'UIElement-search')
           },
         }, {
-          path: 'ui/dropOption',
-          name: 'ui/dropOption',
+          path: 'UIElement/dropOption',
+          name: 'UIElement/dropOption',
           getComponent (nextState, cb) {
             require.ensure([], require => {
-              cb(null, require('./routes/ui/dropOption'))
-            }, 'ui-dropOption')
+              cb(null, require('./routes/UIElement/dropOption/'))
+            }, 'UIElement-dropOption')
           },
         }, {
-          path: 'ui/layer',
-          name: 'ui/layer',
+          path: 'UIElement/layer',
+          name: 'UIElement/layer',
           getComponent (nextState, cb) {
             require.ensure([], require => {
-              cb(null, require('./routes/ui/layer'))
-            }, 'ui-layer')
+              cb(null, require('./routes/UIElement/layer/'))
+            }, 'UIElement-layer')
           },
         }, {
-          path: 'ui/dataTable',
-          name: 'ui/dataTable',
+          path: 'UIElement/dataTable',
+          name: 'UIElement/dataTable',
           getComponent (nextState, cb) {
             require.ensure([], require => {
-              cb(null, require('./routes/ui/dataTable'))
-            }, 'ui-dataTable')
+              cb(null, require('./routes/UIElement/dataTable/'))
+            }, 'UIElement-dataTable')
           },
         }, {
           path: '*',
           name: 'error',
           getComponent (nextState, cb) {
             require.ensure([], require => {
-              cb(null, require('./routes/error'))
+              cb(null, require('./routes/error/'))
             }, 'error')
           },
         },
