@@ -37,11 +37,6 @@ class DataTable extends React.Component {
       this.props = nextProps
       this.fetch()
     }
-
-    // if (!lodash.isEqual(nextProps.fetch, this.props.fetch)) {
-    //   this.props = nextProps
-    //   this.fetch()
-    // }
   }
 
   handleTableChange = (pagination, filters, sorter) => {
@@ -64,7 +59,6 @@ class DataTable extends React.Component {
     const { fetch: { url, data, dataKey } } = this.props
     const { fetchData } = this.state
     this.setState({ loading: true })
-    console.log(data)
     request(url, {
       result: 10,
       data: {
