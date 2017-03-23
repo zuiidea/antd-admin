@@ -89,6 +89,14 @@ const Routers = function ({ history, app }) {
             }, 'UIElement-editor')
           },
         }, {
+          path: 'UIElement/charts',
+          name: 'UIElement/charts',
+          getComponent (nextState, cb) {
+            require.ensure([], require => {
+              cb(null, require('./routes/UIElement/charts/'))
+            }, 'UIElement-charts')
+          },
+        }, {
           path: '*',
           name: 'error',
           getComponent (nextState, cb) {
