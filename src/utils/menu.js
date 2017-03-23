@@ -42,6 +42,25 @@ module.exports = [
     ],
   },
   {
+    key: 'chart',
+    name: 'Recharts',
+    icon: 'code-o',
+    child: [
+      {
+        key: 'lineChart',
+        name: 'LineChart',
+      },
+      {
+        key: 'barChart',
+        name: 'BarChart',
+      },
+      {
+        key: 'areaChart',
+        name: 'AreaChart',
+      },
+    ],
+  },
+  {
     key: 'navigation',
     name: '测试导航',
     icon: 'setting',

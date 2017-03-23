@@ -223,20 +223,22 @@
     height: 100vh;
     transition: @transition-ease-out;
 
+    :global {
+      .content-inner {
+        background: #fff;
+        padding: 24px;
+        box-shadow: @shadow-1;
+        min-height: e("calc(100vh - 184px)");
+      }
+    }
+
     .container {
       margin: 24px;
+    }
 
-      .content {
-        min-height: e("calc(100vh - 184px)");
-        position: relative;
-
-        :global .content-inner {
-          background: #fff;
-          padding: 24px;
-          box-shadow: @shadow-1;
-          min-height: e("calc(100vh - 184px)");
-        }
-      }
+    .content {
+      min-height: e("calc(100vh - 184px)");
+      position: relative;
     }
   }
 
@@ -328,5 +330,29 @@
 .spin {
   :global .ant-spin-container {
     height: 100vh;
+  }
+}
+@media (max-width: 767px) {
+  .layout {
+    .main {
+      .container {
+        margin: 12px;
+      }
+
+      .bread {
+        padding: 0 12px;
+      }
+
+      .content {
+        min-height: e("calc(100vh - 160px)");
+      }
+
+      :global {
+        .content-inner {
+          padding: 12px;
+          min-height: e("calc(100vh - 160px)");
+        }
+      }
+    }
   }
 }

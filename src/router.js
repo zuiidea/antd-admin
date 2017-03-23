@@ -89,12 +89,28 @@ const Routers = function ({ history, app }) {
             }, 'UIElement-editor')
           },
         }, {
-          path: 'UIElement/charts',
-          name: 'UIElement/charts',
+          path: 'chart/lineChart',
+          name: 'chart/lineChart',
           getComponent (nextState, cb) {
             require.ensure([], require => {
-              cb(null, require('./routes/UIElement/charts/'))
-            }, 'UIElement-charts')
+              cb(null, require('./routes/chart/lineChart/'))
+            }, 'chart-lineChart')
+          },
+        }, {
+          path: 'chart/barChart',
+          name: 'chart/barChart',
+          getComponent (nextState, cb) {
+            require.ensure([], require => {
+              cb(null, require('./routes/chart/barChart/'))
+            }, 'chart-barChart')
+          },
+        }, {
+          path: 'chart/areaChart',
+          name: 'chart/areaChart',
+          getComponent (nextState, cb) {
+            require.ensure([], require => {
+              cb(null, require('./routes/chart/areaChart/'))
+            }, 'chart-areaChart')
           },
         }, {
           path: '*',

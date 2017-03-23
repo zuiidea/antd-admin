@@ -9,7 +9,7 @@ import '../components/skin.less'
 
 const { Header, Bread, Footer, Sider, styles } = Layout
 
-function App ({ children, location, dispatch, app, loading }) {
+const App = ({ children, location, dispatch, app, loading }) => {
   const { login, loginButtonLoading, user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys } = app
   const loginProps = {
     loading,
