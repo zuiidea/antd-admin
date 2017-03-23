@@ -3,12 +3,13 @@ import { connect } from 'dva'
 import Login from './login'
 import { Layout } from '../components'
 import { Spin } from 'antd'
-import { classnames } from '../utils'
+import { classnames, config } from '../utils'
+import { Helmet } from 'react-helmet'
 import '../components/skin.less'
 
 const { Header, Bread, Footer, Sider, styles } = Layout
 
-function App ({ children, location, dispatch, app, loading }) {
+const App = ({ children, location, dispatch, app, loading }) => {
   const { login, loginButtonLoading, user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys } = app
   const loginProps = {
     loading,
@@ -55,7 +56,13 @@ function App ({ children, location, dispatch, app, loading }) {
   }
 
   return (
-    <div>{login
+    <div>
+      <Helmet>
+        <title>ANTD ADMIN</title>
+        <link rel="icon" href={config.logoSrc} type="image/x-icon" />
+        {config.iconFontUrl ? <script src={config.iconFontUrl}></script> : ''}
+      </Helmet>
+      {login
         ? <div className={classnames(styles.layout, { [styles.fold]: isNavbar ? false : siderFold }, { [styles.withnavbar]: isNavbar })}>
           {!isNavbar ? <aside className={classnames(styles.sider, { [styles.light]: !darkTheme })}>
             <Sider {...siderProps} />
@@ -70,8 +77,13 @@ function App ({ children, location, dispatch, app, loading }) {
             </div>
             <Footer />
           </div>
-        </div>
-        : <div className={styles.spin}><Spin tip="加载用户信息..." spinning={loading} size="large"><Login {...loginProps} /></Spin></div>}</div>
+        </div> :
+        <div className={styles.spin}>
+          <Spin tip="加载用户信息..." spinning={loading} size="large">
+            <Login {...loginProps} />
+          </Spin>
+        </div>}
+    </div>
   )
 }
 

@@ -81,6 +81,38 @@ const Routers = function ({ history, app }) {
             }, 'UIElement-dataTable')
           },
         }, {
+          path: 'UIElement/editor',
+          name: 'UIElement/editor',
+          getComponent (nextState, cb) {
+            require.ensure([], require => {
+              cb(null, require('./routes/UIElement/editor/'))
+            }, 'UIElement-editor')
+          },
+        }, {
+          path: 'chart/lineChart',
+          name: 'chart/lineChart',
+          getComponent (nextState, cb) {
+            require.ensure([], require => {
+              cb(null, require('./routes/chart/lineChart/'))
+            }, 'chart-lineChart')
+          },
+        }, {
+          path: 'chart/barChart',
+          name: 'chart/barChart',
+          getComponent (nextState, cb) {
+            require.ensure([], require => {
+              cb(null, require('./routes/chart/barChart/'))
+            }, 'chart-barChart')
+          },
+        }, {
+          path: 'chart/areaChart',
+          name: 'chart/areaChart',
+          getComponent (nextState, cb) {
+            require.ensure([], require => {
+              cb(null, require('./routes/chart/areaChart/'))
+            }, 'chart-areaChart')
+          },
+        }, {
           path: '*',
           name: 'error',
           getComponent (nextState, cb) {

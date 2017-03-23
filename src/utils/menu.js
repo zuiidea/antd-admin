@@ -32,8 +32,31 @@ module.exports = [
         name: 'Search 搜索',
       },
       {
+        key: 'editor',
+        name: 'Editor 编辑器',
+      },
+      {
         key: 'layer',
         name: 'layer 弹层【方法】',
+      },
+    ],
+  },
+  {
+    key: 'chart',
+    name: 'Recharts',
+    icon: 'code-o',
+    child: [
+      {
+        key: 'lineChart',
+        name: 'LineChart',
+      },
+      {
+        key: 'barChart',
+        name: 'BarChart',
+      },
+      {
+        key: 'areaChart',
+        name: 'AreaChart',
       },
     ],
   },

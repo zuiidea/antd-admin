@@ -64,7 +64,7 @@ class DataTablePage extends React.Component {
       <Row gutter={32}>
         <Col lg={12} md={24}>
           <Card title="默认">
-            <DataTable />
+            <DataTable pagination={false} />
           </Card>
         </Col>
         <Col lg={12} md={24}>
@@ -82,7 +82,7 @@ class DataTablePage extends React.Component {
           </Card>
         </Col>
         <Col lg={12} md={24}>
-          <Card title="条件变化">
+          <Card title="参数变化">
             <Select placeholder="Please select gender" allowClear onChange={this.handleSelectChange} style={{ width: 200, marginBottom: 16 }}>
               <Select.Option value="male">Male</Select.Option>
               <Select.Option value="female">Female</Select.Option>
