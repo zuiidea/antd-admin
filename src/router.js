@@ -81,6 +81,14 @@ const Routers = function ({ history, app }) {
             }, 'UIElement-dataTable')
           },
         }, {
+          path: 'UIElement/editor',
+          name: 'UIElement/editor',
+          getComponent (nextState, cb) {
+            require.ensure([], require => {
+              cb(null, require('./routes/UIElement/editor/'))
+            }, 'UIElement-editor')
+          },
+        }, {
           path: '*',
           name: 'error',
           getComponent (nextState, cb) {

@@ -32,6 +32,10 @@ module.exports = [
         name: 'Search 搜索',
       },
       {
+        key: 'editor',
+        name: 'Editor 编辑器',
+      },
+      {
         key: 'layer',
         name: 'layer 弹层【方法】',
       },
