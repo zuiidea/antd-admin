@@ -59,7 +59,7 @@ module.exports = {
   },
 
   'POST /api/users' (req, res) {
-    const newData = req.body
+    const newData = JSON.parse(req.body)
     newData.createTime = Mock.mock('@now')
     newData.avatar = Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', newData.nickName.substr(0, 1))
 
@@ -75,7 +75,7 @@ module.exports = {
   },
 
   'DELETE /api/users' (req, res) {
-    const deleteItem = req.body
+    const deleteItem = JSON.parse(req.body)
 
     usersListData.data = usersListData.data.filter((item) => {
       if (item.id === deleteItem.id) {
@@ -92,7 +92,7 @@ module.exports = {
   },
 
   'PUT /api/users' (req, res) {
-    const editItem = req.body
+    const editItem = JSON.parse(req.body)
 
     editItem.createTime = Mock.mock('@now')
     editItem.avatar = Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', editItem.nickName.substr(0, 1))
