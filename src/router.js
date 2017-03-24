@@ -41,6 +41,14 @@ const Routers = function ({ history, app }) {
             }, 'users')
           },
         }, {
+          path: 'request',
+          name: 'request',
+          getComponent (nextState, cb) {
+            require.ensure([], require => {
+              cb(null, require('./routes/request/'))
+            }, 'request')
+          },
+        }, {
           path: 'UIElement/iconfont',
           name: 'UIElement/iconfont',
           getComponent (nextState, cb) {

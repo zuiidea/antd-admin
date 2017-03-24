@@ -10,8 +10,13 @@ module.exports = [
     icon: 'user',
   },
   {
+    key: 'request',
+    name: 'Request',
+    icon: 'api',
+  },
+  {
     key: 'UIElement',
-    name: 'UI组件',
+    name: 'UI Element',
     icon: 'camera-o',
     clickable: false,
     child: [

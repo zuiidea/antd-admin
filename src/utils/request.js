@@ -3,7 +3,11 @@ import qs from 'qs'
 import config from './config'
 
 const fetch = (options) => {
-  const { method = 'get', data, url } = options
+  const {
+    method = 'get',
+    data,
+    url,
+  } = options
   switch (method.toLowerCase()) {
     case 'get':
       return axios.get(url, { params: data })
@@ -33,5 +37,7 @@ export default function request (options) {
 
   return fetch(options).then((result) => {
     return result.data
+  }).catch((error) => {
+    console.log(error)
   })
 }
