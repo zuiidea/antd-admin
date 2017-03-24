@@ -13,7 +13,7 @@ const IcoPage = () => {
         title: '默认弹层',
         content: <div style={{ height: 360 }}>弹层内容</div>,
       })
-    } 
+    }
   }
   return (<div className="content-inner">
     <Row gutter={32}>
