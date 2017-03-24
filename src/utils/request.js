@@ -10,15 +10,15 @@ const fetch = (options) => {
   } = options
   switch (method.toLowerCase()) {
     case 'get':
-      return axios.get(url, { params: data })
+      return axios.get(url, data)
+    case 'delete':
+      return axios.delete(url, { data })
+    case 'head':
+      return axios.head(url, data)
     case 'post':
       return axios.post(url, data)
     case 'put':
       return axios.put(url, data)
-    case 'delete':
-      return axios.deleted(url, data)
-    case 'head':
-      return axios.head(url, data)
     case 'patch':
       return axios.patch(url, data)
     default:
@@ -35,9 +35,10 @@ export default function request (options) {
     }
   }
 
-  return fetch(options).then((result) => {
-    return result.data
+  return fetch(options).then((response) => {
+    return response.data
   }).catch((error) => {
     console.log(error)
+    return Promise.reject(error)
   })
 }

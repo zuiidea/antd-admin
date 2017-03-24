@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './index.less'
+import Mock from 'mockjs'
 import { request, config } from '../../utils'
 import {
   Row,
@@ -14,6 +15,52 @@ const requestOptions = [
   {
     url: `${location.origin}/api/users`,
     desc: 'intercept request by mock.js',
+  },
+  {
+    url: `${location.origin}/api/users`,
+    desc: 'intercept request by mock.js',
+    method: 'post',
+    data: Mock.mock({
+      'id|+1': 1000,
+      name: '@cname',
+      nickName: '@last',
+      phone: /^1[34578]\d{9}$/,
+      'age|11-99': 1,
+      address: '@county(true)',
+      isMale: '@boolean',
+      email: '@email',
+      createTime: '@datetime',
+      avatar () {
+        return Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', this.nickName.substr(0, 1))
+      },
+    }),
+  },
+  {
+    url: `${location.origin}/api/users`,
+    desc: 'intercept request by mock.js',
+    method: 'put',
+    data: Mock.mock({
+      id: 1,
+      name: '@cname',
+      nickName: '@last',
+      phone: /^1[34578]\d{9}$/,
+      'age|11-99': 1,
+      address: '@county(true)',
+      isMale: '@boolean',
+      email: '@email',
+      createTime: '@datetime',
+      avatar () {
+        return Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', this.nickName.substr(0, 1))
+      },
+    }),
+  },
+  {
+    url: `${location.origin}/api/users`,
+    desc: 'intercept request by mock.js',
+    method: 'delete',
+    data: Mock.mock({
+      id: 10,
+    }),
   },
   {
     url: `${config.baseURL}/admin/order`,
@@ -61,7 +108,12 @@ export default class RequestPage extends React.Component {
 
   handeleURLChange = (value) => {
     const state = this.state
-    const currntItem = requestOptions.filter(item => value === item.url)
+    const curretUrl = value.split('?')[0]
+    const curretMethod = value.split('?')[1]
+    const currntItem = requestOptions.filter(item => {
+      const { method = 'get' } = item
+      return curretUrl === item.url && curretMethod === method
+    })
     state.currntRequest = currntItem[0]
     this.setState(state)
   }
@@ -72,7 +124,7 @@ export default class RequestPage extends React.Component {
       md: 24,
     }
     const { result, currntRequest } = this.state
-    const { methoad = 'get' } = currntRequest
+    const { method = 'get' } = currntRequest
 
     return (
       <div className="content-inner">
@@ -82,17 +134,19 @@ export default class RequestPage extends React.Component {
               overflow: 'visible',
             }}>
               <div className={styles.option}>
-                <Input disabled value={methoad.toLocaleUpperCase()} size="large" style={{ width: 100 }} placeholder="GET" />
                 <Select style={{
                   width: '100%',
                   flex: 1,
-                }} defaultValue={requestOptions[0].url}
+                }} defaultValue={`${method.toLocaleUpperCase()}   ${requestOptions[0].url}`}
                   size="large"
                   onChange={this.handeleURLChange}
                 >
-                  {requestOptions.map(item => <Select.Option key={item.url} value={item.url}>
-                    {item.url}
-                  </Select.Option>)}
+                  {requestOptions.map((item, index) => {
+                    const m = item.method || 'get'
+                    return (<Select.Option key={index} value={`${item.url}?${m}`}>
+                      {`${m.toLocaleUpperCase()}    `}{item.url}
+                    </Select.Option>)
+                  })}
                 </Select>
                 <Button type="primary" style={{ width: 100, marginLeft: 16 }} onClick={this.handleRequest}>发送</Button>
               </div>
