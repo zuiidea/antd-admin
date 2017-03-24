@@ -3,12 +3,12 @@ import DropOption from './DropOption'
 import Iconfont from './Iconfont'
 import Search from './Search'
 import Editor from './Editor'
-import * as Layout from './Layout/index.js'
+// import * as Layout from './Layout/index.js'
 
 import layer from './layer'
 
 export {
-  Layout,
+  // Layout,
   DataTable,
   DropOption,
   Iconfont,
