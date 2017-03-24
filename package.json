@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "atool-build": "^0.7.6",
+    "axios": "^0.15.3",
     "babel-eslint": "^6.0.4",
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-dva-hmr": "^0.1.0",
@@ -43,7 +44,6 @@
     "mockjs": "^1.0.1-beta3",
     "rc-tween-one": "^1.0.0",
     "redbox-react": "^1.2.10",
-    "robe-ajax": "^1.0.0",
     "watchjs": "^0.0.0"
   },
   "pre-commit": [

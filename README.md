@@ -114,7 +114,7 @@ npm run lint
 -   如需重写antd样式配置，请修改`src/theme.js`
 -   项目配置文件在`src/utils/config.js`
 -   如需重写异步请求函数，请修改`src/utils/request.js`
-    （关于为什么使用robe-ajax而不是fetch：在一个无服务器的环境中模拟数据请求，[Mock](https://github.com/nuysoft/Mock)不能拦截Fetch，只能拦截XHR，所以我选了一个类似jquery Ajax的库robe-ajax）
+    （关于为什么使用axios而不是fetch：在一个无服务器的环境中模拟数据请求，[Mock](https://github.com/nuysoft/Mock)不能拦截Fetch）
 
 ## 参考
 

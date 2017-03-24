@@ -24,7 +24,7 @@ for (let i in mockData) {
             if (options.url.split('?')[1]) {
               options.query = serialize(options.url.split('?')[1])
             } else {
-              options.query = options.body ? serialize(options.body) : {}
+              options.query = options.body ? JSON.parse(options.body) : {}
             }
           }
           let res = {}
