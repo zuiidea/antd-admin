@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Breadcrumb, Icon } from 'antd'
-import styles from './Bread.less'
-
+import styles from './Layout.less'
 import { menu } from '../../utils'
 
 let pathSet = []
