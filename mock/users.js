@@ -30,6 +30,7 @@ let usersListData = global[dataKey]
 module.exports = {
 
   'GET /api/users' (req, res) {
+    console.log(req, res)
     const page = qs.parse(req.query)
     const pageSize = page.pageSize || 10
     const currentPage = page.page || 1

@@ -63,6 +63,11 @@ const requestOptions = [
     }),
   },
   {
+    url: `${location.origin}/api/test`,
+    desc: 'intercept request by mock.js',
+    method: 'get',
+  },
+  {
     url: `${config.baseURL}/admin/order`,
     desc: 'cross-domain request, but match config.baseURL(./src/utils/config.js)',
   },

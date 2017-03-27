@@ -59,8 +59,8 @@ class DataTable extends React.Component {
     const { fetch: { url, data, dataKey } } = this.props
     const { fetchData } = this.state
     this.setState({ loading: true })
-    request(url, {
-      result: 10,
+    this.promise = request({
+      url,
       data: {
         ...data,
         ...fetchData,
