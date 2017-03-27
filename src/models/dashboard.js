@@ -204,11 +204,9 @@ export default {
       payload,
     }, { call, put }) {
       const myCityResult = yield call(myCity, { flg: 0 })
-      const myCityData = myCityResult.query.results.json
-      const result = yield call(queryWeather, { cityCode: myCityData.selectCityCode })
-      const data = result.query.results.json
-      const weather = zuimei.parseActualData(data.data.actual)
-      weather.city = myCityData.selectCityName
+      const result = yield call(queryWeather, { cityCode: myCityResult.selectCityCode })
+      const weather = zuimei.parseActualData(result.data.actual)
+      weather.city = myCityResult.selectCityName
 
       yield put({ type: 'queryWeatherSuccess', payload: {
         weather,

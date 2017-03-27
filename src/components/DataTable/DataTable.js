@@ -66,6 +66,9 @@ class DataTable extends React.Component {
         ...fetchData,
       },
     }).then((result) => {
+      if (!this.refs.DataTable) {
+        return
+      }
       const { pagination } = this.state
       pagination.total = result.total || pagination.total
       this.setState({
@@ -81,6 +84,7 @@ class DataTable extends React.Component {
     const { loading, dataSource, pagination } = this.state
 
     return (<Table
+      ref="DataTable"
       bordered
       loading={loading}
       onChange={this.handleTableChange}

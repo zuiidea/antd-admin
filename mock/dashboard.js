@@ -99,24 +99,24 @@ let dataKey = mockStorge('Dashboard', Mock.mock({
   },
   numbers: [
     {
-      icon: 'pay-circle-o',
+      icon: 'message',
       color: color.green,
-      title: 'Online Review',
+      title: '总浏览PV',
       number: 2781,
     }, {
       icon: 'team',
       color: color.blue,
-      title: 'New Customers',
+      title: '总浏览UV',
       number: 3241,
     }, {
-      icon: 'message',
+      icon: 'shopping-cart',
       color: color.purple,
-      title: 'Active Projects',
+      title: '成交订单数',
       number: 253,
     }, {
-      icon: 'shopping-cart',
+      icon: 'pay-circle-o',
       color: color.red,
-      title: 'Referrals',
+      title: '交易额',
       number: 4324,
     },
   ],
