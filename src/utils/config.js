@@ -7,4 +7,7 @@ module.exports = {
   needLogin: true,
   iconFontUrl: '//at.alicdn.com/t/font_c4y7asse3q1cq5mi.js',
   baseURL: 'http://47.92.30.98:7001/api',
+  crossDomains: [
+    'http://www.zuimeitianqi.com',
+  ],
 }
