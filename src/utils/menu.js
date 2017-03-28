@@ -1,12 +1,12 @@
 module.exports = [
   {
     key: 'dashboard',
-    name: '仪表盘',
+    name: 'Dashboard',
     icon: 'laptop',
   },
   {
     key: 'users',
-    name: '用户管理',
+    name: 'User Manage',
     icon: 'user',
   },
   {
@@ -22,27 +22,33 @@ module.exports = [
     child: [
       {
         key: 'iconfont',
-        name: 'IconFont 字体图标',
+        name: 'IconFont',
+        icon: 'heart-o',
       },
       {
         key: 'dataTable',
-        name: 'DataTable 数据表格',
+        name: 'DataTable',
+        icon: 'database',
       },
       {
         key: 'dropOption',
-        name: 'DropOption 下拉操作',
+        name: 'DropOption',
+        icon: 'bars',
       },
       {
         key: 'search',
-        name: 'Search 搜索',
+        name: 'Search',
+        icon: 'search',
       },
       {
         key: 'editor',
-        name: 'Editor 编辑器',
+        name: 'Editor',
+        icon: 'edit',
       },
       {
         key: 'layer',
-        name: 'layer 弹层【方法】',
+        name: 'layer (Function)',
+        icon: 'credit-card',
       },
     ],
   },
@@ -54,37 +60,40 @@ module.exports = [
       {
         key: 'lineChart',
         name: 'LineChart',
+        icon: 'line-chart',
       },
       {
         key: 'barChart',
         name: 'BarChart',
+        icon: 'bar-chart',
       },
       {
         key: 'areaChart',
         name: 'AreaChart',
+        icon: 'area-chart',
       },
     ],
   },
   {
     key: 'navigation',
-    name: '测试导航',
+    name: 'Test Navigation',
     icon: 'setting',
     child: [
       {
         key: 'navigation1',
-        name: '二级导航1',
+        name: 'Test Navigation1',
       },
       {
         key: 'navigation2',
-        name: '二级导航2',
+        name: 'Test Navigation2',
         child: [
           {
             key: 'navigation21',
-            name: '三级导航1',
+            name: 'Test Navigation21',
           },
           {
             key: 'navigation22',
-            name: '三级导航2',
+            name: 'Test Navigation22',
           },
         ],
       },

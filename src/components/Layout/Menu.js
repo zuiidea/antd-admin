@@ -16,7 +16,6 @@ const getMenus = function (menuArray, siderFold, parentPath = '/') {
     }
     return (
       <Menu.Item key={linkTo}>
-
         <Link to={linkTo}>
           {item.icon ? <Icon type={item.icon} /> : ''}
           {siderFold && topMenus.indexOf(item.key) >= 0 ? '' : item.name}
@@ -48,7 +47,7 @@ function Menus ({ siderFold, darkTheme, location, handleClickNavMenu, navOpenKey
     }
     changeOpenKeys(nextOpenKeys)
   }
-  // 菜单栏收起时，不能操作openKeys
+
   let menuProps = !siderFold ? {
     onOpenChange,
     openKeys: navOpenKeys,
