@@ -36,7 +36,6 @@ const App = ({ children, location, dispatch, app, loading }) => {
       dispatch({ type: 'app/switchSider' })
     },
     changeOpenKeys (openKeys) {
-      localStorage.setItem('navOpenKeys', JSON.stringify(openKeys))
       dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
     },
   }

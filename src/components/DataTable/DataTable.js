@@ -51,8 +51,9 @@ class DataTable extends React.Component {
         sortOrder: sorter.order,
         ...filters,
       },
+    }, () => {
+      this.fetch()
     })
-    this.fetch()
   }
 
   fetch = () => {

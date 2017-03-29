@@ -13,7 +13,7 @@ export default {
     siderFold: localStorage.getItem('antdAdminSiderFold') === 'true',
     darkTheme: localStorage.getItem('antdAdminDarkTheme') !== 'false',
     isNavbar: document.body.clientWidth < 769,
-    navOpenKeys: JSON.parse(localStorage.getItem('navOpenKeys') || '[]'),
+    navOpenKeys: [],
   },
   subscriptions: {
     setup ({ dispatch }) {
