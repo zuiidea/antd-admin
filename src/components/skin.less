@@ -63,6 +63,21 @@ body {
     box-shadow: 0 0 20px rgba(100, 100, 100, 0.2);
   }
 
+  .vertical-center-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .ant-modal {
+      top: 0;
+
+      .ant-modal-body {
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+    }
+  }
+
   .ant-form-item-control {
     vertical-align: middle;
   }
