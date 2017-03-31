@@ -1,14 +1,27 @@
 const Cookie = require('js-cookie')
 import mockStorge from '../src/utils/mockStorge'
 
+const userPermission = {
+  DEFAULT: ['dashboard', 'chart'],
+  ADMIN: ['dashboard', 'users', 'UIElement', 'UIElementIconfont', 'chart'],
+  DEVELOPER: ['dashboard', 'users', 'UIElement', 'UIElementIconfont', 'chart'],
+}
+
 let dataKey = mockStorge('AdminUsers', [
+  {
+    username: 'admin',
+    password: 'admin',
+    permissions: userPermission.ADMIN,
+  },
   {
     username: 'guest',
     password: 'guest',
+    permissions: userPermission.DEFAULT,
   },
   {
     username: '吴彦祖',
     password: '123456',
+    permissions: userPermission.DEVELOPER,
   },
 ])
 
@@ -19,17 +32,18 @@ module.exports = {
       success: false,
       message: '',
     }
-    const d = global[dataKey].filter((item) => {
+    const currentUser = global[dataKey].filter((item) => {
       return item.username === userItem.username
     })
-    if (d.length) {
-      if (d[0].password === userItem.password) {
+    if (currentUser.length) {
+      if (currentUser[0].password === userItem.password) {
         const now = new Date()
         now.setDate(now.getDate() + 1)
         Cookie.set('user_session', now.getTime(), { path: '/' })
         Cookie.set('user_name', userItem.username, { path: '/' })
         response.message = '登录成功'
         response.success = true
+        response.userPermissions = global[dataKey].filter(_ => _.username === userItem.username)[0].permissions
       } else {
         response.message = '密码不正确'
       }
@@ -44,6 +58,7 @@ module.exports = {
       success: Cookie.get('user_session') && Cookie.get('user_session') > new Date().getTime(),
       username: Cookie.get('user_name') || '',
       message: '',
+      userPermissions: global[dataKey].filter(_ => _.username === Cookie.get('user_name'))[0].permissions,
     }
     res.json(response)
   },
