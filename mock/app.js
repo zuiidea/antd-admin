@@ -58,8 +58,12 @@ module.exports = {
       success: Cookie.get('user_session') && Cookie.get('user_session') > new Date().getTime(),
       username: Cookie.get('user_name') || '',
       message: '',
-      userPermissions: global[dataKey].filter(_ => _.username === Cookie.get('user_name'))[0].permissions,
     }
+
+    if (response.success) {
+      response.userPermissions = global[dataKey].filter(_ => _.username === Cookie.get('user_name'))[0].permissions
+    }
+
     res.json(response)
   },
 
