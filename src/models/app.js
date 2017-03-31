@@ -14,6 +14,30 @@ export default {
     darkTheme: localStorage.getItem('antdAdminDarkTheme') !== 'false',
     isNavbar: document.body.clientWidth < 769,
     navOpenKeys: [],
+    permissions: {
+      dashboard: {
+        text: 'Dashboard',
+        route: 'dashboard',
+      },
+      users: {
+        text: 'User Manage',
+        route: 'users',
+      },
+      UIElement: {
+        text: 'UI Element',
+        route: 'UIElement',
+      },
+      UIElementIconfont: {
+        text: 'Iconfont',
+        route: 'UIElement/iconfont',
+        parent: 'UIElement',
+      },
+      chart: {
+        text: 'Rechart',
+        route: 'chart',
+      },
+    },
+    userPermissions: [],
   },
   subscriptions: {
     setup ({ dispatch }) {
@@ -28,13 +52,14 @@ export default {
       payload,
     }, { call, put }) {
       yield put({ type: 'showLoginButtonLoading' })
-      const data = yield call(login, parse(payload))
-      if (data.success) {
+      const { success, userPermissions, username } = yield call(login, parse(payload))
+      if (success) {
         yield put({
           type: 'loginSuccess',
           payload: {
+            userPermissions,
             user: {
-              name: payload.username,
+              name: username,
             },
           } })
       } else {
@@ -46,13 +71,14 @@ export default {
     *queryUser ({
       payload,
     }, { call, put }) {
-      const data = yield call(userInfo, parse(payload))
-      if (data.success) {
+      const { success, userPermissions, username } = yield call(userInfo, parse(payload))
+      if (success) {
         yield put({
           type: 'loginSuccess',
           payload: {
+            userPermissions,
             user: {
-              name: data.username,
+              name: username,
             },
           },
         })
