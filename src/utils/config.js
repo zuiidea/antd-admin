@@ -10,4 +10,6 @@ module.exports = {
   crossDomains: [
     'http://www.zuimeitianqi.com',
   ],
+  YQL: ['http://www.zuimeitianqi.com'],
+  CORS: ['http://localhost:7001'],
 }

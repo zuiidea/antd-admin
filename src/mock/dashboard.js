@@ -1,8 +1,7 @@
-import { color } from '../src/utils/theme'
+import { color } from '../utils/theme'
 const Mock = require('mockjs')
-import mockStorge from '../src/utils/mockStorge'
 
-let dataKey = mockStorge('Dashboard', Mock.mock({
+const Dashboard = Mock.mock({
   'sales|8': [
     {
       'name|+1': 2008,
@@ -120,10 +119,10 @@ let dataKey = mockStorge('Dashboard', Mock.mock({
       number: 4324,
     },
   ],
-}))
+})
 
 module.exports = {
   'GET /api/dashboard' (req, res) {
-    res.json(global[dataKey])
+    res.json(Dashboard)
   },
 }

@@ -1,8 +1,7 @@
 const qs = require('qs')
 const Mock = require('mockjs')
-import mockStorge from '../src/utils/mockStorge'
 
-let dataKey = mockStorge('UsersList', Mock.mock({
+let antdAdminUsersList = Mock.mock({
   'data|100': [
     {
       'id|+1': 1,
@@ -23,13 +22,15 @@ let dataKey = mockStorge('UsersList', Mock.mock({
     total: 100,
     current: 1,
   },
-}))
+})
 
-let usersListData = global[dataKey]
+
+let usersListData = antdAdminUsersList
 
 module.exports = {
 
   'GET /api/users' (req, res) {
+    console.log(req.query)
     const page = qs.parse(req.query)
     const pageSize = page.pageSize || 10
     const currentPage = page.page || 1
@@ -69,7 +70,7 @@ module.exports = {
     usersListData.page.total = usersListData.data.length
     usersListData.page.current = 1
 
-    global[dataKey] = usersListData
+    antdAdminUsersList = usersListData
 
     res.json({ success: true, data: usersListData.data, page: usersListData.page })
   },
@@ -86,7 +87,7 @@ module.exports = {
 
     usersListData.page.total = usersListData.data.length
 
-    global[dataKey] = usersListData
+    antdAdminUsersList = usersListData
 
     res.json({ success: true, data: usersListData.data, page: usersListData.page })
   },
@@ -104,7 +105,7 @@ module.exports = {
       return item
     })
 
-    global[dataKey] = usersListData
+    antdAdminUsersList = usersListData
     res.json({ success: true, data: usersListData.data, page: usersListData.page })
   },
 

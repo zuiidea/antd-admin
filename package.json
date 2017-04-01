@@ -22,10 +22,10 @@
   "devDependencies": {
     "atool-build": "^0.7.6",
     "axios": "^0.15.3",
-    "babel-eslint": "^6.0.4",
+    "babel-eslint": "^6.1.2",
     "babel-plugin-dev-expression": "^0.2.1",
-    "babel-plugin-dva-hmr": "^0.1.0",
-    "babel-plugin-import": "^1.0.1",
+    "babel-plugin-dva-hmr": "^0.3.2",
+    "babel-plugin-import": "^1.1.1",
     "babel-plugin-transform-runtime": "^6.9.0",
     "babel-polyfill": "^6.23.0",
     "babel-runtime": "^6.9.2",
@@ -41,17 +41,19 @@
     "eslint-plugin-jsx-a11y": "^1.4.2",
     "eslint-plugin-react": "^5.1.1",
     "glob": "^7.0.5",
+    "jsonp": "^0.2.1",
+    "less-vars-to-js": "^1.1.2",
     "mockjs": "^1.0.1-beta3",
     "rc-tween-one": "^1.0.0",
     "redbox-react": "^1.2.10",
+    "roadhog": "^0.6.0-beta1",
     "watchjs": "^0.0.0"
   },
   "pre-commit": [
     "lint"
   ],
   "scripts": {
-    "start": "dora --plugins \"proxy,webpack?publicPath=/,webpack-hmr,browser-history?index=/src/index.html\"",
-    "dev": "dora --plugins \"webpack?publicPath=/,webpack-hmr,browser-history?index=/src/index.html\"",
+    "dev": "set BROWSER=none&&roadhog server",
     "lint": "eslint --fix --ext .js src",
     "build": "atool-build"
   },

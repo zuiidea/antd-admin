@@ -39,7 +39,7 @@
 -   [x] 规范代码: EsLint; 自用[开发配置](assets/standard.md)
 -   [ ] 数据可视化页面
 -   [ ] 模拟消息收发
--   [ ] 升级dva-cli
+-   [ ] 升级为roadhog
 
 ## 开发及构建
 
