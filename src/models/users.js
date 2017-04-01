@@ -34,7 +34,11 @@ export default {
   },
 
   effects: {
-    *query ({ payload }, { call, put }) {
+    *query ({ payload }, { call, put, select }) {
+      const { app } = yield select(state => state)
+      if (!app.login) {
+        return
+      }
       const data = yield call(query, parse(payload))
       if (data) {
         yield put({
