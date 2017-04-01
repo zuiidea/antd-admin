@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react'
 import { Router } from 'dva/router'
-// import pathToRegexp from 'path-to-regexp'
 import App from './routes/app'
 
 const cached = {}

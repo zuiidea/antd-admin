@@ -6,8 +6,16 @@ const svgSpriteDirs = [
 
 export default {
   entry: 'src/index.js',
+  publicPath: "http://47.92.30.98:8000",
   svgSpriteLoaderDirs: svgSpriteDirs,
   "theme": "src/theme.js",
+  // "proxy": {
+  //   "/api": {
+  //     "target": "http://localhost:7001/api/v1/",
+  //     "changeOrigin": true,
+  //     "pathRewrite": { "^/api" : "" }
+  //   }
+  // },
   "env": {
       "development": {
         "extraBabelPlugins": [
@@ -22,5 +30,5 @@ export default {
   		    ["import", { "libraryName": "antd", "style": true}]
         ]
       }
-    }
+  }
 }

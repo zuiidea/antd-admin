@@ -29,7 +29,6 @@ const adminUsers = [
 
 module.exports = {
   'POST /api/login' (req, res) {
-    console.log(req.body)
     const now = new Date()
     now.setDate(now.getDate() + 1)
     res.cookie('token', JSON.stringify({
@@ -65,6 +64,7 @@ module.exports = {
   },
 
   'POST /api/logout' (req, res) {
+    res.clearCookie('token')
     res.json({
       success: true,
       message: '退出成功',

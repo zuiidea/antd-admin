@@ -52,7 +52,7 @@
   "scripts": {
     "dev": "roadhog server --open=fasle",
     "lint": "eslint --fix --ext .js src",
-    "build": "atool-build"
+    "build": "roadhog build"
   },
   "theme": "./src/theme.js",
   "standard": {
