@@ -25,8 +25,8 @@ const login = ({
   return (
     <div className={styles.form}>
       <div className={styles.logo}>
-        <img alt={'logo'} src={config.logoSrc} />
-        <span>Ant Design</span>
+        <img alt={'logo'} src={config.logo} />
+        <span>{config.name}</span>
       </div>
       <form>
         <FormItem hasFeedback>

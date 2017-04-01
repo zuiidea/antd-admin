@@ -30,7 +30,6 @@ let usersListData = antdAdminUsersList
 module.exports = {
 
   'GET /api/users' (req, res) {
-    console.log(req.query)
     const page = qs.parse(req.query)
     const pageSize = page.pageSize || 10
     const currentPage = page.page || 1

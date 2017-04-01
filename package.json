@@ -1,8 +1,5 @@
 {
   "private": true,
-  "entry": {
-    "index": "./src/index.js"
-  },
   "dependencies": {
     "antd": "^2.7.3",
     "classnames": "^2.2.5",
@@ -53,7 +50,7 @@
     "lint"
   ],
   "scripts": {
-    "dev": "set BROWSER=none&&roadhog server",
+    "dev": "roadhog server --open=fasle",
     "lint": "eslint --fix --ext .js src",
     "build": "atool-build"
   },
