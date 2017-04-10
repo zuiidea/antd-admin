@@ -43,7 +43,7 @@
     "mockjs": "^1.0.1-beta3",
     "rc-tween-one": "^1.0.0",
     "redbox-react": "^1.2.10",
-    "roadhog": "^0.6.0-beta1",
+    "roadhog": "0.6.0-beta.3",
     "watchjs": "^0.0.0"
   },
   "pre-commit": [
