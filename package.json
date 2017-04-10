@@ -17,6 +17,7 @@
     "recharts": "^0.19.0"
   },
   "devDependencies": {
+    "antd": "^2.9.1",
     "atool-build": "^0.7.6",
     "axios": "^0.15.3",
     "babel-eslint": "^6.1.2",
@@ -43,14 +44,14 @@
     "mockjs": "^1.0.1-beta3",
     "rc-tween-one": "^1.0.0",
     "redbox-react": "^1.2.10",
-    "roadhog": "0.6.0-beta.3",
+    "roadhog": "^0.6.0-beta.3",
     "watchjs": "^0.0.0"
   },
   "pre-commit": [
     "lint"
   ],
   "scripts": {
-    "dev": "roadhog server --open=fasle",
+    "dev": "set BROWSER=none&&roadhog server",
     "lint": "eslint --fix --ext .js src",
     "build": "roadhog build"
   },

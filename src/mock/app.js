@@ -29,16 +29,23 @@ const adminUsers = [
 
 module.exports = {
   'POST /api/login' (req, res) {
-    const now = new Date()
-    now.setDate(now.getDate() + 1)
-    res.cookie('token', JSON.stringify({
-      id: 2,
-      deadline: now.getTime(),
-    }), { maxAge: 900000, httpOnly: true })
-    res.json({
-      success: true,
-      message: '登录成功',
-    })
+    const { username, password } = req.body
+
+    const user = adminUsers.filter((item) => item.username === username)
+    if (user && user[0].password === password) {
+      const now = new Date()
+      now.setDate(now.getDate() + 1)
+      res.cookie('token', JSON.stringify({
+        id: 2,
+        deadline: now.getTime(),
+      }), { maxAge: 900000, httpOnly: true })
+      res.json({
+        success: true,
+        message: '登录成功',
+      })
+    } else {
+      res.status(400).send({ message: 'Bad Request' })
+    }
   },
 
   'GET /api/userInfo' (req, res) {
@@ -60,6 +67,7 @@ module.exports = {
         response.userPermissions = userItem[0].permissions
       }
     }
+    console.log(response)
     res.json(response)
   },
 

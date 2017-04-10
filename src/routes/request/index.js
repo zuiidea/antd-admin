@@ -17,6 +17,15 @@ const requestOptions = [
     desc: 'intercept request by mock.js',
   },
   {
+    url: `${location.origin}/api/login`,
+    method: 'post',
+    data: {
+      username: 'admin',
+      password: 'admin6',
+    },
+    desc: 'intercept request by mock.js',
+  },
+  {
     url: `${location.origin}/api/users`,
     desc: 'intercept request by mock.js',
     method: 'post',
