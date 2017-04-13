@@ -1,7 +1,7 @@
 import { request, config } from '../utils'
 const { api } = config
 const { userInfo, userLogout } = api
-console.log(userLogout)
+
 export async function login (params) {
   return request({
     url: '/api/login',

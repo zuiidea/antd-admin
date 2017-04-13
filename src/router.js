@@ -12,10 +12,10 @@ const registerModel = (app, model) => {
 
 const Routers = function ({ history, app }) {
   const handleChildRoute = ({ location }) => {
-    const state = app._store.getState()
-    if (!state.app.login && location.pathname !== '/login') {
-      app._store.dispatch(routerRedux.push('/login'))
-    }
+    // const state = app._store.getState()
+    // if (!state.app.login && location.pathname !== '/login') {
+    //   app._store.dispatch(routerRedux.push('/login'))
+    // }
   }
 
   const routes = [

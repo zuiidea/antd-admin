@@ -106,7 +106,7 @@ module.exports = {
   },
 
   [`GET ${apiPrefix}/users`] (req, res) {
-    const page = qs.parse(req.query)
+    const page = req.query
     const pageSize = page.pageSize || 10
     const currentPage = page.page || 1
 
@@ -142,7 +142,7 @@ module.exports = {
   },
 
   [`POST ${apiPrefix}/users`] (req, res) {
-    const newData = JSON.parse(req.body)
+    const newData = req.body
     newData.createTime = Mock.mock('@now')
     newData.avatar = Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', newData.nickName.substr(0, 1))
 
@@ -158,7 +158,7 @@ module.exports = {
   },
 
   [`DELETE ${apiPrefix}/users`] (req, res) {
-    const deleteItem = JSON.parse(req.body)
+    const deleteItem = req.body
 
     usersListData.data = usersListData.data.filter((item) => {
       if (item.id === deleteItem.id) {
@@ -175,7 +175,7 @@ module.exports = {
   },
 
   [`PUT ${apiPrefix}/users`] (req, res) {
-    const editItem = JSON.parse(req.body)
+    const editItem = req.body
 
     editItem.createTime = Mock.mock('@now')
     editItem.avatar = Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', editItem.nickName.substr(0, 1))

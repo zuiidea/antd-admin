@@ -13,5 +13,7 @@ module.exports = {
     userLogin: '/user/login',
     userLogout: '/user/logout',
     userInfo: '/userInfo',
+    users: '/users',
+    dashboard: '/dashboard',
   },
 }

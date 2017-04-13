@@ -5,7 +5,6 @@ import { parse } from 'qs'
 export default {
   namespace: 'app',
   state: {
-    login: false,
     user: {
       name: '吴彦祖',
       userPermissions: [],
@@ -60,9 +59,8 @@ export default {
             user: data.user,
           },
         })
-        yield put(routerRedux.push('/dashboard'))
       } else {
-        throw (data)
+        yield put(routerRedux.push('/login'))
       }
     },
     *logout ({
@@ -114,27 +112,6 @@ export default {
       return {
         ...state,
         ...action.payload,
-      }
-    },
-    loginSuccess (state, action) {
-      return {
-        ...state,
-        ...action.payload,
-        login: true,
-        loginButtonLoading: false,
-      }
-    },
-    logoutSuccess (state) {
-      return {
-        ...state,
-        login: false,
-      }
-    },
-    loginFail (state) {
-      return {
-        ...state,
-        login: false,
-        loginButtonLoading: false,
       }
     },
     showLoginButtonLoading (state) {

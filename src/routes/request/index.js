@@ -10,8 +10,18 @@ import {
   Input,
   Button,
 } from 'antd'
+const { api, baseURL } = config
+const { userInfo, dashboard } = api
 
 const requestOptions = [
+  {
+    url: baseURL + userInfo,
+    desc: 'intercept request by mock.js',
+  },
+  {
+    url: baseURL + dashboard,
+    desc: 'intercept request by mock.js',
+  },
   {
     url: `${location.origin}/api/users`,
     desc: 'intercept request by mock.js',
