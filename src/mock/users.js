@@ -1,5 +1,7 @@
 const qs = require('qs')
 const Mock = require('mockjs')
+const config = require('../utils/config')
+const { apiPrefix } = config
 
 let antdAdminUsersList = Mock.mock({
   'data|100': [
@@ -24,12 +26,86 @@ let antdAdminUsersList = Mock.mock({
   },
 })
 
+const userPermission = {
+  DEFAULT: [
+    'dashboard', 'chart',
+  ],
+  ADMIN: [
+    'dashboard', 'users', 'UIElement', 'UIElementIconfont', 'chart',
+  ],
+  DEVELOPER: ['dashboard', 'users', 'UIElement', 'UIElementIconfont', 'chart'],
+}
+
+const adminUsers = [
+  {
+    id: 0,
+    username: 'admin',
+    password: 'admin',
+    permissions: userPermission.ADMIN,
+  }, {
+    id: 1,
+    username: 'guest',
+    password: 'guest',
+    permissions: userPermission.DEFAULT,
+  }, {
+    id: 2,
+    username: '吴彦祖',
+    password: '123456',
+    permissions: userPermission.DEVELOPER,
+  },
+]
 
 let usersListData = antdAdminUsersList
 
 module.exports = {
 
-  'GET /api/users' (req, res) {
+  [`POST ${apiPrefix}/user/login`] (req, res) {
+    const { username, password } = req.body
+    const user = adminUsers.filter((item) => item.username === username)
+
+    if (user && user[0].password === password) {
+      const now = new Date()
+      now.setDate(now.getDate() + 1)
+      res.cookie('token', JSON.stringify({ id: 2, deadline: now.getTime() }), {
+        maxAge: 900000,
+        httpOnly: true,
+      })
+      res.json({ success: true, message: '登录成功' })
+    } else {
+      res.status(400).send({ message: 'Bad Request' })
+    }
+  },
+
+  [`GET ${apiPrefix}/user/logout`] (req, res) {
+    res.clearCookie('token')
+    res.status(200).send({ message: 'OK' })
+  },
+
+  [`GET ${apiPrefix}/userInfo`] (req, res) {
+    const cookies = qs.parse(req.headers.cookie, { delimiter: ';' })
+    const response = {}
+    const user = {}
+    if (!cookies.token) {
+      res.status(200).send({ message: 'Not Login' })
+      return
+    }
+    const token = JSON.parse(cookies.token)
+    if (token) {
+      response.success = token.deadline > new Date().getTime()
+    }
+    if (response.success) {
+      const userItem = adminUsers.filter(_ => _.id === token.id)
+      if (userItem.length > 0) {
+        user.permissions = userItem[0].permissions
+        user.username = userItem[0].username
+        user.id = userItem[0].id
+      }
+    }
+    response.user = user
+    res.json(response)
+  },
+
+  [`GET ${apiPrefix}/users`] (req, res) {
     const page = qs.parse(req.query)
     const pageSize = page.pageSize || 10
     const currentPage = page.page || 1
@@ -55,10 +131,17 @@ module.exports = {
       usersListData.page.current = currentPage * 1
       newPage = usersListData.page
     }
-    res.json({ success: true, data, page: { ...newPage, pageSize: Number(pageSize) } })
+    res.json({
+      success: true,
+      data,
+      page: {
+        ...newPage,
+        pageSize: Number(pageSize),
+      },
+    })
   },
 
-  'POST /api/users' (req, res) {
+  [`POST ${apiPrefix}/users`] (req, res) {
     const newData = JSON.parse(req.body)
     newData.createTime = Mock.mock('@now')
     newData.avatar = Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', newData.nickName.substr(0, 1))
@@ -74,7 +157,7 @@ module.exports = {
     res.json({ success: true, data: usersListData.data, page: usersListData.page })
   },
 
-  'DELETE /api/users' (req, res) {
+  [`DELETE ${apiPrefix}/users`] (req, res) {
     const deleteItem = JSON.parse(req.body)
 
     usersListData.data = usersListData.data.filter((item) => {
@@ -91,7 +174,7 @@ module.exports = {
     res.json({ success: true, data: usersListData.data, page: usersListData.page })
   },
 
-  'PUT /api/users' (req, res) {
+  [`PUT ${apiPrefix}/users`] (req, res) {
     const editItem = JSON.parse(req.body)
 
     editItem.createTime = Mock.mock('@now')
@@ -107,5 +190,4 @@ module.exports = {
     antdAdminUsersList = usersListData
     res.json({ success: true, data: usersListData.data, page: usersListData.page })
   },
-
 }

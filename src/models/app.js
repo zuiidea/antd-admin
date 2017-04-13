@@ -1,4 +1,5 @@
-import { login, userInfo, logout } from '../services/app'
+import { getUserInfo, logout } from '../services/app'
+import { routerRedux } from 'dva/router'
 import { parse } from 'qs'
 
 export default {
@@ -7,6 +8,7 @@ export default {
     login: false,
     user: {
       name: '吴彦祖',
+      userPermissions: [],
     },
     loginButtonLoading: false,
     menuPopoverVisible: false,
@@ -37,7 +39,6 @@ export default {
         route: 'chart',
       },
     },
-    userPermissions: [],
   },
   subscriptions: {
     setup ({ dispatch }) {
@@ -48,40 +49,20 @@ export default {
     },
   },
   effects: {
-    *login ({
-      payload,
-    }, { call, put }) {
-      yield put({ type: 'showLoginButtonLoading' })
-      const { success, userPermissions, username } = yield call(login, parse(payload))
-      if (success) {
-        yield put({
-          type: 'loginSuccess',
-          payload: {
-            userPermissions,
-            user: {
-              name: username,
-            },
-          } })
-      } else {
-        yield put({
-          type: 'loginFail',
-        })
-      }
-    },
     *queryUser ({
       payload,
     }, { call, put }) {
-      const { success, userPermissions, username } = yield call(userInfo, parse(payload))
-      if (success) {
+      const data = yield call(getUserInfo, parse(payload))
+      if (data.success && data.user) {
         yield put({
-          type: 'loginSuccess',
+          type: 'queryUserSuccess',
           payload: {
-            userPermissions,
-            user: {
-              name: username,
-            },
+            user: data.user,
           },
         })
+        yield put(routerRedux.push('/dashboard'))
+      } else {
+        throw (data)
       }
     },
     *logout ({
@@ -92,6 +73,9 @@ export default {
         yield put({
           type: 'logoutSuccess',
         })
+        yield put(routerRedux.push('/login'))
+      } else {
+        throw (data)
       }
     },
     *switchSider ({
@@ -126,6 +110,12 @@ export default {
     },
   },
   reducers: {
+    queryUserSuccess (state, action) {
+      return {
+        ...state,
+        ...action.payload,
+      }
+    },
     loginSuccess (state, action) {
       return {
         ...state,

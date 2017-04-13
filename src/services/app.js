@@ -1,5 +1,7 @@
-import { request } from '../utils'
-
+import { request, config } from '../utils'
+const { api } = config
+const { userInfo, userLogout } = api
+console.log(userLogout)
 export async function login (params) {
   return request({
     url: '/api/login',
@@ -10,15 +12,15 @@ export async function login (params) {
 
 export async function logout (params) {
   return request({
-    url: '/api/logout',
-    method: 'post',
+    url: userLogout,
+    method: 'get',
     data: params,
   })
 }
 
-export async function userInfo (params) {
+export async function getUserInfo (params) {
   return request({
-    url: '/api/userInfo',
+    url: userInfo,
     method: 'get',
     data: params,
   })
