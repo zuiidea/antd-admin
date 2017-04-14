@@ -6,6 +6,7 @@ import lodash from 'lodash'
 
 axios.defaults.baseURL = baseURL
 
+
 const fetch = (options) => {
   let {
     method = 'get',
