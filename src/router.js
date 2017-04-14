@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Router, routerRedux } from 'dva/router'
+import { Router } from 'dva/router'
 import App from './routes/app'
 
 const cached = {}
@@ -12,6 +12,7 @@ const registerModel = (app, model) => {
 
 const Routers = function ({ history, app }) {
   const handleChildRoute = ({ location }) => {
+    console.log(location)
     // const state = app._store.getState()
     // if (!state.app.login && location.pathname !== '/login') {
     //   app._store.dispatch(routerRedux.push('/login'))

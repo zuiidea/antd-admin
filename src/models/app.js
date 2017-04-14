@@ -5,10 +5,7 @@ import { parse } from 'qs'
 export default {
   namespace: 'app',
   state: {
-    user: {
-      name: '吴彦祖',
-      userPermissions: [],
-    },
+    user: {},
     loginButtonLoading: false,
     menuPopoverVisible: false,
     siderFold: localStorage.getItem('antdAdminSiderFold') === 'true',
@@ -55,12 +52,19 @@ export default {
       if (data.success && data.user) {
         yield put({
           type: 'queryUserSuccess',
-          payload: {
-            user: data.user,
-          },
+          payload: data.user,
         })
+        if (location.pathname === '/login') {
+          yield put(routerRedux.push('/dashboard'))
+        }
       } else {
-        yield put(routerRedux.push('/login'))
+        if (location.pathname !== '/login') {
+          if (location.pathname === '/dashboard') {
+            window.location = `${location.origin}/login?from=/dashboard`
+          } else {
+            yield put(routerRedux.push(`/login?from=${location.pathname}`))
+          }
+        }
       }
     },
     *logout ({
@@ -68,10 +72,7 @@ export default {
     }, { call, put }) {
       const data = yield call(logout, parse(payload))
       if (data.success) {
-        yield put({
-          type: 'logoutSuccess',
-        })
-        yield put(routerRedux.push('/login'))
+        yield put({ type: 'queryUser' })
       } else {
         throw (data)
       }
@@ -108,10 +109,10 @@ export default {
     },
   },
   reducers: {
-    queryUserSuccess (state, action) {
+    queryUserSuccess (state, { payload: user }) {
       return {
         ...state,
-        ...action.payload,
+        user,
       }
     },
     showLoginButtonLoading (state) {

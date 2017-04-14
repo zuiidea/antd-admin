@@ -66,11 +66,11 @@ module.exports = {
     if (user && user[0].password === password) {
       const now = new Date()
       now.setDate(now.getDate() + 1)
-      res.cookie('token', JSON.stringify({ id: 2, deadline: now.getTime() }), {
+      res.cookie('token', JSON.stringify({ id: user[0].id, deadline: now.getTime() }), {
         maxAge: 900000,
         httpOnly: true,
       })
-      res.json({ success: true, message: '登录成功' })
+      res.json({ success: true, message: 'Ok' })
     } else {
       res.status(400).send({ message: 'Bad Request' })
     }
