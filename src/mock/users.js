@@ -3,7 +3,7 @@ const Mock = require('mockjs')
 const config = require('../utils/config')
 const { apiPrefix } = config
 
-let antdAdminUsersList = Mock.mock({
+let usersListData = Mock.mock({
   'data|100': [
     {
       'id|+1': 1,
@@ -54,8 +54,6 @@ const adminUsers = [
     permissions: userPermission.DEVELOPER,
   },
 ]
-
-let usersListData = antdAdminUsersList
 
 module.exports = {
 
@@ -152,8 +150,6 @@ module.exports = {
     usersListData.page.total = usersListData.data.length
     usersListData.page.current = 1
 
-    antdAdminUsersList = usersListData
-
     res.json({ success: true, data: usersListData.data, page: usersListData.page })
   },
 
@@ -168,8 +164,6 @@ module.exports = {
     })
 
     usersListData.page.total = usersListData.data.length
-
-    antdAdminUsersList = usersListData
 
     res.json({ success: true, data: usersListData.data, page: usersListData.page })
   },
@@ -187,7 +181,6 @@ module.exports = {
       return item
     })
 
-    antdAdminUsersList = usersListData
     res.json({ success: true, data: usersListData.data, page: usersListData.page })
   },
 }
