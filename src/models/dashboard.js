@@ -188,12 +188,7 @@ export default {
     },
   },
   subscriptions: {
-    setup ({ dispatch, history }) {
-      history.listen(location => {
-        if (location.pathname === '/dashboard') {
-          console.log('dashboard')
-        }
-      })
+    setup ({ dispatch }) {
       dispatch({ type: 'query' })
       dispatch({ type: 'queryWeather' })
     },

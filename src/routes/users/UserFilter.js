@@ -29,7 +29,7 @@ const UserFilter = ({
         <Search {...searchGroupProps} />
       </Col>
       <Col lg={{ offset: 8, span: 8 }} md={12} sm={8} xs={24} style={{ marginBottom: 16, textAlign: 'right' }}>
-        <Switch style={{ marginRight: 16 }} defaultChecked={isMotion} onChange={switchIsMotion} checkedChildren={'动画开'} unCheckedChildren={'动画关'} />
+        {/* <Switch style={{ marginRight: 16 }} defaultChecked={isMotion} onChange={switchIsMotion} checkedChildren={'动画开'} unCheckedChildren={'动画关'} /> */}
         <Button size="large" type="ghost" onClick={onAdd}>添加</Button>
       </Col>
     </Row>

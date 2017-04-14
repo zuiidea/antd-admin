@@ -1,6 +1,8 @@
 import { getUserInfo, logout } from '../services/app'
 import { routerRedux } from 'dva/router'
 import { parse } from 'qs'
+import { config } from '../utils'
+const { prefix } = config
 
 export default {
   namespace: 'app',
@@ -8,33 +10,10 @@ export default {
     user: {},
     loginButtonLoading: false,
     menuPopoverVisible: false,
-    siderFold: localStorage.getItem('antdAdminSiderFold') === 'true',
-    darkTheme: localStorage.getItem('antdAdminDarkTheme') !== 'false',
+    siderFold: localStorage.getItem(`${prefix}siderFold`) === 'true',
+    darkTheme: localStorage.getItem(`${prefix}darkTheme`) === 'true',
     isNavbar: document.body.clientWidth < 769,
     navOpenKeys: [],
-    permissions: {
-      dashboard: {
-        text: 'Dashboard',
-        route: 'dashboard',
-      },
-      users: {
-        text: 'User Manage',
-        route: 'users',
-      },
-      UIElement: {
-        text: 'UI Element',
-        route: 'UIElement',
-      },
-      UIElementIconfont: {
-        text: 'Iconfont',
-        route: 'UIElement/iconfont',
-        parent: 'UIElement',
-      },
-      chart: {
-        text: 'Rechart',
-        route: 'chart',
-      },
-    },
   },
   subscriptions: {
     setup ({ dispatch }) {
@@ -59,11 +38,11 @@ export default {
         }
       } else {
         if (location.pathname !== '/login') {
+          let from = location.pathname
           if (location.pathname === '/dashboard') {
-            window.location = `${location.origin}/login?from=/dashboard`
-          } else {
-            yield put(routerRedux.push(`/login?from=${location.pathname}`))
+            from = '/dashboard'
           }
+          window.location = `${location.origin}/login?from=${from}`
         }
       }
     },
@@ -122,14 +101,14 @@ export default {
       }
     },
     handleSwitchSider (state) {
-      localStorage.setItem('antdAdminSiderFold', !state.siderFold)
+      localStorage.setItem(`${prefix}siderFold`, !state.siderFold)
       return {
         ...state,
         siderFold: !state.siderFold,
       }
     },
     handleChangeTheme (state) {
-      localStorage.setItem('antdAdminDarkTheme', !state.darkTheme)
+      localStorage.setItem(`${prefix}darkTheme`, !state.darkTheme)
       return {
         ...state,
         darkTheme: !state.darkTheme,
@@ -153,10 +132,11 @@ export default {
         menuPopoverVisible: !state.menuPopoverVisible,
       }
     },
-    handleNavOpenKeys (state, action) {
+    handleNavOpenKeys (state, { payload: navOpenKeys }) {
+      console.log(navOpenKeys)
       return {
         ...state,
-        ...action.payload,
+        ...navOpenKeys,
       }
     },
   },

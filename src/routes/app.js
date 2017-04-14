@@ -3,7 +3,7 @@ import { connect } from 'dva'
 import { Layout } from '../components'
 import { classnames, config } from '../utils'
 import { Helmet } from 'react-helmet'
-import '../components/skin.less'
+import '../themes/index.less'
 
 const { Header, Bread, Footer, Sider, styles } = Layout
 

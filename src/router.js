@@ -11,14 +11,6 @@ const registerModel = (app, model) => {
 }
 
 const Routers = function ({ history, app }) {
-  const handleChildRoute = ({ location }) => {
-    console.log(location)
-    // const state = app._store.getState()
-    // if (!state.app.login && location.pathname !== '/login') {
-    //   app._store.dispatch(routerRedux.push('/login'))
-    // }
-  }
-
   const routes = [
     {
       path: '/',
@@ -135,11 +127,6 @@ const Routers = function ({ history, app }) {
       ],
     },
   ]
-
-  routes[0].childRoutes.map(item => {
-    item.onEnter = handleChildRoute
-    return item
-  })
 
   return <Router history={history} routes={routes} />
 }

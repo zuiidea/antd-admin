@@ -3,7 +3,6 @@ import menu from './menu'
 import request from './request'
 import classnames from 'classnames'
 import { color } from './theme'
-// require('./mock.js')
 
 // 连字符转驼峰
 String.prototype.hyphenToHump = function () {
