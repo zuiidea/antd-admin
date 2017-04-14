@@ -1,8 +1,11 @@
 import axios from 'axios'
 import qs from 'qs'
-import { YQL, CORS } from './config'
+import { YQL, CORS, baseURL } from './config'
 import jsonp from 'jsonp'
 import lodash from 'lodash'
+
+axios.defaults.baseURL = baseURL
+
 
 const fetch = (options) => {
   let {
@@ -66,17 +69,23 @@ export default function request (options) {
     const { statusText, status } = response
     let data = options.fetchType === 'YQL' ? response.data.query.results.json : response.data
     return {
-      code: 0,
-      status,
+      success: true,
       message: statusText,
+      status,
       ...data,
     }
   }).catch((error) => {
-    const {
-      response = {
-        statusText: error.message || 'Network Error',
-      },
-    } = error
-    return { code: 1, message: response.statusText }
+    const { response } = error
+    let message
+    let status
+    if (response) {
+      status = response.status
+      const { data, statusText } = response
+      message = data.message || statusText
+    } else {
+      status = 600
+      message = 'Network Error'
+    }
+    return { success: false, status, message }
   })
 }

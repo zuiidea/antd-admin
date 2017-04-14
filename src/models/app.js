@@ -1,43 +1,19 @@
-import { login, userInfo, logout } from '../services/app'
+import { getUserInfo, logout } from '../services/app'
+import { routerRedux } from 'dva/router'
 import { parse } from 'qs'
+import { config } from '../utils'
+const { prefix } = config
 
 export default {
   namespace: 'app',
   state: {
-    login: false,
-    user: {
-      name: '吴彦祖',
-    },
+    user: {},
     loginButtonLoading: false,
     menuPopoverVisible: false,
-    siderFold: localStorage.getItem('antdAdminSiderFold') === 'true',
-    darkTheme: localStorage.getItem('antdAdminDarkTheme') !== 'false',
+    siderFold: localStorage.getItem(`${prefix}siderFold`) === 'true',
+    darkTheme: localStorage.getItem(`${prefix}darkTheme`) === 'true',
     isNavbar: document.body.clientWidth < 769,
     navOpenKeys: [],
-    permissions: {
-      dashboard: {
-        text: 'Dashboard',
-        route: 'dashboard',
-      },
-      users: {
-        text: 'User Manage',
-        route: 'users',
-      },
-      UIElement: {
-        text: 'UI Element',
-        route: 'UIElement',
-      },
-      UIElementIconfont: {
-        text: 'Iconfont',
-        route: 'UIElement/iconfont',
-        parent: 'UIElement',
-      },
-      chart: {
-        text: 'Rechart',
-        route: 'chart',
-      },
-    },
-    userPermissions: [],
   },
   subscriptions: {
     setup ({ dispatch }) {
@@ -48,40 +24,26 @@ export default {
     },
   },
   effects: {
-    *login ({
-      payload,
-    }, { call, put }) {
-      yield put({ type: 'showLoginButtonLoading' })
-      const { success, userPermissions, username } = yield call(login, parse(payload))
-      if (success) {
-        yield put({
-          type: 'loginSuccess',
-          payload: {
-            userPermissions,
-            user: {
-              name: username,
-            },
-          } })
-      } else {
-        yield put({
-          type: 'loginFail',
-        })
-      }
-    },
     *queryUser ({
       payload,
     }, { call, put }) {
-      const { success, userPermissions, username } = yield call(userInfo, parse(payload))
-      if (success) {
+      const data = yield call(getUserInfo, parse(payload))
+      if (data.success && data.user) {
         yield put({
-          type: 'loginSuccess',
-          payload: {
-            userPermissions,
-            user: {
-              name: username,
-            },
-          },
+          type: 'queryUserSuccess',
+          payload: data.user,
         })
+        if (location.pathname === '/login') {
+          yield put(routerRedux.push('/dashboard'))
+        }
+      } else {
+        if (location.pathname !== '/login') {
+          let from = location.pathname
+          if (location.pathname === '/dashboard') {
+            from = '/dashboard'
+          }
+          window.location = `${location.origin}/login?from=${from}`
+        }
       }
     },
     *logout ({
@@ -89,9 +51,9 @@ export default {
     }, { call, put }) {
       const data = yield call(logout, parse(payload))
       if (data.success) {
-        yield put({
-          type: 'logoutSuccess',
-        })
+        yield put({ type: 'queryUser' })
+      } else {
+        throw (data)
       }
     },
     *switchSider ({
@@ -126,25 +88,10 @@ export default {
     },
   },
   reducers: {
-    loginSuccess (state, action) {
+    queryUserSuccess (state, { payload: user }) {
       return {
         ...state,
-        ...action.payload,
-        login: true,
-        loginButtonLoading: false,
-      }
-    },
-    logoutSuccess (state) {
-      return {
-        ...state,
-        login: false,
-      }
-    },
-    loginFail (state) {
-      return {
-        ...state,
-        login: false,
-        loginButtonLoading: false,
+        user,
       }
     },
     showLoginButtonLoading (state) {
@@ -154,14 +101,14 @@ export default {
       }
     },
     handleSwitchSider (state) {
-      localStorage.setItem('antdAdminSiderFold', !state.siderFold)
+      localStorage.setItem(`${prefix}siderFold`, !state.siderFold)
       return {
         ...state,
         siderFold: !state.siderFold,
       }
     },
     handleChangeTheme (state) {
-      localStorage.setItem('antdAdminDarkTheme', !state.darkTheme)
+      localStorage.setItem(`${prefix}darkTheme`, !state.darkTheme)
       return {
         ...state,
         darkTheme: !state.darkTheme,
@@ -185,10 +132,11 @@ export default {
         menuPopoverVisible: !state.menuPopoverVisible,
       }
     },
-    handleNavOpenKeys (state, action) {
+    handleNavOpenKeys (state, { payload: navOpenKeys }) {
+      console.log(navOpenKeys)
       return {
         ...state,
-        ...action.payload,
+        ...navOpenKeys,
       }
     },
   },

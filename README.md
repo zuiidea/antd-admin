@@ -19,29 +19,17 @@
 -   基于[dva](https://github.com/dvajs/dva)动态加载 Model 和路由，按需加载
 -   浅度响应式设计
 
-## To do list
+## 更新日志
 
--   [x] 登录页面
--   [x] dashbord页面
-    -   [x] 数字卡片
-    -   [x] 实时天气卡片
-    -   [x] 图表
--   [x] 用户列表页面
-    -   [x] 增删改查
-    -   [x] 交互动效
--   [x] 扩展UI组件
-    -   [x] IconFont
-    -   [x] DataTable
-    -   [x] Search
-    -   [x] DropOption
-    -   [x] 基于Modal封装的layer方法
--   [x] 加入dva-loading
--   [x] 规范代码: EsLint; 自用[开发配置](assets/standard.md)
--   [ ] 数据可视化页面
--   [ ] 模拟消息收发
--   [ ] 升级dva-cli
+### 4.1
 
-## 开发及构建
+`2017-04-14`
+
+-   升级开发工具为[roadhog](https://github.com/sorrycc/roadhog)
+-   使用`roadhog`的mock功能
+-   增强`utils/request.js`跨域处理能力
+
+## 开发构建
 
 ### 目录结构
 
@@ -84,6 +72,7 @@
 进入目录安装依赖:
 
     npm i 或者 yarn install
+    npm i roadhog@0.6.0-beta.3 -g
 
 开发：
 
@@ -106,15 +95,6 @@ npm run build
 ```bash
 npm run lint
 ```
-
-### 注意事项
-
--   生产环境中，已有数据接口，请将`src/utils/index.js`第四行 `require('./mock.js')`注释
--   开发环境中，如再mock目录新增文件，请在`src/utils/mock.js`第二行的`mockData`数组中添加
--   如需重写antd样式配置，请修改`src/theme.js`
--   项目配置文件在`src/utils/config.js`
--   如需重写异步请求函数，请修改`src/utils/request.js`
-    （关于为什么使用axios而不是fetch：在一个无服务器的环境中模拟数据请求，[Mock](https://github.com/nuysoft/Mock)不能拦截Fetch）
 
 ## 参考
 

@@ -1,4 +1,6 @@
-import { request } from '../utils'
+import { request, config } from '../utils'
+const { api } = config
+const { dashboard } = api
 
 export async function myCity (params) {
   return request({
@@ -16,7 +18,7 @@ export async function queryWeather (params) {
 
 export async function query (params) {
   return request({
-    url: '/api/dashboard',
+    url: dashboard,
     method: 'get',
     data: params,
   })

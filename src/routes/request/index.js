@@ -10,14 +10,33 @@ import {
   Input,
   Button,
 } from 'antd'
+const { api, baseURL } = config
+const { userInfo, dashboard, users, userLogin } = api
 
 const requestOptions = [
   {
-    url: `${location.origin}/api/users`,
+    url: baseURL + userInfo,
     desc: 'intercept request by mock.js',
   },
   {
-    url: `${location.origin}/api/users`,
+    url: baseURL + dashboard,
+    desc: 'intercept request by mock.js',
+  },
+  {
+    url: baseURL + users,
+    desc: 'intercept request by mock.js',
+  },
+  {
+    url: baseURL + userLogin,
+    method: 'post',
+    data: {
+      username: 'admin',
+      password: 'admin6',
+    },
+    desc: 'intercept request by mock.js',
+  },
+  {
+    url: baseURL + users,
     desc: 'intercept request by mock.js',
     method: 'post',
     data: Mock.mock({
@@ -36,7 +55,7 @@ const requestOptions = [
     }),
   },
   {
-    url: `${location.origin}/api/users`,
+    url: baseURL + users,
     desc: 'intercept request by mock.js',
     method: 'put',
     data: Mock.mock({
@@ -55,7 +74,7 @@ const requestOptions = [
     }),
   },
   {
-    url: `${location.origin}/api/users`,
+    url: baseURL + users,
     desc: 'intercept request by mock.js',
     method: 'delete',
     data: Mock.mock({
@@ -63,12 +82,12 @@ const requestOptions = [
     }),
   },
   {
-    url: `${location.origin}/api/test`,
+    url: `${baseURL}/test`,
     desc: 'intercept request by mock.js',
     method: 'get',
   },
   {
-    url: `${config.baseURL}/admin/order`,
+    url: 'http://api.asilu.com/weather/',
     desc: 'cross-domain request, but match config.baseURL(./src/utils/config.js)',
   },
   {

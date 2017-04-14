@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react'
 import { Router } from 'dva/router'
-// import pathToRegexp from 'path-to-regexp'
 import App from './routes/app'
 
 const cached = {}
@@ -12,10 +11,6 @@ const registerModel = (app, model) => {
 }
 
 const Routers = function ({ history, app }) {
-  const handleChildRoute = ({ location, params, routes }) => {
-    console.log(location, params, routes)
-  }
-
   const routes = [
     {
       path: '/',
@@ -42,6 +37,14 @@ const Routers = function ({ history, app }) {
               registerModel(app, require('./models/users'))
               cb(null, require('./routes/users/'))
             }, 'users')
+          },
+        }, {
+          path: 'login',
+          getComponent (nextState, cb) {
+            require.ensure([], require => {
+              registerModel(app, require('./models/login'))
+              cb(null, require('./routes/login/'))
+            }, 'login')
           },
         }, {
           path: 'request',
@@ -124,11 +127,6 @@ const Routers = function ({ history, app }) {
       ],
     },
   ]
-
-  routes[0].childRoutes.map(item => {
-    item.onEnter = handleChildRoute
-    return item
-  })
 
   return <Router history={history} routes={routes} />
 }
