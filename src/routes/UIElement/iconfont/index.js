@@ -1,9 +1,9 @@
-import React from 'react'
-import { Iconfont } from '../../../components'
-import { Table, Row, Col } from 'antd'
-import styles from './index.less'
+import React from 'react';
+import { Iconfont } from '../../../components';
+import { Table, Row, Col } from 'antd';
+import styles from './index.less';
 
-const iconlist = ['Cherry', 'Cheese', 'Bread', 'Beer', 'Beet', 'Bacon', 'Banana', 'Asparagus', 'Apple']
+const iconlist = ['Cherry', 'Cheese', 'Bread', 'Beer', 'Beet', 'Bacon', 'Banana', 'Asparagus', 'Apple'];
 
 const IcoPage = () => <div className="content-inner">
   <ul className={styles.list}>
@@ -45,6 +45,6 @@ const IcoPage = () => <div className="content-inner">
       />
     </Col>
   </Row>
-</div>
+</div>;
 
-export default IcoPage
+export default IcoPage;

@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react'
-import { TweenOneGroup } from 'rc-tween-one'
+import React, { PropTypes } from 'react';
+import { TweenOneGroup } from 'rc-tween-one';
 
 const enterAnim = [
   {
@@ -14,7 +14,7 @@ const enterAnim = [
     delay: 250,
     ease: 'easeOutQuad',
     onComplete: (e) => {
-      e.target.style.height = 'auto'
+      e.target.style.height = 'auto';
     },
   }, {
     opacity: 1,
@@ -25,7 +25,7 @@ const enterAnim = [
     delay: 1000,
     backgroundColor: '#fff',
   },
-]
+];
 
 const leaveAnim = [
   {
@@ -37,11 +37,11 @@ const leaveAnim = [
     duration: 200,
     ease: 'easeOutQuad',
   },
-]
+];
 
 const AnimTableBody = ({ body, page = 1, current }) => {
   if (current !== +page) {
-    return body
+    return body;
   }
 
   return (
@@ -54,13 +54,13 @@ const AnimTableBody = ({ body, page = 1, current }) => {
     >
       {body.props.children}
     </TweenOneGroup>
-  )
-}
+  );
+};
 
 AnimTableBody.propTypes = {
   body: PropTypes.element,
   page: PropTypes.any,
   current: PropTypes.number.isRequired,
-}
+};
 
-export default AnimTableBody
+export default AnimTableBody;

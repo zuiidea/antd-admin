@@ -1,10 +1,8 @@
 # Antd Admin
 
-
 [![Build Status](https://img.shields.io/travis/tigaly/antd-admin.svg?style=flat)](https://travis-ci.org/tigaly/antd-admin)
 [![dependencies Status](https://david-dm.org/tigaly/antd-admin/status.svg)](https://david-dm.org/tigaly/antd-admin)
-[![Code Climate](https://codeclimate.com/github/tigaly/antd-admin/badges/gpa.svg)](https://codeclimate.com/github/tigaly/antd-admin)
-[![Join the chat at https://gitter.im/dva-antd-wrapper/Lobby](https://badges.gitter.im/antd-admin/Lobby.svg)](https://gitter.im/antd-admin/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![devDependencies Status](https://david-dm.org/tigaly/antd-admin/dev-status.svg)](https://david-dm.org/tigaly/antd-admin?type=dev)
 
 ## 特性
 

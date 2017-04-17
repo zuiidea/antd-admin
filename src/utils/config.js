@@ -16,4 +16,4 @@ module.exports = {
     users: '/users',
     dashboard: '/dashboard',
   },
-}
+};

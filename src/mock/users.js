@@ -1,9 +1,9 @@
-const qs = require('qs')
-const Mock = require('mockjs')
-const config = require('../utils/config')
-const { apiPrefix } = config
+const qs = require('qs');
+const Mock = require('mockjs');
+const config = require('../utils/config');
+const { apiPrefix } = config;
 
-let usersListData = Mock.mock({
+const usersListData = Mock.mock({
   'data|100': [
     {
       'id|+1': 1,
@@ -15,8 +15,8 @@ let usersListData = Mock.mock({
       isMale: '@boolean',
       email: '@email',
       createTime: '@datetime',
-      avatar () {
-        return Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', this.nickName.substr(0, 1))
+      avatar() {
+        return Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', this.nickName.substr(0, 1));
       },
     },
   ],
@@ -24,7 +24,7 @@ let usersListData = Mock.mock({
     total: 100,
     current: 1,
   },
-})
+});
 
 const userPermission = {
   DEFAULT: [
@@ -34,7 +34,7 @@ const userPermission = {
     'dashboard', 'users', 'UIElement', 'UIElementIconfont', 'chart',
   ],
   DEVELOPER: ['dashboard', 'users', 'UIElement', 'UIElementIconfont', 'chart'],
-}
+};
 
 const adminUsers = [
   {
@@ -53,81 +53,81 @@ const adminUsers = [
     password: '123456',
     permissions: userPermission.DEVELOPER,
   },
-]
+];
 
 module.exports = {
 
-  [`POST ${apiPrefix}/user/login`] (req, res) {
-    const { username, password } = req.body
-    const user = adminUsers.filter((item) => item.username === username)
+  [`POST ${apiPrefix}/user/login`](req, res) {
+    const { username, password } = req.body;
+    const user = adminUsers.filter(item => item.username === username);
 
     if (user[0] && user[0].password === password) {
-      const now = new Date()
-      now.setDate(now.getDate() + 1)
+      const now = new Date();
+      now.setDate(now.getDate() + 1);
       res.cookie('token', JSON.stringify({ id: user[0].id, deadline: now.getTime() }), {
         maxAge: 900000,
         httpOnly: true,
-      })
-      res.json({ success: true, message: 'Ok' })
+      });
+      res.json({ success: true, message: 'Ok' });
     } else {
-      res.status(400).send({ message: 'Bad Request' })
+      res.status(400).send({ message: 'Bad Request' });
     }
   },
 
-  [`GET ${apiPrefix}/user/logout`] (req, res) {
-    res.clearCookie('token')
-    res.status(200).send({ message: 'OK' })
+  [`GET ${apiPrefix}/user/logout`](req, res) {
+    res.clearCookie('token');
+    res.status(200).send({ message: 'OK' });
   },
 
-  [`GET ${apiPrefix}/userInfo`] (req, res) {
-    const cookies = qs.parse(req.headers.cookie, { delimiter: ';' })
-    const response = {}
-    const user = {}
+  [`GET ${apiPrefix}/userInfo`](req, res) {
+    const cookies = qs.parse(req.headers.cookie, { delimiter: ';' });
+    const response = {};
+    const user = {};
     if (!cookies.token) {
-      res.status(200).send({ message: 'Not Login' })
-      return
+      res.status(200).send({ message: 'Not Login' });
+      return;
     }
-    const token = JSON.parse(cookies.token)
+    const token = JSON.parse(cookies.token);
     if (token) {
-      response.success = token.deadline > new Date().getTime()
+      response.success = token.deadline > new Date().getTime();
     }
     if (response.success) {
-      const userItem = adminUsers.filter(_ => _.id === token.id)
+      const userItem = adminUsers.filter(_ => _.id === token.id);
       if (userItem.length > 0) {
-        user.permissions = userItem[0].permissions
-        user.username = userItem[0].username
-        user.id = userItem[0].id
+        user.permissions = userItem[0].permissions;
+        user.username = userItem[0].username;
+        user.id = userItem[0].id;
       }
     }
-    response.user = user
-    res.json(response)
+    response.user = user;
+    res.json(response);
   },
 
-  [`GET ${apiPrefix}/users`] (req, res) {
-    const page = req.query
-    const pageSize = page.pageSize || 10
-    const currentPage = page.page || 1
+  [`GET ${apiPrefix}/users`](req, res) {
+    const page = req.query;
+    const pageSize = page.pageSize || 10;
+    const currentPage = page.page || 1;
 
-    let data
-    let newPage
+    let data;
+    let newPage;
 
-    let newData = usersListData.data.concat()
+    const newData = usersListData.data.concat();
 
     if (page.field) {
       const d = newData.filter((item) => {
-        return item[page.field].indexOf(decodeURI(page.keyword)) > -1
-      })
+        return item[page.field].indexOf(decodeURI(page.keyword)) > -1;
+      });
 
-      data = d.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+      data = d.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
       newPage = {
         current: currentPage * 1,
         total: d.length,
-      }
+      };
     } else {
-      data = usersListData.data.slice((currentPage - 1) * pageSize, currentPage * pageSize)
-      usersListData.page.current = currentPage * 1
-      newPage = usersListData.page
+      data = usersListData.data.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+      usersListData.page.current = currentPage * 1;
+      newPage = usersListData.page;
     }
     res.json({
       success: true,
@@ -136,51 +136,51 @@ module.exports = {
         ...newPage,
         pageSize: Number(pageSize),
       },
-    })
+    });
   },
 
-  [`POST ${apiPrefix}/users`] (req, res) {
-    const newData = req.body
-    newData.createTime = Mock.mock('@now')
-    newData.avatar = Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', newData.nickName.substr(0, 1))
+  [`POST ${apiPrefix}/users`](req, res) {
+    const newData = req.body;
+    newData.createTime = Mock.mock('@now');
+    newData.avatar = Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', newData.nickName.substr(0, 1));
 
-    newData.id = usersListData.data.length + 1
-    usersListData.data.unshift(newData)
+    newData.id = usersListData.data.length + 1;
+    usersListData.data.unshift(newData);
 
-    usersListData.page.total = usersListData.data.length
-    usersListData.page.current = 1
+    usersListData.page.total = usersListData.data.length;
+    usersListData.page.current = 1;
 
-    res.json({ success: true, data: usersListData.data, page: usersListData.page })
+    res.json({ success: true, data: usersListData.data, page: usersListData.page });
   },
 
-  [`DELETE ${apiPrefix}/users`] (req, res) {
-    const deleteItem = req.body
+  [`DELETE ${apiPrefix}/users`](req, res) {
+    const deleteItem = req.body;
 
     usersListData.data = usersListData.data.filter((item) => {
       if (item.id === deleteItem.id) {
-        return false
+        return false;
       }
-      return true
-    })
+      return true;
+    });
 
-    usersListData.page.total = usersListData.data.length
+    usersListData.page.total = usersListData.data.length;
 
-    res.json({ success: true, data: usersListData.data, page: usersListData.page })
+    res.json({ success: true, data: usersListData.data, page: usersListData.page });
   },
 
-  [`PUT ${apiPrefix}/users`] (req, res) {
-    const editItem = req.body
+  [`PUT ${apiPrefix}/users`](req, res) {
+    const editItem = req.body;
 
-    editItem.createTime = Mock.mock('@now')
-    editItem.avatar = Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', editItem.nickName.substr(0, 1))
+    editItem.createTime = Mock.mock('@now');
+    editItem.avatar = Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', editItem.nickName.substr(0, 1));
 
     usersListData.data = usersListData.data.map((item) => {
       if (item.id === editItem.id) {
-        return editItem
+        return editItem;
       }
-      return item
-    })
+      return item;
+    });
 
-    res.json({ success: true, data: usersListData.data, page: usersListData.page })
+    res.json({ success: true, data: usersListData.data, page: usersListData.page });
   },
-}
+};

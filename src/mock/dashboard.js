@@ -1,7 +1,7 @@
-import { color } from '../utils/theme'
-const Mock = require('mockjs')
-const config = require('../utils/config')
-const { apiPrefix } = config
+import { color } from '../utils/theme';
+const Mock = require('mockjs');
+const config = require('../utils/config');
+const { apiPrefix } = config;
 
 const Dashboard = Mock.mock({
   'sales|8': [
@@ -73,11 +73,11 @@ const Dashboard = Mock.mock({
       name: '@last',
       'status|1-3': 1,
       content: '@sentence',
-      avatar () {
-        return Mock.Random.image('48x48', Mock.Random.color(), '#757575', 'png', this.name.substr(0, 1))
+      avatar() {
+        return Mock.Random.image('48x48', Mock.Random.color(), '#757575', 'png', this.name.substr(0, 1));
       },
-      date () {
-        return `2016-${Mock.Random.date('MM-dd')} ${Mock.Random.time('HH:mm:ss')}`
+      date() {
+        return `2016-${Mock.Random.date('MM-dd')} ${Mock.Random.time('HH:mm:ss')}`;
       },
     },
   ],
@@ -86,8 +86,8 @@ const Dashboard = Mock.mock({
       'id|+1': 1,
       name: '@last',
       'status|1-4': 1,
-      date () {
-        return `${Mock.Random.integer(2015, 2016)}-${Mock.Random.date('MM-dd')} ${Mock.Random.time('HH:mm:ss')}`
+      date() {
+        return `${Mock.Random.integer(2015, 2016)}-${Mock.Random.date('MM-dd')} ${Mock.Random.time('HH:mm:ss')}`;
       },
       'price|10-200.1-2': 1,
     },
@@ -121,10 +121,10 @@ const Dashboard = Mock.mock({
       number: 4324,
     },
   ],
-})
+});
 
 module.exports = {
-  [`GET ${apiPrefix}/dashboard`] (req, res) {
-    res.json(Dashboard)
+  [`GET ${apiPrefix}/dashboard`](req, res) {
+    res.json(Dashboard);
   },
-}
+};

@@ -1,10 +1,10 @@
-import React from 'react'
-import { layer } from '../../../components'
-import { Table, Row, Col, Button, Card } from 'antd'
+import React from 'react';
+import { layer } from '../../../components';
+import { Table, Row, Col, Button, Card } from 'antd';
 
-let Enum = {
+const Enum = {
   default: 1,
-}
+};
 
 const IcoPage = () => {
   const handleButtonClick = (key) => {
@@ -12,9 +12,9 @@ const IcoPage = () => {
       layer.open({
         title: '默认弹层',
         content: <div style={{ height: 360 }}>弹层内容</div>,
-      })
+      });
     }
-  }
+  };
   return (<div className="content-inner">
     <Row gutter={32}>
       <Col lg={8} md={12}>
@@ -139,7 +139,7 @@ const IcoPage = () => {
       <h2 style={{ margin: '4px 0' }}>layer.closeAll()</h2>
       关闭所有的layer
     </div>
-  </div>)
-}
+  </div>);
+};
 
-export default IcoPage
+export default IcoPage;

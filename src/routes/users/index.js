@@ -1,30 +1,30 @@
-import React, { PropTypes } from 'react'
-import { routerRedux } from 'dva/router'
-import { connect } from 'dva'
-import UserList from './UserList'
-import UserFilter from './UserFilter'
-import UserModal from './UserModal'
+import React, { PropTypes } from 'react';
+import { routerRedux } from 'dva/router';
+import { connect } from 'dva';
+import UserList from './UserList';
+import UserFilter from './UserFilter';
+import UserModal from './UserModal';
 
-function Users ({ location, dispatch, users, loading }) {
-  const { list, pagination, currentItem, modalVisible, modalType, isMotion } = users
-  const { field, keyword } = location.query
+function Users({ location, dispatch, users, loading }) {
+  const { list, pagination, currentItem, modalVisible, modalType, isMotion } = users;
+  const { field, keyword } = location.query;
 
   const userModalProps = {
     item: modalType === 'create' ? {} : currentItem,
     type: modalType,
     visible: modalVisible,
-    onOk (data) {
+    onOk(data) {
       dispatch({
         type: `users/${modalType}`,
         payload: data,
-      })
+      });
     },
-    onCancel () {
+    onCancel() {
       dispatch({
         type: 'users/hideModal',
-      })
+      });
     },
-  }
+  };
 
   const userListProps = {
     dataSource: list,
@@ -32,8 +32,8 @@ function Users ({ location, dispatch, users, loading }) {
     pagination,
     location,
     isMotion,
-    onPageChange (page) {
-      const { query, pathname } = location
+    onPageChange(page) {
+      const { query, pathname } = location;
       dispatch(routerRedux.push({
         pathname,
         query: {
@@ -41,30 +41,30 @@ function Users ({ location, dispatch, users, loading }) {
           page: page.current,
           pageSize: page.pageSize,
         },
-      }))
+      }));
     },
-    onDeleteItem (id) {
+    onDeleteItem(id) {
       dispatch({
         type: 'users/delete',
         payload: id,
-      })
+      });
     },
-    onEditItem (item) {
+    onEditItem(item) {
       dispatch({
         type: 'users/showModal',
         payload: {
           modalType: 'update',
           currentItem: item,
         },
-      })
+      });
     },
-  }
+  };
 
   const userFilterProps = {
     field,
     keyword,
     isMotion,
-    onSearch (fieldsValue) {
+    onSearch(fieldsValue) {
       fieldsValue.keyword.length ? dispatch(routerRedux.push({
         pathname: '/users',
         query: {
@@ -73,23 +73,23 @@ function Users ({ location, dispatch, users, loading }) {
         },
       })) : dispatch(routerRedux.push({
         pathname: '/users',
-      }))
+      }));
     },
-    onAdd () {
+    onAdd() {
       dispatch({
         type: 'users/showModal',
         payload: {
           modalType: 'create',
         },
-      })
+      });
     },
-    switchIsMotion () {
-      dispatch({ type: 'users/switchIsMotion' })
+    switchIsMotion() {
+      dispatch({ type: 'users/switchIsMotion' });
     },
-  }
+  };
 
   const UserModalGen = () =>
-    <UserModal {...userModalProps} />
+    <UserModal {...userModalProps} />;
 
   return (
     <div className="content-inner">
@@ -97,7 +97,7 @@ function Users ({ location, dispatch, users, loading }) {
       <UserList {...userListProps} />
       <UserModalGen />
     </div>
-  )
+  );
 }
 
 Users.propTypes = {
@@ -105,6 +105,6 @@ Users.propTypes = {
   location: PropTypes.object,
   dispatch: PropTypes.func,
   loading: PropTypes.bool,
-}
+};
 
-export default connect(({ users, loading }) => ({ users, loading: loading.models.users }))(Users)
+export default connect(({ users, loading }) => ({ users, loading: loading.models.users }))(Users);

@@ -1,9 +1,9 @@
-import React, { PropTypes } from 'react'
-import { Icon, Card } from 'antd'
-import CountUp from 'react-countup'
-import styles from './numberCard.less'
+import React, { PropTypes } from 'react';
+import { Icon, Card } from 'antd';
+import CountUp from 'react-countup';
+import styles from './numberCard.less';
 
-function NumberCard ({ icon, color, title, number, countUp }) {
+function NumberCard({ icon, color, title, number, countUp }) {
   return (
     <Card className={styles.numberCard} bordered={false} bodyStyle={{ padding: 0 }}>
       <Icon className={styles.iconWarp} style={{ color }} type={icon} />
@@ -22,7 +22,7 @@ function NumberCard ({ icon, color, title, number, countUp }) {
         </p>
       </div>
     </Card>
-  )
+  );
 }
 
 NumberCard.propTypes = {
@@ -31,6 +31,6 @@ NumberCard.propTypes = {
   title: PropTypes.string,
   number: PropTypes.number,
   countUp: PropTypes.object,
-}
+};
 
-export default NumberCard
+export default NumberCard;

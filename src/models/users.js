@@ -1,5 +1,5 @@
-import { create, remove, update, query } from '../services/users'
-import { parse } from 'qs'
+import { create, remove, update, query } from '../services/users';
+import { parse } from 'qs';
 
 export default {
 
@@ -21,21 +21,21 @@ export default {
   },
 
   subscriptions: {
-    setup ({ dispatch, history }) {
-      history.listen(location => {
+    setup({ dispatch, history }) {
+      history.listen((location) => {
         if (location.pathname === '/users') {
           dispatch({
             type: 'query',
             payload: location.query,
-          })
+          });
         }
-      })
+      });
     },
   },
 
   effects: {
-    *query ({ payload }, { call, put }) {
-      const data = yield call(query, parse(payload))
+    * query({ payload }, { call, put }) {
+      const data = yield call(query, parse(payload));
       if (data) {
         yield put({
           type: 'querySuccess',
@@ -43,11 +43,11 @@ export default {
             list: data.data,
             pagination: data.page,
           },
-        })
+        });
       }
     },
-    *'delete' ({ payload }, { call, put }) {
-      const data = yield call(remove, { id: payload })
+    * delete({ payload }, { call, put }) {
+      const data = yield call(remove, { id: payload });
       if (data && data.success) {
         yield put({
           type: 'querySuccess',
@@ -58,12 +58,12 @@ export default {
               current: data.page.current,
             },
           },
-        })
+        });
       }
     },
-    *create ({ payload }, { call, put }) {
-      yield put({ type: 'hideModal' })
-      const data = yield call(create, payload)
+    * create({ payload }, { call, put }) {
+      yield put({ type: 'hideModal' });
+      const data = yield call(create, payload);
       if (data && data.success) {
         yield put({
           type: 'querySuccess',
@@ -74,14 +74,14 @@ export default {
               current: data.page.current,
             },
           },
-        })
+        });
       }
     },
-    *update ({ payload }, { select, call, put }) {
-      yield put({ type: 'hideModal' })
-      const id = yield select(({ users }) => users.currentItem.id)
-      const newUser = { ...payload, id }
-      const data = yield call(update, newUser)
+    * update({ payload }, { select, call, put }) {
+      yield put({ type: 'hideModal' });
+      const id = yield select(({ users }) => users.currentItem.id);
+      const newUser = { ...payload, id };
+      const data = yield call(update, newUser);
       if (data && data.success) {
         yield put({
           type: 'querySuccess',
@@ -92,38 +92,38 @@ export default {
               current: data.page.current,
             },
           },
-        })
+        });
       }
     },
-    *switchIsMotion ({
+    * switchIsMotion({
       payload,
     }, { put }) {
       yield put({
         type: 'handleSwitchIsMotion',
-      })
+      });
     },
   },
 
   reducers: {
-    querySuccess (state, action) {
-      const { list, pagination } = action.payload
+    querySuccess(state, action) {
+      const { list, pagination } = action.payload;
       return { ...state,
         list,
         pagination: {
           ...state.pagination,
           ...pagination,
-        } }
+        } };
     },
-    showModal (state, action) {
-      return { ...state, ...action.payload, modalVisible: true }
+    showModal(state, action) {
+      return { ...state, ...action.payload, modalVisible: true };
     },
-    hideModal (state) {
-      return { ...state, modalVisible: false }
+    hideModal(state) {
+      return { ...state, modalVisible: false };
     },
-    handleSwitchIsMotion (state) {
-      localStorage.setItem('antdAdminUserIsMotion', !state.isMotion)
-      return { ...state, isMotion: !state.isMotion }
+    handleSwitchIsMotion(state) {
+      localStorage.setItem('antdAdminUserIsMotion', !state.isMotion);
+      return { ...state, isMotion: !state.isMotion };
     },
   },
 
-}
+};

@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react'
-import { Form, Button, Row, Col } from 'antd'
-import { Search } from '../../components'
+import React, { PropTypes } from 'react';
+import { Form, Button, Row, Col } from 'antd';
+import { Search } from '../../components';
 
 const UserFilter = ({
   field,
@@ -18,9 +18,9 @@ const UserFilter = ({
       defaultValue: field || 'name',
     },
     onSearch: (value) => {
-      onSearch(value)
+      onSearch(value);
     },
-  }
+  };
   return (
     <Row gutter={24}>
       <Col lg={8} md={12} sm={16} xs={24} style={{ marginBottom: 16 }}>
@@ -31,8 +31,8 @@ const UserFilter = ({
         <Button size="large" type="ghost" onClick={onAdd}>添加</Button>
       </Col>
     </Row>
-  )
-}
+  );
+};
 
 UserFilter.propTypes = {
   form: PropTypes.object.isRequired,
@@ -42,6 +42,6 @@ UserFilter.propTypes = {
   keyword: PropTypes.string,
   isMotion: PropTypes.bool,
   switchIsMotion: PropTypes.func,
-}
+};
 
-export default Form.create()(UserFilter)
+export default Form.create()(UserFilter);

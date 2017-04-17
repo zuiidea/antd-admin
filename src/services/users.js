@@ -1,35 +1,35 @@
-import { request, config } from '../utils'
-const { api } = config
-const { users } = api
+import { request, config } from '../utils';
+const { api } = config;
+const { users } = api;
 
-export async function query (params) {
+export async function query(params) {
   return request({
     url: users,
     method: 'get',
     data: params,
-  })
+  });
 }
 
-export async function create (params) {
+export async function create(params) {
   return request({
     url: users,
     method: 'post',
     data: params,
-  })
+  });
 }
 
-export async function remove (params) {
+export async function remove(params) {
   return request({
     url: users,
     method: 'delete',
     data: params,
-  })
+  });
 }
 
-export async function update (params) {
+export async function update(params) {
   return request({
     url: users,
     method: 'put',
     data: params,
-  })
+  });
 }

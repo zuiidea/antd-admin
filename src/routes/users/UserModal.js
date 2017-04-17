@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react'
-import { Form, Input, InputNumber, Radio, Modal } from 'antd'
-const FormItem = Form.Item
+import React, { PropTypes } from 'react';
+import { Form, Input, InputNumber, Radio, Modal } from 'antd';
+const FormItem = Form.Item;
 
 const formItemLayout = {
   labelCol: {
@@ -9,7 +9,7 @@ const formItemLayout = {
   wrapperCol: {
     span: 14,
   },
-}
+};
 
 const modal = ({
   visible,
@@ -23,17 +23,17 @@ const modal = ({
     getFieldsValue,
   },
 }) => {
-  function handleOk () {
+  function handleOk() {
     validateFields((errors) => {
       if (errors) {
-        return
+        return;
       }
       const data = {
         ...getFieldsValue(),
         key: item.key,
-      }
-      onOk(data)
-    })
+      };
+      onOk(data);
+    });
   }
 
   const modalOpts = {
@@ -42,7 +42,7 @@ const modal = ({
     onOk: handleOk,
     onCancel,
     wrapClassName: 'vertical-center-modal',
-  }
+  };
 
   return (
     <Modal {...modalOpts}>
@@ -83,7 +83,7 @@ const modal = ({
             <Radio.Group>
               <Radio value>男</Radio>
               <Radio value={false}>女</Radio>
-            </Radio.Group>
+            </Radio.Group>,
           )}
         </FormItem>
         <FormItem label="年龄：" hasFeedback {...formItemLayout}>
@@ -133,8 +133,8 @@ const modal = ({
         </FormItem>
       </Form>
     </Modal>
-  )
-}
+  );
+};
 
 modal.propTypes = {
   form: PropTypes.object.isRequired,
@@ -143,6 +143,6 @@ modal.propTypes = {
   item: PropTypes.object,
   onCancel: PropTypes.func,
   onOk: PropTypes.func,
-}
+};
 
-export default Form.create()(modal)
+export default Form.create()(modal);

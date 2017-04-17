@@ -1,12 +1,12 @@
-import React, { PropTypes } from 'react'
-import { Menu, Icon, Popover } from 'antd'
-import styles from './Header.less'
-import Menus from './Menu'
+import React, { PropTypes } from 'react';
+import { Menu, Icon, Popover } from 'antd';
+import styles from './Header.less';
+import Menus from './Menu';
 
-const SubMenu = Menu.SubMenu
+const SubMenu = Menu.SubMenu;
 
-function Header ({ user, logout, switchSider, siderFold, isNavbar, menuPopoverVisible, location, switchMenuPopover, navOpenKeys, changeOpenKeys }) {
-  let handleClickMenu = e => e.key === 'logout' && logout()
+function Header({ user, logout, switchSider, siderFold, isNavbar, menuPopoverVisible, location, switchMenuPopover, navOpenKeys, changeOpenKeys }) {
+  const handleClickMenu = e => e.key === 'logout' && logout();
   const menusProps = {
     siderFold: false,
     darkTheme: false,
@@ -15,7 +15,7 @@ function Header ({ user, logout, switchSider, siderFold, isNavbar, menuPopoverVi
     location,
     navOpenKeys,
     changeOpenKeys,
-  }
+  };
   return (
     <div className={styles.header}>
       {isNavbar
@@ -32,10 +32,11 @@ function Header ({ user, logout, switchSider, siderFold, isNavbar, menuPopoverVi
           <Icon type="mail" />
         </div>
         <Menu mode="horizontal" onClick={handleClickMenu}>
-          <SubMenu style={{
-            float: 'right',
-          }} title={< span > <Icon type="user" />
-            {user.username} < /span>}
+          <SubMenu
+            style={{
+              float: 'right',
+            }} title={<span > <Icon type="user" />
+              {user.username} </span>}
           >
             <Menu.Item key="logout">
               <a>注销</a>
@@ -44,7 +45,7 @@ function Header ({ user, logout, switchSider, siderFold, isNavbar, menuPopoverVi
         </Menu>
       </div>
     </div>
-  )
+  );
 }
 
 Header.propTypes = {
@@ -58,6 +59,6 @@ Header.propTypes = {
   switchMenuPopover: PropTypes.func,
   navOpenKeys: PropTypes.array,
   changeOpenKeys: PropTypes.func,
-}
+};
 
-export default Header
+export default Header;
