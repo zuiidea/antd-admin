@@ -1,15 +1,10 @@
 # Antd Admin
 
-[![React Native](https://img.shields.io/badge/react-^15.4.1-brightgreen.svg?style=flat-square)](https://github.com/facebook/react)
-[![Ant Design](https://img.shields.io/badge/ant--design-^2.7.3-yellowgreen.svg?style=flat-square)](https://github.com/ant-design/ant-design)
-[![dva](https://img.shields.io/badge/dva-^1.1.0-orange.svg?style=flat-square)](https://github.com/dvajs/dva)
 
-[![GitHub issues](https://img.shields.io/github/issues/zuiidea/antd-admin.svg?style=flat-square)](https://github.com/zuiidea/antd-admin)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/zuiidea/antd-admin/pulls)
-[![MIT](https://img.shields.io/dub/l/vibe-d.svg?style=flat-square)](http://opensource.org/licenses/MIT)
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
-
-演示地址 <http://zuiidea.github.io/antd-admin/>
+[![Build Status](https://img.shields.io/travis/tigaly/antd-admin.svg?style=flat)](https://travis-ci.org/tigaly/antd-admin)
+[![dependencies Status](https://david-dm.org/tigaly/antd-admin/status.svg)](https://david-dm.org/tigaly/antd-admin)
+[![Code Climate](https://codeclimate.com/github/tigaly/antd-admin/badges/gpa.svg)](https://codeclimate.com/github/tigaly/antd-admin)
+[![Join the chat at https://gitter.im/dva-antd-wrapper/Lobby](https://badges.gitter.im/antd-admin/Lobby.svg)](https://gitter.im/antd-admin/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## 特性
 
@@ -34,28 +29,25 @@
 ### 目录结构
 
 ```bash
-├── /mock/           # 数据mock的接口文件
-├── /dist/           # 项目输出目录
-├── /src/            # 项目源码目录
-│ ├── /components/   # UI组件及UI相关方法
-│ │ ├── skin.less    # 全局样式
-│ │ └── vars.less    # 全局样式变量
-│ ├── /routes/       # 路由组件
-│ │ └── app.js       # 路由入口
-│ ├── /models/       # 数据模型
-│ ├── /services/     # 数据接口
-│ ├── /utils/        # 工具函数
-│ │ ├── config.js    # 项目常规配置
-│ │ ├── menu.js      # 侧边菜单配置
-│ │ ├── mock.js      # 数据拦截配置
-│ │ ├── config.js    # 项目常规配置
-│ │ ├── request.js   # 异步请求函数
-│ │ └── theme.js     # 项目需要在js中使用到样式变量
-│ ├── route.js       # 路由配置
-│ ├── index.js       # 入口文件
-│ └── index.html     
-├── package.json     # 项目信息
-└── proxy.config.js  # 数据mock配置
+├── /mock/              # 数据mock的接口文件
+├── /dist/              # 项目输出目录
+├── /src/               # 项目源码目录
+│ ├── /components/      # UI组件及UI相关方法
+│ ├── /routes/          # 路由组件
+│ │ └── app.js          # 路由入口
+│ ├── /models/          # 数据模型
+│ ├── /services/        # 数据接口
+│ ├── /utils/           # 工具函数
+│ │ ├── config.js       # 项目常规配置
+│ │ ├── menu.js         # 侧边菜单配置
+│ │ ├── config.js       # 项目常规配置
+│ │ ├── request.js      # 异步请求函数
+│ │ └── theme.js        # 项目需要在js中使用到样式变量
+│ ├── route.js          # 路由配置
+│ ├── index.js          # 入口文件
+├── package.json        # 项目信息
+├── .roadhogrc.js       # 打包配置
+└── .roadhogrc.mock.js  # 数据mock配置
 ```
 
 文件夹命名说明:
@@ -67,19 +59,16 @@
 
 克隆项目文件:
 
-    git clone https://github.com/zuiidea/antd-admin.git
+    git clone https://github.com/tigaly/antd-admin.git
 
 进入目录安装依赖:
 
     npm i 或者 yarn install
-    npm i roadhog@0.6.0-beta.3 -g
 
 开发：
 
 ```bash
-npm run dev    # 使用mock拦截请求，数据存储在localStroge里
-
-打开 http://localhost:8000
+npm start    # 使用mock拦截请求，数据存储在localStroge里
 ```
 
 构建：
@@ -98,16 +87,9 @@ npm run lint
 
 ## 参考
 
-用户列表：<https://github.com/dvajs/dva/tree/master/examples/user-dashboard>
-
 dashboard设计稿：<https://dribbble.com/shots/3108122-Dashboard-Admin> （已征得作者同意）
 
-## 截屏
 
-web
+### What's next?
 
-![](assets/demo4.gif)
-
-移动
-
-![](assets/demo3.gif)
+* Connect to the expressjs server side [Starter-node-rest](https://github.com/tigaly/starter-nodejs-rest)

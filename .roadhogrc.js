@@ -1,12 +1,7 @@
 const path = require('path')
 
-const svgSpriteDirs = [
-  path.resolve(__dirname, 'src/svg/'),
-]
-
 export default {
   entry: 'src/index.js',
-  svgSpriteLoaderDirs: svgSpriteDirs,
   "env": {
       "development": {
         "extraBabelPlugins": [

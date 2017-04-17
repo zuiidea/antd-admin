@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Form, Button, Row, Col, Switch } from 'antd'
+import { Form, Button, Row, Col } from 'antd'
 import { Search } from '../../components'
 
 const UserFilter = ({
@@ -7,8 +7,6 @@ const UserFilter = ({
   keyword,
   onSearch,
   onAdd,
-  isMotion,
-  switchIsMotion,
 }) => {
   const searchGroupProps = {
     field,

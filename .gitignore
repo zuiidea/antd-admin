@@ -3,3 +3,4 @@ node_modules
 yarn.lock
 npm-debug.log
 .idea/
+dist.tar
