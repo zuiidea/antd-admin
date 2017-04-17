@@ -189,8 +189,8 @@ export default {
   },
   subscriptions: {
     setup ({ dispatch }) {
-      dispatch({ type: 'queryWeather' })
       dispatch({ type: 'query' })
+      dispatch({ type: 'queryWeather' })
     },
   },
   effects: {
@@ -207,7 +207,6 @@ export default {
       const result = yield call(queryWeather, { cityCode: myCityResult.selectCityCode })
       const weather = zuimei.parseActualData(result.data.actual)
       weather.city = myCityResult.selectCityName
-
       yield put({ type: 'queryWeatherSuccess', payload: {
         weather,
       } })
