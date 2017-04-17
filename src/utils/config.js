@@ -7,7 +7,7 @@ module.exports = {
   baseURL: 'http://localhost:8000/api/v1',
   YQL: ['http://www.zuimeitianqi.com'],
   CORS: ['http://localhost:7001'],
-  openPages: ['/login'],
+  openPages: ['/'],
   apiPrefix: '/api/v1',
   api: {
     userLogin: '/user/login',
