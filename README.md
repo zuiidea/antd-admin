@@ -27,7 +27,6 @@
 ### 目录结构
 
 ```bash
-├── /mock/              # 数据mock的接口文件
 ├── /dist/              # 项目输出目录
 ├── /src/               # 项目源码目录
 │ ├── /components/      # UI组件及UI相关方法
@@ -36,6 +35,8 @@
 │ ├── /models/          # 数据模型
 │ ├── /services/        # 数据接口
 │ ├── /utils/           # 工具函数
+│ ├── /themes/          # 根样式库
+│ ├── /mock/            # 数据mock的接口文件
 │ │ ├── config.js       # 项目常规配置
 │ │ ├── menu.js         # 侧边菜单配置
 │ │ ├── config.js       # 项目常规配置

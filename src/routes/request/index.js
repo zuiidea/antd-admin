@@ -31,7 +31,7 @@ const requestOptions = [
     method: 'post',
     data: {
       username: 'admin',
-      password: 'admin6',
+      password: 'admin',
     },
     desc: 'intercept request by mock.js',
   },

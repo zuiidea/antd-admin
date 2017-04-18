@@ -68,6 +68,7 @@ export default function request(options) {
   return fetch(options).then((response) => {
     const { statusText, status } = response;
     const data = options.fetchType === 'YQL' ? response.data.query.results.json : response.data;
+    console.log('service is ' + JSON.stringify(data));
     return {
       success: true,
       message: statusText,
@@ -79,7 +80,7 @@ export default function request(options) {
     let message;
     let status;
     if (response) {
-      status = response.status;
+      status = response.status;a
       const { data, statusText } = response;
       message = data.message || statusText;
     } else {

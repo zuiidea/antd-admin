@@ -35,8 +35,7 @@
     "less-vars-to-js": "^1.1.2",
     "mockjs": "^1.0.1-beta3",
     "rc-tween-one": "^1.0.0",
-    "redbox-react": "^1.2.10",
-    "roadhog": "^0.5.1"
+    "redbox-react": "^1.2.10"
   },
   "pre-commit": [
     "lint"

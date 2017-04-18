@@ -58,6 +58,8 @@ const adminUsers = [
 module.exports = {
 
   [`POST ${apiPrefix}/user/login`](req, res) {
+    console.log('req is ' + req.body);
+
     const { username, password } = req.body;
     const user = adminUsers.filter(item => item.username === username);
 
@@ -141,6 +143,9 @@ module.exports = {
 
   [`POST ${apiPrefix}/users`](req, res) {
     const newData = req.body;
+
+    console.log('req.body is ' + newData);
+
     newData.createTime = Mock.mock('@now');
     newData.avatar = Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', newData.nickName.substr(0, 1));
 

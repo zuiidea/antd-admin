@@ -28,6 +28,7 @@ export default {
       payload,
     }, { call, put }) {
       const data = yield call(getUserInfo, parse(payload));
+      console.log('result s is ' + data.success + ' ' + data.user);
       if (data.success && data.user) {
         yield put({
           type: 'queryUserSuccess',
@@ -36,14 +37,14 @@ export default {
         if (location.pathname === '/login') {
           yield put(routerRedux.push('/dashboard'));
         }
-//      } else {
-//        if (location.pathname !== '/login') {
-//          let from = location.pathname
-//          if (location.pathname === '/dashboard') {
-//            from = '/dashboard'
-//          }
-//          window.location = `${location.origin}/login?from=${from}`
-//        }
+      } else {
+        if (location.pathname !== '/login') {
+          let from = location.pathname
+          if (location.pathname === '/dashboard') {
+            from = '/dashboard'
+          }
+          window.location = `${location.origin}/login?from=${from}`
+        }
       }
     },
     * logout({
