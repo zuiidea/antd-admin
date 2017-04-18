@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { Dropdown, Button, Icon, Menu } from 'antd'
 
 const DropOption = ({ onMenuClick, menuOptions = [], buttonStyle, dropdownProps }) => {

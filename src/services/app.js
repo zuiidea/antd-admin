@@ -1,10 +1,10 @@
 import { request, config } from '../utils'
 const { api } = config
-const { userInfo, userLogout } = api
+const { userInfo, userLogout, userLogin } = api
 
 export async function login (params) {
   return request({
-    url: '/api/login',
+    url: userLogin,
     method: 'post',
     data: params,
   })

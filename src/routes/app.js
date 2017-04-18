@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'dva'
 import { Layout } from '../components'
 import { classnames, config } from '../utils'
@@ -7,7 +8,8 @@ import '../themes/index.less'
 
 const { Header, Bread, Footer, Sider, styles } = Layout
 
-const App = ({ children, location, dispatch, app }) => {
+const App = ({ children, location, dispatch, app, loading }) => {
+  console.log(loading)
   const { user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys } = app
 
   const headerProps = {
@@ -81,6 +83,7 @@ App.propTypes = {
   location: PropTypes.object,
   dispatch: PropTypes.func,
   app: PropTypes.object,
+  loading: PropTypes.object,
 }
 
-export default connect(({ app }) => ({ app }))(App)
+export default connect(({ app, loading }) => ({ app, loading }))(App)

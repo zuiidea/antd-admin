@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import styles from './cpu.less'
 import { color } from '../../../utils'
 import CountUp from 'react-countup'
