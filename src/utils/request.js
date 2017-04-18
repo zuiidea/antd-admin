@@ -67,6 +67,8 @@ export default function request(options) {
 
   return fetch(options).then((response) => {
     const { statusText, status } = response;
+    console.log('options is ' + JSON.stringify(options));
+    console.log('response is ' + JSON.stringify(response));
     const data = options.fetchType === 'YQL' ? response.data.query.results.json : response.data;
     console.log('service is ' + JSON.stringify(data));
     return {

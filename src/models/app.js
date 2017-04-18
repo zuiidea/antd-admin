@@ -28,7 +28,7 @@ export default {
       payload,
     }, { call, put }) {
       const data = yield call(getUserInfo, parse(payload));
-      console.log('result s is ' + data.success + ' ' + data.user);
+      console.log('result is ' + JSON.stringify(data));
       if (data.success && data.user) {
         yield put({
           type: 'queryUserSuccess',

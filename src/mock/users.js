@@ -58,7 +58,7 @@ const adminUsers = [
 module.exports = {
 
   [`POST ${apiPrefix}/user/login`](req, res) {
-    console.log('req is ' + req.body);
+    console.log('req is ' + JSON.stringify(req.body));
 
     const { username, password } = req.body;
     const user = adminUsers.filter(item => item.username === username);
@@ -83,6 +83,7 @@ module.exports = {
 
   [`GET ${apiPrefix}/userInfo`](req, res) {
     const cookies = qs.parse(req.headers.cookie, { delimiter: ';' });
+    console.log(`cookies is ${JSON.stringify(cookies)}`);
     const response = {};
     const user = {};
     if (!cookies.token) {
