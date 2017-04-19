@@ -79,7 +79,7 @@ export default function request(options) {
     let message;
     let status;
     if (response) {
-      status = response.status;a
+      status = response.status;
       const { data, statusText } = response;
       message = data.message || statusText;
     } else {
