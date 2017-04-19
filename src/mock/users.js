@@ -58,8 +58,6 @@ const adminUsers = [
 module.exports = {
 
   [`POST ${apiPrefix}/user/login`](req, res) {
-    console.log('req is ' + JSON.stringify(req.body));
-
     const { username, password } = req.body;
     const user = adminUsers.filter(item => item.username === username);
 
@@ -82,8 +80,7 @@ module.exports = {
   },
 
   [`GET ${apiPrefix}/userInfo`](req, res) {
-    const cookies = qs.parse(req.headers.cookie, { delimiter: ';' });
-    console.log(`cookies is ${JSON.stringify(cookies)}`);
+    const cookies = qs.parse(req.headers.cookie.replace(/\s/g, ""), { delimiter: ';' });
     const response = {};
     const user = {};
     if (!cookies.token) {
@@ -144,8 +141,6 @@ module.exports = {
 
   [`POST ${apiPrefix}/users`](req, res) {
     const newData = req.body;
-
-    console.log('req.body is ' + newData);
 
     newData.createTime = Mock.mock('@now');
     newData.avatar = Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', newData.nickName.substr(0, 1));

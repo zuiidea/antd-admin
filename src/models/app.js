@@ -28,7 +28,6 @@ export default {
       payload,
     }, { call, put }) {
       const data = yield call(getUserInfo, parse(payload));
-      console.log('result is ' + JSON.stringify(data));
       if (data.success && data.user) {
         yield put({
           type: 'queryUserSuccess',
@@ -134,7 +133,6 @@ export default {
       };
     },
     handleNavOpenKeys(state, { payload: navOpenKeys }) {
-      console.log(navOpenKeys);
       return {
         ...state,
         ...navOpenKeys,

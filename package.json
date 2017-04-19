@@ -13,7 +13,8 @@
     "react-dom": "^15.4.1",
     "react-draft-wysiwyg": "^1.8.1",
     "react-helmet": "^5.0.0",
-    "recharts": "^0.22.0"
+    "recharts": "^0.22.0",
+    "roadhog": "0.6.0-beta.3"
   },
   "devDependencies": {
     "antd": "^2.9.1",
