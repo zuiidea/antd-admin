@@ -35,6 +35,7 @@
     "jsonp": "^0.2.1",
     "less-vars-to-js": "^1.1.2",
     "mockjs": "^1.0.1-beta3",
+    "path-to-regexp": "^1.7.0",
     "rc-tween-one": "^1.0.0",
     "redbox-react": "^1.2.10"
   },
