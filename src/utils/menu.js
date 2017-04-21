@@ -131,13 +131,6 @@ module.exports = [
     router: '/navigation/navigation2/navigation1',
   },
   {
-    id: 621,
-    bpid: 62,
-    mpid: 62,
-    name: 'Test Navigation21',
-    router: '/navigation/navigation2/navigation1',
-  },
-  {
     id: 622,
     bpid: 62,
     mpid: 62,

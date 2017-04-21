@@ -7,12 +7,15 @@ import { arrayToTree } from '../../utils'
 const Menus = ({ siderFold, darkTheme, location, handleClickNavMenu, navOpenKeys, changeOpenKeys, menu }) => {
   // 生成树状
   const menuTree = arrayToTree(menu.filter(_ => _.mpid !== -1), 'id', 'mpid')
-
+  const levelMap = {}
 
   // 递归生成菜单
   const getMenus = (menuTreeN, siderFoldN) => {
     return menuTreeN.map(item => {
       if (item.chindren) {
+        if (item.mpid) {
+          levelMap[item.id] = item.mpid
+        }
         return (
           <Menu.SubMenu
             key={item.id}
@@ -37,11 +40,20 @@ const Menus = ({ siderFold, darkTheme, location, handleClickNavMenu, navOpenKeys
   }
   const menuItems = getMenus(menuTree, siderFold)
 
-
   // 保持选中
   const getAncestorKeys = (key) => {
-    const map = {
-      '/navigation/navigation2': ['/navigation'],
+    let map = {}
+    const getParent = (index) => {
+      const result = [String(levelMap[index])]
+      if (levelMap[result[0]]) {
+        result.unshift(getParent(result[0])[0])
+      }
+      return result
+    }
+    for (let index in levelMap) {
+      if ({}.hasOwnProperty.call(levelMap, index)) {
+        map[index] = getParent(index)
+      }
     }
     return map[key] || []
   }
