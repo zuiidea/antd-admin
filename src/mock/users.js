@@ -80,7 +80,8 @@ module.exports = {
   },
 
   [`GET ${apiPrefix}/userInfo`] (req, res) {
-    const cookies = qs.parse(req.headers.cookie, { delimiter: ';' })
+    const cookie = req.headers.cookie || ''
+    const cookies = qs.parse(cookie.replace(/\s/g, ''), { delimiter: ';' })
     const response = {}
     const user = {}
     if (!cookies.token) {
