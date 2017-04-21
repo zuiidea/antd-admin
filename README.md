@@ -29,6 +29,12 @@
 
 ## 更新日志
 
+### 4.2
+
+`2017-04-21`
+
+-   重写Menu，Bread组件及配置文件，[说明](https://github.com/zuiidea/antd-admin/wiki/%E8%8F%9C%E5%8D%95%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
+
 ### 4.1
 
 `2017-04-14`
