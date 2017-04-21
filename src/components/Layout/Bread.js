@@ -1,47 +1,45 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { Breadcrumb, Icon } from 'antd'
 import { Link } from 'dva/router'
 import styles from './Bread.less'
-import { menu } from '../../utils'
+import pathToRegexp from 'path-to-regexp'
+import { queryArray } from '../../utils'
 
-let pathSet = []
-const getPathSet = function (menuArray, parentPath) {
-  parentPath = parentPath || '/'
-  menuArray.forEach(item => {
-    pathSet[(parentPath + item.key).replace(/\//g, '-').hyphenToHump()] = {
-      path: parentPath + item.key,
-      name: item.name,
-      icon: item.icon || '',
-      clickable: item.clickable === undefined,
+const Bread = ({ location, menu }) => {
+  // 匹配当前路由
+  let pathArray = []
+  let current
+  for (let index in menu) {
+    if (menu[index].router && pathToRegexp(menu[index].router).exec(location.pathname)) {
+      current = menu[index]
+      break
     }
-    if (item.child) {
-      getPathSet(item.child, `${parentPath}${item.key}/`)
-    }
-  })
-}
-getPathSet(menu)
+  }
 
-function Bread ({ location }) {
-  let pathNames = []
-  location.pathname.substr(1).split('/').forEach((item, key) => {
-    if (key > 0) {
-      pathNames.push((`${pathNames[key - 1]}-${item}`).hyphenToHump())
-    } else {
-      pathNames.push((`-${item}`).hyphenToHump())
-    }
-  })
+  if (!current) {
+    return (<div className={styles.bread}>首页</div>)
+  }
 
-  const breadsArray = pathNames.filter(item => (item in pathSet))
-  const breads = breadsArray.map((item, key) => {
+  // 递归查找父级
+  const getPathArray = (item) => {
+    pathArray.unshift(item)
+    if (item.bpid) {
+      getPathArray(queryArray(menu, item.bpid, 'id'))
+    }
+  }
+  getPathArray(current)
+
+  const breads = pathArray.map((item, key) => {
     const content = (
-      <span>{pathSet[item].icon
-          ? <Icon type={pathSet[item].icon} style={{ marginRight: 4 }} />
-          : ''}{pathSet[item].name}</span>
+      <span>{item.icon
+          ? <Icon type={item.icon} style={{ marginRight: 4 }} />
+          : ''}{item.name}</span>
     )
     return (
       <Breadcrumb.Item key={key}>
-        {((breadsArray.length - 1) !== key && pathSet[item].clickable)
-          ? <Link to={pathSet[item].path}>
+        {((pathArray.length - 1) !== key)
+          ? <Link to={item.router}>
               {content}
           </Link>
           : content}
@@ -52,12 +50,6 @@ function Bread ({ location }) {
   return (
     <div className={styles.bread}>
       <Breadcrumb>
-        <Breadcrumb.Item >
-          <Link to="/dashboard">
-            <Icon type="home" />
-            <span>Home</span>
-          </Link>
-        </Breadcrumb.Item>
         {breads}
       </Breadcrumb>
     </div>
@@ -65,6 +57,7 @@ function Bread ({ location }) {
 }
 
 Bread.propTypes = {
+  menu: PropTypes.array,
   location: PropTypes.object,
 }
 

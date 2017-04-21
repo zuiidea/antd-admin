@@ -7,6 +7,7 @@
     "dva": "^1.1.0",
     "dva-loading": "^0.2.0",
     "lodash": "^4.17.4",
+    "nprogress": "^0.2.0",
     "qs": "^6.2.0",
     "react": "^15.4.1",
     "react-countup": "1.3.0",
@@ -34,6 +35,7 @@
     "jsonp": "^0.2.1",
     "less-vars-to-js": "^1.1.2",
     "mockjs": "^1.0.1-beta3",
+    "path-to-regexp": "^1.7.0",
     "rc-tween-one": "^1.0.0",
     "redbox-react": "^1.2.10"
   },
@@ -41,16 +43,8 @@
     "lint"
   ],
   "scripts": {
-    "dev": "set BROWSER=none&&roadhog server",
+    "dev": "set BROWSER=none&&set HOST=0.0.0.0&&roadhog server",
     "lint": "eslint --fix --ext .js src",
-    "build": "roadhog build"
-  },
-  "theme": "./src/theme.js",
-  "standard": {
-    "parser": "babel-eslint",
-    "globals": [
-      "location",
-      "localStorage"
-    ]
+    "build": "roadhog build --analyze"
   }
 }

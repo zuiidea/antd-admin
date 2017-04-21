@@ -133,7 +133,6 @@ export default {
       }
     },
     handleNavOpenKeys (state, { payload: navOpenKeys }) {
-      console.log(navOpenKeys)
       return {
         ...state,
         ...navOpenKeys,

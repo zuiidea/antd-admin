@@ -1,11 +1,13 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { Icon, Switch } from 'antd'
 import styles from './Layout.less'
 import { config } from '../../utils'
 import Menus from './Menu'
 
-function Sider ({ siderFold, darkTheme, location, changeTheme, navOpenKeys, changeOpenKeys }) {
+function Sider ({ siderFold, darkTheme, location, changeTheme, navOpenKeys, changeOpenKeys, menu }) {
   const menusProps = {
+    menu,
     siderFold,
     darkTheme,
     location,
@@ -28,6 +30,7 @@ function Sider ({ siderFold, darkTheme, location, changeTheme, navOpenKeys, chan
 }
 
 Sider.propTypes = {
+  menu: PropTypes.array,
   siderFold: PropTypes.bool,
   darkTheme: PropTypes.bool,
   location: PropTypes.object,
