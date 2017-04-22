@@ -4,6 +4,7 @@
 [![dependencies Status](https://david-dm.org/tigaly/antd-admin/status.svg)](https://david-dm.org/tigaly/antd-admin)
 [![devDependencies Status](https://david-dm.org/tigaly/antd-admin/dev-status.svg)](https://david-dm.org/tigaly/antd-admin?type=dev)
 
+
 ## 特性
 
 -   基于[react](https://github.com/facebook/react)，[ant-design](https://github.com/ant-design/ant-design)，[dva](https://github.com/dvajs/dva)，[Mock](https://github.com/nuysoft/Mock) 企业级后台管理系统最佳实践
@@ -13,6 +14,12 @@
 -   浅度响应式设计
 
 ## 更新日志
+
+### 4.2
+
+`2017-04-21`
+
+-   重写Menu，Bread组件及配置文件，[说明](https://github.com/zuiidea/antd-admin/wiki/%E8%8F%9C%E5%8D%95%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
 
 ### 4.1
 
@@ -67,7 +74,7 @@
 开发：
 
 ```bash
-npm start    # 使用mock拦截请求，数据存储在localStroge里
+npm start   
 ```
 
 构建：

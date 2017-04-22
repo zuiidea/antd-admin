@@ -1,9 +1,11 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { routerRedux } from 'dva/router';
 import { connect } from 'dva';
 import UserList from './UserList';
 import UserFilter from './UserFilter';
 import UserModal from './UserModal';
+
 
 function Users({ location, dispatch, users, loading }) {
   const { list, pagination, currentItem, modalVisible, modalType, isMotion } = users;

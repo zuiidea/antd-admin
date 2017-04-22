@@ -79,8 +79,9 @@ module.exports = {
     res.status(200).send({ message: 'OK' });
   },
 
-  [`GET ${apiPrefix}/userInfo`](req, res) {
-    const cookies = qs.parse(req.headers.cookie.replace(/\s/g, ''), { delimiter: ';' });
+  [`GET ${apiPrefix}/userInfo`] (req, res) {
+    const cookie = req.headers.cookie || '';
+    const cookies = qs.parse(cookie.replace(/\s/g, ''), { delimiter: ';' });
     const response = {};
     const user = {};
     if (!cookies.token) {

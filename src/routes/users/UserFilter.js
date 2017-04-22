@@ -1,5 +1,6 @@
-import React, { PropTypes } from 'react';
-import { Form, Button, Row, Col } from 'antd';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Form, Button, Row, Col, Switch } from 'antd';
 import { Search } from '../../components';
 
 const UserFilter = ({
