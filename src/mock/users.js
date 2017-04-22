@@ -70,7 +70,7 @@ module.exports = {
       });
       res.json({ success: true, message: 'Ok' });
     } else {
-      res.status(400).send({ message: 'Bad Request' });
+      res.status(400).send({ message: '登陆失败，请确认用户密码是否正确' });
     }
   },
 
@@ -80,7 +80,7 @@ module.exports = {
   },
 
   [`GET ${apiPrefix}/userInfo`](req, res) {
-    const cookies = qs.parse(req.headers.cookie.replace(/\s/g, ""), { delimiter: ';' });
+    const cookies = qs.parse(req.headers.cookie.replace(/\s/g, ''), { delimiter: ';' });
     const response = {};
     const user = {};
     if (!cookies.token) {

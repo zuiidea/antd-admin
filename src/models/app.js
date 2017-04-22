@@ -2,7 +2,7 @@ import { getUserInfo, logout } from '../services/app';
 import { routerRedux } from 'dva/router';
 import { parse } from 'qs';
 import { config } from '../utils';
-const {prefix} = config;
+const { prefix } = config;
 
 export default {
   namespace: 'app',
@@ -16,15 +16,15 @@ export default {
     navOpenKeys: [],
   },
   subscriptions: {
-    setup({dispatch}) {
-      dispatch({type: 'queryUser'});
+    setup({ dispatch }) {
+      dispatch({ type: 'queryUser' });
       window.onresize = () => {
-        dispatch({type: 'changeNavbar'});
+        dispatch({ type: 'changeNavbar' });
       };
     },
   },
   effects: {
-    * queryUser({payload}, {call, put}) {
+    * queryUser({ payload }, { call, put }) {
       const data = yield call(getUserInfo, parse(payload));
       if (data.success && data.user) {
         yield put({
@@ -34,115 +34,97 @@ export default {
         if (location.pathname === '/login') {
           yield put(routerRedux.push('/dashboard'));
         }
-      } else {
-        if (location.pathname !== '/login') {
-          yield put(routerRedux.push(`/login?from=${location.pathname}`));
-        }
+      } else if (location.pathname !== '/login') {
+        yield put(routerRedux.push(`/login?from=${location.pathname}`));
       }
     },
     * logout({
                payload,
-             }, {call, put}) {
+             }, { call, put }) {
       const data = yield call(logout, parse(payload));
       if (data.success) {
-        yield put({type: 'queryUser'});
+        yield put({ type: 'queryUser' });
       } else {
         throw (data);
       }
     },
     * switchSider({
                     payload,
-                  }, {put}) {
+                  }, { put }) {
       yield put({
         type: 'handleSwitchSider',
       });
     },
     * changeTheme({
                     payload,
-                  }, {put}) {
+                  }, { put }) {
       yield put({
         type: 'handleChangeTheme',
       });
     },
     * changeNavbar({
                      payload,
-                   }, {put}) {
+                   }, { put }) {
       if (document.body.clientWidth < 769) {
-        yield put({type: 'showNavbar'});
+        yield put({ type: 'showNavbar' });
       } else {
-        yield put({type: 'hideNavbar'});
+        yield put({ type: 'hideNavbar' });
       }
     },
     * switchMenuPopver({
                          payload,
-                       }, {put}) {
+                       }, { put }) {
       yield put({
         type: 'handleSwitchMenuPopver',
       });
     },
-  }
-  ,
+  },
   reducers: {
-    queryUserSuccess(state, {payload: user})
-    {
+    queryUserSuccess(state, { payload: user }) {
       return {
         ...state,
         user,
       };
-    }
-    ,
-    showLoginButtonLoading(state)
-    {
+    },
+    showLoginButtonLoading(state) {
       return {
         ...state,
         loginButtonLoading: true,
       };
-    }
-    ,
-    handleSwitchSider(state)
-    {
+    },
+    handleSwitchSider(state) {
       localStorage.setItem(`${prefix}siderFold`, !state.siderFold);
       return {
         ...state,
         siderFold: !state.siderFold,
       };
-    }
-    ,
-    handleChangeTheme(state)
-    {
+    },
+    handleChangeTheme(state) {
       localStorage.setItem(`${prefix}darkTheme`, !state.darkTheme);
       return {
         ...state,
         darkTheme: !state.darkTheme,
       };
-    }
-    ,
-    showNavbar(state)
-    {
+    },
+    showNavbar(state) {
       return {
         ...state,
         isNavbar: true,
       };
-    }
-    ,
-    hideNavbar(state)
-    {
+    },
+    hideNavbar(state) {
       return {
         ...state,
         isNavbar: false,
       };
-    }
-    ,
-    handleSwitchMenuPopver(state)
-    {
+    },
+    handleSwitchMenuPopver(state) {
       return {
         ...state,
         menuPopoverVisible: !state.menuPopoverVisible,
       };
-    }
-    ,
-    handleNavOpenKeys(state, {payload: navOpenKeys})
-    {
+    },
+    handleNavOpenKeys(state, { payload: navOpenKeys }) {
       return {
         ...state,
         ...navOpenKeys,
