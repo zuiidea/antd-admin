@@ -1,10 +1,8 @@
-import { create, remove, update, query } from '../services/users';
 import { parse } from 'qs';
+import { create, remove, update, query } from '../services/users';
 
 export default {
-
   namespace: 'users',
-
   state: {
     list: [],
     currentItem: {},

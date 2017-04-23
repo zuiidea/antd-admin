@@ -1,6 +1,6 @@
 import React from 'react';
-import { DropOption } from '../../../components';
 import { Table, Row, Col, Card, message } from 'antd';
+import { DropOption } from '../../../components';
 
 const DropOptionPage = () => <div className="content-inner">
   <Row gutter={32}>

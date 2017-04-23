@@ -1,7 +1,8 @@
-import { getUserInfo, logout } from '../services/app';
 import { routerRedux } from 'dva/router';
 import { parse } from 'qs';
 import { config } from '../utils';
+import { getUserInfo, logout } from '../services/app';
+
 const { prefix } = config;
 
 export default {
@@ -15,6 +16,7 @@ export default {
     isNavbar: document.body.clientWidth < 769,
     navOpenKeys: [],
   },
+
   subscriptions: {
     setup({ dispatch }) {
       dispatch({ type: 'queryUser' });
@@ -23,6 +25,7 @@ export default {
       };
     },
   },
+
   effects: {
     * queryUser({ payload }, { call, put }) {
       const data = yield call(getUserInfo, parse(payload));
@@ -79,6 +82,7 @@ export default {
       });
     },
   },
+
   reducers: {
     queryUserSuccess(state, { payload: user }) {
       return {

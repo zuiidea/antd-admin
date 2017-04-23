@@ -1,7 +1,5 @@
 import React from 'react';
-import styles from './index.less';
 import Mock from 'mockjs';
-import { request, config } from '../../utils';
 import {
   Row,
   Col,
@@ -10,6 +8,9 @@ import {
   Input,
   Button,
 } from 'antd';
+import { request, config } from '../../utils';
+import styles from './index.less';
+
 const { api, baseURL } = config;
 const { userInfo, dashboard, users, userLogin } = api;
 

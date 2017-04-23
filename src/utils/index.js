@@ -1,9 +1,9 @@
+import lodash from 'lodash';
+import classnames from 'classnames';
 import config from './config';
 import menu from './menu';
 import request from './request';
-import classnames from 'classnames';
 import { color } from './theme';
-import lodash from 'lodash';
 
 // 连字符转驼峰
 String.prototype.hyphenToHump = function () {
@@ -29,15 +29,16 @@ Date.prototype.format = function (format) {
     'q+': Math.floor((this.getMonth() + 3) / 3),
     S: this.getMilliseconds(),
   };
-  if (/(y+)/.test(format)) {
-    format = format.replace(RegExp.$1, `${this.getFullYear()}`.substr(4 - RegExp.$1.length));
+  let result = format;
+  if (/(y+)/.test(result)) {
+    result = result.replace(RegExp.$1, `${this.getFullYear()}`.substr(4 - RegExp.$1.length));
   }
   for (const k in o) {
-    if (new RegExp(`(${k})`).test(format)) {
-      format = format.replace(RegExp.$1, RegExp.$1.length === 1 ? o[k] : (`00${o[k]}`).substr(`${o[k]}`.length));
+    if (new RegExp(`(${k})`).test(result)) {
+      result = result.replace(RegExp.$1, RegExp.$1.length === 1 ? o[k] : (`00${o[k]}`).substr(`${o[k]}`.length));
     }
   }
-  return format;
+  return result;
 };
 
 
@@ -62,14 +63,14 @@ const queryURL = (name) => {
  */
 const queryArray = (array, key, keyAlias = 'key') => {
   if (!(array instanceof Array)) {
-    return null
+    return null;
   }
-  const item = array.filter(_ => _[keyAlias] === key)
+  const item = array.filter(_ => _[keyAlias] === key);
   if (item.length) {
-    return item[0]
+    return item[0];
   }
-  return null
-}
+  return null;
+};
 
 /**
  * 数组格式转树状结构
@@ -80,24 +81,24 @@ const queryArray = (array, key, keyAlias = 'key') => {
  * @return  {Array}
  */
 const arrayToTree = (array, id = 'id', pid = 'pid', chindren = 'chindren') => {
-  let data = lodash.cloneDeep(array)
-  let result = []
-  let hash = {}
+  const data = lodash.cloneDeep(array);
+  const result = [];
+  const hash = {};
   data.forEach((item, index) => {
-    hash[data[index][id]] = data[index]
-  })
+    hash[data[index][id]] = data[index];
+  });
 
   data.forEach((item) => {
-    let hashVP = hash[item[pid]]
+    const hashVP = hash[item[pid]];
     if (hashVP) {
-      !hashVP[chindren] && (hashVP[chindren] = [])
-      hashVP[chindren].push(item)
+      if (!hashVP[chindren]) hashVP[chindren] = [];
+      hashVP[chindren].push(item);
     } else {
-      result.push(item)
+      result.push(item);
     }
-  })
-  return result
-}
+  });
+  return result;
+};
 
 module.exports = {
   config,
@@ -108,4 +109,4 @@ module.exports = {
   queryURL,
   queryArray,
   arrayToTree,
-}
+};

@@ -9,6 +9,7 @@
     "lodash": "^4.17.4",
     "nprogress": "^0.2.0",
     "qs": "^6.2.0",
+    "prop-types": "^15.5.0",
     "react": "^15.4.1",
     "react-countup": "2.0.3",
     "react-dom": "^15.4.1",
@@ -45,7 +46,8 @@
   ],
   "scripts": {
     "start": "set BROWSER=none&&set HOST=0.0.0.0&&roadhog server",
-    "lint": "eslint --fix --ext .js src",
-    "build": "roadhog build --analyze"
+    "build": "roadhog build --analyze",
+    "lint": "eslint --ext .js src",
+    "precommit": "npm run lint"
   }
 }

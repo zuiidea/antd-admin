@@ -1,6 +1,7 @@
 const qs = require('qs');
 const Mock = require('mockjs');
 const config = require('../utils/config');
+
 const { apiPrefix } = config;
 
 const usersListData = Mock.mock({
@@ -79,7 +80,7 @@ module.exports = {
     res.status(200).send({ message: 'OK' });
   },
 
-  [`GET ${apiPrefix}/userInfo`] (req, res) {
+  [`GET ${apiPrefix}/userInfo`](req, res) {
     const cookie = req.headers.cookie || '';
     const cookies = qs.parse(cookie.replace(/\s/g, ''), { delimiter: ';' });
     const response = {};

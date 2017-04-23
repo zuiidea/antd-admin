@@ -11,7 +11,7 @@ const Menus = ({ siderFold, darkTheme, location, handleClickNavMenu, navOpenKeys
 
   // 递归生成菜单
   const getMenus = (menuTreeN, siderFoldN) => {
-    return menuTreeN.map(item => {
+    return menuTreeN.map((item) => {
       if (item.chindren) {
         if (item.mpid) {
           levelMap[item.id] = item.mpid;
@@ -36,13 +36,13 @@ const Menus = ({ siderFold, darkTheme, location, handleClickNavMenu, navOpenKeys
           </Link>
         </Menu.Item>
       );
-    })
+    });
   };
   const menuItems = getMenus(menuTree, siderFold);
 
   // 保持选中
   const getAncestorKeys = (key) => {
-    let map = {};
+    const map = {};
     const getParent = (index) => {
       const result = [String(levelMap[index])];
       if (levelMap[result[0]]) {
@@ -50,7 +50,7 @@ const Menus = ({ siderFold, darkTheme, location, handleClickNavMenu, navOpenKeys
       }
       return result;
     };
-    for (let index in levelMap) {
+    for (const index in levelMap) {
       if ({}.hasOwnProperty.call(levelMap, index)) {
         map[index] = getParent(index);
       }
@@ -94,7 +94,6 @@ Menus.propTypes = {
   siderFold: PropTypes.bool,
   darkTheme: PropTypes.bool,
   location: PropTypes.object,
-  isNavbar: PropTypes.bool,
   handleClickNavMenu: PropTypes.func,
   navOpenKeys: PropTypes.array,
   changeOpenKeys: PropTypes.func,

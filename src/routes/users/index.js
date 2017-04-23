@@ -67,15 +67,19 @@ function Users({ location, dispatch, users, loading }) {
     keyword,
     isMotion,
     onSearch(fieldsValue) {
-      fieldsValue.keyword.length ? dispatch(routerRedux.push({
-        pathname: '/users',
-        query: {
-          field: fieldsValue.field,
-          keyword: fieldsValue.keyword,
-        },
-      })) : dispatch(routerRedux.push({
-        pathname: '/users',
-      }));
+      if (fieldsValue.keyword.length) {
+        dispatch(routerRedux.push({
+          pathname: '/users',
+          query: {
+            field: fieldsValue.field,
+            keyword: fieldsValue.keyword,
+          },
+        }));
+      } else {
+        dispatch(routerRedux.push({
+          pathname: '/users',
+        }));
+      }
     },
     onAdd() {
       dispatch({

@@ -1,5 +1,5 @@
-import { myCity, queryWeather, query } from '../services/dashboard';
 import { parse } from 'qs';
+import { myCity, queryWeather, query } from '../services/dashboard';
 
 // zuimei 摘自 http://www.zuimeitianqi.com/res/js/index.js
 const zuimei = {
@@ -8,7 +8,7 @@ const zuimei = {
       icon: `http://www.zuimeitianqi.com/res/icon/${zuimei.getIconName(actual.wea, 'big')}`,
       name: zuimei.getWeatherName(actual.wea),
       temperature: actual.tmp,
-      dateTime: new Date(actual.PTm).format('MM-dd hh:mm'),
+      dateTime: new Date().format('MM-dd hh:mm'),
     };
     return weather;
   },
@@ -44,25 +44,26 @@ const zuimei = {
   },
 
   replaceIcon(num) {
+    let result = 0;
     if (num === 21) {
-      num = 7;
+      result = 7;
     } else if (num === 22) {
-      num = 8;
+      result = 8;
     } else if (num === 10 || num === 11 || num === 12 || num === 23 || num === 24 || num === 25) {
-      num = 9;
+      result = 9;
     } else if (num === 13 || num === 15 || num === 26 || num === 27 || num === 34) {
-      num = 14;
+      result = 14;
     } else if (num === 17 || num === 28) {
-      num = 16;
+      result = 16;
     } else if (num === 35) {
-      num = 18;
+      result = 18;
     } else if (num === 31 || num === 32 || num === 33) {
-      num = 20;
+      result = 20;
     } else if (num === 30) {
-      num = 29;
+      result = 29;
     }
 
-    return num;
+    return result;
   },
 
   getWeatherName(wea) {
@@ -73,87 +74,86 @@ const zuimei = {
     } else {
       name = zuimei.getWeatherByCode(wea);
     }
-
     return name;
   },
 
   getWeatherByCode(num) {
     let wea = '';
-    if (num === 0) {
+    if (num === '0') {
       wea = '晴';
-    } else if (num === 1) {
+    } else if (num === '1') {
       wea = '多云';
-    } else if (num === 2) {
+    } else if (num === '2') {
       wea = '阴';
-    } else if (num === 3) {
+    } else if (num === '3') {
       wea = '阵雨';
-    } else if (num === 4) {
+    } else if (num === '4') {
       wea = '雷阵雨';
-    } else if (num === 5) {
+    } else if (num === '5') {
       wea = '雷阵雨并伴有冰雹';
-    } else if (num === 6) {
+    } else if (num === '6') {
       wea = '雨夹雪';
-    } else if (num === 7) {
+    } else if (num === '7') {
       wea = '小雨';
-    } else if (num === 8) {
+    } else if (num === '8') {
       wea = '中雨';
-    } else if (num === 9) {
+    } else if (num === '9') {
       wea = '大雨';
-    } else if (num === 10) {
+    } else if (num === '10') {
       wea = '暴雨';
-    } else if (num === 11) {
+    } else if (num === '11') {
       wea = '大暴雨';
-    } else if (num === 12) {
+    } else if (num === '12') {
       wea = '特大暴雨';
-    } else if (num === 13) {
+    } else if (num === '13') {
       wea = '阵雪';
-    } else if (num === 14) {
+    } else if (num === '14') {
       wea = '小雪';
-    } else if (num === 15) {
+    } else if (num === '15') {
       wea = '中雪';
-    } else if (num === 16) {
+    } else if (num === '16') {
       wea = '大雪';
-    } else if (num === 17) {
+    } else if (num === '17') {
       wea = '暴雪';
-    } else if (num === 18) {
+    } else if (num === '18') {
       wea = '雾';
-    } else if (num === 19) {
+    } else if (num === '19') {
       wea = '冻雨';
-    } else if (num === 20) {
+    } else if (num === '20') {
       wea = '沙尘暴';
-    } else if (num === 21) {
+    } else if (num === '21') {
       wea = '小雨-中雨';
-    } else if (num === 22) {
+    } else if (num === '22') {
       wea = '中雨-大雨';
-    } else if (num === 23) {
+    } else if (num === '23') {
       wea = '大雨-暴雨';
-    } else if (num === 24) {
+    } else if (num === '24') {
       wea = '暴雨-大暴雨';
-    } else if (num === 25) {
+    } else if (num === '25') {
       wea = '大暴雨-特大暴雨';
-    } else if (num === 26) {
+    } else if (num === '26') {
       wea = '小雪-中雪';
-    } else if (num === 27) {
+    } else if (num === '27') {
       wea = '中雪-大雪';
-    } else if (num === 28) {
+    } else if (num === '28') {
       wea = '大雪-暴雪';
-    } else if (num === 29) {
+    } else if (num === '29') {
       wea = '浮沉';
-    } else if (num === 30) {
+    } else if (num === '30') {
       wea = '扬沙';
-    } else if (num === 31) {
+    } else if (num === '31') {
       wea = '强沙尘暴';
-    } else if (num === 32) {
+    } else if (num === '32') {
       wea = '飑';
-    } else if (num === 33) {
+    } else if (num === '33') {
       wea = '龙卷风';
-    } else if (num === 34) {
+    } else if (num === '34') {
       wea = '若高吹雪';
-    } else if (num === 35) {
+    } else if (num === '35') {
       wea = '轻雾';
-    } else if (num === 53) {
+    } else if (num === '53') {
       wea = '霾';
-    } else if (num === 99) {
+    } else if (num === '99') {
       wea = '未知';
     }
 

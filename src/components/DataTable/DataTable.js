@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Table } from 'antd';
-import { request } from '../../utils';
 import lodash from 'lodash';
-import './DataTable.less';
+import { request } from '../../utils';
 
 class DataTable extends React.Component {
   constructor(props) {

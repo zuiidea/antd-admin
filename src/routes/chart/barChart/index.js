@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col, Card, Button } from 'antd';
-import Container from '../Container';
 import {
   BarChart,
   Bar,
@@ -11,6 +10,7 @@ import {
   Tooltip,
   Legend,
 } from 'recharts';
+import Container from '../Container';
 
 const data = [
   {

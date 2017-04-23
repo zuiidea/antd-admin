@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import styles from './layer.less';
+
 const { info, success, error, warning, confirm } = Modal;
 
 const layer = {

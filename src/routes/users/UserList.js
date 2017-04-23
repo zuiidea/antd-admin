@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Table, Modal } from 'antd';
-import styles from './UserList.less';
 import classnames from 'classnames';
+import styles from './UserList.less';
 import AnimTableBody from '../../components/DataTable/AnimTableBody';
 import { DropOption } from '../../components';
 

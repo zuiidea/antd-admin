@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'dva';
+import { Helmet } from 'react-helmet';
 import { Layout } from '../components';
 import { classnames, config, menu } from '../utils';
-import { Helmet } from 'react-helmet';
 import '../themes/index.less';
 
 const { Header, Bread, Footer, Sider, styles } = Layout;
@@ -50,7 +50,7 @@ const App = ({ children, location, dispatch, app }) => {
 
   const breadProps = {
     menu,
-  }
+  };
 
   if (config.openPages && config.openPages.indexOf(location.pathname) > -1) {
     return <div>{children}</div>;

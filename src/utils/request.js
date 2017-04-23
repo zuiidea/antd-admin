@@ -1,19 +1,14 @@
 import axios from 'axios';
 import qs from 'qs';
-import { YQL, CORS, baseURL } from './config';
 import jsonp from 'jsonp';
 import lodash from 'lodash';
+import { YQL, CORS, baseURL } from './config';
 
 axios.defaults.baseURL = baseURL;
 
-
 const fetch = (options) => {
-  let {
-    method = 'get',
-    data,
-    fetchType,
-    url,
-  } = options;
+  let { data, url } = options;
+  const { method = 'get', fetchType } = options;
 
   if (fetchType === 'JSONP') {
     return new Promise((resolve, reject) => {
@@ -52,22 +47,23 @@ const fetch = (options) => {
 };
 
 export default function request(options) {
-  if (options.url && options.url.indexOf('//') > -1) {
-    const origin = `${options.url.split('//')[0]}//${options.url.split('//')[1].split('/')[0]}`;
+  const option = options;
+  if (option.url && option.url.indexOf('//') > -1) {
+    const origin = `${option.url.split('//')[0]}//${option.url.split('//')[1].split('/')[0]}`;
     if (window.location.origin !== origin) {
       if (CORS && CORS.indexOf(origin) > -1) {
-        options.fetchType = 'CORS';
+        option.fetchType = 'CORS';
       } else if (YQL && YQL.indexOf(origin) > -1) {
-        options.fetchType = 'YQL';
+        option.fetchType = 'YQL';
       } else {
-        options.fetchType = 'JSONP';
+        option.fetchType = 'JSONP';
       }
     }
   }
 
-  return fetch(options).then((response) => {
+  return fetch(option).then((response) => {
     const { statusText, status } = response;
-    const data = options.fetchType === 'YQL' ? response.data.query.results.json : response.data;
+    const data = option.fetchType === 'YQL' ? response.data.query.results.json : response.data;
     return {
       success: true,
       message: statusText,

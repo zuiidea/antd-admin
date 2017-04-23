@@ -1,6 +1,6 @@
 import React from 'react';
-import { Search } from '../../../components';
 import { Table, Row, Col, Card } from 'antd';
+import { Search } from '../../../components';
 
 const SearchPage = () => <div className="content-inner">
   <Row gutter={32}>

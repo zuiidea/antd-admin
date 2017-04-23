@@ -22,7 +22,19 @@
     "no-bitwise": [0],
     "no-cond-assign": [0],
     "import/no-unresolved": [0],
-    "require-yield": [1]
+    "require-yield": [1],
+    "react/no-string-refs": [0],
+    "react/require-default-props": [0],
+    "no-plusplus": [0],
+    "no-undef": [0],
+    "max-len": [0],
+    "react/no-array-index-key": [0],
+    "no-mixed-operators": [0],
+    "no-underscore-dangle": [0],
+    "react/no-danger": [0],
+    "react/no-find-dom-node": [0],
+    "no-extend-native": [0],
+    "func-names": [0]
   },
   "parserOptions": {
     "ecmaFeatures": {

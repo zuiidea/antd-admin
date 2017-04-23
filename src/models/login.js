@@ -1,5 +1,5 @@
-import { login } from '../services/login';
 import { routerRedux } from 'dva/router';
+import { login } from '../services/login';
 import { queryURL } from '../utils';
 
 export default {
