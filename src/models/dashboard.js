@@ -79,8 +79,9 @@ let zuimei = {
     return name
   },
 
-  getWeatherByCode (num) {
+  getWeatherByCode (number) {
     let wea = ''
+    let num = Number(number)
     if (num === 0) {
       wea = '晴'
     } else if (num === 1) {

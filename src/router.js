@@ -3,11 +3,9 @@ import PropTypes from 'prop-types'
 import { Router } from 'dva/router'
 import App from './routes/app'
 
-const cached = {}
 const registerModel = (app, model) => {
-  if (!cached[model.namespace]) {
+  if (!(app._models.filter(m => m.namespace === model.namespace).length === 1)) {
     app.model(model)
-    cached[model.namespace] = 1
   }
 }
 
