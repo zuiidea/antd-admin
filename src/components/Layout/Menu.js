@@ -80,6 +80,7 @@ const Menus = ({ siderFold, darkTheme, location, handleClickNavMenu, navOpenKeys
 
   // 寻找选中路由
   let currentMenu
+  let defaultSelectedKeys
   for (let item of menu) {
     if (item.router && pathToRegexp(item.router).exec(location.pathname)) {
       currentMenu = item
@@ -97,7 +98,9 @@ const Menus = ({ siderFold, darkTheme, location, handleClickNavMenu, navOpenKeys
     getPath(current)
     return result
   }
-  const defaultSelectedKeys = getPathArray(menu, currentMenu, 'mpid', 'id')
+  if (currentMenu) {
+    defaultSelectedKeys = getPathArray(menu, currentMenu, 'mpid', 'id')
+  }
 
   return (
     <Menu
