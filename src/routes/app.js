@@ -5,6 +5,7 @@ import { Layout } from '../components'
 import { classnames, config, menu } from '../utils'
 import { Helmet } from 'react-helmet'
 import '../themes/index.less'
+const { prefix } = config
 
 const { Header, Bread, Footer, Sider, styles } = Layout
 
@@ -43,7 +44,7 @@ const App = ({ children, location, dispatch, app }) => {
       dispatch({ type: 'app/changeTheme' })
     },
     changeOpenKeys (openKeys) {
-      localStorage.setItem('navOpenKeys', JSON.stringify(openKeys))
+      localStorage.setItem(`${prefix}navOpenKeys`, JSON.stringify(openKeys))
       dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
     },
   }
