@@ -11,6 +11,8 @@
 
 演示地址 <http://zuiidea.github.io/antd-admin/>
 
+备用地址 <http://47.92.30.98:8000>
+
 
 ## 特性
 
