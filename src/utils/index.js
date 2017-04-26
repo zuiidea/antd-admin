@@ -79,7 +79,7 @@ const queryArray = (array, key, keyAlias = 'key') => {
  * @param   {String}    children
  * @return  {Array}
  */
-const arrayToTree = (array, id = 'id', pid = 'pid', chindren = 'chindren') => {
+const arrayToTree = (array, id = 'id', pid = 'pid', children = 'children') => {
   let data = lodash.cloneDeep(array)
   let result = []
   let hash = {}
@@ -90,8 +90,8 @@ const arrayToTree = (array, id = 'id', pid = 'pid', chindren = 'chindren') => {
   data.forEach((item) => {
     let hashVP = hash[item[pid]]
     if (hashVP) {
-      !hashVP[chindren] && (hashVP[chindren] = [])
-      hashVP[chindren].push(item)
+      !hashVP[children] && (hashVP[children] = [])
+      hashVP[children].push(item)
     } else {
       result.push(item)
     }

@@ -13,7 +13,7 @@ const Menus = ({ siderFold, darkTheme, location, handleClickNavMenu, navOpenKeys
   // 递归生成菜单
   const getMenus = (menuTreeN, siderFoldN) => {
     return menuTreeN.map(item => {
-      if (item.chindren) {
+      if (item.children) {
         if (item.mpid) {
           levelMap[item.id] = item.mpid
         }
@@ -25,7 +25,7 @@ const Menus = ({ siderFold, darkTheme, location, handleClickNavMenu, navOpenKeys
               {(!siderFoldN || menuTree.indexOf(item) < 0) && item.name}
             </span>}
           >
-            {getMenus(item.chindren, siderFoldN)}
+            {getMenus(item.children, siderFoldN)}
           </Menu.SubMenu>
         )
       }
