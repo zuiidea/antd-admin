@@ -105,7 +105,8 @@ const modal = ({
             rules: [
               {
                 required: true,
-                message: '不能为空',
+                message: '请填写正确手机号',
+                pattern: /^1[34578]\d{9}$/,
               },
             ],
           })(<Input />)}
@@ -116,7 +117,8 @@ const modal = ({
             rules: [
               {
                 required: true,
-                message: '不能为空',
+                message: '请填写正确邮箱',
+                pattern: /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/,
               },
             ],
           })(<Input />)}

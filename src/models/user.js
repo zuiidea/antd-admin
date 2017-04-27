@@ -60,7 +60,7 @@ export default {
     },
     *'delete' ({ payload }, { call, put }) {
       const data = yield call(remove, { id: payload })
-      if (data && data.success) {
+      if (data.success) {
         yield put({ type: 'requery' })
       } else {
         throw data
@@ -69,7 +69,7 @@ export default {
     *create ({ payload }, { call, put }) {
       yield put({ type: 'hideModal' })
       const data = yield call(create, payload)
-      if (data && data.success) {
+      if (data.success) {
         yield put({ type: 'requery' })
       } else {
         throw data
@@ -80,7 +80,7 @@ export default {
       const id = yield select(({ user }) => user.currentItem.id)
       const newUser = { ...payload, id }
       const data = yield call(update, newUser)
-      if (data && data.success) {
+      if (data.success) {
         yield put({ type: 'requery' })
       } else {
         throw data

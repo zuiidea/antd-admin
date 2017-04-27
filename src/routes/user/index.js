@@ -6,7 +6,7 @@ import UserList from './UserList'
 import UserFilter from './UserFilter'
 import UserModal from './UserModal'
 
-function Users ({ location, dispatch, user, loading }) {
+const User = ({ location, dispatch, user, loading }) => {
   const { list, pagination, currentItem, modalVisible, modalType, isMotion } = user
   const { field, keyword } = location.query
 
@@ -101,11 +101,11 @@ function Users ({ location, dispatch, user, loading }) {
   )
 }
 
-Users.propTypes = {
+User.propTypes = {
   user: PropTypes.object,
   location: PropTypes.object,
   dispatch: PropTypes.func,
   loading: PropTypes.bool,
 }
 
-export default connect(({ user, loading }) => ({ user, loading: loading.models.user }))(Users)
+export default connect(({ user, loading }) => ({ user, loading: loading.models.user }))(User)
