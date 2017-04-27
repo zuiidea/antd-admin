@@ -5,7 +5,7 @@ import styles from './UserList.less'
 import classnames from 'classnames'
 import AnimTableBody from '../../components/DataTable/AnimTableBody'
 import { DropOption } from '../../components'
-
+import { Link } from 'dva/router'
 
 const confirm = Modal.confirm
 
@@ -35,6 +35,7 @@ function list ({ loading, dataSource, pagination, onPageChange, onDeleteItem, on
       title: '姓名',
       dataIndex: 'name',
       key: 'name',
+      render: (text, record) => <Link to={`users/${record.id}`}>{text}</Link>,
     }, {
       title: '昵称',
       dataIndex: 'nickName',

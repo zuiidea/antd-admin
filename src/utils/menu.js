@@ -13,6 +13,13 @@ module.exports = [
     router: '/users',
   },
   {
+    id: 21,
+    mpid: -1,
+    bpid: 2,
+    name: 'User Detail',
+    router: '/users/:id',
+  },
+  {
     id: 3,
     bpid: 1,
     name: 'Request',

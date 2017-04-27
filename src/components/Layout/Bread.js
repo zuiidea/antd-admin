@@ -17,19 +17,24 @@ const Bread = ({ location, menu }) => {
     }
   }
 
-  if (!current) {
-    return (<div className={styles.bread}>首页</div>)
-  }
-
-  // 递归查找父级
   const getPathArray = (item) => {
     pathArray.unshift(item)
     if (item.bpid) {
       getPathArray(queryArray(menu, item.bpid, 'id'))
     }
   }
-  getPathArray(current)
 
+  if (!current) {
+    pathArray.push(menu[0])
+    pathArray.push({
+      id: 404,
+      name: 'Not Found',
+    })
+  } else {
+    getPathArray(current)
+  }
+
+  // 递归查找父级
   const breads = pathArray.map((item, key) => {
     const content = (
       <span>{item.icon

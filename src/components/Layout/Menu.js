@@ -90,7 +90,7 @@ const Menus = ({ siderFold, darkTheme, location, handleClickNavMenu, navOpenKeys
   const getPathArray = (array, current, pid, id) => {
     let result = [String(current[id])]
     const getPath = (item) => {
-      if (item[pid]) {
+      if (item && item[pid]) {
         result.unshift(String(item[pid]))
         getPath(queryArray(array, item[pid], id))
       }
