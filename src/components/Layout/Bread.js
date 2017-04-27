@@ -6,7 +6,7 @@ import styles from './Bread.less'
 import pathToRegexp from 'path-to-regexp'
 import { queryArray } from '../../utils'
 
-const Bread = ({ location, menu }) => {
+const Bread = ({ menu }) => {
   // 匹配当前路由
   let pathArray = []
   let current
@@ -63,7 +63,6 @@ const Bread = ({ location, menu }) => {
 
 Bread.propTypes = {
   menu: PropTypes.array,
-  location: PropTypes.object,
 }
 
 export default Bread

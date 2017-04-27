@@ -10,14 +10,14 @@ module.exports = [
     bpid: 1,
     name: 'User Manage',
     icon: 'user',
-    router: '/users',
+    router: '/user',
   },
   {
     id: 21,
     mpid: -1,
     bpid: 2,
     name: 'User Detail',
-    router: '/users/:id',
+    router: '/user/:id',
   },
   {
     id: 3,

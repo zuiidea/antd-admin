@@ -6,7 +6,7 @@ const { apiPrefix } = config
 let usersListData = Mock.mock({
   'data|100': [
     {
-      'id|+1': 1,
+      id: '@id',
       name: '@cname',
       nickName: '@last',
       phone: /^1[34578]\d{9}$/,
@@ -20,11 +20,10 @@ let usersListData = Mock.mock({
       },
     },
   ],
-  page: {
-    total: 100,
-    current: 1,
-  },
 })
+
+
+let database = usersListData.data
 
 const userPermission = {
   DEFAULT: [
@@ -54,6 +53,31 @@ const adminUsers = [
     permissions: userPermission.DEVELOPER,
   },
 ]
+
+
+const queryArray = (array, key, keyAlias = 'key') => {
+  if (!(array instanceof Array)) {
+    return null
+  }
+  let data
+
+  for (let item of array) {
+    if (item[keyAlias] === key) {
+      data = item
+      break
+    }
+  }
+
+  if (data) {
+    return data
+  }
+  return null
+}
+
+const NOTFOUND = {
+  message: 'Not Found',
+  documentation_url: 'http://localhost:8000/request',
+}
 
 module.exports = {
 
@@ -105,83 +129,75 @@ module.exports = {
   },
 
   [`GET ${apiPrefix}/users`] (req, res) {
-    const page = req.query
-    const pageSize = page.pageSize || 10
-    const currentPage = page.page || 1
+    const { query } = req
+    const pageSize = query.pageSize || 10
+    const currentPage = query.page || 1
 
     let data
-    let newPage
+    let total
 
-    let newData = usersListData.data.concat()
-
-    if (page.field) {
-      const d = newData.filter((item) => {
-        return item[page.field].indexOf(decodeURI(page.keyword)) > -1
-      })
-
-      data = d.slice((currentPage - 1) * pageSize, currentPage * pageSize)
-
-      newPage = {
-        current: currentPage * 1,
-        total: d.length,
-      }
+    if (query.field) {
+      const newData = database.filter((item) => item[query.field].indexOf(decodeURI(query.keyword)) > -1)
+      data = newData.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+      total = newData.length
     } else {
-      data = usersListData.data.slice((currentPage - 1) * pageSize, currentPage * pageSize)
-      usersListData.page.current = currentPage * 1
-      newPage = usersListData.page
+      data = database.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+      total = database.length
     }
-    res.json({
-      success: true,
+
+    res.status(200).json({
       data,
-      page: {
-        ...newPage,
-        pageSize: Number(pageSize),
-      },
+      total,
     })
   },
 
-  [`POST ${apiPrefix}/users`] (req, res) {
+  [`POST ${apiPrefix}/user`] (req, res) {
     const newData = req.body
     newData.createTime = Mock.mock('@now')
-    newData.avatar = Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', newData.nickName.substr(0, 1))
+    newData.avatar = newData.avatar || Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', newData.nickName.substr(0, 1))
+    newData.id = Mock.mock('@id')
 
-    newData.id = usersListData.data.length + 1
-    usersListData.data.unshift(newData)
+    database.unshift(newData)
 
-    usersListData.page.total = usersListData.data.length
-    usersListData.page.current = 1
-
-    res.json({ success: true, data: usersListData.data, page: usersListData.page })
+    res.status(200).end()
   },
 
-  [`DELETE ${apiPrefix}/users`] (req, res) {
-    const deleteItem = req.body
-
-    usersListData.data = usersListData.data.filter((item) => {
-      if (item.id === deleteItem.id) {
-        return false
-      }
-      return true
-    })
-
-    usersListData.page.total = usersListData.data.length
-
-    res.json({ success: true, data: usersListData.data, page: usersListData.page })
+  [`GET ${apiPrefix}/user/:id`] (req, res) {
+    const { id } = req.params
+    const data = queryArray(database, id, 'id')
+    if (data) {
+      res.status(200).json(data)
+    } else {
+      res.status(404).json(NOTFOUND)
+    }
   },
 
-  [`PUT ${apiPrefix}/users`] (req, res) {
+  [`DELETE ${apiPrefix}/user/:id`] (req, res) {
+    const { id } = req.params
+    if (!id) {
+      res.status(400).end()
+    }
+    database = database.filter((item) => item.id !== id)
+    res.status(204).end()
+  },
+
+  [`PATCH ${apiPrefix}/user/:id`] (req, res) {
+    const { id } = req.params
     const editItem = req.body
+    let isExist = false
 
-    editItem.createTime = Mock.mock('@now')
-    editItem.avatar = Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', editItem.nickName.substr(0, 1))
-
-    usersListData.data = usersListData.data.map((item) => {
-      if (item.id === editItem.id) {
-        return editItem
+    database = database.map((item) => {
+      if (item.id === id) {
+        isExist = true
+        return Object.assign({}, item, editItem)
       }
       return item
     })
 
-    res.json({ success: true, data: usersListData.data, page: usersListData.page })
+    if (isExist) {
+      res.status(201).end()
+    } else {
+      res.status(404).json(NOTFOUND)
+    }
   },
 }

@@ -6,8 +6,8 @@ import UserList from './UserList'
 import UserFilter from './UserFilter'
 import UserModal from './UserModal'
 
-function Users ({ location, dispatch, users, loading }) {
-  const { list, pagination, currentItem, modalVisible, modalType, isMotion } = users
+function Users ({ location, dispatch, user, loading }) {
+  const { list, pagination, currentItem, modalVisible, modalType, isMotion } = user
   const { field, keyword } = location.query
 
   const userModalProps = {
@@ -16,13 +16,13 @@ function Users ({ location, dispatch, users, loading }) {
     visible: modalVisible,
     onOk (data) {
       dispatch({
-        type: `users/${modalType}`,
+        type: `user/${modalType}`,
         payload: data,
       })
     },
     onCancel () {
       dispatch({
-        type: 'users/hideModal',
+        type: 'user/hideModal',
       })
     },
   }
@@ -46,13 +46,13 @@ function Users ({ location, dispatch, users, loading }) {
     },
     onDeleteItem (id) {
       dispatch({
-        type: 'users/delete',
+        type: 'user/delete',
         payload: id,
       })
     },
     onEditItem (item) {
       dispatch({
-        type: 'users/showModal',
+        type: 'user/showModal',
         payload: {
           modalType: 'update',
           currentItem: item,
@@ -67,25 +67,25 @@ function Users ({ location, dispatch, users, loading }) {
     isMotion,
     onSearch (fieldsValue) {
       fieldsValue.keyword.length ? dispatch(routerRedux.push({
-        pathname: '/users',
+        pathname: '/user',
         query: {
           field: fieldsValue.field,
           keyword: fieldsValue.keyword,
         },
       })) : dispatch(routerRedux.push({
-        pathname: '/users',
+        pathname: '/user',
       }))
     },
     onAdd () {
       dispatch({
-        type: 'users/showModal',
+        type: 'user/showModal',
         payload: {
           modalType: 'create',
         },
       })
     },
     switchIsMotion () {
-      dispatch({ type: 'users/switchIsMotion' })
+      dispatch({ type: 'user/switchIsMotion' })
     },
   }
 
@@ -102,10 +102,10 @@ function Users ({ location, dispatch, users, loading }) {
 }
 
 Users.propTypes = {
-  users: PropTypes.object,
+  user: PropTypes.object,
   location: PropTypes.object,
   dispatch: PropTypes.func,
   loading: PropTypes.bool,
 }
 
-export default connect(({ users, loading }) => ({ users, loading: loading.models.users }))(Users)
+export default connect(({ user, loading }) => ({ user, loading: loading.models.user }))(Users)
