@@ -11,11 +11,11 @@ import {
   Button,
 } from 'antd'
 const { api, baseURL } = config
-const { userInfo, dashboard, users, userLogin, user } = api
+const { dashboard, users, userLogin, user } = api
 
 const requestOptions = [
   {
-    url: baseURL + userInfo,
+    url: baseURL + user.replace('/:id', ''),
     desc: 'intercept request by mock.js',
   },
   {

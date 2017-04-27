@@ -8,7 +8,7 @@ import UserModal from './UserModal'
 
 const User = ({ location, dispatch, user, loading }) => {
   const { list, pagination, currentItem, modalVisible, modalType, isMotion } = user
-  const { field, keyword } = location.query
+  const { current, pageSize } = pagination
 
   const userModalProps = {
     item: modalType === 'create' ? {} : currentItem,
@@ -62,9 +62,20 @@ const User = ({ location, dispatch, user, loading }) => {
   }
 
   const userFilterProps = {
-    field,
-    keyword,
     isMotion,
+    filter: {
+      ...location.query,
+    },
+    onFilterChange (value) {
+      dispatch(routerRedux.push({
+        pathname: location.pathname,
+        query: {
+          ...value,
+          page: current,
+          pageSize,
+        },
+      }))
+    },
     onSearch (fieldsValue) {
       fieldsValue.keyword.length ? dispatch(routerRedux.push({
         pathname: '/user',

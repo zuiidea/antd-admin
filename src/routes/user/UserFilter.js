@@ -1,50 +1,132 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Form, Button, Row, Col, Switch } from 'antd'
-import { Search } from '../../components'
+import moment from 'moment'
+import { FilterItem } from '../../components'
+import { Form, Button, Row, Col, DatePicker, Input, Cascader, Switch } from 'antd'
+import city from '../../utils/city'
+
+const Search = Input.Search
+const { RangePicker } = DatePicker
+
+const ColProps = {
+  xs: 24,
+  sm: 12,
+  md: 8,
+  lg: 6,
+  xl: 48,
+  style: {
+    marginBottom: 16,
+  },
+}
+
+const TwoColProps = {
+  ...ColProps,
+  xl: 96,
+}
 
 const UserFilter = ({
-  field,
-  keyword,
-  onSearch,
   onAdd,
   isMotion,
   switchIsMotion,
+  onFilterChange,
+  filter,
+  form: {
+    getFieldDecorator,
+    getFieldsValue,
+    setFieldsValue,
+  },
 }) => {
-  const searchGroupProps = {
-    field,
-    keyword,
-    size: 'large',
-    select: true,
-    selectOptions: [{ value: 'name', name: '姓名' }, { value: 'address', name: '地址' }],
-    selectProps: {
-      defaultValue: field || 'name',
-    },
-    onSearch: (value) => {
-      onSearch(value)
-    },
+  const handleFields = (fields) => {
+    const { createTime } = fields
+    if (createTime.length) {
+      fields.createTime = [createTime[0].format('YYYY-MM-DD'), createTime[1].format('YYYY-MM-DD')]
+    }
+    return fields
   }
+
+  const handleSubmit = () => {
+    let fields = getFieldsValue()
+    fields = handleFields(fields)
+    console.log(fields)
+    onFilterChange(fields)
+  }
+
+  const handleReset = () => {
+    const fields = getFieldsValue()
+    for (let item in fields) {
+      if ({}.hasOwnProperty.call(fields, item)) {
+        if (fields[item] instanceof Array) {
+          fields[item] = []
+        } else {
+          fields[item] = undefined
+        }
+      }
+    }
+    setFieldsValue(fields)
+    handleSubmit()
+  }
+
+  const handleChange = (key, values) => {
+    let fields = getFieldsValue()
+    fields[key] = values
+    fields = handleFields(fields)
+    onFilterChange(fields)
+  }
+  const { name, address } = filter
+
+  let initialCreateTime = []
+  if (filter.createTime && filter.createTime[0]) {
+    initialCreateTime[0] = moment(filter.createTime[0])
+  }
+  if (filter.createTime && filter.createTime[1]) {
+    initialCreateTime[1] = moment(filter.createTime[1])
+  }
+
   return (
     <Row gutter={24}>
-      <Col lg={8} md={12} sm={16} xs={24} style={{ marginBottom: 16 }}>
-        <Search {...searchGroupProps} />
+      <Col {...ColProps}>
+        {getFieldDecorator('name', { initialValue: name })(<Search placeholder="Search Name" size="large" onSearch={handleSubmit} />)}
       </Col>
-      <Col lg={{ offset: 8, span: 8 }} md={12} sm={8} xs={24} style={{ marginBottom: 16, textAlign: 'right' }}>
-        {/* <Switch style={{ marginRight: 16 }} defaultChecked={isMotion} onChange={switchIsMotion} checkedChildren={'动画开'} unCheckedChildren={'动画关'} /> */}
-        <Button size="large" type="ghost" onClick={onAdd}>添加</Button>
+      <Col {...ColProps}>
+        {getFieldDecorator('address', { initialValue: address })(
+          <Cascader
+            size="large"
+            style={{ width: '100%' }}
+            options={city}
+            placeholder="Please pick an address"
+            onChange={handleChange.bind(null, 'address')}
+          />)}
+      </Col>
+      <Col {...ColProps}>
+        <FilterItem label="Createtime">
+          {getFieldDecorator('createTime', { initialValue: initialCreateTime })(
+            <RangePicker style={{ width: '100%' }} size="large" onChange={handleChange.bind(null, 'createTime')} />
+          )}
+        </FilterItem>
+      </Col>
+      <Col {...TwoColProps}>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div >
+            <Button type="primary" size="large" className="margin-right" onClick={handleSubmit}>Search</Button>
+            <Button size="large" className="margin-right" onClick={handleReset}>Reset</Button>
+          </div>
+          <div>
+            <Switch style={{ marginRight: 16 }} defaultChecked={isMotion} onChange={switchIsMotion} checkedChildren={'动画开'} unCheckedChildren={'动画关'} />
+            <Button size="large" type="ghost" onClick={onAdd}>Create</Button>
+          </div>
+        </div>
       </Col>
     </Row>
   )
 }
 
 UserFilter.propTypes = {
-  form: PropTypes.object.isRequired,
-  onSearch: PropTypes.func,
   onAdd: PropTypes.func,
-  field: PropTypes.string,
-  keyword: PropTypes.string,
   isMotion: PropTypes.bool,
   switchIsMotion: PropTypes.func,
+  form: PropTypes.object,
+  filter: PropTypes.object,
+  onFilterChange: PropTypes.func,
 }
 
 export default Form.create()(UserFilter)

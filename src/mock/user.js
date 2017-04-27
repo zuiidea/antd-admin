@@ -4,10 +4,10 @@ const config = require('../utils/config')
 const { apiPrefix } = config
 
 let usersListData = Mock.mock({
-  'data|100': [
+  'data|80-100': [
     {
       id: '@id',
-      name: '@cname',
+      name: '@name',
       nickName: '@last',
       phone: /^1[34578]\d{9}$/,
       'age|11-99': 1,
@@ -54,7 +54,6 @@ const adminUsers = [
   },
 ]
 
-
 const queryArray = (array, key, keyAlias = 'key') => {
   if (!(array instanceof Array)) {
     return null
@@ -94,16 +93,16 @@ module.exports = {
       })
       res.json({ success: true, message: 'Ok' })
     } else {
-      res.status(400).send({ message: 'Bad Request' })
+      res.status(400).end()
     }
   },
 
   [`GET ${apiPrefix}/user/logout`] (req, res) {
     res.clearCookie('token')
-    res.status(200).send({ message: 'OK' })
+    res.status(200).end()
   },
 
-  [`GET ${apiPrefix}/userInfo`] (req, res) {
+  [`GET ${apiPrefix}/user`] (req, res) {
     const cookie = req.headers.cookie || ''
     const cookies = qs.parse(cookie.replace(/\s/g, ''), { delimiter: ';' })
     const response = {}
@@ -174,11 +173,13 @@ module.exports = {
 
   [`DELETE ${apiPrefix}/user/:id`] (req, res) {
     const { id } = req.params
-    if (!id) {
-      res.status(400).end()
+    const data = queryArray(database, id, 'id')
+    if (data) {
+      database = database.filter((item) => item.id !== id)
+      res.status(204).end()
+    } else {
+      res.status(404).json(NOTFOUND)
     }
-    database = database.filter((item) => item.id !== id)
-    res.status(204).end()
   },
 
   [`PATCH ${apiPrefix}/user/:id`] (req, res) {

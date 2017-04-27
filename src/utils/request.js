@@ -101,14 +101,16 @@ export default function request (options) {
     const { response } = error
     let msg
     let status
+    let otherData = {}
     if (response) {
-      status = response.status
       const { data, statusText } = response
+      otherData = data
+      status = response.status
       msg = data.message || statusText
     } else {
       status = 600
       msg = 'Network Error'
     }
-    return { success: false, status, message: msg }
+    return { success: false, status, message: msg, ...otherData }
   })
 }
