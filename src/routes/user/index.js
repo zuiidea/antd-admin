@@ -8,7 +8,7 @@ import UserModal from './UserModal'
 
 const User = ({ location, dispatch, user, loading }) => {
   const { list, pagination, currentItem, modalVisible, modalType, isMotion } = user
-  const { current, pageSize } = pagination
+  const { pageSize } = pagination
 
   const userModalProps = {
     item: modalType === 'create' ? {} : currentItem,
@@ -71,7 +71,7 @@ const User = ({ location, dispatch, user, loading }) => {
         pathname: location.pathname,
         query: {
           ...value,
-          page: current,
+          page: 1,
           pageSize,
         },
       }))

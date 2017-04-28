@@ -129,24 +129,37 @@ module.exports = {
 
   [`GET ${apiPrefix}/users`] (req, res) {
     const { query } = req
-    const pageSize = query.pageSize || 10
-    const currentPage = query.page || 1
+    let { pageSize, page, ...other } = query
+    pageSize = pageSize || 10
+    page = page || 1
 
-    let data
-    let total
+    let newData = database
+    for (let key in other) {
+      if ({}.hasOwnProperty.call(other, key)) {
+        newData = newData.filter((item) => {
+          if ({}.hasOwnProperty.call(item, key)) {
+            if (key === 'address') {
+              return other[key].every(iitem => item[key].indexOf(iitem) > -1)
+            } else if (key === 'createTime') {
+              const start = new Date(other[key][0]).getTime()
+              const end = new Date(other[key][1]).getTime()
+              const now = new Date(item[key]).getTime()
 
-    if (query.field) {
-      const newData = database.filter((item) => item[query.field].indexOf(decodeURI(query.keyword)) > -1)
-      data = newData.slice((currentPage - 1) * pageSize, currentPage * pageSize)
-      total = newData.length
-    } else {
-      data = database.slice((currentPage - 1) * pageSize, currentPage * pageSize)
-      total = database.length
+              if (start && end) {
+                return now >= start && now <= end
+              }
+              return true
+            }
+            return String(item[key]).trim().indexOf(decodeURI(other[key]).trim()) > -1
+          }
+          return true
+        })
+      }
     }
 
     res.status(200).json({
-      data,
-      total,
+      data: newData.slice((page - 1) * pageSize, page * pageSize),
+      total: newData.length,
     })
   },
 
