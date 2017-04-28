@@ -100,7 +100,7 @@ module.exports = [
     mpid: 5,
     name: 'BarChart',
     icon: 'bar-chart',
-    router: '/chart/lineChart',
+    router: '/chart/barChart',
   },
   {
     id: 53,
