@@ -1,4 +1,4 @@
-import { getUserInfo, logout } from '../services/app'
+import { query, logout } from '../services/app'
 import { routerRedux } from 'dva/router'
 import { parse } from 'qs'
 import { config } from '../utils'
@@ -27,7 +27,7 @@ export default {
     *queryUser ({
       payload,
     }, { call, put }) {
-      const data = yield call(getUserInfo, parse(payload))
+      const data = yield call(query, parse(payload))
       if (data.success && data.user) {
         yield put({
           type: 'queryUserSuccess',

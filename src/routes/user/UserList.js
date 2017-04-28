@@ -5,7 +5,7 @@ import styles from './UserList.less'
 import classnames from 'classnames'
 import AnimTableBody from '../../components/DataTable/AnimTableBody'
 import { DropOption } from '../../components'
-
+import { Link } from 'dva/router'
 
 const confirm = Modal.confirm
 
@@ -15,7 +15,7 @@ function list ({ loading, dataSource, pagination, onPageChange, onDeleteItem, on
       onEditItem(record)
     } else if (e.key === '2') {
       confirm({
-        title: '您确定要删除这条记录吗?',
+        title: 'Are you sure delete this record?',
         onOk () {
           onDeleteItem(record.id)
         },
@@ -25,50 +25,50 @@ function list ({ loading, dataSource, pagination, onPageChange, onDeleteItem, on
 
   const columns = [
     {
-      title: '头像',
+      title: 'Avatar',
       dataIndex: 'avatar',
       key: 'avatar',
       width: 64,
       className: styles.avatar,
       render: (text) => <img alt={'avatar'} width={24} src={text} />,
     }, {
-      title: '姓名',
+      title: 'Name',
       dataIndex: 'name',
       key: 'name',
+      render: (text, record) => <Link to={`user/${record.id}`}>{text}</Link>,
     }, {
-      title: '昵称',
+      title: 'NickName',
       dataIndex: 'nickName',
       key: 'nickName',
     }, {
-      title: '年龄',
+      title: 'Age',
       dataIndex: 'age',
       key: 'age',
-      render: (text) => <span>{text}岁</span>,
     }, {
-      title: '性别',
+      title: 'Gender',
       dataIndex: 'isMale',
       key: 'isMale',
       render: (text) => <span>{text
-            ? '男'
-            : '女'}</span>,
+            ? 'Male'
+            : 'Female'}</span>,
     }, {
-      title: '电话',
+      title: 'Phone',
       dataIndex: 'phone',
       key: 'phone',
     }, {
-      title: '邮箱',
+      title: 'Email',
       dataIndex: 'email',
       key: 'email',
     }, {
-      title: '住址',
+      title: 'Address',
       dataIndex: 'address',
       key: 'address',
     }, {
-      title: '创建时间',
+      title: 'CreateTime',
       dataIndex: 'createTime',
       key: 'createTime',
     }, {
-      title: '操作',
+      title: 'Operation',
       key: 'operation',
       width: 100,
       render: (text, record) => {

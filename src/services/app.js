@@ -1,6 +1,6 @@
 import { request, config } from '../utils'
 const { api } = config
-const { userInfo, userLogout, userLogin } = api
+const { user, userLogout, userLogin } = api
 
 export async function login (params) {
   return request({
@@ -18,9 +18,9 @@ export async function logout (params) {
   })
 }
 
-export async function getUserInfo (params) {
+export async function query (params) {
   return request({
-    url: userInfo,
+    url: user.replace('/:id', ''),
     method: 'get',
     data: params,
   })

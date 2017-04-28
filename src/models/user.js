@@ -1,9 +1,11 @@
-import { create, remove, update, query } from '../services/users'
+import { create, remove, update } from '../services/user'
+import { query } from '../services/users'
+import { routerRedux } from 'dva/router'
 import { parse } from 'qs'
 
 export default {
 
-  namespace: 'users',
+  namespace: 'user',
 
   state: {
     list: [],
@@ -23,7 +25,7 @@ export default {
   subscriptions: {
     setup ({ dispatch, history }) {
       history.listen(location => {
-        if (location.pathname === '/users') {
+        if (location.pathname === '/user') {
           dispatch({
             type: 'query',
             payload: location.query,
@@ -34,65 +36,54 @@ export default {
   },
 
   effects: {
+    *requery ({ payload }, { put }) {
+      yield put(routerRedux.push({
+        pathname: location.pathname,
+        query: parse(location.search.substr(1)),
+      }))
+    },
     *query ({ payload }, { call, put }) {
-      const data = yield call(query, parse(payload))
+      const data = yield call(query, payload)
       if (data) {
         yield put({
           type: 'querySuccess',
           payload: {
             list: data.data,
-            pagination: data.page,
+            pagination: {
+              current: Number(payload.page) || 1,
+              pageSize: Number(payload.pageSize) || 10,
+              total: data.total,
+            },
           },
         })
       }
     },
     *'delete' ({ payload }, { call, put }) {
       const data = yield call(remove, { id: payload })
-      if (data && data.success) {
-        yield put({
-          type: 'querySuccess',
-          payload: {
-            list: data.data,
-            pagination: {
-              total: data.page.total,
-              current: data.page.current,
-            },
-          },
-        })
+      if (data.success) {
+        yield put({ type: 'requery' })
+      } else {
+        throw data
       }
     },
     *create ({ payload }, { call, put }) {
       yield put({ type: 'hideModal' })
       const data = yield call(create, payload)
-      if (data && data.success) {
-        yield put({
-          type: 'querySuccess',
-          payload: {
-            list: data.data,
-            pagination: {
-              total: data.page.total,
-              current: data.page.current,
-            },
-          },
-        })
+      if (data.success) {
+        yield put({ type: 'requery' })
+      } else {
+        throw data
       }
     },
     *update ({ payload }, { select, call, put }) {
       yield put({ type: 'hideModal' })
-      const id = yield select(({ users }) => users.currentItem.id)
+      const id = yield select(({ user }) => user.currentItem.id)
       const newUser = { ...payload, id }
       const data = yield call(update, newUser)
-      if (data && data.success) {
-        yield put({
-          type: 'querySuccess',
-          payload: {
-            list: data.data,
-            pagination: {
-              total: data.page.total,
-              current: data.page.current,
-            },
-          },
-        })
+      if (data.success) {
+        yield put({ type: 'requery' })
+      } else {
+        throw data
       }
     },
     *switchIsMotion ({
