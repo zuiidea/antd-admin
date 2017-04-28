@@ -32,6 +32,11 @@
 ## 更新日志
 
 ### 4.2
+`2017-04-28`
+
+-   修改user相关API使用`Restful`风格
+-   增加user页面多条件查询[#266](https://github.com/zuiidea/antd-admin/issues/226)
+-   修复菜单默认高亮[#201](https://github.com/zuiidea/antd-admin/issues/201)
 
 `2017-04-21`
 
