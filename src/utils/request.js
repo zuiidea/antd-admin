@@ -3,9 +3,10 @@ import qs from 'qs'
 import { YQL, CORS, baseURL } from './config'
 import jsonp from 'jsonp'
 import lodash from 'lodash'
+import pathToRegexp from 'path-to-regexp'
+import { message } from 'antd'
 
 axios.defaults.baseURL = baseURL
-
 
 const fetch = (options) => {
   let {
@@ -14,6 +15,26 @@ const fetch = (options) => {
     fetchType,
     url,
   } = options
+
+  const cloneData = lodash.cloneDeep(data)
+
+  try {
+    let domin = ''
+    if (url.match(/[a-zA-z]+:\/\/[^/]*/)) {
+      domin = url.match(/[a-zA-z]+:\/\/[^/]*/)[0]
+      url = url.slice(domin.length)
+    }
+    const match = pathToRegexp.parse(url)
+    url = pathToRegexp.compile(url)(data)
+    for (let item of match) {
+      if (item instanceof Object && item.name in cloneData) {
+        delete cloneData[item.name]
+      }
+    }
+    url = domin + url
+  } catch (e) {
+    message.error(e.message)
+  }
 
   if (fetchType === 'JSONP') {
     return new Promise((resolve, reject) => {
@@ -35,17 +56,19 @@ const fetch = (options) => {
 
   switch (method.toLowerCase()) {
     case 'get':
-      return axios.get(`${url}${!lodash.isEmpty(data) ? `?${qs.stringify(data)}` : ''}`)
+      return axios.get(url, {
+        params: cloneData,
+      })
     case 'delete':
-      return axios.delete(url, { data })
-    case 'head':
-      return axios.head(url, data)
+      return axios.delete(url, {
+        data: cloneData,
+      })
     case 'post':
-      return axios.post(url, data)
+      return axios.post(url, cloneData)
     case 'put':
-      return axios.put(url, data)
+      return axios.put(url, cloneData)
     case 'patch':
-      return axios.patch(url, data)
+      return axios.patch(url, cloneData)
     default:
       return axios(options)
   }
@@ -76,16 +99,18 @@ export default function request (options) {
     }
   }).catch((error) => {
     const { response } = error
-    let message
+    let msg
     let status
+    let otherData = {}
     if (response) {
-      status = response.status
       const { data, statusText } = response
-      message = data.message || statusText
+      otherData = data
+      status = response.status
+      msg = data.message || statusText
     } else {
       status = 600
-      message = 'Network Error'
+      msg = 'Network Error'
     }
-    return { success: false, status, message }
+    return { success: false, status, message: msg, ...otherData }
   })
 }

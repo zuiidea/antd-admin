@@ -11,11 +11,11 @@ import {
   Button,
 } from 'antd'
 const { api, baseURL } = config
-const { userInfo, dashboard, users, userLogin } = api
+const { dashboard, users, userLogin, user } = api
 
 const requestOptions = [
   {
-    url: baseURL + userInfo,
+    url: baseURL + user.replace('/:id', ''),
     desc: 'intercept request by mock.js',
   },
   {
@@ -23,24 +23,30 @@ const requestOptions = [
     desc: 'intercept request by mock.js',
   },
   {
-    url: baseURL + users,
-    desc: 'intercept request by mock.js',
-  },
-  {
     url: baseURL + userLogin,
     method: 'post',
     data: {
-      username: 'admin',
-      password: 'admin6',
+      username: 'guest',
+      password: 'guest',
     },
     desc: 'intercept request by mock.js',
   },
   {
     url: baseURL + users,
     desc: 'intercept request by mock.js',
+  },
+  {
+    url: baseURL + user,
+    desc: 'intercept request by mock.js',
+    data: Mock.mock({
+      id: '@id',
+    }),
+  },
+  {
+    url: baseURL + user.replace('/:id', ''),
+    desc: 'intercept request by mock.js',
     method: 'post',
     data: Mock.mock({
-      'id|+1': 1000,
       name: '@cname',
       nickName: '@last',
       phone: /^1[34578]\d{9}$/,
@@ -48,37 +54,26 @@ const requestOptions = [
       address: '@county(true)',
       isMale: '@boolean',
       email: '@email',
-      createTime: '@datetime',
       avatar () {
         return Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', this.nickName.substr(0, 1))
       },
     }),
   },
   {
-    url: baseURL + users,
+    url: baseURL + user,
     desc: 'intercept request by mock.js',
-    method: 'put',
+    method: 'patch',
     data: Mock.mock({
-      id: 1,
+      id: '@id',
       name: '@cname',
-      nickName: '@last',
-      phone: /^1[34578]\d{9}$/,
-      'age|11-99': 1,
-      address: '@county(true)',
-      isMale: '@boolean',
-      email: '@email',
-      createTime: '@datetime',
-      avatar () {
-        return Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', this.nickName.substr(0, 1))
-      },
     }),
   },
   {
-    url: baseURL + users,
+    url: baseURL + user,
     desc: 'intercept request by mock.js',
     method: 'delete',
     data: Mock.mock({
-      id: 10,
+      id: '@id',
     }),
   },
   {

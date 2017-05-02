@@ -30,12 +30,20 @@ const Routers = function ({ history, app }) {
             }, 'dashboard')
           },
         }, {
-          path: 'users',
+          path: 'user',
           getComponent (nextState, cb) {
             require.ensure([], require => {
-              registerModel(app, require('./models/users'))
-              cb(null, require('./routes/users/'))
-            }, 'users')
+              registerModel(app, require('./models/user'))
+              cb(null, require('./routes/user/'))
+            }, 'user')
+          },
+        }, {
+          path: 'user/:id',
+          getComponent (nextState, cb) {
+            require.ensure([], require => {
+              registerModel(app, require('./models/user/detail'))
+              cb(null, require('./routes/user/detail/'))
+            }, 'user-detail')
           },
         }, {
           path: 'login',
