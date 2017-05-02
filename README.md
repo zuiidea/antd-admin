@@ -92,8 +92,7 @@
 开发：
 
 ```bash
-npm run dev    # 使用mock拦截请求，数据存储在localStorage里
-
+npm run dev
 打开 http://localhost:8000
 ```
 
