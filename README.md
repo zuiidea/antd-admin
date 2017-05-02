@@ -13,7 +13,6 @@
 
 备用地址 <http://47.92.30.98:8000>
 
-
 ## 特性
 
 -   基于[react](https://github.com/facebook/react)，[ant-design](https://github.com/ant-design/ant-design)，[dva](https://github.com/dvajs/dva)，[Mock](https://github.com/nuysoft/Mock) 企业级后台管理系统最佳实践
@@ -22,25 +21,19 @@
 -   基于[dva](https://github.com/dvajs/dva)动态加载 Model 和路由，按需加载
 -   浅度响应式设计
 
-## 注意
-如果使用到roadhog，且出现接口404
--  保证`package.json`里没有`roadhog`
--  删除`node_modules`
-- `npm i`
-- `npm i roadhog@0.6.0-beta.3 -g`
-
 ## 更新日志
 
 ### 4.2
+
 `2017-04-28`
 
--   修改user相关API使用`Restful`风格
--   增加user页面多条件查询[#266](https://github.com/zuiidea/antd-admin/issues/226)
--   修复菜单默认高亮[#201](https://github.com/zuiidea/antd-admin/issues/201)
+-     修改user相关API使用`Restful`风格
+-     增加user页面多条件查询[#266](https://github.com/zuiidea/antd-admin/issues/226)
+-     修复菜单默认高亮[#201](https://github.com/zuiidea/antd-admin/issues/201)
 
 `2017-04-21`
 
--   重写Menu，Bread组件及配置文件，[说明](https://github.com/zuiidea/antd-admin/wiki/%E8%8F%9C%E5%8D%95%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
+-     重写Menu，Bread组件及配置文件，[说明](https://github.com/zuiidea/antd-admin/wiki/%E8%8F%9C%E5%8D%95%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
 
 ### 4.1
 
@@ -55,7 +48,6 @@
 ### 目录结构
 
 ```bash
-├── /mock/           # 数据mock的接口文件
 ├── /dist/           # 项目输出目录
 ├── /src/            # 项目源码目录
 │ ├── /components/   # UI组件及UI相关方法
@@ -65,10 +57,11 @@
 │ │ └── app.js       # 路由入口
 │ ├── /models/       # 数据模型
 │ ├── /services/     # 数据接口
+│ ├── /themes/       # 项目样式
+│ ├── /mock/         # 数据mock
 │ ├── /utils/        # 工具函数
 │ │ ├── config.js    # 项目常规配置
-│ │ ├── menu.js      # 侧边菜单配置
-│ │ ├── mock.js      # 数据拦截配置
+│ │ ├── menu.js      # 菜单及面包屑配置
 │ │ ├── config.js    # 项目常规配置
 │ │ ├── request.js   # 异步请求函数
 │ │ └── theme.js     # 项目需要在js中使用到样式变量
@@ -76,7 +69,8 @@
 │ ├── index.js       # 入口文件
 │ └── index.html     
 ├── package.json     # 项目信息
-└── proxy.config.js  # 数据mock配置
+├── .eslintrc        # Eslint配置
+└── .roadhogrc.js    # roadhog配置
 ```
 
 文件夹命名说明:
@@ -93,7 +87,7 @@
 进入目录安装依赖:
 
     npm i 或者 yarn install
-    npm i roadhog@0.6.0-beta.3 -g
+    npm i roadhog@0.6.0-beta.6 -g
 
 开发：
 
