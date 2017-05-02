@@ -6,7 +6,7 @@ import styles from './Bread.less'
 import pathToRegexp from 'path-to-regexp'
 import { queryArray } from '../../utils'
 
-const Bread = ({ menu }) => {
+const Bread = ({ menu, location }) => {
   // 匹配当前路由
   let pathArray = []
   let current
