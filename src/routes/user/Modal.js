@@ -15,18 +15,16 @@ const formItemLayout = {
 }
 
 const modal = ({
-  visible,
-  type,
   item = {},
   onOk,
-  onCancel,
   form: {
     getFieldDecorator,
     validateFields,
     getFieldsValue,
   },
+  ...modalProps
 }) => {
-  function handleOk () {
+  const handleOk = () => {
     validateFields((errors) => {
       if (errors) {
         return
@@ -41,11 +39,8 @@ const modal = ({
   }
 
   const modalOpts = {
-    title: `${type === 'create' ? 'Create User' : 'Update User'}`,
-    visible,
+    ...modalProps,
     onOk: handleOk,
-    onCancel,
-    wrapClassName: 'vertical-center-modal',
   }
 
   return (
@@ -105,17 +100,19 @@ const modal = ({
               {
                 required: true,
                 pattern: /^1[34578]\d{9}$/,
+                message: 'The input is not valid phone!',
               },
             ],
           })(<Input />)}
         </FormItem>
-        <FormItem label="Email" hasFeedback {...formItemLayout}>
+        <FormItem label="E-mail" hasFeedback {...formItemLayout}>
           {getFieldDecorator('email', {
             initialValue: item.email,
             rules: [
               {
                 required: true,
                 pattern: /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/,
+                message: 'The input is not valid E-mail!',
               },
             ],
           })(<Input />)}
@@ -142,10 +139,8 @@ const modal = ({
 
 modal.propTypes = {
   form: PropTypes.object.isRequired,
-  visible: PropTypes.bool,
   type: PropTypes.string,
   item: PropTypes.object,
-  onCancel: PropTypes.func,
   onOk: PropTypes.func,
 }
 

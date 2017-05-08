@@ -21,7 +21,7 @@ const TwoColProps = {
   xl: 96,
 }
 
-const UserFilter = ({
+const Filter = ({
   onAdd,
   isMotion,
   switchIsMotion,
@@ -44,7 +44,6 @@ const UserFilter = ({
   const handleSubmit = () => {
     let fields = getFieldsValue()
     fields = handleFields(fields)
-    console.log(fields)
     onFilterChange(fields)
   }
 
@@ -117,7 +116,7 @@ const UserFilter = ({
   )
 }
 
-UserFilter.propTypes = {
+Filter.propTypes = {
   onAdd: PropTypes.func,
   isMotion: PropTypes.bool,
   switchIsMotion: PropTypes.func,
@@ -126,4 +125,4 @@ UserFilter.propTypes = {
   onFilterChange: PropTypes.func,
 }
 
-export default Form.create()(UserFilter)
+export default Form.create()(Filter)
