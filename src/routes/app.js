@@ -5,12 +5,17 @@ import { Layout } from '../components'
 import { classnames, config, menu } from '../utils'
 import { Helmet } from 'react-helmet'
 import '../themes/index.less'
+import './app.less'
+import NProgress from 'nprogress'
 const { prefix } = config
 
 const { Header, Bread, Footer, Sider, styles } = Layout
 
-const App = ({ children, location, dispatch, app }) => {
+const App = ({ children, location, dispatch, app, loading }) => {
   const { user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys } = app
+
+  NProgress.start()
+  !loading.global && NProgress.done()
 
   const headerProps = {
     menu,
@@ -41,7 +46,7 @@ const App = ({ children, location, dispatch, app }) => {
     location,
     navOpenKeys,
     changeTheme () {
-      dispatch({ type: 'app/changeTheme' })
+      dispatch({ type: 'app/switchTheme' })
     },
     changeOpenKeys (openKeys) {
       localStorage.setItem(`${prefix}navOpenKeys`, JSON.stringify(openKeys))
@@ -89,6 +94,7 @@ App.propTypes = {
   location: PropTypes.object,
   dispatch: PropTypes.func,
   app: PropTypes.object,
+  loading: PropTypes.object,
 }
 
 export default connect(({ app, loading }) => ({ app, loading }))(App)
