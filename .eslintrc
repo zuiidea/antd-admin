@@ -21,6 +21,7 @@
     "react/jsx-no-bind": 0,
     "no-unused-vars": [2, { "ignoreRestSiblings": true }],
     "no-underscore-dangle": 0,
+    "global-require": 0,
   },
   "parser": "babel-eslint",
   "parserOptions": {

@@ -1,15 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './iconfont.less'
+require('../../svg/complaints.svg')
 
-const Iconfont = ({ type }) => <span
-  dangerouslySetInnerHTML={{
-    __html: `<svg class="iconfont" aria-hidden="true"><use xlink:href="#anticon-${type}"></use></svg>`,
-  }}
-/>
+const Iconfont = ({ type, colorful }) => {
+  if (colorful) {
+    return (<span
+      dangerouslySetInnerHTML={{
+        __html: `<svg class="colorful-icon" aria-hidden="true"><use xlink:href="#icon-${type}"></use></svg>`,
+      }}
+    />)
+  }
+  return <i className={`antdadmin icon-${type}`} />
+}
 
 Iconfont.propTypes = {
   type: PropTypes.string,
+  colorful: PropTypes.bool,
 }
 
 export default Iconfont
