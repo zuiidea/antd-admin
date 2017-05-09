@@ -1,0 +1,170 @@
+@import "../../themes/vars.less";
+.layout {
+    position: relative;
+    height: 100vh;
+    .sider {
+        height: 100vh;
+        color: #999;
+        &.light {
+            background: #fff;
+            .switchtheme {
+                background: #fff;
+                border-top: solid 1px #f8f8f8;
+            }
+        }
+        .logo {
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            cursor: pointer;
+            margin: 28px 0;
+            transition: @transition-ease-out;
+            overflow: hidden;
+            img {
+                width: 40px;
+                margin-right: 8px;
+                transition: @transition-ease-out;
+            }
+            span {
+                vertical-align: text-bottom;
+                font-size: 16px;
+                text-transform: uppercase;
+                display: inline-block;
+            }
+            .anticon {
+                transition: @transition-ease-out;
+            }
+        }
+        .switchtheme {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            height: 48px;
+            background-color: @dark-half;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px 0 24px;
+            overflow: hidden;
+            z-index: 1000;
+            span {
+                white-space: nowrap;
+                overflow: hidden;
+            }
+            // :global {
+            //   .anticon {
+            //     min-width: 14px;
+            //     margin-right: 8px;
+            //     font-size: 14px;
+            //   }
+            // }
+        }
+    }
+    .header {
+        :global .ant-menu-horizontal {
+            & > .ant-menu-submenu {
+                float: right;
+            }
+        }
+        background-color: transparent;
+        padding:0;
+        .siderbutton {
+            height: 47px;
+            width: 47px;
+            line-height: 47px;
+            text-align: center;
+            font-size: 18px;
+            cursor: pointer;
+            position: absolute;
+            transition: @transition-ease-in;
+            &:hover {
+                color: @primary-color;
+                background-color: fade(@primary-color, 15%);
+            }
+        }
+    }
+    .content {
+        margin: 16px;
+        position: relative;
+        height: 100%;
+        :global .content-inner {
+            background: #fff;
+            padding: 16px;
+        }
+    }
+    .footer {
+        height: 48px;
+        line-height: 48px;
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        background: #fff;
+        box-shadow: @shadow-2;
+        width: 100%;
+        :global .ant-layout-footer {
+            padding: 0;
+        }
+    }
+}
+
+:global .ant-menu-dark {
+    color: #999;
+    background-color: #3e3e3e;
+    .ant-menu-submenu-title:hover, .ant-menu-submenu:hover {
+        color: @primary-color;
+    }
+    .ant-menu-sub {
+        color: #999;
+    }
+    .ant-menu-submenu-selected {
+        color: @primary-color;
+        &:not(.ant-menu-submenu-open) {
+            background-color: @dark-half;
+        }
+    }
+    .ant-menu-item, .ant-menu-submenu-title {
+        & > a {
+            color: #999;
+        }
+        &:hover > a {
+            color: @primary-color;
+        }
+    }
+    &.ant-menu-inline {
+        .ant-menu-item-selected {
+            background-color: @dark-half;
+        }
+    }
+    .ant-menu-item-selected {
+        color: @primary-color;
+        background-color: @dark-half;
+        & > a {
+            color: @primary-color;
+        }
+        &:hover {
+            background-color: @dark-half;
+        }
+    }
+}
+
+.popovermenu {
+    width: 280px;
+    margin-left: 6px;
+    :global .ant-popover-inner-content {
+        padding: 0;
+        .ant-menu-inline .ant-menu-item, .ant-menu-vertical .ant-menu-item {
+            border-right: 0;
+            height: 48px;
+            line-height: 48px;
+        }
+        .ant-menu-inline .ant-menu-item-selected, .ant-menu-inline .ant-menu-selected {
+            border-right: 0;
+        }
+    }
+}
+
+.spin {
+    :global .ant-spin-container {
+        height: 100vh;
+    }
+}
