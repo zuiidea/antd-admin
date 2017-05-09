@@ -62,13 +62,16 @@ const App = ({ children, location, dispatch, app, loading }) => {
     return <div>{children}</div>
   }
 
+  const { iconFontJS, iconFontCSS } = config
+
   return (
     <div>
       <Helmet>
         <title>ANTD ADMIN</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href={config.logoSrc} type="image/x-icon" />
-        {config.iconFontUrl ? <script src={config.iconFontUrl}></script> : ''}
+        {iconFontJS && <script src={iconFontJS}></script>}
+        {iconFontCSS && <link rel="stylesheet" href={iconFontCSS} />}
       </Helmet>
       <div className={classnames(styles.layout, { [styles.fold]: isNavbar ? false : siderFold }, { [styles.withnavbar]: isNavbar })}>
         {!isNavbar ? <aside className={classnames(styles.sider, { [styles.light]: !darkTheme })}>

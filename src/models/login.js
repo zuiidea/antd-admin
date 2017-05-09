@@ -17,7 +17,7 @@ export default {
       yield put({ type: 'hideLoginLoading' })
       if (data.success) {
         const from = queryURL('from')
-        yield put({ type: 'app/queryUser' })
+        yield put({ type: 'app/query' })
         if (from) {
           yield put(routerRedux.push(from))
         } else {
