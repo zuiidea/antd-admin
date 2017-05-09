@@ -1,13 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './iconfont.less'
-require('../../svg/complaints.svg')
 
 const Iconfont = ({ type, colorful }) => {
   if (colorful) {
     return (<span
       dangerouslySetInnerHTML={{
-        __html: `<svg class="colorful-icon" aria-hidden="true"><use xlink:href="#icon-${type}"></use></svg>`,
+        __html: `<svg class="colorful-icon" aria-hidden="true"><use xlink:href="#${type.startsWith('#') ? type.replace(/#/, '') : type}"></use></svg>`,
       }}
     />)
   }

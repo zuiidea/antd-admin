@@ -2,6 +2,7 @@ const path = require('path')
 
 const svgSpriteDirs = [
   path.resolve(__dirname, 'src/svg/'),
+  require.resolve('antd').replace(/index\.js$/, ''),
 ]
 
 export default {

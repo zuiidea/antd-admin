@@ -4,7 +4,7 @@
   justify-content: flex-start;
 
   li {
-    width: 160px;
+    width: 120px;
     text-align: center;
     cursor: pointer;
     height: 100px;
@@ -34,6 +34,20 @@
     .antdadmin {
       font-size: 32px;
       line-height: 1;
+    }
+  }
+}
+@media (min-width: 1600px) {
+  .list {
+    li {
+      width: 160px;
+    }
+  }
+}
+@media (max-width: 767px) {
+  .list {
+    li {
+      width: 100px;
     }
   }
 }
