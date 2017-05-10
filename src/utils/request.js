@@ -75,16 +75,25 @@ const fetch = (options) => {
 }
 
 export default function request (options) {
+  let origin = ''
   if (options.url && options.url.indexOf('//') > -1) {
-    const origin = `${options.url.split('//')[0]}//${options.url.split('//')[1].split('/')[0]}`
-    if (window.location.origin !== origin) {
-      if (CORS && CORS.indexOf(origin) > -1) {
-        options.fetchType = 'CORS'
-      } else if (YQL && YQL.indexOf(origin) > -1) {
-        options.fetchType = 'YQL'
-      } else {
-        options.fetchType = 'JSONP'
-      }
+    origin = `${options.url.split('//')[0]}//${options.url.split('//')[1].split('/')[0]}`
+  } else if (baseURL && baseURL.indexOf('//') > -1) {
+    origin = `${baseURL.split('//')[0]}//${baseURL.split('//')[1].split('/')[0]}`
+  }
+
+  // cors set-cookies
+  axios.defaults.withCredentials = false
+
+  if (window.location.origin !== origin) {
+    if (CORS && CORS.indexOf(origin) > -1) {
+      options.fetchType = 'CORS'
+      // cors set-cookies
+      axios.defaults.withCredentials = true
+    } else if (YQL && YQL.indexOf(origin) > -1) {
+      options.fetchType = 'YQL'
+    } else {
+      options.fetchType = 'JSONP'
     }
   }
 
