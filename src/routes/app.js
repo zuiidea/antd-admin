@@ -10,12 +10,19 @@ import NProgress from 'nprogress'
 const { prefix } = config
 
 const { Header, Bread, Footer, Sider, styles } = Layout
+let lastHref
 
 const App = ({ children, location, dispatch, app, loading }) => {
   const { user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys } = app
+  const href = window.location.href
 
-  NProgress.start()
-  !loading.global && NProgress.done()
+  if (lastHref !== href) {
+    NProgress.start()
+    if (!loading.global) {
+      NProgress.done()
+      lastHref = href
+    }
+  }
 
   const headerProps = {
     menu,
