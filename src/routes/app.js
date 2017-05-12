@@ -10,12 +10,19 @@ import NProgress from 'nprogress'
 const { prefix } = config
 
 const { Header, Bread, Footer, Sider, styles } = Layout
+let lastHref
 
 const App = ({ children, location, dispatch, app, loading }) => {
   const { user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys } = app
+  const href = window.location.href
 
-  NProgress.start()
-  !loading.global && NProgress.done()
+  if (lastHref !== href) {
+    NProgress.start()
+    if (!loading.global) {
+      NProgress.done()
+      lastHref = href
+    }
+  }
 
   const headerProps = {
     menu,
@@ -62,14 +69,14 @@ const App = ({ children, location, dispatch, app, loading }) => {
     return <div>{children}</div>
   }
 
-  const { iconFontJS, iconFontCSS } = config
+  const { iconFontJS, iconFontCSS, logo } = config
 
   return (
     <div>
       <Helmet>
         <title>ANTD ADMIN</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href={config.logoSrc} type="image/x-icon" />
+        <link rel="icon" href={logo} type="image/x-icon" />
         {iconFontJS && <script src={iconFontJS}></script>}
         {iconFontCSS && <link rel="stylesheet" href={iconFontCSS} />}
       </Helmet>
