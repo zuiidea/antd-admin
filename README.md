@@ -1,47 +1,42 @@
 # Antd Admin
 
-[![React Native](https://img.shields.io/badge/react-^15.4.1-brightgreen.svg?style=flat-square)](https://github.com/facebook/react)
-[![Ant Design](https://img.shields.io/badge/ant--design-^2.7.3-yellowgreen.svg?style=flat-square)](https://github.com/ant-design/ant-design)
-[![dva](https://img.shields.io/badge/dva-^1.1.0-orange.svg?style=flat-square)](https://github.com/dvajs/dva)
+[![React Native](https://img.shields.io/badge/react-^15.4.4-brightgreen.svg?style=flat-square)](https://github.com/facebook/react)
+[![Ant Design](https://img.shields.io/badge/ant--design-^2.10.0-yellowgreen.svg?style=flat-square)](https://github.com/ant-design/ant-design)
+[![dva](https://img.shields.io/badge/dva-^1.2.0-orange.svg?style=flat-square)](https://github.com/dvajs/dva)
 
 [![GitHub issues](https://img.shields.io/github/issues/zuiidea/antd-admin.svg?style=flat-square)](https://github.com/zuiidea/antd-admin)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/zuiidea/antd-admin/pulls)
 [![MIT](https://img.shields.io/dub/l/vibe-d.svg?style=flat-square)](http://opensource.org/licenses/MIT)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
 
-演示地址 <http://zuiidea.github.io/antd-admin/>
-
-备用地址 <http://47.92.30.98:8000>
+演示地址 <http://zuiidea.github.io/antd-admin>  \| [备用地址](http://47.92.30.98:8000)
 
 ## 特性
 
--   基于[react](https://github.com/facebook/react)，[ant-design](https://github.com/ant-design/ant-design)，[dva](https://github.com/dvajs/dva)，[Mock](https://github.com/nuysoft/Mock) 企业级后台管理系统最佳实践
--   基于[Mock](https://github.com/nuysoft/Mock)实现脱离后端独立开发
--   基于Antd UI 设计语言，提供后台管理系统常见使用场景
--   基于[dva](https://github.com/dvajs/dva)动态加载 Model 和路由，按需加载
--   浅度响应式设计
+-   基于[react](https://github.com/facebook/react)，[ant-design](https://github.com/ant-design/ant-design)，[dva](https://github.com/dvajs/dva)，[Mock](https://github.com/nuysoft/Mock) 企业级后台管理系统最佳实践。
+-   基于Antd UI 设计语言，提供后台管理系统常见使用场景。
+-   基于[dva](https://github.com/dvajs/dva)动态加载 Model 和路由，按需加载。
+-   使用[roadhog](https://github.com/sorrycc/roadhog)本地调试和构建，其中Mock功能实现脱离后端独立开发。
+-   浅度响应式设计。
 
 ## 更新日志
+
+### 4.2.1
+
+`2017-05-12`
+
+-     新增IconFont扩展方案,本地使用方案。[#270](https://github.com/zuiidea/antd-admin/issues/270) [Live](http://47.92.30.98:666/UIElement/iconfont)
+-     新增常见场景使用loading。 [dva-loading](https://github.com/dvajs/dva-loading)
 
 ### 4.2
 
 `2017-04-28`
 
--     修改user相关API使用`Restful`风格
--     增加user页面多条件查询[#266](https://github.com/zuiidea/antd-admin/issues/226)
--     修复菜单默认高亮[#201](https://github.com/zuiidea/antd-admin/issues/201)
+-     修改user相关API使用`Restful`风格。
+-     增加user页面多条件查询。[#266](https://github.com/zuiidea/antd-admin/issues/226)
+-     修复菜单默认高亮。[#201](https://github.com/zuiidea/antd-admin/issues/201)
 
-`2017-04-21`
-
--     重写Menu，Bread组件及配置文件，[说明](https://github.com/zuiidea/antd-admin/wiki/%E8%8F%9C%E5%8D%95%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
-
-### 4.1
-
-`2017-04-14`
-
--   升级开发工具为[roadhog](https://github.com/sorrycc/roadhog)
--   使用`roadhog`的mock功能
--   增强`utils/request.js`跨域处理能力
+      [More Change Log](https://github.com/zuiidea/antd-admin/wiki/Change-Log)
 
 ## 开发构建
 
@@ -75,8 +70,8 @@
 
 文件夹命名说明:
 
--   components：组件（方法）为单位以文件夹保存，文件夹名组件首字母大写（如`DataTable`），方法首字母小写（如`layer`）,文件夹内主文件与文件夹同名，多文件以`index.js`导出对象（如`./src/components/Layout`）
--   routes：页面为单位以文件夹保存，文件夹名首字母小写（特殊除外，如`UIElement`）,文件夹内主文件以`index.js`导出，多文件时可建立`components`文件夹（如`./src/routes/dashboard`），如果有子路由，依次按照路由层次建立文件夹（如`./src/routes/UIElement`）
+-   components：组件（方法）为单位以文件夹保存，文件夹名组件首字母大写（如`DataTable`），方法首字母小写（如`layer`）,文件夹内主文件与文件夹同名，多文件以`index.js`导出对象（如`./src/components/Layout`）。
+-   routes：页面为单位以文件夹保存，文件夹名首字母小写（特殊除外，如`UIElement`）,文件夹内主文件以`index.js`导出，多文件时可建立`components`文件夹（如`./src/routes/dashboard`），如果有子路由，依次按照路由层次建立文件夹（如`./src/routes/UIElement`）。
 
 ### 快速开始
 
@@ -109,6 +104,8 @@ npm run build
 npm run lint
 ```
 
+项目部署 [#269](https://github.com/zuiidea/antd-admin/issues/269)
+
 ## 参考
 
 用户列表：<https://github.com/dvajs/dva/tree/master/examples/user-dashboard>
@@ -119,8 +116,8 @@ dashboard设计稿：<https://dribbble.com/shots/3108122-Dashboard-Admin> （已
 
 web
 
-![](assets/demo4.gif)
+![](assets/4.2.1-demo-1.gif)
 
 移动
 
-![](assets/demo3.gif)
+![](assets/4.2.1-demo-2.gif)
