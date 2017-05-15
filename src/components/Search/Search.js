@@ -24,7 +24,7 @@ class Search extends React.Component {
       clearVisible: e.target.value !== '',
     })
   }
-  handeleSelectChange = value => {
+  handleSelectChange = value => {
     this.setState({
       ...this.state,
       selectValue: value,
@@ -42,7 +42,7 @@ class Search extends React.Component {
     const { clearVisible } = this.state
     return (
       <Input.Group compact size={size} className={styles.search} style={style}>
-        {select && <Select ref="searchSelect" onChange={this.handeleSelectChange} size={size} {...selectProps}>
+        {select && <Select ref="searchSelect" onChange={this.handleSelectChange} size={size} {...selectProps}>
           {selectOptions && selectOptions.map((item, key) => <Select.Option value={item.value} key={key}>{item.name || item.value}</Select.Option>)}
         </Select>}
         <Input ref="searchInput" size={size} onChange={this.handleInputChange} onPressEnter={this.handleSearch} defaultValue={keyword} />
