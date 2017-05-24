@@ -23,5 +23,15 @@ export default {
   		    ["import", { "libraryName": "antd", "style": true}]
         ]
       }
+  },
+  "dllPlugin": {
+    "exclude": [
+      "babel-runtime"
+    ],
+    "include": [
+      "dva/router",
+      "dva/saga",
+      "dva/fetch"
+    ]
   }
 }
