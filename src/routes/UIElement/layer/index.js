@@ -1,10 +1,10 @@
-import React from 'react';
-import { Table, Row, Col, Button, Card } from 'antd';
-import { layer } from '../../../components';
+import React from 'react'
+import { layer } from '../../../components'
+import { Table, Row, Col, Button, Card } from 'antd'
 
-const Enum = {
+let Enum = {
   default: 1,
-};
+}
 
 const IcoPage = () => {
   const handleButtonClick = (key) => {
@@ -12,9 +12,9 @@ const IcoPage = () => {
       layer.open({
         title: '默认弹层',
         content: <div style={{ height: 360 }}>弹层内容</div>,
-      });
+      })
     }
-  };
+  }
   return (<div className="content-inner">
     <Row gutter={32}>
       <Col lg={8} md={12}>
@@ -26,7 +26,7 @@ const IcoPage = () => {
     <h2 style={{ margin: '16px 0' }}>API</h2>
     <div style={{ margin: '16px 0' }}>
       <h2 style={{ margin: '4px 0' }}>layer.open(config)</h2>
-      config对象与<a href="https://ant.design/components/modal-cn/#API" target="_blank" rel="noopener noreferrer">Modal</a>的参数基本一致，config属性如下。
+      config对象与<a href="https://ant.design/components/modal-cn/#API" target="_blank">Modal</a>的参数基本一致，config属性如下。
       注意：1.visible属性一般不需要设置；2.afterClose无效，layer.close()可代替;3.layer.open()返回一个唯一的layer Id
     </div>
     <Row>
@@ -69,7 +69,7 @@ const IcoPage = () => {
             },
             {
               props: 'confirmLoading',
-              desciption: '确定按钮 loading',
+              desciption: '确定按钮 loading	',
               type: 'boolean',
               default: '无',
             },
@@ -139,7 +139,7 @@ const IcoPage = () => {
       <h2 style={{ margin: '4px 0' }}>layer.closeAll()</h2>
       关闭所有的layer
     </div>
-  </div>);
-};
+  </div>)
+}
 
-export default IcoPage;
+export default IcoPage

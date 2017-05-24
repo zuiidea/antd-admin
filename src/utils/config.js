@@ -1,12 +1,13 @@
 module.exports = {
   name: 'AntD Admin',
   prefix: 'antdAdmin',
-  footerText: 'Ant Dva Wrapper 版权所有 © 2017 由 tigaly 支持',
-  logo: 'https://t.alipayobjects.com/images/T1QUBfXo4fXXXXXXXX.png',
-  iconFontUrl: '//at.alicdn.com/t/font_c4y7asse3q1cq5mi.js',
+  footerText: 'Ant Design Admin  © 2017 zuiidea',
+  logo: '/logo.png',
+  iconFontCSS: '/iconfont.css',
+  iconFontJS: '/iconfont.js',
   baseURL: 'http://localhost:8000/api/v1',
   YQL: ['http://www.zuimeitianqi.com'],
-  CORS: ['http://localhost:7001'],
+  CORS: ['http://localhost:7000'],
   openPages: ['/login'],
   apiPrefix: '/api/v1',
   api: {
@@ -14,6 +15,7 @@ module.exports = {
     userLogout: '/user/logout',
     userInfo: '/userInfo',
     users: '/users',
+    user: '/user/:id',
     dashboard: '/dashboard',
   },
-};
+}

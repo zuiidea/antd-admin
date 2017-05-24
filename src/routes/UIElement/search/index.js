@@ -1,6 +1,6 @@
-import React from 'react';
-import { Table, Row, Col, Card } from 'antd';
-import { Search } from '../../../components';
+import React from 'react'
+import { Search } from '../../../components'
+import { Table, Row, Col, Card } from 'antd'
 
 const SearchPage = () => <div className="content-inner">
   <Row gutter={32}>
@@ -93,6 +93,6 @@ const SearchPage = () => <div className="content-inner">
       />
     </Col>
   </Row>
-</div>;
+</div>
 
-export default SearchPage;
+export default SearchPage

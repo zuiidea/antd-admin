@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Menu, Icon, Popover } from 'antd';
-import styles from './Header.less';
-import Menus from './Menu';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Menu, Icon, Popover } from 'antd'
+import styles from './Header.less'
+import Menus from './Menu'
 
-const SubMenu = Menu.SubMenu;
+const SubMenu = Menu.SubMenu
 
-function Header({ user, logout, switchSider, siderFold, isNavbar, menuPopoverVisible, location, switchMenuPopover, navOpenKeys, changeOpenKeys, menu }) {
-  const handleClickMenu = e => e.key === 'logout' && logout();
+const Header = ({ user, logout, switchSider, siderFold, isNavbar, menuPopoverVisible, location, switchMenuPopover, navOpenKeys, changeOpenKeys, menu }) => {
+  let handleClickMenu = e => e.key === 'logout' && logout()
   const menusProps = {
     menu,
     siderFold: false,
@@ -17,7 +17,7 @@ function Header({ user, logout, switchSider, siderFold, isNavbar, menuPopoverVis
     location,
     navOpenKeys,
     changeOpenKeys,
-  };
+  }
   return (
     <div className={styles.header}>
       {isNavbar
@@ -34,20 +34,19 @@ function Header({ user, logout, switchSider, siderFold, isNavbar, menuPopoverVis
           <Icon type="mail" />
         </div>
         <Menu mode="horizontal" onClick={handleClickMenu}>
-          <SubMenu
-            style={{
-              float: 'right',
-            }} title={<span > <Icon type="user" />
-              {user.username} </span>}
+          <SubMenu style={{
+            float: 'right',
+          }} title={< span > <Icon type="user" />
+            {user.username} < /span>}
           >
             <Menu.Item key="logout">
-              <a>注销</a>
+              Sign out
             </Menu.Item>
           </SubMenu>
         </Menu>
       </div>
     </div>
-  );
+  )
 }
 
 Header.propTypes = {
@@ -62,6 +61,6 @@ Header.propTypes = {
   switchMenuPopover: PropTypes.func,
   navOpenKeys: PropTypes.array,
   changeOpenKeys: PropTypes.func,
-};
+}
 
-export default Header;
+export default Header

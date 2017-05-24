@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'dva';
-import { Button, Row, Form, Input } from 'antd';
-import { config } from '../../utils';
-import styles from './index.less';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'dva'
+import { Button, Row, Form, Input } from 'antd'
+import { config } from '../../utils'
+import styles from './index.less'
 
-const FormItem = Form.Item;
+const FormItem = Form.Item
 
 const Login = ({
   login,
@@ -15,15 +15,15 @@ const Login = ({
     validateFieldsAndScroll,
   },
 }) => {
-  const { loginLoading } = login;
+  const { loginLoading } = login
 
-  function handleOk() {
+  function handleOk () {
     validateFieldsAndScroll((errors, values) => {
       if (errors) {
-        return;
+        return
       }
-      dispatch({ type: 'login/login', payload: values });
-    });
+      dispatch({ type: 'login/login', payload: values })
+    })
   }
 
   return (
@@ -38,40 +38,38 @@ const Login = ({
             rules: [
               {
                 required: true,
-                message: '请填写用户名',
               },
             ],
-          })(<Input size="large" onPressEnter={handleOk} placeholder="用户名" />)}
+          })(<Input size="large" onPressEnter={handleOk} placeholder="Username" />)}
         </FormItem>
         <FormItem hasFeedback>
           {getFieldDecorator('password', {
             rules: [
               {
                 required: true,
-                message: '请填写密码',
               },
             ],
-          })(<Input size="large" type="password" onPressEnter={handleOk} placeholder="密码" />)}
+          })(<Input size="large" type="password" onPressEnter={handleOk} placeholder="Password" />)}
         </FormItem>
         <Row>
           <Button type="primary" size="large" onClick={handleOk} loading={loginLoading}>
-            登录
+            Sign in
           </Button>
           <p>
-            <span>账号：guest</span>
-            <span>密码：guest</span>
+            <span>Username：guest</span>
+            <span>Password：guest</span>
           </p>
         </Row>
 
       </form>
     </div>
-  );
-};
+  )
+}
 
 Login.propTypes = {
   form: PropTypes.object,
   login: PropTypes.object,
   dispatch: PropTypes.func,
-};
+}
 
-export default connect(({ login }) => ({ login }))(Form.create()(Login));
+export default connect(({ login }) => ({ login }))(Form.create()(Login))

@@ -1,19 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Button } from 'antd';
-import CountUp from 'react-countup';
-import styles from './user.less';
-import { color } from '../../../utils';
-
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Button } from 'antd'
+import styles from './user.less'
+import CountUp from 'react-countup'
+import { color } from '../../../utils'
 const countUpProps = {
   start: 0,
   duration: 2.75,
   useEasing: true,
   useGrouping: true,
   separator: ',',
-};
+}
 
-function User({ avatar, name, email, sales, sold }) {
+function User ({ avatar, name, email, sales, sold }) {
   return (<div className={styles.user}>
     <div className={styles.header}>
       <div className={styles.headerinner}>
@@ -42,7 +41,7 @@ function User({ avatar, name, email, sales, sold }) {
     <div className={styles.footer}>
       <Button type="ghost" size="large">View Profile</Button>
     </div>
-  </div>);
+  </div>)
 }
 
 User.propTypes = {
@@ -51,6 +50,6 @@ User.propTypes = {
   email: PropTypes.string,
   sales: PropTypes.number,
   sold: PropTypes.number,
-};
+}
 
-export default User;
+export default User

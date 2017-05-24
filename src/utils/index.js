@@ -1,21 +1,21 @@
-import lodash from 'lodash';
-import classnames from 'classnames';
-import config from './config';
-import menu from './menu';
-import request from './request';
-import { color } from './theme';
+import config from './config'
+import menu from './menu'
+import request from './request'
+import classnames from 'classnames'
+import { color } from './theme'
+import lodash from 'lodash'
 
 // 连字符转驼峰
 String.prototype.hyphenToHump = function () {
   return this.replace(/-(\w)/g, (...args) => {
-    return args[1].toUpperCase();
-  });
-};
+    return args[1].toUpperCase()
+  })
+}
 
 // 驼峰转连字符
 String.prototype.humpToHyphen = function () {
-  return this.replace(/([A-Z])/g, '-$1').toLowerCase();
-};
+  return this.replace(/([A-Z])/g, '-$1').toLowerCase()
+}
 
 // 日期格式化
 Date.prototype.format = function (format) {
@@ -28,18 +28,17 @@ Date.prototype.format = function (format) {
     's+': this.getSeconds(),
     'q+': Math.floor((this.getMonth() + 3) / 3),
     S: this.getMilliseconds(),
-  };
-  let result = format;
-  if (/(y+)/.test(result)) {
-    result = result.replace(RegExp.$1, `${this.getFullYear()}`.substr(4 - RegExp.$1.length));
   }
-  for (const k in o) {
-    if (new RegExp(`(${k})`).test(result)) {
-      result = result.replace(RegExp.$1, RegExp.$1.length === 1 ? o[k] : (`00${o[k]}`).substr(`${o[k]}`.length));
+  if (/(y+)/.test(format)) {
+    format = format.replace(RegExp.$1, `${this.getFullYear()}`.substr(4 - RegExp.$1.length))
+  }
+  for (let k in o) {
+    if (new RegExp(`(${k})`).test(format)) {
+      format = format.replace(RegExp.$1, RegExp.$1.length === 1 ? o[k] : (`00${o[k]}`).substr(`${o[k]}`.length))
     }
   }
-  return result;
-};
+  return format
+}
 
 
 /**
@@ -48,11 +47,11 @@ Date.prototype.format = function (format) {
  */
 
 const queryURL = (name) => {
-  const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`, 'i');
-  const r = window.location.search.substr(1).match(reg);
-  if (r != null) return decodeURI(r[2]);
-  return null;
-};
+  let reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`, 'i')
+  let r = window.location.search.substr(1).match(reg)
+  if (r != null) return decodeURI(r[2])
+  return null
+}
 
 /**
  * 数组内查询
@@ -63,14 +62,14 @@ const queryURL = (name) => {
  */
 const queryArray = (array, key, keyAlias = 'key') => {
   if (!(array instanceof Array)) {
-    return null;
+    return null
   }
-  const item = array.filter(_ => _[keyAlias] === key);
+  const item = array.filter(_ => _[keyAlias] === key)
   if (item.length) {
-    return item[0];
+    return item[0]
   }
-  return null;
-};
+  return null
+}
 
 /**
  * 数组格式转树状结构
@@ -80,25 +79,25 @@ const queryArray = (array, key, keyAlias = 'key') => {
  * @param   {String}    children
  * @return  {Array}
  */
-const arrayToTree = (array, id = 'id', pid = 'pid', chindren = 'chindren') => {
-  const data = lodash.cloneDeep(array);
-  const result = [];
-  const hash = {};
+const arrayToTree = (array, id = 'id', pid = 'pid', children = 'children') => {
+  let data = lodash.cloneDeep(array)
+  let result = []
+  let hash = {}
   data.forEach((item, index) => {
-    hash[data[index][id]] = data[index];
-  });
+    hash[data[index][id]] = data[index]
+  })
 
   data.forEach((item) => {
-    const hashVP = hash[item[pid]];
+    let hashVP = hash[item[pid]]
     if (hashVP) {
-      if (!hashVP[chindren]) hashVP[chindren] = [];
-      hashVP[chindren].push(item);
+      !hashVP[children] && (hashVP[children] = [])
+      hashVP[children].push(item)
     } else {
-      result.push(item);
+      result.push(item)
     }
-  });
-  return result;
-};
+  })
+  return result
+}
 
 module.exports = {
   config,
@@ -109,4 +108,4 @@ module.exports = {
   queryURL,
   queryArray,
   arrayToTree,
-};
+}

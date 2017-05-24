@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Table, Tag } from 'antd';
-import styles from './comments.less';
-import { color } from '../../../utils';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Table, Tag } from 'antd'
+import styles from './comments.less'
+import { color } from '../../../utils'
 
 const status = {
   1: {
@@ -17,9 +17,9 @@ const status = {
     color: color.red,
     text: 'REJECTED',
   },
-};
+}
 
-function Comments({ data }) {
+function Comments ({ data }) {
   const columns = [
     {
       title: 'avatar',
@@ -39,16 +39,16 @@ function Comments({ data }) {
         </div>
       </div>,
     },
-  ];
+  ]
   return (
     <div className={styles.comments}>
       <Table pagination={false} showHeader={false} columns={columns} rowKey={(record, key) => key} dataSource={data.filter((item, key) => key < 3)} />
     </div>
-  );
+  )
 }
 
 Comments.propTypes = {
   data: PropTypes.array,
-};
+}
 
-export default Comments;
+export default Comments
