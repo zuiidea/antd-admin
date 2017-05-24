@@ -37,7 +37,7 @@
     "path-to-regexp": "^1.7.0",
     "rc-tween-one": "^1.0.0",
     "redbox-react": "^1.2.10",
-    "roadhog": "0.6.0-beta.6"
+    "roadhog": "^0.6.0"
   },
   "pre-commit": [
     "lint"
@@ -45,6 +45,7 @@
   "scripts": {
     "dev": "set BROWSER=none&&set HOST=0.0.0.0&&roadhog server",
     "lint": "eslint --fix --ext .js src",
-    "build": "roadhog build --analyze"
+    "build": "roadhog build --analyze",
+    "build:dll": "roadhog buildDll"
   }
 }
