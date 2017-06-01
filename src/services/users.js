@@ -9,3 +9,11 @@ export async function query (params) {
     data: params,
   })
 }
+
+export async function remove (params) {
+  return request({
+    url: users,
+    method: 'delete',
+    data: params,
+  })
+}

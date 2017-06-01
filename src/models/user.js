@@ -1,6 +1,8 @@
 import { create, remove, update } from '../services/user'
-import { query } from '../services/users'
+import * as usersService from '../services/users'
 import { parse } from 'qs'
+
+const { query } = usersService
 
 export default {
 
@@ -11,6 +13,7 @@ export default {
     currentItem: {},
     modalVisible: false,
     modalType: 'create',
+    selectedRowKeys: [],
     isMotion: localStorage.getItem('antdAdminUserIsMotion') === 'true',
     pagination: {
       showSizeChanger: true,
@@ -54,9 +57,21 @@ export default {
       }
     },
 
-    *'delete' ({ payload }, { call, put }) {
+    *'delete' ({ payload }, { call, put, select }) {
       const data = yield call(remove, { id: payload })
+      const { selectedRowKeys } = yield select(_ => _.user)
       if (data.success) {
+        yield put({ type: 'updateState', payload: { selectedRowKeys: selectedRowKeys.filter(_ => _ !== payload) } })
+        yield put({ type: 'query' })
+      } else {
+        throw data
+      }
+    },
+
+    *'multiDelete' ({ payload }, { call, put }) {
+      const data = yield call(usersService.remove, payload)
+      if (data.success) {
+        yield put({ type: 'updateState', payload: { selectedRowKeys: [] } })
         yield put({ type: 'query' })
       } else {
         throw data
@@ -97,6 +112,13 @@ export default {
           ...state.pagination,
           ...pagination,
         } }
+    },
+
+    updateState (state, { payload }) {
+      return {
+        ...state,
+        ...payload,
+      }
     },
 
     showModal (state, action) {
