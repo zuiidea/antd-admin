@@ -23,13 +23,12 @@ const localRequireSVGIcons = [
   require('../../../svg/cute/sweat.svg'),
   require('../../../svg/cute/think.svg'),
 ]
-
 const IcoPage = () => <div className="content-inner">
   <Icon type="star-o" />
   <h2 style={{ margin: '16px 0' }}>Colorful Icon</h2>
   <ul className={styles.list}>
     {colorfulIcons.map(item => <li key={item}>
-      <Iconfont className={styles.icon} colorful type={item} />
+      <Iconfont className={styles.colorfulIcon} colorful type={item} />
       <span className={styles.name}>{item}</span>
     </li>)}
   </ul>
@@ -43,14 +42,14 @@ const IcoPage = () => <div className="content-inner">
   <h2 style={{ margin: '16px 0' }}>Local SVG</h2>
   <ul className={styles.list}>
     {localSVGIcons.map(item => <li key={item}>
-      <Iconfont className={styles.icon} colorful type={item} />
+      <Iconfont className={styles.colorfulIcon} colorful type={item} />
       <span className={styles.name}>{item}</span>
     </li>)}
   </ul>
   <h2 style={{ margin: '16px 0' }}>Local Require SVG</h2>
   <ul className={styles.list}>
     {localRequireSVGIcons.map(item => <li key={item}>
-      <Iconfont className={styles.icon} colorful type={item} />
+      <Iconfont className={styles.colorfulIcon} colorful type={item} />
       <span className={styles.name}>{item}</span>
     </li>)}
   </ul>
