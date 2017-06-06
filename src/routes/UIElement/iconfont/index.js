@@ -25,7 +25,7 @@ const localRequireSVGIcons = [
 ]
 
 const IcoPage = () => <div className="content-inner">
-  <Icon type="star-oo" />
+  <Icon type="star-o" />
   <h2 style={{ margin: '16px 0' }}>Colorful Icon</h2>
   <ul className={styles.list}>
     {colorfulIcons.map(item => <li key={item}>
