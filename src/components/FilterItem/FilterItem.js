@@ -12,7 +12,7 @@ const FilterItem = ({
       {labelArray.length > 0
         ? <div className={styles.labelWrap}>
             {labelArray.map((item, index) => <span className="labelText" key={index}>{item}</span>)}
-          </div>
+        </div>
         : ''}
       <div className={styles.item}>
         {children}

@@ -12,5 +12,12 @@ module.exports = (webpackConfig) => {
   cssLoaders[1] = `css?${JSON.stringify(cssLoaderOption)}`
   webpackConfig.module.loaders[3].loader = cssLoaders.join('!')
 
+  // PreLoaders
+  webpackConfig.module.preLoaders = [{
+    test: /\.js$/,
+    enforce: 'pre',
+    loader: 'eslint',
+  }]
+
   return webpackConfig
 }
