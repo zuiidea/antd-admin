@@ -63,6 +63,7 @@ const App = ({ children, location, dispatch, app, loading }) => {
 
   const breadProps = {
     menu,
+    location,
   }
 
   if (config.openPages && config.openPages.indexOf(location.pathname) > -1) {
@@ -86,7 +87,7 @@ const App = ({ children, location, dispatch, app, loading }) => {
         </aside> : ''}
         <div className={styles.main}>
           <Header {...headerProps} />
-          <Bread {...breadProps} location={location} />
+          <Bread {...breadProps} />
           <div className={styles.container}>
             <div className={styles.content}>
               {children}
