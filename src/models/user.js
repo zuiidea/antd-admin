@@ -1,27 +1,21 @@
+import modelExtend from 'dva-model-extend'
 import { create, remove, update } from '../services/user'
 import * as usersService from '../services/users'
-import { parse } from 'qs'
+import { pageModel } from './common'
+import { config } from '../utils'
 
 const { query } = usersService
+const { prefix } = config
 
-export default {
-
+export default modelExtend(pageModel, {
   namespace: 'user',
 
   state: {
-    list: [],
     currentItem: {},
     modalVisible: false,
     modalType: 'create',
     selectedRowKeys: [],
-    isMotion: localStorage.getItem('antdAdminUserIsMotion') === 'true',
-    pagination: {
-      showSizeChanger: true,
-      showQuickJumper: true,
-      showTotal: total => `共 ${total} 条`,
-      current: 1,
-      total: null,
-    },
+    isMotion: localStorage.getItem(`${prefix}userIsMotion`) === 'true',
   },
 
   subscriptions: {
@@ -39,8 +33,7 @@ export default {
 
   effects: {
 
-    *query ({ payload }, { call, put }) {
-      payload = parse(location.search.substr(1))
+    *query ({ payload = {} }, { call, put }) {
       const data = yield call(query, payload)
       if (data) {
         yield put({
@@ -104,25 +97,8 @@ export default {
 
   reducers: {
 
-    querySuccess (state, action) {
-      const { list, pagination } = action.payload
-      return { ...state,
-        list,
-        pagination: {
-          ...state.pagination,
-          ...pagination,
-        } }
-    },
-
-    updateState (state, { payload }) {
-      return {
-        ...state,
-        ...payload,
-      }
-    },
-
-    showModal (state, action) {
-      return { ...state, ...action.payload, modalVisible: true }
+    showModal (state, { payload }) {
+      return { ...state, ...{ payload }, modalVisible: true }
     },
 
     hideModal (state) {
@@ -130,10 +106,9 @@ export default {
     },
 
     switchIsMotion (state) {
-      localStorage.setItem('antdAdminUserIsMotion', !state.isMotion)
+      localStorage.setItem(`${prefix}userIsMotion`, !state.isMotion)
       return { ...state, isMotion: !state.isMotion }
     },
 
   },
-
-}
+})

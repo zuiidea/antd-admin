@@ -8,9 +8,16 @@ module.exports = [
   {
     id: 2,
     bpid: 1,
-    name: 'User Manage',
+    name: 'Users',
     icon: 'user',
     router: '/user',
+  },
+  {
+    id: 7,
+    bpid: 1,
+    name: 'Posts',
+    icon: 'shopping-cart',
+    router: '/post',
   },
   {
     id: 21,
