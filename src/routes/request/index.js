@@ -10,20 +10,20 @@ import {
   Input,
   Button,
 } from 'antd'
-const { api, baseURL } = config
+const { api } = config
 const { dashboard, users, userLogin, user } = api
 
 const requestOptions = [
   {
-    url: baseURL + user.replace('/:id', ''),
+    url: user.replace('/:id', ''),
     desc: 'intercept request by mock.js',
   },
   {
-    url: baseURL + dashboard,
+    url: dashboard,
     desc: 'intercept request by mock.js',
   },
   {
-    url: baseURL + userLogin,
+    url: userLogin,
     method: 'post',
     data: {
       username: 'guest',
@@ -32,18 +32,18 @@ const requestOptions = [
     desc: 'intercept request by mock.js',
   },
   {
-    url: baseURL + users,
+    url: users,
     desc: 'intercept request by mock.js',
   },
   {
-    url: baseURL + user,
+    url: user,
     desc: 'intercept request by mock.js',
     data: Mock.mock({
       id: '@id',
     }),
   },
   {
-    url: baseURL + user.replace('/:id', ''),
+    url: user.replace('/:id', ''),
     desc: 'intercept request by mock.js',
     method: 'post',
     data: Mock.mock({
@@ -60,7 +60,7 @@ const requestOptions = [
     }),
   },
   {
-    url: baseURL + user,
+    url: user,
     desc: 'intercept request by mock.js',
     method: 'patch',
     data: Mock.mock({
@@ -69,7 +69,7 @@ const requestOptions = [
     }),
   },
   {
-    url: baseURL + user,
+    url: user,
     desc: 'intercept request by mock.js',
     method: 'delete',
     data: Mock.mock({
@@ -77,7 +77,7 @@ const requestOptions = [
     }),
   },
   {
-    url: `${baseURL}/test`,
+    url: '/test',
     desc: 'intercept request by mock.js',
     method: 'get',
   },

@@ -94,23 +94,21 @@ export default function request (options) {
     return {
       success: true,
       message: statusText,
-      status,
+      statusCode: status,
       ...data,
     }
   }).catch((error) => {
     const { response } = error
     let msg
-    let status
-    let otherData = {}
-    if (response) {
+    let statusCode
+    if (response && response instanceof Object) {
       const { data, statusText } = response
-      otherData = data
-      status = response.status
+      statusCode = response.status
       msg = data.message || statusText
     } else {
-      status = 600
-      msg = 'Network Error'
+      statusCode = 600
+      msg = error.message || 'Network Error'
     }
-    return { success: false, status, message: msg, ...otherData }
+    return { success: false, statusCode, message: msg }
   })
 }
