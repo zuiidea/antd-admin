@@ -1,12 +1,10 @@
 import axios from 'axios'
 import qs from 'qs'
-import { YQL, CORS, baseURL } from './config'
+import { YQL, CORS } from './config'
 import jsonp from 'jsonp'
 import lodash from 'lodash'
 import pathToRegexp from 'path-to-regexp'
 import { message } from 'antd'
-
-axios.defaults.baseURL = baseURL
 
 const fetch = (options) => {
   let {

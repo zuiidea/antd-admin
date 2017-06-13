@@ -11,7 +11,7 @@ import {
   Button,
 } from 'antd'
 const { api } = config
-const { dashboard, users, userLogin, user } = api
+const { dashboard, users, userLogin, user, v1test, v2test } = api
 
 const requestOptions = [
   {
@@ -77,7 +77,12 @@ const requestOptions = [
     }),
   },
   {
-    url: '/test',
+    url: v1test,
+    desc: 'intercept request by mock.js',
+    method: 'get',
+  },
+  {
+    url: v2test,
     desc: 'intercept request by mock.js',
     method: 'get',
   },
