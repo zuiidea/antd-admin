@@ -43,11 +43,8 @@ export default {
           yield put(routerRedux.push('/dashboard'))
         }
       } else {
-        if (location.pathname !== '/login') {
+        if (config.openPages && config.openPages.indexOf(location.pathname) < 0) {
           let from = location.pathname
-          if (location.pathname === '/dashboard') {
-            from = '/dashboard'
-          }
           window.location = `${location.origin}/login?from=${from}`
         }
       }
