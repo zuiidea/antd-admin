@@ -17,11 +17,11 @@ module.exports = (webpackConfig) => {
   }).join('!')
 
   // PreLoaders
-  webpackConfig.module.preLoaders = [{
-    test: /\.js$/,
-    enforce: 'pre',
-    loader: 'eslint',
-  }]
+  // webpackConfig.module.preLoaders = [{
+  //   test: /\.js$/,
+  //   enforce: 'pre',
+  //   loader: 'eslint',
+  // }]
 
   return webpackConfig
 }
