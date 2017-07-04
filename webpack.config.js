@@ -23,5 +23,13 @@ module.exports = (webpackConfig) => {
   //   loader: 'eslint',
   // }]
 
+
+  // Alias
+  webpackConfig.resolve.alias = {
+    components: `${__dirname}/src/components`,
+    utils: `${__dirname}/src/utils`,
+    config: `${__dirname}/src/utils/config`,
+  }
+
   return webpackConfig
 }

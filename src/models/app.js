@@ -1,7 +1,7 @@
 import { query, logout } from '../services/app'
 import { routerRedux } from 'dva/router'
 import { parse } from 'qs'
-import { config } from '../utils'
+import { config } from 'utils'
 const { prefix } = config
 
 export default {

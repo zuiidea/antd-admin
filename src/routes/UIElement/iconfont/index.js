@@ -1,5 +1,5 @@
 import React from 'react'
-import { Iconfont } from '../../../components'
+import { Iconfont } from 'components'
 import { Table, Row, Col, Icon } from 'antd'
 import styles from './index.less'
 import './emoji.js'

@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './index.less'
 import Mock from 'mockjs'
-import { request, config } from '../../utils'
+import { request, config } from 'utils'
 import {
   Row,
   Col,
