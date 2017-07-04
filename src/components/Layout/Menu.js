@@ -7,7 +7,7 @@ import pathToRegexp from 'path-to-regexp'
 
 const Menus = ({ siderFold, darkTheme, location, handleClickNavMenu, navOpenKeys, changeOpenKeys, menu }) => {
   // 生成树状
-  const menuTree = arrayToTree(menu.filter(_ => _.mpid !== -1), 'id', 'mpid')
+  const menuTree = arrayToTree(menu.filter(_ => _.mpid !== '-1'), 'id', 'mpid')
   const levelMap = {}
 
   // 递归生成菜单
@@ -22,7 +22,7 @@ const Menus = ({ siderFold, darkTheme, location, handleClickNavMenu, navOpenKeys
             key={item.id}
             title={<span>
               {item.icon && <Icon type={item.icon} />}
-              {(!siderFoldN || menuTree.indexOf(item) < 0) && item.name}
+              {(!siderFoldN || !menuTree.includes(item)) && item.name}
             </span>}
           >
             {getMenus(item.children, siderFoldN)}
@@ -33,7 +33,7 @@ const Menus = ({ siderFold, darkTheme, location, handleClickNavMenu, navOpenKeys
         <Menu.Item key={item.id}>
           <Link to={item.router}>
             {item.icon && <Icon type={item.icon} />}
-            {(!siderFoldN || menuTree.indexOf(item) < 0) && item.name}
+            {(!siderFoldN || !menuTree.includes(item)) && item.name}
           </Link>
         </Menu.Item>
       )
@@ -60,8 +60,8 @@ const Menus = ({ siderFold, darkTheme, location, handleClickNavMenu, navOpenKeys
   }
 
   const onOpenChange = (openKeys) => {
-    const latestOpenKey = openKeys.find(key => !(navOpenKeys.indexOf(key) > -1))
-    const latestCloseKey = navOpenKeys.find(key => !(openKeys.indexOf(key) > -1))
+    const latestOpenKey = openKeys.find(key => !navOpenKeys.includes(key))
+    const latestCloseKey = navOpenKeys.find(key => !openKeys.includes(key))
     let nextOpenKeys = []
     if (latestOpenKey) {
       nextOpenKeys = getAncestorKeys(latestOpenKey).concat(latestOpenKey)

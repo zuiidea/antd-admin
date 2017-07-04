@@ -25,7 +25,11 @@ const Bread = ({ menu }) => {
   }
 
   if (!current) {
-    pathArray.push(menu[0])
+    pathArray.push(menu[0] || {
+      id: 1,
+      icon: 'laptop',
+      name: 'Dashboard',
+    })
     pathArray.push({
       id: 404,
       name: 'Not Found',

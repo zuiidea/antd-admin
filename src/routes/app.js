@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
 import { Layout } from 'components'
-import { classnames, config, menu } from 'utils'
+import { classnames, config } from 'utils'
 import { Helmet } from 'react-helmet'
 import '../themes/index.less'
 import './app.less'
@@ -13,7 +13,7 @@ const { Header, Bread, Footer, Sider, styles } = Layout
 let lastHref
 
 const App = ({ children, location, dispatch, app, loading }) => {
-  const { user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys } = app
+  const { user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys, menu } = app
   const href = window.location.href
 
   if (lastHref !== href) {
