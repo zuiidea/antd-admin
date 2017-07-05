@@ -46,8 +46,8 @@ export default {
       payload,
     }, { call, put }) {
       const { success, user } = yield call(query, payload)
-      const { list } = yield call(menusService.query)
       if (success && user) {
+        const { list } = yield call(menusService.query)
         const { permissions } = user
         yield put({
           type: 'updateState',

@@ -5,7 +5,7 @@ import { Link } from 'dva/router'
 import { arrayToTree, queryArray } from 'utils'
 import pathToRegexp from 'path-to-regexp'
 
-const Menus = ({ siderFold, darkTheme, location, handleClickNavMenu, navOpenKeys, changeOpenKeys, menu }) => {
+const Menus = ({ siderFold, darkTheme, handleClickNavMenu, navOpenKeys, changeOpenKeys, menu }) => {
   // 生成树状
   const menuTree = arrayToTree(menu.filter(_ => _.mpid !== '-1'), 'id', 'mpid')
   const levelMap = {}
@@ -119,7 +119,6 @@ Menus.propTypes = {
   menu: PropTypes.array,
   siderFold: PropTypes.bool,
   darkTheme: PropTypes.bool,
-  location: PropTypes.object,
   isNavbar: PropTypes.bool,
   handleClickNavMenu: PropTypes.func,
   navOpenKeys: PropTypes.array,
