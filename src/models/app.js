@@ -2,8 +2,8 @@ import { query, logout } from '../services/app'
 import * as menusService from '../services/menus'
 import { routerRedux } from 'dva/router'
 import { parse } from 'qs'
-import { config } from 'utils'
-const { prefix } = config
+import { prefix } from 'config'
+import { EnumRoleType } from 'enums'
 
 export default {
   namespace: 'app',
@@ -55,6 +55,9 @@ export default {
             user,
             permissions,
             menu: list.filter(item => {
+              if (permissions.role === EnumRoleType.ADMIN || permissions.role === EnumRoleType.DEVELOPER) {
+                return true
+              }
               const cases = [
                 permissions.visit.includes(item.id),
                 item.mpid ? permissions.visit.includes(item.mpid) || item.mpid === '-1' : true,
