@@ -31,7 +31,7 @@ const Menus = ({ siderFold, darkTheme, handleClickNavMenu, navOpenKeys, changeOp
       }
       return (
         <Menu.Item key={item.id}>
-          <Link to={item.router}>
+          <Link to={item.route}>
             {item.icon && <Icon type={item.icon} />}
             {(!siderFoldN || !menuTree.includes(item)) && item.name}
           </Link>
@@ -82,7 +82,7 @@ const Menus = ({ siderFold, darkTheme, handleClickNavMenu, navOpenKeys, changeOp
   let currentMenu
   let defaultSelectedKeys
   for (let item of menu) {
-    if (item.router && pathToRegexp(item.router).exec(location.pathname)) {
+    if (item.route && pathToRegexp(item.route).exec(location.pathname)) {
       currentMenu = item
       break
     }
