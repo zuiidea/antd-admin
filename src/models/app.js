@@ -1,13 +1,25 @@
 import { query, logout } from '../services/app'
+import * as menusService from '../services/menus'
 import { routerRedux } from 'dva/router'
 import { parse } from 'qs'
-import { config } from '../utils'
+import { config } from 'utils'
 const { prefix } = config
 
 export default {
   namespace: 'app',
   state: {
     user: {},
+    permissions: {
+      visit: [],
+    },
+    menu: [
+      {
+        id: 1,
+        icon: 'laptop',
+        name: 'Dashboard',
+        router: '/dashboard',
+      },
+    ],
     menuPopoverVisible: false,
     siderFold: localStorage.getItem(`${prefix}siderFold`) === 'true',
     darkTheme: localStorage.getItem(`${prefix}darkTheme`) === 'true',
@@ -33,11 +45,25 @@ export default {
     *query ({
       payload,
     }, { call, put }) {
-      const data = yield call(query, parse(payload))
-      if (data.success && data.user) {
+      const { success, user } = yield call(query, payload)
+      if (success && user) {
+        const { list } = yield call(menusService.query)
+        const { permissions } = user
         yield put({
-          type: 'querySuccess',
-          payload: data.user,
+          type: 'updateState',
+          payload: {
+            user,
+            permissions,
+            menu: list.filter(item => {
+              const cases = [
+                permissions.visit.includes(item.id),
+                item.mpid ? permissions.visit.includes(item.mpid) || item.mpid === '-1' : true,
+                item.bpid ? permissions.visit.includes(item.bpid) : true,
+              ]
+              return cases.every(_ => _)
+            }
+          ),
+          },
         })
         if (location.pathname === '/login') {
           yield put(routerRedux.push('/dashboard'))
@@ -73,10 +99,10 @@ export default {
 
   },
   reducers: {
-    querySuccess (state, { payload: user }) {
+    updateState (state, { payload }) {
       return {
         ...state,
-        user,
+        ...payload,
       }
     },
 

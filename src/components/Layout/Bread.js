@@ -4,7 +4,7 @@ import { Breadcrumb, Icon } from 'antd'
 import { Link } from 'dva/router'
 import styles from './Bread.less'
 import pathToRegexp from 'path-to-regexp'
-import { queryArray } from '../../utils'
+import { queryArray } from 'utils'
 
 const Bread = ({ menu }) => {
   // 匹配当前路由
@@ -25,7 +25,11 @@ const Bread = ({ menu }) => {
   }
 
   if (!current) {
-    pathArray.push(menu[0])
+    pathArray.push(menu[0] || {
+      id: 1,
+      icon: 'laptop',
+      name: 'Dashboard',
+    })
     pathArray.push({
       id: 404,
       name: 'Not Found',

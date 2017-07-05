@@ -1,5 +1,5 @@
 import React from 'react'
-import { Search } from '../../../components'
+import { Search } from 'components'
 import { Table, Row, Col, Card } from 'antd'
 
 const SearchPage = () => <div className="content-inner">

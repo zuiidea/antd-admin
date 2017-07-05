@@ -1,5 +1,5 @@
 import React from 'react'
-import { DropOption } from '../../../components'
+import { DropOption } from 'components'
 import { Table, Row, Col, Card, message } from 'antd'
 
 const DropOptionPage = () => <div className="content-inner">

@@ -9,7 +9,7 @@ module.exports = {
   iconFontCSS: '/iconfont.css',
   iconFontJS: '/iconfont.js',
   YQL: ['http://www.zuimeitianqi.com'],
-  CORS: ['http://localhost:7000'],
+  CORS: [],
   openPages: ['/login'],
   apiPrefix: '/api/v1',
   api: {
@@ -20,6 +20,7 @@ module.exports = {
     posts: `${APIV1}/posts`,
     user: `${APIV1}/user/:id`,
     dashboard: `${APIV1}/dashboard`,
+    menus: `${APIV1}/menus`,
     v1test: `${APIV1}/test`,
     v2test: `${APIV2}/test`,
   },
