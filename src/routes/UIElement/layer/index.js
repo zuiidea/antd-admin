@@ -1,5 +1,5 @@
 import React from 'react'
-import { layer } from '../../../components'
+import { layer } from 'components'
 import { Table, Row, Col, Button, Card } from 'antd'
 
 let Enum = {

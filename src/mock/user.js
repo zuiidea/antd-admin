@@ -26,13 +26,15 @@ let usersListData = Mock.mock({
 let database = usersListData.data
 
 const userPermission = {
-  DEFAULT: [
-    'dashboard', 'chart',
-  ],
-  ADMIN: [
-    'dashboard', 'users', 'UIElement', 'UIElementIconfont', 'chart',
-  ],
-  DEVELOPER: ['dashboard', 'users', 'UIElement', 'UIElementIconfont', 'chart'],
+  DEFAULT: {
+    visit: ['1', '2', '21', '7', '5', '51', '52', '53'],
+  },
+  ADMIN: {
+    visit: ['1', '2', '7', '21', '3', '4', '41', '42', '43', '44', '45', '46', '5', '51', '52', '53', '6', '61', '62', '621', '622'],
+  },
+  DEVELOPER: {
+    visit: ['1', '2', '7', '21', '3', '4', '41', '42', '43', '44', '45', '46', '5', '51', '52', '53', '6', '61', '62', '621', '622'],
+  },
 }
 
 const adminUsers = [

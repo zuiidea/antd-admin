@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Button } from 'antd'
 import styles from './user.less'
 import CountUp from 'react-countup'
-import { color } from '../../../utils'
+import { color } from 'utils'
 const countUpProps = {
   start: 0,
   duration: 2.75,

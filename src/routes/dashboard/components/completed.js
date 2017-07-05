@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './completed.less'
 import classnames from 'classnames'
-import { color } from '../../../utils'
+import { color } from 'utils'
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 
 function Completed ({ data }) {

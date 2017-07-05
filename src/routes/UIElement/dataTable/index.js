@@ -1,5 +1,5 @@
 import React from 'react'
-import { DataTable } from '../../../components'
+import { DataTable } from 'components'
 import { Table, Row, Col, Card, Select } from 'antd'
 
 class DataTablePage extends React.Component {
