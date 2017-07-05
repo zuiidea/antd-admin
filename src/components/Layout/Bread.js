@@ -11,7 +11,7 @@ const Bread = ({ menu }) => {
   let pathArray = []
   let current
   for (let index in menu) {
-    if (menu[index].router && pathToRegexp(menu[index].router).exec(location.pathname)) {
+    if (menu[index].route && pathToRegexp(menu[index].route).exec(location.pathname)) {
       current = menu[index]
       break
     }
@@ -48,7 +48,7 @@ const Bread = ({ menu }) => {
     return (
       <Breadcrumb.Item key={key}>
         {((pathArray.length - 1) !== key)
-          ? <Link to={item.router}>
+          ? <Link to={item.route}>
               {content}
           </Link>
           : content}
