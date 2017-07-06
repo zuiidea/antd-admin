@@ -2,8 +2,9 @@ import { query, logout } from '../services/app'
 import * as menusService from '../services/menus'
 import { routerRedux } from 'dva/router'
 import { parse } from 'qs'
-import { prefix } from 'config'
+import config from 'config'
 import { EnumRoleType } from 'enums'
+const { prefix } = config
 
 export default {
   namespace: 'app',
