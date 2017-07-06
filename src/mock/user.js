@@ -27,7 +27,7 @@ let database = usersListData.data
 
 const EnumRoleType = {
   ADMIN: 'admin',
-  DEFAULT: 'admin',
+  DEFAULT: 'guest',
   DEVELOPER: 'developer',
 }
 
