@@ -1,7 +1,7 @@
 # Antd Admin
 
-[![React Native](https://img.shields.io/badge/react-^15.4.4-brightgreen.svg?style=flat-square)](https://github.com/facebook/react)
-[![Ant Design](https://img.shields.io/badge/ant--design-^2.10.0-yellowgreen.svg?style=flat-square)](https://github.com/ant-design/ant-design)
+[![React](https://img.shields.io/badge/react-^15.6.1-brightgreen.svg?style=flat-square)](https://github.com/facebook/react)
+[![Ant Design](https://img.shields.io/badge/ant--design-^2.11.2-yellowgreen.svg?style=flat-square)](https://github.com/ant-design/ant-design)
 [![dva](https://img.shields.io/badge/dva-^1.2.0-orange.svg?style=flat-square)](https://github.com/dvajs/dva)
 
 [![GitHub issues](https://img.shields.io/github/issues/zuiidea/antd-admin.svg?style=flat-square)](https://github.com/zuiidea/antd-admin)
@@ -20,6 +20,12 @@
 -   浅度响应式设计。
 
 ## 更新日志
+
+### 4.2.3
+
+`2017-07-07`
+
+-     新增用户按权限访问。[#384](https://github.com/zuiidea/antd-admin/issues/384)
 
 ### 4.2.2
 
