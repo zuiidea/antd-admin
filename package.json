@@ -29,6 +29,7 @@
     "dva-model-extend": "^0.1.1",
     "eslint": "^4.1.1",
     "eslint-config-airbnb": "^15.0.2",
+    "eslint-import-resolver-node": "^0.3.1",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-import": "^2.6.1",
     "eslint-plugin-jsx-a11y": "^6.0.2",
