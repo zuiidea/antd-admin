@@ -101,7 +101,7 @@ const Filter = ({
         </FilterItem>
       </Col>
       <Col {...TwoColProps} xl={{ span: 10 }} md={{ span: 24 }} sm={{ span: 24 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
           <div >
             <Button type="primary" size="large" className="margin-right" onClick={handleSubmit}>Search</Button>
             <Button size="large" onClick={handleReset}>Reset</Button>
