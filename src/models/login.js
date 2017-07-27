@@ -1,6 +1,6 @@
-import { login } from '../services/login'
 import { routerRedux } from 'dva/router'
 import { queryURL } from 'utils'
+import { login } from '../services/login'
 
 export default {
   namespace: 'login',
@@ -9,7 +9,7 @@ export default {
   },
 
   effects: {
-    *login ({
+    * login ({
       payload,
     }, { put, call }) {
       yield put({ type: 'showLoginLoading' })

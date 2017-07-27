@@ -19,4 +19,4 @@ export {
   FilterItem,
   Loader,
   layer,
- }
+}

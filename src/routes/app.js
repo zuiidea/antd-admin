@@ -1,4 +1,6 @@
+/* global window */
 import React from 'react'
+import NProgress from 'nprogress'
 import PropTypes from 'prop-types'
 import pathToRegexp from 'path-to-regexp'
 import { connect } from 'dva'
@@ -7,8 +9,8 @@ import { classnames, config } from 'utils'
 import { Helmet } from 'react-helmet'
 import '../themes/index.less'
 import './app.less'
-import NProgress from 'nprogress'
 import Error from './error'
+
 const { prefix, openPages } = config
 
 const { Header, Bread, Footer, Sider, styles } = Layout
@@ -61,7 +63,7 @@ const App = ({ children, dispatch, app, loading, location }) => {
       dispatch({ type: 'app/switchTheme' })
     },
     changeOpenKeys (openKeys) {
-      localStorage.setItem(`${prefix}navOpenKeys`, JSON.stringify(openKeys))
+      window.localStorage.setItem(`${prefix}navOpenKeys`, JSON.stringify(openKeys))
       dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
     },
   }
@@ -81,7 +83,7 @@ const App = ({ children, dispatch, app, loading, location }) => {
         <title>ANTD ADMIN</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href={logo} type="image/x-icon" />
-        {iconFontJS && <script src={iconFontJS}></script>}
+        {iconFontJS && <script src={iconFontJS} />}
         {iconFontCSS && <link rel="stylesheet" href={iconFontCSS} />}
       </Helmet>
       <div className={classnames(styles.layout, { [styles.fold]: isNavbar ? false : siderFold }, { [styles.withnavbar]: isNavbar })}>

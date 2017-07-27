@@ -1,3 +1,4 @@
+/* global location */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Menu, Icon } from 'antd'
@@ -12,7 +13,7 @@ const Menus = ({ siderFold, darkTheme, handleClickNavMenu, navOpenKeys, changeOp
 
   // 递归生成菜单
   const getMenus = (menuTreeN, siderFoldN) => {
-    return menuTreeN.map(item => {
+    return menuTreeN.map((item) => {
       if (item.children) {
         if (item.mpid) {
           levelMap[item.id] = item.mpid
@@ -119,7 +120,6 @@ Menus.propTypes = {
   menu: PropTypes.array,
   siderFold: PropTypes.bool,
   darkTheme: PropTypes.bool,
-  isNavbar: PropTypes.bool,
   handleClickNavMenu: PropTypes.func,
   navOpenKeys: PropTypes.array,
   changeOpenKeys: PropTypes.func,

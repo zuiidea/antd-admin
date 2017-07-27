@@ -1,10 +1,11 @@
+/* global location */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Breadcrumb, Icon } from 'antd'
 import { Link } from 'dva/router'
-import styles from './Bread.less'
 import pathToRegexp from 'path-to-regexp'
 import { queryArray } from 'utils'
+import styles from './Bread.less'
 
 const Bread = ({ menu }) => {
   // 匹配当前路由
@@ -42,14 +43,14 @@ const Bread = ({ menu }) => {
   const breads = pathArray.map((item, key) => {
     const content = (
       <span>{item.icon
-          ? <Icon type={item.icon} style={{ marginRight: 4 }} />
-          : ''}{item.name}</span>
+        ? <Icon type={item.icon} style={{ marginRight: 4 }} />
+        : ''}{item.name}</span>
     )
     return (
       <Breadcrumb.Item key={key}>
         {((pathArray.length - 1) !== key)
           ? <Link to={item.route}>
-              {content}
+            {content}
           </Link>
           : content}
       </Breadcrumb.Item>
