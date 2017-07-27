@@ -50,6 +50,7 @@
   "scripts": {
     "dev": "set BROWSER=none&&set HOST=0.0.0.0&&roadhog server",
     "lint": "eslint --fix --ext .js src",
-    "build": "roadhog build"
+    "build": "roadhog build",
+    "build:dll": "roadhog buildDll"
   }
 }

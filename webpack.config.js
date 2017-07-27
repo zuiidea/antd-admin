@@ -1,21 +1,22 @@
-module.exports = (webpackConfig) => {
+module.exports = (webpackConfig, env) => {
   // FilenameHash
   // https://webpack.js.org/configuration/output/#output-chunkfilename
   webpackConfig.output.chunkFilename = '[name].[hash].js'
 
-  // ClassnameHash
-  // webpackConfig.module.rules.map((item) => {
-  //   if (item.use && item.use[0] === 'style') {
-  //     return item.use.map((iitem) => {
-  //       if (iitem && iitem.loader === 'css') {
-  //         iitem.options.localIdentName = '[hash:base64:5]'
-  //       }
-  //       return iitem
-  //     })
-  //   }
-  //   return item
-  // })
-
+  if (env === 'production' && webpackConfig.module) {
+    // ClassnameHash
+    webpackConfig.module.rules.map((item) => {
+      if (item.use && item.use[0] === 'style') {
+        return item.use.map((iitem) => {
+          if (iitem && iitem.loader === 'css') {
+            iitem.options.localIdentName = '[hash:base64:5]'
+          }
+          return iitem
+        })
+      }
+      return item
+    })
+  }
 
   // PreLoaders
   // webpackConfig.module.preLoaders = [{
@@ -23,7 +24,6 @@ module.exports = (webpackConfig) => {
   //   enforce: 'pre',
   //   loader: 'eslint',
   // }]
-
 
   // Alias
   webpackConfig.resolve.alias = {
