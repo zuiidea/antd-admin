@@ -1,6 +1,8 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackTemplate = require('html-webpack-template')
+
 module.exports = (webpackConfig, env) => {
   // FilenameHash
-  // https://webpack.js.org/configuration/output/#output-chunkfilename
   webpackConfig.output.chunkFilename = '[name].[hash].js'
 
   if (env === 'production' && webpackConfig.module) {
@@ -24,6 +26,35 @@ module.exports = (webpackConfig, env) => {
   //   enforce: 'pre',
   //   loader: 'eslint',
   // }]
+
+
+  webpackConfig.plugins = webpackConfig.plugins.concat([
+    new HtmlWebpackPlugin({
+      hash: true,
+      mobile: true,
+      title: 'antd-admin',
+      inject: false,
+      appMountId: 'root',
+      template: `!!ejs!${HtmlWebpackTemplate}`,
+      filename: env === 'production' ? '../index.html' : 'index.html',
+      minify: {
+        collapseWhitespace: true,
+      },
+      scripts: env === 'production' ? null : [
+        'roadhog.dll.js',
+      ],
+      meta: [
+        {
+          name: 'description',
+          content: 'A admin dashboard application demo built upon Ant Design and Dva.js',
+        },
+        {
+          name: 'viewport',
+          content: 'width=device-width, initial-scale=1.0',
+        },
+      ],
+    }),
+  ])
 
   // Alias
   webpackConfig.resolve.alias = {

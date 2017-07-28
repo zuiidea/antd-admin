@@ -1,5 +1,7 @@
 {
   "private": true,
+  "name": "antd-admin",
+  "version": "4.3.0",
   "dependencies": {
     "antd": "^2.11.2",
     "axios": "^0.16.2",
@@ -9,6 +11,7 @@
     "draftjs-to-markdown": "^0.4.0",
     "dva": "^1.2.0",
     "dva-loading": "^0.2.0",
+    "ejs-loader": "^0.3.0",
     "jsonp": "^0.2.1",
     "less-vars-to-js": "^1.1.2",
     "lodash": "^4.17.4",
@@ -41,6 +44,8 @@
     "eslint-plugin-import": "^2.6.1",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.1.0",
+    "html-webpack-plugin": "^2.29.0",
+    "html-webpack-template": "^5.6.0",
     "redbox-react": "^1.2.10",
     "roadhog": "1.0.0-beta.7"
   },
