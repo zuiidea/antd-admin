@@ -35,7 +35,7 @@ module.exports = (webpackConfig, env) => {
       title: 'antd-admin',
       inject: false,
       appMountId: 'root',
-      template: `!!ejs!${HtmlWebpackTemplate}`,
+      template: `!!ejs-loader!${HtmlWebpackTemplate}`,
       filename: env === 'production' ? '../index.html' : 'index.html',
       minify: {
         collapseWhitespace: true,
