@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackTemplate = require('html-webpack-template')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = (webpackConfig, env) => {
   // FilenameHash
@@ -27,8 +28,13 @@ module.exports = (webpackConfig, env) => {
   //   loader: 'eslint',
   // }]
 
-
   webpackConfig.plugins = webpackConfig.plugins.concat([
+    new CopyWebpackPlugin([
+      {
+        from: 'src/public',
+        to: env === 'production' ? '../' : webpackConfig.output.outputPath,
+      },
+    ]),
     new HtmlWebpackPlugin({
       hash: true,
       mobile: true,
@@ -40,15 +46,12 @@ module.exports = (webpackConfig, env) => {
       minify: {
         collapseWhitespace: true,
       },
-      scripts: env === 'production' ? null : [
-        'roadhog.dll.js',
-      ],
+      scripts: env === 'production' ? null : ['roadhog.dll.js'],
       meta: [
         {
           name: 'description',
           content: 'A admin dashboard application demo built upon Ant Design and Dva.js',
-        },
-        {
+        }, {
           name: 'viewport',
           content: 'width=device-width, initial-scale=1.0',
         },

@@ -49,9 +49,9 @@ const IcoPage = () => (<div className="content-inner">
   </ul>
   <h2 style={{ margin: '16px 0' }}>Local Require SVG</h2>
   <ul className={styles.list}>
-    {localRequireSVGIcons.map(item => (<li key={item}>
-      <Iconfont className={styles.icon} colorful type={item} />
-      <span className={styles.name}>{item}</span>
+    {localRequireSVGIcons.map(item => (<li key={item.default.id}>
+      <Iconfont className={styles.icon} colorful type={item.default.id} />
+      <span className={styles.name}>{item.default.id}</span>
     </li>))}
   </ul>
   <h2 style={{ margin: '16px 0' }}>API</h2>

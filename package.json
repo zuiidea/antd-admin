@@ -7,6 +7,7 @@
     "axios": "^0.16.2",
     "babel-polyfill": "^6.23.0",
     "classnames": "^2.2.5",
+    "copy-webpack-plugin": "^4.0.1",
     "d3-shape": "^1.2.0",
     "draftjs-to-markdown": "^0.4.0",
     "dva": "^1.2.0",
