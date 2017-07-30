@@ -9,7 +9,7 @@ const List = ({ ...tableProps }) => {
       dataIndex: 'image',
       className: styles.image,
       width: 64,
-      render: (text) => <img alt="Feture" width={26} src={text} />,
+      render: text => <img alt="Feture" width={26} src={text} />,
     }, {
       title: 'Title',
       dataIndex: 'title',

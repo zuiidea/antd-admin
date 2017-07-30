@@ -8,19 +8,20 @@ export default modelExtend(pageModel, {
 
   subscriptions: {
     setup ({ dispatch, history }) {
-      history.listen(location => {
+      history.listen((location) => {
         if (location.pathname === '/post') {
-          dispatch({ type: 'query', payload: {
-            status: 2,
-            ...location.query,
-          } })
+          dispatch({ type: 'query',
+            payload: {
+              status: 2,
+              ...location.query,
+            } })
         }
       })
     },
   },
 
   effects: {
-    *query ({
+    * query ({
       payload,
     }, { call, put }) {
       const data = yield call(query, payload)

@@ -1,9 +1,13 @@
-import { query, logout } from '../services/app'
-import * as menusService from '../services/menus'
+/* global window */
+/* global document */
+/* global location */
 import { routerRedux } from 'dva/router'
 import { parse } from 'qs'
 import config from 'config'
 import { EnumRoleType } from 'enums'
+import { query, logout } from '../services/app'
+import * as menusService from '../services/menus'
+
 const { prefix } = config
 
 export default {
@@ -22,10 +26,10 @@ export default {
       },
     ],
     menuPopoverVisible: false,
-    siderFold: localStorage.getItem(`${prefix}siderFold`) === 'true',
-    darkTheme: localStorage.getItem(`${prefix}darkTheme`) === 'true',
+    siderFold: window.localStorage.getItem(`${prefix}siderFold`) === 'true',
+    darkTheme: window.localStorage.getItem(`${prefix}darkTheme`) === 'true',
     isNavbar: document.body.clientWidth < 769,
-    navOpenKeys: JSON.parse(localStorage.getItem(`${prefix}navOpenKeys`)) || [],
+    navOpenKeys: JSON.parse(window.localStorage.getItem(`${prefix}navOpenKeys`)) || [],
   },
   subscriptions: {
 
@@ -43,7 +47,7 @@ export default {
   },
   effects: {
 
-    *query ({
+    * query ({
       payload,
     }, { call, put }) {
       const { success, user } = yield call(query, payload)
@@ -54,7 +58,7 @@ export default {
         if (permissions.role === EnumRoleType.ADMIN || permissions.role === EnumRoleType.DEVELOPER) {
           permissions.visit = list.map(item => item.id)
         } else {
-          menu = list.filter(item => {
+          menu = list.filter((item) => {
             const cases = [
               permissions.visit.includes(item.id),
               item.mpid ? permissions.visit.includes(item.mpid) || item.mpid === '-1' : true,
@@ -74,15 +78,13 @@ export default {
         if (location.pathname === '/login') {
           yield put(routerRedux.push('/dashboard'))
         }
-      } else {
-        if (config.openPages && config.openPages.indexOf(location.pathname) < 0) {
-          let from = location.pathname
-          window.location = `${location.origin}/login?from=${from}`
-        }
+      } else if (config.openPages && config.openPages.indexOf(location.pathname) < 0) {
+        let from = location.pathname
+        window.location = `${location.origin}/login?from=${from}`
       }
     },
 
-    *logout ({
+    * logout ({
       payload,
     }, { call, put }) {
       const data = yield call(logout, parse(payload))
@@ -93,10 +95,8 @@ export default {
       }
     },
 
-    *changeNavbar ({
-      payload,
-    }, { put, select }) {
-      const { app } = yield(select(_ => _))
+    * changeNavbar (action, { put, select }) {
+      const { app } = yield (select(_ => _))
       const isNavbar = document.body.clientWidth < 769
       if (isNavbar !== app.isNavbar) {
         yield put({ type: 'handleNavbar', payload: isNavbar })
@@ -113,7 +113,7 @@ export default {
     },
 
     switchSider (state) {
-      localStorage.setItem(`${prefix}siderFold`, !state.siderFold)
+      window.localStorage.setItem(`${prefix}siderFold`, !state.siderFold)
       return {
         ...state,
         siderFold: !state.siderFold,
@@ -121,7 +121,7 @@ export default {
     },
 
     switchTheme (state) {
-      localStorage.setItem(`${prefix}darkTheme`, !state.darkTheme)
+      window.localStorage.setItem(`${prefix}darkTheme`, !state.darkTheme)
       return {
         ...state,
         darkTheme: !state.darkTheme,

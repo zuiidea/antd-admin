@@ -1,8 +1,10 @@
+/* global document */
 import { Modal, message } from 'antd'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import classnames from 'classnames'
 import styles from './layer.less'
+
 const { info, success, error, warning, confirm } = Modal
 
 const layer = {
@@ -15,7 +17,7 @@ const layer = {
   confirm,
 }
 
-layer.close = (index) => new Promise((resolve, reject) => {
+layer.close = index => new Promise((resolve, reject) => {
   const { prefixCls } = layer
   let div = document.getElementById(`${prefixCls}-reference-${index}`)
   if (index === undefined) {
@@ -41,7 +43,7 @@ layer.closeAll = () => {
   let i = 0
   while (i < references.length) {
     layer.close()
-    i++
+    i += 1
   }
 }
 
@@ -50,7 +52,8 @@ layer.open = (config) => {
   const { content, ...modalProps } = props
   const { className, wrapClassName = '', verticalCenter = true } = modalProps
   const { prefixCls } = layer
-  const index = layer.index++
+  layer.index += 1
+  const index = layer.index
   let div = document.createElement('div')
   div.id = `${prefixCls}-reference-${index}`
   div.className = `${prefixCls}-reference`

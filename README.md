@@ -21,6 +21,15 @@
 
 ## 更新日志
 
+### 4.3.0
+
+`2017-07-30`
+
+-     更新[roadhog](https://github.com/sorrycc/roadhog)至`1.0.0-beta.7`，得益于`webpack@3.4`，编译速度不减。
+-     基于使用roadhog的dll插件，开发时编译耗时减半。
+-     新增打包时按项目版本号生成文件目录。[#449](https://github.com/zuiidea/antd-admin/issues/449)
+-     更新`eslint`，并适当修改了`.eslintrc`。
+
 ### 4.2.3
 
 `2017-07-07`
@@ -57,6 +66,7 @@
 ```bash
 ├── /dist/           # 项目输出目录
 ├── /src/            # 项目源码目录
+│ ├── /public/       # 公共文件，编译时copy至dist目录
 │ ├── /components/   # UI组件及UI相关方法
 │ │ ├── skin.less    # 全局样式
 │ │ └── vars.less    # 全局样式变量
@@ -98,6 +108,7 @@
 开发：
 
 ```bash
+npm run build:dll #第一次npm run dev时需运行此命令，使开发时编译更快
 npm run dev
 打开 http://localhost:8000
 ```
@@ -116,7 +127,13 @@ npm run build
 npm run lint
 ```
 
-项目部署 [#269](https://github.com/zuiidea/antd-admin/issues/269)
+## FAQ
+
+- 项目打包后如何部署？ [#269](https://github.com/zuiidea/antd-admin/issues/269)
+- 如何做权限管理？ [#384](https://github.com/zuiidea/antd-admin/issues/384)
+- 如何使用mock.js模拟接口，怎么使用线上接口？ [#348](https://github.com/zuiidea/antd-admin/issues/348)
+- 如何使用Iconfont，如何使用本地的svg图标？ [#270](https://github.com/zuiidea/antd-admin/issues/270)
+- 怎么按版本打包，上线时不影响正在访问的用户？ [#449](https://github.com/zuiidea/antd-admin/issues/449)
 
 ## 参考
 

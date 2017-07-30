@@ -1,3 +1,4 @@
+/* global location */
 import pathToRegexp from 'path-to-regexp'
 import { query } from '../../services/user'
 
@@ -21,7 +22,7 @@ export default {
   },
 
   effects: {
-    *query ({
+    * query ({
       payload,
     }, { call, put }) {
       const data = yield call(query, payload)
