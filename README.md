@@ -53,9 +53,9 @@
 
 `2017-04-28`
 
--     修改user相关API使用`Restful`风格。
--     增加user页面多条件查询。[#266](https://github.com/zuiidea/antd-admin/issues/226)
--     修复菜单默认高亮。[#201](https://github.com/zuiidea/antd-admin/issues/201)
+-    修改user相关API使用`Restful`风格。
+- 增加user页面多条件查询。[#266](https://github.com/zuiidea/antd-admin/issues/226)
+- 修复菜单默认高亮。[#201](https://github.com/zuiidea/antd-admin/issues/201)
 
       [More Change Log](https://github.com/zuiidea/antd-admin/wiki/Change-Log)
 
@@ -99,11 +99,16 @@
 
 克隆项目文件:
 
-    git clone https://github.com/zuiidea/antd-admin.git
+```bash
+git clone https://github.com/zuiidea/antd-admin.git
+```
 
 进入目录安装依赖:
 
-    npm i 或者 yarn install
+```bash
+#开始前请确保没有安装roadhog、webpack到NPM全局目录
+npm i 或者 yarn install
+```
 
 开发：
 
@@ -130,13 +135,15 @@ npm run lint
 ## FAQ
 
 -   项目打包后如何部署？ [#269](https://github.com/zuiidea/antd-admin/issues/269)
--   如何做权限管理？ [#384](https://github.com/zuiidea/antd-admin/issues/384)
--   如何使用mock.js模拟接口，怎么使用线上接口？ [#348](https://github.com/zuiidea/antd-admin/issues/348)
--   如何使用Iconfont，如何使用本地的svg图标？ [#270](https://github.com/zuiidea/antd-admin/issues/270)
--   怎么按版本打包，上线时不影响正在访问的用户？ [#449](https://github.com/zuiidea/antd-admin/issues/449)
--   windows处理CRLF？[参考](http://blog.csdn.net/lysc_forever/article/details/42835203)
+- 如何做权限管理？ [#384](https://github.com/zuiidea/antd-admin/issues/384)
+- 如何使用mock.js模拟接口，怎么使用线上接口？ [#348](https://github.com/zuiidea/antd-admin/issues/348)
+- 如何使用Iconfont，如何使用本地的svg图标？ [#270](https://github.com/zuiidea/antd-admin/issues/270)
+- 怎么按版本打包，上线时不影响正在访问的用户？ [#449](https://github.com/zuiidea/antd-admin/issues/449)
+- windows处理CRLF？[参考](http://blog.csdn.net/lysc_forever/article/details/42835203)
 
-        git config --global core.autocrlf false
+    ```bash
+    git config --global core.autocrlf false
+    ```
 
 ## 参考
 
