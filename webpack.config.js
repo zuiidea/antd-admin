@@ -46,7 +46,7 @@ module.exports = (webpackConfig, env) => {
       minify: {
         collapseWhitespace: true,
       },
-      scripts: env === 'production' ? null : ['roadhog.dll.js'],
+      scripts: env === 'production' ? null : ['/roadhog.dll.js'],
       meta: [
         {
           name: 'description',
