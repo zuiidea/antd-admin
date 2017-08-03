@@ -26,7 +26,7 @@ const removeFolder = (folderPath) => {
   if (fs.existsSync(folderPath)) {
     files = fs.readdirSync(folderPath)
     files.forEach((file) => {
-      let curPath = `${folderPath}/${file}`
+      const curPath = `${folderPath}/${file}`
       if (fs.statSync(curPath).isDirectory()) {
         removeFolder(curPath)
       } else {
@@ -58,13 +58,23 @@ const start = async () => {
       return item.split('.').length === 3
     }
     return false
-  }).sort((a, b) => {
-    return a < b
-  }).filter((item, index) => {
-    return index > (maxVersion - 1)
   })
+    .sort((a, b) => {
+      const an = a.split('.').map(_ => Number(_))
+      const bn = b.split('.').map(_ => Number(_))
+      if (an[0] === bn[0]) {
+        if (an[1] === bn[1]) {
+          return an[2] < bn[2]
+        }
+        return an[1] < bn[1]
+      }
+      return an[0] < bn[0]
+    })
+    .filter((item, index) => {
+      return index > (maxVersion - 1)
+    })
 
-  for (let item of folders) {
+  for (const item of folders) {
     await removeFolder(`${dist}/${item}`)
   }
 
