@@ -119,11 +119,16 @@ npm run dev
 ```
 
 构建：
+[详情](https://github.com/zuiidea/antd-admin/issues/269)
 
 ```bash
 npm run build
 
-将会生成dist目录
+将会打包至dist/{version}目录 #package.json里version字段
+
+npm run build:new
+
+将会打包至dist/{version增加1}目录 #package.json里version字段
 ```
 
 代码检测：
