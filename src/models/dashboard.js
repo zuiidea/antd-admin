@@ -1,5 +1,5 @@
 import { parse } from 'qs'
-import { myCity, queryWeather, query } from '../services/dashboard'
+import { myCity, queryWeather, query } from 'services/dashboard'
 
 // zuimei 摘自 http://www.zuimeitianqi.com/res/js/index.js
 let zuimei = {
