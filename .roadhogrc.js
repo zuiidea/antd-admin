@@ -13,18 +13,18 @@ export default {
   publicPath : `/${version}/`,
   outputPath : `./dist/${version}`,
   // 接口代理示例
-  // "proxy": {
-  //   "/api/v1": {
-  //     "target": "http://api.zuiidea.com",
-  //     "changeOrigin": true,
-  //     "pathRewrite": { "^/api/v1" : "/v1" }
-  //   },
-  //   "/api/v2": {
-  //     "target": "http://192.168.0.110",
-  //     "changeOrigin": true,
-  //     "pathRewrite": { "^/api/v2" : "/api/v2" }
-  //   }
-  // },
+  "proxy": {
+    "/api/v1/weather": {
+      "target": "https://api.seniverse.com/",
+      "changeOrigin": true,
+      "pathRewrite": { "^/api/v1/weather" : "/v3/weather" }
+    },
+    // "/api/v2": {
+    //   "target": "http://192.168.0.110",
+    //   "changeOrigin": true,
+    //   "pathRewrite": { "^/api/v2" : "/api/v2" }
+    // }
+  },
   env : {
     development: {
       extraBabelPlugins: [
