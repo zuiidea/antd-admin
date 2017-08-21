@@ -1,6 +1,7 @@
 const qs = require('qs')
 const Mock = require('mockjs')
 const config = require('../utils/config')
+
 const { apiPrefix } = config
 
 let usersListData = Mock.mock({
@@ -25,14 +26,23 @@ let usersListData = Mock.mock({
 
 let database = usersListData.data
 
+const EnumRoleType = {
+  ADMIN: 'admin',
+  DEFAULT: 'guest',
+  DEVELOPER: 'developer',
+}
+
 const userPermission = {
-  DEFAULT: [
-    'dashboard', 'chart',
-  ],
-  ADMIN: [
-    'dashboard', 'users', 'UIElement', 'UIElementIconfont', 'chart',
-  ],
-  DEVELOPER: ['dashboard', 'users', 'UIElement', 'UIElementIconfont', 'chart'],
+  DEFAULT: {
+    visit: ['1', '2', '21', '7', '5', '51', '52', '53'],
+    role: EnumRoleType.DEFAULT,
+  },
+  ADMIN: {
+    role: EnumRoleType.ADMIN,
+  },
+  DEVELOPER: {
+    role: EnumRoleType.DEVELOPER,
+  },
 }
 
 const adminUsers = [
@@ -82,7 +92,7 @@ module.exports = {
 
   [`POST ${apiPrefix}/user/login`] (req, res) {
     const { username, password } = req.body
-    const user = adminUsers.filter((item) => item.username === username)
+    const user = adminUsers.filter(item => item.username === username)
 
     if (user.length > 0 && user[0].password === password) {
       const now = new Date()
@@ -165,7 +175,7 @@ module.exports = {
 
   [`DELETE ${apiPrefix}/users`] (req, res) {
     const { ids } = req.body
-    database = database.filter((item) => !ids.some(_ => _ === item.id))
+    database = database.filter(item => !ids.some(_ => _ === item.id))
     res.status(204).end()
   },
 
@@ -195,7 +205,7 @@ module.exports = {
     const { id } = req.params
     const data = queryArray(database, id, 'id')
     if (data) {
-      database = database.filter((item) => item.id !== id)
+      database = database.filter(item => item.id !== id)
       res.status(204).end()
     } else {
       res.status(404).json(NOTFOUND)

@@ -1,8 +1,8 @@
 import React from 'react'
-import { Iconfont } from '../../../components'
+import { Iconfont } from 'components'
 import { Table, Row, Col, Icon } from 'antd'
 import styles from './index.less'
-import './emoji.js'
+import './emoji'
 
 const colorfulIcons = ['boluo', 'baixiangguo', 'chengzi', 'boluomei', 'caomei', 'dayouzi', 'chelizi', 'fanqie', 'hamigua', 'ganlan',
   'juzi', 'heimei', 'huolongguo', 'hongmei', 'lizi', 'lanmei', 'mangguo', 'mihoutao', 'longyan', 'mugua', 'lizi1', 'ningmeng']
@@ -24,35 +24,35 @@ const localRequireSVGIcons = [
   require('../../../svg/cute/think.svg'),
 ]
 
-const IcoPage = () => <div className="content-inner">
+const IcoPage = () => (<div className="content-inner">
   <Icon type="star-oo" />
   <h2 style={{ margin: '16px 0' }}>Colorful Icon</h2>
   <ul className={styles.list}>
-    {colorfulIcons.map(item => <li key={item}>
+    {colorfulIcons.map(item => (<li key={item}>
       <Iconfont className={styles.icon} colorful type={item} />
       <span className={styles.name}>{item}</span>
-    </li>)}
+    </li>))}
   </ul>
   <h2 style={{ margin: '16px 0' }}>Flat Icon</h2>
   <ul className={styles.list}>
-    {flatIcons.map(item => <li key={item}>
+    {flatIcons.map(item => (<li key={item}>
       <Iconfont className={styles.icon} type={item} />
       <span className={styles.name}>{item}</span>
-    </li>)}
+    </li>))}
   </ul>
   <h2 style={{ margin: '16px 0' }}>Local SVG</h2>
   <ul className={styles.list}>
-    {localSVGIcons.map(item => <li key={item}>
+    {localSVGIcons.map(item => (<li key={item}>
       <Iconfont className={styles.icon} colorful type={item} />
       <span className={styles.name}>{item}</span>
-    </li>)}
+    </li>))}
   </ul>
   <h2 style={{ margin: '16px 0' }}>Local Require SVG</h2>
   <ul className={styles.list}>
-    {localRequireSVGIcons.map(item => <li key={item}>
-      <Iconfont className={styles.icon} colorful type={item} />
-      <span className={styles.name}>{item}</span>
-    </li>)}
+    {localRequireSVGIcons.map(item => (<li key={item.default.id}>
+      <Iconfont className={styles.icon} colorful type={item.default.id} />
+      <span className={styles.name}>{item.default.id}</span>
+    </li>))}
   </ul>
   <h2 style={{ margin: '16px 0' }}>API</h2>
   <Row>
@@ -100,17 +100,17 @@ const IcoPage = () => <div className="content-inner">
   <div style={{ margin: '16px 0', lineHeight: 2 }}>
     <p>
       <a href="http://www.iconfont.cn/user/detail?uid=116813">何阿酥</a> colorful fruit icon
-      <a href="http://www.iconfont.cn/collections/detail?cid=4014" target="_blank"> http://www.iconfont.cn/collections/detail?cid=4014</a>
+      <a href="http://www.iconfont.cn/collections/detail?cid=4014" target="_blank" rel="noopener noreferrer"> http://www.iconfont.cn/collections/detail?cid=4014</a>
     </p>
     <p>
-      <a href="http://www.iconfont.cn/user/detail?uid=496384">ColinXu</a> colorful 'tsundere' emoji icon
-      <a href="http://www.iconfont.cn/collections/detail?cid=4116" target="_blank"> http://www.iconfont.cn/collections/detail?cid=4116</a>
+      <a href="http://www.iconfont.cn/user/detail?uid=496384">ColinXu</a> colorful &apos;tsundere&apos; emoji icon
+      <a href="http://www.iconfont.cn/collections/detail?cid=4116" target="_blank" rel="noopener noreferrer"> http://www.iconfont.cn/collections/detail?cid=4116</a>
     </p>
     <p>
-      <a href="http://www.iconfont.cn/user/detail?uid=116813">咕噜小莫莫</a> colorful 'face cute' emoji icon
-      <a href="http://www.iconfont.cn/collections/detail?cid=4268" target="_blank"> http://www.iconfont.cn/collections/detail?cid=4268</a>
+      <a href="http://www.iconfont.cn/user/detail?uid=116813">咕噜小莫莫</a> colorful &apos;face cute&apos; emoji icon
+      <a href="http://www.iconfont.cn/collections/detail?cid=4268" target="_blank" rel="noopener noreferrer"> http://www.iconfont.cn/collections/detail?cid=4268</a>
     </p>
   </div>
-</div>
+</div>)
 
 export default IcoPage

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Editor } from '../../../components'
+import { Editor } from 'components'
 import { convertToRaw } from 'draft-js'
 import { Row, Col, Card } from 'antd'
 import draftToHtml from 'draftjs-to-html'

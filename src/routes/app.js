@@ -1,19 +1,28 @@
+/* global window */
 import React from 'react'
+import NProgress from 'nprogress'
 import PropTypes from 'prop-types'
+import pathToRegexp from 'path-to-regexp'
 import { connect } from 'dva'
-import { Layout } from '../components'
-import { classnames, config, menu } from '../utils'
+import { Layout, Loader } from 'components'
+import { classnames, config } from 'utils'
 import { Helmet } from 'react-helmet'
 import '../themes/index.less'
 import './app.less'
-import NProgress from 'nprogress'
-const { prefix } = config
+import Error from './error'
+
+const { prefix, openPages } = config
 
 const { Header, Bread, Footer, Sider, styles } = Layout
 let lastHref
 
-const App = ({ children, location, dispatch, app, loading }) => {
-  const { user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys } = app
+const App = ({ children, dispatch, app, loading, location }) => {
+  const { user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys, menu, permissions } = app
+  let { pathname } = location
+  pathname = pathname.startsWith('/') ? pathname : `/${pathname}`
+  const { iconFontJS, iconFontCSS, logo } = config
+  const current = menu.filter(item => pathToRegexp(item.route || '').exec(pathname))
+  const hasPermission = current.length ? permissions.visit.includes(current[0].id) : false
   const href = window.location.href
 
   if (lastHref !== href) {
@@ -28,7 +37,6 @@ const App = ({ children, location, dispatch, app, loading }) => {
     menu,
     user,
     siderFold,
-    location,
     isNavbar,
     menuPopoverVisible,
     navOpenKeys,
@@ -50,13 +58,12 @@ const App = ({ children, location, dispatch, app, loading }) => {
     menu,
     siderFold,
     darkTheme,
-    location,
     navOpenKeys,
     changeTheme () {
       dispatch({ type: 'app/switchTheme' })
     },
     changeOpenKeys (openKeys) {
-      localStorage.setItem(`${prefix}navOpenKeys`, JSON.stringify(openKeys))
+      window.localStorage.setItem(`${prefix}navOpenKeys`, JSON.stringify(openKeys))
       dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
     },
   }
@@ -64,20 +71,19 @@ const App = ({ children, location, dispatch, app, loading }) => {
   const breadProps = {
     menu,
   }
-
-  if (config.openPages && config.openPages.indexOf(location.pathname) > -1) {
-    return <div>{children}</div>
+  if (openPages && openPages.includes(pathname)) {
+    return (<div>
+      <Loader spinning={loading.effects['app/query']} />
+      {children}
+    </div>)
   }
-
-  const { iconFontJS, iconFontCSS, logo } = config
-
   return (
     <div>
       <Helmet>
         <title>ANTD ADMIN</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href={logo} type="image/x-icon" />
-        {iconFontJS && <script src={iconFontJS}></script>}
+        {iconFontJS && <script src={iconFontJS} />}
         {iconFontCSS && <link rel="stylesheet" href={iconFontCSS} />}
       </Helmet>
       <div className={classnames(styles.layout, { [styles.fold]: isNavbar ? false : siderFold }, { [styles.withnavbar]: isNavbar })}>
@@ -86,10 +92,10 @@ const App = ({ children, location, dispatch, app, loading }) => {
         </aside> : ''}
         <div className={styles.main}>
           <Header {...headerProps} />
-          <Bread {...breadProps} location={location} />
+          <Bread {...breadProps} />
           <div className={styles.container}>
             <div className={styles.content}>
-              {children}
+              {hasPermission ? children : <Error />}
             </div>
           </div>
           <Footer />

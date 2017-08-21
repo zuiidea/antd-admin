@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Table, Tag } from 'antd'
+import { color } from 'utils'
 import styles from './recentSales.less'
-import { color } from '../../../utils'
 
 const status = {
   1: {

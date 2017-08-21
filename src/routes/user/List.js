@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Table, Modal } from 'antd'
-import styles from './List.less'
 import classnames from 'classnames'
-import AnimTableBody from '../../components/DataTable/AnimTableBody'
-import { DropOption } from '../../components'
+import { DropOption } from 'components'
 import { Link } from 'dva/router'
+import AnimTableBody from '../../components/DataTable/AnimTableBody'
+import styles from './List.less'
 
 const confirm = Modal.confirm
 
@@ -30,7 +30,7 @@ const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) =
       key: 'avatar',
       width: 64,
       className: styles.avatar,
-      render: (text) => <img alt={'avatar'} width={24} src={text} />,
+      render: text => <img alt={'avatar'} width={24} src={text} />,
     }, {
       title: 'Name',
       dataIndex: 'name',
@@ -48,9 +48,9 @@ const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) =
       title: 'Gender',
       dataIndex: 'isMale',
       key: 'isMale',
-      render: (text) => <span>{text
-            ? 'Male'
-            : 'Female'}</span>,
+      render: text => (<span>{text
+        ? 'Male'
+        : 'Female'}</span>),
     }, {
       title: 'Phone',
       dataIndex: 'phone',
@@ -82,7 +82,7 @@ const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) =
     current: tableProps.pagination.current,
   }
 
-  const getBodyWrapper = body => { return isMotion ? <AnimTableBody {...getBodyWrapperProps} body={body} /> : body }
+  const getBodyWrapper = (body) => { return isMotion ? <AnimTableBody {...getBodyWrapperProps} body={body} /> : body }
 
   return (
     <div>

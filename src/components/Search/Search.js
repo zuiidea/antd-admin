@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
-import styles from './Search.less'
 import { Input, Select, Button, Icon } from 'antd'
+import styles from './Search.less'
 
 class Search extends React.Component {
   state = {
@@ -18,13 +18,13 @@ class Search extends React.Component {
     }
     if (this.props.onSearch) this.props.onSearch(data)
   }
-  handleInputChange = e => {
+  handleInputChange = (e) => {
     this.setState({
       ...this.state,
       clearVisible: e.target.value !== '',
     })
   }
-  handleSelectChange = value => {
+  handleSelectChange = (value) => {
     this.setState({
       ...this.state,
       selectValue: value,

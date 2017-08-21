@@ -1,4 +1,4 @@
-@import "./vars.less";
+@import "~themes/vars";
 
 body {
   height: 100%;
@@ -90,16 +90,6 @@ body {
     box-shadow: none;
   }
 
-  .ant-card {
-    &:hover {
-      overflow: auto;
-    }
-  }
-
-  .ant-pagination-item {
-    margin-bottom: 8px;
-  }
-
   .ant-select-dropdown-menu-item {
     padding: 12px 16px !important;
   }
@@ -125,6 +115,13 @@ body {
 }
 @media (max-width: 767px) {
   :global {
+    .ant-pagination-item,
+    .ant-pagination-next,
+    .ant-pagination-options,
+    .ant-pagination-prev {
+      margin-bottom: 8px;
+    }
+
     .ant-card {
       .ant-card-head {
         padding: 0 12px;

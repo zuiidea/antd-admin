@@ -1,9 +1,9 @@
-import config from './config'
-import menu from './menu'
-import request from './request'
+/* global window */
 import classnames from 'classnames'
-import { color } from './theme'
 import lodash from 'lodash'
+import config from './config'
+import request from './request'
+import { color } from './theme'
 
 // 连字符转驼峰
 String.prototype.hyphenToHump = function () {
@@ -101,7 +101,6 @@ const arrayToTree = (array, id = 'id', pid = 'pid', children = 'children') => {
 
 module.exports = {
   config,
-  menu,
   request,
   color,
   classnames,

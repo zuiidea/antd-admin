@@ -4025,18 +4025,18 @@ let DICT = {
 const tree = (list) => {
   let mapped = {}
   let item
-  for (let i = 0; i < list.length; i++) {
+  for (let i = 0; i < list.length; i += 1) {
     item = list[i]
     if (!item || !item.id) continue
     mapped[item.id] = item
   }
 
   let result = []
-  for (let ii = 0; ii < list.length; ii++) {
+  for (let ii = 0; ii < list.length; ii += 1) {
     item = list[ii]
 
     if (!item) continue
-            /* jshint -W041 */
+    /* jshint -W041 */
     if (item.pid === undefined && item.parentId === undefined) {
       result.push(item)
       continue
@@ -4056,7 +4056,7 @@ let DICT_FIXED = (function () {
       let pid
       if (id.slice(2, 6) !== '0000') {
         pid = id.slice(4, 6) === '00' ? (`${id.slice(0, 2)}0000`) :
-        `${id.slice(0, 4)}00`
+          `${id.slice(0, 4)}00`
       }
       fixed.push({
         id,

@@ -1,11 +1,11 @@
 import { request, config } from 'utils'
 
-const { api } = config
-const { dashboard } = api
+const { APIV1 } = config
 
 export async function query (params) {
+  params.key = 'i7sau1babuzwhycn'
   return request({
-    url: dashboard,
+    url: `${APIV1}/weather/now.json`,
     method: 'get',
     data: params,
   })
