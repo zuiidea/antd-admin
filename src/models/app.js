@@ -30,8 +30,22 @@ export default {
     darkTheme: window.localStorage.getItem(`${prefix}darkTheme`) === 'true',
     isNavbar: document.body.clientWidth < 769,
     navOpenKeys: JSON.parse(window.localStorage.getItem(`${prefix}navOpenKeys`)) || [],
+    locationPathname: '',
+    locationQuery: {},
   },
   subscriptions: {
+
+    setupHistory ({ dispatch, history }) {
+      history.listen((location) => {
+        dispatch({
+          type: 'updateState',
+          payload: {
+            locationPathname: location.pathname,
+            locationQuery: location.query,
+          },
+        })
+      })
+    },
 
     setup ({ dispatch }) {
       dispatch({ type: 'query' })
@@ -49,8 +63,9 @@ export default {
 
     * query ({
       payload,
-    }, { call, put }) {
+    }, { call, put, select }) {
       const { success, user } = yield call(query, payload)
+      const { locationPathname } = yield select(_ => _.app)
       if (success && user) {
         const { list } = yield call(menusService.query)
         const { permissions } = user
@@ -76,11 +91,17 @@ export default {
           },
         })
         if (location.pathname === '/login') {
-          yield put(routerRedux.push('/dashboard'))
+          yield put(routerRedux.push({
+            pathname: '/dashboard',
+          }))
         }
-      } else if (config.openPages && config.openPages.indexOf(location.pathname) < 0) {
-        let from = location.pathname
-        window.location = `${location.origin}/login?from=${from}`
+      } else if (config.openPages && config.openPages.indexOf(locationPathname) < 0) {
+        yield put(routerRedux.push({
+          pathname: 'login',
+          query: {
+            from: locationPathname,
+          },
+        }))
       }
     },
 
