@@ -1,4 +1,3 @@
-/* global location */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Breadcrumb, Icon } from 'antd'
@@ -7,7 +6,7 @@ import pathToRegexp from 'path-to-regexp'
 import { queryArray } from 'utils'
 import styles from './Bread.less'
 
-const Bread = ({ menu }) => {
+const Bread = ({ menu, location }) => {
   // 匹配当前路由
   let pathArray = []
   let current
@@ -68,6 +67,7 @@ const Bread = ({ menu }) => {
 
 Bread.propTypes = {
   menu: PropTypes.array,
+  location: PropTypes.object,
 }
 
 export default Bread
