@@ -10,15 +10,10 @@ module.exports = (webpackConfig, env) => {
 
   if (production) {
     if (webpackConfig.module) {
-      // ClassnameHash
+    // ClassnameHash
       webpackConfig.module.rules.map((item) => {
-        if (item.use && item.use[0] === 'style') {
-          return item.use.map((iitem) => {
-            if (iitem && iitem.loader === 'css') {
-              iitem.options.localIdentName = '[hash:base64:5]'
-            }
-            return iitem
-          })
+        if (String(item.test) === '/\\.less$/' || item.test === '/\\.css/') {
+          item.use.filter(iitem => iitem.loader === 'css')[0].options.localIdentName = '[hash:base64:5]'
         }
         return item
       })
