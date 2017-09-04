@@ -88,7 +88,11 @@ const App = ({ children, dispatch, app, loading, location }) => {
       </Helmet>
       <div className={classnames(styles.layout, { [styles.fold]: isNavbar ? false : siderFold }, { [styles.withnavbar]: isNavbar })}>
         {!isNavbar ? <aside className={classnames(styles.sider, { [styles.light]: !darkTheme })}>
-          <Sider {...siderProps} />
+          {siderProps.menu.length === 0 ?
+            null
+            :
+            <Sider {...siderProps} />
+          }
         </aside> : ''}
         <div className={styles.main}>
           <Header {...headerProps} />
