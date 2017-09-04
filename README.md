@@ -21,6 +21,14 @@
 
 ## 更新日志
 
+### 4.3.4
+
+`2017-09-04`
+
+-     更新[roadhog](https://github.com/sorrycc/roadhog)至`1.2.1`，修复闪屏问题。
+-     修复build css未压缩[#529](https://github.com/zuiidea/antd-admin/issues/529)，classname未Hash[#477](https://github.com/zuiidea/antd-admin/issues/477)。
+-     更新登录成功使用router跳转[#479](https://github.com/zuiidea/antd-admin/issues/479)。
+
 ### 4.3.0
 
 `2017-07-30`
@@ -53,11 +61,11 @@
 
 `2017-04-28`
 
--    修改user相关API使用`Restful`风格。
-- 增加user页面多条件查询。[#266](https://github.com/zuiidea/antd-admin/issues/226)
-- 修复菜单默认高亮。[#201](https://github.com/zuiidea/antd-admin/issues/201)
+-   修改user相关API使用`Restful`风格。
+-   增加user页面多条件查询。[#266](https://github.com/zuiidea/antd-admin/issues/226)
+-   修复菜单默认高亮。[#201](https://github.com/zuiidea/antd-admin/issues/201)
 
-      [More Change Log](https://github.com/zuiidea/antd-admin/wiki/Change-Log)
+        [More Change Log](https://github.com/zuiidea/antd-admin/wiki/Change-Log)
 
 ## 开发构建
 
@@ -140,11 +148,11 @@ npm run lint
 ## FAQ
 
 -   项目打包后如何部署？ [#269](https://github.com/zuiidea/antd-admin/issues/269)
-- 如何做权限管理？ [#384](https://github.com/zuiidea/antd-admin/issues/384)
-- 如何使用mock.js模拟接口，怎么使用线上接口？ [#348](https://github.com/zuiidea/antd-admin/issues/348)
-- 如何使用Iconfont，如何使用本地的svg图标？ [#270](https://github.com/zuiidea/antd-admin/issues/270)
-- 怎么按版本打包，上线时不影响正在访问的用户？ [#449](https://github.com/zuiidea/antd-admin/issues/449)
-- windows处理CRLF？[参考](http://blog.csdn.net/lysc_forever/article/details/42835203)
+-   如何做权限管理？ [#384](https://github.com/zuiidea/antd-admin/issues/384)
+-   如何使用mock.js模拟接口，怎么使用线上接口？ [#348](https://github.com/zuiidea/antd-admin/issues/348)
+-   如何使用Iconfont，如何使用本地的svg图标？ [#270](https://github.com/zuiidea/antd-admin/issues/270)
+-   怎么按版本打包，上线时不影响正在访问的用户？ [#449](https://github.com/zuiidea/antd-admin/issues/449)
+-   windows处理CRLF？[参考](http://blog.csdn.net/lysc_forever/article/details/42835203)
 
     ```bash
     git config --global core.autocrlf false
