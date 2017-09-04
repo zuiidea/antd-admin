@@ -19,6 +19,16 @@ module.exports = (webpackConfig, env) => {
       }
       return item
     })
+    
+    webpackConfig.module.rules.map((item) => {
+      if (item.use && item.use.map){
+        item.use.map(iitem=>{
+          iitem.loader === 'css' && (iitem.options.minimize = true)
+          return iitem
+        })
+      }
+      return item
+    })
   }
 
   // PreLoaders
