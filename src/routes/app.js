@@ -10,6 +10,7 @@ import { Helmet } from 'react-helmet'
 import '../themes/index.less'
 import './app.less'
 import Error from './error'
+import { withRouter } from 'dva/router'
 
 const { prefix, openPages } = config
 
@@ -116,4 +117,4 @@ App.propTypes = {
   loading: PropTypes.object,
 }
 
-export default connect(({ app, loading }) => ({ app, loading }))(App)
+export default withRouter(connect(({ app, loading }) => ({ app, loading }))(App))

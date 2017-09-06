@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Table, Modal } from 'antd'
 import classnames from 'classnames'
 import { DropOption } from 'components'
-import { Link } from 'dva/router'
+import { LinkWrapper } from 'components'
 import AnimTableBody from '../../components/DataTable/AnimTableBody'
 import styles from './List.less'
 
@@ -35,7 +35,7 @@ const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) =
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      render: (text, record) => <Link to={`user/${record.id}`}>{text}</Link>,
+      render: (text, record) => <LinkWrapper to={`user/${record.id}`}>{text}</LinkWrapper>,
     }, {
       title: 'NickName',
       dataIndex: 'nickName',
