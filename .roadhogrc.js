@@ -13,7 +13,7 @@ export default {
   publicPath : `/${version}/`,
   outputPath : `./dist/${version}`,
   // 接口代理示例
-  "proxy": {
+  proxy: {
     "/api/v1/weather": {
       "target": "https://api.seniverse.com/",
       "changeOrigin": true,

@@ -56,6 +56,7 @@ const App = ({ children, dispatch, app, loading, location }) => {
 
   const siderProps = {
     menu,
+    location,
     siderFold,
     darkTheme,
     navOpenKeys,
@@ -70,6 +71,7 @@ const App = ({ children, dispatch, app, loading, location }) => {
 
   const breadProps = {
     menu,
+    location,
   }
   if (openPages && openPages.includes(pathname)) {
     return (<div>
@@ -79,6 +81,7 @@ const App = ({ children, dispatch, app, loading, location }) => {
   }
   return (
     <div>
+      <Loader spinning={loading.effects['app/query']} />
       <Helmet>
         <title>ANTD ADMIN</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -88,7 +91,7 @@ const App = ({ children, dispatch, app, loading, location }) => {
       </Helmet>
       <div className={classnames(styles.layout, { [styles.fold]: isNavbar ? false : siderFold }, { [styles.withnavbar]: isNavbar })}>
         {!isNavbar ? <aside className={classnames(styles.sider, { [styles.light]: !darkTheme })}>
-          <Sider {...siderProps} />
+          {siderProps.menu.length === 0 ? null : <Sider {...siderProps} />}
         </aside> : ''}
         <div className={styles.main}>
           <Header {...headerProps} />

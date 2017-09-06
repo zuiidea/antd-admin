@@ -8,15 +8,13 @@ import styles from './index.less'
 const FormItem = Form.Item
 
 const Login = ({
-  login,
+  loading,
   dispatch,
   form: {
     getFieldDecorator,
     validateFieldsAndScroll,
   },
 }) => {
-  const { loginLoading } = login
-
   function handleOk () {
     validateFieldsAndScroll((errors, values) => {
       if (errors) {
@@ -52,7 +50,7 @@ const Login = ({
           })(<Input size="large" type="password" onPressEnter={handleOk} placeholder="Password" />)}
         </FormItem>
         <Row>
-          <Button type="primary" size="large" onClick={handleOk} loading={loginLoading}>
+          <Button type="primary" size="large" onClick={handleOk} loading={loading.effects.login}>
             Sign in
           </Button>
           <p>
@@ -68,8 +66,8 @@ const Login = ({
 
 Login.propTypes = {
   form: PropTypes.object,
-  login: PropTypes.object,
   dispatch: PropTypes.func,
+  loading: PropTypes.object,
 }
 
-export default connect(({ login }) => ({ login }))(Form.create()(Login))
+export default connect(({ loading }) => ({ loading }))(Form.create()(Login))
