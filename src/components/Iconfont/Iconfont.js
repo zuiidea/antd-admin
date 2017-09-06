@@ -6,8 +6,12 @@ import './iconfont.less'
 const Iconfont = ({ type, colorful, spin, ...props }) => {
   if (colorful) {
     return (<span
+      className={classNames({
+        'antdadminicon-spin': !!spin || type === 'loading',
+      })}
+      {...props}
       dangerouslySetInnerHTML={{
-        __html: `<svg class="colorful-icon${spin ? ' antdadminicon-spin' : ''}" aria-hidden="true"><use xlink:href="#${type.startsWith('#') ? type.replace(/#/, '') : type}"></use></svg>`,
+        __html: `<svg class="colorful-icon" aria-hidden="true"><use xlink:href="#${type.startsWith('#') ? type.replace(/#/, '') : type}"></use></svg>`,
       }}
     />)
   }
