@@ -10,6 +10,7 @@ import { Helmet } from 'react-helmet'
 import '../themes/index.less'
 import './app.less'
 import Error from './error'
+import { withRouter } from 'dva/router'
 
 const { prefix, openPages } = config
 
@@ -40,16 +41,16 @@ const App = ({ children, dispatch, app, loading, location }) => {
     isNavbar,
     menuPopoverVisible,
     navOpenKeys,
-    switchMenuPopover () {
+    switchMenuPopover() {
       dispatch({ type: 'app/switchMenuPopver' })
     },
-    logout () {
+    logout() {
       dispatch({ type: 'app/logout' })
     },
-    switchSider () {
+    switchSider() {
       dispatch({ type: 'app/switchSider' })
     },
-    changeOpenKeys (openKeys) {
+    changeOpenKeys(openKeys) {
       dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
     },
   }
@@ -60,10 +61,10 @@ const App = ({ children, dispatch, app, loading, location }) => {
     siderFold,
     darkTheme,
     navOpenKeys,
-    changeTheme () {
+    changeTheme() {
       dispatch({ type: 'app/switchTheme' })
     },
-    changeOpenKeys (openKeys) {
+    changeOpenKeys(openKeys) {
       window.localStorage.setItem(`${prefix}navOpenKeys`, JSON.stringify(openKeys))
       dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
     },
@@ -75,13 +76,13 @@ const App = ({ children, dispatch, app, loading, location }) => {
   }
   if (openPages && openPages.includes(pathname)) {
     return (<div>
-      <Loader spinning={loading.effects['app/query']} />
+      <Loader fullScreen spinning={loading.effects['app/query']} />
       {children}
     </div>)
   }
   return (
     <div>
-      <Loader spinning={loading.effects['app/query']} />
+      <Loader fullScreen spinning={loading.effects['app/query']} />
       <Helmet>
         <title>ANTD ADMIN</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -116,4 +117,4 @@ App.propTypes = {
   loading: PropTypes.object,
 }
 
-export default connect(({ app, loading }) => ({ app, loading }))(App)
+export default withRouter(connect(({ app, loading }) => ({ app, loading }))(App))

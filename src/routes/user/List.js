@@ -3,13 +3,16 @@ import PropTypes from 'prop-types'
 import { Table, Modal } from 'antd'
 import classnames from 'classnames'
 import { DropOption } from 'components'
-import { Link } from 'dva/router'
+import { LinkWrapper } from 'components'
 import AnimTableBody from '../../components/DataTable/AnimTableBody'
+import queryString from 'query-string'
 import styles from './List.less'
 
 const confirm = Modal.confirm
 
 const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) => {
+  location.query = queryString.parse(location.search)
+
   const handleMenuClick = (record, e) => {
     if (e.key === '1') {
       onEditItem(record)
@@ -35,7 +38,7 @@ const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) =
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      render: (text, record) => <Link to={`user/${record.id}`}>{text}</Link>,
+      render: (text, record) => <LinkWrapper to={`user/${record.id}`}>{text}</LinkWrapper>,
     }, {
       title: 'NickName',
       dataIndex: 'nickName',

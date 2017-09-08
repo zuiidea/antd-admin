@@ -4,6 +4,7 @@ import { config } from 'utils'
 import { create, remove, update } from 'services/user'
 import * as usersService from 'services/users'
 import { pageModel } from './common'
+import queryString from 'query-string'
 
 const { query } = usersService
 const { prefix } = config
@@ -25,7 +26,7 @@ export default modelExtend(pageModel, {
         if (location.pathname === '/user') {
           dispatch({
             type: 'query',
-            payload: location.query,
+            payload: queryString.parse(location.search),
           })
         }
       })

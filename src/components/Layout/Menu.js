@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Menu, Icon } from 'antd'
-import { Link } from 'dva/router'
+import { LinkWrapper } from 'components'
 import { arrayToTree, queryArray } from 'utils'
 import pathToRegexp from 'path-to-regexp'
 
@@ -31,10 +31,10 @@ const Menus = ({ siderFold, darkTheme, handleClickNavMenu, navOpenKeys, changeOp
       }
       return (
         <Menu.Item key={item.id}>
-          <Link to={item.route}>
+          <LinkWrapper to={item.route}>
             {item.icon && <Icon type={item.icon} />}
             {(!siderFoldN || !menuTree.includes(item)) && item.name}
-          </Link>
+          </LinkWrapper>
         </Menu.Item>
       )
     })
