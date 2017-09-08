@@ -6,8 +6,10 @@ import { Row, Col, Button, Popconfirm } from 'antd'
 import List from './List'
 import Filter from './Filter'
 import Modal from './Modal'
+import queryString from 'query-string'
 
 const User = ({ location, dispatch, user, loading }) => {
+  location.query = queryString.parse(location.search)
   const { list, pagination, currentItem, modalVisible, modalType, isMotion, selectedRowKeys } = user
   const { pageSize } = pagination
 
