@@ -1,18 +1,17 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const HtmlWebpackTemplate = require('html-webpack-template')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const webpack = require('webpack')
 
 module.exports = (webpackConfig, env) => {
   const production = env === 'production'
   // FilenameHash
-  webpackConfig.output.chunkFilename = '[name].[hash].js'
+  webpackConfig.output.chunkFilename = '[name].[chunkhash].js'
 
   if (production) {
     if (webpackConfig.module) {
     // ClassnameHash
       webpackConfig.module.rules.map((item) => {
-        if (String(item.test) === '/\\.less$/' || item.test === '/\\.css/') {
+        if (String(item.test) === '/\\.less$/' || String(item.test) === '/\\.css/') {
           item.use.filter(iitem => iitem.loader === 'css')[0].options.localIdentName = '[hash:base64:5]'
         }
         return item
@@ -34,26 +33,13 @@ module.exports = (webpackConfig, env) => {
       },
     ]),
     new HtmlWebpackPlugin({
-      hash: true,
-      mobile: true,
-      title: 'antd-admin',
-      inject: false,
-      appMountId: 'root',
-      template: `!!ejs-loader!${HtmlWebpackTemplate}`,
+      template: `${__dirname}/src/entry.ejs`,
       filename: production ? '../index.html' : 'index.html',
-      minify: {
+      minify: production ? {
         collapseWhitespace: true,
-      },
-      scripts: production ? null : ['/roadhog.dll.js'],
-      meta: [
-        {
-          name: 'description',
-          content: 'A admin dashboard application demo built upon Ant Design and Dva.js',
-        }, {
-          name: 'viewport',
-          content: 'width=device-width, initial-scale=1.0',
-        },
-      ],
+      } : null,
+      hash: true,
+      headScripts: production ? null : ['/roadhog.dll.js'],
     }),
   ])
 
