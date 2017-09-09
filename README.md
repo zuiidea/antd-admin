@@ -46,7 +46,7 @@
 -     更新`eslint`，并适当修改了`.eslintrc`。
 
 
-        [More Change Log](https://github.com/zuiidea/antd-admin/wiki/Change-Log)
+[More Change Log](https://github.com/zuiidea/antd-admin/wiki/Change-Log)
 
 ## 开发构建
 
