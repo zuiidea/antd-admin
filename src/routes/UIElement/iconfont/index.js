@@ -29,28 +29,28 @@ const IcoPage = () => (<div className="content-inner">
   <h2 style={{ margin: '16px 0' }}>Colorful Icon</h2>
   <ul className={styles.list}>
     {colorfulIcons.map(item => (<li key={item}>
-      <Iconfont className={styles.icon} colorful type={item} />
+      <Iconfont spin colorful type={item} />
       <span className={styles.name}>{item}</span>
     </li>))}
   </ul>
   <h2 style={{ margin: '16px 0' }}>Flat Icon</h2>
   <ul className={styles.list}>
     {flatIcons.map(item => (<li key={item}>
-      <Iconfont className={styles.icon} type={item} />
+      <Iconfont spin type={item} />
       <span className={styles.name}>{item}</span>
     </li>))}
   </ul>
   <h2 style={{ margin: '16px 0' }}>Local SVG</h2>
   <ul className={styles.list}>
     {localSVGIcons.map(item => (<li key={item}>
-      <Iconfont className={styles.icon} colorful type={item} />
+      <Iconfont spin colorful type={item} />
       <span className={styles.name}>{item}</span>
     </li>))}
   </ul>
   <h2 style={{ margin: '16px 0' }}>Local Require SVG</h2>
   <ul className={styles.list}>
     {localRequireSVGIcons.map(item => (<li key={item.default.id}>
-      <Iconfont className={styles.icon} colorful type={item.default.id} />
+      <Iconfont spin colorful type={item.default.id} />
       <span className={styles.name}>{item.default.id}</span>
     </li>))}
   </ul>
