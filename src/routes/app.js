@@ -7,6 +7,7 @@ import { connect } from 'dva'
 import { Layout, Loader } from 'components'
 import { classnames, config } from 'utils'
 import { Helmet } from 'react-helmet'
+import { withRouter } from 'dva/router'
 import '../themes/index.less'
 import './app.less'
 import Error from './error'
@@ -76,13 +77,13 @@ const App = ({ children, dispatch, app, loading, location }) => {
   }
   if (openPages && openPages.includes(pathname)) {
     return (<div>
-      <Loader spinning={loading.effects['app/query']} />
+      <Loader fullScreen spinning={loading.effects['app/query']} />
       {children}
     </div>)
   }
   return (
     <div>
-      <Loader spinning={loading.effects['app/query']} />
+      <Loader fullScreen spinning={loading.effects['app/query']} />
       <Helmet>
         <title>ANTD ADMIN</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -117,4 +118,4 @@ App.propTypes = {
   loading: PropTypes.object,
 }
 
-export default connect(({ app, loading }) => ({ app, loading }))(App)
+export default withRouter(connect(({ app, loading }) => ({ app, loading }))(App))

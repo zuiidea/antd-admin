@@ -1,6 +1,7 @@
 import modelExtend from 'dva-model-extend'
 import { query } from 'services/posts'
 import { pageModel } from 'models/common'
+import queryString from 'query-string'
 
 export default modelExtend(pageModel, {
 
@@ -13,7 +14,7 @@ export default modelExtend(pageModel, {
           dispatch({ type: 'query',
             payload: {
               status: 2,
-              ...location.query,
+              ...queryString.parse(location.search),
             } })
         }
       })

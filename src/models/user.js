@@ -3,6 +3,7 @@ import modelExtend from 'dva-model-extend'
 import { config } from 'utils'
 import { create, remove, update } from 'services/user'
 import * as usersService from 'services/users'
+import queryString from 'query-string'
 import { pageModel } from './common'
 
 const { query } = usersService
@@ -25,7 +26,7 @@ export default modelExtend(pageModel, {
         if (location.pathname === '/user') {
           dispatch({
             type: 'query',
-            payload: location.query,
+            payload: queryString.parse(location.search),
           })
         }
       })

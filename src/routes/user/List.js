@@ -3,13 +3,16 @@ import PropTypes from 'prop-types'
 import { Table, Modal } from 'antd'
 import classnames from 'classnames'
 import { DropOption } from 'components'
-import { Link } from 'dva/router'
-import AnimTableBody from '../../components/DataTable/AnimTableBody'
+import { Link } from 'react-router-dom'
+import queryString from 'query-string'
+import AnimTableBody from 'components/DataTable/AnimTableBody'
 import styles from './List.less'
 
 const confirm = Modal.confirm
 
 const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) => {
+  location.query = queryString.parse(location.search)
+
   const handleMenuClick = (record, e) => {
     if (e.key === '1') {
       onEditItem(record)

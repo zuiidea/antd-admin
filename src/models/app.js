@@ -7,6 +7,7 @@ import config from 'config'
 import { EnumRoleType } from 'enums'
 import { query, logout } from 'services/app'
 import * as menusService from 'services/menus'
+import queryString from 'query-string'
 
 const { prefix } = config
 
@@ -41,7 +42,7 @@ export default {
           type: 'updateState',
           payload: {
             locationPathname: location.pathname,
-            locationQuery: location.query,
+            locationQuery: queryString.parse(location.search),
           },
         })
       })
@@ -97,7 +98,7 @@ export default {
         }
       } else if (config.openPages && config.openPages.indexOf(locationPathname) < 0) {
         yield put(routerRedux.push({
-          pathname: 'login',
+          pathname: '/login',
           query: {
             from: locationPathname,
           },

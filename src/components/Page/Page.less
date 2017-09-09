@@ -1,0 +1,14 @@
+@import "~themes/vars";
+
+.contentInner{
+  background: #fff;
+  padding: 24px;
+  box-shadow: @shadow-1;
+  min-height: e("calc(100vh - 184px)");
+}
+@media (max-width: 767px) {
+  .contentInner {
+    padding: 12px;
+    min-height: e("calc(100vh - 160px)");
+  }
+}
