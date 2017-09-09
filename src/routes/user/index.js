@@ -45,11 +45,11 @@ const User = ({ location, dispatch, user, loading }) => {
       const { query, pathname } = location
       dispatch(routerRedux.push({
         pathname,
-        query: {
+        search: queryString.stringify({
           ...query,
           page: page.current,
           pageSize: page.pageSize,
-        },
+        }),
       }))
     },
     onDeleteItem (id) {
@@ -88,20 +88,20 @@ const User = ({ location, dispatch, user, loading }) => {
     onFilterChange (value) {
       dispatch(routerRedux.push({
         pathname: location.pathname,
-        query: {
+        search: queryString.stringify({
           ...value,
           page: 1,
           pageSize,
-        },
+        }),
       }))
     },
     onSearch (fieldsValue) {
       fieldsValue.keyword.length ? dispatch(routerRedux.push({
         pathname: '/user',
-        query: {
+        search: queryString.stringify({
           field: fieldsValue.field,
           keyword: fieldsValue.keyword,
-        },
+        }),
       })) : dispatch(routerRedux.push({
         pathname: '/user',
       }))
