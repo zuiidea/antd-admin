@@ -7,10 +7,10 @@ import { connect } from 'dva'
 import { Layout, Loader } from 'components'
 import { classnames, config } from 'utils'
 import { Helmet } from 'react-helmet'
+import { withRouter } from 'dva/router'
 import '../themes/index.less'
 import './app.less'
 import Error from './error'
-import { withRouter } from 'dva/router'
 
 const { prefix, openPages } = config
 
@@ -41,16 +41,16 @@ const App = ({ children, dispatch, app, loading, location }) => {
     isNavbar,
     menuPopoverVisible,
     navOpenKeys,
-    switchMenuPopover() {
+    switchMenuPopover () {
       dispatch({ type: 'app/switchMenuPopver' })
     },
-    logout() {
+    logout () {
       dispatch({ type: 'app/logout' })
     },
-    switchSider() {
+    switchSider () {
       dispatch({ type: 'app/switchSider' })
     },
-    changeOpenKeys(openKeys) {
+    changeOpenKeys (openKeys) {
       dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
     },
   }
@@ -61,10 +61,10 @@ const App = ({ children, dispatch, app, loading, location }) => {
     siderFold,
     darkTheme,
     navOpenKeys,
-    changeTheme() {
+    changeTheme () {
       dispatch({ type: 'app/switchTheme' })
     },
-    changeOpenKeys(openKeys) {
+    changeOpenKeys (openKeys) {
       window.localStorage.setItem(`${prefix}navOpenKeys`, JSON.stringify(openKeys))
       dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
     },

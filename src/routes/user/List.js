@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { Table, Modal } from 'antd'
 import classnames from 'classnames'
 import { DropOption } from 'components'
-import { LinkWrapper } from 'components'
-import AnimTableBody from '../../components/DataTable/AnimTableBody'
+import { Link } from 'react-router-dom'
 import queryString from 'query-string'
+import AnimTableBody from 'components/DataTable/AnimTableBody'
 import styles from './List.less'
 
 const confirm = Modal.confirm
@@ -38,7 +38,7 @@ const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) =
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      render: (text, record) => <LinkWrapper to={`user/${record.id}`}>{text}</LinkWrapper>,
+      render: (text, record) => <Link to={`user/${record.id}`}>{text}</Link>,
     }, {
       title: 'NickName',
       dataIndex: 'nickName',

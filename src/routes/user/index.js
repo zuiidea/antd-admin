@@ -3,10 +3,12 @@ import PropTypes from 'prop-types'
 import { routerRedux } from 'dva/router'
 import { connect } from 'dva'
 import { Row, Col, Button, Popconfirm } from 'antd'
+import { Page } from 'components'
+import queryString from 'query-string'
 import List from './List'
 import Filter from './Filter'
 import Modal from './Modal'
-import queryString from 'query-string'
+
 
 const User = ({ location, dispatch, user, loading }) => {
   location.query = queryString.parse(location.search)
@@ -127,7 +129,7 @@ const User = ({ location, dispatch, user, loading }) => {
   }
 
   return (
-    <div className="content-inner">
+    <Page inner>
       <Filter {...filterProps} />
       {
         selectedRowKeys.length > 0 &&
@@ -142,7 +144,7 @@ const User = ({ location, dispatch, user, loading }) => {
       }
       <List {...listProps} />
       {modalVisible && <Modal {...modalProps} />}
-    </div>
+    </Page>
   )
 }
 
