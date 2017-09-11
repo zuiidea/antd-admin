@@ -2,7 +2,7 @@
 
 [![React](https://img.shields.io/badge/react-^15.6.1-brightgreen.svg?style=flat-square)](https://github.com/facebook/react)
 [![Ant Design](https://img.shields.io/badge/ant--design-^2.11.2-yellowgreen.svg?style=flat-square)](https://github.com/ant-design/ant-design)
-[![dva](https://img.shields.io/badge/dva-^1.2.0-orange.svg?style=flat-square)](https://github.com/dvajs/dva)
+[![dva](https://img.shields.io/badge/dva-^2.0.1-orange.svg?style=flat-square)](https://github.com/dvajs/dva)
 
 [![GitHub issues](https://img.shields.io/github/issues/zuiidea/antd-admin.svg?style=flat-square)](https://github.com/zuiidea/antd-admin)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/zuiidea/antd-admin/pulls)
@@ -21,6 +21,13 @@
 
 ## 更新日志
 
+
+### 4.3.5
+
+`2017-09-04`
+
+-     更新[dva](https://github.com/dvajs/dva)至`2.0.1`，感谢[@yangbin1994](https://github.com/yangbin1994)的[PR](https://github.com/zuiidea/antd-admin/pull/567)。
+
 ### 4.3.4
 
 `2017-09-04`
@@ -38,34 +45,8 @@
 -     新增打包时按项目版本号生成文件目录。[#449](https://github.com/zuiidea/antd-admin/issues/449)
 -     更新`eslint`，并适当修改了`.eslintrc`。
 
-### 4.2.3
 
-`2017-07-07`
-
--     新增用户按权限访问。[#384](https://github.com/zuiidea/antd-admin/issues/384)
-
-### 4.2.2
-
-`2017-06-01`
-
--     新增用户管理批量删除。[#320](https://github.com/zuiidea/antd-admin/issues/320)
-
-### 4.2.1
-
-`2017-05-12`
-
--     新增IconFont扩展方案,本地使用方案。[#270](https://github.com/zuiidea/antd-admin/issues/270) [Live](http://47.92.30.98:666/UIElement/iconfont)
--     新增常见场景使用loading。 [dva-loading](https://github.com/dvajs/dva-loading)
-
-### 4.2
-
-`2017-04-28`
-
--   修改user相关API使用`Restful`风格。
--   增加user页面多条件查询。[#266](https://github.com/zuiidea/antd-admin/issues/226)
--   修复菜单默认高亮。[#201](https://github.com/zuiidea/antd-admin/issues/201)
-
-        [More Change Log](https://github.com/zuiidea/antd-admin/wiki/Change-Log)
+[More Change Log](https://github.com/zuiidea/antd-admin/wiki/Change-Log)
 
 ## 开发构建
 

@@ -6,7 +6,7 @@ import Editor from './Editor'
 import FilterItem from './FilterItem'
 import Loader from './Loader'
 import * as Layout from './Layout/index.js'
-import LinkWrapper from './LinkWrapper'
+import Page from './Page'
 
 import layer from './layer'
 
@@ -20,5 +20,5 @@ export {
   FilterItem,
   Loader,
   layer,
-  LinkWrapper,
+  Page,
 }

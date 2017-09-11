@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Breadcrumb, Icon } from 'antd'
-import { LinkWrapper } from 'components'
+import { Link } from 'react-router-dom'
 import pathToRegexp from 'path-to-regexp'
 import { queryArray } from 'utils'
 import styles from './Bread.less'
@@ -48,9 +48,9 @@ const Bread = ({ menu, location }) => {
     return (
       <Breadcrumb.Item key={key}>
         {((pathArray.length - 1) !== key)
-          ? <LinkWrapper to={item.route}>
+          ? <Link to={item.route || '#'}>
             {content}
-          </LinkWrapper>
+          </Link>
           : content}
       </Breadcrumb.Item>
     )

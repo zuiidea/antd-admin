@@ -1,9 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Router, Switch, Route, Redirect, routerRedux } from 'dva/router'
+import { Switch, Route, Redirect, routerRedux } from 'dva/router'
 import dynamic from 'dva/dynamic'
 import App from 'routes/app'
-import { Loader } from 'components'
 
 const { ConnectedRouter } = routerRedux
 
@@ -70,14 +69,17 @@ const Routers = function ({ history, app }) {
     <ConnectedRouter history={history}>
       <App>
         <Switch>
-          <Route exact path='/' render={() => (<Redirect to='/dashboard' />)} />
+          <Route exact path="/" render={() => (<Redirect to="/dashboard" />)} />
           {
             routes.map(({ path, ...dynamics }, key) => (
-              <Route key={key} exact path={path} component={dynamic({
-                app,
-                LoadingComponent: ({ productId }) => (<Loader spinning />),
-                ...dynamics
-              })} />
+              <Route key={key}
+                exact
+                path={path}
+                component={dynamic({
+                  app,
+                  ...dynamics,
+                })}
+              />
             ))
           }
           <Route component={error} />

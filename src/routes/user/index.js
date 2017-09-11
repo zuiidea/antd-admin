@@ -3,10 +3,12 @@ import PropTypes from 'prop-types'
 import { routerRedux } from 'dva/router'
 import { connect } from 'dva'
 import { Row, Col, Button, Popconfirm } from 'antd'
+import { Page } from 'components'
+import queryString from 'query-string'
 import List from './List'
 import Filter from './Filter'
 import Modal from './Modal'
-import queryString from 'query-string'
+
 
 const User = ({ location, dispatch, user, loading }) => {
   location.query = queryString.parse(location.search)
@@ -43,11 +45,11 @@ const User = ({ location, dispatch, user, loading }) => {
       const { query, pathname } = location
       dispatch(routerRedux.push({
         pathname,
-        query: {
+        search: queryString.stringify({
           ...query,
           page: page.current,
           pageSize: page.pageSize,
-        },
+        }),
       }))
     },
     onDeleteItem (id) {
@@ -86,20 +88,20 @@ const User = ({ location, dispatch, user, loading }) => {
     onFilterChange (value) {
       dispatch(routerRedux.push({
         pathname: location.pathname,
-        query: {
+        search: queryString.stringify({
           ...value,
           page: 1,
           pageSize,
-        },
+        }),
       }))
     },
     onSearch (fieldsValue) {
       fieldsValue.keyword.length ? dispatch(routerRedux.push({
         pathname: '/user',
-        query: {
+        search: queryString.stringify({
           field: fieldsValue.field,
           keyword: fieldsValue.keyword,
-        },
+        }),
       })) : dispatch(routerRedux.push({
         pathname: '/user',
       }))
@@ -127,7 +129,7 @@ const User = ({ location, dispatch, user, loading }) => {
   }
 
   return (
-    <div className="content-inner">
+    <Page inner>
       <Filter {...filterProps} />
       {
         selectedRowKeys.length > 0 &&
@@ -142,7 +144,7 @@ const User = ({ location, dispatch, user, loading }) => {
       }
       <List {...listProps} />
       {modalVisible && <Modal {...modalProps} />}
-    </div>
+    </Page>
   )
 }
 
