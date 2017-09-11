@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "antd-admin",
-  "version": "4.3.4",
+  "version": "4.3.5",
   "dependencies": {
     "antd": "^2.11.2",
     "axios": "^0.16.2",
@@ -53,9 +53,7 @@
     "redbox-react": "^1.2.10",
     "roadhog": "^1.2.2"
   },
-  "pre-commit": [
-    "lint"
-  ],
+  "pre-commit": ["lint"],
   "scripts": {
     "dev": "cross-env BROWSER=none HOST=0.0.0.0 roadhog server",
     "lint": "eslint --fix --ext .js src",

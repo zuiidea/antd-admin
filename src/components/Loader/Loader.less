@@ -1,7 +1,3 @@
-.loader_fullScreen {
-  position: fixed !important;
-}
-
 .loader {
   display: block;
   background-color: #fff;
@@ -16,6 +12,10 @@
   align-items: center;
   opacity: 1;
   text-align: center;
+
+  &.fullScreen {
+    position: fixed;
+  }
 
   .warpper {
     width: 100px;
