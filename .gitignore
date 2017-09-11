@@ -6,6 +6,6 @@ npm-debug.log
 .idea
 
 # Mac General
-*.DS_Store
+.DS_Store
 .AppleDouble
 .LSOverride
