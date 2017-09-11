@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'dva'
 import { Tabs } from 'antd'
 import { routerRedux } from 'dva/router'
+import queryString from 'query-string'
 import List from './List'
 
 const TabPane = Tabs.TabPane
@@ -24,11 +25,11 @@ const Index = ({ post, dispatch, loading, location }) => {
     onChange (page) {
       dispatch(routerRedux.push({
         pathname,
-        query: {
+        search: queryString.stringify({
           ...query,
           page: page.current,
           pageSize: page.pageSize,
-        },
+        }),
       }))
     },
   }
@@ -36,9 +37,9 @@ const Index = ({ post, dispatch, loading, location }) => {
   const handleTabClick = (key) => {
     dispatch(routerRedux.push({
       pathname,
-      query: {
+      search: queryString.stringify({
         status: key,
-      },
+      }),
     }))
   }
 
