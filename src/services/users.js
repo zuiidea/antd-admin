@@ -1,29 +1,20 @@
-import { request } from '../utils'
+import { request, config } from 'utils'
+
+const { api } = config
+const { users } = api
 
 export async function query (params) {
-  return request('/api/users', {
+  return request({
+    url: users,
     method: 'get',
-    data: params
-  })
-}
-
-export async function create (params) {
-  return request('/api/users', {
-    method: 'post',
-    data: params
+    data: params,
   })
 }
 
 export async function remove (params) {
-  return request('/api/users', {
+  return request({
+    url: users,
     method: 'delete',
-    data: params
-  })
-}
-
-export async function update (params) {
-  return request('/api/users', {
-    method: 'put',
-    data: params
+    data: params,
   })
 }

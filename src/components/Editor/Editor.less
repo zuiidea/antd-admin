@@ -1,0 +1,111 @@
+.wrapper {
+  height: 500px;
+
+  :global {
+    .rdw-dropdownoption-default {
+      padding: 6px;
+    }
+
+    .rdw-dropdown-optionwrapper {
+      box-sizing: content-box;
+      width: 100%;
+      border-radius: 0 0 2px 2px;
+    }
+
+    .rdw-inline-wrapper {
+      flex-wrap: wrap;
+      margin-bottom: 0;
+
+      .rdw-option-wrapper {
+        margin-bottom: 6px;
+      }
+    }
+
+    .rdw-option-active {
+      box-shadow: 1px 1px 0 #e8e8e8 inset;
+    }
+
+    .rdw-dropdown-optionwrapper {
+      &:hover {
+        box-shadow: none;
+      }
+    }
+
+    .rdw-colorpicker-option {
+      box-shadow: none;
+    }
+
+    .rdw-colorpicker-modal,
+    .rdw-embedded-modal,
+    .rdw-emoji-modal,
+    .rdw-image-modal,
+    .rdw-link-modal {
+      box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.05);
+    }
+
+    .rdw-colorpicker-modal,
+    .rdw-embedded-modal,
+    .rdw-link-modal {
+      height: auto;
+    }
+
+    .rdw-emoji-modal {
+      width: 214px;
+    }
+
+    .rdw-colorpicker-modal {
+      width: auto;
+    }
+
+    .rdw-embedded-modal-btn,
+    .rdw-image-modal-btn,
+    .rdw-link-modal-btn {
+      height: 32px;
+      margin-top: 12px;
+    }
+
+    .rdw-embedded-modal-input,
+    .rdw-embedded-modal-size-input,
+    .rdw-link-modal-input {
+      padding: 2px 6px;
+      height: 32px;
+    }
+
+    .rdw-dropdown-selectedtext {
+      color: #000;
+    }
+
+    .rdw-dropdown-wrapper,
+    .rdw-option-wrapper {
+      min-width: 36px;
+      transition: all 0.2s ease;
+      height: 30px;
+
+      &:active {
+        box-shadow: 1px 1px 0 #e8e8e8 inset;
+      }
+
+      &:hover {
+        box-shadow: 1px 1px 0 #e8e8e8;
+      }
+    }
+
+    .rdw-dropdown-wrapper {
+      min-width: 60px;
+    }
+
+    .rdw-editor-main {
+      box-sizing: border-box;
+    }
+  }
+
+  .editor {
+    border: 1px solid #F1F1F1;
+    padding: 5px;
+    border-radius: 2px;
+    height: auto;
+    min-height: 200px;
+  }
+
+  .toolbar {}
+}

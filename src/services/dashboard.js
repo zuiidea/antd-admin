@@ -1,24 +1,12 @@
-import { request } from '../utils'
+import { request, config } from 'utils'
 
-export async function myCity (params) {
-  return request('http://www.zuimeitianqi.com/zuimei/myCity', {
-    method: 'get',
-    cross: true,
-    data: params
-  })
-}
-
-export async function queryWeather (params) {
-  return request('http://www.zuimeitianqi.com/zuimei/queryWeather', {
-    method: 'get',
-    cross: true,
-    data: params
-  })
-}
+const { api } = config
+const { dashboard } = api
 
 export async function query (params) {
-  return request('/api/dashboard', {
+  return request({
+    url: dashboard,
     method: 'get',
-    data: params
+    data: params,
   })
 }

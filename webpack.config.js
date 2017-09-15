@@ -1,50 +1,59 @@
-const webpack = require('atool-build/lib/webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const webpack = require('webpack')
 
-module.exports = function (webpackConfig, env) {
-  webpackConfig.babel.plugins.push('transform-runtime')
-  webpackConfig.babel.plugins.push(['import', {
-    libraryName: 'antd',
-    style: true
-  }])
+module.exports = (webpackConfig, env) => {
+  const production = env === 'production'
+  // FilenameHash
+  webpackConfig.output.chunkFilename = '[name].[chunkhash].js'
 
-  // Support hmr
-  if (env === 'development') {
-    webpackConfig.devtool = '#eval'
-    webpackConfig.babel.plugins.push(['dva-hmr', {
-      entries: [
-        './src/index.js'
-      ]
-    }])
-  } else {
-    webpackConfig.babel.plugins.push('dev-expression')
-    webpackConfig.entry = {index: './src/_index.js'}
+  if (production) {
+    if (webpackConfig.module) {
+    // ClassnameHash
+      webpackConfig.module.rules.map((item) => {
+        if (String(item.test) === '/\\.less$/' || String(item.test) === '/\\.css/') {
+          item.use.filter(iitem => iitem.loader === 'css')[0].options.localIdentName = '[hash:base64:5]'
+        }
+        return item
+      })
+    }
+    webpackConfig.plugins.push(
+      new webpack.LoaderOptionsPlugin({
+        minimize: true,
+        debug: false,
+      })
+    )
   }
 
-  // Don't extract common.js and common.css
-  webpackConfig.plugins = webpackConfig.plugins.filter(function (plugin) {
-    return !(plugin instanceof webpack.optimize.CommonsChunkPlugin)
-  })
+  webpackConfig.plugins = webpackConfig.plugins.concat([
+    new CopyWebpackPlugin([
+      {
+        from: 'src/public',
+        to: production ? '../' : webpackConfig.output.outputPath,
+      },
+    ]),
+    new HtmlWebpackPlugin({
+      template: `${__dirname}/src/entry.ejs`,
+      filename: production ? '../index.html' : 'index.html',
+      minify: production ? {
+        collapseWhitespace: true,
+      } : null,
+      hash: true,
+      headScripts: production ? null : ['/roadhog.dll.js'],
+    }),
+  ])
 
-  // Support CSS Modules
-  // Parse all less files as css module.
-  webpackConfig.module.loaders.forEach(function (loader, index) {
-    if (typeof loader.test === 'function' && loader.test.toString().indexOf('\\.less$') > -1) {
-      loader.include = /node_modules/
-      loader.test = /\.less$/
-    }
-    if (loader.test.toString() === '/\\.module\\.less$/') {
-      loader.exclude = /node_modules/
-      loader.test = /\.less$/
-    }
-    if (typeof loader.test === 'function' && loader.test.toString().indexOf('\\.css$') > -1) {
-      loader.include = /node_modules/
-      loader.test = /\.css$/
-    }
-    if (loader.test.toString() === '/\\.module\\.css$/') {
-      loader.exclude = /node_modules/
-      loader.test = /\.css$/
-    }
-  })
+  // Alias
+  webpackConfig.resolve.alias = {
+    components: `${__dirname}/src/components`,
+    utils: `${__dirname}/src/utils`,
+    config: `${__dirname}/src/utils/config`,
+    enums: `${__dirname}/src/utils/enums`,
+    services: `${__dirname}/src/services`,
+    models: `${__dirname}/src/models`,
+    routes: `${__dirname}/src/routes`,
+    themes: `${__dirname}/src/themes`,
+  }
 
   return webpackConfig
 }

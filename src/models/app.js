@@ -1,185 +1,174 @@
-import {login, userInfo, logout} from '../services/app'
-import {parse} from 'qs'
+/* global window */
+/* global document */
+/* global location */
+import { routerRedux } from 'dva/router'
+import { parse } from 'qs'
+import config from 'config'
+import { EnumRoleType } from 'enums'
+import { query, logout } from 'services/app'
+import * as menusService from 'services/menus'
+import queryString from 'query-string'
+
+const { prefix } = config
 
 export default {
   namespace: 'app',
   state: {
-    login: false,
-    loading: false,
-    user: {
-      name: '吴彦祖'
+    user: {},
+    permissions: {
+      visit: [],
     },
-    loginButtonLoading: false,
+    menu: [
+      {
+        id: 1,
+        icon: 'laptop',
+        name: 'Dashboard',
+        router: '/dashboard',
+      },
+    ],
     menuPopoverVisible: false,
-    siderFold: localStorage.getItem('antdAdminSiderFold') === 'true',
-    darkTheme: localStorage.getItem('antdAdminDarkTheme') !== 'false',
+    siderFold: window.localStorage.getItem(`${prefix}siderFold`) === 'true',
+    darkTheme: window.localStorage.getItem(`${prefix}darkTheme`) === 'true',
     isNavbar: document.body.clientWidth < 769,
-    navOpenKeys: JSON.parse(localStorage.getItem('navOpenKeys') || '[]')
+    navOpenKeys: JSON.parse(window.localStorage.getItem(`${prefix}navOpenKeys`)) || [],
+    locationPathname: '',
+    locationQuery: {},
   },
   subscriptions: {
-    setup ({dispatch}) {
-      dispatch({type: 'queryUser'})
-      window.onresize = function () {
-        dispatch({type: 'changeNavbar'})
+
+    setupHistory ({ dispatch, history }) {
+      history.listen((location) => {
+        dispatch({
+          type: 'updateState',
+          payload: {
+            locationPathname: location.pathname,
+            locationQuery: queryString.parse(location.search),
+          },
+        })
+      })
+    },
+
+    setup ({ dispatch }) {
+      dispatch({ type: 'query' })
+      let tid
+      window.onresize = () => {
+        clearTimeout(tid)
+        tid = setTimeout(() => {
+          dispatch({ type: 'changeNavbar' })
+        }, 300)
       }
-    }
+    },
+
   },
   effects: {
-    *login ({
-      payload
-    }, {call, put}) {
-      yield put({type: 'showLoginButtonLoading'})
-      const data = yield call(login, parse(payload))
-      if (data.success) {
-        yield put({
-          type: 'loginSuccess',
-          payload: {
-            user: {
-              name: payload.username
-            }
-          }})
-      } else {
-        yield put({
-          type: 'loginFail'
-        })
-      }
-    },
-    *queryUser ({
-      payload
-    }, {call, put}) {
-      yield put({type: 'showLoading'})
-      const data = yield call(userInfo, parse(payload))
-      if (data.success) {
-        yield put({
-          type: 'loginSuccess',
-          payload: {
-            user: {
-              name: data.username
-            }
-          }
-        })
-      }
 
-      yield put({type: 'hideLoading'})
+    * query ({
+      payload,
+    }, { call, put, select }) {
+      const { success, user } = yield call(query, payload)
+      const { locationPathname } = yield select(_ => _.app)
+      if (success && user) {
+        const { list } = yield call(menusService.query)
+        const { permissions } = user
+        let menu = list
+        if (permissions.role === EnumRoleType.ADMIN || permissions.role === EnumRoleType.DEVELOPER) {
+          permissions.visit = list.map(item => item.id)
+        } else {
+          menu = list.filter((item) => {
+            const cases = [
+              permissions.visit.includes(item.id),
+              item.mpid ? permissions.visit.includes(item.mpid) || item.mpid === '-1' : true,
+              item.bpid ? permissions.visit.includes(item.bpid) : true,
+            ]
+            return cases.every(_ => _)
+          })
+        }
+        yield put({
+          type: 'updateState',
+          payload: {
+            user,
+            permissions,
+            menu,
+          },
+        })
+        if (location.pathname === '/login') {
+          yield put(routerRedux.push({
+            pathname: '/dashboard',
+          }))
+        }
+      } else if (config.openPages && config.openPages.indexOf(locationPathname) < 0) {
+        yield put(routerRedux.push({
+          pathname: '/login',
+          search: queryString.stringify({
+            from: locationPathname,
+          }),
+        }))
+      }
     },
-    *logout ({
-      payload
-    }, {call, put}) {
+
+    * logout ({
+      payload,
+    }, { call, put }) {
       const data = yield call(logout, parse(payload))
       if (data.success) {
-        yield put({
-          type: 'logoutSuccess'
-        })
-      }
-    },
-    *switchSider ({
-      payload
-    }, {put}) {
-      yield put({
-        type: 'handleSwitchSider'
-      })
-    },
-    *changeTheme ({
-      payload
-    }, {put}) {
-      yield put({
-        type: 'handleChangeTheme'
-      })
-    },
-    *changeNavbar ({
-      payload
-    }, {put}) {
-      if (document.body.clientWidth < 769) {
-        yield put({type: 'showNavbar'})
+        yield put({ type: 'query' })
       } else {
-        yield put({type: 'hideNavbar'})
+        throw (data)
       }
     },
-    *switchMenuPopver ({
-      payload
-    }, {put}) {
-      yield put({
-        type: 'handleSwitchMenuPopver'
-      })
-    }
+
+    * changeNavbar (action, { put, select }) {
+      const { app } = yield (select(_ => _))
+      const isNavbar = document.body.clientWidth < 769
+      if (isNavbar !== app.isNavbar) {
+        yield put({ type: 'handleNavbar', payload: isNavbar })
+      }
+    },
+
   },
   reducers: {
-    loginSuccess (state, action) {
+    updateState (state, { payload }) {
       return {
         ...state,
-        ...action.payload,
-        login: true,
-        loginButtonLoading: false
+        ...payload,
       }
     },
-    logoutSuccess (state) {
+
+    switchSider (state) {
+      window.localStorage.setItem(`${prefix}siderFold`, !state.siderFold)
       return {
         ...state,
-        login: false
+        siderFold: !state.siderFold,
       }
     },
-    loginFail (state) {
+
+    switchTheme (state) {
+      window.localStorage.setItem(`${prefix}darkTheme`, !state.darkTheme)
       return {
         ...state,
-        login: false,
-        loginButtonLoading: false
+        darkTheme: !state.darkTheme,
       }
     },
-    showLoginButtonLoading (state) {
+
+    switchMenuPopver (state) {
       return {
         ...state,
-        loginButtonLoading: true
+        menuPopoverVisible: !state.menuPopoverVisible,
       }
     },
-    showLoading (state) {
+
+    handleNavbar (state, { payload }) {
       return {
         ...state,
-        loading: true
+        isNavbar: payload,
       }
     },
-    hideLoading (state) {
+
+    handleNavOpenKeys (state, { payload: navOpenKeys }) {
       return {
         ...state,
-        loading: false
+        ...navOpenKeys,
       }
     },
-    handleSwitchSider (state) {
-      localStorage.setItem('antdAdminSiderFold', !state.siderFold)
-      return {
-        ...state,
-        siderFold: !state.siderFold
-      }
-    },
-    handleChangeTheme (state) {
-      localStorage.setItem('antdAdminDarkTheme', !state.darkTheme)
-      return {
-        ...state,
-        darkTheme: !state.darkTheme
-      }
-    },
-    showNavbar (state) {
-      return {
-        ...state,
-        isNavbar: true
-      }
-    },
-    hideNavbar (state) {
-      return {
-        ...state,
-        isNavbar: false
-      }
-    },
-    handleSwitchMenuPopver (state) {
-      return {
-        ...state,
-        menuPopoverVisible: !state.menuPopoverVisible
-      }
-    },
-    handleNavOpenKeys (state, action) {
-      return {
-        ...state,
-        ...action.payload
-      }
-    }
-  }
+  },
 }
