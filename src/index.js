@@ -1,14 +1,15 @@
-import './index.html'
-import 'babel-polyfill'
+import { message } from 'antd'
 import dva from 'dva'
 import createLoading from 'dva-loading'
-import { browserHistory } from 'dva/router'
-import { message } from 'antd'
+import createHistory from 'history/createBrowserHistory'
+import 'babel-polyfill'
 
 // 1. Initialize
 const app = dva({
-  ...createLoading(),
-  history: browserHistory,
+  ...createLoading({
+    effects: true,
+  }),
+  history: createHistory(),
   onError (error) {
     message.error(error.message)
   },

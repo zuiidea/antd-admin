@@ -1,34 +1,32 @@
-import { create, remove, update } from '../services/user'
-import { query } from '../services/users'
-import { routerRedux } from 'dva/router'
-import { parse } from 'qs'
+/* global window */
+import modelExtend from 'dva-model-extend'
+import { config } from 'utils'
+import { create, remove, update } from 'services/user'
+import * as usersService from 'services/users'
+import { pageModel } from './common'
 
-export default {
+const { query } = usersService
+const { prefix } = config
 
+export default modelExtend(pageModel, {
   namespace: 'user',
 
   state: {
-    list: [],
     currentItem: {},
     modalVisible: false,
     modalType: 'create',
-    isMotion: localStorage.getItem('antdAdminUserIsMotion') === 'true',
-    pagination: {
-      showSizeChanger: true,
-      showQuickJumper: true,
-      showTotal: total => `共 ${total} 条`,
-      current: 1,
-      total: null,
-    },
+    selectedRowKeys: [],
+    isMotion: window.localStorage.getItem(`${prefix}userIsMotion`) === 'true',
   },
 
   subscriptions: {
     setup ({ dispatch, history }) {
-      history.listen(location => {
+      history.listen((location) => {
         if (location.pathname === '/user') {
+          const payload = location.query || { current: 1, pageSize: 10 }
           dispatch({
             type: 'query',
-            payload: location.query,
+            payload,
           })
         }
       })
@@ -36,13 +34,8 @@ export default {
   },
 
   effects: {
-    *requery ({ payload }, { put }) {
-      yield put(routerRedux.push({
-        pathname: location.pathname,
-        query: parse(location.search.substr(1)),
-      }))
-    },
-    *query ({ payload }, { call, put }) {
+
+    * query ({ payload = {} }, { call, put }) {
       const data = yield call(query, payload)
       if (data) {
         yield put({
@@ -58,63 +51,66 @@ export default {
         })
       }
     },
-    *'delete' ({ payload }, { call, put }) {
+
+    * delete ({ payload }, { call, put, select }) {
       const data = yield call(remove, { id: payload })
+      const { selectedRowKeys } = yield select(_ => _.user)
       if (data.success) {
-        yield put({ type: 'requery' })
+        yield put({ type: 'updateState', payload: { selectedRowKeys: selectedRowKeys.filter(_ => _ !== payload) } })
+        yield put({ type: 'query' })
       } else {
         throw data
       }
     },
-    *create ({ payload }, { call, put }) {
-      yield put({ type: 'hideModal' })
+
+    * multiDelete ({ payload }, { call, put }) {
+      const data = yield call(usersService.remove, payload)
+      if (data.success) {
+        yield put({ type: 'updateState', payload: { selectedRowKeys: [] } })
+        yield put({ type: 'query' })
+      } else {
+        throw data
+      }
+    },
+
+    * create ({ payload }, { call, put }) {
       const data = yield call(create, payload)
       if (data.success) {
-        yield put({ type: 'requery' })
+        yield put({ type: 'hideModal' })
+        yield put({ type: 'query' })
       } else {
         throw data
       }
     },
-    *update ({ payload }, { select, call, put }) {
-      yield put({ type: 'hideModal' })
+
+    * update ({ payload }, { select, call, put }) {
       const id = yield select(({ user }) => user.currentItem.id)
       const newUser = { ...payload, id }
       const data = yield call(update, newUser)
       if (data.success) {
-        yield put({ type: 'requery' })
+        yield put({ type: 'hideModal' })
+        yield put({ type: 'query' })
       } else {
         throw data
       }
     },
-    *switchIsMotion ({
-      payload,
-    }, { put }) {
-      yield put({
-        type: 'handleSwitchIsMotion',
-      })
-    },
+
   },
 
   reducers: {
-    querySuccess (state, action) {
-      const { list, pagination } = action.payload
-      return { ...state,
-        list,
-        pagination: {
-          ...state.pagination,
-          ...pagination,
-        } }
+
+    showModal (state, { payload }) {
+      return { ...state, ...payload, modalVisible: true }
     },
-    showModal (state, action) {
-      return { ...state, ...action.payload, modalVisible: true }
-    },
+
     hideModal (state) {
       return { ...state, modalVisible: false }
     },
-    handleSwitchIsMotion (state) {
-      localStorage.setItem('antdAdminUserIsMotion', !state.isMotion)
+
+    switchIsMotion (state) {
+      window.localStorage.setItem(`${prefix}userIsMotion`, !state.isMotion)
       return { ...state, isMotion: !state.isMotion }
     },
-  },
 
-}
+  },
+})

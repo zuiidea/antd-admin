@@ -1,8 +1,8 @@
 import React from 'react'
-import { DropOption } from '../../../components'
+import { DropOption } from 'components'
 import { Table, Row, Col, Card, message } from 'antd'
 
-const DropOptionPage = () => <div className="content-inner">
+const DropOptionPage = () => (<div className="content-inner">
   <Row gutter={32}>
     <Col lg={8} md={12}>
       <Card title="默认">
@@ -90,6 +90,6 @@ const DropOptionPage = () => <div className="content-inner">
       />
     </Col>
   </Row>
-</div>
+</div>)
 
 export default DropOptionPage

@@ -1,15 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Table, Modal } from 'antd'
-import styles from './UserList.less'
 import classnames from 'classnames'
-import AnimTableBody from '../../components/DataTable/AnimTableBody'
-import { DropOption } from '../../components'
-import { Link } from 'dva/router'
+import { DropOption } from 'components'
+import { Link } from 'react-router-dom'
+import queryString from 'query-string'
+import AnimTableBody from 'components/DataTable/AnimTableBody'
+import styles from './List.less'
 
 const confirm = Modal.confirm
 
-function list ({ loading, dataSource, pagination, onPageChange, onDeleteItem, onEditItem, isMotion, location }) {
+const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) => {
+  location.query = queryString.parse(location.search)
+
   const handleMenuClick = (record, e) => {
     if (e.key === '1') {
       onEditItem(record)
@@ -30,7 +33,7 @@ function list ({ loading, dataSource, pagination, onPageChange, onDeleteItem, on
       key: 'avatar',
       width: 64,
       className: styles.avatar,
-      render: (text) => <img alt={'avatar'} width={24} src={text} />,
+      render: text => <img alt={'avatar'} width={24} src={text} />,
     }, {
       title: 'Name',
       dataIndex: 'name',
@@ -48,9 +51,9 @@ function list ({ loading, dataSource, pagination, onPageChange, onDeleteItem, on
       title: 'Gender',
       dataIndex: 'isMale',
       key: 'isMale',
-      render: (text) => <span>{text
-            ? 'Male'
-            : 'Female'}</span>,
+      render: text => (<span>{text
+        ? 'Male'
+        : 'Female'}</span>),
     }, {
       title: 'Phone',
       dataIndex: 'phone',
@@ -72,29 +75,26 @@ function list ({ loading, dataSource, pagination, onPageChange, onDeleteItem, on
       key: 'operation',
       width: 100,
       render: (text, record) => {
-        return <DropOption onMenuClick={e => handleMenuClick(record, e)} menuOptions={[{ key: '1', name: '编辑' }, { key: '2', name: '删除' }]} />
+        return <DropOption onMenuClick={e => handleMenuClick(record, e)} menuOptions={[{ key: '1', name: 'Update' }, { key: '2', name: 'Delete' }]} />
       },
     },
   ]
 
   const getBodyWrapperProps = {
     page: location.query.page,
-    current: pagination.current,
+    current: tableProps.pagination.current,
   }
 
-  const getBodyWrapper = body => { return isMotion ? <AnimTableBody {...getBodyWrapperProps} body={body} /> : body }
+  const getBodyWrapper = (body) => { return isMotion ? <AnimTableBody {...getBodyWrapperProps} body={body} /> : body }
 
   return (
     <div>
       <Table
+        {...tableProps}
         className={classnames({ [styles.table]: true, [styles.motion]: isMotion })}
         bordered
-        scroll={{ x: 1200 }}
+        scroll={{ x: 1250 }}
         columns={columns}
-        dataSource={dataSource}
-        loading={loading}
-        onChange={onPageChange}
-        pagination={pagination}
         simple
         rowKey={record => record.id}
         getBodyWrapper={getBodyWrapper}
@@ -103,15 +103,11 @@ function list ({ loading, dataSource, pagination, onPageChange, onDeleteItem, on
   )
 }
 
-list.propTypes = {
-  loading: PropTypes.bool,
-  dataSource: PropTypes.array,
-  pagination: PropTypes.object,
-  onPageChange: PropTypes.func,
+List.propTypes = {
   onDeleteItem: PropTypes.func,
   onEditItem: PropTypes.func,
   isMotion: PropTypes.bool,
   location: PropTypes.object,
 }
 
-export default list
+export default List

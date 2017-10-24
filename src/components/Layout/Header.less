@@ -1,4 +1,4 @@
-@import "../../themes/vars.less";
+@import "~themes/vars";
 
 .header {
   :global .ant-menu-horizontal {
@@ -14,9 +14,11 @@
   justify-content: space-between;
   height: 47px;
   background-color: #fff;
+  z-index: 999;
 
   .rightWarpper {
     display: flex;
+    padding-right: 16px;
   }
 
   .button {

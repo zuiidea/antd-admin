@@ -2,18 +2,26 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { routerRedux } from 'dva/router'
 import { connect } from 'dva'
-import UserList from './UserList'
-import UserFilter from './UserFilter'
-import UserModal from './UserModal'
+import { Row, Col, Button, Popconfirm } from 'antd'
+import { Page } from 'components'
+import queryString from 'query-string'
+import List from './List'
+import Filter from './Filter'
+import Modal from './Modal'
+
 
 const User = ({ location, dispatch, user, loading }) => {
-  const { list, pagination, currentItem, modalVisible, modalType, isMotion } = user
+  location.query = queryString.parse(location.search)
+  const { list, pagination, currentItem, modalVisible, modalType, isMotion, selectedRowKeys } = user
   const { pageSize } = pagination
 
-  const userModalProps = {
+  const modalProps = {
     item: modalType === 'create' ? {} : currentItem,
-    type: modalType,
     visible: modalVisible,
+    maskClosable: false,
+    confirmLoading: loading.effects['user/update'],
+    title: `${modalType === 'create' ? 'Create User' : 'Update User'}`,
+    wrapClassName: 'vertical-center-modal',
     onOk (data) {
       dispatch({
         type: `user/${modalType}`,
@@ -27,13 +35,13 @@ const User = ({ location, dispatch, user, loading }) => {
     },
   }
 
-  const userListProps = {
+  const listProps = {
     dataSource: list,
-    loading,
+    loading: loading.effects['user/query'],
     pagination,
     location,
     isMotion,
-    onPageChange (page) {
+    onChange (page) {
       const { query, pathname } = location
       dispatch(routerRedux.push({
         pathname,
@@ -59,9 +67,20 @@ const User = ({ location, dispatch, user, loading }) => {
         },
       })
     },
+    rowSelection: {
+      selectedRowKeys,
+      onChange: (keys) => {
+        dispatch({
+          type: 'user/updateState',
+          payload: {
+            selectedRowKeys: keys,
+          },
+        })
+      },
+    },
   }
 
-  const userFilterProps = {
+  const filterProps = {
     isMotion,
     filter: {
       ...location.query,
@@ -100,15 +119,32 @@ const User = ({ location, dispatch, user, loading }) => {
     },
   }
 
-  const UserModalGen = () =>
-    <UserModal {...userModalProps} />
+  const handleDeleteItems = () => {
+    dispatch({
+      type: 'user/multiDelete',
+      payload: {
+        ids: selectedRowKeys,
+      },
+    })
+  }
 
   return (
-    <div className="content-inner">
-      <UserFilter {...userFilterProps} />
-      <UserList {...userListProps} />
-      <UserModalGen />
-    </div>
+    <Page inner>
+      <Filter {...filterProps} />
+      {
+        selectedRowKeys.length > 0 &&
+        <Row style={{ marginBottom: 24, textAlign: 'right', fontSize: 13 }}>
+          <Col>
+            {`Selected ${selectedRowKeys.length} items `}
+            <Popconfirm title={'Are you sure delete these items?'} placement="left" onConfirm={handleDeleteItems}>
+              <Button type="primary" size="large" style={{ marginLeft: 8 }}>Remove</Button>
+            </Popconfirm>
+          </Col>
+        </Row>
+      }
+      <List {...listProps} />
+      {modalVisible && <Modal {...modalProps} />}
+    </Page>
   )
 }
 
@@ -116,7 +152,7 @@ User.propTypes = {
   user: PropTypes.object,
   location: PropTypes.object,
   dispatch: PropTypes.func,
-  loading: PropTypes.bool,
+  loading: PropTypes.object,
 }
 
-export default connect(({ user, loading }) => ({ user, loading: loading.models.user }))(User)
+export default connect(({ user, loading }) => ({ user, loading }))(User)

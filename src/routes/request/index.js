@@ -1,7 +1,6 @@
 import React from 'react'
-import styles from './index.less'
 import Mock from 'mockjs'
-import { request, config } from '../../utils'
+import { request, config } from 'utils'
 import {
   Row,
   Col,
@@ -10,20 +9,22 @@ import {
   Input,
   Button,
 } from 'antd'
-const { api, baseURL } = config
-const { dashboard, users, userLogin, user } = api
+import styles from './index.less'
+
+const { api } = config
+const { dashboard, users, userLogin, user, v1test, v2test } = api
 
 const requestOptions = [
   {
-    url: baseURL + user.replace('/:id', ''),
+    url: user.replace('/:id', ''),
     desc: 'intercept request by mock.js',
   },
   {
-    url: baseURL + dashboard,
+    url: dashboard,
     desc: 'intercept request by mock.js',
   },
   {
-    url: baseURL + userLogin,
+    url: userLogin,
     method: 'post',
     data: {
       username: 'guest',
@@ -32,18 +33,18 @@ const requestOptions = [
     desc: 'intercept request by mock.js',
   },
   {
-    url: baseURL + users,
+    url: users,
     desc: 'intercept request by mock.js',
   },
   {
-    url: baseURL + user,
+    url: user,
     desc: 'intercept request by mock.js',
     data: Mock.mock({
       id: '@id',
     }),
   },
   {
-    url: baseURL + user.replace('/:id', ''),
+    url: user.replace('/:id', ''),
     desc: 'intercept request by mock.js',
     method: 'post',
     data: Mock.mock({
@@ -60,7 +61,7 @@ const requestOptions = [
     }),
   },
   {
-    url: baseURL + user,
+    url: user,
     desc: 'intercept request by mock.js',
     method: 'patch',
     data: Mock.mock({
@@ -69,7 +70,7 @@ const requestOptions = [
     }),
   },
   {
-    url: baseURL + user,
+    url: user,
     desc: 'intercept request by mock.js',
     method: 'delete',
     data: Mock.mock({
@@ -77,7 +78,12 @@ const requestOptions = [
     }),
   },
   {
-    url: `${baseURL}/test`,
+    url: v1test,
+    desc: 'intercept request by mock.js',
+    method: 'get',
+  },
+  {
+    url: v2test,
     desc: 'intercept request by mock.js',
     method: 'get',
   },
@@ -129,7 +135,7 @@ export default class RequestPage extends React.Component {
     const state = this.state
     const curretUrl = value.split('?')[0]
     const curretMethod = value.split('?')[1]
-    const currntItem = requestOptions.filter(item => {
+    const currntItem = requestOptions.filter((item) => {
       const { method = 'get' } = item
       return curretUrl === item.url && curretMethod === method
     })
@@ -149,14 +155,18 @@ export default class RequestPage extends React.Component {
       <div className="content-inner">
         <Row gutter={32}>
           <Col {...colProps}>
-            <Card title="Request" style={{
-              overflow: 'visible',
-            }}>
+            <Card title="Request"
+              style={{
+                overflow: 'visible',
+              }}
+            >
               <div className={styles.option}>
-                <Select style={{
-                  width: '100%',
-                  flex: 1,
-                }} defaultValue={`${method.toLocaleUpperCase()}   ${requestOptions[0].url}`}
+                <Select
+                  style={{
+                    width: '100%',
+                    flex: 1,
+                  }}
+                  defaultValue={`${method.toLocaleUpperCase()}   ${requestOptions[0].url}`}
                   size="large"
                   onChange={this.handeleURLChange}
                 >

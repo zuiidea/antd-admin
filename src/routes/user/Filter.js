@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
-import { FilterItem } from '../../components'
+import { FilterItem } from 'components'
 import { Form, Button, Row, Col, DatePicker, Input, Cascader, Switch } from 'antd'
 import city from '../../utils/city'
 
@@ -21,7 +21,7 @@ const TwoColProps = {
   xl: 96,
 }
 
-const UserFilter = ({
+const Filter = ({
   onAdd,
   isMotion,
   switchIsMotion,
@@ -44,7 +44,6 @@ const UserFilter = ({
   const handleSubmit = () => {
     let fields = getFieldsValue()
     fields = handleFields(fields)
-    console.log(fields)
     onFilterChange(fields)
   }
 
@@ -102,7 +101,7 @@ const UserFilter = ({
         </FilterItem>
       </Col>
       <Col {...TwoColProps} xl={{ span: 10 }} md={{ span: 24 }} sm={{ span: 24 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
           <div >
             <Button type="primary" size="large" className="margin-right" onClick={handleSubmit}>Search</Button>
             <Button size="large" onClick={handleReset}>Reset</Button>
@@ -117,7 +116,7 @@ const UserFilter = ({
   )
 }
 
-UserFilter.propTypes = {
+Filter.propTypes = {
   onAdd: PropTypes.func,
   isMotion: PropTypes.bool,
   switchIsMotion: PropTypes.func,
@@ -126,4 +125,4 @@ UserFilter.propTypes = {
   onFilterChange: PropTypes.func,
 }
 
-export default Form.create()(UserFilter)
+export default Form.create()(Filter)

@@ -1,8 +1,8 @@
 import React from 'react'
-import { Search } from '../../../components'
+import { Search } from 'components'
 import { Table, Row, Col, Card } from 'antd'
 
-const SearchPage = () => <div className="content-inner">
+const SearchPage = () => (<div className="content-inner">
   <Row gutter={32}>
     <Col lg={8} md={12}>
       <Card title="默认">
@@ -93,6 +93,6 @@ const SearchPage = () => <div className="content-inner">
       />
     </Col>
   </Row>
-</div>
+</div>)
 
 export default SearchPage

@@ -1,5 +1,5 @@
 import React from 'react'
-import { DataTable } from '../../../components'
+import { DataTable } from 'components'
 import { Table, Row, Col, Card, Select } from 'antd'
 
 class DataTablePage extends React.Component {
@@ -35,7 +35,7 @@ class DataTablePage extends React.Component {
         dataKey: 'results',
       },
       columns: [
-        { title: 'Name', dataIndex: 'name', render: (text) => `${text.first} ${text.last}` },
+        { title: 'Name', dataIndex: 'name', render: text => `${text.first} ${text.last}` },
         { title: 'Phone', dataIndex: 'phone' },
         { title: 'Gender', dataIndex: 'gender' },
       ],
@@ -53,7 +53,7 @@ class DataTablePage extends React.Component {
         dataKey: 'results',
       },
       columns: [
-        { title: 'Name', dataIndex: 'name', render: (text) => `${text.first} ${text.last}` },
+        { title: 'Name', dataIndex: 'name', render: text => `${text.first} ${text.last}` },
         { title: 'Phone', dataIndex: 'phone' },
         { title: 'Gender', dataIndex: 'gender' },
       ],
