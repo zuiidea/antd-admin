@@ -21,6 +21,12 @@
 
 ## 更新日志
 
+### 4.3.7
+
+`2017-10-30`
+
+-     更新`chart`，新增[ECharts](https://github.com/ecomfe/echarts)，[highCharts](https://github.com/highcharts/highcharts)，[Recharts](https://github.com/recharts/recharts)演示。
+
 
 ### 4.3.5
 
