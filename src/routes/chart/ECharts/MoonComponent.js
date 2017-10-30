@@ -4,13 +4,13 @@ import 'echarts-gl'
 
 const option = {
   globe: {
-    baseTexture: '/asset/data-1493804606544-r1PBU7D1W.jpg',
-    heightTexture: '/asset/data-1493804610896-SJoBIXPkW.jpg',
+    baseTexture: '/assets/data-1493804606544-r1PBU7D1W.jpg',
+    heightTexture: '/assets/data-1493804610896-SJoBIXPkW.jpg',
 
     displacementScale: 0.05,
     displacementQuality: 'medium',
 
-    environment: '/asset/data-1491837999815-H1_44Qtal.jpg',
+    environment: '/assets/data-1491837999815-H1_44Qtal.jpg',
 
     shading: 'realistic',
     realisticMaterial: {
