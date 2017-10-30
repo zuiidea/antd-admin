@@ -40,13 +40,11 @@ const Bread = ({ menu, location }) => {
 
     let keys = []
     let values = pathToRegexp(current.route, keys).exec(location.pathname.replace('#', ''))
-
-    if (keys && values && (keys.length + 1) === values.length) {
+    if (keys.length) {
       keys.forEach((currentValue, index) => {
         if (typeof currentValue.name !== 'string') {
           return
         }
-
         paramMap[currentValue.name] = values[index + 1]
       })
     }
@@ -62,7 +60,7 @@ const Bread = ({ menu, location }) => {
     return (
       <Breadcrumb.Item key={key}>
         {((pathArray.length - 1) !== key)
-          ? <Link to={pathToRegexp.compile(item.route)(paramMap) || '#'}>
+          ? <Link to={pathToRegexp.compile(item.route || '')(paramMap) || '#'}>
             {content}
           </Link>
           : content}
