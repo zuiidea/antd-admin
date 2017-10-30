@@ -50,14 +50,14 @@ const Routers = function ({ history, app }) {
       path: '/UIElement/editor',
       component: () => import('./routes/UIElement/editor/'),
     }, {
-      path: '/chart/lineChart',
-      component: () => import('./routes/chart/lineChart/'),
+      path: '/chart/ECharts',
+      component: () => import('./routes/chart/ECharts/'),
     }, {
-      path: '/chart/barChart',
-      component: () => import('./routes/chart/barChart/'),
+      path: '/chart/highCharts',
+      component: () => import('./routes/chart/highCharts/'),
     }, {
-      path: '/chart/areaChart',
-      component: () => import('./routes/chart/areaChart/'),
+      path: '/chart/Recharts',
+      component: () => import('./routes/chart/Recharts/'),
     }, {
       path: '/post',
       models: () => [import('./models/post')],

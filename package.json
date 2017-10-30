@@ -1,9 +1,9 @@
 {
   "private": true,
   "name": "antd-admin",
-  "version": "4.3.6",
+  "version": "4.3.7",
   "dependencies": {
-    "antd": "^2.11.2",
+    "antd": "^2.13.8",
     "axios": "^0.16.2",
     "babel-polyfill": "^6.23.0",
     "classnames": "^2.2.5",
@@ -12,7 +12,13 @@
     "draftjs-to-markdown": "^0.4.0",
     "dva": "^2.0.1",
     "dva-loading": "^0.2.0",
+    "echarts": "^3.7.2",
+    "echarts-for-react": "^2.0.0",
+    "echarts-gl": "^1.0.0-beta.5",
+    "echarts-liquidfill": "^1.1.0",
     "ejs-loader": "^0.3.0",
+    "highcharts-exporting": "^0.1.2",
+    "highcharts-more": "^0.1.2",
     "history": "^4.7.2",
     "js-beautify": "^1.6.14",
     "jsonp": "^0.2.1",
@@ -30,7 +36,8 @@
     "react-dom": "^15.6.1",
     "react-draft-wysiwyg": "^1.10.0",
     "react-helmet": "^5.1.3",
-    "recharts": "^0.22.4"
+    "react-highcharts": "^13.0.0",
+    "recharts": "^1.0.0-beta.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
@@ -56,6 +63,7 @@
   "pre-commit": ["lint"],
   "scripts": {
     "dev": "cross-env BROWSER=none HOST=0.0.0.0 roadhog server",
+    "start": "roadhog buildDll & cross-env BROWSER=none HOST=0.0.0.0 roadhog server",
     "lint": "eslint --fix --ext .js src",
     "build": "roadhog build",
     "build:dll": "roadhog buildDll",

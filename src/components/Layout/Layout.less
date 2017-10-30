@@ -249,7 +249,10 @@
 
   .ant-menu-item-selected {
     color: @primary-color;
-    background-color: @dark-half;
+
+    &.ant-menu-item {
+      background: @dark-half;
+    }
 
     & > a {
       color: @primary-color;
