@@ -1,10 +1,12 @@
 /* global window */
+/* global document */
 import React from 'react'
 import NProgress from 'nprogress'
 import PropTypes from 'prop-types'
 import pathToRegexp from 'path-to-regexp'
 import { connect } from 'dva'
 import { Layout, Loader } from 'components'
+import { BackTop } from 'antd'
 import { classnames, config } from 'utils'
 import { Helmet } from 'react-helmet'
 import { withRouter } from 'dva/router'
@@ -95,7 +97,8 @@ const App = ({ children, dispatch, app, loading, location }) => {
         {!isNavbar ? <aside className={classnames(styles.sider, { [styles.light]: !darkTheme })}>
           {siderProps.menu.length === 0 ? null : <Sider {...siderProps} />}
         </aside> : ''}
-        <div className={styles.main}>
+        <div className={styles.main} id="mainContainer">
+          <BackTop target={() => document.getElementById('mainContainer')} />
           <Header {...headerProps} />
           <Bread {...breadProps} />
           <div className={styles.container}>
