@@ -88,12 +88,11 @@ const User = ({ location, dispatch, user, loading }) => {
     onFilterChange (value) {
       dispatch(routerRedux.push({
         pathname: location.pathname,
-        //history 的 location 属性上不再包含 query。
-        search: queryString.stringify({
+        query: {
           ...value,
           page: 1,
           pageSize,
-        }),
+        },
       }))
     },
     onSearch (fieldsValue) {
