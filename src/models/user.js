@@ -23,7 +23,7 @@ export default modelExtend(pageModel, {
     setup ({ dispatch, history }) {
       history.listen((location) => {
         if (location.pathname === '/user') {
-          const payload = location.query || { current: 1, pageSize: 10 }
+          const payload = location.query || { page: 1, pageSize: 10 }
           dispatch({
             type: 'query',
             payload,
