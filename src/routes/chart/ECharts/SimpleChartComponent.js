@@ -2,9 +2,7 @@ import React from 'react'
 import ReactEcharts from 'echarts-for-react'
 import './theme/macarons.js'
 
-const SimpleChartComponent = React.createClass({
-  propTypes: {
-  },
+class SimpleChartComponent extends React.Component {
   getOtion () {
     const option = {
       title: {
@@ -64,7 +62,8 @@ const SimpleChartComponent = React.createClass({
       ],
     }
     return option
-  },
+  }
+
   render () {
     let code = '<ReactEcharts \n' +
                     '    option={this.getOtion()} \n' +
@@ -87,7 +86,8 @@ const SimpleChartComponent = React.createClass({
         </div>
       </div>
     )
-  },
-})
+  }
+}
+
 
 export default SimpleChartComponent

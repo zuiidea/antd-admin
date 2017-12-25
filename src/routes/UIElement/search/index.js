@@ -27,7 +27,7 @@ const SearchPage = () => (<div className="content-inner">
     </Col>
     <Col lg={8} md={12}>
       <Card title="大小">
-        <Search size="large" style={{ marginBottom: 16 }} />
+        <Search style={{ marginBottom: 16 }} />
         <Search size="small" />
       </Card>
     </Col>

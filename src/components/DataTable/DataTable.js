@@ -8,12 +8,14 @@ import './DataTable.less'
 class DataTable extends React.Component {
   constructor (props) {
     super(props)
-    const { dataSource, pagination = {
-      showSizeChanger: true,
-      showQuickJumper: true,
-      showTotal: total => `共 ${total} 条`,
-      current: 1,
-      total: 100 },
+    const {
+      dataSource, pagination = {
+        showSizeChanger: true,
+        showQuickJumper: true,
+        showTotal: total => `共 ${total} 条`,
+        current: 1,
+        total: 100,
+      },
     } = props
     this.state = {
       loading: false,
@@ -97,13 +99,12 @@ class DataTable extends React.Component {
   }
 }
 
-
 DataTable.propTypes = {
   fetch: PropTypes.object,
   rowKey: PropTypes.string,
-  pagination: React.PropTypes.oneOfType([
-    React.PropTypes.bool,
-    React.PropTypes.object,
+  pagination: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.object,
   ]),
   columns: PropTypes.array,
   dataSource: PropTypes.array,

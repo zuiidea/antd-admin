@@ -27,7 +27,7 @@ const Login = ({
   return (
     <div className={styles.form}>
       <div className={styles.logo}>
-        <img alt={'logo'} src={config.logo} />
+        <img alt="logo" src={config.logo} />
         <span>{config.name}</span>
       </div>
       <form>
@@ -38,7 +38,7 @@ const Login = ({
                 required: true,
               },
             ],
-          })(<Input size="large" onPressEnter={handleOk} placeholder="Username" />)}
+          })(<Input onPressEnter={handleOk} placeholder="Username" />)}
         </FormItem>
         <FormItem hasFeedback>
           {getFieldDecorator('password', {
@@ -47,10 +47,10 @@ const Login = ({
                 required: true,
               },
             ],
-          })(<Input size="large" type="password" onPressEnter={handleOk} placeholder="Password" />)}
+          })(<Input type="password" onPressEnter={handleOk} placeholder="Password" />)}
         </FormItem>
         <Row>
-          <Button type="primary" size="large" onClick={handleOk} loading={loading.effects.login}>
+          <Button type="primary" onClick={handleOk} loading={loading.effects.login}>
             Sign in
           </Button>
           <p>
