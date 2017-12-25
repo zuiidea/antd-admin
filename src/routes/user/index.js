@@ -14,6 +14,7 @@ const User = ({
   location, dispatch, user, loading,
 }) => {
   location.query = queryString.parse(location.search)
+  const { query, pathname } = location
   const {
     list, pagination, currentItem, modalVisible, modalType, isMotion, selectedRowKeys,
   } = user
@@ -46,14 +47,13 @@ const User = ({
     location,
     isMotion,
     onChange (page) {
-      const { query, pathname } = location
       dispatch(routerRedux.push({
         pathname,
-        query: {
+        search: queryString.stringify({
           ...query,
           page: page.current,
           pageSize: page.pageSize,
-        },
+        }),
       }))
     },
     onDeleteItem (id) {
@@ -87,16 +87,16 @@ const User = ({
   const filterProps = {
     isMotion,
     filter: {
-      ...location.query,
+      ...query,
     },
     onFilterChange (value) {
       dispatch(routerRedux.push({
         pathname: location.pathname,
-        query: {
+        search: queryString.stringify({
           ...value,
           page: 1,
           pageSize,
-        },
+        }),
       }))
     },
     onSearch (fieldsValue) {

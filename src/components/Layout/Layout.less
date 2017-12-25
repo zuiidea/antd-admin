@@ -1,7 +1,6 @@
 @import "~themes/vars";
 
 :global {
-
   .ant-layout-header {
     padding: 0;
   }
@@ -40,27 +39,20 @@
 
   .ant-layout-footer {
     text-align: center;
-    padding: 24px;
-  }
-
-  .content-inner {
-    background: #fff;
-    padding: 24px;
-    box-shadow: @shadow-1;
-    min-height: e("calc(100vh - 184px)");
+    padding: 0 24px;
+    height: 40px;
+    font-size: 12px;
+    line-height: 40px;
   }
 
   .ant-back-top {
     right: 50px;
   }
 
-  .ant-switch {
+  .ant-switch.ant-switch-large {
+    line-height: 24px;
+    height: 26px;
 
-  }
-
-.ant-switch.ant-switch-large{
-  line-height: 24px;
-  height: 26px;
     &:after,
     &:before {
       width: 22px;
@@ -72,11 +64,15 @@
       margin-left: -23px;
     }
   }
-.flex-vertical-center{
-  display: flex;
-  align-items: center
-}
 
+  .flex-vertical-center {
+    display: flex;
+    align-items: center;
+  }
+
+  .ant-form-item {
+    margin-bottom: 12px;
+  }
 }
 
 .logo {

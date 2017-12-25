@@ -121,7 +121,6 @@ const App = ({
           </Footer>
         </Layout>
       </Layout>
-
     </div>
   )
 }

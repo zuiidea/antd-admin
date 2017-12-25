@@ -10,7 +10,7 @@
     "cross-env": "^5.0.5",
     "d3-shape": "^1.2.0",
     "draftjs-to-markdown": "^0.5.0",
-    "dva": "^2.0.1",
+    "dva": "2.1.0",
     "dva-loading": "^1.0.4",
     "echarts": "^3.7.2",
     "echarts-for-react": "^2.0.0",
