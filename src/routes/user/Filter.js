@@ -5,7 +5,7 @@ import { FilterItem } from 'components'
 import { Form, Button, Row, Col, DatePicker, Input, Cascader, Switch } from 'antd'
 import city from '../../utils/city'
 
-const Search = Input.Search
+const { Search } = Input
 const { RangePicker } = DatePicker
 
 const ColProps = {
@@ -98,12 +98,12 @@ const Filter = ({
       </Col>
       <Col {...TwoColProps} xl={{ span: 10 }} md={{ span: 24 }} sm={{ span: 24 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-          <div >
+          <div>
             <Button type="primary" className="margin-right" onClick={handleSubmit}>Search</Button>
             <Button onClick={handleReset}>Reset</Button>
           </div>
-          <div>
-            <Switch style={{ marginRight: 16 }} defaultChecked={isMotion} onChange={switchIsMotion} checkedChildren="Motion" unCheckedChildren="Motion" />
+          <div className="flex-vertical-center">
+            <Switch className="ant-switch-large" style={{ marginRight: 16 }} defaultChecked={isMotion} onChange={switchIsMotion} checkedChildren="Motion" unCheckedChildren="Motion" />
             <Button type="ghost" onClick={onAdd}>Create</Button>
           </div>
         </div>

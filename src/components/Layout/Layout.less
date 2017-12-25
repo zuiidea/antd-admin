@@ -2,12 +2,13 @@
 
 :global {
 
-  .ant-layout-header{
+  .ant-layout-header {
     padding: 0;
   }
 
-  .ant-layout-sider{
-    transition:  all .3s;
+  .ant-layout-sider {
+    transition: all 0.3s;
+
     .ant-menu-root {
       height: ~"calc(100vh - 144px)";
       overflow-x: hidden;
@@ -32,29 +33,58 @@
       }
     }
   }
-  .ant-layout-content{
+
+  .ant-layout-content {
     padding: 24px;
   }
 
-  .ant-layout-footer{
+  .ant-layout-footer {
     text-align: center;
     padding: 24px;
   }
 
   .content-inner {
-        background: #fff;
-        padding: 24px;
-        box-shadow: @shadow-1;
-        min-height: e("calc(100vh - 184px)");
-      }
+    background: #fff;
+    padding: 24px;
+    box-shadow: @shadow-1;
+    min-height: e("calc(100vh - 184px)");
+  }
+
+  .ant-back-top {
+    right: 50px;
+  }
+
+  .ant-switch {
+
+  }
+
+.ant-switch.ant-switch-large{
+  line-height: 24px;
+  height: 26px;
+    &:after,
+    &:before {
+      width: 22px;
+      height: 22px;
+    }
+
+    &.ant-switch-checked:after,
+    &.ant-switch-checked:before {
+      margin-left: -23px;
+    }
+  }
+.flex-vertical-center{
+  display: flex;
+  align-items: center
 }
 
+}
 
 .logo {
   height: 96px;
   display: flex;
   align-items: center;
   justify-content: center;
+
   img {
     width: 40px;
     margin-right: 8px;
@@ -64,7 +94,7 @@
     vertical-align: text-bottom;
     font-size: 16px;
     text-transform: uppercase;
-    display: inline-block
+    display: inline-block;
   }
 }
 
@@ -81,7 +111,7 @@
   padding: 0 16px;
   overflow: hidden;
   z-index: 9;
-  transition: all .3s;
+  transition: all 0.3s;
 
   span {
     white-space: nowrap;
@@ -98,9 +128,9 @@
   }
 }
 
-
 .bread {
   margin-bottom: 24px;
+
   :global {
     .ant-breadcrumb {
       display: flex;
@@ -109,10 +139,10 @@
   }
 }
 
-.dark{
+.dark {
   .switchtheme {
     background-color: #000d18;
-    border-color:  #001629;
+    border-color: #001629;
   }
 }
 
@@ -123,7 +153,6 @@
     }
   }
 }
-
 @media (max-width: 767px) {
   .bread {
     margin-bottom: 12px;
@@ -134,10 +163,9 @@
       padding: 12px;
     }
 
-    .ant-back-top{
+    .ant-back-top {
       right: 20px;
       bottom: 20px;
     }
-
   }
 }

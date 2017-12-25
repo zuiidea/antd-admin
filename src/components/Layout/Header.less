@@ -1,20 +1,55 @@
 @import "~themes/vars";
 
 .header {
-  :global .ant-menu-horizontal {
-    & > .ant-menu-submenu {
-      float: right;
+  :global {
+    .ant-menu-submenu-title {
+      height: 56px;
     }
-    border: none;
-    display: inline-block;
+
+    .ant-menu-horizontal {
+      line-height: 56px;
+
+      & > .ant-menu-submenu:hover {
+        color: #1890ff;
+        background-color: rgba(24, 144, 255, 0.15);
+      }
+    }
+
+    .ant-menu {
+      border-bottom: none;
+      height: 56px;
+    }
+
+    .ant-menu-horizontal > .ant-menu-submenu {
+      top: 0;
+      margin-top: 0;
+    }
+
+    .ant-menu-horizontal > .ant-menu-item,
+    .ant-menu-horizontal > .ant-menu-submenu {
+      border-bottom: none;
+    }
+
+    .ant-menu-horizontal > .ant-menu-item-active,
+    .ant-menu-horizontal > .ant-menu-item-open,
+    .ant-menu-horizontal > .ant-menu-item-selected,
+    .ant-menu-horizontal > .ant-menu-item:hover,
+    .ant-menu-horizontal > .ant-menu-submenu-active,
+    .ant-menu-horizontal > .ant-menu-submenu-open,
+    .ant-menu-horizontal > .ant-menu-submenu-selected,
+    .ant-menu-horizontal > .ant-menu-submenu:hover {
+      border-bottom: none;
+    }
   }
   box-shadow: @shadow-2;
   position: relative;
   display: flex;
   justify-content: space-between;
-  height: 47px;
+  height: 56px;
+  z-index: 9;
+  display: flex;
+  align-items: center;
   background-color: #fff;
-  z-index: 999;
 
   .rightWarpper {
     display: flex;
@@ -22,9 +57,9 @@
   }
 
   .button {
-    width: 47px;
-    height: 47px;
-    line-height: 47px;
+    width: 56px;
+    height: 56px;
+    line-height: 56px;
     text-align: center;
     font-size: 18px;
     cursor: pointer;
