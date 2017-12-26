@@ -192,8 +192,4 @@ class DynamicChartComponent extends React.Component {
   }
 }
 
-// const DynamicChartComponent = React.createClass({
-//
-// })
-
 export default DynamicChartComponent

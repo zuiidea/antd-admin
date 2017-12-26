@@ -3,31 +3,13 @@ import ReactEcharts from 'echarts-for-react'
 
 require('echarts/map/js/china.js')
 
-const MapChartComponent = React.createClass({
-  propTypes: {
-  },
-  getInitialState () {
-    return { option: this.getOtion() }
-  },
-  componentDidMount () {
-    if (this.timeTicket) {
-      clearInterval(this.timeTicket)
+class MapChartComponent extends React.Component {
+  constructor () {
+    super()
+    this.timeTicket = null
+    const randomData = () => {
+      return Math.round(Math.random() * 1000)
     }
-    this.timeTicket = setInterval(() => {
-      const option = this.state.option
-      const r = new Date().getSeconds()
-      option.title.text = `iphone销量${r}`
-      option.series[0].name = `iphone销量${r}`
-      option.legend.data[0] = `iphone销量${r}`
-      this.setState({ option })
-    }, 1000)
-  },
-  componentWillUnmount () {
-    if (this.timeTicket) {
-      clearInterval(this.timeTicket)
-    }
-  },
-  getOtion () {
     const option = {
       title: {
         text: 'iphone销量',
@@ -76,40 +58,40 @@ const MapChartComponent = React.createClass({
             },
           },
           data: [
-            { name: '北京', value: this.randomData() },
-            { name: '天津', value: this.randomData() },
-            { name: '上海', value: this.randomData() },
-            { name: '重庆', value: this.randomData() },
-            { name: '河北', value: this.randomData() },
-            { name: '河南', value: this.randomData() },
-            { name: '云南', value: this.randomData() },
-            { name: '辽宁', value: this.randomData() },
-            { name: '黑龙江', value: this.randomData() },
-            { name: '湖南', value: this.randomData() },
-            { name: '安徽', value: this.randomData() },
-            { name: '山东', value: this.randomData() },
-            { name: '新疆', value: this.randomData() },
-            { name: '江苏', value: this.randomData() },
-            { name: '浙江', value: this.randomData() },
-            { name: '江西', value: this.randomData() },
-            { name: '湖北', value: this.randomData() },
-            { name: '广西', value: this.randomData() },
-            { name: '甘肃', value: this.randomData() },
-            { name: '山西', value: this.randomData() },
-            { name: '内蒙古', value: this.randomData() },
-            { name: '陕西', value: this.randomData() },
-            { name: '吉林', value: this.randomData() },
-            { name: '福建', value: this.randomData() },
-            { name: '贵州', value: this.randomData() },
-            { name: '广东', value: this.randomData() },
-            { name: '青海', value: this.randomData() },
-            { name: '西藏', value: this.randomData() },
-            { name: '四川', value: this.randomData() },
-            { name: '宁夏', value: this.randomData() },
-            { name: '海南', value: this.randomData() },
-            { name: '台湾', value: this.randomData() },
-            { name: '香港', value: this.randomData() },
-            { name: '澳门', value: this.randomData() },
+            { name: '北京', value: randomData() },
+            { name: '天津', value: randomData() },
+            { name: '上海', value: randomData() },
+            { name: '重庆', value: randomData() },
+            { name: '河北', value: randomData() },
+            { name: '河南', value: randomData() },
+            { name: '云南', value: randomData() },
+            { name: '辽宁', value: randomData() },
+            { name: '黑龙江', value: randomData() },
+            { name: '湖南', value: randomData() },
+            { name: '安徽', value: randomData() },
+            { name: '山东', value: randomData() },
+            { name: '新疆', value: randomData() },
+            { name: '江苏', value: randomData() },
+            { name: '浙江', value: randomData() },
+            { name: '江西', value: randomData() },
+            { name: '湖北', value: randomData() },
+            { name: '广西', value: randomData() },
+            { name: '甘肃', value: randomData() },
+            { name: '山西', value: randomData() },
+            { name: '内蒙古', value: randomData() },
+            { name: '陕西', value: randomData() },
+            { name: '吉林', value: randomData() },
+            { name: '福建', value: randomData() },
+            { name: '贵州', value: randomData() },
+            { name: '广东', value: randomData() },
+            { name: '青海', value: randomData() },
+            { name: '西藏', value: randomData() },
+            { name: '四川', value: randomData() },
+            { name: '宁夏', value: randomData() },
+            { name: '海南', value: randomData() },
+            { name: '台湾', value: randomData() },
+            { name: '香港', value: randomData() },
+            { name: '澳门', value: randomData() },
           ],
         },
         {
@@ -125,25 +107,25 @@ const MapChartComponent = React.createClass({
             },
           },
           data: [
-            { name: '北京', value: this.randomData() },
-            { name: '天津', value: this.randomData() },
-            { name: '上海', value: this.randomData() },
-            { name: '重庆', value: this.randomData() },
-            { name: '河北', value: this.randomData() },
-            { name: '安徽', value: this.randomData() },
-            { name: '新疆', value: this.randomData() },
-            { name: '浙江', value: this.randomData() },
-            { name: '江西', value: this.randomData() },
-            { name: '山西', value: this.randomData() },
-            { name: '内蒙古', value: this.randomData() },
-            { name: '吉林', value: this.randomData() },
-            { name: '福建', value: this.randomData() },
-            { name: '广东', value: this.randomData() },
-            { name: '西藏', value: this.randomData() },
-            { name: '四川', value: this.randomData() },
-            { name: '宁夏', value: this.randomData() },
-            { name: '香港', value: this.randomData() },
-            { name: '澳门', value: this.randomData() },
+            { name: '北京', value: randomData() },
+            { name: '天津', value: randomData() },
+            { name: '上海', value: randomData() },
+            { name: '重庆', value: randomData() },
+            { name: '河北', value: randomData() },
+            { name: '安徽', value: randomData() },
+            { name: '新疆', value: randomData() },
+            { name: '浙江', value: randomData() },
+            { name: '江西', value: randomData() },
+            { name: '山西', value: randomData() },
+            { name: '内蒙古', value: randomData() },
+            { name: '吉林', value: randomData() },
+            { name: '福建', value: randomData() },
+            { name: '广东', value: randomData() },
+            { name: '西藏', value: randomData() },
+            { name: '四川', value: randomData() },
+            { name: '宁夏', value: randomData() },
+            { name: '香港', value: randomData() },
+            { name: '澳门', value: randomData() },
           ],
         },
         {
@@ -159,23 +141,42 @@ const MapChartComponent = React.createClass({
             },
           },
           data: [
-            { name: '北京', value: this.randomData() },
-            { name: '天津', value: this.randomData() },
-            { name: '上海', value: this.randomData() },
-            { name: '广东', value: this.randomData() },
-            { name: '台湾', value: this.randomData() },
-            { name: '香港', value: this.randomData() },
-            { name: '澳门', value: this.randomData() },
+            { name: '北京', value: randomData() },
+            { name: '天津', value: randomData() },
+            { name: '上海', value: randomData() },
+            { name: '广东', value: randomData() },
+            { name: '台湾', value: randomData() },
+            { name: '香港', value: randomData() },
+            { name: '澳门', value: randomData() },
           ],
         },
       ],
     }
-    return option
-  },
-  randomData () {
-    return Math.round(Math.random() * 1000)
-  },
-  timeTicket: null,
+    this.state = {
+      option,
+    }
+  }
+
+  componentDidMount () {
+    if (this.timeTicket) {
+      clearInterval(this.timeTicket)
+    }
+    this.timeTicket = setInterval(() => {
+      const { option } = this.state
+      const r = new Date().getSeconds()
+      option.title.text = `iphone销量${r}`
+      option.series[0].name = `iphone销量${r}`
+      option.legend.data[0] = `iphone销量${r}`
+      this.setState({ option })
+    }, 1000)
+  }
+
+  componentWillUnmount () {
+    if (this.timeTicket) {
+      clearInterval(this.timeTicket)
+    }
+  }
+
   render () {
     let code = "require('echarts/map/js/china.js'); \n" +
                     '<ReactEcharts \n' +
@@ -198,7 +199,7 @@ const MapChartComponent = React.createClass({
         </div>
       </div>
     )
-  },
-})
+  }
+}
 
 export default MapChartComponent

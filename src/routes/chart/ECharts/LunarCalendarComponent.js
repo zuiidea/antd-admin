@@ -2,8 +2,8 @@ import React from 'react'
 import ReactEcharts from 'echarts-for-react'
 import echarts from 'echarts'
 
-const LunarCalendarComponent = React.createClass({
-  getOtion () {
+const LunarCalendarComponent = () => {
+  const getOtion = () => {
     let dateList = [
       ['2017-1-1', '初四'],
       ['2017-1-2', '初五'],
@@ -473,21 +473,20 @@ const LunarCalendarComponent = React.createClass({
       }],
     }
     return option
-  },
-  render () {
-    return (
-      <div className="examples">
-        <div className="parent">
-          <label> render a lunar calendar chart. </label>
-          <ReactEcharts
-            option={this.getOtion()}
-            style={{ height: '500px', width: '100%' }}
-            className="react_for_echarts"
-          />
-        </div>
+  }
+
+  return (
+    <div className="examples">
+      <div className="parent">
+        <label> render a lunar calendar chart. </label>
+        <ReactEcharts
+          option={getOtion()}
+          style={{ height: '500px', width: '100%' }}
+          className="react_for_echarts"
+        />
       </div>
-    )
-  },
-})
+    </div>
+  )
+}
 
 export default LunarCalendarComponent

@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "antd-admin",
-  "version": "4.3.8",
+  "version": "4.3.9",
   "dependencies": {
     "antd": "3.0.3",
     "axios": "^0.17.1",

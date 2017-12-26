@@ -1,5 +1,6 @@
 import React from 'react'
 import { Radio } from 'antd'
+import { Page } from 'components'
 import HighChartsComponent from './HighChartsComponent'
 import styles from './index.less'
 
@@ -34,12 +35,12 @@ class Chart extends React.Component {
     })
   }
   render () {
-    return (<div className="content-inner">
+    return (<Page inner>
       <RadioGroup options={chartList} defaultValue="Highstock" onChange={this.handleRadioGroupChange} />
       <div className={styles.chart}>
         <HighChartsComponent type={this.state.type} />
       </div>
-    </div>)
+    </Page>)
   }
 }
 

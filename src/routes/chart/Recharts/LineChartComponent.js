@@ -179,7 +179,6 @@ const CustomizedDotLineChart = () => (
 const LineChartPage = () => (
   <div className="content-inner">
     <Button type="primary"
-      size="large"
       style={{
         position: 'absolute',
         right: 0,

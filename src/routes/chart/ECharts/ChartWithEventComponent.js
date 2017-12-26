@@ -1,19 +1,17 @@
 import React from 'react'
 import ReactEcharts from 'echarts-for-react'
 
-const ChartWithEventComponent = React.createClass({
-  propTypes: {
-  },
-  onChartReady (echart) {
+const ChartWithEventComponent = () => {
+  const onChartReady = (echart) => {
     console.log('echart is ready', echart)
-  },
-  onChartLegendselectchanged (param, echart) {
+  }
+  const onChartLegendselectchanged = (param, echart) => {
     console.log(param, echart)
-  },
-  onChartClick (param, echart) {
+  }
+  const onChartClick = (param, echart) => {
     console.log(param, echart)
-  },
-  getOtion () {
+  }
+  const getOtion = () => {
     const option = {
       title: {
         text: '某站点用户访问来源',
@@ -53,40 +51,39 @@ const ChartWithEventComponent = React.createClass({
       ],
     }
     return option
-  },
-  render () {
-    let onEvents = {
-      click: this.onChartClick,
-      legendselectchanged: this.onChartLegendselectchanged,
-    }
-    let code = 'let onEvents = {\n' +
-                   "  'click': this.onChartClick,\n" +
-                   "  'legendselectchanged': this.onChartLegendselectchanged\n" +
+  }
+
+  let onEvents = {
+    click: onChartClick,
+    legendselectchanged: onChartLegendselectchanged,
+  }
+  let code = 'let onEvents = {\n' +
+                   "  'click': onChartClick,\n" +
+                   "  'legendselectchanged': onChartLegendselectchanged\n" +
                    '}\n\n' +
                    '<ReactEcharts \n' +
-                    '    option={this.getOtion()} \n' +
+                    '    option={getOtion()} \n' +
                     '    style={{height: 300}} \n' +
-                    '    onChartReady={this.onChartReady} \n' +
+                    '    onChartReady={onChartReady} \n' +
                     '    onEvents={onEvents} />'
 
-    return (
-      <div className="examples">
-        <div className="parent">
-          <label> Chart With event <strong> onEvents </strong>: (Click the chart, and watch the console)</label>
-          <ReactEcharts
-            option={this.getOtion()}
-            style={{ height: 300 }}
-            onChartReady={this.onChartReady}
-            onEvents={onEvents}
-          />
-          <label> code below: </label>
-          <pre>
-            <code>{code}</code>
-          </pre>
-        </div>
+  return (
+    <div className="examples">
+      <div className="parent">
+        <label> Chart With event <strong> onEvents </strong>: (Click the chart, and watch the console)</label>
+        <ReactEcharts
+          option={getOtion()}
+          style={{ height: 300 }}
+          onChartReady={onChartReady}
+          onEvents={onEvents}
+        />
+        <label> code below: </label>
+        <pre>
+          <code>{code}</code>
+        </pre>
       </div>
-    )
-  },
-})
+    </div>
+  )
+}
 
 export default ChartWithEventComponent
