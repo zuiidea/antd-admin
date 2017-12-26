@@ -4,6 +4,7 @@ import { connect } from 'dva'
 import { Tabs } from 'antd'
 import { routerRedux } from 'dva/router'
 import queryString from 'query-string'
+import { Page } from 'components'
 import List from './List'
 
 const { TabPane } = Tabs
@@ -20,7 +21,6 @@ const Index = ({
   const { list, pagination } = post
   location.query = queryString.parse(location.search)
   const { query, pathname } = location
-  console.log(location, query, pathname)
 
   const listProps = {
     pagination,
@@ -48,7 +48,7 @@ const Index = ({
   }
 
 
-  return (<div className="content-inner">
+  return (<Page inner>
     <Tabs activeKey={query.status === String(EnumPostStatus.UNPUBLISH) ? String(EnumPostStatus.UNPUBLISH) : String(EnumPostStatus.PUBLISHED)} onTabClick={handleTabClick}>
       <TabPane tab="Publised" key={String(EnumPostStatus.PUBLISHED)}>
         <List {...listProps} />
@@ -57,7 +57,7 @@ const Index = ({
         <List {...listProps} />
       </TabPane>
     </Tabs>
-  </div>)
+  </Page>)
 }
 
 Index.propTypes = {

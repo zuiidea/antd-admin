@@ -1,5 +1,5 @@
 import React from 'react'
-import { Iconfont } from 'components'
+import { Iconfont, Page } from 'components'
 import { Table, Row, Col, Icon } from 'antd'
 import styles from './index.less'
 import './emoji'
@@ -24,7 +24,7 @@ const localRequireSVGIcons = [
   require('../../../svg/cute/think.svg'),
 ]
 
-const IcoPage = () => (<div className="content-inner">
+const IcoPage = () => (<Page inner>
   <Icon type="star-oo" />
   <h2 style={{ margin: '16px 0' }}>Colorful Icon</h2>
   <ul className={styles.list}>
@@ -111,6 +111,6 @@ const IcoPage = () => (<div className="content-inner">
       <a href="http://www.iconfont.cn/collections/detail?cid=4268" target="_blank" rel="noopener noreferrer"> http://www.iconfont.cn/collections/detail?cid=4268</a>
     </p>
   </div>
-</div>)
+</Page>)
 
 export default IcoPage
