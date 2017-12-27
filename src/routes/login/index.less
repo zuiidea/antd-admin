@@ -1,3 +1,5 @@
+@import "~themes/vars";
+
 .form {
   position: absolute;
   top: 50%;
@@ -16,21 +18,19 @@
     color: rgb(204, 204, 204);
     text-align: center;
     margin-top: 16px;
-
-    span {
-      &:first-child {
-        margin-right: 16px;
-      }
-    }
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
   }
 }
 
 .logo {
   text-align: center;
-  height: 40px;
-  line-height: 40px;
   cursor: pointer;
   margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   img {
     width: 40px;
@@ -42,6 +42,8 @@
     font-size: 16px;
     text-transform: uppercase;
     display: inline-block;
+    font-weight: 700;
+    color: @primary-color;
   }
 }
 

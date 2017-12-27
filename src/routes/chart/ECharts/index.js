@@ -1,5 +1,6 @@
 import React from 'react'
 import { Radio } from 'antd'
+import { Page } from 'components'
 import EchartsComponent from './EchartsComponent'
 import styles from './index.less'
 
@@ -94,7 +95,7 @@ class Chart extends React.Component {
     })
   }
   render () {
-    return (<div className="content-inner" id="EChartsMain">
+    return (<Page inner id="EChartsMain">
       <RadioGroup options={chartList} defaultValue="dynamic" onChange={this.handleRadioGroupChange} />
       <div className={styles.chart}>
         <EchartsComponent type={this.state.type} />
@@ -102,7 +103,7 @@ class Chart extends React.Component {
       <div style={{ pading: 24, marginTop: 24 }}>
          All demos from <a href="https://github.com/hustcc/echarts-for-react">https://github.com/hustcc/echarts-for-react</a>
       </div>
-    </div>)
+    </Page>)
   }
 }
 

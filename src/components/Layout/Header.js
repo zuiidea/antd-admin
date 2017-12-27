@@ -1,13 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Menu, Icon, Popover } from 'antd'
+import { Menu, Icon, Popover, Layout } from 'antd'
 import classnames from 'classnames'
 import styles from './Header.less'
 import Menus from './Menu'
 
-const SubMenu = Menu.SubMenu
+const { SubMenu } = Menu
 
-const Header = ({ user, logout, switchSider, siderFold, isNavbar, menuPopoverVisible, location, switchMenuPopover, navOpenKeys, changeOpenKeys, menu }) => {
+const Header = ({
+  user, logout, switchSider, siderFold, isNavbar, menuPopoverVisible, location, switchMenuPopover, navOpenKeys, changeOpenKeys, menu,
+}) => {
   let handleClickMenu = e => e.key === 'logout' && logout()
   const menusProps = {
     menu,
@@ -20,7 +22,7 @@ const Header = ({ user, logout, switchSider, siderFold, isNavbar, menuPopoverVis
     changeOpenKeys,
   }
   return (
-    <div className={styles.header}>
+    <Layout.Header className={styles.header}>
       {isNavbar
         ? <Popover placement="bottomLeft" onVisibleChange={switchMenuPopover} visible={menuPopoverVisible} overlayClassName={styles.popovermenu} trigger="click" content={<Menus {...menusProps} />}>
           <div className={styles.button}>
@@ -53,7 +55,7 @@ const Header = ({ user, logout, switchSider, siderFold, isNavbar, menuPopoverVis
           </SubMenu>
         </Menu>
       </div>
-    </div>
+    </Layout.Header>
   )
 }
 

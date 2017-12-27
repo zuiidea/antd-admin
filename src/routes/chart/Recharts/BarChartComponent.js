@@ -168,7 +168,9 @@ const getPath = (x, y, width, height) => {
 }
 
 const TriangleBar = (props) => {
-  const { fill, x, y, width, height } = props
+  const {
+    fill, x, y, width, height,
+  } = props
   return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />
 }
 
@@ -201,7 +203,6 @@ const CustomShapeBarChart = () => (
 const BarChartPage = () => (
   <div className="content-inner">
     <Button type="primary"
-      size="large"
       style={{
         position: 'absolute',
         right: 0,

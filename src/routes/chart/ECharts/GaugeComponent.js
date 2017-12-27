@@ -1,30 +1,10 @@
 import React from 'react'
 import ReactEcharts from 'echarts-for-react'
 
-const GaugeComponent = React.createClass({
-  getInitialState () {
-    return { option: this.getOtion() }
-  },
-  componentDidMount () {
-    if (this.timeTicket) {
-      clearInterval(this.timeTicket)
-    }
-    this.timeTicket = setInterval(() => {
-      let option = this.state.option
-      option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0
-      option.series[1].data[0].value = (Math.random() * 7).toFixed(2) - 0
-      option.series[2].data[0].value = (Math.random() * 2).toFixed(2) - 0
-      option.series[3].data[0].value = (Math.random() * 2).toFixed(2) - 0
-      this.setState({ option })
-    }, 1000)
-  },
-  componentWillUnmount () {
-    if (this.timeTicket) {
-      clearInterval(this.timeTicket)
-    }
-  },
-  getOtion () {
-    let option = {
+class GaugeComponent extends React.Component {
+  constructor () {
+    super()
+    const option = {
       backgroundColor: '#1b1b1b',
       tooltip: {
         formatter: '{a} <br/>{c} {b}',
@@ -214,10 +194,10 @@ const GaugeComponent = React.createClass({
             },
             formatter (v) {
               switch (`${v}`) {
-                case '0' : return 'E'
-                case '1' : return 'Gas'
-                case '2' : return 'F'
-                default : return null
+                case '0': return 'E'
+                case '1': return 'Gas'
+                case '2': return 'F'
+                default: return null
               }
             },
           },
@@ -273,10 +253,10 @@ const GaugeComponent = React.createClass({
             },
             formatter (v) {
               switch (`${v}`) {
-                case '0' : return 'H'
-                case '1' : return 'Water'
-                case '2' : return 'C'
-                default : return null
+                case '0': return 'H'
+                case '1': return 'Water'
+                case '2': return 'C'
+                default: return null
               }
             },
           },
@@ -304,9 +284,31 @@ const GaugeComponent = React.createClass({
         },
       ],
     }
-    return option
-  },
-  timeTicket: null,
+    this.state = {
+      option,
+    }
+  }
+
+  componentDidMount () {
+    if (this.timeTicket) {
+      clearInterval(this.timeTicket)
+    }
+    this.timeTicket = setInterval(() => {
+      let { option } = this.state
+      option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0
+      option.series[1].data[0].value = (Math.random() * 7).toFixed(2) - 0
+      option.series[2].data[0].value = (Math.random() * 2).toFixed(2) - 0
+      option.series[3].data[0].value = (Math.random() * 2).toFixed(2) - 0
+      this.setState({ option })
+    }, 1000)
+  }
+
+  componentWillUnmount () {
+    if (this.timeTicket) {
+      clearInterval(this.timeTicket)
+    }
+  }
+
   render () {
     return (
       <div className="examples">
@@ -320,7 +322,7 @@ const GaugeComponent = React.createClass({
         </div>
       </div>
     )
-  },
-})
+  }
+}
 
 export default GaugeComponent

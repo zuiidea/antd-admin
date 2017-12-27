@@ -257,7 +257,6 @@ const CardinalAreaChart = () => (
 const AreaChartPage = () => (
   <div className="content-inner">
     <Button type="primary"
-      size="large"
       style={{
         position: 'absolute',
         right: 0,

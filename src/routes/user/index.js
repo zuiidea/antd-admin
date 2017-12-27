@@ -10,9 +10,14 @@ import Filter from './Filter'
 import Modal from './Modal'
 
 
-const User = ({ location, dispatch, user, loading }) => {
+const User = ({
+  location, dispatch, user, loading,
+}) => {
   location.query = queryString.parse(location.search)
-  const { list, pagination, currentItem, modalVisible, modalType, isMotion, selectedRowKeys } = user
+  const { query, pathname } = location
+  const {
+    list, pagination, currentItem, modalVisible, modalType, isMotion, selectedRowKeys,
+  } = user
   const { pageSize } = pagination
 
   const modalProps = {
@@ -42,14 +47,13 @@ const User = ({ location, dispatch, user, loading }) => {
     location,
     isMotion,
     onChange (page) {
-      const { query, pathname } = location
       dispatch(routerRedux.push({
         pathname,
-        query: {
+        search: queryString.stringify({
           ...query,
           page: page.current,
           pageSize: page.pageSize,
-        },
+        }),
       }))
     },
     onDeleteItem (id) {
@@ -83,16 +87,16 @@ const User = ({ location, dispatch, user, loading }) => {
   const filterProps = {
     isMotion,
     filter: {
-      ...location.query,
+      ...query,
     },
     onFilterChange (value) {
       dispatch(routerRedux.push({
         pathname: location.pathname,
-        query: {
+        search: queryString.stringify({
           ...value,
           page: 1,
           pageSize,
-        },
+        }),
       }))
     },
     onSearch (fieldsValue) {
@@ -136,8 +140,8 @@ const User = ({ location, dispatch, user, loading }) => {
         <Row style={{ marginBottom: 24, textAlign: 'right', fontSize: 13 }}>
           <Col>
             {`Selected ${selectedRowKeys.length} items `}
-            <Popconfirm title={'Are you sure delete these items?'} placement="left" onConfirm={handleDeleteItems}>
-              <Button type="primary" size="large" style={{ marginLeft: 8 }}>Remove</Button>
+            <Popconfirm title="Are you sure delete these items?" placement="left" onConfirm={handleDeleteItems}>
+              <Button type="primary" style={{ marginLeft: 8 }}>Remove</Button>
             </Popconfirm>
           </Col>
         </Row>
