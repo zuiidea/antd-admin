@@ -33,7 +33,7 @@ const Menus = ({ siderFold, darkTheme, navOpenKeys, changeOpenKeys, menu, locati
         <Menu.Item key={item.id}>
           <Link to={item.route || '#'}>
             {item.icon && <Icon type={item.icon} />}
-            {(!siderFoldN || !menuTree.includes(item)) && item.name}
+            {item.name}
           </Link>
         </Menu.Item>
       )
