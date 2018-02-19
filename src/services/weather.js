@@ -2,7 +2,7 @@ import { request, config } from 'utils'
 
 const { APIV1 } = config
 
-export async function query (params) {
+export function query (params) {
   params.key = 'i7sau1babuzwhycn'
   return request({
     url: `${APIV1}/weather/now.json`,

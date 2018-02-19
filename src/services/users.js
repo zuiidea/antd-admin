@@ -3,7 +3,7 @@ import { request, config } from 'utils'
 const { api } = config
 const { users } = api
 
-export async function query (params) {
+export function query (params) {
   return request({
     url: users,
     method: 'get',
@@ -11,7 +11,7 @@ export async function query (params) {
   })
 }
 
-export async function remove (params) {
+export function remove (params) {
   return request({
     url: users,
     method: 'delete',
