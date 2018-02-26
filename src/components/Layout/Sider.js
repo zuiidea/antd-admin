@@ -20,7 +20,7 @@ const Sider = ({
     <div>
       <div className={styles.logo}>
         <img alt="logo" src={config.logo} />
-        <span>{siderFold ? '' : config.name}</span>
+        {siderFold ? '' : <span>{config.name}</span>}
       </div>
       <Menus {...menusProps} />
       {!siderFold ? <div className={styles.switchtheme}>
