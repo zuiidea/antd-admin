@@ -12,7 +12,9 @@ import {
 import styles from './index.less'
 
 const { api } = config
-const { dashboard, users, userLogin, user, v1test, v2test } = api
+const {
+  dashboard, users, userLogin, user, v1test, v2test,
+} = api
 
 const requestOptions = [
   {
@@ -125,21 +127,22 @@ export default class RequestPage extends React.Component {
       </div>,
     })
     request({ ...requestParams }).then((data) => {
-      const state = this.state
+      const { state } = this
       state.result = [this.state.result, <div key="complete"><div>请求完成</div>{JSON.stringify(data)}</div>]
       this.setState(state)
     })
   }
 
   handeleURLChange = (value) => {
-    const state = this.state
+    const { state } = this
     const curretUrl = value.split('?')[0]
     const curretMethod = value.split('?')[1]
     const currntItem = requestOptions.filter((item) => {
       const { method = 'get' } = item
       return curretUrl === item.url && curretMethod === method
     })
-    state.currntRequest = currntItem[0]
+    const [currntRequest] = currntItem
+    state.currntRequest = currntRequest
     this.setState(state)
   }
 

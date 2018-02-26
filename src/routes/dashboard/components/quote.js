@@ -2,7 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './quote.less'
 
-function Quote ({ name, content, title, avatar }) {
+function Quote ({
+  name, content, title, avatar,
+}) {
   return (
     <div className={styles.quote}>
       <div className={styles.inner}>

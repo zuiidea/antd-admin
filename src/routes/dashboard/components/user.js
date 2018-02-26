@@ -13,7 +13,9 @@ const countUpProps = {
   separator: ',',
 }
 
-function User ({ avatar, name, email, sales, sold }) {
+function User ({
+  avatar, name, email, sales, sold,
+}) {
   return (<div className={styles.user}>
     <div className={styles.header}>
       <div className={styles.headerinner}>

@@ -5,7 +5,9 @@ import ReactDOM from 'react-dom'
 import classnames from 'classnames'
 import styles from './layer.less'
 
-const { info, success, error, warning, confirm } = Modal
+const {
+  info, success, error, warning, confirm,
+} = Modal
 
 const layer = {
   prefixCls: 'ant-layer',
@@ -53,32 +55,31 @@ layer.open = (config) => {
   const { className, wrapClassName = '', verticalCenter = true } = modalProps
   const { prefixCls } = layer
   layer.index += 1
-  const index = layer.index
+  const { index } = layer
   let div = document.createElement('div')
   div.id = `${prefixCls}-reference-${index}`
   div.className = `${prefixCls}-reference`
   document.body.appendChild(div)
 
-  ReactDOM.render(
-    <Modal
-      visible
-      title="Title"
-      transitionName="zoom"
-      maskTransitionName="fade"
-      onCancel={() => {
+  ReactDOM.render(<Modal
+    visible
+    title="Title"
+    transitionName="zoom"
+    maskTransitionName="fade"
+    onCancel={() => {
         layer.close(index)
       }}
-      onOk={() => {
+    onOk={() => {
         layer.close(index)
       }}
-      {...modalProps}
-      wrapClassName={classnames({ [styles.verticalCenter]: verticalCenter, [wrapClassName]: true })}
-      className={classnames(prefixCls, className, [`${prefixCls}-${index}`])}
-    >
-      <div className={`${prefixCls}-body-wrapper`} style={{ maxHeight: document.body.clientHeight - 256 }}>
-        {content}
-      </div>
-    </Modal>, div)
+    {...modalProps}
+    wrapClassName={classnames({ [styles.verticalCenter]: verticalCenter, [wrapClassName]: true })}
+    className={classnames(prefixCls, className, [`${prefixCls}-${index}`])}
+  >
+    <div className={`${prefixCls}-body-wrapper`} style={{ maxHeight: document.body.clientHeight - 256 }}>
+      {content}
+    </div>
+  </Modal>, div)
 
   return index
 }

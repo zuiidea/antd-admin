@@ -20,7 +20,7 @@ const fetch = (options) => {
   try {
     let domin = ''
     if (url.match(/[a-zA-z]+:\/\/[^/]*/)) {
-      domin = url.match(/[a-zA-z]+:\/\/[^/]*/)[0]
+      [domin] = url.match(/[a-zA-z]+:\/\/[^/]*/)
       url = url.slice(domin.length)
     }
     const match = pathToRegexp.parse(url)
@@ -113,6 +113,8 @@ export default function request (options) {
       statusCode = 600
       msg = error.message || 'Network Error'
     }
+
+    /* eslint-disable */
     return Promise.reject({ success: false, statusCode, message: msg })
   })
 }

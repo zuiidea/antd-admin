@@ -78,7 +78,7 @@ const modal = ({
           })(<Radio.Group>
             <Radio value>Male</Radio>
             <Radio value={false}>Female</Radio>
-             </Radio.Group>)}
+          </Radio.Group>)}
         </FormItem>
         <FormItem label="Age" hasFeedback {...formItemLayout}>
           {getFieldDecorator('age', {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Icon } from 'antd'
-import styles from './index.less'
 import { Page } from 'components'
+import styles from './index.less'
 
 const Error = () => (<Page inner>
   <div className={styles.error}>

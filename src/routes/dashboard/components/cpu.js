@@ -13,7 +13,9 @@ const countUpProps = {
   separator: ',',
 }
 
-function Cpu ({ usage, space, cpu, data }) {
+function Cpu ({
+  usage, space, cpu, data,
+}) {
   return (<div className={styles.cpu}>
     <div className={styles.number}>
       <div className={styles.item}>

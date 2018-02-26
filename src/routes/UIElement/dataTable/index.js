@@ -5,9 +5,11 @@ import { Table, Row, Col, Card, Select } from 'antd'
 class DataTablePage extends React.Component {
   constructor (props) {
     super(props)
-    this.state = { filterCase: {
-      gender: '',
-    } }
+    this.state = {
+      filterCase: {
+        gender: '',
+      },
+    }
   }
 
   handleSelectChange = (gender) => {
@@ -20,7 +22,11 @@ class DataTablePage extends React.Component {
   render () {
     const { filterCase } = this.state
     const staticDataTableProps = {
-      dataSource: [{ key: '1', name: 'John Brown', age: 24, address: 'New York' }, { key: '2', name: 'Jim Green', age: 23, address: 'London' }],
+      dataSource: [{
+        key: '1', name: 'John Brown', age: 24, address: 'New York',
+      }, {
+        key: '2', name: 'Jim Green', age: 23, address: 'London',
+      }],
       columns: [{ title: 'name', dataIndex: 'name' }, { title: 'Age', dataIndex: 'age' }, { title: 'Address', dataIndex: 'address' }],
       pagination: false,
     }
