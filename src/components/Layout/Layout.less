@@ -75,6 +75,8 @@
   }
 }
 
+
+
 .logo {
   height: 96px;
   display: flex;
@@ -93,6 +95,10 @@
     display: inline-block;
     font-weight: 700;
     color: @primary-color;
+    :local {
+      animation: fadeLeftIn 400ms linear;
+      animation-fill-mode: both;
+    }
   }
 }
 
@@ -167,3 +173,15 @@
     }
   }
 }
+
+// @keyframes fadeLeftIn {
+//   0% {
+//     transform: translateX(20px);
+//     opacity: 0;
+//   }
+//
+//   100% {
+//     transform: translateX(0);
+//     opacity: 1;
+//   }
+// }

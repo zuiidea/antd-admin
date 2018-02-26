@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom'
 import { arrayToTree, queryArray } from 'utils'
 import pathToRegexp from 'path-to-regexp'
 
-const Menus = ({ siderFold, darkTheme, navOpenKeys, changeOpenKeys, menu, location }) => {
+const Menus = ({
+  siderFold, darkTheme, navOpenKeys, changeOpenKeys, menu, location,
+}) => {
   // 生成树状
   const menuTree = arrayToTree(menu.filter(_ => _.mpid !== '-1'), 'id', 'mpid')
   const levelMap = {}
