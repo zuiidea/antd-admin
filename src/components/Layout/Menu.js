@@ -33,7 +33,7 @@ const Menus = ({
       }
       return (
         <Menu.Item key={item.id}>
-          <Link to={item.route || '#'}>
+          <Link to={item.route || '#'} style={siderFoldN ? { width: 10 } : {}}>
             {item.icon && <Icon type={item.icon} />}
             {item.name}
           </Link>
