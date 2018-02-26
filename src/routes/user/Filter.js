@@ -1,3 +1,4 @@
+/* global document */
 import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
@@ -83,17 +84,24 @@ const Filter = ({
       <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }}>
         {getFieldDecorator('name', { initialValue: name })(<Search placeholder="Search Name" onSearch={handleSubmit} />)}
       </Col>
-      <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }}>
+      <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }} id="addressCascader">
         {getFieldDecorator('address', { initialValue: address })(<Cascader
           style={{ width: '100%' }}
           options={city}
           placeholder="Please pick an address"
           onChange={handleChange.bind(null, 'address')}
+          getPopupContainer={() => document.getElementById('addressCascader')}
         />)}
       </Col>
-      <Col {...ColProps} xl={{ span: 6 }} md={{ span: 8 }} sm={{ span: 12 }}>
+      <Col {...ColProps} xl={{ span: 6 }} md={{ span: 8 }} sm={{ span: 12 }} id="createTimeRangePicker">
         <FilterItem label="Createtime">
-          {getFieldDecorator('createTime', { initialValue: initialCreateTime })(<RangePicker style={{ width: '100%' }} onChange={handleChange.bind(null, 'createTime')} />)}
+          {getFieldDecorator('createTime', { initialValue: initialCreateTime })(<RangePicker
+            style={{ width: '100%' }}
+            onChange={handleChange.bind(null, 'createTime')}
+            getCalendarContainer={() => {
+              return document.getElementById('createTimeRangePicker')
+            }}
+          />)}
         </FilterItem>
       </Col>
       <Col {...TwoColProps} xl={{ span: 10 }} md={{ span: 24 }} sm={{ span: 24 }}>
