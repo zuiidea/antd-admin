@@ -82,26 +82,27 @@ const List = ({
     },
   ]
 
-  const getBodyWrapperProps = {
-    page: location.query.page,
-    current: tableProps.pagination.current,
+  const AnimateBody = (props) => {
+    return <AnimTableBody {...props} />
   }
 
-  const getBodyWrapper = (body) => { return isMotion ? <AnimTableBody {...getBodyWrapperProps} body={body} /> : body }
+  const CommonBody = (props) => {
+    return <tbody {...props} />
+  }
 
   return (
-    <div>
-      <Table
-        {...tableProps}
-        className={classnames({ [styles.table]: true, [styles.motion]: isMotion })}
-        bordered
-        scroll={{ x: 1250 }}
-        columns={columns}
-        simple
-        rowKey={record => record.id}
-        getBodyWrapper={getBodyWrapper}
-      />
-    </div>
+    <Table
+      {...tableProps}
+      className={classnames(styles.table, { [styles.motion]: isMotion })}
+      bordered
+      scroll={{ x: 1250 }}
+      columns={columns}
+      simple
+      rowKey={record => record.id}
+      components={{
+        body: { wrapper: isMotion ? AnimateBody : CommonBody },
+      }}
+    />
   )
 }
 

@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { TweenOneGroup } from 'rc-tween-one'
 
 const enterAnim = [
@@ -40,28 +39,12 @@ const leaveAnim = [
   },
 ]
 
-const AnimTableBody = ({ body, page = 1, current }) => {
-  if (current !== +page) {
-    return body
-  }
-
-  return (
-    <TweenOneGroup
-      component="tbody"
-      className={body.props.className}
-      enter={enterAnim}
-      leave={leaveAnim}
-      appear={false}
-    >
-      {body.props.children}
-    </TweenOneGroup>
-  )
-}
-
-AnimTableBody.propTypes = {
-  body: PropTypes.element,
-  page: PropTypes.any,
-  current: PropTypes.number.isRequired,
-}
+const AnimTableBody = props => (<TweenOneGroup
+  component="tbody"
+  {...props}
+  enter={enterAnim}
+  leave={leaveAnim}
+  appear={false}
+/>)
 
 export default AnimTableBody

@@ -4,6 +4,7 @@ import queryString from 'query-string'
 import { config } from 'utils'
 import { create, remove, update } from 'services/user'
 import * as usersService from 'services/users'
+import { routerRedux } from 'dva/router'
 import { pageModel } from './common'
 
 const { query } = usersService
@@ -36,7 +37,11 @@ export default modelExtend(pageModel, {
 
   effects: {
 
-    * query ({ payload = {} }, { call, put }) {
+    * query ({ payload = {} }, { call, put, select }) {
+      const { pagination } = yield select(_ => _.user)
+      const { current, pageSize } = pagination
+      payload.page = payload.page || current
+      payload.pageSize = payload.pageSize || pageSize
       const data = yield call(query, payload)
       if (data) {
         yield put({
@@ -44,8 +49,8 @@ export default modelExtend(pageModel, {
           payload: {
             list: data.data,
             pagination: {
-              current: Number(payload.page) || 1,
-              pageSize: Number(payload.pageSize) || 10,
+              current: Number(payload.page),
+              pageSize: Number(payload.pageSize),
               total: data.total,
             },
           },
@@ -55,20 +60,33 @@ export default modelExtend(pageModel, {
 
     * delete ({ payload }, { call, put, select }) {
       const data = yield call(remove, { id: payload })
-      const { selectedRowKeys } = yield select(_ => _.user)
+      const { selectedRowKeys, list, pagination } = yield select(_ => _.user)
       if (data.success) {
         yield put({ type: 'updateState', payload: { selectedRowKeys: selectedRowKeys.filter(_ => _ !== payload) } })
-        yield put({ type: 'query' })
+        const page = (list.length === 1 && pagination.current > 1) ? pagination.current - 1 : pagination.current
+        yield put({
+          type: 'query',
+          payload: {
+            page,
+          },
+        })
       } else {
         throw data
       }
     },
 
-    * multiDelete ({ payload }, { call, put }) {
+    * multiDelete ({ payload }, { call, put, select }) {
       const data = yield call(usersService.remove, payload)
+      const { list, pagination } = yield select(_ => _.user)
       if (data.success) {
         yield put({ type: 'updateState', payload: { selectedRowKeys: [] } })
-        yield put({ type: 'query' })
+        const page = (list.length === payload.ids.length && pagination.current > 1) ? pagination.current - 1 : pagination.current
+        yield put({
+          type: 'query',
+          payload: {
+            page,
+          },
+        })
       } else {
         throw data
       }
