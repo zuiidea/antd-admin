@@ -18,7 +18,16 @@ const User = ({
   const {
     list, pagination, currentItem, modalVisible, modalType, isMotion, selectedRowKeys,
   } = user
-  const { pageSize } = pagination
+
+  const handleRefresh = (newQuery) => {
+    dispatch(routerRedux.push({
+      pathname,
+      search: queryString.stringify({
+        ...query,
+        ...newQuery,
+      }),
+    }))
+  }
 
   const modalProps = {
     item: modalType === 'create' ? {} : currentItem,
@@ -47,20 +56,21 @@ const User = ({
     location,
     isMotion,
     onChange (page) {
-      dispatch(routerRedux.push({
-        pathname,
-        search: queryString.stringify({
-          ...query,
-          page: page.current,
-          pageSize: page.pageSize,
-        }),
-      }))
+      handleRefresh({
+        page: page.current,
+        pageSize: page.pageSize,
+      })
     },
     onDeleteItem (id) {
       dispatch({
         type: 'user/delete',
         payload: id,
       })
+        .then(() => {
+          handleRefresh({
+            page: (list.length === 1 && pagination.current > 1) ? pagination.current - 1 : pagination.current,
+          })
+        })
     },
     onEditItem (item) {
       dispatch({
@@ -70,6 +80,7 @@ const User = ({
           currentItem: item,
         },
       })
+        .then(() => handleRefresh)
     },
     rowSelection: {
       selectedRowKeys,
@@ -90,25 +101,10 @@ const User = ({
       ...query,
     },
     onFilterChange (value) {
-      dispatch(routerRedux.push({
-        pathname: location.pathname,
-        search: queryString.stringify({
-          ...value,
-          page: 1,
-          pageSize,
-        }),
-      }))
-    },
-    onSearch (fieldsValue) {
-      fieldsValue.keyword.length ? dispatch(routerRedux.push({
-        pathname: '/user',
-        query: {
-          field: fieldsValue.field,
-          keyword: fieldsValue.keyword,
-        },
-      })) : dispatch(routerRedux.push({
-        pathname: '/user',
-      }))
+      handleRefresh({
+        ...value,
+        page: 1,
+      })
     },
     onAdd () {
       dispatch({
@@ -117,6 +113,7 @@ const User = ({
           modalType: 'create',
         },
       })
+        .then(() => handleRefresh)
     },
     switchIsMotion () {
       dispatch({ type: 'user/switchIsMotion' })
@@ -130,6 +127,11 @@ const User = ({
         ids: selectedRowKeys,
       },
     })
+      .then(() => {
+        handleRefresh({
+          page: (list.length === selectedRowKeys.length && pagination.current > 1) ? pagination.current - 1 : pagination.current,
+        })
+      })
   }
 
   return (
