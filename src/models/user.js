@@ -4,8 +4,46 @@ import queryString from 'query-string'
 import { config } from 'utils'
 import { create, remove, update } from 'services/user'
 import * as usersService from 'services/users'
-import { pageModel } from './common'
 
+const model = {
+  reducers: {
+    updateState (state, { payload }) {
+      return {
+        ...state,
+        ...payload,
+      }
+    },
+  },
+}
+
+const pageModel = modelExtend(model, {
+
+  state: {
+    list: [],
+    pagination: {
+      showSizeChanger: true,
+      showQuickJumper: true,
+      showTotal: total => `Total ${total} Items`,
+      current: 1,
+      total: 0,
+    },
+  },
+
+  reducers: {
+    querySuccess (state, { payload }) {
+      const { list, pagination } = payload
+      return {
+        ...state,
+        list,
+        pagination: {
+          ...state.pagination,
+          ...pagination,
+        },
+      }
+    },
+  },
+
+})
 const { query } = usersService
 const { prefix } = config
 
