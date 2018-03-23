@@ -5,9 +5,9 @@ import { connect } from 'dva'
 import { Row, Col, Button, Popconfirm } from 'antd'
 import { Page } from 'components'
 import queryString from 'query-string'
-import List from './List'
-import Filter from './Filter'
-import Modal from './Modal'
+import List from './components/List'
+import Filter from './components/Filter'
+import Modal from './components/Modal'
 
 
 const User = ({

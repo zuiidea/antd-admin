@@ -5,7 +5,7 @@ import { Tabs } from 'antd'
 import { routerRedux } from 'dva/router'
 import queryString from 'query-string'
 import { Page } from 'components'
-import List from './List'
+import List from './components/List'
 
 const { TabPane } = Tabs
 

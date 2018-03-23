@@ -2,9 +2,9 @@
 import modelExtend from 'dva-model-extend'
 import queryString from 'query-string'
 import { config } from 'utils'
-import { create, remove, update } from 'services/user'
-import * as usersService from 'services/users'
-import { pageModel } from './common'
+import { create, remove, update } from '../services/user'
+import * as usersService from '../services/users'
+import { pageModel } from 'utils/model'
 
 const { query } = usersService
 const { prefix } = config

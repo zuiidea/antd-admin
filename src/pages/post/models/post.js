@@ -1,6 +1,6 @@
 import modelExtend from 'dva-model-extend'
-import { query } from 'services/posts'
-import { pageModel } from 'models/common'
+import { query } from '../services/posts'
+import { pageModel } from 'utils/model'
 import queryString from 'query-string'
 
 export default modelExtend(pageModel, {

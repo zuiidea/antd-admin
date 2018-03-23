@@ -2,17 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Switch, Route, Redirect, routerRedux } from 'dva/router'
 import dynamic from 'dva/dynamic'
-import App from 'routes/app'
-import { LocaleProvider } from 'antd'
-import enUS from 'antd/lib/locale-provider/en_US'
 
 const { ConnectedRouter } = routerRedux
 
 const Routers = function ({ history, app }) {
-  const error = dynamic({
-    app,
-    component: () => import('./routes/error'),
-  })
   const routes = [
     {
       path: '/dashboard',
@@ -69,8 +62,6 @@ const Routers = function ({ history, app }) {
 
   return (
     <ConnectedRouter history={history}>
-      <LocaleProvider locale={enUS}>
-        <App>
           <Switch>
             <Route exact path="/" render={() => (<Redirect to="/dashboard" />)} />
             {
@@ -85,10 +76,7 @@ const Routers = function ({ history, app }) {
               />
             ))
           }
-            <Route component={error} />
           </Switch>
-        </App>
-      </LocaleProvider>
     </ConnectedRouter>
   )
 }
