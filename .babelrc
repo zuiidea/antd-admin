@@ -1,0 +1,22 @@
+{
+  "presets": [
+    "umi/babel"
+  ],
+  "plugins": [
+    [
+      "babel-plugin-module-resolver",
+      {
+        "alias": {
+          "components": "./src/components",
+          "utils": "./src/utils",
+          "config": "./src/utils/config",
+          "enums": "./src/utils/enums",
+          "services": "./src/services",
+          "models": "./src/models",
+          "routes": "./src/routes",
+          "themes": "./src/themes"
+        }
+      }
+    ]
+  ]
+}
