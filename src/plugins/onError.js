@@ -1,8 +1,8 @@
 import { message } from 'antd'
 
 export default {
-  onError(e) {
+  onError (e) {
     e.preventDefault()
-    message.error(error.message)
-  }
+    message.error(e.message)
+  },
 }

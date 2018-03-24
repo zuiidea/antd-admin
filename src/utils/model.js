@@ -1,6 +1,6 @@
 import modelExtend from 'dva-model-extend'
 
-const model = {
+export const model = {
   reducers: {
     updateState (state, { payload }) {
       return {
@@ -11,7 +11,7 @@ const model = {
   },
 }
 
-const pageModel = modelExtend(model, {
+export const pageModel = modelExtend(model, {
 
   state: {
     list: [],
@@ -40,9 +40,3 @@ const pageModel = modelExtend(model, {
   },
 
 })
-
-
-module.exports = {
-  model,
-  pageModel,
-}

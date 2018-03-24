@@ -1,5 +1,8 @@
-const mock = {}
-require('fs').readdirSync(require('path').join(__dirname + '/mock')).forEach(function(file) {
-	Object.assign(mock, require('./mock/' + file))
-})
-module.exports = mock
+
+export default {
+  ...require('./mock/common'),
+  ...require('./mock/dashboard'),
+  ...require('./mock/menu'),
+  ...require('./mock/post'),
+  ...require('./mock/user'),
+}

@@ -1,3 +1,5 @@
+import { resolve } from 'path';
+
 export default {
   theme: "./theme.config.js",
   // 接口代理示例
@@ -12,5 +14,8 @@ export default {
     //   "changeOrigin": true,
     //   "pathRewrite": { "^/api/v2" : "/api/v2" }
     // }
+  },
+  alias: {
+    themes: resolve(__dirname, './src/themes'),
   },
 }
