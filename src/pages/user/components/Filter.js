@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 import { FilterItem } from 'components'
 import { Form, Button, Row, Col, DatePicker, Input, Cascader, Switch } from 'antd'
-import city from '../../utils/city'
+import city from 'utils/city'
 
 const { Search } = Input
 const { RangePicker } = DatePicker

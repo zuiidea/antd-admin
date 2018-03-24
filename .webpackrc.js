@@ -18,4 +18,7 @@ export default {
   alias: {
     themes: resolve(__dirname, './src/themes'),
   },
+  urlLoaderExcludes: [
+    /\.svg$/,
+  ],
 }
