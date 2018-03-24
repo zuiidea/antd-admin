@@ -39,6 +39,12 @@
     "babel-plugin-module-resolver": "^3.1.0",
     "cross-env": "^5.0.5",
     "draftjs-to-html": "^0.8.1",
+    "eslint": "^4.19.1",
+    "eslint-config-umi": "^0.1.4",
+    "eslint-plugin-flowtype": "^2.46.1",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.7.0",
     "less-vars-to-js": "^1.1.2"
   },
   "pre-commit": [

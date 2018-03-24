@@ -1,5 +1,5 @@
 {
-  "extends": "airbnb",
+  "extends": "umi",
   "rules": {
     "arrow-body-style": [0, "never"],
     "comma-dangle": [2, "always-multiline"],
@@ -44,17 +44,5 @@
     "react/no-danger": 0,
     "react/jsx-first-prop-new-line": 0,
     "react/jsx-filename-extension": 0
-  },
-  "parser": "babel-eslint",
-  "parserOptions": {
-    "sourceType": "module",
-    "ecmaVersion": 8,
-    "ecmaFeatures": {
-      "jsx": true,
-      "experimentalObjectRestSpread": true
-    }
-  },
-  "settings": {
-    "import/resolver": "node"
-    }
+  }
 }
