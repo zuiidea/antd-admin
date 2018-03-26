@@ -15,5 +15,12 @@ export default {
         ],
       },
     ],
+    [
+      'umi-plugin-dll',
+      {
+        exclude: [],
+        include: ["dva", "dva/router", "dva/saga", "dva/fetch", "antd/es"],
+      },
+    ],
   ],
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { Radio } from 'antd'
 import { Page } from 'components'
 import EchartsComponent from './EchartsComponent'
-import styles from './index.less'
+import styles from './page.less'
 
 const RadioGroup = Radio.Group
 

@@ -1,7 +1,7 @@
 (function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
+  if (typeof define === 'function' && define.amd) { // eslint-disable-line
     // AMD. Register as an anonymous module.
-    define(['exports', 'echarts'], factory)
+    define(['exports', 'echarts'], factory) // eslint-disable-line
   } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
     // CommonJS
     factory(exports, require('echarts'))
