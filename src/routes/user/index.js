@@ -41,6 +41,9 @@ const User = ({
         type: `user/${modalType}`,
         payload: data,
       })
+        .then(() => {
+          handleRefresh()
+        })
     },
     onCancel () {
       dispatch({
@@ -80,7 +83,6 @@ const User = ({
           currentItem: item,
         },
       })
-        .then(() => handleRefresh)
     },
     rowSelection: {
       selectedRowKeys,
@@ -113,7 +115,6 @@ const User = ({
           modalType: 'create',
         },
       })
-        .then(() => handleRefresh)
     },
     switchIsMotion () {
       dispatch({ type: 'user/switchIsMotion' })
