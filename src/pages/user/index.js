@@ -13,7 +13,6 @@ import Modal from './components/Modal'
 const User = ({
   location, dispatch, user, loading,
 }) => {
-  location.query = queryString.parse(location.search)
   const { query, pathname } = location
   const {
     list, pagination, currentItem, modalVisible, modalType, isMotion, selectedRowKeys,

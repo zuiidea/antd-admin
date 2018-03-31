@@ -19,7 +19,6 @@ const Index = ({
   post, dispatch, loading, location,
 }) => {
   const { list, pagination } = post
-  location.query = queryString.parse(location.search)
   const { query, pathname } = location
 
   const listProps = {

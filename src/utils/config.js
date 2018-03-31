@@ -4,7 +4,7 @@ const APIV2 = '/api/v2'
 module.exports = {
   name: 'AntD Admin',
   prefix: 'antdAdmin',
-  footerText: 'Ant Design Admin  © 2017 zuiidea',
+  footerText: 'Ant Design Admin  © 2018 zuiidea',
   logo: '/logo.svg',
   iconFontCSS: '/iconfont.css',
   iconFontJS: '/iconfont.js',

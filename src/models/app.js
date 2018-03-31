@@ -44,7 +44,7 @@ export default {
           type: 'updateState',
           payload: {
             locationPathname: location.pathname,
-            locationQuery: queryString.parse(location.search),
+            locationQuery: location.query,
           },
         })
       })
