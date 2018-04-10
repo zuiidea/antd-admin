@@ -108,7 +108,7 @@ git clone https://github.com/zuiidea/antd-admin.git
 进入目录安装依赖:
 
 ```bash
-#开始前请确保没有安装roadhog、webpack到NPM全局目录
+#开始前请确保没有安装roadhog、webpack到NPM全局目录, 国内用户推荐yarn或者cnpm
 npm i 或者 yarn install
 ```
 
