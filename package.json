@@ -45,9 +45,9 @@
     "less-vars-to-js": "^1.1.2",
     "mockjs": "^1.0.1-beta3",
     "svg-sprite-loader": "^3.7.3",
-    "umi": "^1.1.4",
+    "umi": "^1.1.5",
     "umi-plugin-dll": "^0.1.2",
-    "umi-plugin-dva": "^0.5.0",
+    "umi-plugin-dva": "0.6.1",
     "umi-plugin-routes": "^0.1.2"
   },
   "pre-commit": [
