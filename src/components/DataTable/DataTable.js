@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Table } from 'antd'
 import { request } from 'utils'
-import lodash from 'lodash'
+import cloneDeep from 'lodash.clonedeep'
+import isEqual from 'lodash.isequal'
 import './DataTable.less'
 
 class DataTable extends React.Component {
@@ -32,11 +33,11 @@ class DataTable extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    const staticNextProps = lodash.cloneDeep(nextProps)
+    const staticNextProps = cloneDeep(nextProps)
     delete staticNextProps.columns
     const { columns, ...otherProps } = this.props
 
-    if (!lodash.isEqual(staticNextProps, otherProps)) {
+    if (!isEqual(staticNextProps, otherProps)) {
       this.props = nextProps
       this.fetch()
     }

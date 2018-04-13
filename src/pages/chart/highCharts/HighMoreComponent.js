@@ -1,8 +1,11 @@
 import React from 'react'
 import ReactHighcharts from 'react-highcharts'
+import HighchartsExporting from 'highcharts-exporting'
+import HighchartsMore from 'highcharts-more'
 
-require ('highcharts-more')(ReactHighcharts.Highcharts)
-require ('highcharts-exporting')(ReactHighcharts.Highcharts)
+
+HighchartsMore(ReactHighcharts.Highcharts)
+HighchartsExporting(ReactHighcharts.Highcharts)
 
 const config = {
   chart: {

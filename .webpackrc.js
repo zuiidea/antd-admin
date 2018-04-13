@@ -21,4 +21,5 @@ export default {
   urlLoaderExcludes: [
     /\.svg$/,
   ],
+  ignoreMomentLocale: true,
 }

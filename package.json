@@ -14,8 +14,11 @@
     "echarts-for-react": "^2.0.8",
     "echarts-gl": "^1.1.0",
     "echarts-liquidfill": "^2.0.0",
+    "highcharts-exporting": "^0.1.7",
+    "highcharts-more": "^0.1.7",
     "jsonp": "^0.2.1",
-    "lodash": "^4.17.5",
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.isequal": "^4.5.0",
     "nprogress": "^0.2.0",
     "path-to-regexp": "^2.2.0",
     "prop-types": "^15.6.1",
@@ -52,6 +55,7 @@
     "lint"
   ],
   "scripts": {
+    "analyze": "cross-env ANALYZE=1 BABELRC=1 umi build",
     "start": "cross-env BABELRC=1 COMPILE_ON_DEMAND=none BROWSER=none HOST=0.0.0.0 umi dev",
     "lint": "eslint --fix --ext .js src",
     "build": "cross-env BABELRC=1 umi build",

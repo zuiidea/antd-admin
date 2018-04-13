@@ -2,7 +2,7 @@
 import axios from 'axios'
 import qs from 'qs'
 import jsonp from 'jsonp'
-import lodash from 'lodash'
+import cloneDeep from 'lodash.clonedeep'
 import pathToRegexp from 'path-to-regexp'
 import { message } from 'antd'
 import { YQL, CORS } from './config'
@@ -15,7 +15,7 @@ const fetch = (options) => {
     url,
   } = options
 
-  const cloneData = lodash.cloneDeep(data)
+  const cloneData = cloneDeep(data)
 
   try {
     let domin = ''

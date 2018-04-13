@@ -1,5 +1,5 @@
 /* global window */
-import lodash from 'lodash'
+import cloneDeep from 'lodash.clonedeep'
 
 export classnames from 'classnames'
 export config from './config'
@@ -80,7 +80,7 @@ export function queryArray (array, key, keyAlias = 'key') {
  * @return  {Array}
  */
 export function arrayToTree (array, id = 'id', pid = 'pid', children = 'children') {
-  let data = lodash.cloneDeep(array)
+  let data = cloneDeep(array)
   let result = []
   let hash = {}
   data.forEach((item, index) => {
