@@ -13,7 +13,8 @@
           "enums": "./src/utils/enums",
           "services": "./src/services",
           "models": "./src/models",
-          "routes": "./src/routes"
+          "routes": "./src/routes",
+          "themes": "./src/themes"
         }
       }
     ]
