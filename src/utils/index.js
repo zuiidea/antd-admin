@@ -1,9 +1,10 @@
 /* global window */
-import classnames from 'classnames'
-import lodash from 'lodash'
-import config from './config'
-import request from './request'
-import { color } from './theme'
+import cloneDeep from 'lodash.clonedeep'
+
+export classnames from 'classnames'
+export config from './config'
+export request from './request'
+export { color } from './theme'
 
 // 连字符转驼峰
 String.prototype.hyphenToHump = function () {
@@ -42,11 +43,10 @@ Date.prototype.format = function (format) {
 
 
 /**
- * @param   {String}
+ * @param  name {String}
  * @return  {String}
  */
-
-const queryURL = (name) => {
+export function queryURL (name) {
   let reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`, 'i')
   let r = window.location.search.substr(1).match(reg)
   if (r != null) return decodeURI(r[2])
@@ -60,7 +60,7 @@ const queryURL = (name) => {
  * @param   {String}    keyAlias
  * @return  {Array}
  */
-const queryArray = (array, key, keyAlias = 'key') => {
+export function queryArray (array, key, keyAlias = 'key') {
   if (!(array instanceof Array)) {
     return null
   }
@@ -79,8 +79,8 @@ const queryArray = (array, key, keyAlias = 'key') => {
  * @param   {String}    children
  * @return  {Array}
  */
-const arrayToTree = (array, id = 'id', pid = 'pid', children = 'children') => {
-  let data = lodash.cloneDeep(array)
+export function arrayToTree (array, id = 'id', pid = 'pid', children = 'children') {
+  let data = cloneDeep(array)
   let result = []
   let hash = {}
   data.forEach((item, index) => {
@@ -97,14 +97,4 @@ const arrayToTree = (array, id = 'id', pid = 'pid', children = 'children') => {
     }
   })
   return result
-}
-
-module.exports = {
-  config,
-  request,
-  color,
-  classnames,
-  queryURL,
-  queryArray,
-  arrayToTree,
 }

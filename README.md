@@ -108,8 +108,13 @@ git clone https://github.com/zuiidea/antd-admin.git
 进入目录安装依赖:
 
 ```bash
+<<<<<<< HEAD
 #开始前请确保没有安装roadhog、webpack到NPM全局目录, 国内用户推荐yarn或者cnpm
 npm i 或者 yarn install
+=======
+#开始前请确保没有安装roadhog、webpack到NPM全局目录
+yarn install或者 npm i 
+>>>>>>> develop
 ```
 
 开发：
@@ -117,7 +122,7 @@ npm i 或者 yarn install
 ```bash
 npm run build:dll #第一次npm run dev时需运行此命令，使开发时编译更快
 npm run dev
-打开 http://localhost:8000
+打开 http://localhost:8000 #端口在package.json中cross-env后加上 PORT=8000指定
 ```
 
 构建：

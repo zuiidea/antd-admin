@@ -44,7 +44,7 @@ export default {
           type: 'updateState',
           payload: {
             locationPathname: location.pathname,
-            locationQuery: queryString.parse(location.search),
+            locationQuery: location.query,
           },
         })
       })
@@ -113,6 +113,16 @@ export default {
     }, { call, put }) {
       const data = yield call(logout, parse(payload))
       if (data.success) {
+        yield put({ type: 'updateState', payload: {
+          user: {},
+          permissions: { visit: [] },
+          menu: [{
+              id: 1,
+              icon: 'laptop',
+              name: 'Dashboard',
+              router: '/dashboard',
+            }],
+        }})
         yield put({ type: 'query' })
       } else {
         throw (data)

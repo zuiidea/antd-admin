@@ -2,6 +2,7 @@ dist
 node_modules
 yarn.lock
 npm-debug.log
+
 # ide
 .idea
 
@@ -9,3 +10,7 @@ npm-debug.log
 .DS_Store
 .AppleDouble
 .LSOverride
+
+# umi
+.umi
+.umi-production

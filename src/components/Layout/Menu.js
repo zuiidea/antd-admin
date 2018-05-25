@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom'
 import { arrayToTree, queryArray } from 'utils'
 import pathToRegexp from 'path-to-regexp'
 
+const { SubMenu } = Menu
+let openKeysFlag = false
+
 const Menus = ({
   siderFold, darkTheme, navOpenKeys, changeOpenKeys, menu, location,
 }) => {
@@ -20,7 +23,7 @@ const Menus = ({
           levelMap[item.id] = item.mpid
         }
         return (
-          <Menu.SubMenu
+          <SubMenu
             key={item.id}
             title={<span>
               {item.icon && <Icon type={item.icon} />}
@@ -28,7 +31,7 @@ const Menus = ({
             </span>}
           >
             {getMenus(item.children, siderFoldN)}
-          </Menu.SubMenu>
+          </SubMenu>
         )
       }
       return (
@@ -62,6 +65,7 @@ const Menus = ({
   }
 
   const onOpenChange = (openKeys) => {
+    if (navOpenKeys.length) changeOpenKeys([]), openKeysFlag = true
     const latestOpenKey = openKeys.find(key => !navOpenKeys.includes(key))
     const latestCloseKey = navOpenKeys.find(key => !openKeys.includes(key))
     let nextOpenKeys = []
@@ -85,6 +89,7 @@ const Menus = ({
   let defaultSelectedKeys
   for (let item of menu) {
     if (item.route && pathToRegexp(item.route).exec(location.pathname)) {
+      if (!navOpenKeys.length && item.mpid && !openKeysFlag) changeOpenKeys([String(item.mpid)])
       currentMenu = item
       break
     }
