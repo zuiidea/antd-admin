@@ -32,7 +32,7 @@ class DataTable extends React.Component {
     }
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     const staticNextProps = cloneDeep(nextProps)
     delete staticNextProps.columns
     const { columns, ...otherProps } = this.props
