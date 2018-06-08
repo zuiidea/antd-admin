@@ -18,10 +18,10 @@ const fetch = (options) => {
   const cloneData = cloneDeep(data)
 
   try {
-    let domin = ''
+    let domain = ''
     if (url.match(/[a-zA-z]+:\/\/[^/]*/)) {
-      [domin] = url.match(/[a-zA-z]+:\/\/[^/]*/)
-      url = url.slice(domin.length)
+      [domain] = url.match(/[a-zA-z]+:\/\/[^/]*/)
+      url = url.slice(domain.length)
     }
     const match = pathToRegexp.parse(url)
     url = pathToRegexp.compile(url)(data)
@@ -30,7 +30,7 @@ const fetch = (options) => {
         delete cloneData[item.name]
       }
     }
-    url = domin + url
+    url = domain + url
   } catch (e) {
     message.error(e.message)
   }
