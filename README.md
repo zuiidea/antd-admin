@@ -113,23 +113,12 @@ npm i 或者 yarn install
 开发：
 
 ```bash
-npm run build:dll #第一次npm run dev时需运行此命令，使开发时编译更快
-npm run dev
+npm run start
 打开 http://localhost:8000 #端口在package.json中cross-env后加上 PORT=8000指定
 ```
 
 构建：
 [详情](https://github.com/zuiidea/antd-admin/issues/269)
-
-```bash
-npm run build
-
-将会打包至dist/{version}目录 #package.json里version字段
-
-npm run build:new
-
-将会打包至dist/{version增加1}目录 #package.json里version字段
-```
 
 代码检测：
 
