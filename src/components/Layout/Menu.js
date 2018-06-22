@@ -111,6 +111,8 @@ const Menus = ({
 
   if (!defaultSelectedKeys) {
     defaultSelectedKeys = ['1']
+  } else if(defaultSelectedKeys[0] === '-1') {
+    defaultSelectedKeys = [defaultSelectedKeys[1].toString()[0]]
   }
 
   return (
