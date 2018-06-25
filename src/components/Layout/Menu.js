@@ -98,8 +98,12 @@ const Menus = ({
     let result = [String(current[id])]
     const getPath = (item) => {
       if (item && item[pid]) {
-        result.unshift(String(item[pid]))
-        getPath(queryArray(array, item[pid], id))
+        if (item[pid] === '-1') {
+          result.unshift(String(item['bpid']))
+        } else {
+          result.unshift(String(item[pid]))
+          getPath(queryArray(array, item[pid], id))
+        }
       }
     }
     getPath(current)
@@ -111,8 +115,6 @@ const Menus = ({
 
   if (!defaultSelectedKeys) {
     defaultSelectedKeys = ['1']
-  } else if(defaultSelectedKeys[0] === '-1') {
-    defaultSelectedKeys = [defaultSelectedKeys[1].toString()[0]]
   }
 
   return (
