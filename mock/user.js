@@ -173,7 +173,7 @@ module.exports = {
     })
   },
 
-  [`DELETE ${apiPrefix}/users`] (req, res) {
+  [`POST ${apiPrefix}/users/delete`] (req, res) {
     const { ids } = req.body
     database = database.filter(item => !ids.some(_ => _ === item.id))
     res.status(204).end()

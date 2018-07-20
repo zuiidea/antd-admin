@@ -13,8 +13,8 @@ export function query (params) {
 
 export function remove (params) {
   return request({
-    url: users,
-    method: 'delete',
+    url: users + '/delete',
+    method: 'post',
     data: params,
   })
 }
