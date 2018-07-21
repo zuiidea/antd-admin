@@ -149,8 +149,12 @@ dashboard 设计稿：<https://dribbble.com/shots/3108122-Dashboard-Admin> （�
 
 web
 
-![](assets/4.2.1-demo-1.gif)
+![](https://user-images.githubusercontent.com/8142164/43032162-37db46e2-8ce3-11e8-9c7e-73a773bc0545.gif)
 
 移动
 
-![](assets/4.2.1-demo-2.gif)
+![](https://user-images.githubusercontent.com/8142164/43032163-3a1f2838-8ce3-11e8-89c5-8e1ae077d34a.gif)
+
+效果图
+
+![](https://user-images.githubusercontent.com/8142164/43032165-5d151bae-8ce3-11e8-9bfd-8a121620ea78.jpg)
