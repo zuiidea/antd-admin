@@ -21,6 +21,15 @@
 
 ## 更新日志
 
+### 5.0.0-beta
+
+`2018-6-20`
+
+* 更新`roadhog`至`umi`, 参考[使用 umi 改进 dva 项目开发](https://github.com/sorrycc/blog/issues/66#issuecomment-408596579)
+ PR https://github.com/zuiidea/antd-admin/pull/770
+ [umi model 用法](https://github.com/umijs/umi/issues/171)
+  感谢@sorrycc、@xiaohuoni
+
 ### 4.3.9
 
 `2017-12-27`
