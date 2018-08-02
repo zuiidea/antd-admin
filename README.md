@@ -16,7 +16,7 @@
 * 基于[react](https://github.com/facebook/react)，[ant-design](https://github.com/ant-design/ant-design)，[dva](https://github.com/dvajs/dva)，[Mock](https://github.com/nuysoft/Mock) 企业级后台管理系统最佳实践。
 * 基于 Antd UI 设计语言，提供后台管理系统常见使用场景。
 * 基于[dva](https://github.com/dvajs/dva)动态加载 Model 和路由，按需加载。
-* 使用[roadhog](https://github.com/sorrycc/roadhog)本地调试和构建，其中 Mock 功能实现脱离后端独立开发。
+* 使用[umi](https://github.com/umijs/umi)本地调试和构建，其中 Mock 功能实现脱离后端独立开发。
 * 浅度响应式设计。
 
 ## 更新日志
@@ -25,10 +25,10 @@
 
 `2018-6-20`
 
-* 更新`roadhog`至`umi`, 参考[使用 umi 改进 dva 项目开发](https://github.com/sorrycc/blog/issues/66#issuecomment-408596579)
- PR https://github.com/zuiidea/antd-admin/pull/770
- [umi model 用法](https://github.com/umijs/umi/issues/171)
-  感谢@sorrycc、@xiaohuoni
+   * 感谢@sorrycc、@xiaohuoni [PR](https://github.com/zuiidea/antd-admin/pull/770)
+   
+   *   更新`roadhog`至`umi` 
+   详见 [使用 umi 改进 dva 项目开发](https://github.com/sorrycc/blog/issues/66#issuecomment-408596579) | [umi model 用法](https://github.com/umijs/umi/issues/171)
 
 ### 4.3.9
 
@@ -74,29 +74,32 @@
 
 ```bash
 ├── /dist/           # 项目输出目录
+├── /mock/           # 数据mock
+├── /public/         # 公共文件，编译时copy至dist目录
 ├── /src/            # 项目源码目录
-│ ├── /public/       # 公共文件，编译时copy至dist目录
 │ ├── /components/   # UI组件及UI相关方法
-│ │ ├── skin.less    # 全局样式
-│ │ └── vars.less    # 全局样式变量
-│ ├── /routes/       # 路由组件
-│ │ └── app.js       # 路由入口
+│ ├── /layouts/      # 全局组件
+│ │ └── app.js       # 页面入口
+│ │ └── index.js     # 入口文件
 │ ├── /models/       # 数据模型
+│ ├── /pages/        # 页面组件
+│ │ └── document.ejs # html模版
 │ ├── /services/     # 数据接口
 │ ├── /themes/       # 项目样式
-│ ├── /mock/         # 数据mock
+│ │ ├── default.less # 全局样式
+│ │ └── vars.less    # 全局样式变量
 │ ├── /utils/        # 工具函数
 │ │ ├── config.js    # 项目常规配置
 │ │ ├── menu.js      # 菜单及面包屑配置
 │ │ ├── config.js    # 项目常规配置
-│ │ ├── request.js   # 异步请求函数
+│ │ ├── request.js   # 异步请求函数(axios)
 │ │ └── theme.js     # 项目需要在js中使用到样式变量
-│ ├── route.js       # 路由配置
-│ ├── index.js       # 入口文件
 │ └── index.html
 ├── package.json     # 项目信息
 ├── .eslintrc        # Eslint配置
-└── .roadhogrc.js    # roadhog配置
+└── .umirc.js        # umi配置
+└── .umirc.mock.js   # mock配置
+└── .theme.config.js # 主题less编译配置
 ```
 
 文件夹命名说明:
