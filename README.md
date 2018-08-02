@@ -70,7 +70,7 @@
 
 ## 开发构建
 
-### 目录结构
+### 目录结构 
 
 ```bash
 ├── /dist/           # 项目输出目录
@@ -94,13 +94,13 @@
 │ │ ├── config.js    # 项目常规配置
 │ │ ├── request.js   # 异步请求函数(axios)
 │ │ └── theme.js     # 项目需要在js中使用到样式变量
-│ └── index.html
 ├── package.json     # 项目信息
 ├── .eslintrc        # Eslint配置
 └── .umirc.js        # umi配置
 └── .umirc.mock.js   # mock配置
 └── .theme.config.js # 主题less编译配置
 ```
+pages中可参考 [duck 模式](https://medium.freecodecamp.org/scaling-your-redux-app-with-ducks-6115955638be)
 
 文件夹命名说明:
 
