@@ -1,6 +1,8 @@
 import {resolve} from "path";
 
 export default {
+  // for query-string@6 https://github.com/sorrycc/blog/issues/68
+  es5ImcompatibleVersions: true,
   plugins: [
     [
       'umi-plugin-react',
