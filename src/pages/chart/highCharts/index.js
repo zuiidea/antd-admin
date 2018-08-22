@@ -1,23 +1,23 @@
 import React from 'react'
 import { Radio } from 'antd'
 import { Page } from 'components'
-import ReChartsComponent from './ReChartsComponent'
-import styles from './page.less'
+import HighChartsComponent from './HighChartsComponent'
+import styles from './index.less'
 
 const RadioGroup = Radio.Group
 
 const chartList = [
   {
-    label: 'lineChart',
-    value: 'lineChart',
+    label: 'Highstock',
+    value: 'Highstock',
   },
   {
-    label: 'barChart',
-    value: 'barChart',
+    label: 'Highmaps',
+    value: 'Highmaps',
   },
   {
-    label: 'areaChart',
-    value: 'areaChart',
+    label: 'HighMore',
+    value: 'HighMore',
   },
 ]
 
@@ -36,9 +36,9 @@ class Chart extends React.Component {
   }
   render () {
     return (<Page inner>
-      <RadioGroup options={chartList} defaultValue="lineChart" onChange={this.handleRadioGroupChange} />
+      <RadioGroup options={chartList} defaultValue="Highstock" onChange={this.handleRadioGroupChange} />
       <div className={styles.chart}>
-        <ReChartsComponent type={this.state.type} />
+        <HighChartsComponent type={this.state.type} />
       </div>
     </Page>)
   }
