@@ -4,7 +4,6 @@ import { convertToRaw } from 'draft-js'
 import { Row, Col, Card } from 'antd'
 import draftToHtml from 'draftjs-to-html'
 import draftToMarkdown from 'draftjs-to-markdown'
-// https://github.com/jpuri/react-draft-wysiwyg/blob/master/docs/src/components/Demo/index.js
 
 export default class EditorPage extends React.Component {
   constructor (props) {

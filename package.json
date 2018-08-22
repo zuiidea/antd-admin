@@ -47,19 +47,17 @@
     "less-vars-to-js": "^1.1.2",
     "mockjs": "^1.0.1-beta3",
     "svg-sprite-loader": "^3.9.0",
-    "umi": "^1.3.17",
-    "umi-plugin-dll": "^0.2.1",
-    "umi-plugin-dva": "^0.9.1",
-    "umi-plugin-routes": "^0.1.5"
+    "umi": "^2.0.0-beta.16",
+    "umi-plugin-react": "^1.0.0-beta.16"
   },
   "pre-commit": [
     "lint"
   ],
   "scripts": {
-    "analyze": "cross-env ANALYZE=1 BABELRC=1 umi build",
-    "start": "cross-env BABELRC=1 COMPILE_ON_DEMAND=none BROWSER=none HOST=0.0.0.0 umi dev",
+    "analyze": "cross-env ANALYZE=1 umi build",
+    "start": "umi dev",
     "lint": "eslint --fix --ext .js src",
-    "build": "cross-env BABELRC=1 umi build",
+    "build": "umi build",
     "test": "umi test"
   }
 }
