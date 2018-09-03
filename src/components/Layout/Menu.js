@@ -4,6 +4,7 @@ import { Menu, Icon } from 'antd'
 import { Link } from 'react-router-dom'
 import { arrayToTree, queryArray } from 'utils'
 import pathToRegexp from 'path-to-regexp'
+import styles from './Layout.less'
 
 const { SubMenu } = Menu
 let openKeysFlag = false
@@ -123,6 +124,7 @@ const Menus = ({
       mode={siderFold ? 'vertical' : 'inline'}
       theme={darkTheme ? 'dark' : 'light'}
       selectedKeys={defaultSelectedKeys}
+      className={styles.sidemenu}
     >
       {menuItems}
     </Menu>
