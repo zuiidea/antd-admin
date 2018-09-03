@@ -21,7 +21,7 @@ function Cpu ({
       <div className={styles.item}>
         <p>usage</p>
         <p><CountUp
-          end={usage}
+          end={usage || 0}
           suffix="GB"
           {...countUpProps}
         /></p>

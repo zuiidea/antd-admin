@@ -45,7 +45,7 @@ class DataTablePage extends React.Component {
         { title: 'Phone', dataIndex: 'phone' },
         { title: 'Gender', dataIndex: 'gender' },
       ],
-      rowKey: 'registered',
+      rowKey: 'email',
     }
 
     const caseChangeDataTableProps = {
@@ -63,7 +63,7 @@ class DataTablePage extends React.Component {
         { title: 'Phone', dataIndex: 'phone' },
         { title: 'Gender', dataIndex: 'gender' },
       ],
-      rowKey: 'registered',
+      rowKey: 'email',
     }
 
     return (<div className="content-inner">
@@ -131,6 +131,7 @@ class DataTablePage extends React.Component {
                 desciption: '远程获取数据的参数',
                 type: 'Object',
                 default: '后面有空加上',
+                key: 'basetable'
               }]}
           />
         </Col>
