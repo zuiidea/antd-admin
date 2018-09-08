@@ -1,10 +1,10 @@
-import {resolve} from "path";
+// https://umijs.org/config/
+import { resolve } from 'path'
 
 export default {
-  // for query-string@6 https://github.com/sorrycc/blog/issues/68
-  es5ImcompatibleVersions: true,
   plugins: [
     [
+      // https://umijs.org/plugin/umi-plugin-react.html
       'umi-plugin-react',
       {
         dva: true,
@@ -27,45 +27,42 @@ export default {
           ],
         },
         dll: {
-          exclude: [],
-          include: ["dva", "dva/router", "dva/saga", "dva/fetch", "antd/es"],
+          include: ['dva', 'dva/router', 'dva/saga', 'dva/fetch', 'antd/es'],
         },
-        hardSource: /* isMac */process.platform === 'darwin',
+        hardSource: /* isMac */ process.platform === 'darwin',
+        polyfills: ['ie11'],
       },
     ],
   ],
-  theme: "./theme.config.js",
-  // 接口代理示例
+  // Theme for antd
+  // https://ant.design/docs/react/customize-theme
+  theme: './config/theme.config.js',
+
+  // Webpack Configuration
   proxy: {
-    "/api/v1/weather": {
-      "target": "https://api.seniverse.com/",
-      "changeOrigin": true,
-      "pathRewrite": { "^/api/v1/weather": "/v3/weather" }
+    '/api/v1/weather': {
+      target: 'https://api.seniverse.com/',
+      changeOrigin: true,
+      pathRewrite: { '^/api/v1/weather': '/v3/weather' },
     },
-    // "/api/v2": {
-    //   "target": "http://192.168.0.110",
-    //   "changeOrigin": true,
-    //   "pathRewrite": { "^/api/v2" : "/api/v2" }
-    // }
   },
   alias: {
     themes: resolve(__dirname, './src/themes'),
-    components: resolve(__dirname,"./src/components"),
-    utils: resolve(__dirname,"./src/utils"),
-    config: resolve(__dirname,"./src/utils/config"),
-    enums: resolve(__dirname,"./src/utils/enums"),
-    services: resolve(__dirname,"./src/services"),
-    models: resolve(__dirname,"./src/models"),
-    routes: resolve(__dirname,"./src/routes"),
+    components: resolve(__dirname, './src/components'),
+    utils: resolve(__dirname, './src/utils'),
+    config: resolve(__dirname, './src/utils/config'),
+    enums: resolve(__dirname, './src/utils/enums'),
+    services: resolve(__dirname, './src/services'),
+    models: resolve(__dirname, './src/models'),
+    routes: resolve(__dirname, './src/routes'),
   },
-  urlLoaderExcludes: [
-    /\.svg$/,
-  ],
+  urlLoaderExcludes: [/\.svg$/],
   ignoreMomentLocale: true,
   chainWebpack(config) {
-    config.module.rule('svg')
+    config.module
+      .rule('svg')
       .test(/\.svg$/i)
       .use('svg-sprite-loader')
-      .loader(require.resolve('svg-sprite-loader'));
+      .loader(require.resolve('svg-sprite-loader'))
   },
 }
