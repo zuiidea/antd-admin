@@ -1,5 +1,5 @@
 import React from 'react'
-import { Iconfont, Page } from 'components'
+import { Page } from 'components'
 import { Table, Row, Col, Icon } from 'antd'
 import styles from './index.less'
 import './emoji'
@@ -84,7 +84,7 @@ const IcoPage = () => (
     <ul className={styles.list}>
       {colorfulIcons.map(item => (
         <li key={item}>
-          <Iconfont className={styles.icon} colorful type={item} />
+          <Icon className={styles.icon} colorful type={item} />
           <span className={styles.name}>{item}</span>
         </li>
       ))}
@@ -93,7 +93,7 @@ const IcoPage = () => (
     <ul className={styles.list}>
       {flatIcons.map(item => (
         <li key={item}>
-          <Iconfont className={styles.icon} type={item} />
+          <Icon className={styles.icon} type={item} />
           <span className={styles.name}>{item}</span>
         </li>
       ))}
@@ -102,7 +102,7 @@ const IcoPage = () => (
     <ul className={styles.list}>
       {localSVGIcons.map(item => (
         <li key={item}>
-          <Iconfont className={styles.icon} colorful type={item} />
+          <Icon className={styles.icon} colorful type={item} />
           <span className={styles.name}>{item}</span>
         </li>
       ))}
@@ -111,7 +111,7 @@ const IcoPage = () => (
     <ul className={styles.list}>
       {localRequireSVGIcons.map(item => (
         <li key={item.default.id}>
-          <Iconfont className={styles.icon} colorful type={item.default.id} />
+          <Icon className={styles.icon} colorful component={item.default.id} />
           <span className={styles.name}>{item.default.id}</span>
         </li>
       ))}
