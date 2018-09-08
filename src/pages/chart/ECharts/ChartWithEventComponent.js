@@ -2,7 +2,7 @@ import React from 'react'
 import ReactEcharts from 'echarts-for-react'
 
 const ChartWithEventComponent = () => {
-  const onChartReady = (echart) => {
+  const onChartReady = echart => {
     console.log('echart is ready', echart)
   }
   const onChartLegendselectchanged = (param, echart) => {
@@ -57,20 +57,25 @@ const ChartWithEventComponent = () => {
     click: onChartClick,
     legendselectchanged: onChartLegendselectchanged,
   }
-  let code = 'let onEvents = {\n' +
-                   "  'click': onChartClick,\n" +
-                   "  'legendselectchanged': onChartLegendselectchanged\n" +
-                   '}\n\n' +
-                   '<ReactEcharts \n' +
-                    '    option={getOtion()} \n' +
-                    '    style={{height: 300}} \n' +
-                    '    onChartReady={onChartReady} \n' +
-                    '    onEvents={onEvents} />'
+  let code =
+    'let onEvents = {\n' +
+    "  'click': onChartClick,\n" +
+    "  'legendselectchanged': onChartLegendselectchanged\n" +
+    '}\n\n' +
+    '<ReactEcharts \n' +
+    '    option={getOtion()} \n' +
+    '    style={{height: 300}} \n' +
+    '    onChartReady={onChartReady} \n' +
+    '    onEvents={onEvents} />'
 
   return (
     <div className="examples">
       <div className="parent">
-        <label> Chart With event <strong> onEvents </strong>: (Click the chart, and watch the console)</label>
+        <label>
+          {' '}
+          Chart With event <strong> onEvents </strong>: (Click the chart, and
+          watch the console)
+        </label>
         <ReactEcharts
           option={getOtion()}
           style={{ height: 300 }}

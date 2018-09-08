@@ -1,15 +1,20 @@
-(function (root, factory) {
-  if (typeof define === 'function' && define.amd) { // eslint-disable-line
+/* global define */
+;(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    // eslint-disable-line
     // AMD. Register as an anonymous module.
     define(['exports', 'echarts'], factory) // eslint-disable-line
-  } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
+  } else if (
+    typeof exports === 'object' &&
+    typeof exports.nodeName !== 'string'
+  ) {
     // CommonJS
     factory(exports, require('echarts'))
   } else {
     // Browser globals
     factory({}, root.echarts)
   }
-}(this, (exports, echarts) => {
+})(this, (exports, echarts) => {
   let log = function (msg) {
     if (typeof console !== 'undefined') {
       console && console.error && console.error(msg)
@@ -21,12 +26,17 @@
   }
 
   let colorPalette = [
-    '#c12e34', '#e6b600', '#0098d9', '#2b821d',
-    '#005eaa', '#339ca8', '#cda819', '#32a487',
+    '#c12e34',
+    '#e6b600',
+    '#0098d9',
+    '#2b821d',
+    '#005eaa',
+    '#339ca8',
+    '#cda819',
+    '#32a487',
   ]
 
   let theme = {
-
     color: colorPalette,
 
     title: {
@@ -155,4 +165,4 @@
     },
   }
   echarts.registerTheme('shine', theme)
-}))
+})

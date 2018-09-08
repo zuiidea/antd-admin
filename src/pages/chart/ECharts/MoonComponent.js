@@ -52,11 +52,13 @@ const option = {
 }
 
 const MoonComponent = () => {
-  return (<ReactEcharts
-    option={option}
-    style={{ height: '700px', width: '100%' }}
-    className="react_for_echarts"
-  />)
+  return (
+    <ReactEcharts
+      option={option}
+      style={{ height: '700px', width: '100%' }}
+      className="react_for_echarts"
+    />
+  )
 }
 
 export default MoonComponent

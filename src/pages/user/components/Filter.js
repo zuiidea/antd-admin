@@ -3,7 +3,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import { FilterItem } from 'components'
-import { Form, Button, Row, Col, DatePicker, Input, Cascader, Switch } from 'antd'
+import {
+  Form,
+  Button,
+  Row,
+  Col,
+  DatePicker,
+  Input,
+  Cascader,
+  Switch,
+} from 'antd'
 import city from 'utils/city'
 
 const { Search } = Input
@@ -28,16 +37,15 @@ const Filter = ({
   switchIsMotion,
   onFilterChange,
   filter,
-  form: {
-    getFieldDecorator,
-    getFieldsValue,
-    setFieldsValue,
-  },
+  form: { getFieldDecorator, getFieldsValue, setFieldsValue },
 }) => {
-  const handleFields = (fields) => {
+  const handleFields = fields => {
     const { createTime } = fields
     if (createTime.length) {
-      fields.createTime = [createTime[0].format('YYYY-MM-DD'), createTime[1].format('YYYY-MM-DD')]
+      fields.createTime = [
+        moment(createTime[0]).format('YYYY-MM-DD'),
+        moment(createTime[1]).format('YYYY-MM-DD'),
+      ]
     }
     return fields
   }
@@ -82,37 +90,75 @@ const Filter = ({
   return (
     <Row gutter={24}>
       <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }}>
-        {getFieldDecorator('name', { initialValue: name })(<Search placeholder="Search Name" onSearch={handleSubmit} />)}
+        {getFieldDecorator('name', { initialValue: name })(
+          <Search placeholder="Search Name" onSearch={handleSubmit} />
+        )}
       </Col>
       <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }} id="addressCascader">
-        {getFieldDecorator('address', { initialValue: address })(<Cascader
-          style={{ width: '100%' }}
-          options={city}
-          placeholder="Please pick an address"
-          onChange={handleChange.bind(null, 'address')}
-          getPopupContainer={() => document.getElementById('addressCascader')}
-        />)}
-      </Col>
-      <Col {...ColProps} xl={{ span: 6 }} md={{ span: 8 }} sm={{ span: 12 }} id="createTimeRangePicker">
-        <FilterItem label="Createtime">
-          {getFieldDecorator('createTime', { initialValue: initialCreateTime })(<RangePicker
+        {getFieldDecorator('address', { initialValue: address })(
+          <Cascader
             style={{ width: '100%' }}
-            onChange={handleChange.bind(null, 'createTime')}
-            getCalendarContainer={() => {
-              return document.getElementById('createTimeRangePicker')
-            }}
-          />)}
+            options={city}
+            placeholder="Please pick an address"
+            onChange={handleChange.bind(null, 'address')}
+            getPopupContainer={() => document.getElementById('addressCascader')}
+          />
+        )}
+      </Col>
+      <Col
+        {...ColProps}
+        xl={{ span: 6 }}
+        md={{ span: 8 }}
+        sm={{ span: 12 }}
+        id="createTimeRangePicker"
+      >
+        <FilterItem label="Createtime">
+          {getFieldDecorator('createTime', { initialValue: initialCreateTime })(
+            <RangePicker
+              style={{ width: '100%' }}
+              onChange={handleChange.bind(null, 'createTime')}
+              getCalendarContainer={() => {
+                return document.getElementById('createTimeRangePicker')
+              }}
+            />
+          )}
         </FilterItem>
       </Col>
-      <Col {...TwoColProps} xl={{ span: 10 }} md={{ span: 24 }} sm={{ span: 24 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+      <Col
+        {...TwoColProps}
+        xl={{ span: 10 }}
+        md={{ span: 24 }}
+        sm={{ span: 24 }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+          }}
+        >
           <div>
-            <Button type="primary" className="margin-right" onClick={handleSubmit}>Search</Button>
+            <Button
+              type="primary"
+              className="margin-right"
+              onClick={handleSubmit}
+            >
+              Search
+            </Button>
             <Button onClick={handleReset}>Reset</Button>
           </div>
           <div className="flex-vertical-center">
-            <Switch className="ant-switch-large" style={{ marginRight: 16 }} defaultChecked={isMotion} onChange={switchIsMotion} checkedChildren="Motion" unCheckedChildren="Motion" />
-            <Button type="ghost" onClick={onAdd}>Create</Button>
+            <Switch
+              className="ant-switch-large"
+              style={{ marginRight: 16 }}
+              defaultChecked={isMotion}
+              onChange={switchIsMotion}
+              checkedChildren="Motion"
+              unCheckedChildren="Motion"
+            />
+            <Button type="ghost" onClick={onAdd}>
+              Create
+            </Button>
           </div>
         </div>
       </Col>

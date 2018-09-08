@@ -40,9 +40,29 @@ class DynamicChartComponent extends React.Component {
         show: false,
         min: 0,
         max: 1000,
-        color: ['#BE002F', '#F20C00', '#F00056', '#FF2D51', '#FF2121', '#FF4C00', '#FF7500',
-          '#FF8936', '#FFA400', '#F0C239', '#FFF143', '#FAFF72', '#C9DD22', '#AFDD22',
-          '#9ED900', '#00E500', '#0EB83A', '#0AA344', '#0C8918', '#057748', '#177CB0'],
+        color: [
+          '#BE002F',
+          '#F20C00',
+          '#F00056',
+          '#FF2D51',
+          '#FF2121',
+          '#FF4C00',
+          '#FF7500',
+          '#FF8936',
+          '#FFA400',
+          '#F0C239',
+          '#FFF143',
+          '#FAFF72',
+          '#C9DD22',
+          '#AFDD22',
+          '#9ED900',
+          '#00E500',
+          '#0EB83A',
+          '#0AA344',
+          '#0C8918',
+          '#057748',
+          '#177CB0',
+        ],
       },
       xAxis: [
         {
@@ -57,7 +77,7 @@ class DynamicChartComponent extends React.Component {
               now = new Date(now - 2000)
             }
             return res
-          }()),
+          })(),
         },
         {
           type: 'category',
@@ -69,7 +89,7 @@ class DynamicChartComponent extends React.Component {
               res.push(50 - len + 1)
             }
             return res
-          }()),
+          })(),
         },
       ],
       yAxis: [
@@ -115,7 +135,7 @@ class DynamicChartComponent extends React.Component {
               res.push(Math.round(Math.random() * 1000))
             }
             return res
-          }()),
+          })(),
         },
         {
           name: '最新成交价',
@@ -128,7 +148,7 @@ class DynamicChartComponent extends React.Component {
               len++
             }
             return res
-          }()),
+          })(),
         },
       ],
     }
@@ -141,7 +161,7 @@ class DynamicChartComponent extends React.Component {
   }
 
   fetchNewDate () {
-    let axisData = (new Date()).toLocaleTimeString().replace(/^\D*/, '')
+    let axisData = new Date().toLocaleTimeString().replace(/^\D*/, '')
     let { option } = this.state
     option.title.text = `Hello Echarts-for-react.${new Date().getSeconds()}`
     let data0 = option.series[0].data
@@ -154,7 +174,7 @@ class DynamicChartComponent extends React.Component {
     option.xAxis[0].data.shift()
     option.xAxis[0].data.push(axisData)
     option.xAxis[1].data.shift()
-    option.xAxis[1].data.push(this.count += 1)
+    option.xAxis[1].data.push((this.count += 1))
     this.setState({ option })
   }
 
@@ -172,13 +192,15 @@ class DynamicChartComponent extends React.Component {
   }
 
   render () {
-    let code = "<ReactEcharts ref='echartsInstance' \n" +
-                    '    option={this.state.option} />\n'
+    let code =
+      "<ReactEcharts ref='echartsInstance' \n" +
+      '    option={this.state.option} />\n'
     return (
       <div className="examples">
         <div className="parent">
           <label> use React state to render dynamic chart</label>
-          <ReactEcharts ref="echarts_react"
+          <ReactEcharts
+            ref="echarts_react"
             option={this.state.option}
             style={{ height: 400 }}
           />

@@ -10,6 +10,9 @@
       box-sizing: content-box;
       width: 100%;
       border-radius: 0 0 2px 2px;
+      &:hover {
+        box-shadow: none;
+      }
     }
 
     .rdw-inline-wrapper {
@@ -23,12 +26,6 @@
 
     .rdw-option-active {
       box-shadow: 1px 1px 0 #e8e8e8 inset;
-    }
-
-    .rdw-dropdown-optionwrapper {
-      &:hover {
-        box-shadow: none;
-      }
     }
 
     .rdw-colorpicker-option {
@@ -100,12 +97,10 @@
   }
 
   .editor {
-    border: 1px solid #F1F1F1;
+    border: 1px solid #f1f1f1;
     padding: 5px;
     border-radius: 2px;
     height: auto;
     min-height: 200px;
   }
-
-  .toolbar {}
 }

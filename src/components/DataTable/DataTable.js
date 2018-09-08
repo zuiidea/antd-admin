@@ -4,13 +4,13 @@ import { Table } from 'antd'
 import { request } from 'utils'
 import cloneDeep from 'lodash.clonedeep'
 import isEqual from 'lodash.isequal'
-import './DataTable.less'
 
 class DataTable extends React.Component {
   constructor (props) {
     super(props)
     const {
-      dataSource, pagination = {
+      dataSource,
+      pagination = {
         showSizeChanger: true,
         showQuickJumper: true,
         showTotal: total => `共 ${total} 条`,
@@ -46,22 +46,27 @@ class DataTable extends React.Component {
   handleTableChange = (pagination, filters, sorter) => {
     const pager = this.state.pagination
     pager.current = pagination.current
-    this.setState({
-      pagination: pager,
-      fetchData: {
-        results: pagination.pageSize,
-        page: pagination.current,
-        sortField: sorter.field,
-        sortOrder: sorter.order,
-        ...filters,
+    this.setState(
+      {
+        pagination: pager,
+        fetchData: {
+          results: pagination.pageSize,
+          page: pagination.current,
+          sortField: sorter.field,
+          sortOrder: sorter.order,
+          ...filters,
+        },
       },
-    }, () => {
-      this.fetch()
-    })
+      () => {
+        this.fetch()
+      }
+    )
   }
 
   fetch = () => {
-    const { fetch: { url, data, dataKey } } = this.props
+    const {
+      fetch: { url, data, dataKey },
+    } = this.props
     const { fetchData } = this.state
     this.setState({ loading: true })
     this.promise = request({
@@ -70,7 +75,7 @@ class DataTable extends React.Component {
         ...data,
         ...fetchData,
       },
-    }).then((result) => {
+    }).then(result => {
       if (!this.refs.DataTable) {
         return
       }
@@ -88,25 +93,24 @@ class DataTable extends React.Component {
     const { fetch, ...tableProps } = this.props
     const { loading, dataSource, pagination } = this.state
 
-    return (<Table
-      ref="DataTable"
-      bordered
-      loading={loading}
-      onChange={this.handleTableChange}
-      {...tableProps}
-      pagination={pagination}
-      dataSource={dataSource}
-    />)
+    return (
+      <Table
+        ref="DataTable"
+        bordered
+        loading={loading}
+        onChange={this.handleTableChange}
+        {...tableProps}
+        pagination={pagination}
+        dataSource={dataSource}
+      />
+    )
   }
 }
 
 DataTable.propTypes = {
   fetch: PropTypes.object,
   rowKey: PropTypes.string,
-  pagination: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.object,
-  ]),
+  pagination: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
   columns: PropTypes.array,
   dataSource: PropTypes.array,
 }

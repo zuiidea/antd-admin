@@ -12,7 +12,6 @@ export const model = {
 }
 
 export const pageModel = modelExtend(model, {
-
   state: {
     list: [],
     pagination: {
@@ -38,5 +37,4 @@ export const pageModel = modelExtend(model, {
       }
     },
   },
-
 })

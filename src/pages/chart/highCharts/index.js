@@ -35,14 +35,19 @@ class Chart extends React.Component {
     })
   }
   render () {
-    return (<Page inner>
-      <RadioGroup options={chartList} defaultValue="Highstock" onChange={this.handleRadioGroupChange} />
-      <div className={styles.chart}>
-        <HighChartsComponent type={this.state.type} />
-      </div>
-    </Page>)
+    return (
+      <Page inner>
+        <RadioGroup
+          options={chartList}
+          defaultValue="Highstock"
+          onChange={this.handleRadioGroupChange}
+        />
+        <div className={styles.chart}>
+          <HighChartsComponent type={this.state.type} />
+        </div>
+      </Page>
+    )
   }
 }
-
 
 export default Chart

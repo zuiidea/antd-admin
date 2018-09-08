@@ -3,7 +3,7 @@ import ReactEcharts from 'echarts-for-react'
 import echarts from 'echarts'
 
 const CalendarComponent = () => {
-  const getVirtulData = (year) => {
+  const getVirtulData = year => {
     year = year || '2017'
     let date = +echarts.number.parseDate(`${year}-01-01`)
     let end = +echarts.number.parseDate(`${+year + 1}-01-01`)
@@ -18,28 +18,14 @@ const CalendarComponent = () => {
     return data
   }
 
-  let graphData = [[
-    1485878400000,
-    260,
-  ], [
-    1486137600000,
-    200,
-  ], [
-    1486569600000,
-    279,
-  ], [
-    1486915200000,
-    847,
-  ], [
-    1487347200000,
-    241,
-  ], [
-    1487779200000,
-    411,
-  ], [
-    1488124800000,
-    985,
-  ],
+  let graphData = [
+    [1485878400000, 260],
+    [1486137600000, 200],
+    [1486569600000, 279],
+    [1486915200000, 847],
+    [1487347200000, 241],
+    [1487779200000, 411],
+    [1488124800000, 985],
   ]
 
   let links = graphData.map((item, idx) => {
@@ -54,35 +40,38 @@ const CalendarComponent = () => {
     tooltip: {
       position: 'top',
     },
-    visualMap: [{
-      min: 0,
-      max: 1000,
-      calculable: true,
-      seriesIndex: [2, 3, 4],
-      orient: 'horizontal',
-      left: '55%',
-      bottom: 20,
-    }, {
-      min: 0,
-      max: 1000,
-      inRange: {
-        color: ['grey'],
-        opacity: [0, 0.3],
+    visualMap: [
+      {
+        min: 0,
+        max: 1000,
+        calculable: true,
+        seriesIndex: [2, 3, 4],
+        orient: 'horizontal',
+        left: '55%',
+        bottom: 20,
       },
-      controller: {
+      {
+        min: 0,
+        max: 1000,
         inRange: {
-          opacity: [0.3, 0.6],
+          color: ['grey'],
+          opacity: [0, 0.3],
         },
-        outOfRange: {
-          color: '#ccc',
+        controller: {
+          inRange: {
+            opacity: [0.3, 0.6],
+          },
+          outOfRange: {
+            color: '#ccc',
+          },
         },
+        calculable: true,
+        seriesIndex: [1],
+        orient: 'horizontal',
+        left: '10%',
+        bottom: 20,
       },
-      calculable: true,
-      seriesIndex: [1],
-      orient: 'horizontal',
-      left: '10%',
-      bottom: 20,
-    }],
+    ],
 
     calendar: [
       {
@@ -142,42 +131,49 @@ const CalendarComponent = () => {
         top: 350,
         left: 460,
         range: '2017-04',
-      }],
+      },
+    ],
 
-    series: [{
-      type: 'graph',
-      edgeSymbol: ['none', 'arrow'],
-      coordinateSystem: 'calendar',
-      links,
-      symbolSize: 10,
-      calendarIndex: 0,
-      data: graphData,
-    }, {
-      type: 'heatmap',
-      coordinateSystem: 'calendar',
-      data: getVirtulData(2017),
-    }, {
-      type: 'effectScatter',
-      coordinateSystem: 'calendar',
-      calendarIndex: 1,
-      symbolSize (val) {
-        return val[1] / 40
+    series: [
+      {
+        type: 'graph',
+        edgeSymbol: ['none', 'arrow'],
+        coordinateSystem: 'calendar',
+        links,
+        symbolSize: 10,
+        calendarIndex: 0,
+        data: graphData,
       },
-      data: getVirtulData(2017),
-    }, {
-      type: 'scatter',
-      coordinateSystem: 'calendar',
-      calendarIndex: 2,
-      symbolSize (val) {
-        return val[1] / 60
+      {
+        type: 'heatmap',
+        coordinateSystem: 'calendar',
+        data: getVirtulData(2017),
       },
-      data: getVirtulData(2017),
-    }, {
-      type: 'heatmap',
-      coordinateSystem: 'calendar',
-      calendarIndex: 3,
-      data: getVirtulData(2017),
-    }],
+      {
+        type: 'effectScatter',
+        coordinateSystem: 'calendar',
+        calendarIndex: 1,
+        symbolSize (val) {
+          return val[1] / 40
+        },
+        data: getVirtulData(2017),
+      },
+      {
+        type: 'scatter',
+        coordinateSystem: 'calendar',
+        calendarIndex: 2,
+        symbolSize (val) {
+          return val[1] / 60
+        },
+        data: getVirtulData(2017),
+      },
+      {
+        type: 'heatmap',
+        coordinateSystem: 'calendar',
+        calendarIndex: 3,
+        data: getVirtulData(2017),
+      },
+    ],
   }
 
   return (

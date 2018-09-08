@@ -12,7 +12,7 @@ export default class EditorPage extends React.Component {
       editorContent: null,
     }
   }
-  onEditorStateChange = (editorContent) => {
+  onEditorStateChange = editorContent => {
     this.setState({
       editorContent,
     })
@@ -30,50 +30,70 @@ export default class EditorPage extends React.Component {
       borderColor: '#F1F1F1',
       padding: '16px 8px',
     }
-    return (<div className="content-inner">
-      <Row gutter={32}>
-        <Col {...colProps}>
-          <Card title="Editor" style={{ overflow: 'visible' }}>
-            <Editor
-              wrapperStyle={{
-                minHeight: 500,
-              }}
-              editorStyle={{
-                minHeight: 376,
-              }}
-              editorState={editorContent}
-              onEditorStateChange={this.onEditorStateChange}
-            />
-          </Card>
-        </Col>
-        <Col {...colProps}>
-          <Card title="HTML">
-            <textarea
-              style={textareaStyle}
-              disabled
-              value={editorContent ? draftToHtml(convertToRaw(editorContent.getCurrentContent())) : ''}
-            />
-          </Card>
-        </Col>
-        <Col {...colProps}>
-          <Card title="Markdown">
-            <textarea
-              style={textareaStyle}
-              disabled
-              value={editorContent ? draftToMarkdown(convertToRaw(editorContent.getCurrentContent())) : ''}
-            />
-          </Card>
-        </Col>
-        <Col {...colProps}>
-          <Card title="JSON">
-            <textarea
-              style={textareaStyle}
-              disabled
-              value={editorContent ? JSON.stringify(convertToRaw(editorContent.getCurrentContent())) : ''}
-            />
-          </Card>
-        </Col>
-      </Row>
-    </div>)
+    return (
+      <div className="content-inner">
+        <Row gutter={32}>
+          <Col {...colProps}>
+            <Card title="Editor" style={{ overflow: 'visible' }}>
+              <Editor
+                wrapperStyle={{
+                  minHeight: 500,
+                }}
+                editorStyle={{
+                  minHeight: 376,
+                }}
+                editorState={editorContent}
+                onEditorStateChange={this.onEditorStateChange}
+              />
+            </Card>
+          </Col>
+          <Col {...colProps}>
+            <Card title="HTML">
+              <textarea
+                style={textareaStyle}
+                disabled
+                value={
+                  editorContent
+                    ? draftToHtml(
+                        convertToRaw(editorContent.getCurrentContent())
+                      )
+                    : ''
+                }
+              />
+            </Card>
+          </Col>
+          <Col {...colProps}>
+            <Card title="Markdown">
+              <textarea
+                style={textareaStyle}
+                disabled
+                value={
+                  editorContent
+                    ? draftToMarkdown(
+                        convertToRaw(editorContent.getCurrentContent())
+                      )
+                    : ''
+                }
+              />
+            </Card>
+          </Col>
+          <Col {...colProps}>
+            <Card title="JSON">
+              <textarea
+                style={textareaStyle}
+                disabled
+                value={
+                  editorContent
+                    ? JSON.stringify(
+                        convertToRaw(editorContent.getCurrentContent())
+                      )
+                    : ''
+                }
+              />
+            </Card>
+          </Col>
+        </Row>
+      </div>
+    )
   }
 }

@@ -10,10 +10,7 @@ const FormItem = Form.Item
 const Login = ({
   loading,
   dispatch,
-  form: {
-    getFieldDecorator,
-    validateFieldsAndScroll,
-  },
+  form: { getFieldDecorator, validateFieldsAndScroll },
 }) => {
   function handleOk () {
     validateFieldsAndScroll((errors, values) => {
@@ -47,10 +44,20 @@ const Login = ({
                 required: true,
               },
             ],
-          })(<Input type="password" onPressEnter={handleOk} placeholder="Password" />)}
+          })(
+            <Input
+              type="password"
+              onPressEnter={handleOk}
+              placeholder="Password"
+            />
+          )}
         </FormItem>
         <Row>
-          <Button type="primary" onClick={handleOk} loading={loading.effects.login}>
+          <Button
+            type="primary"
+            onClick={handleOk}
+            loading={loading.effects.login}
+          >
             Sign in
           </Button>
           <p>
@@ -58,7 +65,6 @@ const Login = ({
             <span>Password：guest</span>
           </p>
         </Row>
-
       </form>
     </div>
   )

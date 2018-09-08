@@ -12,39 +12,44 @@ import {
 } from 'recharts'
 import Container from './Container'
 
-
 const data = [
   {
     name: 'Page A',
     uv: 4000,
     pv: 2400,
     amt: 2400,
-  }, {
+  },
+  {
     name: 'Page B',
     uv: 3000,
     pv: 1398,
     amt: 2210,
-  }, {
+  },
+  {
     name: 'Page C',
     uv: 2000,
     pv: 9800,
     amt: 2290,
-  }, {
+  },
+  {
     name: 'Page D',
     uv: 2780,
     pv: 3908,
     amt: 2000,
-  }, {
+  },
+  {
     name: 'Page E',
     uv: 1890,
     pv: 4800,
     amt: 2181,
-  }, {
+  },
+  {
     name: 'Page F',
     uv: 2390,
     pv: 3800,
     amt: 2500,
-  }, {
+  },
+  {
     name: 'Page G',
     uv: 3490,
     pv: 4300,
@@ -58,32 +63,38 @@ const mixData = [
     uv: 4000,
     female: 2400,
     male: 2400,
-  }, {
+  },
+  {
     name: 'Page B',
     uv: 3000,
     female: 1398,
     male: 2210,
-  }, {
+  },
+  {
     name: 'Page C',
     uv: 2000,
     female: 9800,
     male: 2290,
-  }, {
+  },
+  {
     name: 'Page D',
     uv: 2780,
     female: 3908,
     male: 2000,
-  }, {
+  },
+  {
     name: 'Page E',
     uv: 1890,
     female: 4800,
     male: 2181,
-  }, {
+  },
+  {
     name: 'Page F',
     uv: 2390,
     female: 3800,
     male: 2500,
-  }, {
+  },
+  {
     name: 'Page G',
     uv: 3490,
     female: 4300,
@@ -97,7 +108,8 @@ const colProps = {
 
 const SimpleBarChart = () => (
   <Container>
-    <BarChart data={data}
+    <BarChart
+      data={data}
       margin={{
         top: 5,
         right: 30,
@@ -118,7 +130,8 @@ const SimpleBarChart = () => (
 
 const StackedBarChart = () => (
   <Container>
-    <BarChart data={data}
+    <BarChart
+      data={data}
       margin={{
         top: 20,
         right: 30,
@@ -139,7 +152,8 @@ const StackedBarChart = () => (
 
 const MixBarChart = () => (
   <Container>
-    <BarChart data={mixData}
+    <BarChart
+      data={mixData}
       margin={{
         top: 20,
         right: 30,
@@ -162,15 +176,15 @@ const MixBarChart = () => (
 // CustomShapeBarChart
 const getPath = (x, y, width, height) => {
   return `M${x},${y + height}
-        C${x + width / 3},${y + height} ${x + width / 2},${y + height / 3} ${x + width / 2}, ${y}
-        C${x + width / 2},${y + height / 3} ${x + 2 * width / 3},${y + height} ${x + width}, ${y + height}
+        C${x + width / 3},${y + height} ${x + width / 2},${y + height / 3} ${x +
+    width / 2}, ${y}
+        C${x + width / 2},${y + height / 3} ${x + (2 * width) / 3},${y +
+    height} ${x + width}, ${y + height}
         Z`
 }
 
-const TriangleBar = (props) => {
-  const {
-    fill, x, y, width, height,
-  } = props
+const TriangleBar = props => {
+  const { fill, x, y, width, height } = props
   return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />
 }
 
@@ -184,7 +198,8 @@ TriangleBar.propTypes = {
 
 const CustomShapeBarChart = () => (
   <Container>
-    <BarChart data={mixData}
+    <BarChart
+      data={mixData}
       margin={{
         top: 20,
         right: 30,
@@ -202,14 +217,20 @@ const CustomShapeBarChart = () => (
 
 const BarChartPage = () => (
   <div className="content-inner">
-    <Button type="primary"
+    <Button
+      type="primary"
       style={{
         position: 'absolute',
         right: 0,
         top: -48,
       }}
     >
-      <a href="http://recharts.org/#/en-US/examples/TinyBarChart" target="blank">Show More</a>
+      <a
+        href="http://recharts.org/#/en-US/examples/TinyBarChart"
+        target="blank"
+      >
+        Show More
+      </a>
     </Button>
     <Row gutter={32}>
       <Col {...colProps}>

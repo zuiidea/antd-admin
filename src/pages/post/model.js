@@ -3,12 +3,11 @@ import { query } from './service'
 import { pageModel } from 'utils/model'
 
 export default modelExtend(pageModel, {
-
   namespace: 'post',
 
   subscriptions: {
     setup ({ dispatch, history }) {
-      history.listen((location) => {
+      history.listen(location => {
         if (location.pathname === '/post') {
           dispatch({
             type: 'query',
@@ -23,9 +22,7 @@ export default modelExtend(pageModel, {
   },
 
   effects: {
-    * query ({
-      payload,
-    }, { call, put }) {
+    *query ({ payload }, { call, put }) {
       const data = yield call(query, payload)
       if (data.success) {
         yield put({

@@ -23,25 +23,25 @@ import TransparentBar3DComPonent from './TransparentBar3DComPonent'
 import MoonComponent from './MoonComponent'
 
 const EchartsComponent = ({ type }) => {
-  if (type === 'simple') return (<SimpleChartComponent />)
-  if (type === 'loading') return (<ChartShowLoadingComponent />)
-  if (type === 'api') return (<ChartAPIComponent />)
-  if (type === 'events') return (<ChartWithEventComponent />)
-  if (type === 'theme') return (<ThemeChartComponent />)
-  if (type === 'dynamic') return (<DynamicChartComponent />)
-  if (type === 'map') return (<MapChartComponent />)
-  if (type === 'airport') return (<AirportCoordComponent />)
-  if (type === 'graph') return (<GraphComponent />)
-  if (type === 'calendar') return (<CalendarComponent />)
-  if (type === 'treemap') return (<TreemapComponent />)
-  if (type === 'gauge') return (<GaugeComponent />)
-  if (type === 'gcalendar') return (<GCalendarComponent />)
-  if (type === 'lunar') return (<LunarCalendarComponent />)
-  if (type === 'liquid') return (<LiquidfillComponent />)
-  if (type === 'BubbleGradientComponent') return (<BubbleGradientComponent />)
-  if (type === 'TransparentBar3DComPonent') return (<TransparentBar3DComPonent />)
-  if (type === 'MoonComponent') return (<MoonComponent />)
-  return (<DynamicChartComponent />)
+  if (type === 'simple') return <SimpleChartComponent />
+  if (type === 'loading') return <ChartShowLoadingComponent />
+  if (type === 'api') return <ChartAPIComponent />
+  if (type === 'events') return <ChartWithEventComponent />
+  if (type === 'theme') return <ThemeChartComponent />
+  if (type === 'dynamic') return <DynamicChartComponent />
+  if (type === 'map') return <MapChartComponent />
+  if (type === 'airport') return <AirportCoordComponent />
+  if (type === 'graph') return <GraphComponent />
+  if (type === 'calendar') return <CalendarComponent />
+  if (type === 'treemap') return <TreemapComponent />
+  if (type === 'gauge') return <GaugeComponent />
+  if (type === 'gcalendar') return <GCalendarComponent />
+  if (type === 'lunar') return <LunarCalendarComponent />
+  if (type === 'liquid') return <LiquidfillComponent />
+  if (type === 'BubbleGradientComponent') return <BubbleGradientComponent />
+  if (type === 'TransparentBar3DComPonent') return <TransparentBar3DComPonent />
+  if (type === 'MoonComponent') return <MoonComponent />
+  return <DynamicChartComponent />
 }
 
 EchartsComponent.propTypes = {

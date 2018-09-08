@@ -1,4 +1,3 @@
-
 /*
     ## Address 字典数据
     字典数据来源 http://www.atatech.org/articles/30028?rnd=254259856
@@ -4022,7 +4021,7 @@ let DICT = {
 }
 
 // id pid/parentId name children
-const tree = (list) => {
+const tree = list => {
   let mapped = {}
   let item
   for (let i = 0; i < list.length; i += 1) {
@@ -4055,8 +4054,10 @@ let DICT_FIXED = (function () {
     if ({}.hasOwnProperty.call(DICT, id)) {
       let pid
       if (id.slice(2, 6) !== '0000') {
-        pid = id.slice(4, 6) === '00' ? (`${id.slice(0, 2)}0000`) :
-          `${id.slice(0, 4)}00`
+        pid =
+          id.slice(4, 6) === '00'
+            ? `${id.slice(0, 2)}0000`
+            : `${id.slice(0, 4)}00`
       }
       fixed.push({
         id,
@@ -4068,6 +4069,6 @@ let DICT_FIXED = (function () {
     }
   }
   return tree(fixed)
-}())
+})()
 
 module.exports = DICT_FIXED

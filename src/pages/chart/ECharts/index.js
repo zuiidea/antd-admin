@@ -95,17 +95,25 @@ class Chart extends React.Component {
     })
   }
   render () {
-    return (<Page inner id="EChartsMain">
-      <RadioGroup options={chartList} defaultValue="dynamic" onChange={this.handleRadioGroupChange} />
-      <div className={styles.chart}>
-        <EchartsComponent type={this.state.type} />
-      </div>
-      <div style={{ pading: 24, marginTop: 24 }}>
-         All demos from <a href="https://github.com/hustcc/echarts-for-react">https://github.com/hustcc/echarts-for-react</a>
-      </div>
-    </Page>)
+    return (
+      <Page inner id="EChartsMain">
+        <RadioGroup
+          options={chartList}
+          defaultValue="dynamic"
+          onChange={this.handleRadioGroupChange}
+        />
+        <div className={styles.chart}>
+          <EchartsComponent type={this.state.type} />
+        </div>
+        <div style={{ pading: 24, marginTop: 24 }}>
+          All demos from{' '}
+          <a href="https://github.com/hustcc/echarts-for-react">
+            https://github.com/hustcc/echarts-for-react
+          </a>
+        </div>
+      </Page>
+    )
   }
 }
-
 
 export default Chart

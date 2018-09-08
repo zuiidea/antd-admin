@@ -15,7 +15,8 @@ export default modelExtend(model, {
     },
     sales: [],
     quote: {
-      avatar: 'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236',
+      avatar:
+        'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236',
     },
     numbers: [],
     recentSales: [],
@@ -24,7 +25,8 @@ export default modelExtend(model, {
     browser: [],
     cpu: {},
     user: {
-      avatar: 'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236',
+      avatar:
+        'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236',
     },
   },
   subscriptions: {
@@ -38,18 +40,14 @@ export default modelExtend(model, {
     },
   },
   effects: {
-    * query ({
-      payload,
-    }, { call, put }) {
+    *query ({ payload }, { call, put }) {
       const data = yield call(query, parse(payload))
       yield put({
         type: 'updateState',
         payload: data,
       })
     },
-    * queryWeather ({
-      payload = {},
-    }, { call, put }) {
+    *queryWeather ({ payload = {} }, { call, put }) {
       payload.location = 'shenzhen'
       const result = yield call(weatherService.query, payload)
       const { success } = result

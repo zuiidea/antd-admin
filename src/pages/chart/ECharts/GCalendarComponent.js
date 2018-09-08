@@ -3,7 +3,7 @@ import ReactEcharts from 'echarts-for-react'
 import echarts from 'echarts'
 
 const GCalendarComponent = () => {
-  const getVirtulData = (year) => {
+  const getVirtulData = year => {
     year = year || '2017'
     let date = +echarts.number.parseDate(`${year}-01-01`)
     let end = +echarts.number.parseDate(`${+year + 1}-01-01`)
@@ -31,26 +31,32 @@ const GCalendarComponent = () => {
       top: 'top',
     },
 
-    calendar: [{
-      range: '2017',
-      cellSize: ['auto', 20],
-    }, {
-      top: 260,
-      range: '2016',
-      cellSize: ['auto', 20],
-    }],
+    calendar: [
+      {
+        range: '2017',
+        cellSize: ['auto', 20],
+      },
+      {
+        top: 260,
+        range: '2016',
+        cellSize: ['auto', 20],
+      },
+    ],
 
-    series: [{
-      type: 'heatmap',
-      coordinateSystem: 'calendar',
-      calendarIndex: 0,
-      data: getVirtulData(2017),
-    }, {
-      type: 'heatmap',
-      coordinateSystem: 'calendar',
-      calendarIndex: 1,
-      data: getVirtulData(2016),
-    }],
+    series: [
+      {
+        type: 'heatmap',
+        coordinateSystem: 'calendar',
+        calendarIndex: 0,
+        data: getVirtulData(2017),
+      },
+      {
+        type: 'heatmap',
+        coordinateSystem: 'calendar',
+        calendarIndex: 1,
+        data: getVirtulData(2016),
+      },
+    ],
   }
 
   return (

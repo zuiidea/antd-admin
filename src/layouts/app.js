@@ -20,17 +20,26 @@ const { prefix, openPages } = config
 
 let lastHref
 
-const App = ({
-  children, dispatch, app, loading, location,
-}) => {
+const App = ({ children, dispatch, app, loading, location }) => {
   const {
-    user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys, menu, permissions,
+    user,
+    siderFold,
+    darkTheme,
+    isNavbar,
+    menuPopoverVisible,
+    navOpenKeys,
+    menu,
+    permissions,
   } = app
   let { pathname } = location
   pathname = pathname.startsWith('/') ? pathname : `/${pathname}`
   const { iconFontJS, iconFontCSS, logo } = config
-  const current = menu.filter(item => pathToRegexp(item.route || '').exec(pathname))
-  const hasPermission = current.length ? permissions.visit.includes(current[0].id) : false
+  const current = menu.filter(item =>
+    pathToRegexp(item.route || '').exec(pathname)
+  )
+  const hasPermission = current.length
+    ? permissions.visit.includes(current[0].id)
+    : false
   const { href } = window.location
 
   if (lastHref !== href) {
@@ -59,7 +68,10 @@ const App = ({
       dispatch({ type: 'app/switchSider' })
     },
     changeOpenKeys (openKeys) {
-      dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
+      dispatch({
+        type: 'app/handleNavOpenKeys',
+        payload: { navOpenKeys: openKeys },
+      })
     },
   }
 
@@ -73,8 +85,14 @@ const App = ({
       dispatch({ type: 'app/switchTheme' })
     },
     changeOpenKeys (openKeys) {
-      window.localStorage.setItem(`${prefix}navOpenKeys`, JSON.stringify(openKeys))
-      dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
+      window.localStorage.setItem(
+        `${prefix}navOpenKeys`,
+        JSON.stringify(openKeys)
+      )
+      dispatch({
+        type: 'app/handleNavOpenKeys',
+        payload: { navOpenKeys: openKeys },
+      })
     },
   }
 
@@ -84,10 +102,12 @@ const App = ({
   }
 
   if (openPages && openPages.includes(pathname)) {
-    return (<div>
-      <Loader fullScreen spinning={loading.effects['app/query']} />
-      {children}
-    </div>)
+    return (
+      <div>
+        <Loader fullScreen spinning={loading.effects['app/query']} />
+        {children}
+      </div>
+    )
   }
 
   return (
@@ -101,24 +121,30 @@ const App = ({
         {iconFontCSS && <link rel="stylesheet" href={iconFontCSS} />}
       </Helmet>
 
-      <Layout className={classnames({ [styles.dark]: darkTheme, [styles.light]: !darkTheme })}>
-        {!isNavbar && <Sider
-          trigger={null}
-          collapsible
-          collapsed={siderFold}
+      <Layout
+        className={classnames({
+          [styles.dark]: darkTheme,
+          [styles.light]: !darkTheme,
+        })}
+      >
+        {!isNavbar && (
+          <Sider trigger={null} collapsible collapsed={siderFold}>
+            {siderProps.menu.length === 0 ? null : (
+              <MyLayout.Sider {...siderProps} />
+            )}
+          </Sider>
+        )}
+        <Layout
+          style={{ height: '100vh', overflow: 'scroll' }}
+          id="mainContainer"
         >
-          {siderProps.menu.length === 0 ? null : <MyLayout.Sider {...siderProps} />}
-        </Sider>}
-        <Layout style={{ height: '100vh', overflow: 'scroll' }} id="mainContainer">
           <BackTop target={() => document.getElementById('mainContainer')} />
           <Header {...headerProps} />
           <Content>
             <Bread {...breadProps} />
             {hasPermission ? children : <Error />}
           </Content>
-          <Footer >
-            {config.footerText}
-          </Footer>
+          <Footer>{config.footerText}</Footer>
         </Layout>
       </Layout>
     </div>
@@ -133,4 +159,6 @@ App.propTypes = {
   loading: PropTypes.object,
 }
 
-export default withRouter(connect(({ app, loading }) => ({ app, loading }))(App))
+export default withRouter(
+  connect(({ app, loading }) => ({ app, loading }))(App)
+)

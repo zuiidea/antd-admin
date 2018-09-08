@@ -178,15 +178,19 @@ class MapChartComponent extends React.Component {
   }
 
   render () {
-    let code = "require('echarts/map/js/china.js'); \n" +
-                    '<ReactEcharts \n' +
-                    '    option={this.state.option || {}} \n' +
-                    "    style={{height: '350px', width: '100%'}}  \n" +
-                    "    className='react_for_echarts' />"
+    let code =
+      "require('echarts/map/js/china.js'); \n" +
+      '<ReactEcharts \n' +
+      '    option={this.state.option || {}} \n' +
+      "    style={{height: '350px', width: '100%'}}  \n" +
+      "    className='react_for_echarts' />"
     return (
       <div className="examples">
         <div className="parent">
-          <label> render a china map. <strong>MAP charts</strong>: </label>
+          <label>
+            {' '}
+            render a china map. <strong>MAP charts</strong>:{' '}
+          </label>
           <ReactEcharts
             option={this.state.option}
             style={{ height: '500px', width: '100%' }}

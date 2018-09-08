@@ -60,14 +60,18 @@ const SimpleChartComponent = () => {
       },
     ],
   }
-  let code = '<ReactEcharts \n' +
-                    '    option={this.getOtion()} \n' +
-                    "    style={{height: '350px', width: '100%'}}  \n" +
-                    "    className='react_for_echarts' />"
+  let code =
+    '<ReactEcharts \n' +
+    '    option={this.getOtion()} \n' +
+    "    style={{height: '350px', width: '100%'}}  \n" +
+    "    className='react_for_echarts' />"
   return (
     <div className="examples">
       <div className="parent">
-        <label> render a Simple echart With <strong>option and height</strong>: </label>
+        <label>
+          {' '}
+          render a Simple echart With <strong>option and height</strong>:{' '}
+        </label>
         <ReactEcharts
           option={option}
           style={{ height: '350px', width: '100%' }}
@@ -82,6 +86,5 @@ const SimpleChartComponent = () => {
     </div>
   )
 }
-
 
 export default SimpleChartComponent

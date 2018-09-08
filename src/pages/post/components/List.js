@@ -10,28 +10,36 @@ const List = ({ ...tableProps }) => {
       className: styles.image,
       width: 64,
       render: text => <img alt="Feture" width={26} src={text} />,
-    }, {
+    },
+    {
       title: 'Title',
       dataIndex: 'title',
-    }, {
+    },
+    {
       title: 'Author',
       dataIndex: 'author',
-    }, {
+    },
+    {
       title: 'Categories',
       dataIndex: 'categories',
-    }, {
+    },
+    {
       title: 'Tags',
       dataIndex: 'tags',
-    }, {
+    },
+    {
       title: 'Visibility',
       dataIndex: 'visibility',
-    }, {
+    },
+    {
       title: 'Comments',
       dataIndex: 'comments',
-    }, {
+    },
+    {
       title: 'Views',
       dataIndex: 'views',
-    }, {
+    },
+    {
       title: 'Date',
       dataIndex: 'date',
     },

@@ -12,20 +12,21 @@ const LiquidfillComponent = () => {
       },
     ],
   }
-  return (<div className="examples">
-    <div className="parent">
-      <label>
-        render a Liquidfill chart:
-      </label>
-      <ReactEcharts option={option}
-        style={{
-          height: '400px',
-          width: '100%',
-        }}
-        className="react_for_echarts"
-      />
+  return (
+    <div className="examples">
+      <div className="parent">
+        <label>render a Liquidfill chart:</label>
+        <ReactEcharts
+          option={option}
+          style={{
+            height: '400px',
+            width: '100%',
+          }}
+          className="react_for_echarts"
+        />
+      </div>
     </div>
-  </div>)
+  )
 }
 
 export default LiquidfillComponent

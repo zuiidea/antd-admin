@@ -6,9 +6,7 @@ import styles from './Page.less'
 
 export default class Page extends Component {
   render () {
-    const {
-      className, children, loading = false, inner = false,
-    } = this.props
+    const { className, children, loading = false, inner = false } = this.props
     const loadingStyle = {
       height: 'calc(100vh - 184px)',
       overflow: 'hidden',
@@ -26,7 +24,6 @@ export default class Page extends Component {
     )
   }
 }
-
 
 Page.propTypes = {
   className: PropTypes.string,

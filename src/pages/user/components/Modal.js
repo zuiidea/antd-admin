@@ -17,15 +17,11 @@ const formItemLayout = {
 const modal = ({
   item = {},
   onOk,
-  form: {
-    getFieldDecorator,
-    validateFields,
-    getFieldsValue,
-  },
+  form: { getFieldDecorator, validateFields, getFieldsValue },
   ...modalProps
 }) => {
   const handleOk = () => {
-    validateFields((errors) => {
+    validateFields(errors => {
       if (errors) {
         return
       }
@@ -75,10 +71,12 @@ const modal = ({
                 type: 'boolean',
               },
             ],
-          })(<Radio.Group>
-            <Radio value>Male</Radio>
-            <Radio value={false}>Female</Radio>
-          </Radio.Group>)}
+          })(
+            <Radio.Group>
+              <Radio value>Male</Radio>
+              <Radio value={false}>Female</Radio>
+            </Radio.Group>
+          )}
         </FormItem>
         <FormItem label="Age" hasFeedback {...formItemLayout}>
           {getFieldDecorator('age', {
@@ -123,11 +121,13 @@ const modal = ({
                 required: true,
               },
             ],
-          })(<Cascader
-            style={{ width: '100%' }}
-            options={city}
-            placeholder="Pick an address"
-          />)}
+          })(
+            <Cascader
+              style={{ width: '100%' }}
+              options={city}
+              placeholder="Pick an address"
+            />
+          )}
         </FormItem>
       </Form>
     </Modal>

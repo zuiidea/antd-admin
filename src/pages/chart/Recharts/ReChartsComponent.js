@@ -5,11 +5,10 @@ import AreaChartComponent from './AreaChartComponent'
 import BarChartComponent from './BarChartComponent'
 import LineChartComponent from './LineChartComponent'
 
-
 const ReChartsComponent = ({ type }) => {
-  if (type === 'areaChart') return (<AreaChartComponent />)
-  if (type === 'barChart') return (<BarChartComponent />)
-  return (<LineChartComponent />)
+  if (type === 'areaChart') return <AreaChartComponent />
+  if (type === 'barChart') return <BarChartComponent />
+  return <LineChartComponent />
 }
 
 ReChartsComponent.propTypes = {

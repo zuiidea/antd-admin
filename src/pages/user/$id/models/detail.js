@@ -2,7 +2,6 @@ import pathToRegexp from 'path-to-regexp'
 import { query } from '../../services/user'
 
 export default {
-
   namespace: 'userDetail',
 
   state: {
@@ -21,13 +20,9 @@ export default {
   },
 
   effects: {
-    * query ({
-      payload,
-    }, { call, put }) {
+    *query ({ payload }, { call, put }) {
       const data = yield call(query, payload)
-      const {
-        success, message, status, ...other
-      } = data
+      const { success, message, status, ...other } = data
       if (success) {
         yield put({
           type: 'querySuccess',

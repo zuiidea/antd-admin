@@ -10,7 +10,12 @@ const { SubMenu } = Menu
 let openKeysFlag = false
 
 const Menus = ({
-  siderFold, darkTheme, navOpenKeys, changeOpenKeys, menu, location,
+  siderFold,
+  darkTheme,
+  navOpenKeys,
+  changeOpenKeys,
+  menu,
+  location,
 }) => {
   // 生成树状
   const menuTree = arrayToTree(menu.filter(_ => _.mpid !== '-1'), 'id', 'mpid')
@@ -18,7 +23,7 @@ const Menus = ({
 
   // 递归生成菜单
   const getMenus = (menuTreeN, siderFoldN) => {
-    return menuTreeN.map((item) => {
+    return menuTreeN.map(item => {
       if (item.children) {
         if (item.mpid) {
           levelMap[item.id] = item.mpid
@@ -26,10 +31,12 @@ const Menus = ({
         return (
           <SubMenu
             key={item.id}
-            title={<span>
-              {item.icon && <Icon type={item.icon} />}
-              {(!siderFoldN || !menuTree.includes(item)) && item.name}
-            </span>}
+            title={
+              <span>
+                {item.icon && <Icon type={item.icon} />}
+                {(!siderFoldN || !menuTree.includes(item)) && item.name}
+              </span>
+            }
           >
             {getMenus(item.children, siderFoldN)}
           </SubMenu>
@@ -48,9 +55,9 @@ const Menus = ({
   const menuItems = getMenus(menuTree, siderFold)
 
   // 保持选中
-  const getAncestorKeys = (key) => {
+  const getAncestorKeys = key => {
     let map = {}
-    const getParent = (index) => {
+    const getParent = index => {
       const result = [String(levelMap[index])]
       if (levelMap[result[0]]) {
         result.unshift(getParent(result[0])[0])
@@ -65,8 +72,8 @@ const Menus = ({
     return map[key] || []
   }
 
-  const onOpenChange = (openKeys) => {
-    if (navOpenKeys.length) changeOpenKeys([]), openKeysFlag = true
+  const onOpenChange = openKeys => {
+    if (navOpenKeys.length) changeOpenKeys([]), (openKeysFlag = true)
     const latestOpenKey = openKeys.find(key => !navOpenKeys.includes(key))
     const latestCloseKey = navOpenKeys.find(key => !openKeys.includes(key))
     let nextOpenKeys = []
@@ -79,25 +86,27 @@ const Menus = ({
     changeOpenKeys(nextOpenKeys)
   }
 
-  let menuProps = !siderFold ? {
-    onOpenChange,
-    openKeys: navOpenKeys,
-  } : {}
-
+  let menuProps = !siderFold
+    ? {
+        onOpenChange,
+        openKeys: navOpenKeys,
+      }
+    : {}
 
   // 寻找选中路由
   let currentMenu
   let defaultSelectedKeys
   for (let item of menu) {
     if (item.route && pathToRegexp(item.route).exec(location.pathname)) {
-      if (!navOpenKeys.length && item.mpid && !openKeysFlag) changeOpenKeys([String(item.mpid)])
+      if (!navOpenKeys.length && item.mpid && !openKeysFlag)
+        changeOpenKeys([String(item.mpid)])
       currentMenu = item
       break
     }
   }
   const getPathArray = (array, current, pid, id) => {
     let result = [String(current[id])]
-    const getPath = (item) => {
+    const getPath = item => {
       if (item && item[pid]) {
         if (item[pid] === '-1') {
           result.unshift(String(item['bpid']))

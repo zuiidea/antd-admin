@@ -30,22 +30,49 @@ const config = {
         headerFormat: '',
         pointFormat: '{point.name}: <b>{series.name}</b>',
       },
-
     },
   },
 
-  series: [{
-    name: 'UTC',
-    data: ['IE', 'IS', 'GB', 'PT'].map((code) => {
-      return { code }
-    }),
-  }, {
-    name: 'UTC + 1',
-    data: ['NO', 'SE', 'DK', 'DE', 'NL', 'BE', 'LU', 'ES', 'FR', 'PL', 'CZ', 'AT', 'CH', 'LI', 'SK', 'HU',
-      'SI', 'IT', 'SM', 'HR', 'BA', 'YF', 'ME', 'AL', 'MK'].map((code) => {
-      return { code }
-    }),
-  }],
+  series: [
+    {
+      name: 'UTC',
+      data: ['IE', 'IS', 'GB', 'PT'].map(code => {
+        return { code }
+      }),
+    },
+    {
+      name: 'UTC + 1',
+      data: [
+        'NO',
+        'SE',
+        'DK',
+        'DE',
+        'NL',
+        'BE',
+        'LU',
+        'ES',
+        'FR',
+        'PL',
+        'CZ',
+        'AT',
+        'CH',
+        'LI',
+        'SK',
+        'HU',
+        'SI',
+        'IT',
+        'SM',
+        'HR',
+        'BA',
+        'YF',
+        'ME',
+        'AL',
+        'MK',
+      ].map(code => {
+        return { code }
+      }),
+    },
+  ],
 }
 
 const HighmapsComponent = () => {

@@ -12,7 +12,8 @@ const ThemeChartComponent = () => {
     },
     tooltip: {
       trigger: 'axis',
-      axisPointer: { // 坐标轴指示器，坐标轴触发有效
+      axisPointer: {
+        // 坐标轴指示器，坐标轴触发有效
         type: 'shadow', // 默认为直线，可选为：'line' | 'shadow'
       },
     },
@@ -28,7 +29,19 @@ const ThemeChartComponent = () => {
     xAxis: {
       type: 'category',
       splitLine: { show: false },
-      data: ['11月1日', '11月2日', '11月3日', '11月4日', '11月5日', '11月6日', '11月7日', '11月8日', '11月9日', '11月10日', '11月11日'],
+      data: [
+        '11月1日',
+        '11月2日',
+        '11月3日',
+        '11月4日',
+        '11月5日',
+        '11月6日',
+        '11月7日',
+        '11月8日',
+        '11月9日',
+        '11月10日',
+        '11月11日',
+      ],
     },
     yAxis: {
       type: 'value',
@@ -77,26 +90,32 @@ const ThemeChartComponent = () => {
     ],
   }
 
-
   echarts.registerTheme('my_theme', {
     backgroundColor: '#f4cccc',
   })
 
-  let code = "echarts.registerTheme('my_theme', {\n" +
-                   "  backgroundColor: '#f4cccc'\n" +
-                   '});\n\n' +
-                   '<ReactEcharts \n' +
-                    '    option={this.getOtion()} \n' +
-                    "    theme='my_theme' />"
+  let code =
+    "echarts.registerTheme('my_theme', {\n" +
+    "  backgroundColor: '#f4cccc'\n" +
+    '});\n\n' +
+    '<ReactEcharts \n' +
+    '    option={this.getOtion()} \n' +
+    "    theme='my_theme' />"
   return (
     <div className="examples">
       <div className="parent">
-        <label> render a echart With <strong>theme</strong>, should <strong>echarts.registerTheme(themeName, themeObj)</strong> before use.</label>
-        <ReactEcharts
-          option={option}
-          theme="my_theme"
-        />
-        <label> the theme object format: https://github.com/ecomfe/echarts/blob/master/theme/dark.js</label>
+        <label>
+          {' '}
+          render a echart With <strong>theme</strong>, should{' '}
+          <strong>echarts.registerTheme(themeName, themeObj)</strong> before
+          use.
+        </label>
+        <ReactEcharts option={option} theme="my_theme" />
+        <label>
+          {' '}
+          the theme object format:
+          https://github.com/ecomfe/echarts/blob/master/theme/dark.js
+        </label>
         <pre>
           <code>{code}</code>
         </pre>

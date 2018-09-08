@@ -1,20 +1,11 @@
 import React from 'react'
 import Mock from 'mockjs'
 import { request, config } from 'utils'
-import {
-  Row,
-  Col,
-  Card,
-  Select,
-  Input,
-  Button,
-} from 'antd'
+import { Row, Col, Card, Select, Input, Button } from 'antd'
 import styles from './index.less'
 
 const { api } = config
-const {
-  dashboard, users, userLogin, user, v1test, v2test,
-} = api
+const { dashboard, users, userLogin, user, v1test, v2test } = api
 
 const requestOptions = [
   {
@@ -58,7 +49,13 @@ const requestOptions = [
       isMale: '@boolean',
       email: '@email',
       avatar () {
-        return Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', this.nickName.substr(0, 1))
+        return Mock.Random.image(
+          '100x100',
+          Mock.Random.color(),
+          '#757575',
+          'png',
+          this.nickName.substr(0, 1)
+        )
       },
     }),
   },
@@ -91,15 +88,17 @@ const requestOptions = [
   },
   {
     url: 'http://api.asilu.com/weather/',
-    desc: 'cross-domain request, but match config.baseURL(./src/utils/config.js)',
+    desc:
+      'cross-domain request, but match config.baseURL(./src/utils/config.js)',
   },
   {
     url: 'http://www.zuimeitianqi.com/zuimei/queryWeather',
     data: {
       cityCode: '01010101',
     },
-    desc: 'cross-domain request by yahoo\'s yql',
-  }]
+    desc: "cross-domain request by yahoo's yql",
+  },
+]
 
 export default class RequestPage extends React.Component {
   constructor (props) {
@@ -119,25 +118,40 @@ export default class RequestPage extends React.Component {
     const { desc, ...requestParams } = currntRequest
     this.setState({
       ...this.state,
-      result: <div key="sending">
-        请求中<br />
-        url:{currntRequest.url}<br />
-        method:{currntRequest.method}<br />
-        params:{currntRequest.data ? JSON.stringify(currntRequest.data) : 'null'}<br />
-      </div>,
+      result: (
+        <div key="sending">
+          请求中
+          <br />
+          url:
+          {currntRequest.url}
+          <br />
+          method:
+          {currntRequest.method}
+          <br />
+          params:
+          {currntRequest.data ? JSON.stringify(currntRequest.data) : 'null'}
+          <br />
+        </div>
+      ),
     })
-    request({ ...requestParams }).then((data) => {
+    request({ ...requestParams }).then(data => {
       const { state } = this
-      state.result = [this.state.result, <div key="complete"><div>请求完成</div>{JSON.stringify(data)}</div>]
+      state.result = [
+        this.state.result,
+        <div key="complete">
+          <div>请求完成</div>
+          {JSON.stringify(data)}
+        </div>,
+      ]
       this.setState(state)
     })
   }
 
-  handeleURLChange = (value) => {
+  handeleURLChange = value => {
     const { state } = this
     const curretUrl = value.split('?')[0]
     const curretMethod = value.split('?')[1]
-    const currntItem = requestOptions.filter((item) => {
+    const currntItem = requestOptions.filter(item => {
       const { method = 'get' } = item
       return curretUrl === item.url && curretMethod === method
     })
@@ -158,7 +172,8 @@ export default class RequestPage extends React.Component {
       <div className="content-inner">
         <Row gutter={32}>
           <Col {...colProps}>
-            <Card title="Request"
+            <Card
+              title="Request"
               style={{
                 overflow: 'visible',
               }}
@@ -169,27 +184,48 @@ export default class RequestPage extends React.Component {
                     width: '100%',
                     flex: 1,
                   }}
-                  defaultValue={`${method.toLocaleUpperCase()}   ${requestOptions[0].url}`}
+                  defaultValue={`${method.toLocaleUpperCase()}   ${
+                    requestOptions[0].url
+                  }`}
                   size="large"
                   onChange={this.handeleURLChange}
                 >
                   {requestOptions.map((item, index) => {
                     const m = item.method || 'get'
-                    return (<Select.Option key={index} value={`${item.url}?${m}`}>
-                      {`${m.toLocaleUpperCase()}    `}{item.url}
-                    </Select.Option>)
+                    return (
+                      <Select.Option key={index} value={`${item.url}?${m}`}>
+                        {`${m.toLocaleUpperCase()}    `}
+                        {item.url}
+                      </Select.Option>
+                    )
                   })}
                 </Select>
-                <Button type="primary" style={{ width: 100, marginLeft: 16 }} onClick={this.handleRequest}>发送</Button>
+                <Button
+                  type="primary"
+                  style={{ width: 100, marginLeft: 16 }}
+                  onClick={this.handleRequest}
+                >
+                  发送
+                </Button>
               </div>
               <div className={styles.params}>
                 <div className={styles.label}>Params：</div>
-                <Input disabled value={currntRequest.data ? JSON.stringify(currntRequest.data) : 'null'} size="large" style={{ width: 200 }} placeholder="null" />
-                <div style={{ flex: 1, marginLeft: 16 }}>{currntRequest.desc}</div>
+                <Input
+                  disabled
+                  value={
+                    currntRequest.data
+                      ? JSON.stringify(currntRequest.data)
+                      : 'null'
+                  }
+                  size="large"
+                  style={{ width: 200 }}
+                  placeholder="null"
+                />
+                <div style={{ flex: 1, marginLeft: 16 }}>
+                  {currntRequest.desc}
+                </div>
               </div>
-              <div className={styles.result}>
-                {result}
-              </div>
+              <div className={styles.result}>{result}</div>
             </Card>
           </Col>
         </Row>

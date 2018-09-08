@@ -11,13 +11,16 @@ const Bread = ({ menu, location }) => {
   let pathArray = []
   let current
   for (let index in menu) {
-    if (menu[index].route && pathToRegexp(menu[index].route).exec(location.pathname)) {
+    if (
+      menu[index].route &&
+      pathToRegexp(menu[index].route).exec(location.pathname)
+    ) {
       current = menu[index]
       break
     }
   }
 
-  const getPathArray = (item) => {
+  const getPathArray = item => {
     pathArray.unshift(item)
     if (item.bpid) {
       getPathArray(queryArray(menu, item.bpid, 'id'))
@@ -26,11 +29,13 @@ const Bread = ({ menu, location }) => {
 
   let paramMap = {}
   if (!current) {
-    pathArray.push(menu[0] || {
-      id: 1,
-      icon: 'laptop',
-      name: 'Dashboard',
-    })
+    pathArray.push(
+      menu[0] || {
+        id: 1,
+        icon: 'laptop',
+        name: 'Dashboard',
+      }
+    )
     pathArray.push({
       id: 404,
       name: 'Not Found',
@@ -39,7 +44,9 @@ const Bread = ({ menu, location }) => {
     getPathArray(current)
 
     let keys = []
-    let values = pathToRegexp(current.route, keys).exec(location.pathname.replace('#', ''))
+    let values = pathToRegexp(current.route, keys).exec(
+      location.pathname.replace('#', '')
+    )
     if (keys.length) {
       keys.forEach((currentValue, index) => {
         if (typeof currentValue.name !== 'string') {
@@ -53,26 +60,27 @@ const Bread = ({ menu, location }) => {
   // 递归查找父级
   const breads = pathArray.map((item, key) => {
     const content = (
-      <span>{item.icon
-        ? <Icon type={item.icon} style={{ marginRight: 4 }} />
-        : ''}{item.name}</span>
+      <span>
+        {item.icon ? <Icon type={item.icon} style={{ marginRight: 4 }} /> : ''}
+        {item.name}
+      </span>
     )
     return (
       <Breadcrumb.Item key={key}>
-        {((pathArray.length - 1) !== key)
-          ? <Link to={pathToRegexp.compile(item.route || '')(paramMap) || '#'}>
+        {pathArray.length - 1 !== key ? (
+          <Link to={pathToRegexp.compile(item.route || '')(paramMap) || '#'}>
             {content}
           </Link>
-          : content}
+        ) : (
+          content
+        )}
       </Breadcrumb.Item>
     )
   })
 
   return (
     <div className={styles.bread}>
-      <Breadcrumb>
-        {breads}
-      </Breadcrumb>
+      <Breadcrumb>{breads}</Breadcrumb>
     </div>
   )
 }

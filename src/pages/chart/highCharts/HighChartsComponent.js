@@ -5,11 +5,10 @@ import HighstockComponent from './HighstockComponent'
 import HighmapsComponent from './HighmapsComponent'
 import HighMoreComponent from './HighMoreComponent'
 
-
 const HighChartsComponent = ({ type }) => {
-  if (type === 'Highmaps') return (<HighmapsComponent />)
-  if (type === 'HighMore') return (<HighMoreComponent />)
-  return (<HighstockComponent />)
+  if (type === 'Highmaps') return <HighmapsComponent />
+  if (type === 'HighMore') return <HighMoreComponent />
+  return <HighstockComponent />
 }
 
 HighChartsComponent.propTypes = {

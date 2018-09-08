@@ -4,28 +4,33 @@ import { routerRedux } from 'dva/router'
 import { connect } from 'dva'
 import { Row, Col, Button, Popconfirm } from 'antd'
 import { Page } from 'components'
-import queryString from 'query-string'
+import { stringify } from 'qs'
 import List from './components/List'
 import Filter from './components/Filter'
 import Modal from './components/Modal'
 
-
-const User = ({
-  location, dispatch, user, loading,
-}) => {
+const User = ({ location, dispatch, user, loading }) => {
   const { query, pathname } = location
   const {
-    list, pagination, currentItem, modalVisible, modalType, isMotion, selectedRowKeys,
+    list,
+    pagination,
+    currentItem,
+    modalVisible,
+    modalType,
+    isMotion,
+    selectedRowKeys,
   } = user
 
-  const handleRefresh = (newQuery) => {
-    dispatch(routerRedux.push({
-      pathname,
-      search: queryString.stringify({
-        ...query,
-        ...newQuery,
-      }),
-    }))
+  const handleRefresh = newQuery => {
+    dispatch(
+      routerRedux.push({
+        pathname,
+        search: stringify({
+          ...query,
+          ...newQuery,
+        }),
+      })
+    )
   }
 
   const modalProps = {
@@ -39,10 +44,9 @@ const User = ({
       dispatch({
         type: `user/${modalType}`,
         payload: data,
+      }).then(() => {
+        handleRefresh()
       })
-        .then(() => {
-          handleRefresh()
-        })
     },
     onCancel () {
       dispatch({
@@ -67,12 +71,14 @@ const User = ({
       dispatch({
         type: 'user/delete',
         payload: id,
-      })
-        .then(() => {
-          handleRefresh({
-            page: (list.length === 1 && pagination.current > 1) ? pagination.current - 1 : pagination.current,
-          })
+      }).then(() => {
+        handleRefresh({
+          page:
+            list.length === 1 && pagination.current > 1
+              ? pagination.current - 1
+              : pagination.current,
         })
+      })
     },
     onEditItem (item) {
       dispatch({
@@ -85,7 +91,7 @@ const User = ({
     },
     rowSelection: {
       selectedRowKeys,
-      onChange: (keys) => {
+      onChange: keys => {
         dispatch({
           type: 'user/updateState',
           payload: {
@@ -126,28 +132,35 @@ const User = ({
       payload: {
         ids: selectedRowKeys,
       },
-    })
-      .then(() => {
-        handleRefresh({
-          page: (list.length === selectedRowKeys.length && pagination.current > 1) ? pagination.current - 1 : pagination.current,
-        })
+    }).then(() => {
+      handleRefresh({
+        page:
+          list.length === selectedRowKeys.length && pagination.current > 1
+            ? pagination.current - 1
+            : pagination.current,
       })
+    })
   }
 
   return (
     <Page inner>
       <Filter {...filterProps} />
-      {
-        selectedRowKeys.length > 0 &&
+      {selectedRowKeys.length > 0 && (
         <Row style={{ marginBottom: 24, textAlign: 'right', fontSize: 13 }}>
           <Col>
             {`Selected ${selectedRowKeys.length} items `}
-            <Popconfirm title="Are you sure delete these items?" placement="left" onConfirm={handleDeleteItems}>
-              <Button type="primary" style={{ marginLeft: 8 }}>Remove</Button>
+            <Popconfirm
+              title="Are you sure delete these items?"
+              placement="left"
+              onConfirm={handleDeleteItems}
+            >
+              <Button type="primary" style={{ marginLeft: 8 }}>
+                Remove
+              </Button>
             </Popconfirm>
           </Col>
         </Row>
-      }
+      )}
       <List {...listProps} />
       {modalVisible && <Modal {...modalProps} />}
     </Page>
