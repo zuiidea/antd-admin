@@ -20,14 +20,14 @@ const countUpProps = {
   separator: ',',
 }
 
-function Cpu ({ usage, space, cpu, data }) {
+function Cpu ({ usage=0, space=0, cpu=0, data }) {
   return (
     <div className={styles.cpu}>
       <div className={styles.number}>
         <div className={styles.item}>
           <p>usage</p>
           <p>
-            <CountUp end={usage || 0} suffix="GB" {...countUpProps} />
+            <CountUp end={usage} suffix="GB" {...countUpProps} />
           </p>
         </div>
         <div className={styles.item}>
