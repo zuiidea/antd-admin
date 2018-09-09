@@ -57,11 +57,9 @@ const Dashboard = Mock.mock({
     },
   ],
   user: {
-    name: 'zuiidea',
-    email: 'zuiiidea@.gmail.com',
+    name: 'github',
     sales: 3241,
     sold: 3556,
-    avatar: 'http://tva4.sinaimg.cn/crop.0.0.996.996.180/6ee6a3a3jw8f0ks5pk7btj20ro0rodi0.jpg',
   },
   'completed|12': [
     {
@@ -75,11 +73,19 @@ const Dashboard = Mock.mock({
       name: '@last',
       'status|1-3': 1,
       content: '@sentence',
-      avatar () {
-        return Mock.Random.image('48x48', Mock.Random.color(), '#757575', 'png', this.name.substr(0, 1))
+      avatar() {
+        return Mock.Random.image(
+          '48x48',
+          Mock.Random.color(),
+          '#757575',
+          'png',
+          this.name.substr(0, 1)
+        )
       },
-      date () {
-        return `2016-${Mock.Random.date('MM-dd')} ${Mock.Random.time('HH:mm:ss')}`
+      date() {
+        return `2016-${Mock.Random.date('MM-dd')} ${Mock.Random.time(
+          'HH:mm:ss'
+        )}`
       },
     },
   ],
@@ -88,8 +94,10 @@ const Dashboard = Mock.mock({
       'id|+1': 1,
       name: '@last',
       'status|1-4': 1,
-      date () {
-        return `${Mock.Random.integer(2015, 2016)}-${Mock.Random.date('MM-dd')} ${Mock.Random.time('HH:mm:ss')}`
+      date() {
+        return `${Mock.Random.integer(2015, 2016)}-${Mock.Random.date(
+          'MM-dd'
+        )} ${Mock.Random.time('HH:mm:ss')}`
       },
       'price|10-200.1-2': 1,
     },
@@ -97,8 +105,10 @@ const Dashboard = Mock.mock({
   quote: {
     name: 'Joho Doe',
     title: 'Graphic Designer',
-    content: 'I\'m selfish, impatient and a little insecure. I make mistakes, I am out of control and at times hard to handle. But if you can\'t handle me at my worst, then you sure as hell don\'t deserve me at my best.',
-    avatar: 'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236',
+    content:
+      "I'm selfish, impatient and a little insecure. I make mistakes, I am out of control and at times hard to handle. But if you can't handle me at my worst, then you sure as hell don't deserve me at my best.",
+    avatar:
+      'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236',
   },
   numbers: [
     {
@@ -106,17 +116,20 @@ const Dashboard = Mock.mock({
       color: color.green,
       title: 'Online Review',
       number: 2781,
-    }, {
+    },
+    {
       icon: 'team',
       color: color.blue,
       title: 'New Customers',
       number: 3241,
-    }, {
+    },
+    {
       icon: 'message',
       color: color.purple,
       title: 'Active Projects',
       number: 253,
-    }, {
+    },
+    {
       icon: 'shopping-cart',
       color: color.red,
       title: 'Referrals',
@@ -126,7 +139,7 @@ const Dashboard = Mock.mock({
 })
 
 module.exports = {
-  [`GET ${apiPrefix}/dashboard`] (req, res) {
+  [`GET ${apiPrefix}/dashboard`](req, res) {
     res.json(Dashboard)
   },
 }

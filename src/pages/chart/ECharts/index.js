@@ -75,10 +75,6 @@ const chartList = [
     label: 'TransparentBar3D',
     value: 'TransparentBar3DComPonent',
   },
-  {
-    label: 'MoonComponent',
-    value: 'MoonComponent',
-  },
 ]
 
 class Chart extends React.Component {

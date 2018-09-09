@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button } from 'antd'
+import { Button, Icon } from 'antd'
 import CountUp from 'react-countup'
 import { color } from 'utils'
 import styles from './user.less'
@@ -13,17 +13,13 @@ const countUpProps = {
   separator: ',',
 }
 
-function User({ avatar, name, email, sales, sold }) {
+function User({ name, sales = 0, sold = 0 }) {
   return (
     <div className={styles.user}>
       <div className={styles.header}>
         <div className={styles.headerinner}>
-          <div
-            className={styles.avatar}
-            style={{ backgroundImage: `url(${avatar})` }}
-          />
+          <Icon className={styles.avatar} type="github" theme="outlined" />
           <h5 className={styles.name}>{name}</h5>
-          <p>{email}</p>
         </div>
       </div>
       <div className={styles.number}>
@@ -50,9 +46,7 @@ function User({ avatar, name, email, sales, sold }) {
 }
 
 User.propTypes = {
-  avatar: PropTypes.string,
   name: PropTypes.string,
-  email: PropTypes.string,
   sales: PropTypes.number,
   sold: PropTypes.number,
 }

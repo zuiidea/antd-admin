@@ -5,7 +5,7 @@
   "description": "An admin dashboard application demo built upon Ant Design and UmiJS",
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
-    "antd": "^3.9.0",
+    "antd": "^3.9.2",
     "axios": "^0.18.0",
     "babel-eslint": "^9.0.0",
     "classnames": "^2.2.6",
@@ -40,10 +40,10 @@
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-module-resolver": "^3.1.1",
     "cross-env": "^5.2.0",
-    "eslint": "^4.1.1",
+    "eslint": "^5.5.0",
     "eslint-config-react-app": "^2.1.0",
     "eslint-plugin-import": "^2.6.0",
-    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.1.0",
     "husky": "^0.14.3",
     "less-vars-to-js": "^1.3.0",
@@ -54,11 +54,11 @@
     "stylelint": "^9.5.0",
     "stylelint-config-prettier": "^4.0.0",
     "stylelint-config-standard": "^18.2.0",
-    "umi": "^2.0.0",
-    "umi-plugin-react": "^1.0.0"
+    "umi": "^2.0.3",
+    "umi-plugin-react": "^1.0.3"
   },
   "lint-staged": {
-    "**/*.{js,less}": [
+    "**/*.{js,less}": [ 
       "npm run prettier",
       "git add"
     ],
