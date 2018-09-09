@@ -13,7 +13,7 @@ const countUpProps = {
   separator: ',',
 }
 
-function User ({ avatar, name, email, sales, sold }) {
+function User ({ name, sales=0, sold=0 }) {
   return (
     <div className={styles.user}>
       <div className={styles.header}>
@@ -46,9 +46,7 @@ function User ({ avatar, name, email, sales, sold }) {
 }
 
 User.propTypes = {
-  avatar: PropTypes.string,
   name: PropTypes.string,
-  email: PropTypes.string,
   sales: PropTypes.number,
   sold: PropTypes.number,
 }
