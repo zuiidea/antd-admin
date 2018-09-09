@@ -2,7 +2,7 @@ import React from 'react'
 import ReactEcharts from 'echarts-for-react'
 
 class ChartAPIComponent extends React.Component {
-  render () {
+  render() {
     const option = {
       title: {
         text: '漏斗图',

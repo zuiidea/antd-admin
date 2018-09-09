@@ -6,7 +6,7 @@ export default modelExtend(pageModel, {
   namespace: 'post',
 
   subscriptions: {
-    setup ({ dispatch, history }) {
+    setup({ dispatch, history }) {
       history.listen(location => {
         if (location.pathname === '/post') {
           dispatch({
@@ -22,7 +22,7 @@ export default modelExtend(pageModel, {
   },
 
   effects: {
-    *query ({ payload }, { call, put }) {
+    *query({ payload }, { call, put }) {
       const data = yield call(query, payload)
       if (data.success) {
         yield put({

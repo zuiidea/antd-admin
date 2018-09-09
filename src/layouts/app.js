@@ -58,16 +58,16 @@ const App = ({ children, dispatch, app, loading, location }) => {
     isNavbar,
     menuPopoverVisible,
     navOpenKeys,
-    switchMenuPopover () {
+    switchMenuPopover() {
       dispatch({ type: 'app/switchMenuPopver' })
     },
-    logout () {
+    logout() {
       dispatch({ type: 'app/logout' })
     },
-    switchSider () {
+    switchSider() {
       dispatch({ type: 'app/switchSider' })
     },
-    changeOpenKeys (openKeys) {
+    changeOpenKeys(openKeys) {
       dispatch({
         type: 'app/handleNavOpenKeys',
         payload: { navOpenKeys: openKeys },
@@ -81,10 +81,10 @@ const App = ({ children, dispatch, app, loading, location }) => {
     siderFold,
     darkTheme,
     navOpenKeys,
-    changeTheme () {
+    changeTheme() {
       dispatch({ type: 'app/switchTheme' })
     },
-    changeOpenKeys (openKeys) {
+    changeOpenKeys(openKeys) {
       window.localStorage.setItem(
         `${prefix}navOpenKeys`,
         JSON.stringify(openKeys)

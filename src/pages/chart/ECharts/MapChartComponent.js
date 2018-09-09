@@ -4,7 +4,7 @@ import ReactEcharts from 'echarts-for-react'
 require('echarts/map/js/china.js')
 
 class MapChartComponent extends React.Component {
-  constructor () {
+  constructor() {
     super()
     this.timeTicket = null
     const randomData = () => {
@@ -157,7 +157,7 @@ class MapChartComponent extends React.Component {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     if (this.timeTicket) {
       clearInterval(this.timeTicket)
     }
@@ -171,13 +171,13 @@ class MapChartComponent extends React.Component {
     }, 1000)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.timeTicket) {
       clearInterval(this.timeTicket)
     }
   }
 
-  render () {
+  render() {
     let code =
       "require('echarts/map/js/china.js'); \n" +
       '<ReactEcharts \n' +

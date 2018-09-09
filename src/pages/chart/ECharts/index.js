@@ -82,19 +82,19 @@ const chartList = [
 ]
 
 class Chart extends React.Component {
-  constructor () {
+  constructor() {
     super()
     this.state = {
       type: '',
     }
     this.handleRadioGroupChange = this.handleRadioGroupChange.bind(this)
   }
-  handleRadioGroupChange (e) {
+  handleRadioGroupChange(e) {
     this.setState({
       type: e.target.value,
     })
   }
-  render () {
+  render() {
     return (
       <Page inner id="EChartsMain">
         <RadioGroup

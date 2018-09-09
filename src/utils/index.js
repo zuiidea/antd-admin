@@ -10,7 +10,7 @@ export { color } from './theme'
  * @param  name {String}
  * @return  {String}
  */
-export function queryURL (name) {
+export function queryURL(name) {
   let reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`, 'i')
   let r = window.location.search.substr(1).match(reg)
   if (r != null) return decodeURI(r[2])
@@ -24,7 +24,7 @@ export function queryURL (name) {
  * @param   {String}    keyAlias
  * @return  {Array}
  */
-export function queryArray (array, key, keyAlias = 'key') {
+export function queryArray(array, key, keyAlias = 'key') {
   if (!(array instanceof Array)) {
     return null
   }
@@ -43,7 +43,7 @@ export function queryArray (array, key, keyAlias = 'key') {
  * @param   {String}    children
  * @return  {Array}
  */
-export function arrayToTree (
+export function arrayToTree(
   array,
   id = 'id',
   pid = 'pid',

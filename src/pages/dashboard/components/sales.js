@@ -14,7 +14,7 @@ import {
 } from 'recharts'
 import styles from './sales.less'
 
-function Sales ({ data }) {
+function Sales({ data }) {
   return (
     <div className={styles.sales}>
       <div className={styles.title}>Yearly Sales</div>

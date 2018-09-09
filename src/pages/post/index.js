@@ -22,7 +22,7 @@ const Index = ({ post, dispatch, loading, location }) => {
     pagination,
     dataSource: list,
     loading: loading.effects['post/query'],
-    onChange (page) {
+    onChange(page) {
       dispatch(
         routerRedux.push({
           pathname,

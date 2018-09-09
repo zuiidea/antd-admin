@@ -4048,7 +4048,7 @@ const tree = list => {
   return result
 }
 
-let DICT_FIXED = (function () {
+let DICT_FIXED = (function() {
   let fixed = []
   for (let id in DICT) {
     if ({}.hasOwnProperty.call(DICT, id)) {

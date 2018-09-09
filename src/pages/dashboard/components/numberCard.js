@@ -4,7 +4,7 @@ import { Icon, Card } from 'antd'
 import CountUp from 'react-countup'
 import styles from './numberCard.less'
 
-function NumberCard ({ icon, color, title, number, countUp }) {
+function NumberCard({ icon, color, title, number, countUp }) {
   return (
     <Card
       className={styles.numberCard}

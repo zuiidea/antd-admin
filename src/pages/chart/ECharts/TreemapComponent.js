@@ -186,7 +186,7 @@ const TreemapComponent = () => {
     },
   ]
   let formatUtil = echarts.format
-  function getLevelOption () {
+  function getLevelOption() {
     return [
       {
         itemStyle: {
@@ -221,7 +221,7 @@ const TreemapComponent = () => {
     },
 
     tooltip: {
-      formatter (info) {
+      formatter(info) {
         let { value, treePathInfo } = info
         let treePath = []
 

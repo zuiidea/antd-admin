@@ -30,7 +30,7 @@ export default modelExtend(model, {
     },
   },
   subscriptions: {
-    setup ({ dispatch, history }) {
+    setup({ dispatch, history }) {
       history.listen(({ pathname }) => {
         if (pathname === '/dashboard' || pathname === '/') {
           dispatch({ type: 'query' })
@@ -40,14 +40,14 @@ export default modelExtend(model, {
     },
   },
   effects: {
-    *query ({ payload }, { call, put }) {
+    *query({ payload }, { call, put }) {
       const data = yield call(query, parse(payload))
       yield put({
         type: 'updateState',
         payload: data,
       })
     },
-    *queryWeather ({ payload = {} }, { call, put }) {
+    *queryWeather({ payload = {} }, { call, put }) {
       payload.location = 'shenzhen'
       const result = yield call(weatherService.query, payload)
       const { success } = result

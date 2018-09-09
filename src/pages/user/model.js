@@ -20,7 +20,7 @@ export default modelExtend(pageModel, {
   },
 
   subscriptions: {
-    setup ({ dispatch, history }) {
+    setup({ dispatch, history }) {
       history.listen(location => {
         if (location.pathname === '/user') {
           const payload = location.query || { page: 1, pageSize: 10 }
@@ -34,7 +34,7 @@ export default modelExtend(pageModel, {
   },
 
   effects: {
-    *query ({ payload = {} }, { call, put }) {
+    *query({ payload = {} }, { call, put }) {
       const data = yield call(query, payload)
       if (data) {
         yield put({
@@ -51,7 +51,7 @@ export default modelExtend(pageModel, {
       }
     },
 
-    *delete ({ payload }, { call, put, select }) {
+    *delete({ payload }, { call, put, select }) {
       const data = yield call(remove, { id: payload })
       const { selectedRowKeys } = yield select(_ => _.user)
       if (data.success) {
@@ -66,7 +66,7 @@ export default modelExtend(pageModel, {
       }
     },
 
-    *multiDelete ({ payload }, { call, put }) {
+    *multiDelete({ payload }, { call, put }) {
       const data = yield call(usersService.remove, payload)
       if (data.success) {
         yield put({ type: 'updateState', payload: { selectedRowKeys: [] } })
@@ -75,7 +75,7 @@ export default modelExtend(pageModel, {
       }
     },
 
-    *create ({ payload }, { call, put }) {
+    *create({ payload }, { call, put }) {
       const data = yield call(create, payload)
       if (data.success) {
         yield put({ type: 'hideModal' })
@@ -84,7 +84,7 @@ export default modelExtend(pageModel, {
       }
     },
 
-    *update ({ payload }, { select, call, put }) {
+    *update({ payload }, { select, call, put }) {
       const id = yield select(({ user }) => user.currentItem.id)
       const newUser = { ...payload, id }
       const data = yield call(update, newUser)
@@ -97,15 +97,15 @@ export default modelExtend(pageModel, {
   },
 
   reducers: {
-    showModal (state, { payload }) {
+    showModal(state, { payload }) {
       return { ...state, ...payload, modalVisible: true }
     },
 
-    hideModal (state) {
+    hideModal(state) {
       return { ...state, modalVisible: false }
     },
 
-    switchIsMotion (state) {
+    switchIsMotion(state) {
       window.localStorage.setItem(`${prefix}userIsMotion`, !state.isMotion)
       return { ...state, isMotion: !state.isMotion }
     },

@@ -6,7 +6,7 @@ import draftToHtml from 'draftjs-to-html'
 import draftToMarkdown from 'draftjs-to-markdown'
 
 export default class EditorPage extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       editorContent: null,
@@ -17,7 +17,7 @@ export default class EditorPage extends React.Component {
       editorContent,
     })
   }
-  render () {
+  render() {
     const { editorContent } = this.state
     const colProps = {
       lg: 12,

@@ -19,7 +19,7 @@ const status = {
   },
 }
 
-function Comments ({ data }) {
+function Comments({ data }) {
   const columns = [
     {
       title: 'avatar',

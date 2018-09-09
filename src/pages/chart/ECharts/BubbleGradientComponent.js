@@ -85,13 +85,13 @@ const option = {
       name: '1990',
       data: currentData[0],
       type: 'scatter',
-      symbolSize (data) {
+      symbolSize(data) {
         return Math.sqrt(data[2]) / 5e2
       },
       label: {
         emphasis: {
           show: true,
-          formatter (param) {
+          formatter(param) {
             return param.data[3]
           },
           position: 'top',
@@ -119,13 +119,13 @@ const option = {
       name: '2015',
       data: currentData[1],
       type: 'scatter',
-      symbolSize (data) {
+      symbolSize(data) {
         return Math.sqrt(data[2]) / 5e2
       },
       label: {
         emphasis: {
           show: true,
-          formatter (param) {
+          formatter(param) {
             return param.data[3]
           },
           position: 'top',

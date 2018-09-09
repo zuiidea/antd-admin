@@ -9,7 +9,7 @@ export default {
   },
 
   subscriptions: {
-    setup ({ dispatch, history }) {
+    setup({ dispatch, history }) {
       history.listen(({ pathname }) => {
         const match = pathToRegexp('/user/:id').exec(pathname)
         if (match) {
@@ -20,7 +20,7 @@ export default {
   },
 
   effects: {
-    *query ({ payload }, { call, put }) {
+    *query({ payload }, { call, put }) {
       const data = yield call(query, payload)
       const { success, message, status, ...other } = data
       if (success) {
@@ -37,7 +37,7 @@ export default {
   },
 
   reducers: {
-    querySuccess (state, { payload }) {
+    querySuccess(state, { payload }) {
       const { data } = payload
       return {
         ...state,

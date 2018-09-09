@@ -2,7 +2,7 @@ import React from 'react'
 import ReactEcharts from 'echarts-for-react'
 
 class GaugeComponent extends React.Component {
-  constructor () {
+  constructor() {
     super()
     const option = {
       backgroundColor: '#1b1b1b',
@@ -218,7 +218,7 @@ class GaugeComponent extends React.Component {
               shadowColor: '#fff', // 默认透明
               shadowBlur: 10,
             },
-            formatter (v) {
+            formatter(v) {
               switch (`${v}`) {
                 case '0':
                   return 'E'
@@ -287,7 +287,7 @@ class GaugeComponent extends React.Component {
               shadowColor: '#fff', // 默认透明
               shadowBlur: 10,
             },
-            formatter (v) {
+            formatter(v) {
               switch (`${v}`) {
                 case '0':
                   return 'H'
@@ -331,7 +331,7 @@ class GaugeComponent extends React.Component {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     if (this.timeTicket) {
       clearInterval(this.timeTicket)
     }
@@ -345,13 +345,13 @@ class GaugeComponent extends React.Component {
     }, 1000)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.timeTicket) {
       clearInterval(this.timeTicket)
     }
   }
 
-  render () {
+  render() {
     return (
       <div className="examples">
         <div className="parent">

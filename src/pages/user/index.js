@@ -40,7 +40,7 @@ const User = ({ location, dispatch, user, loading }) => {
     confirmLoading: loading.effects[`user/${modalType}`],
     title: `${modalType === 'create' ? 'Create User' : 'Update User'}`,
     wrapClassName: 'vertical-center-modal',
-    onOk (data) {
+    onOk(data) {
       dispatch({
         type: `user/${modalType}`,
         payload: data,
@@ -48,7 +48,7 @@ const User = ({ location, dispatch, user, loading }) => {
         handleRefresh()
       })
     },
-    onCancel () {
+    onCancel() {
       dispatch({
         type: 'user/hideModal',
       })
@@ -61,13 +61,13 @@ const User = ({ location, dispatch, user, loading }) => {
     pagination,
     location,
     isMotion,
-    onChange (page) {
+    onChange(page) {
       handleRefresh({
         page: page.current,
         pageSize: page.pageSize,
       })
     },
-    onDeleteItem (id) {
+    onDeleteItem(id) {
       dispatch({
         type: 'user/delete',
         payload: id,
@@ -80,7 +80,7 @@ const User = ({ location, dispatch, user, loading }) => {
         })
       })
     },
-    onEditItem (item) {
+    onEditItem(item) {
       dispatch({
         type: 'user/showModal',
         payload: {
@@ -107,13 +107,13 @@ const User = ({ location, dispatch, user, loading }) => {
     filter: {
       ...query,
     },
-    onFilterChange (value) {
+    onFilterChange(value) {
       handleRefresh({
         ...value,
         page: 1,
       })
     },
-    onAdd () {
+    onAdd() {
       dispatch({
         type: 'user/showModal',
         payload: {
@@ -121,7 +121,7 @@ const User = ({ location, dispatch, user, loading }) => {
         },
       })
     },
-    switchIsMotion () {
+    switchIsMotion() {
       dispatch({ type: 'user/switchIsMotion' })
     },
   }

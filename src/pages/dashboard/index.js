@@ -25,7 +25,7 @@ const bodyStyle = {
   },
 }
 
-function Dashboard ({ dashboard, loading }) {
+function Dashboard({ dashboard, loading }) {
   const {
     weather,
     sales,

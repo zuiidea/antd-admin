@@ -381,7 +381,7 @@ const LunarCalendarComponent = () => {
 
     const option = {
       tooltip: {
-        formatter (params) {
+        formatter(params) {
           return `降雨量: ${params.value[1].toFixed(2)}`
         },
       },
@@ -432,7 +432,7 @@ const LunarCalendarComponent = () => {
           label: {
             normal: {
               show: true,
-              formatter (params) {
+              formatter(params) {
                 let d = echarts.number.parseDate(params.value[0])
                 return `${d.getDate()}\n\n${params.value[2]}\n\n`
               },
@@ -450,7 +450,7 @@ const LunarCalendarComponent = () => {
           label: {
             normal: {
               show: true,
-              formatter (params) {
+              formatter(params) {
                 return `\n\n\n${params.value[3] || ''}`
               },
               textStyle: {

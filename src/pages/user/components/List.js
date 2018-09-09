@@ -22,7 +22,7 @@ const List = ({
     } else if (e.key === '2') {
       confirm({
         title: 'Are you sure delete this record?',
-        onOk () {
+        onOk() {
           onDeleteItem(record.id)
         },
       })

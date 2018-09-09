@@ -153,7 +153,7 @@ const CalendarComponent = () => {
         type: 'effectScatter',
         coordinateSystem: 'calendar',
         calendarIndex: 1,
-        symbolSize (val) {
+        symbolSize(val) {
           return val[1] / 40
         },
         data: getVirtulData(2017),
@@ -162,7 +162,7 @@ const CalendarComponent = () => {
         type: 'scatter',
         coordinateSystem: 'calendar',
         calendarIndex: 2,
-        symbolSize (val) {
+        symbolSize(val) {
           return val[1] / 60
         },
         data: getVirtulData(2017),

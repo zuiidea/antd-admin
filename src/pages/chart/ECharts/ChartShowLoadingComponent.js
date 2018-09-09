@@ -2,22 +2,22 @@ import React from 'react'
 import ReactEcharts from 'echarts-for-react'
 
 class ChartShowLoadingComponent extends React.Component {
-  constructor () {
+  constructor() {
     super()
     this._t = null
     this.onChartReady = this.onChartReady.bind(this)
   }
-  componentWillUnmount () {
+  componentWillUnmount() {
     clearTimeout(this._t)
   }
 
-  onChartReady (chart) {
+  onChartReady(chart) {
     this._t = setTimeout(() => {
       chart.hideLoading()
     }, 3000)
   }
 
-  render () {
+  render() {
     const getOtion = () => {
       const option = {
         title: {

@@ -1,5 +1,5 @@
 /* global define */
-;(function (root, factory) {
+;(function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // eslint-disable-line
     // AMD. Register as an anonymous module.
@@ -15,7 +15,7 @@
     factory({}, root.echarts)
   }
 })(this, (exports, echarts) => {
-  let log = function (msg) {
+  let log = function(msg) {
     if (typeof console !== 'undefined') {
       console && console.error && console.error(msg)
     }

@@ -24,7 +24,7 @@ const status = {
   },
 }
 
-function RecentSales ({ data }) {
+function RecentSales({ data }) {
   const columns = [
     {
       title: 'NAME',

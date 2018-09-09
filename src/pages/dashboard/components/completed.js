@@ -14,7 +14,7 @@ import {
 } from 'recharts'
 import styles from './completed.less'
 
-function Completed ({ data }) {
+function Completed({ data }) {
   return (
     <div className={styles.sales}>
       <div className={styles.title}>TEAM TOTAL COMPLETED</div>

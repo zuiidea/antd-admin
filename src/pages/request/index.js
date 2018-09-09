@@ -48,7 +48,7 @@ const requestOptions = [
       address: '@county(true)',
       isMale: '@boolean',
       email: '@email',
-      avatar () {
+      avatar() {
         return Mock.Random.image(
           '100x100',
           Mock.Random.color(),
@@ -101,7 +101,7 @@ const requestOptions = [
 ]
 
 export default class RequestPage extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       currntRequest: requestOptions[0],
@@ -109,7 +109,7 @@ export default class RequestPage extends React.Component {
       result: '',
     }
   }
-  componentDidMount () {
+  componentDidMount() {
     this.handleRequest()
   }
 
@@ -160,7 +160,7 @@ export default class RequestPage extends React.Component {
     this.setState(state)
   }
 
-  render () {
+  render() {
     const colProps = {
       lg: 12,
       md: 24,

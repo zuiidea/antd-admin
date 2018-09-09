@@ -19,7 +19,7 @@ const status = {
   },
 }
 
-function Browser ({ data }) {
+function Browser({ data }) {
   const columns = [
     {
       title: 'name',
