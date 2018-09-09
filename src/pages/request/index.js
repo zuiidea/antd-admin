@@ -136,6 +136,7 @@ export default class RequestPage extends React.Component {
     })
     request({ ...requestParams }).then(data => {
       const { state } = this
+      console.log(data)
       state.result = [
         this.state.result,
         <div key="complete">

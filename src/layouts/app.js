@@ -33,7 +33,7 @@ const App = ({ children, dispatch, app, loading, location }) => {
   } = app
   let { pathname } = location
   pathname = pathname.startsWith('/') ? pathname : `/${pathname}`
-  const { iconFontJS, iconFontCSS, logo } = config
+  const { logo } = config
   const current = menu.filter(item =>
     pathToRegexp(item.route || '').exec(pathname)
   )
@@ -117,8 +117,6 @@ const App = ({ children, dispatch, app, loading, location }) => {
         <title>ANTD ADMIN</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href={logo} type="image/x-icon" />
-        {iconFontJS && <script src={iconFontJS} />}
-        {iconFontCSS && <link rel="stylesheet" href={iconFontCSS} />}
       </Helmet>
 
       <Layout

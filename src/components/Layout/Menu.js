@@ -73,7 +73,10 @@ const Menus = ({
   }
 
   const onOpenChange = openKeys => {
-    if (navOpenKeys.length) changeOpenKeys([]), (openKeysFlag = true)
+    if (navOpenKeys.length) {
+      changeOpenKeys([])
+      openKeysFlag = true
+    }
     const latestOpenKey = openKeys.find(key => !navOpenKeys.includes(key))
     const latestCloseKey = navOpenKeys.find(key => !openKeys.includes(key))
     let nextOpenKeys = []
