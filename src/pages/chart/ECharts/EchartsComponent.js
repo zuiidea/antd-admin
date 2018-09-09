@@ -20,7 +20,6 @@ import TreemapComponent from './TreemapComponent'
 import LiquidfillComponent from './LiquidfillComponent'
 import BubbleGradientComponent from './BubbleGradientComponent'
 import TransparentBar3DComPonent from './TransparentBar3DComPonent'
-import MoonComponent from './MoonComponent'
 
 const EchartsComponent = ({ type }) => {
   if (type === 'simple') return <SimpleChartComponent />
@@ -40,7 +39,6 @@ const EchartsComponent = ({ type }) => {
   if (type === 'liquid') return <LiquidfillComponent />
   if (type === 'BubbleGradientComponent') return <BubbleGradientComponent />
   if (type === 'TransparentBar3DComPonent') return <TransparentBar3DComPonent />
-  if (type === 'MoonComponent') return <MoonComponent />
   return <DynamicChartComponent />
 }
 
