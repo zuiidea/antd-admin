@@ -4,7 +4,18 @@ node_js:
 script:
 - npm run build
 before_install:
-- openssl aes-256-cbc -K $encrypted_18b2305b78c9_key -iv $encrypted_18b2305b78c9_iv
-  -in config/id_rsa.enc -out ~\/.ssh/id_rsa -d
+- |
+    if [ "$TRAVIS_BRANCH" = "develop" ]; then
+      for prefixed_envvar in ${!DEV_*}; do
+        eval export ${prefixed_envvar#DEV_}="${!prefixed_envvar}"
+      done
+    elif [ "$TRAVIS_BRANCH" = "master" ]; then
+      for prefixed_envvar in ${!PROD_*}; do
+        eval export ${prefixed_envvar#PROD_}="${!prefixed_envvar}"
+      done
+    fi
+- openssl aes-256-cbc -K $encrypted_18b2305b78c9_key -iv $encrypted_18b2305b78c9_iv -in config/id_rsa.enc -out ~/.ssh/id_rsa -d
+- chmod 600 ~/.ssh/id_rsa
+- echo -e "Host 47.92.30.98\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 after_success:
-- scp -o stricthostkeychecking=no -r ./dist root@47.92.30.98:/home/www/antd-admin
+- scp -o stricthostkeychecking=no -r ./dist root@47.92.30.98:$BUILD_DIR
