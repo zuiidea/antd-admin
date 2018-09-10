@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+- node
+script:
+- npm run build
+before_install:
+- openssl aes-256-cbc -K $encrypted_18b2305b78c9_key -iv $encrypted_18b2305b78c9_iv
+  -in config/id_rsa.enc -out ~\/.ssh/id_rsa -d
+after_success:
+- scp -o stricthostkeychecking=no -r ./dist root@47.92.30.98:/home/www/antd-admin
