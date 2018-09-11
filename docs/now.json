@@ -1,0 +1,6 @@
+{
+  "name": "antd-admin-doc",
+  "alias": ["doc-antd-admin.now.sh", "doc.antd-admin.zuiidea.com"],
+  "type": "static",
+  "public": true
+}
