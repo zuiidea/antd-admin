@@ -37,35 +37,6 @@
 * 更新`antd`至`3.0.3`，以及其它主要库，并解决升级带来的兼容问题。
 *     尽可能的保持`antd`的设计语言。
 
-### 4.3.7
-
-`2017-10-30`
-
-* 更新`chart`，新增[ECharts](https://github.com/ecomfe/echarts)，[highCharts](https://github.com/highcharts/highcharts)，[Recharts](https://github.com/recharts/recharts)演示。
-
-### 4.3.5
-
-`2017-09-04`
-
-* 更新[dva](https://github.com/dvajs/dva)至`2.0.1`，感谢[@yangbin1994](https://github.com/yangbin1994)的[PR](https://github.com/zuiidea/antd-admin/pull/567)。
-
-### 4.3.4
-
-`2017-09-04`
-
-* 更新[roadhog](https://github.com/sorrycc/roadhog)至`1.2.1`，修复闪屏问题。
-* 修复 build css 未压缩[#529](https://github.com/zuiidea/antd-admin/issues/529)，classname 未 Hash[#477](https://github.com/zuiidea/antd-admin/issues/477)。
-* 更新登录成功使用 router 跳转[#479](https://github.com/zuiidea/antd-admin/issues/479)。
-
-### 4.3.0
-
-`2017-07-30`
-
-* 更新[roadhog](https://github.com/sorrycc/roadhog)至`1.0.0-beta.7`，得益于`webpack@3.4`，编译速度不减。
-* 基于使用 roadhog 的 dll 插件，开发时编译耗时减半。
-* 新增打包时按项目版本号生成文件目录。[#449](https://github.com/zuiidea/antd-admin/issues/449)
-* 更新`eslint`，并适当修改了`.eslintrc`。
-
 [More Change Log](https://github.com/zuiidea/antd-admin/wiki/Change-Log)
 
 ## 开发构建
