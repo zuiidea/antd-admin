@@ -9,6 +9,7 @@ export default {
       {
         dva: true,
         antd: true,
+        dynamicImport: true,
         routes: {
           exclude: [
             /model\.(j|t)sx?$/,

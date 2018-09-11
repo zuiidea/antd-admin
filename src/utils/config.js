@@ -6,8 +6,6 @@ module.exports = {
   prefix: 'antdAdmin',
   footerText: 'Ant Design Admin  © 2018 zuiidea',
   logo: '/public/logo.svg',
-  CORS: [],
-  openPages: ['/login'],
   apiPrefix: '/api/v1',
   APIV1,
   APIV2,
