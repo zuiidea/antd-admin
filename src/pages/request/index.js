@@ -7,7 +7,7 @@ import styles from './index.less'
 const { api } = config
 const { dashboard, users, userLogin, user, v1test, v2test } = api
 
-const requestOptions = [
+export const requestOptions = [
   {
     url: user.replace('/:id', ''),
     desc: 'intercept request by mock.js',
