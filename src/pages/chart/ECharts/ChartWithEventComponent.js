@@ -3,6 +3,7 @@ import ReactEcharts from 'echarts-for-react'
 
 const ChartWithEventComponent = () => {
   const onChartReady = echart => {
+    /* eslint-disable */
     console.log('echart is ready', echart)
   }
   const onChartLegendselectchanged = (param, echart) => {

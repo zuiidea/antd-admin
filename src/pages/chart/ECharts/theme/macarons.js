@@ -17,6 +17,7 @@
 })(this, (exports, echarts) => {
   let log = function(msg) {
     if (typeof console !== 'undefined') {
+      /* eslint-disable */
       console && console.error && console.error(msg)
     }
   }

@@ -1,9 +1,14 @@
 import React from 'react'
 import Mock from 'mockjs'
 import { request } from 'utils'
+import { apiPrefix } from 'utils/config'
 import { Row, Col, Card, Select, Input, Button } from 'antd'
-import {
-  userLogin,
+import api from '@/services/api'
+
+import styles from './index.less'
+
+const {
+  loginUser,
   queryUser,
   createUser,
   updateUser,
@@ -11,43 +16,49 @@ import {
   queryUserInfo,
   queryDashboard,
   queryUserList,
-} from 'api'
+} = api
 
-import styles from './index.less'
+const transform = string => {
+  let url = apiPrefix + string
+  let method = 'GET'
+
+  const paramsArray = string.split(' ')
+  if (paramsArray.length === 2) {
+    method = paramsArray[0]
+    url = apiPrefix + paramsArray[1]
+  }
+  return {
+    url,
+    method,
+    desc: 'intercept request by mock.js',
+  }
+}
 
 export const requestOptions = [
   {
-    url: queryUserInfo,
-    desc: 'intercept request by mock.js',
+    ...transform(queryUserInfo),
   },
   {
-    url: queryDashboard,
-    desc: 'intercept request by mock.js',
+    ...transform(queryDashboard),
   },
   {
-    url: userLogin,
-    method: 'post',
+    ...transform(loginUser),
     data: {
       username: 'guest',
       password: 'guest',
     },
-    desc: 'intercept request by mock.js',
   },
   {
-    url: queryUserList,
-    desc: 'intercept request by mock.js',
+    ...transform(queryUserList),
   },
   {
-    url: queryUser,
-    desc: 'intercept request by mock.js',
+    ...transform(queryUser),
     data: Mock.mock({
       id: '@id',
     }),
   },
   {
-    url: createUser,
-    desc: 'intercept request by mock.js',
-    method: 'post',
+    ...transform(createUser),
     data: Mock.mock({
       name: '@cname',
       nickName: '@last',
@@ -68,18 +79,14 @@ export const requestOptions = [
     }),
   },
   {
-    url: updateUser,
-    desc: 'intercept request by mock.js',
-    method: 'patch',
+    ...transform(updateUser),
     data: Mock.mock({
       id: '@id',
       name: '@cname',
     }),
   },
   {
-    url: removeUser,
-    desc: 'intercept request by mock.js',
-    method: 'delete',
+    ...transform(removeUser),
     data: Mock.mock({
       id: '@id',
     }),
@@ -88,18 +95,6 @@ export const requestOptions = [
     url: '/api/v2/test',
     desc: 'intercept request by mock.js',
     method: 'get',
-  },
-  {
-    url: 'http://api.asilu.com/weather/',
-    desc:
-      'cross-domain request, but match config.baseURL(./src/utils/config.js)',
-  },
-  {
-    url: 'http://www.zuimeitianqi.com/zuimei/queryWeather',
-    data: {
-      cityCode: '01010101',
-    },
-    desc: "cross-domain request by yahoo's yql",
   },
 ]
 
@@ -139,7 +134,6 @@ export default class RequestPage extends React.Component {
     })
     request({ ...requestParams }).then(data => {
       const { state } = this
-      console.log(data)
       state.result = [
         this.state.result,
         <div key="complete">

@@ -59,7 +59,6 @@
   "lint-staged": {
     "src/**/*.js": [
       "eslint --ext .js --fix",
-      "umi test",
       "npm run prettier",
       "git add"
     ],

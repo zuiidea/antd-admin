@@ -6,7 +6,7 @@
 import { routerRedux } from 'dva/router'
 import { parse, stringify } from 'qs'
 import config from 'config'
-import { EnumRoleType } from 'enums'
+import { RoleType } from 'utils/constant'
 import { queryMenuList, userLogout, queryUserInfo } from 'api'
 
 const { prefix } = config
@@ -68,8 +68,8 @@ export default {
         const { permissions } = user
         let menu = list
         if (
-          permissions.role === EnumRoleType.ADMIN ||
-          permissions.role === EnumRoleType.DEVELOPER
+          permissions.role === RoleType.ADMIN ||
+          permissions.role === RoleType.DEVELOPER
         ) {
           permissions.visit = list.map(item => item.id)
         } else {

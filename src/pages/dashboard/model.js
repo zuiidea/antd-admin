@@ -1,8 +1,7 @@
 import { parse } from 'qs'
 import modelExtend from 'dva-model-extend'
-import { query } from './services/dashboard'
+import { queryDashboard, queryWeather } from 'api'
 import { model } from 'utils/model'
-import * as weatherService from './services/weather'
 
 export default modelExtend(model, {
   namespace: 'dashboard',
@@ -41,7 +40,7 @@ export default modelExtend(model, {
   },
   effects: {
     *query({ payload }, { call, put }) {
-      const data = yield call(query, parse(payload))
+      const data = yield call(queryDashboard, parse(payload))
       yield put({
         type: 'updateState',
         payload: data,
@@ -49,7 +48,7 @@ export default modelExtend(model, {
     },
     *queryWeather({ payload = {} }, { call, put }) {
       payload.location = 'shenzhen'
-      const result = yield call(weatherService.query, payload)
+      const result = yield call(queryWeather, payload)
       const { success } = result
       if (success) {
         const data = result.results[0]
