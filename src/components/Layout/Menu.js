@@ -115,7 +115,7 @@ const Menus = ({
           result.unshift(String(item['bpid']))
         } else {
           result.unshift(String(item[pid]))
-          getPath(queryArray(array, item[pid], id))
+          getPath(queryArray(array, id, item[pid]))
         }
       }
     }

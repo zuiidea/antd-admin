@@ -1,21 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Table, Tag } from 'antd'
-import { color } from 'utils'
+import { Color } from 'utils'
 import styles from './browser.less'
 
 const status = {
   1: {
-    color: color.green,
+    color: Color.green,
   },
   2: {
-    color: color.red,
+    color: Color.red,
   },
   3: {
-    color: color.blue,
+    color: Color.blue,
   },
   4: {
-    color: color.yellow,
+    color: Color.yellow,
   },
 }
 

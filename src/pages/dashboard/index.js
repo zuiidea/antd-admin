@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
 import { Row, Col, Card } from 'antd'
-import { color } from 'utils'
+import { Color } from 'utils'
 import { Page } from 'components'
 import {
   NumberCard,
@@ -70,7 +70,7 @@ function Dashboard({ dashboard, loading }) {
                 bodyStyle={{
                   padding: 0,
                   height: 204,
-                  background: color.blue,
+                  background: Color.blue,
                 }}
               >
                 <Weather
@@ -86,7 +86,7 @@ function Dashboard({ dashboard, loading }) {
                 bodyStyle={{
                   padding: 0,
                   height: 204,
-                  background: color.peach,
+                  background: Color.peach,
                 }}
               >
                 <Quote {...quote} />

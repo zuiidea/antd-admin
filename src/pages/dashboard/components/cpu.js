@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { color } from 'utils'
+import { Color } from 'utils'
 import CountUp from 'react-countup'
 import {
   LineChart,
@@ -47,21 +47,21 @@ function Cpu({ usage = 0, space = 0, cpu = 0, data }) {
         <LineChart data={data} margin={{ left: -40 }}>
           <XAxis
             dataKey="name"
-            axisLine={{ stroke: color.borderBase, strokeWidth: 1 }}
+            axisLine={{ stroke: Color.borderBase, strokeWidth: 1 }}
             tickLine={false}
           />
           <YAxis axisLine={false} tickLine={false} />
           <CartesianGrid
             vertical={false}
-            stroke={color.borderBase}
+            stroke={Color.borderBase}
             strokeDasharray="3 3"
           />
           <Line
             type="monotone"
             connectNulls
             dataKey="cpu"
-            stroke={color.blue}
-            fill={color.blue}
+            stroke={Color.blue}
+            fill={Color.blue}
           />
         </LineChart>
       </ResponsiveContainer>

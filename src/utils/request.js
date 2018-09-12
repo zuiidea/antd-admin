@@ -1,5 +1,6 @@
 import axios from 'axios'
 import cloneDeep from 'lodash.clonedeep'
+import isEmpty from 'lodash.isempty'
 import pathToRegexp from 'path-to-regexp'
 import { message } from 'antd'
 import qs from 'qs'
@@ -31,7 +32,7 @@ export default function request(options) {
 
   options.url =
     method.toLocaleLowerCase() === 'get'
-      ? `${url}${cloneData ? '?' : ''}${qs.stringify(cloneData)}`
+      ? `${url}${isEmpty(cloneData) ? '' : '?'}${qs.stringify(cloneData)}`
       : url
 
   return axios(options)

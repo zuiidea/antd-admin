@@ -23,7 +23,7 @@ const Bread = ({ menu, location }) => {
   const getPathArray = item => {
     pathArray.unshift(item)
     if (item.bpid) {
-      getPathArray(queryArray(menu, item.bpid, 'id'))
+      getPathArray(queryArray(menu, 'id', item.bpid))
     }
   }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Button, Icon } from 'antd'
 import CountUp from 'react-countup'
-import { color } from 'utils'
+import { Color } from 'utils'
 import styles from './user.less'
 
 const countUpProps = {
@@ -25,13 +25,13 @@ function User({ name, sales = 0, sold = 0 }) {
       <div className={styles.number}>
         <div className={styles.item}>
           <p>EARNING SALES</p>
-          <p style={{ color: color.green }}>
+          <p style={{ color: Color.green }}>
             <CountUp end={sales} prefix="$" {...countUpProps} />
           </p>
         </div>
         <div className={styles.item}>
           <p>ITEM SOLD</p>
-          <p style={{ color: color.blue }}>
+          <p style={{ color: Color.blue }}>
             <CountUp end={sold} {...countUpProps} />
           </p>
         </div>

@@ -2,24 +2,24 @@ import React from 'react'
 import moment from 'moment'
 import PropTypes from 'prop-types'
 import { Table, Tag } from 'antd'
-import { color } from 'utils'
+import { Color } from 'utils'
 import styles from './recentSales.less'
 
 const status = {
   1: {
-    color: color.green,
+    color: Color.green,
     text: 'SALE',
   },
   2: {
-    color: color.yellow,
+    color: Color.yellow,
     text: 'REJECT',
   },
   3: {
-    color: color.red,
+    color: Color.red,
     text: 'TAX',
   },
   4: {
-    color: color.blue,
+    color: Color.blue,
     text: 'EXTENDED',
   },
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { color } from 'utils'
+import { Color } from 'utils'
 import {
   LineChart,
   Line,
@@ -46,13 +46,13 @@ function Sales({ data }) {
           />
           <XAxis
             dataKey="name"
-            axisLine={{ stroke: color.borderBase, strokeWidth: 1 }}
+            axisLine={{ stroke: Color.borderBase, strokeWidth: 1 }}
             tickLine={false}
           />
           <YAxis axisLine={false} tickLine={false} />
           <CartesianGrid
             vertical={false}
-            stroke={color.borderBase}
+            stroke={Color.borderBase}
             strokeDasharray="3 3"
           />
           <Tooltip
@@ -81,25 +81,25 @@ function Sales({ data }) {
           <Line
             type="monotone"
             dataKey="Food"
-            stroke={color.purple}
+            stroke={Color.purple}
             strokeWidth={3}
-            dot={{ fill: color.purple }}
+            dot={{ fill: Color.purple }}
             activeDot={{ r: 5, strokeWidth: 0 }}
           />
           <Line
             type="monotone"
             dataKey="Clothes"
-            stroke={color.red}
+            stroke={Color.red}
             strokeWidth={3}
-            dot={{ fill: color.red }}
+            dot={{ fill: Color.red }}
             activeDot={{ r: 5, strokeWidth: 0 }}
           />
           <Line
             type="monotone"
             dataKey="Electronics"
-            stroke={color.green}
+            stroke={Color.green}
             strokeWidth={3}
-            dot={{ fill: color.green }}
+            dot={{ fill: Color.green }}
             activeDot={{ r: 5, strokeWidth: 0 }}
           />
         </LineChart>

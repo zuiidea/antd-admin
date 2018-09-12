@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { color } from 'utils'
+import { Color } from 'utils'
 import {
   AreaChart,
   Area,
@@ -46,13 +46,13 @@ function Completed({ data }) {
           />
           <XAxis
             dataKey="name"
-            axisLine={{ stroke: color.borderBase, strokeWidth: 1 }}
+            axisLine={{ stroke: Color.borderBase, strokeWidth: 1 }}
             tickLine={false}
           />
           <YAxis axisLine={false} tickLine={false} />
           <CartesianGrid
             vertical={false}
-            stroke={color.borderBase}
+            stroke={Color.borderBase}
             strokeDasharray="3 3"
           />
           <Tooltip
@@ -81,20 +81,20 @@ function Completed({ data }) {
           <Area
             type="monotone"
             dataKey="Task complete"
-            stroke={color.grass}
-            fill={color.grass}
+            stroke={Color.grass}
+            fill={Color.grass}
             strokeWidth={2}
             dot={{ fill: '#fff' }}
-            activeDot={{ r: 5, fill: '#fff', stroke: color.green }}
+            activeDot={{ r: 5, fill: '#fff', stroke: Color.green }}
           />
           <Area
             type="monotone"
             dataKey="Cards Complete"
-            stroke={color.sky}
-            fill={color.sky}
+            stroke={Color.sky}
+            fill={Color.sky}
             strokeWidth={2}
             dot={{ fill: '#fff' }}
-            activeDot={{ r: 5, fill: '#fff', stroke: color.blue }}
+            activeDot={{ r: 5, fill: '#fff', stroke: Color.blue }}
           />
         </AreaChart>
       </ResponsiveContainer>

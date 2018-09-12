@@ -1,20 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Table, Tag } from 'antd'
-import { color } from 'utils'
+import { Color } from 'utils'
 import styles from './comments.less'
 
 const status = {
   1: {
-    color: color.green,
+    color: Color.green,
     text: 'APPROVED',
   },
   2: {
-    color: color.yellow,
+    color: Color.yellow,
     text: 'PENDING',
   },
   3: {
-    color: color.red,
+    color: Color.red,
     text: 'REJECTED',
   },
 }
