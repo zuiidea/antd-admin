@@ -7,8 +7,7 @@ import { routerRedux } from 'dva/router'
 import { parse, stringify } from 'qs'
 import config from 'config'
 import { EnumRoleType } from 'enums'
-import { query, logout } from 'services/app'
-import * as menusService from 'services/menus'
+import { queryMenuList, userLogout, queryUserInfo } from 'api'
 
 const { prefix } = config
 
@@ -62,10 +61,10 @@ export default {
   },
   effects: {
     *query({ payload }, { call, put, select }) {
-      const { success, user } = yield call(query, payload)
+      const { success, user } = yield call(queryUserInfo, payload)
       const { locationPathname } = yield select(_ => _.app)
       if (success && user) {
-        const { list } = yield call(menusService.query)
+        const { list } = yield call(queryMenuList)
         const { permissions } = user
         let menu = list
         if (
@@ -116,7 +115,7 @@ export default {
     },
 
     *logout({ payload }, { call, put }) {
-      const data = yield call(logout, parse(payload))
+      const data = yield call(userLogout, parse(payload))
       if (data.success) {
         yield put({
           type: 'updateState',

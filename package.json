@@ -4,7 +4,6 @@
   "private": true,
   "description": "An admin dashboard application demo built upon Ant Design and UmiJS",
   "dependencies": {
-    "@babel/polyfill": "^7.0.0",
     "antd": "^3.9.2",
     "axios": "^0.18.0",
     "babel-eslint": "^9.0.0",
@@ -58,21 +57,26 @@
     "umi-plugin-react": "^1.0.3"
   },
   "lint-staged": {
-    "**/*.{js,less}": [ 
+    "src/**/*.js": [
+      "eslint --ext .js --fix",
+      "umi test",
       "npm run prettier",
       "git add"
     ],
-    "**/*.js": "npm run lint",
-    "**/*.less": "stylelint --syntax less"
+    "**/*.less": [
+      "stylelint --syntax less",
+      "npm run prettier",
+      "git add"
+    ]
   },
   "scripts": {
     "analyze": "cross-env ANALYZE=1 umi build",
     "build": "umi build",
-    "lint": "eslint --ext .js src",
+    "lint:js": "eslint --ext .js src",
     "lint:style": "stylelint \"src/**/*.less\" --syntax less",
     "start": "umi dev",
     "test": "umi test",
     "prettier": "prettier --write 'src/**/*'",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged && npm run test"
   }
 }

@@ -1,11 +1,15 @@
 /* global window */
 import modelExtend from 'dva-model-extend'
 import { config } from 'utils'
-import { create, remove, update } from './services/user'
-import * as usersService from './services/users'
+import {
+  queryUserList,
+  createUser,
+  removeUser,
+  updateUser,
+  removeUserList,
+} from 'api'
 import { pageModel } from 'utils/model'
 
-const { query } = usersService
 const { prefix } = config
 
 export default modelExtend(pageModel, {
@@ -35,7 +39,7 @@ export default modelExtend(pageModel, {
 
   effects: {
     *query({ payload = {} }, { call, put }) {
-      const data = yield call(query, payload)
+      const data = yield call(queryUserList, payload)
       if (data) {
         yield put({
           type: 'querySuccess',
@@ -52,7 +56,7 @@ export default modelExtend(pageModel, {
     },
 
     *delete({ payload }, { call, put, select }) {
-      const data = yield call(remove, { id: payload })
+      const data = yield call(removeUser, { id: payload })
       const { selectedRowKeys } = yield select(_ => _.user)
       if (data.success) {
         yield put({
@@ -67,7 +71,7 @@ export default modelExtend(pageModel, {
     },
 
     *multiDelete({ payload }, { call, put }) {
-      const data = yield call(usersService.remove, payload)
+      const data = yield call(removeUserList, payload)
       if (data.success) {
         yield put({ type: 'updateState', payload: { selectedRowKeys: [] } })
       } else {
@@ -76,7 +80,7 @@ export default modelExtend(pageModel, {
     },
 
     *create({ payload }, { call, put }) {
-      const data = yield call(create, payload)
+      const data = yield call(createUser, payload)
       if (data.success) {
         yield put({ type: 'hideModal' })
       } else {
@@ -87,7 +91,7 @@ export default modelExtend(pageModel, {
     *update({ payload }, { select, call, put }) {
       const id = yield select(({ user }) => user.currentItem.id)
       const newUser = { ...payload, id }
-      const data = yield call(update, newUser)
+      const data = yield call(updateUser, newUser)
       if (data.success) {
         yield put({ type: 'hideModal' })
       } else {

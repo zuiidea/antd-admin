@@ -1,19 +1,27 @@
 import React from 'react'
 import Mock from 'mockjs'
-import { request, config } from 'utils'
+import { request } from 'utils'
 import { Row, Col, Card, Select, Input, Button } from 'antd'
-import styles from './index.less'
+import {
+  userLogin,
+  queryUser,
+  createUser,
+  updateUser,
+  removeUser,
+  queryUserInfo,
+  queryDashboard,
+  queryUserList,
+} from 'api'
 
-const { api } = config
-const { dashboard, users, userLogin, user, v1test, v2test } = api
+import styles from './index.less'
 
 export const requestOptions = [
   {
-    url: user.replace('/:id', ''),
+    url: queryUserInfo,
     desc: 'intercept request by mock.js',
   },
   {
-    url: dashboard,
+    url: queryDashboard,
     desc: 'intercept request by mock.js',
   },
   {
@@ -26,18 +34,18 @@ export const requestOptions = [
     desc: 'intercept request by mock.js',
   },
   {
-    url: users,
+    url: queryUserList,
     desc: 'intercept request by mock.js',
   },
   {
-    url: user,
+    url: queryUser,
     desc: 'intercept request by mock.js',
     data: Mock.mock({
       id: '@id',
     }),
   },
   {
-    url: user.replace('/:id', ''),
+    url: createUser,
     desc: 'intercept request by mock.js',
     method: 'post',
     data: Mock.mock({
@@ -60,7 +68,7 @@ export const requestOptions = [
     }),
   },
   {
-    url: user,
+    url: updateUser,
     desc: 'intercept request by mock.js',
     method: 'patch',
     data: Mock.mock({
@@ -69,7 +77,7 @@ export const requestOptions = [
     }),
   },
   {
-    url: user,
+    url: removeUser,
     desc: 'intercept request by mock.js',
     method: 'delete',
     data: Mock.mock({
@@ -77,12 +85,7 @@ export const requestOptions = [
     }),
   },
   {
-    url: v1test,
-    desc: 'intercept request by mock.js',
-    method: 'get',
-  },
-  {
-    url: v2test,
+    url: '/api/v2/test',
     desc: 'intercept request by mock.js',
     method: 'get',
   },
