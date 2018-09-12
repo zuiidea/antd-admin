@@ -25,7 +25,7 @@ const Sider = ({
   return (
     <div>
       <div className={styles.logo}>
-        <img alt="logo" src={config.logo} />
+        <img alt="logo" src={config.logoPath} />
         {siderFold ? '' : <span>{config.siteName}</span>}
       </div>
       <Menus {...menusProps} />

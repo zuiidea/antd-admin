@@ -1,4 +1,4 @@
-import { color } from '../src/utils/theme'
+import { Color } from '../src/utils/theme'
 
 const Mock = require('mockjs')
 const config = require('../src/utils/config')
@@ -113,25 +113,25 @@ const Dashboard = Mock.mock({
   numbers: [
     {
       icon: 'pay-circle-o',
-      color: color.green,
+      color: Color.green,
       title: 'Online Review',
       number: 2781,
     },
     {
       icon: 'team',
-      color: color.blue,
+      color: Color.blue,
       title: 'New Customers',
       number: 3241,
     },
     {
       icon: 'message',
-      color: color.purple,
+      color: Color.purple,
       title: 'Active Projects',
       number: 253,
     },
     {
       icon: 'shopping-cart',
-      color: color.red,
+      color: Color.red,
       title: 'Referrals',
       number: 4324,
     },

@@ -12,11 +12,13 @@ export default class EditorPage extends React.Component {
       editorContent: null,
     }
   }
+
   onEditorStateChange = editorContent => {
     this.setState({
       editorContent,
     })
   }
+
   render() {
     const { editorContent } = this.state
     const colProps = {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
 import { Tabs } from 'antd'
@@ -14,65 +14,69 @@ const EnumPostStatus = {
   PUBLISHED: 2,
 }
 
-const Index = ({ post, dispatch, loading, location }) => {
-  const { list, pagination } = post
-  const { query, pathname } = location
+@connect(({ post, loading }) => ({ post, loading }))
+class Post extends PureComponent {
+  render() {
+    const { post, dispatch, loading, location } = this.props
+    const { list, pagination } = post
+    const { query, pathname } = location
 
-  const listProps = {
-    pagination,
-    dataSource: list,
-    loading: loading.effects['post/query'],
-    onChange(page) {
+    const listProps = {
+      pagination,
+      dataSource: list,
+      loading: loading.effects['post/query'],
+      onChange(page) {
+        dispatch(
+          routerRedux.push({
+            pathname,
+            search: stringify({
+              ...query,
+              page: page.current,
+              pageSize: page.pageSize,
+            }),
+          })
+        )
+      },
+    }
+
+    const handleTabClick = key => {
       dispatch(
         routerRedux.push({
           pathname,
           search: stringify({
-            ...query,
-            page: page.current,
-            pageSize: page.pageSize,
+            status: key,
           }),
         })
       )
-    },
-  }
+    }
 
-  const handleTabClick = key => {
-    dispatch(
-      routerRedux.push({
-        pathname,
-        search: stringify({
-          status: key,
-        }),
-      })
+    return (
+      <Page inner>
+        <Tabs
+          activeKey={
+            query.status === String(EnumPostStatus.UNPUBLISH)
+              ? String(EnumPostStatus.UNPUBLISH)
+              : String(EnumPostStatus.PUBLISHED)
+          }
+          onTabClick={handleTabClick}
+        >
+          <TabPane tab="Publised" key={String(EnumPostStatus.PUBLISHED)}>
+            <List {...listProps} />
+          </TabPane>
+          <TabPane tab="Unpublish" key={String(EnumPostStatus.UNPUBLISH)}>
+            <List {...listProps} />
+          </TabPane>
+        </Tabs>
+      </Page>
     )
   }
-
-  return (
-    <Page inner>
-      <Tabs
-        activeKey={
-          query.status === String(EnumPostStatus.UNPUBLISH)
-            ? String(EnumPostStatus.UNPUBLISH)
-            : String(EnumPostStatus.PUBLISHED)
-        }
-        onTabClick={handleTabClick}
-      >
-        <TabPane tab="Publised" key={String(EnumPostStatus.PUBLISHED)}>
-          <List {...listProps} />
-        </TabPane>
-        <TabPane tab="Unpublish" key={String(EnumPostStatus.UNPUBLISH)}>
-          <List {...listProps} />
-        </TabPane>
-      </Tabs>
-    </Page>
-  )
 }
 
-Index.propTypes = {
+Post.propTypes = {
   post: PropTypes.object,
   loading: PropTypes.object,
   location: PropTypes.object,
   dispatch: PropTypes.func,
 }
 
-export default connect(({ post, loading }) => ({ post, loading }))(Index)
+export default Post
