@@ -61,15 +61,14 @@ export default {
     },
   },
   alias: {
-    themes: resolve(__dirname, './src/themes'),
+    api: resolve(__dirname, './src/services/'),
     components: resolve(__dirname, './src/components'),
-    utils: resolve(__dirname, './src/utils'),
     config: resolve(__dirname, './src/utils/config'),
-    enums: resolve(__dirname, './src/utils/enums'),
-    services: resolve(__dirname, './src/services'),
     models: resolve(__dirname, './src/models'),
     routes: resolve(__dirname, './src/routes'),
-    api: resolve(__dirname, './src/services/'),
+    services: resolve(__dirname, './src/services'),
+    themes: resolve(__dirname, './src/themes'),
+    utils: resolve(__dirname, './src/utils'),
   },
   urlLoaderExcludes: [/\.svg$/],
   ignoreMomentLocale: true,
@@ -80,4 +79,5 @@ export default {
       .use('svg-sprite-loader')
       .loader(require.resolve('svg-sprite-loader'))
   },
+  extraBabelPresets: ['@lingui/babel-preset-react'],
 }

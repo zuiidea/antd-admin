@@ -15,3 +15,6 @@ yarn-error.log
 # umi
 .umi
 .umi-production
+
+# jslingui
+src/locales/_build

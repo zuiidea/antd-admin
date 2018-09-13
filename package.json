@@ -4,6 +4,7 @@
   "private": true,
   "description": "An admin dashboard application demo built upon Ant Design and UmiJS",
   "dependencies": {
+    "@lingui/react": "^2.7.0",
     "antd": "^3.9.2",
     "axios": "^0.18.0",
     "babel-eslint": "^9.0.0",
@@ -37,7 +38,10 @@
     "recharts": "^1.1.0"
   },
   "devDependencies": {
+    "@lingui/babel-preset-react": "^2.7.0",
+    "@lingui/cli": "^2.7.0",
     "babel-plugin-dev-expression": "^0.2.1",
+    "babel-plugin-macros": "^2.4.0",
     "babel-plugin-module-resolver": "^3.1.1",
     "cross-env": "^5.2.0",
     "eslint": "^5.5.0",
@@ -69,14 +73,31 @@
       "git add"
     ]
   },
+  "lingui": {
+    "fallbackLocale": "en",
+    "sourceLocale": "en",
+    "localeDir": "src/locales",
+    "srcPathDirs": [
+      "src/pages",
+      "src/layouts"
+    ],
+    "format": "minimal",
+    "extractBabelOptions": {
+      "presets": [
+        "umi/babel"
+      ]
+    }
+  },
   "scripts": {
     "analyze": "cross-env ANALYZE=1 umi build",
     "build": "umi build",
     "lint:js": "eslint --ext .js src",
     "lint:style": "stylelint \"src/**/*.less\" --syntax less",
     "start": "umi dev",
-    "test": "umi test",
+    "test": "cross-env BABELRC=none umi test",
     "prettier": "prettier --write 'src/**/*'",
-    "precommit": "lint-staged && npm run test"
+    "precommit": "npm run extract && lint-staged && npm run test",
+    "add-locale": "lingui add-locale",
+    "extract": "lingui extract"
   }
 }
