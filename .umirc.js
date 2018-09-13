@@ -26,6 +26,19 @@ export default {
             /chart\/Recharts\/.+Component\.js$/,
             /chart\/Recharts\/Container\.js$/,
           ],
+          update: routes => {
+            const newRoutes = []
+            for (const item of routes[0].routes) {
+              newRoutes.push(item)
+              if(item.path){
+                newRoutes.push(
+                  Object.assign({}, item, { path: '/:lang(en|zh)' + item.path } )
+                )
+              }
+            }
+            routes[0].routes = newRoutes
+            return routes
+          },
         },
         dll: {
           include: ['dva', 'dva/router', 'dva/saga', 'dva/fetch', 'antd/es'],

@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import { LocaleProvider } from 'antd'
 import enUS from 'antd/lib/locale-provider/en_US'
-import withRouter from 'umi/withRouter'
-import App from './app'
+import BaseLayout from './BaseLayout'
 
-export default withRouter(props => {
-  return (
-    <LocaleProvider locale={enUS}>
-      <App>{props.children}</App>
-    </LocaleProvider>
-  )
-})
+class Layout extends PureComponent {
+  render() {
+    return (
+      <LocaleProvider locale={enUS}>
+        <BaseLayout>{this.props.children}</BaseLayout>
+      </LocaleProvider>
+    )
+  }
+}
+
+export default Layout

@@ -5,4 +5,11 @@ module.exports = {
   logoPath: '/logo.svg',
   apiPrefix: '/api/v1',
   openPages: ['/login'],
+  layouts: [
+    {
+      name: 'primary',
+      include: [/.*/],
+      exlude: [/(\/(en|zh))*\/login/],
+    },
+  ],
 }
