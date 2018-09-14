@@ -30,9 +30,9 @@ export default {
             const newRoutes = []
             for (const item of routes[0].routes) {
               newRoutes.push(item)
-              if(item.path){
+              if (item.path) {
                 newRoutes.push(
-                  Object.assign({}, item, { path: '/:lang(en|zh)' + item.path } )
+                  Object.assign({}, item, { path: '/:lang(en|zh)' + item.path })
                 )
               }
             }
@@ -80,4 +80,16 @@ export default {
       .loader(require.resolve('svg-sprite-loader'))
   },
   extraBabelPresets: ['@lingui/babel-preset-react'],
+  extraBabelPlugins: [
+    [
+      'import',
+      {
+        libraryName: 'ant-design-pro',
+        libraryDirectory: 'lib',
+        style: true,
+        camel2DashComponentName: false,
+      },
+      'ant-design-pro',
+    ],
+  ],
 }
