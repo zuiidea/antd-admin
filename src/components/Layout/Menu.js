@@ -1,10 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Menu, Icon } from 'antd'
-import { Link } from 'react-router-dom'
-import { arrayToTree, queryArray } from 'utils'
-import pathToRegexp from 'path-to-regexp'
-import { addLangPrefix } from 'utils'
+import Navlink from 'umi/navlink'
+import { arrayToTree, queryArray, pathMatchRegexp, addLangPrefix } from 'utils'
 import styles from './Layout.less'
 
 const { SubMenu } = Menu
@@ -50,13 +48,13 @@ class Menus extends PureComponent {
         }
         return (
           <Menu.Item key={item.id}>
-            <Link
+            <Navlink
               to={addLangPrefix(item.route) || '#'}
               style={siderFoldN ? { width: 10 } : {}}
             >
               {item.icon && <Icon type={item.icon} />}
               {item.name}
-            </Link>
+            </Navlink>
           </Menu.Item>
         )
       })
@@ -109,7 +107,7 @@ class Menus extends PureComponent {
     let currentMenu
     let defaultSelectedKeys
     for (let item of menu) {
-      if (item.route && pathToRegexp(item.route).exec(location.pathname)) {
+      if (item.route && pathMatchRegexp(item.route, location.pathname)) {
         if (!navOpenKeys.length && item.mpid && !openKeysFlag)
           changeOpenKeys([String(item.mpid)])
         currentMenu = item

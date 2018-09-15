@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Table, Modal } from 'antd'
 import classnames from 'classnames'
 import { DropOption } from 'components'
-import { Link } from 'react-router-dom'
+import Link from 'umi/link'
 import AnimTableBody from 'components/DataTable/AnimTableBody'
 import styles from './List.less'
 

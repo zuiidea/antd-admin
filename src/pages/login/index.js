@@ -5,7 +5,6 @@ import { Button, Row, Form, Icon, Input } from 'antd'
 import router from 'umi/router'
 import { GlobalFooter } from 'ant-design-pro'
 import { Trans, withI18n } from '@lingui/react'
-import { stringify } from 'qs'
 import config from 'utils/config'
 
 import styles from './index.less'

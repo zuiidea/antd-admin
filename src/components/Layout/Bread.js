@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Breadcrumb, Icon } from 'antd'
-import { Link } from 'react-router-dom'
+import Link from 'umi/navlink'
 import pathToRegexp from 'path-to-regexp'
-import { queryArray, addLangPrefix } from 'utils'
+import { queryArray, addLangPrefix, pathMatchRegexp, deLangPrefix } from 'utils'
 import { withI18n } from '@lingui/react'
 import styles from './Layout.less'
 
@@ -17,7 +17,7 @@ class Bread extends PureComponent {
     for (let index in menu) {
       if (
         menu[index].route &&
-        pathToRegexp(menu[index].route).exec(location.pathname)
+        pathMatchRegexp(menu[index].route, location.pathname)
       ) {
         current = menu[index]
         break
@@ -49,7 +49,7 @@ class Bread extends PureComponent {
 
       let keys = []
       let values = pathToRegexp(current.route, keys).exec(
-        location.pathname.replace('#', '')
+        deLangPrefix(location.pathname)
       )
       if (keys.length) {
         keys.forEach((currentValue, index) => {
