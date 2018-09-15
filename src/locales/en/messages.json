@@ -1,5 +1,10 @@
 {
+  "Dark": "Dark",
+  "Dashboard": "Dashboard",
+  "Light": "Light",
+  "Not Found": "Not Found",
   "Password": "Password",
   "Sign in": "Sign in",
+  "Switch Theme": "Switch Theme",
   "Username": "Username"
 }

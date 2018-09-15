@@ -1,6 +1,6 @@
 /* global window */
 import modelExtend from 'dva-model-extend'
-import { config } from 'utils'
+import { pathMatchRegexp, config } from 'utils'
 import {
   queryUserList,
   createUser,
@@ -26,7 +26,7 @@ export default modelExtend(pageModel, {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(location => {
-        if (location.pathname === '/user') {
+        if (pathMatchRegexp('/user', location.pathname)) {
           const payload = location.query || { page: 1, pageSize: 10 }
           dispatch({
             type: 'query',

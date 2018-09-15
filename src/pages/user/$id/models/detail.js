@@ -1,4 +1,4 @@
-import pathToRegexp from 'path-to-regexp'
+import { pathMatchRegexp } from 'utils'
 import { queryUser } from 'api'
 
 export default {
@@ -11,7 +11,7 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(({ pathname }) => {
-        const match = pathToRegexp('/user/:id').exec(pathname)
+        const match = pathMatchRegexp('/user/:id', pathname)
         if (match) {
           dispatch({ type: 'query', payload: { id: match[1] } })
         }

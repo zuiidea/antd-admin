@@ -1,5 +1,6 @@
 import modelExtend from 'dva-model-extend'
 import { queryPostList } from 'api'
+import { pathMatchRegexp } from 'utils'
 import { pageModel } from 'utils/model'
 
 export default modelExtend(pageModel, {
@@ -8,7 +9,7 @@ export default modelExtend(pageModel, {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(location => {
-        if (location.pathname === '/post') {
+        if (pathMatchRegexp('/post', location.pathname)) {
           dispatch({
             type: 'query',
             payload: {

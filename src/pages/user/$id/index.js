@@ -30,3 +30,5 @@ class UserDetail extends PureComponent {
 UserDetail.propTypes = {
   userDetail: PropTypes.object,
 }
+
+export default UserDetail

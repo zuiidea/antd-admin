@@ -1,9 +1,9 @@
 import React, { PureComponent, Fragment } from 'react'
-import pathToRegexp from 'path-to-regexp'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
 import { Helmet } from 'react-helmet'
 import { Loader } from 'components'
+import { pathMatchRegexp } from 'utils'
 import NProgress from 'nprogress'
 import config from 'utils/config'
 import withRouter from 'umi/withRouter'
@@ -29,7 +29,7 @@ const queryLayout = (layouts, pathname) => {
   const isMatch = regepx => {
     return regepx instanceof RegExp
       ? regepx.test(pathname)
-      : pathToRegexp(regepx).exec(pathname)
+      : pathMatchRegexp(regepx, pathname)
   }
 
   for (const item of layouts) {

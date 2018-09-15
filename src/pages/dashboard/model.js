@@ -1,6 +1,7 @@
 import { parse } from 'qs'
 import modelExtend from 'dva-model-extend'
 import { queryDashboard, queryWeather } from 'api'
+import { pathMatchRegexp } from 'utils'
 import { model } from 'utils/model'
 
 export default modelExtend(model, {
@@ -31,7 +32,10 @@ export default modelExtend(model, {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(({ pathname }) => {
-        if (pathname === '/dashboard' || pathname === '/') {
+        if (
+          pathMatchRegexp('/dashboard', pathname) ||
+          pathMatchRegexp('/', pathname)
+        ) {
           dispatch({ type: 'query' })
           dispatch({ type: 'queryWeather' })
         }

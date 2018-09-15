@@ -3,11 +3,11 @@
 /* global location */
 /* eslint no-restricted-globals: ["error", "event"] */
 
-import { routerRedux } from 'dva/router'
+import { router } from 'utils'
 import { parse, stringify } from 'qs'
 import config from 'config'
 import { RoleType } from 'utils/constant'
-import { queryMenuList, userLogout, queryUserInfo } from 'api'
+import { queryMenuList, logoutUser, queryUserInfo } from 'api'
 
 const { prefix } = config
 
@@ -93,29 +93,25 @@ export default {
           },
         })
         if (location.pathname === '/login') {
-          yield put(
-            routerRedux.push({
-              pathname: '/dashboard',
-            })
-          )
+          router.push({
+            pathname: '/dashboard',
+          })
         }
       } else if (
         config.openPages &&
         config.openPages.indexOf(locationPathname) < 0
       ) {
-        yield put(
-          routerRedux.push({
-            pathname: '/login',
-            search: stringify({
-              from: locationPathname,
-            }),
-          })
-        )
+        router.push({
+          pathname: '/login',
+          search: stringify({
+            from: locationPathname,
+          }),
+        })
       }
     },
 
     *logout({ payload }, { call, put }) {
-      const data = yield call(userLogout, parse(payload))
+      const data = yield call(logoutUser, parse(payload))
       if (data.success) {
         yield put({
           type: 'updateState',

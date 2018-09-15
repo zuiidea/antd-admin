@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { routerRedux } from 'dva/router'
+import { router } from 'utils'
 import { connect } from 'dva'
 import { Row, Col, Button, Popconfirm } from 'antd'
 import { Page } from 'components'
@@ -26,7 +26,7 @@ class User extends PureComponent {
 
     const handleRefresh = newQuery => {
       dispatch(
-        routerRedux.push({
+        router.push({
           pathname,
           search: stringify(
             {

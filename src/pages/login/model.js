@@ -1,4 +1,4 @@
-import { routerRedux } from 'dva/router'
+import { router } from 'utils'
 import { loginUser } from 'api'
 
 export default {
@@ -14,9 +14,9 @@ export default {
         const { from } = locationQuery
         yield put({ type: 'app/query' })
         if (from && from !== '/login') {
-          yield put(routerRedux.push(from))
+          router.push(from)
         } else {
-          yield put(routerRedux.push('/dashboard'))
+          router.push('/dashboard')
         }
       } else {
         throw data

@@ -79,6 +79,8 @@
     "localeDir": "src/locales",
     "srcPathDirs": [
       "src/pages",
+      "src/layouts",
+      "src/components",
       "src/layouts"
     ],
     "format": "minimal",
@@ -96,7 +98,7 @@
     "start": "umi dev",
     "test": "cross-env BABELRC=none umi test",
     "prettier": "prettier --write 'src/**/*'",
-    "precommit": "lint-staged && npm run test",
+    "precommit": "lint-staged",
     "add-locale": "lingui add-locale",
     "extract": "lingui extract"
   }

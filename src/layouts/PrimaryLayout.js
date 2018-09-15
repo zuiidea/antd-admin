@@ -2,12 +2,11 @@
 /* global document */
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import pathToRegexp from 'path-to-regexp'
 import withRouter from 'umi/withRouter'
 import { connect } from 'dva'
 import { MyLayout } from 'components'
 import { BackTop, Layout } from 'antd'
-import { classnames, config } from 'utils'
+import { classnames, config, pathMatchRegexp } from 'utils'
 import Error from '../pages/404'
 
 const { Content, Footer, Sider } = Layout
@@ -32,7 +31,7 @@ class PrimaryLayout extends PureComponent {
     let { pathname } = location
     pathname = pathname.startsWith('/') ? pathname : `/${pathname}`
     const current = menu.filter(item =>
-      pathToRegexp(item.route || '').exec(pathname)
+      pathMatchRegexp(item.route || '', pathname)
     )
     const hasPermission = current.length
       ? permissions.visit.includes(current[0].id)

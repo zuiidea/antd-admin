@@ -1,7 +1,5 @@
-module.exports = {
-  RoleType: {
-    ADMIN: 'admin',
-    DEFAULT: 'admin',
-    DEVELOPER: 'developer',
-  },
+export const RoleType = {
+  ADMIN: 'admin',
+  DEFAULT: 'admin',
+  DEVELOPER: 'developer',
 }
