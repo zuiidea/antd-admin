@@ -1,4 +1,4 @@
-import { router } from 'utils'
+import { router, pathMatchRegexp } from 'utils'
 import { loginUser } from 'api'
 
 export default {
@@ -13,7 +13,7 @@ export default {
       if (data.success) {
         const { from } = locationQuery
         yield put({ type: 'app/query' })
-        if (from && from !== '/login') {
+        if (!pathMatchRegexp('/login', from)) {
           router.push(from)
         } else {
           router.push('/dashboard')

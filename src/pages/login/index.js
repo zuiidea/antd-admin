@@ -5,6 +5,7 @@ import { Button, Row, Form, Icon, Input } from 'antd'
 import router from 'umi/router'
 import { GlobalFooter } from 'ant-design-pro'
 import { Trans, withI18n } from '@lingui/react'
+import { stringify } from 'qs'
 import config from 'utils/config'
 
 import styles from './index.less'
@@ -26,7 +27,7 @@ class Login extends PureComponent {
   }
 
   render() {
-    const { loading, form, i18n } = this.props
+    const { loading, form, i18n, location } = this.props
     const { getFieldDecorator } = form
 
     const footerLinks = [
@@ -38,11 +39,19 @@ class Login extends PureComponent {
       },
       {
         key: 'English',
-        title: <span onClick={() => router.push('/en/login')}>English</span>,
+        title: (
+          <span onClick={() => router.push(`/en/login${location.search}`)}>
+            English
+          </span>
+        ),
       },
       {
         key: 'Chinese',
-        title: <span onClick={() => router.push('/zh/login')}>中文</span>,
+        title: (
+          <span onClick={() => router.push(`/zh/login${location.search}`)}>
+            中文
+          </span>
+        ),
       },
     ]
 

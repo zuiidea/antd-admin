@@ -71,6 +71,7 @@ export const langFromPath = curry(
    * @return  {string}    Return the queryed language.
    */
   (languages, defaultLanguage, pathname) => {
+    console.log(pathname)
     for (const item of languages) {
       if (pathname.startsWith(`/${item}/`)) {
         return item
@@ -101,15 +102,15 @@ export const deLangPrefix = curry(
   }
 )(languages)
 
-export const addLangPrefix = curry(
-  /**
-   * Add the language prefix in pathname.
-   * @param   {array}     prefix     Specify the language you need to add.
-   * @param   {string}    pathname   Add the language prefix in the pathname.
-   * @return  {string}    Return the pathname after adding the language prefix.
-   */
-  (prefix, pathname) => `/${prefix}${deLangPrefix(pathname)}`
-)(langFromPath(window.location.pathname))
+/**
+ * Add the language prefix in pathname.
+ * @param   {string}    pathname   Add the language prefix in the pathname.
+ * @return  {string}    Return the pathname after adding the language prefix.
+ */
+export const addLangPrefix = pathname => {
+  const prefix = langFromPath(window.location.pathname)
+  return `/${prefix}${deLangPrefix(pathname)}`
+}
 
 const routerAddLangPrefix = params => {
   if (isString(params)) {
