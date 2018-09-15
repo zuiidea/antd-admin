@@ -1,7 +1,7 @@
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
-import { Button, Row, Form, Input } from 'antd'
+import { Button, Row, Form, Icon, Input } from 'antd'
 import router from 'umi/router'
 import { GlobalFooter } from 'ant-design-pro'
 import { Trans, withI18n } from '@lingui/react'
@@ -30,6 +30,12 @@ class Login extends PureComponent {
     const { getFieldDecorator } = form
 
     const footerLinks = [
+      {
+        key: 'github',
+        title: <Icon type="github" />,
+        href: 'https://github.com/zuiidea/antd-admin',
+        blankTarget: true,
+      },
       {
         key: 'English',
         title: <span onClick={() => router.push('/en/login')}>English</span>,
