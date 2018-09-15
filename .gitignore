@@ -18,3 +18,4 @@ yarn-error.log
 
 # jslingui
 src/locales/_build
+src/locales/**/*.js

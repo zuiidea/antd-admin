@@ -6,6 +6,8 @@ module.exports = {
   logoPath: '/logo.svg',
   apiPrefix: '/api/v1',
   openPages: ['/login'],
+
+  /* Layout configuration, specify which layout to use for route. */
   layouts: [
     {
       name: 'primary',
@@ -13,4 +15,10 @@ module.exports = {
       exlude: [/(\/(en|zh))*\/login/],
     },
   ],
+
+  /* I18n configuration, `languages` and `defaultLanguage` are required currently. */
+  i18n: {
+    languages: ['en', 'zh'],
+    defaultLanguage: 'en',
+  },
 }

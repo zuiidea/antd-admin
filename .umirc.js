@@ -1,5 +1,6 @@
 // https://umijs.org/config/
 import { resolve } from 'path'
+import { i18n } from './src/utils/config'
 
 export default {
   plugins: [
@@ -27,16 +28,21 @@ export default {
             /chart\/Recharts\/Container\.js$/,
           ],
           update: routes => {
+            if (!i18n) return routes
+
             const newRoutes = []
             for (const item of routes[0].routes) {
               newRoutes.push(item)
               if (item.path) {
                 newRoutes.push(
-                  Object.assign({}, item, { path: '/:lang(en|zh)' + item.path })
+                  Object.assign({}, item, {
+                    path: `/:lang(${i18n.languages.join('|')})` + item.path,
+                  })
                 )
               }
             }
             routes[0].routes = newRoutes
+            
             return routes
           },
         },
@@ -90,6 +96,15 @@ export default {
         camel2DashComponentName: false,
       },
       'ant-design-pro',
+    ],
+    [
+      'import',
+      {
+        libraryName: 'lodash',
+        libraryDirectory: '',
+        camel2DashComponentName: false,
+      },
+      'lodash',
     ],
   ],
 }

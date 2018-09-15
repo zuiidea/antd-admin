@@ -1,6 +1,5 @@
 import axios from 'axios'
-import cloneDeep from 'lodash.clonedeep'
-import isEmpty from 'lodash.isempty'
+import { cloneDeep, isEmpty } from 'lodash'
 import pathToRegexp from 'path-to-regexp'
 import { message } from 'antd'
 import qs from 'qs'

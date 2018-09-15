@@ -1,9 +1,12 @@
-import cloneDeep from 'lodash.clonedeep'
+import { cloneDeep, curry } from 'lodash'
+import { i18n } from './config'
 
 export classnames from 'classnames'
 export config from './config'
 export request from './request'
 export { Color } from './theme'
+
+const { languages, defaultLanguage } = i18n
 
 /**
  * Query objects that specify keys and values in an array where all values are objects.
@@ -56,3 +59,41 @@ export function arrayToTree(
   })
   return result
 }
+
+const langFromPath = curry(
+  /**
+   * Query language from pathname.
+   * @param   {string}    languages         Specify which languages are currently available.
+   * @param   {string}    defaultLanguage   Specify the default language.
+   * @param   {string}    pathname          Pathname to be queried.
+   * @return  {string}    Return the queryed language.
+   */
+  (languages, defaultLanguage, pathname) => {
+    for (const item of languages) {
+      if (pathname.startsWith(`/${item}/`)) {
+        return item
+      }
+    }
+    return defaultLanguage
+  }
+)(languages)(defaultLanguage)
+
+const deLangPrefix = curry(
+  /**
+   * Remove the language prefix in pathname.
+   * @param   {array}     languages  Specify which languages are currently available.
+   * @param   {string}    pathname   Remove the language prefix in pathname.
+   * @return  {string}    Return the pathname after removing the language prefix.
+   */
+  (languages, pathname) => {
+    for (const item of languages) {
+      if (pathname.startsWith(`/${item}/`)) {
+        return pathname.replace(`/${item}/`, '/')
+      }
+    }
+
+    return pathname
+  }
+)(languages)
+
+export { langFromPath, deLangPrefix, defaultLanguage }

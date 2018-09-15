@@ -908,7 +908,7 @@
     "@lingui/babel-plugin-transform-js" "2.7.0"
     "@lingui/babel-plugin-transform-react" "2.7.0"
 
-"@lingui/cli@^2.7.0":
+"@lingui/cli@2.7.0", "@lingui/cli@^2.7.0":
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/@lingui/cli/-/cli-2.7.0.tgz#04137f770f148f17eb78bb6580e91eac7697b955"
   dependencies:
@@ -956,6 +956,15 @@
     babel-runtime "^6.26.0"
     make-plural "^4.1.1"
     messageformat-parser "^2.0.0"
+
+"@lingui/loader@^2.7.0":
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/@lingui/loader/-/loader-2.7.0.tgz#a9092f16f909ee94616f58f6d5e163e6305883f5"
+  dependencies:
+    "@lingui/cli" "2.7.0"
+    "@lingui/conf" "2.7.0"
+    babel-runtime "^6.26.0"
+    ramda "^0.25.0"
 
 "@lingui/react@^2.7.0":
   version "2.7.0"
@@ -7306,10 +7315,6 @@ lodash.isarray@^3.0.0:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/lodash.isarray/-/lodash.isarray-3.0.4.tgz#79e4eb88c36a8122af86f844aa9bcd851b5fbb55"
 
-lodash.isempty@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/lodash.isempty/-/lodash.isempty-4.4.0.tgz#6f86cbedd8be4ec987be9aaf33c9684db1b31e7e"
-
 lodash.isequal@^4.0.0, lodash.isequal@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
@@ -7398,7 +7403,7 @@ lodash.uniq@^4.5.0:
   version "4.17.10"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
-lodash@^4.11.1:
+lodash@^4.11.1, lodash@^4.17.11:
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
 
