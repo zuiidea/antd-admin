@@ -156,32 +156,20 @@ export default {
 
     switchSider(state) {
       window.localStorage.setItem(`${prefix}siderFold`, !state.siderFold)
-      return {
-        ...state,
-        siderFold: !state.siderFold,
-      }
+      state.siderFold = !state.siderFold
     },
 
     switchTheme(state) {
       window.localStorage.setItem(`${prefix}darkTheme`, !state.darkTheme)
-      return {
-        ...state,
-        darkTheme: !state.darkTheme,
-      }
+      state.darkTheme = !state.darkTheme
     },
 
     switchMenuPopver(state) {
-      return {
-        ...state,
-        menuPopoverVisible: !state.menuPopoverVisible,
-      }
+      state.menuPopoverVisible = !state.menuPopoverVisible
     },
 
     handleNavbar(state, { payload }) {
-      return {
-        ...state,
-        isNavbar: payload,
-      }
+      state.isNavbar = payload
     },
 
     handleNavOpenKeys(state, { payload: navOpenKeys }) {

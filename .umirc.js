@@ -8,7 +8,7 @@ export default {
       // https://umijs.org/plugin/umi-plugin-react.html
       'umi-plugin-react',
       {
-        dva: true,
+        dva: { immer: true },
         antd: true,
         dynamicImport: true,
         routes: {
