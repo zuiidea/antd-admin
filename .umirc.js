@@ -51,6 +51,7 @@ export default {
         },
         hardSource: /* isMac */ process.platform === 'darwin',
         polyfills: ['ie9'],
+        pwa: true
       },
     ],
   ],

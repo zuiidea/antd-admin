@@ -61,6 +61,9 @@
     "umi": "^2.0.3",
     "umi-plugin-react": "^1.0.3"
   },
+  "optionalDependencies": {
+    "puppeteer": "^1.6.0"
+  },
   "lint-staged": {
     "src/**/*.js": [
       "eslint --ext .js --fix",
