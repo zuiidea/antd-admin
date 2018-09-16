@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>antd-admin - An admin dashboard application demo built upon Ant Design and UmiJS</title>
@@ -8,14 +9,44 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
 </head>
+
 <body>
-  <div id="app"></div>
+  <nav data-cloak class="app-nav">
+    <a href="/">En</a>
+    <a href="#/zh-cn/">中文</a>
+  </nav>
+  <div id="app">Loading...</div>
   <script>
     window.$docsify = {
-      name: 'antd-admin',
-      repo: ''
+      name: 'AntD Admin',
+      loadSidebar: true,
+      maxLevel: 3,
+      subMaxLevel: 2,
+      auto2top: true,
+      autoHeader: true,
+      repo: 'zuiidea/antd-admin',
+      search: {
+        paths: 'auto',
+        placeholder: {
+          '/zh-cn/': '搜索',
+          '/': 'Type to search'
+        },
+
+        noData: {
+          '/zh-cn/': '找不到结果',
+          '/': 'No Results'
+        },
+      },
     }
+
+    // if (typeof navigator.serviceWorker !== 'undefined') {
+    //   navigator.serviceWorker.register('sw.js')
+    // }
   </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/emoji.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/zoom-image.min.js"></script>
 </body>
+
 </html>

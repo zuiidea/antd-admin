@@ -1,0 +1,8 @@
+- Getting started
+  - [Quick Start](quickstart.md)
+- Customization
+  - [Configuration](configuration.md)
+- Guide
+  - [Deploy](deploy.md)
+- Changelog
+  - 5.0.0

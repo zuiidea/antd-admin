@@ -100,6 +100,7 @@
     "prettier": "prettier --write 'src/**/*'",
     "precommit": "lint-staged",
     "add-locale": "lingui add-locale",
-    "extract": "lingui extract"
+    "extract": "lingui extract",
+    "doc": "docsify serve docs"
   }
 }
