@@ -6,10 +6,11 @@ import withRouter from 'umi/withRouter'
 import { connect } from 'dva'
 import { MyLayout } from 'components'
 import { BackTop, Layout } from 'antd'
+import { GlobalFooter } from 'ant-design-pro'
 import { classnames, config, pathMatchRegexp } from 'utils'
 import Error from '../pages/404'
 
-const { Content, Footer, Sider } = Layout
+const { Content, Sider } = Layout
 const { Header, Bread, styles } = MyLayout
 const { prefix } = config
 
@@ -25,12 +26,12 @@ class PrimaryLayout extends PureComponent {
       isNavbar,
       menuPopoverVisible,
       navOpenKeys,
-      menu,
+      menuList,
       permissions,
     } = app
     let { pathname } = location
     pathname = pathname.startsWith('/') ? pathname : `/${pathname}`
-    const current = menu.filter(item =>
+    const current = menuList.filter(item =>
       pathMatchRegexp(item.route || '', pathname)
     )
     const hasPermission = current.length
@@ -38,7 +39,7 @@ class PrimaryLayout extends PureComponent {
       : false
 
     const headerProps = {
-      menu,
+      menuList,
       user,
       location,
       siderFold,
@@ -63,7 +64,7 @@ class PrimaryLayout extends PureComponent {
     }
 
     const siderProps = {
-      menu,
+      menuList,
       location,
       siderFold,
       darkTheme,
@@ -84,7 +85,7 @@ class PrimaryLayout extends PureComponent {
     }
 
     const breadProps = {
-      menu,
+      menuList,
       location,
     }
 
@@ -96,26 +97,26 @@ class PrimaryLayout extends PureComponent {
             [styles.light]: !darkTheme,
           })}
         >
-          {!isNavbar && (
+          {!isNavbar ? (
             <Sider trigger={null} collapsible collapsed={siderFold}>
-              {siderProps.menu.length === 0 ? null : (
+              {siderProps.menuList.length === 0 ? null : (
                 <MyLayout.Sider {...siderProps} />
               )}
             </Sider>
-          )}
+          ) : null}
           <Layout
             style={{ height: '100vh', overflow: 'scroll' }}
             id="PrimaryLayoutContainer"
           >
-            <BackTop
-              target={() => document.getElementById('PrimaryLayoutContainer')}
-            />
             <Header {...headerProps} />
             <Content>
               <Bread {...breadProps} />
               {hasPermission ? children : <Error />}
             </Content>
-            <Footer>{config.footerText}</Footer>
+            <BackTop
+              target={() => document.getElementById('PrimaryLayoutContainer')}
+            />
+            <GlobalFooter copyright={config.copyright} />
           </Layout>
         </Layout>
       </Fragment>

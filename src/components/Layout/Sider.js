@@ -16,12 +16,12 @@ class Sider extends PureComponent {
       changeTheme,
       navOpenKeys,
       changeOpenKeys,
-      menu,
+      menuList,
       i18n,
     } = this.props
 
     const menusProps = {
-      menu,
+      menuList,
       siderFold,
       darkTheme,
       location,
@@ -57,7 +57,7 @@ class Sider extends PureComponent {
 }
 
 Sider.propTypes = {
-  menu: PropTypes.array,
+  menuList: PropTypes.array,
   siderFold: PropTypes.bool,
   darkTheme: PropTypes.bool,
   location: PropTypes.object,

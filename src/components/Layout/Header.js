@@ -18,11 +18,11 @@ const Header = ({
   switchMenuPopover,
   navOpenKeys,
   changeOpenKeys,
-  menu,
+  menuList,
 }) => {
   let handleClickMenu = e => e.key === 'logout' && logout()
   const menusProps = {
-    menu,
+    menuList,
     siderFold: false,
     darkTheme: false,
     isNavbar,
@@ -81,7 +81,7 @@ const Header = ({
 }
 
 Header.propTypes = {
-  menu: PropTypes.array,
+  menuList: PropTypes.array,
   user: PropTypes.object,
   logout: PropTypes.func,
   switchSider: PropTypes.func,

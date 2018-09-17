@@ -14,14 +14,14 @@ class Menus extends PureComponent {
       darkTheme,
       navOpenKeys,
       changeOpenKeys,
-      menu,
+      menuList,
       location,
     } = this.props
     // 生成树状
     const menuTree = arrayToTree(
-      menu.filter(_ => _.mpid !== '-1'),
+      menuList.filter(_ => _.menuParentId !== '-1'),
       'id',
-      'mpid'
+      'menuParentId'
     )
     const levelMap = {}
 
@@ -29,8 +29,8 @@ class Menus extends PureComponent {
     const getMenus = (menuTreeN, siderFoldN) => {
       return menuTreeN.map(item => {
         if (item.children) {
-          if (item.mpid) {
-            levelMap[item.id] = item.mpid
+          if (item.menuParentId) {
+            levelMap[item.id] = item.menuParentId
           }
           return (
             <SubMenu
@@ -106,10 +106,10 @@ class Menus extends PureComponent {
     // 寻找选中路由
     let currentMenu
     let defaultSelectedKeys
-    for (let item of menu) {
+    for (let item of menuList) {
       if (item.route && pathMatchRegexp(item.route, location.pathname)) {
-        if (!navOpenKeys.length && item.mpid && !openKeysFlag)
-          changeOpenKeys([String(item.mpid)])
+        if (!navOpenKeys.length && item.menuParentId && !openKeysFlag)
+          changeOpenKeys([String(item.menuParentId)])
         currentMenu = item
         break
       }
@@ -119,7 +119,7 @@ class Menus extends PureComponent {
       const getPath = item => {
         if (item && item[pid]) {
           if (item[pid] === '-1') {
-            result.unshift(String(item['bpid']))
+            result.unshift(String(item['breadcrumbParentId']))
           } else {
             result.unshift(String(item[pid]))
             getPath(queryArray(array, id, item[pid]))
@@ -130,7 +130,12 @@ class Menus extends PureComponent {
       return result
     }
     if (currentMenu) {
-      defaultSelectedKeys = getPathArray(menu, currentMenu, 'mpid', 'id')
+      defaultSelectedKeys = getPathArray(
+        menuList,
+        currentMenu,
+        'menuParentId',
+        'id'
+      )
     }
 
     if (!defaultSelectedKeys) {
@@ -151,7 +156,7 @@ class Menus extends PureComponent {
   }
 }
 Menus.propTypes = {
-  menu: PropTypes.array,
+  menuList: PropTypes.array,
   siderFold: PropTypes.bool,
   darkTheme: PropTypes.bool,
   navOpenKeys: PropTypes.array,

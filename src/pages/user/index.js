@@ -25,18 +25,16 @@ class User extends PureComponent {
     } = user
 
     const handleRefresh = newQuery => {
-      dispatch(
-        router.push({
-          pathname,
-          search: stringify(
-            {
-              ...query,
-              ...newQuery,
-            },
-            { arrayFormat: 'repeat' }
-          ),
-        })
-      )
+      router.push({
+        pathname,
+        search: stringify(
+          {
+            ...query,
+            ...newQuery,
+          },
+          { arrayFormat: 'repeat' }
+        ),
+      })
     }
 
     const modalProps = {

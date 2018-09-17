@@ -18,7 +18,7 @@ export default {
     permissions: {
       visit: [],
     },
-    menu: [
+    menuList: [
       {
         id: 1,
         icon: 'laptop',
@@ -66,14 +66,14 @@ export default {
       if (success && user) {
         const { list } = yield call(queryMenuList)
         const { permissions } = user
-        let menu = list
+        let menuList = list
         if (
           permissions.role === RoleType.ADMIN ||
           permissions.role === RoleType.DEVELOPER
         ) {
           permissions.visit = list.map(item => item.id)
         } else {
-          menu = list.filter(item => {
+          menuList = list.filter(item => {
             const cases = [
               permissions.visit.includes(item.id),
               item.mpid
@@ -89,7 +89,7 @@ export default {
           payload: {
             user,
             permissions,
-            menu,
+            menuList,
           },
         })
         if (location.pathname === '/login') {

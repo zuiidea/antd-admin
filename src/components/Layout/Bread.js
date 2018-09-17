@@ -10,31 +10,31 @@ import styles from './Layout.less'
 @withI18n()
 class Bread extends PureComponent {
   render() {
-    const { menu, location, i18n } = this.props
+    const { menuList, location, i18n } = this.props
     // 匹配当前路由
     let pathArray = []
     let current
-    for (let index in menu) {
+    for (let index in menuList) {
       if (
-        menu[index].route &&
-        pathMatchRegexp(menu[index].route, location.pathname)
+        menuList[index].route &&
+        pathMatchRegexp(menuList[index].route, location.pathname)
       ) {
-        current = menu[index]
+        current = menuList[index]
         break
       }
     }
 
     const getPathArray = item => {
       pathArray.unshift(item)
-      if (item.bpid) {
-        getPathArray(queryArray(menu, 'id', item.bpid))
+      if (item.breadcrumbParentId) {
+        getPathArray(queryArray(menuList, 'id', item.breadcrumbParentId))
       }
     }
 
     let paramMap = {}
     if (!current) {
       pathArray.push(
-        menu[0] || {
+        menuList[0] || {
           id: 1,
           icon: 'laptop',
           name: i18n.t`Dashboard`,
