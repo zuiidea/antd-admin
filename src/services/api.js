@@ -1,5 +1,5 @@
 const api = {
-  queryMenuList: '/menus',
+  queryRouteList: '/routes',
 
   queryUserInfo: '/user',
   logoutUser: '/user/logout',

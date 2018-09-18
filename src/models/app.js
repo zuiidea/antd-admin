@@ -5,11 +5,11 @@
 
 import { router } from 'utils'
 import { parse, stringify } from 'qs'
-import config from 'config'
+import store from 'store'
 import { RoleType } from 'utils/constant'
-import { queryMenuList, logoutUser, queryUserInfo } from 'api'
-
-const { prefix } = config
+import { queryLayout } from 'utils'
+import { queryRouteList, logoutUser, queryUserInfo } from 'api'
+import config from 'config'
 
 export default {
   namespace: 'app',
@@ -18,7 +18,7 @@ export default {
     permissions: {
       visit: [],
     },
-    menuList: [
+    routeList: [
       {
         id: 1,
         icon: 'laptop',
@@ -26,14 +26,10 @@ export default {
         router: '/dashboard',
       },
     ],
-    menuPopoverVisible: false,
-    siderFold: window.localStorage.getItem(`${prefix}siderFold`) === 'true',
-    darkTheme: window.localStorage.getItem(`${prefix}darkTheme`) === 'true',
-    isNavbar: document.body.clientWidth < 769,
-    navOpenKeys:
-      JSON.parse(window.localStorage.getItem(`${prefix}navOpenKeys`)) || [],
     locationPathname: '',
     locationQuery: {},
+    theme: store.get('theme') || 'light',
+    collapsed: store.get('collapsed') || false,
   },
   subscriptions: {
     setupHistory({ dispatch, history }) {
@@ -63,17 +59,18 @@ export default {
     *query({ payload }, { call, put, select }) {
       const { success, user } = yield call(queryUserInfo, payload)
       const { locationPathname } = yield select(_ => _.app)
+
       if (success && user) {
-        const { list } = yield call(queryMenuList)
+        const { list } = yield call(queryRouteList)
         const { permissions } = user
-        let menuList = list
+        let routeList = list
         if (
           permissions.role === RoleType.ADMIN ||
           permissions.role === RoleType.DEVELOPER
         ) {
           permissions.visit = list.map(item => item.id)
         } else {
-          menuList = list.filter(item => {
+          routeList = list.filter(item => {
             const cases = [
               permissions.visit.includes(item.id),
               item.mpid
@@ -89,7 +86,7 @@ export default {
           payload: {
             user,
             permissions,
-            menuList,
+            routeList,
           },
         })
         if (location.pathname === '/login') {
@@ -97,10 +94,7 @@ export default {
             pathname: '/dashboard',
           })
         }
-      } else if (
-        config.openPages &&
-        config.openPages.indexOf(locationPathname) < 0
-      ) {
+      } else if (queryLayout(config.layouts, locationPathname) !== 'public') {
         router.push({
           pathname: '/login',
           search: stringify({
@@ -110,8 +104,8 @@ export default {
       }
     },
 
-    *logout({ payload }, { call, put }) {
-      const data = yield call(logoutUser, parse(payload))
+    *signOut({ payload }, { call, put }) {
+      const data = yield call(logoutUser)
       if (data.success) {
         yield put({
           type: 'updateState',
@@ -133,14 +127,6 @@ export default {
         throw data
       }
     },
-
-    *changeNavbar(action, { put, select }) {
-      const { app } = yield select(_ => _)
-      const isNavbar = document.body.clientWidth < 769
-      if (isNavbar !== app.isNavbar) {
-        yield put({ type: 'handleNavbar', payload: isNavbar })
-      }
-    },
   },
   reducers: {
     updateState(state, { payload }) {
@@ -150,29 +136,14 @@ export default {
       }
     },
 
-    switchSider(state) {
-      window.localStorage.setItem(`${prefix}siderFold`, !state.siderFold)
-      state.siderFold = !state.siderFold
+    handleThemeChange(state, { payload }) {
+      store.set('theme', payload)
+      state.theme = payload
     },
 
-    switchTheme(state) {
-      window.localStorage.setItem(`${prefix}darkTheme`, !state.darkTheme)
-      state.darkTheme = !state.darkTheme
-    },
-
-    switchMenuPopver(state) {
-      state.menuPopoverVisible = !state.menuPopoverVisible
-    },
-
-    handleNavbar(state, { payload }) {
-      state.isNavbar = payload
-    },
-
-    handleNavOpenKeys(state, { payload: navOpenKeys }) {
-      return {
-        ...state,
-        ...navOpenKeys,
-      }
+    handleCollapseChange(state, { payload }) {
+      store.set('collapsed', payload)
+      state.collapsed = payload
     },
   },
 }

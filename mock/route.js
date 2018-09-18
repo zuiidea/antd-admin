@@ -87,11 +87,11 @@ const database = [
     name: 'Rechartst',
     icon: 'area-chart',
     route: '/chart/Recharts',
-  },
+  }
 ]
 
 module.exports = {
-  [`GET ${ApiPrefix}/menus`](req, res) {
+  [`GET ${ApiPrefix}/routes`](req, res) {
     res.status(200).json(database)
   },
 }

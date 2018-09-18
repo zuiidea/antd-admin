@@ -3,17 +3,13 @@
  * @param   {array}         array   An array where all values are objects, like [{key:1},{key:2}].
  * @param   {string}        key     The key of the object that needs to be queried.
  * @param   {string}        value   The value of the object that needs to be queried.
- * @return  {object|null}   Return frist object when query success.
+ * @return  {object|undefined}   Return frist object when query success.
  */
 export function queryArray(array, key, value) {
   if (!Array.isArray(array)) {
-    return null
+    return
   }
-  const item = array.filter(_ => _[key] === value)
-  if (item.length) {
-    return item[0]
-  }
-  return null
+  return array.filter(_ => _[key] === value)
 }
 
 export const Constant = {

@@ -7,114 +7,82 @@ import { connect } from 'dva'
 import { MyLayout } from 'components'
 import { BackTop, Layout } from 'antd'
 import { GlobalFooter } from 'ant-design-pro'
-import { classnames, config, pathMatchRegexp } from 'utils'
+import { config, pathMatchRegexp } from 'utils'
 import Error from '../pages/404'
+import styles from './PrimaryLayout.less'
 
-const { Content, Sider } = Layout
-const { Header, Bread, styles } = MyLayout
-const { prefix } = config
+const { Content } = Layout
+const { Header, Bread } = MyLayout
 
 @withRouter
 @connect(({ app, loading }) => ({ app, loading }))
 class PrimaryLayout extends PureComponent {
   render() {
-    const { children, dispatch, app, location } = this.props
-    const {
-      user,
-      siderFold,
-      darkTheme,
-      isNavbar,
-      menuPopoverVisible,
-      navOpenKeys,
-      menuList,
-      permissions,
-    } = app
-    let { pathname } = location
-    pathname = pathname.startsWith('/') ? pathname : `/${pathname}`
-    const current = menuList.filter(item =>
-      pathMatchRegexp(item.route || '', pathname)
+    const { app, location, dispatch, children } = this.props
+    const { user, theme, routeList, permissions, collapsed } = app
+
+    // Find a route that matches the pathname.
+    const currentRoute = routeList.find(
+      _ => _.route && pathMatchRegexp(_.route, location.pathname)
     )
-    const hasPermission = current.length
-      ? permissions.visit.includes(current[0].id)
+
+    // Query whether you have permission to enter this page
+    const hasPermission = currentRoute
+      ? permissions.visit.includes(currentRoute.id)
       : false
 
+    // MenuParentId is equal to -1 is not a available menu.
+    const menus = routeList.filter(_ => _.menuParentId !== '-1')
+
     const headerProps = {
-      menuList,
       user,
-      location,
-      siderFold,
-      isNavbar,
-      menuPopoverVisible,
-      navOpenKeys,
-      switchMenuPopover() {
-        dispatch({ type: 'app/switchMenuPopver' })
+      menus,
+      collapsed,
+      onSignOut() {
+        dispatch({ type: 'app/signOut' })
       },
-      logout() {
-        dispatch({ type: 'app/logout' })
-      },
-      switchSider() {
-        dispatch({ type: 'app/switchSider' })
-      },
-      changeOpenKeys(openKeys) {
+      onCollapseChange(collapsed) {
         dispatch({
-          type: 'app/handleNavOpenKeys',
-          payload: { navOpenKeys: openKeys },
+          type: 'app/handleCollapseChange',
+          payload: collapsed,
         })
       },
     }
 
     const siderProps = {
-      menuList,
-      location,
-      siderFold,
-      darkTheme,
-      navOpenKeys,
-      changeTheme() {
-        dispatch({ type: 'app/switchTheme' })
-      },
-      changeOpenKeys(openKeys) {
-        window.localStorage.setItem(
-          `${prefix}navOpenKeys`,
-          JSON.stringify(openKeys)
-        )
+      menus,
+      theme,
+      collapsed,
+      onThemeChange(theme) {
         dispatch({
-          type: 'app/handleNavOpenKeys',
-          payload: { navOpenKeys: openKeys },
+          type: 'app/handleThemeChange',
+          payload: theme,
+        })
+      },
+      onCollapseChange(collapsed) {
+        dispatch({
+          type: 'app/handleCollapseChange',
+          payload: collapsed,
         })
       },
     }
 
-    const breadProps = {
-      menuList,
-      location,
-    }
-
     return (
       <Fragment>
-        <Layout
-          className={classnames({
-            [styles.dark]: darkTheme,
-            [styles.light]: !darkTheme,
-          })}
-        >
-          {!isNavbar ? (
-            <Sider trigger={null} collapsible collapsed={siderFold}>
-              {siderProps.menuList.length === 0 ? null : (
-                <MyLayout.Sider {...siderProps} />
-              )}
-            </Sider>
-          ) : null}
+        <Layout>
+          <MyLayout.Sider {...siderProps} />
           <Layout
             style={{ height: '100vh', overflow: 'scroll' }}
-            id="PrimaryLayoutContainer"
+            id="primaryLayout"
           >
             <Header {...headerProps} />
-            <Content>
-              <Bread {...breadProps} />
+            <Content className={styles.content}>
+              <Bread routeList={routeList} />
               {hasPermission ? children : <Error />}
             </Content>
             <BackTop
-              target={() => document.getElementById('PrimaryLayoutContainer')}
+              className={styles.backTop}
+              target={() => document.getElementById('primaryLayout')}
             />
             <GlobalFooter copyright={config.copyright} />
           </Layout>

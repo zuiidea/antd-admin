@@ -1,69 +1,67 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Icon, Switch } from 'antd'
+import { Icon, Switch, Layout } from 'antd'
 import { withI18n, Trans } from '@lingui/react'
 import { config } from 'utils'
-import styles from './Layout.less'
 import Menus from './Menu'
+import styles from './Sider.less'
 
 @withI18n()
 class Sider extends PureComponent {
   render() {
     const {
-      siderFold,
-      darkTheme,
-      location,
-      changeTheme,
-      navOpenKeys,
-      changeOpenKeys,
-      menuList,
       i18n,
+      menus,
+      theme,
+      collapsed,
+      onThemeChange,
+      onCollapseChange,
     } = this.props
 
-    const menusProps = {
-      menuList,
-      siderFold,
-      darkTheme,
-      location,
-      navOpenKeys,
-      changeOpenKeys,
-    }
     return (
-      <div>
-        <div className={styles.logo}>
+      <Layout.Sider
+        theme={theme}
+        breakpoint="md"
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+        onBreakpoint={onCollapseChange}
+      >
+        <div className={styles.logoContainer}>
           <img alt="logo" src={config.logoPath} />
-          {siderFold ? '' : <span>{config.siteName}</span>}
+          {collapsed ? null : <h1>{config.siteName}</h1>}
         </div>
-        <Menus {...menusProps} />
-        {!siderFold ? (
-          <div className={styles.switchtheme}>
+        <div className={styles.menuContainer}>
+          <Menus menus={menus} theme={theme} collapsed={collapsed} />
+        </div>
+        {collapsed ? null : (
+          <div className={styles.switchTheme}>
             <span>
               <Icon type="bulb" />
               <Trans>Switch Theme</Trans>
             </span>
             <Switch
-              onChange={changeTheme}
-              defaultChecked={darkTheme}
+              onChange={onThemeChange.bind(
+                this,
+                theme === 'dark' ? 'light' : 'dark'
+              )}
+              defaultChecked={theme === 'dark'}
               checkedChildren={i18n.t`Dark`}
               unCheckedChildren={i18n.t`Light`}
             />
           </div>
-        ) : (
-          ''
         )}
-      </div>
+      </Layout.Sider>
     )
   }
 }
 
 Sider.propTypes = {
-  menuList: PropTypes.array,
-  siderFold: PropTypes.bool,
-  darkTheme: PropTypes.bool,
-  location: PropTypes.object,
-  changeTheme: PropTypes.func,
-  navOpenKeys: PropTypes.array,
-  changeOpenKeys: PropTypes.func,
+  menus: PropTypes.array,
+  theme: PropTypes.string,
+  collapsed: PropTypes.bool,
+  onThemeChange: PropTypes.func,
+  onCollapseChange: PropTypes.func,
 }
 
 export default Sider

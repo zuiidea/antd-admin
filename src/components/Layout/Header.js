@@ -1,97 +1,60 @@
-import React from 'react'
+import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { Menu, Icon, Popover, Layout } from 'antd'
+import { Menu, Icon, Layout } from 'antd'
+import { Trans } from '@lingui/react'
 import classnames from 'classnames'
 import styles from './Header.less'
-import Menus from './Menu'
 
 const { SubMenu } = Menu
 
-const Header = ({
-  user,
-  logout,
-  switchSider,
-  siderFold,
-  isNavbar,
-  menuPopoverVisible,
-  location,
-  switchMenuPopover,
-  navOpenKeys,
-  changeOpenKeys,
-  menuList,
-}) => {
-  let handleClickMenu = e => e.key === 'logout' && logout()
-  const menusProps = {
-    menuList,
-    siderFold: false,
-    darkTheme: false,
-    isNavbar,
-    handleClickNavMenu: switchMenuPopover,
-    location,
-    navOpenKeys,
-    changeOpenKeys,
+class Header extends PureComponent {
+  handleClickMenu = e => {
+    e.key === 'SignOut' && this.props.onSignOut()
   }
-  return (
-    <Layout.Header className={styles.header}>
-      {isNavbar ? (
-        <Popover
-          placement="bottomLeft"
-          onVisibleChange={switchMenuPopover}
-          visible={menuPopoverVisible}
-          overlayClassName={styles.popovermenu}
-          trigger="click"
-          content={<Menus {...menusProps} />}
+  render() {
+    const { user, collapsed, onCollapseChange } = this.props
+
+    return (
+      <Layout.Header className={styles.header}>
+        <div
+          className={styles.button}
+          onClick={onCollapseChange.bind(this, !collapsed)}
         >
-          <div className={styles.button}>
-            <Icon type="bars" />
-          </div>
-        </Popover>
-      ) : (
-        <div className={styles.button} onClick={switchSider}>
           <Icon
             type={classnames({
-              'menu-unfold': siderFold,
-              'menu-fold': !siderFold,
+              'menu-unfold': collapsed,
+              'menu-fold': !collapsed,
             })}
           />
         </div>
-      )}
-      <div className={styles.rightWarpper}>
-        <div className={styles.button}>
-          <Icon type="mail" />
+
+        <div className={styles.rightContainer}>
+          <Menu mode="horizontal" onClick={this.handleClickMenu}>
+            <SubMenu
+              title={
+                <Fragment>
+                  <Icon type="user" />
+                  {user.username}
+                </Fragment>
+              }
+            >
+              <Menu.Item key="SignOut">
+                <Trans>Sign out</Trans>
+              </Menu.Item>
+            </SubMenu>
+          </Menu>
         </div>
-        <Menu mode="horizontal" onClick={handleClickMenu}>
-          <SubMenu
-            style={{
-              float: 'right',
-            }}
-            title={
-              <span>
-                <Icon type="user" />
-                {user.username}
-              </span>
-            }
-          >
-            <Menu.Item key="logout">Sign out</Menu.Item>
-          </SubMenu>
-        </Menu>
-      </div>
-    </Layout.Header>
-  )
+      </Layout.Header>
+    )
+  }
 }
 
 Header.propTypes = {
-  menuList: PropTypes.array,
+  menus: PropTypes.array,
   user: PropTypes.object,
-  logout: PropTypes.func,
-  switchSider: PropTypes.func,
-  siderFold: PropTypes.bool,
-  isNavbar: PropTypes.bool,
-  menuPopoverVisible: PropTypes.bool,
-  location: PropTypes.object,
-  switchMenuPopover: PropTypes.func,
-  navOpenKeys: PropTypes.array,
-  changeOpenKeys: PropTypes.func,
+  collapsed: PropTypes.bool,
+  onSignOut: PropTypes.func,
+  onCollapseChange: PropTypes.func,
 }
 
 export default Header

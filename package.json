@@ -32,7 +32,8 @@
     "react-draft-wysiwyg": "^1.12.13",
     "react-helmet": "^5.2.0",
     "react-highcharts": "^16.0.2",
-    "recharts": "^1.1.0"
+    "recharts": "^1.1.0",
+    "store": "^2.0.12"
   },
   "devDependencies": {
     "@lingui/babel-preset-react": "^2.7.0",
