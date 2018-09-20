@@ -29,10 +29,11 @@ class BaseLayout extends PureComponent {
     const currentPath = location.pathname + location.search
     if (currentPath !== this.previousPath) {
       NProgress.start()
-      if (!loading.global) {
-        NProgress.done()
-        this.previousPath = currentPath
-      }
+    }
+
+    if (!loading.global) {
+      NProgress.done()
+      this.previousPath = currentPath
     }
 
     return (

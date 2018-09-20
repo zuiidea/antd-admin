@@ -72,7 +72,7 @@ class PrimaryLayout extends PureComponent {
         <Layout>
           <MyLayout.Sider {...siderProps} />
           <Layout
-            style={{ height: '100vh', overflow: 'scroll' }}
+            style={{ height: '100vh', overflowY: 'scroll' }}
             id="primaryLayout"
           >
             <Header {...headerProps} />

@@ -1,13 +1,11 @@
 /* global window */
-/* global document */
-/* global location */
-/* eslint no-restricted-globals: ["error", "event"] */
 
 import { router } from 'utils'
-import { parse, stringify } from 'qs'
+import { stringify } from 'qs'
 import store from 'store'
 import { RoleType } from 'utils/constant'
-import { queryLayout } from 'utils'
+import { queryLayout, pathMatchRegexp } from 'utils'
+import { CANCEL_REQUEST_MESSAGE } from 'utils/constant'
 import { queryRouteList, logoutUser, queryUserInfo } from 'api'
 import config from 'config'
 
@@ -44,15 +42,21 @@ export default {
       })
     },
 
+    setupRequestCancel({ history }) {
+      history.listen(() => {
+        const { cancelRequest = new Map() } = window
+
+        cancelRequest.forEach((value, key) => {
+          if (value.pathname !== window.location.pathname) {
+            value.cancel(CANCEL_REQUEST_MESSAGE)
+            cancelRequest.delete(key)
+          }
+        })
+      })
+    },
+
     setup({ dispatch }) {
       dispatch({ type: 'query' })
-      let tid
-      window.onresize = () => {
-        clearTimeout(tid)
-        tid = setTimeout(() => {
-          dispatch({ type: 'changeNavbar' })
-        }, 300)
-      }
     },
   },
   effects: {
@@ -89,7 +93,7 @@ export default {
             routeList,
           },
         })
-        if (location.pathname === '/login') {
+        if (pathMatchRegexp('/login', window.location.pathname)) {
           router.push({
             pathname: '/dashboard',
           })

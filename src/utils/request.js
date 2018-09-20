@@ -2,7 +2,11 @@ import axios from 'axios'
 import { cloneDeep, isEmpty } from 'lodash'
 import pathToRegexp from 'path-to-regexp'
 import { message } from 'antd'
+import { CANCEL_REQUEST_MESSAGE } from 'utils/constant'
 import qs from 'qs'
+
+const { CancelToken } = axios
+window.cancelRequest = new Map()
 
 export default function request(options) {
   let { data, url, method = 'get' } = options
@@ -34,6 +38,13 @@ export default function request(options) {
       ? `${url}${isEmpty(cloneData) ? '' : '?'}${qs.stringify(cloneData)}`
       : url
 
+  options.cancelToken = new CancelToken(cancel => {
+    window.cancelRequest.set(Symbol(Date.now()), {
+      pathname: window.location.pathname,
+      cancel,
+    })
+  })
+
   return axios(options)
     .then(response => {
       const { statusText, status, data } = response
@@ -56,9 +67,17 @@ export default function request(options) {
       })
     })
     .catch(error => {
-      const { response } = error
+      const { response, message } = error
+
+      if (String(message) === CANCEL_REQUEST_MESSAGE) {
+        return {
+          success: false,
+        }
+      }
+
       let msg
       let statusCode
+
       if (response && response instanceof Object) {
         const { data, statusText } = response
         statusCode = response.status

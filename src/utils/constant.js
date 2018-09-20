@@ -3,3 +3,5 @@ export const RoleType = {
   DEFAULT: 'admin',
   DEVELOPER: 'developer',
 }
+
+export const CANCEL_REQUEST_MESSAGE = 'cancle request'
