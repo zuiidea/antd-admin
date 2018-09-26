@@ -4020,32 +4020,17 @@ let DICT = {
   990100: '海外',
 }
 
-// id pid/parentId name children
 const tree = list => {
-  let mapped = {}
-  let item
-  for (let i = 0; i < list.length; i += 1) {
-    item = list[i]
-    if (!item || !item.id) continue
-    mapped[item.id] = item
-  }
-
-  let result = []
-  for (let ii = 0; ii < list.length; ii += 1) {
-    item = list[ii]
-
-    if (!item) continue
-    /* jshint -W041 */
-    if (item.pid === undefined && item.parentId === undefined) {
-      result.push(item)
-      continue
-    }
-    let parent = mapped[item.pid] || mapped[item.parentId]
-    if (!parent) continue
-    if (!parent.children) parent.children = []
-    parent.children.push(item)
-  }
-  return result
+  let hashTable = Object.create(null)
+  list.forEach(aData => (hashTable[aData.id] = { ...aData, children: [] }))
+  let dataTree = []
+  list.forEach(aData => {
+    if (aData.pid) {
+      if (hashTable[aData.pid])
+        hashTable[aData.pid].children.push(hashTable[aData.id])
+    } else dataTree.push(hashTable[aData.id])
+  })
+  return dataTree
 }
 
 let DICT_FIXED = (function() {
@@ -4053,19 +4038,15 @@ let DICT_FIXED = (function() {
   for (let id in DICT) {
     if ({}.hasOwnProperty.call(DICT, id)) {
       let pid
+      const tmpObj = { id, value: DICT[id], label: DICT[id] }
       if (id.slice(2, 6) !== '0000') {
         pid =
           id.slice(4, 6) === '00'
             ? `${id.slice(0, 2)}0000`
             : `${id.slice(0, 4)}00`
       }
-      fixed.push({
-        id,
-        pid,
-        name: DICT[id],
-        value: DICT[id],
-        label: DICT[id],
-      })
+      if (pid) tmpObj.pid = pid
+      fixed.push(tmpObj)
     }
   }
   return tree(fixed)
