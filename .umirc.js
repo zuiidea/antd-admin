@@ -3,6 +3,9 @@ import { resolve } from 'path'
 import { i18n } from './src/utils/config'
 
 export default {
+  ignoreMomentLocale: true,
+  targets: { ie: 9 },
+  urlLoaderExcludes: [/\.svg$/],
   plugins: [
     [
       // https://umijs.org/plugin/umi-plugin-react.html
@@ -50,7 +53,6 @@ export default {
           include: ['dva', 'dva/router', 'dva/saga', 'dva/fetch', 'antd/es'],
         },
         hardSource: /* isMac */ process.platform === 'darwin',
-        polyfills: ['ie9'],
         pwa: true
       },
     ],
@@ -58,7 +60,6 @@ export default {
   // Theme for antd
   // https://ant.design/docs/react/customize-theme
   theme: './config/theme.config.js',
-
   // Webpack Configuration
   proxy: {
     '/api/v1/weather': {
@@ -77,8 +78,6 @@ export default {
     themes: resolve(__dirname, './src/themes'),
     utils: resolve(__dirname, './src/utils'),
   },
-  urlLoaderExcludes: [/\.svg$/],
-  ignoreMomentLocale: true,
   chainWebpack(config) {
     config.module
       .rule('svg')
