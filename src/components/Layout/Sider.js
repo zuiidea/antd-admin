@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Icon, Switch, Layout } from 'antd'
+import { Icon, Switch, Layout, Drawer } from 'antd'
 import { withI18n, Trans } from '@lingui/react'
 import { config } from 'utils'
-import Menus from './Menu'
+import SiderMenu from './Menu'
 import styles from './Sider.less'
 
 @withI18n()
@@ -13,6 +13,7 @@ class Sider extends PureComponent {
       i18n,
       menus,
       theme,
+      isMobile,
       collapsed,
       onThemeChange,
       onCollapseChange,
@@ -21,18 +22,24 @@ class Sider extends PureComponent {
     return (
       <Layout.Sider
         theme={theme}
-        breakpoint="md"
+        breakpoint="lg"
         trigger={null}
         collapsible
         collapsed={collapsed}
-        onBreakpoint={onCollapseChange}
+        onBreakpoint={isMobile ? null : onCollapseChange}
       >
         <div className={styles.logoContainer}>
           <img alt="logo" src={config.logoPath} />
           {collapsed ? null : <h1>{config.siteName}</h1>}
         </div>
         <div className={styles.menuContainer}>
-          <Menus menus={menus} theme={theme} collapsed={collapsed} />
+          <SiderMenu
+            menus={menus}
+            theme={theme}
+            isMobile={isMobile}
+            collapsed={collapsed}
+            onCollapseChange={onCollapseChange}
+          />
         </div>
         {collapsed ? null : (
           <div className={styles.switchTheme}>
@@ -59,6 +66,7 @@ class Sider extends PureComponent {
 Sider.propTypes = {
   menus: PropTypes.array,
   theme: PropTypes.string,
+  isMobile: PropTypes.bool,
   collapsed: PropTypes.bool,
   onThemeChange: PropTypes.func,
   onCollapseChange: PropTypes.func,

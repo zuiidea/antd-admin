@@ -17,6 +17,7 @@
     "echarts-for-react": "^2.0.15-beta.0",
     "echarts-gl": "^1.1.1",
     "echarts-liquidfill": "^2.0.2",
+    "enquire-js": "^0.2.1",
     "highcharts-exporting": "^0.1.7",
     "highcharts-more": "^0.1.7",
     "lodash": "^4.17.11",

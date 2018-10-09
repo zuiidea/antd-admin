@@ -5,21 +5,50 @@ import PropTypes from 'prop-types'
 import withRouter from 'umi/withRouter'
 import { connect } from 'dva'
 import { MyLayout } from 'components'
-import { BackTop, Layout } from 'antd'
+import { BackTop, Layout, Drawer } from 'antd'
 import { GlobalFooter } from 'ant-design-pro'
+import { enquireScreen, unenquireScreen } from 'enquire-js'
 import { config, pathMatchRegexp } from 'utils'
 import Error from '../pages/404'
 import styles from './PrimaryLayout.less'
 
 const { Content } = Layout
-const { Header, Bread } = MyLayout
+const { Header, Bread, Sider } = MyLayout
 
 @withRouter
 @connect(({ app, loading }) => ({ app, loading }))
 class PrimaryLayout extends PureComponent {
+  state = {
+    isMobile: false,
+  }
+
+  componentDidMount() {
+    this.enquireHandler = enquireScreen(mobile => {
+      const { isMobile } = this.state
+      if (isMobile !== mobile) {
+        this.setState({
+          isMobile: mobile,
+        })
+      }
+    })
+  }
+
+  componentWillUnmount() {
+    unenquireScreen(this.enquireHandler)
+  }
+
+  onCollapseChange = collapsed => {
+    this.props.dispatch({
+      type: 'app/handleCollapseChange',
+      payload: collapsed,
+    })
+  }
+
   render() {
     const { app, location, dispatch, children } = this.props
     const { user, theme, routeList, permissions, collapsed } = app
+    const { isMobile } = this.state
+    const { onCollapseChange } = this
 
     // Find a route that matches the pathname.
     const currentRoute = routeList.find(
@@ -38,31 +67,22 @@ class PrimaryLayout extends PureComponent {
       user,
       menus,
       collapsed,
+      onCollapseChange,
       onSignOut() {
         dispatch({ type: 'app/signOut' })
-      },
-      onCollapseChange(collapsed) {
-        dispatch({
-          type: 'app/handleCollapseChange',
-          payload: collapsed,
-        })
       },
     }
 
     const siderProps = {
-      menus,
       theme,
+      menus,
+      isMobile,
       collapsed,
+      onCollapseChange,
       onThemeChange(theme) {
         dispatch({
           type: 'app/handleThemeChange',
           payload: theme,
-        })
-      },
-      onCollapseChange(collapsed) {
-        dispatch({
-          type: 'app/handleCollapseChange',
-          payload: collapsed,
         })
       },
     }
@@ -70,7 +90,24 @@ class PrimaryLayout extends PureComponent {
     return (
       <Fragment>
         <Layout>
-          <MyLayout.Sider {...siderProps} />
+          {isMobile ? (
+            <Drawer
+              maskClosable
+              closable={false}
+              onClose={onCollapseChange.bind(this, !collapsed)}
+              visible={!collapsed}
+              placement="left"
+              width={200}
+              style={{
+                padding: 0,
+                height: '100vh',
+              }}
+            >
+              <Sider {...siderProps} collapsed={false} />
+            </Drawer>
+          ) : (
+            <Sider {...siderProps} />
+          )}
           <Layout
             style={{ height: '100vh', overflowY: 'scroll' }}
             id="primaryLayout"

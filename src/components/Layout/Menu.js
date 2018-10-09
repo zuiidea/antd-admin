@@ -14,7 +14,7 @@ import store from 'store'
 const { SubMenu } = Menu
 
 @withRouter
-class Menus extends PureComponent {
+class SiderMenu extends PureComponent {
   state = {
     openKeys: store.get('openKeys') || [],
   }
@@ -67,7 +67,14 @@ class Menus extends PureComponent {
   }
 
   render() {
-    const { collapsed, theme, menus, location } = this.props
+    const {
+      collapsed,
+      theme,
+      menus,
+      location,
+      isMobile,
+      onCollapseChange,
+    } = this.props
 
     // Generating tree-structured data for menu content.
     const menuTree = arrayToTree(menus, 'id', 'menuParentId')
@@ -90,6 +97,13 @@ class Menus extends PureComponent {
         openKeys={this.state.openKeys}
         inlineCollapsed={collapsed}
         selectedKeys={selectedKeys}
+        onClick={
+          isMobile
+            ? () => {
+                onCollapseChange(true)
+              }
+            : undefined
+        }
       >
         {this.generateMenus(menuTree)}
       </Menu>
@@ -97,10 +111,12 @@ class Menus extends PureComponent {
   }
 }
 
-Menus.propTypes = {
+SiderMenu.propTypes = {
   menus: PropTypes.array,
-  collapsed: PropTypes.bool,
   theme: PropTypes.string,
+  isMobile: PropTypes.bool,
+  collapsed: PropTypes.bool,
+  onCollapseChange: PropTypes.func,
 }
 
-export default Menus
+export default SiderMenu
