@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Icon, Switch, Layout, Drawer } from 'antd'
+import { Icon, Switch, Layout } from 'antd'
 import { withI18n, Trans } from '@lingui/react'
 import { config } from 'utils'
 import SiderMenu from './Menu'

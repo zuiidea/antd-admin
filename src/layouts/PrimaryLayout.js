@@ -108,10 +108,7 @@ class PrimaryLayout extends PureComponent {
           ) : (
             <Sider {...siderProps} />
           )}
-          <Layout
-            style={{ height: '100vh', overflowY: 'scroll' }}
-            id="primaryLayout"
-          >
+          <div className={styles.container} id="primaryLayout">
             <Header {...headerProps} />
             <Content className={styles.content}>
               <Bread routeList={routeList} />
@@ -122,7 +119,7 @@ class PrimaryLayout extends PureComponent {
               target={() => document.getElementById('primaryLayout')}
             />
             <GlobalFooter copyright={config.copyright} />
-          </Layout>
+          </div>
         </Layout>
       </Fragment>
     )
