@@ -4,7 +4,7 @@ import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import withRouter from 'umi/withRouter'
 import { connect } from 'dva'
-import { MyLayout } from 'components'
+import { MyLayout, ScrollBar } from 'components'
 import { BackTop, Layout, Drawer } from 'antd'
 import { GlobalFooter } from 'ant-design-pro'
 import { enquireScreen, unenquireScreen } from 'enquire-js'
@@ -64,10 +64,11 @@ class PrimaryLayout extends PureComponent {
     const menus = routeList.filter(_ => _.menuParentId !== '-1')
 
     const headerProps = {
-      user,
       menus,
       collapsed,
       onCollapseChange,
+      avatar: user.avatar,
+      username: user.username,
       onSignOut() {
         dispatch({ type: 'app/signOut' })
       },
@@ -109,16 +110,18 @@ class PrimaryLayout extends PureComponent {
             <Sider {...siderProps} />
           )}
           <div className={styles.container} id="primaryLayout">
-            <Header {...headerProps} />
-            <Content className={styles.content}>
-              <Bread routeList={routeList} />
-              {hasPermission ? children : <Error />}
-            </Content>
-            <BackTop
-              className={styles.backTop}
-              target={() => document.getElementById('primaryLayout')}
-            />
-            <GlobalFooter copyright={config.copyright} />
+            <ScrollBar>
+              <Header {...headerProps} />
+              <Content className={styles.content}>
+                <Bread routeList={routeList} />
+                {hasPermission ? children : <Error />}
+              </Content>
+              <BackTop
+                className={styles.backTop}
+                target={() => document.getElementById('primaryLayout')}
+              />
+              <GlobalFooter copyright={config.copyright} />
+            </ScrollBar>
           </div>
         </Layout>
       </Fragment>

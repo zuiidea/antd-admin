@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Icon, Switch, Layout } from 'antd'
 import { withI18n, Trans } from '@lingui/react'
+import ScrollBar from '../ScrollBar'
 import { config } from 'utils'
 import SiderMenu from './Menu'
 import styles from './Sider.less'
@@ -21,25 +22,32 @@ class Sider extends PureComponent {
 
     return (
       <Layout.Sider
+        width={256}
         theme={theme}
         breakpoint="lg"
         trigger={null}
         collapsible
         collapsed={collapsed}
         onBreakpoint={isMobile ? null : onCollapseChange}
+        className={styles.sider}
       >
-        <div className={styles.logoContainer}>
-          <img alt="logo" src={config.logoPath} />
-          {collapsed ? null : <h1>{config.siteName}</h1>}
+        <div className={styles.brand}>
+          <div className={styles.logo}>
+            <img alt="logo" src={config.logoPath} />
+            {collapsed ? null : <h1>{config.siteName}</h1>}
+          </div>
         </div>
+
         <div className={styles.menuContainer}>
-          <SiderMenu
-            menus={menus}
-            theme={theme}
-            isMobile={isMobile}
-            collapsed={collapsed}
-            onCollapseChange={onCollapseChange}
-          />
+          <ScrollBar>
+            <SiderMenu
+              menus={menus}
+              theme={theme}
+              isMobile={isMobile}
+              collapsed={collapsed}
+              onCollapseChange={onCollapseChange}
+            />
+          </ScrollBar>
         </div>
         {collapsed ? null : (
           <div className={styles.switchTheme}>

@@ -1,39 +1,59 @@
 @import '~themes/vars.less';
 
-.logoContainer {
-  height: 96px;
+.sider {
+  box-shadow: fade(@primary-color, 10%) 0 0 28px 0;
+  z-index: 10;
+  :global {
+    .ant-layout-sider-children {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
+}
+
+.brand {
+  z-index: 1;
+  height: 72px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  box-shadow: 0 1px 9px -3px rgba(0, 0, 0, 0.2);
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  img {
-    width: 40px;
-    margin-right: 8px;
-  }
+    img {
+      width: 36px;
+      margin-right: 8px;
+    }
 
-  h1 {
-    vertical-align: text-bottom;
-    font-size: 16px;
-    text-transform: uppercase;
-    display: inline-block;
-    font-weight: 700;
-    color: @primary-color;
-    white-space: nowrap;
-    margin-bottom: 0;
-    .text-gradient();
+    h1 {
+      vertical-align: text-bottom;
+      font-size: 16px;
+      text-transform: uppercase;
+      display: inline-block;
+      font-weight: 700;
+      color: @primary-color;
+      white-space: nowrap;
+      margin-bottom: 0;
+      .text-gradient();
 
-    :local {
-      animation: fadeRightIn 300ms @ease-in-out;
-      animation-fill-mode: both;
+      :local {
+        animation: fadeRightIn 300ms @ease-in-out;
+        animation-fill-mode: both;
+      }
     }
   }
 }
 
 .menuContainer {
-  height: ~'calc(100vh - 144px)';
+  height: ~'calc(100vh - 120px)';
   overflow-x: hidden;
-  border-right: none;
   flex: 1;
+  padding: 24px 0;
 
   &::-webkit-scrollbar-thumb {
     background-color: transparent;

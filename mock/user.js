@@ -1,4 +1,4 @@
-import { Mock, Constant, qs } from './_utils'
+import { Mock, Constant, qs, randomAvatar } from './_utils'
 
 const { ApiPrefix } = Constant
 
@@ -14,13 +14,18 @@ let usersListData = Mock.mock({
       isMale: '@boolean',
       email: '@email',
       createTime: '@datetime',
-      avatar () {
-        return Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', this.nickName.substr(0, 1))
+      avatar() {
+        return Mock.Random.image(
+          '100x100',
+          Mock.Random.color(),
+          '#757575',
+          'png',
+          this.nickName.substr(0, 1)
+        )
       },
     },
   ],
 })
-
 
 let database = usersListData.data
 
@@ -49,16 +54,21 @@ const adminUsers = [
     username: 'admin',
     password: 'admin',
     permissions: userPermission.ADMIN,
-  }, {
+    avatar: randomAvatar(),
+  },
+  {
     id: 1,
     username: 'guest',
     password: 'guest',
     permissions: userPermission.DEFAULT,
-  }, {
+    avatar: randomAvatar(),
+  },
+  {
     id: 2,
     username: '吴彦祖',
     password: '123456',
     permissions: userPermission.DEVELOPER,
+    avatar: randomAvatar(),
   },
 ]
 
@@ -87,34 +97,37 @@ const NOTFOUND = {
 }
 
 module.exports = {
-
-  [`POST ${ApiPrefix}/user/login`] (req, res) {
+  [`POST ${ApiPrefix}/user/login`](req, res) {
     const { username, password } = req.body
     const user = adminUsers.filter(item => item.username === username)
 
     if (user.length > 0 && user[0].password === password) {
       const now = new Date()
       now.setDate(now.getDate() + 1)
-      res.cookie('token', JSON.stringify({ id: user[0].id, deadline: now.getTime() }), {
-        maxAge: 900000,
-        httpOnly: true,
-      })
+      res.cookie(
+        'token',
+        JSON.stringify({ id: user[0].id, deadline: now.getTime() }),
+        {
+          maxAge: 900000,
+          httpOnly: true,
+        }
+      )
       res.json({ success: true, message: 'Ok' })
     } else {
       res.status(400).end()
     }
   },
 
-  [`GET ${ApiPrefix}/user/logout`] (req, res) {
+  [`GET ${ApiPrefix}/user/logout`](req, res) {
     res.clearCookie('token')
     res.status(200).end()
   },
 
-  [`GET ${ApiPrefix}/user`] (req, res) {
+  [`GET ${ApiPrefix}/user`](req, res) {
     const cookie = req.headers.cookie || ''
     const cookies = qs.parse(cookie.replace(/\s/g, ''), { delimiter: ';' })
     const response = {}
-    const user = {}
+    let user = {}
     if (!cookies.token) {
       res.status(200).send({ message: 'Not Login' })
       return
@@ -124,18 +137,17 @@ module.exports = {
       response.success = token.deadline > new Date().getTime()
     }
     if (response.success) {
-      const userItem = adminUsers.filter(_ => _.id === token.id)
-      if (userItem.length > 0) {
-        user.permissions = userItem[0].permissions
-        user.username = userItem[0].username
-        user.id = userItem[0].id
+      const userItem = adminUsers.find(_ => _.id === token.id)
+      if (userItem) {
+        const { password, ...other } = userItem
+        user = other
       }
     }
     response.user = user
     res.json(response)
   },
 
-  [`GET ${ApiPrefix}/users`] (req, res) {
+  [`GET ${ApiPrefix}/users`](req, res) {
     const { query } = req
     let { pageSize, page, ...other } = query
     pageSize = pageSize || 10
@@ -144,7 +156,7 @@ module.exports = {
     let newData = database
     for (let key in other) {
       if ({}.hasOwnProperty.call(other, key)) {
-        newData = newData.filter((item) => {
+        newData = newData.filter(item => {
           if ({}.hasOwnProperty.call(item, key)) {
             if (key === 'address') {
               return other[key].every(iitem => item[key].indexOf(iitem) > -1)
@@ -158,7 +170,11 @@ module.exports = {
               }
               return true
             }
-            return String(item[key]).trim().indexOf(decodeURI(other[key]).trim()) > -1
+            return (
+              String(item[key])
+                .trim()
+                .indexOf(decodeURI(other[key]).trim()) > -1
+            )
           }
           return true
         })
@@ -171,17 +187,24 @@ module.exports = {
     })
   },
 
-  [`POST ${ApiPrefix}/users/delete`] (req, res) {
+  [`POST ${ApiPrefix}/users/delete`](req, res) {
     const { ids } = req.body
     database = database.filter(item => !ids.some(_ => _ === item.id))
     res.status(204).end()
   },
 
-
-  [`POST ${ApiPrefix}/user`] (req, res) {
+  [`POST ${ApiPrefix}/user`](req, res) {
     const newData = req.body
     newData.createTime = Mock.mock('@now')
-    newData.avatar = newData.avatar || Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', newData.nickName.substr(0, 1))
+    newData.avatar =
+      newData.avatar ||
+      Mock.Random.image(
+        '100x100',
+        Mock.Random.color(),
+        '#757575',
+        'png',
+        newData.nickName.substr(0, 1)
+      )
     newData.id = Mock.mock('@id')
 
     database.unshift(newData)
@@ -189,7 +212,7 @@ module.exports = {
     res.status(200).end()
   },
 
-  [`GET ${ApiPrefix}/user/:id`] (req, res) {
+  [`GET ${ApiPrefix}/user/:id`](req, res) {
     const { id } = req.params
     const data = queryArray(database, id, 'id')
     if (data) {
@@ -199,7 +222,7 @@ module.exports = {
     }
   },
 
-  [`DELETE ${ApiPrefix}/user/:id`] (req, res) {
+  [`DELETE ${ApiPrefix}/user/:id`](req, res) {
     const { id } = req.params
     const data = queryArray(database, id, 'id')
     if (data) {
@@ -210,12 +233,12 @@ module.exports = {
     }
   },
 
-  [`PATCH ${ApiPrefix}/user/:id`] (req, res) {
+  [`PATCH ${ApiPrefix}/user/:id`](req, res) {
     const { id } = req.params
     const editItem = req.body
     let isExist = false
 
-    database = database.map((item) => {
+    database = database.map(item => {
       if (item.id === id) {
         isExist = true
         return Object.assign({}, item, editItem)
