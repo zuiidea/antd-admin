@@ -110,7 +110,12 @@ class PrimaryLayout extends PureComponent {
             <Sider {...siderProps} />
           )}
           <div className={styles.container} id="primaryLayout">
-            <ScrollBar>
+            <ScrollBar
+              option={{
+                // Disabled horizontal scrolling, https://github.com/utatti/perfect-scrollbar#options
+                suppressScrollX: true,
+              }}
+            >
               <Header {...headerProps} />
               <Content className={styles.content}>
                 <Bread routeList={routeList} />
@@ -120,7 +125,10 @@ class PrimaryLayout extends PureComponent {
                 className={styles.backTop}
                 target={() => document.getElementById('primaryLayout')}
               />
-              <GlobalFooter copyright={config.copyright} />
+              <GlobalFooter
+                className={styles.footer}
+                copyright={config.copyright}
+              />
             </ScrollBar>
           </div>
         </Layout>

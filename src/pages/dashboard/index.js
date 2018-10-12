@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'dva'
 import { Row, Col, Card } from 'antd'
 import { Color } from 'utils'
-import { Page } from 'components'
+import { Page, ScrollBar } from 'components'
 import {
   NumberCard,
   Quote,
@@ -93,7 +93,9 @@ class Dashboard extends PureComponent {
                     background: Color.peach,
                   }}
                 >
-                  <Quote {...quote} />
+                  <ScrollBar>
+                    <Quote {...quote} />
+                  </ScrollBar>
                 </Card>
               </Col>
             </Row>
@@ -105,7 +107,9 @@ class Dashboard extends PureComponent {
           </Col>
           <Col lg={12} md={24}>
             <Card bordered={false} {...bodyStyle}>
-              <Comments data={comments} />
+              <ScrollBar>
+                <Comments data={comments} />
+              </ScrollBar>
             </Card>
           </Col>
           <Col lg={24} md={24}>
@@ -125,7 +129,9 @@ class Dashboard extends PureComponent {
           </Col>
           <Col lg={8} md={24}>
             <Card bordered={false} {...bodyStyle}>
-              <Cpu {...cpu} />
+              <ScrollBar>
+                <Cpu {...cpu} />
+              </ScrollBar>
             </Card>
           </Col>
           <Col lg={8} md={24}>
