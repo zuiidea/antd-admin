@@ -1,3 +1,5 @@
+@import '~themes/vars.less';
+
 @media (max-width: 767px) {
   .content {
     padding: 12px;
@@ -11,6 +13,19 @@
 
 .backTop {
   right: 50px;
+
+  :global {
+    .ant-back-top-content {
+      background: @primary-color;
+      opacity: 0.3;
+      transition: all 0.3s;
+      box-shadow: 0 0 15px 1px rgba(69, 65, 78, 0.1);
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
 }
 
 .content {
@@ -26,14 +41,8 @@
 
 .footer {
   background: #fff;
-}
-
-:global {
-  .antd-pro-global-footer-globalFooter {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-top: 24px;
-    padding-bottom: 24px;
-    background: #fff;
-  }
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 24px;
+  padding-bottom: 24px;
 }

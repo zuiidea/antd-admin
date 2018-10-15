@@ -8,7 +8,8 @@ export config from './config'
 export request from './request'
 export { Color } from './theme'
 
-export const { languages, defaultLanguage } = i18n
+export const { defaultLanguage } = i18n
+export const languages = i18n.languages.map(item => item.key)
 
 /**
  * Query objects that specify keys and values in an array where all values are objects.
@@ -236,4 +237,18 @@ export function queryLayout(layouts, pathname) {
   }
 
   return result
+}
+
+export function getLocale() {
+  return langFromPath(window.location.pathname)
+}
+
+export function setLocale(language) {
+  if (getLocale() !== language) {
+    umiRouter.push({
+      pathname: `/${language}${deLangPrefix(window.location.pathname)}${
+        window.location.search
+      }`,
+    })
+  }
 }

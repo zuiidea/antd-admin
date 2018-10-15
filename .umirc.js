@@ -39,7 +39,10 @@ export default {
               if (item.path) {
                 newRoutes.push(
                   Object.assign({}, item, {
-                    path: `/:lang(${i18n.languages.join('|')})` + item.path,
+                    path:
+                      `/:lang(${i18n.languages
+                        .map(item => item.key)
+                        .join('|')})` + item.path,
                   })
                 )
               }

@@ -18,7 +18,19 @@ module.exports = {
 
   /* I18n configuration, `languages` and `defaultLanguage` are required currently. */
   i18n: {
-    languages: ['en', 'zh'],
+    /* Countrys flags: https://www.flaticon.com/packs/countrys-flags */
+    languages: [
+      {
+        key: 'en',
+        title: 'English',
+        flag: '/america.svg',
+      },
+      {
+        key: 'zh',
+        title: '中文',
+        flag: '/china.svg',
+      },
+    ],
     defaultLanguage: 'en',
   },
 }

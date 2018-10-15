@@ -123,7 +123,7 @@ class PrimaryLayout extends PureComponent {
               </Content>
               <BackTop
                 className={styles.backTop}
-                target={() => document.getElementById('primaryLayout')}
+                target={() => document.querySelector('#primaryLayout>div')}
               />
               <GlobalFooter
                 className={styles.footer}
