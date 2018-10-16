@@ -1,11 +1,15 @@
 {
   "/dashboard": "/zh/dashboard",
+  "Clear notifications": "清空消息",
   "Dark": "暗",
   "Dashboard": "仪表盘",
+  "Hi,": "你好，",
   "Light": "明",
   "Not Found": "未找到",
   "Password": "密码",
   "Sign in": "登录",
+  "Sign out": "退出登录",
   "Switch Theme": "切换主题",
-  "Username": "用户名"
+  "Username": "用户名",
+  "You have viewed all notifications.": "您已查看所有通知"
 }

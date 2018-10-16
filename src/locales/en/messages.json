@@ -1,11 +1,15 @@
 {
   "/dashboard": "/dashboard",
+  "Clear notifications": "Clear notifications",
   "Dark": "Dark",
   "Dashboard": "Dashboard",
+  "Hi,": "Hi,",
   "Light": "Light",
   "Not Found": "Not Found",
   "Password": "Password",
   "Sign in": "Sign in",
+  "Sign out": "Sign out",
   "Switch Theme": "Switch Theme",
-  "Username": "Username"
+  "Username": "Username",
+  "You have viewed all notifications.": "You have viewed all notifications."
 }

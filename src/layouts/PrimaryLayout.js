@@ -46,7 +46,14 @@ class PrimaryLayout extends PureComponent {
 
   render() {
     const { app, location, dispatch, children } = this.props
-    const { user, theme, routeList, permissions, collapsed } = app
+    const {
+      user,
+      theme,
+      routeList,
+      permissions,
+      collapsed,
+      notifications,
+    } = app
     const { isMobile } = this.state
     const { onCollapseChange } = this
 
@@ -66,9 +73,13 @@ class PrimaryLayout extends PureComponent {
     const headerProps = {
       menus,
       collapsed,
+      notifications,
       onCollapseChange,
       avatar: user.avatar,
       username: user.username,
+      onAllNotificationsRead() {
+        dispatch({ type: 'app/allNotificationsRead' })
+      },
       onSignOut() {
         dispatch({ type: 'app/signOut' })
       },

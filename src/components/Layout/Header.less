@@ -2,6 +2,15 @@
 
 .header {
   padding: 0;
+  box-shadow: @shadow-2;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  height: 72px;
+  z-index: 9;
+  align-items: center;
+  background-color: #fff;
+
   :global {
     .ant-menu-submenu-title {
       height: 72px;
@@ -11,8 +20,8 @@
       line-height: 72px;
 
       & > .ant-menu-submenu:hover {
-        color: #1890ff;
-        background-color: rgba(24, 144, 255, 0.15);
+        color: @primary-color;
+        background-color: @hover-color;
       }
     }
 
@@ -42,17 +51,10 @@
       border-bottom: none;
     }
   }
-  box-shadow: @shadow-2;
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  height: 72px;
-  z-index: 9;
-  align-items: center;
-  background-color: #fff;
 
   .rightContainer {
     display: flex;
+    align-items: center;
   }
 
   .button {
@@ -66,26 +68,68 @@
 
     &:hover {
       color: @primary-color;
-      background-color: fade(@primary-color, 15%);
+      background-color: @hover-color;
     }
   }
 }
 
-.popovermenu {
-  width: 280px;
-  margin-left: 6px;
+.iconButton {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 24px;
+  cursor: pointer;
+  .background-hover();
 
-  :global .ant-popover-inner-content {
-    padding: 0;
-
-    .ant-menu-inline .ant-menu-item,
-    .ant-menu-vertical .ant-menu-item {
-      border-right: 0;
+  &:hover {
+    .iconFont {
+      color: @primary-color;
     }
+  }
 
-    .ant-menu-inline .ant-menu-item-selected,
-    .ant-menu-inline .ant-menu-selected {
-      border-right: 0;
+  & + .iconButton {
+    margin-left: 8px;
+  }
+
+  .iconFont {
+    color: #b2b0c7;
+    font-size: 24px;
+  }
+}
+
+.notification {
+  padding: 24px 0;
+  width: 320px;
+  .notificationItem {
+    transition: all 0.3s;
+    padding: 12px 24px;
+    cursor: pointer;
+    &:hover {
+      background-color: @hover-color;
+    }
+  }
+  .clearButton {
+    text-align: center;
+    height: 48px;
+    line-height: 48px;
+    cursor: pointer;
+    .background-hover();
+  }
+}
+
+.notificationPopover {
+  :global {
+    .ant-popover-inner-content {
+      padding: 0;
+    }
+    .ant-popover-arrow {
+      display: none;
+    }
+    .ant-list-item-content {
+      flex: 0;
+      margin-left: 16px;
     }
   }
 }
