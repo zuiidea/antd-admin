@@ -18,9 +18,10 @@ export default {
     },
     routeList: [
       {
-        id: 1,
+        id: '1',
         icon: 'laptop',
         name: 'Dashboard',
+        zhName: '仪表盘',
         router: '/dashboard',
       },
     ],
@@ -128,9 +129,10 @@ export default {
             permissions: { visit: [] },
             menu: [
               {
-                id: 1,
+                id: '1',
                 icon: 'laptop',
                 name: 'Dashboard',
+                zhName: '仪表盘',
                 router: '/dashboard',
               },
             ],

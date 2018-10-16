@@ -8,7 +8,7 @@ import { MyLayout, ScrollBar } from 'components'
 import { BackTop, Layout, Drawer } from 'antd'
 import { GlobalFooter } from 'ant-design-pro'
 import { enquireScreen, unenquireScreen } from 'enquire-js'
-import { config, pathMatchRegexp } from 'utils'
+import { config, pathMatchRegexp, langFromPath } from 'utils'
 import Error from '../pages/404'
 import styles from './PrimaryLayout.less'
 
@@ -57,8 +57,20 @@ class PrimaryLayout extends PureComponent {
     const { isMobile } = this.state
     const { onCollapseChange } = this
 
+    // Localized route name.
+    const newRouteList =
+      langFromPath(location.pathname) === 'zh'
+        ? routeList.map(item => {
+            const { zhName, ...other } = item
+            return {
+              ...other,
+              name: zhName,
+            }
+          })
+        : routeList
+
     // Find a route that matches the pathname.
-    const currentRoute = routeList.find(
+    const currentRoute = newRouteList.find(
       _ => _.route && pathMatchRegexp(_.route, location.pathname)
     )
 
@@ -68,7 +80,7 @@ class PrimaryLayout extends PureComponent {
       : false
 
     // MenuParentId is equal to -1 is not a available menu.
-    const menus = routeList.filter(_ => _.menuParentId !== '-1')
+    const menus = newRouteList.filter(_ => _.menuParentId !== '-1')
 
     const headerProps = {
       menus,
@@ -129,7 +141,7 @@ class PrimaryLayout extends PureComponent {
             >
               <Header {...headerProps} />
               <Content className={styles.content}>
-                <Bread routeList={routeList} />
+                <Bread routeList={newRouteList} />
                 {hasPermission ? children : <Error />}
               </Content>
               <BackTop
