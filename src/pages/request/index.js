@@ -1,233 +1,252 @@
 import React from 'react'
-import Mock from 'mockjs'
 import { request } from 'utils'
 import { apiPrefix } from 'utils/config'
-import { Row, Col, Card, Select, Input, Button } from 'antd'
+import {
+  Row,
+  Col,
+  Select,
+  Input,
+  Button,
+  List,
+  Tag,
+  Form,
+  Icon,
+  Checkbox,
+} from 'antd'
+import classnames from 'classnames'
+import { Trans } from '@lingui/react'
 import api from '@/services/api'
+import { Page } from 'components'
 
 import styles from './index.less'
 
-const {
-  loginUser,
-  queryUser,
-  createUser,
-  updateUser,
-  removeUser,
-  queryUserInfo,
-  queryDashboard,
-  queryUserList,
-} = api
+const { Option } = Select
+const InputGroup = Input.Group
+const methods = ['POST', 'GET', 'PUT', 'PATCH', 'DELETE']
 
-const transform = string => {
-  let url = apiPrefix + string
+const methodTagColor = {
+  GET: 'green',
+  POST: 'orange',
+  DELETE: 'red',
+  PUT: 'geekblue',
+}
+
+const requests = Object.values(api).map(item => {
+  let url = apiPrefix + item
   let method = 'GET'
-
-  const paramsArray = string.split(' ')
+  const paramsArray = item.split(' ')
   if (paramsArray.length === 2) {
     method = paramsArray[0]
     url = apiPrefix + paramsArray[1]
   }
   return {
-    url,
     method,
-    desc: 'intercept request by mock.js',
+    url,
   }
-}
+})
 
-export const requestOptions = [
-  {
-    ...transform(queryUserInfo),
-  },
-  {
-    ...transform(queryDashboard),
-  },
-  {
-    ...transform(loginUser),
-    data: {
-      username: 'guest',
-      password: 'guest',
-    },
-  },
-  {
-    ...transform(queryUserList),
-  },
-  {
-    ...transform(queryUser),
-    data: Mock.mock({
-      id: '@id',
-    }),
-  },
-  {
-    ...transform(createUser),
-    data: Mock.mock({
-      name: '@cname',
-      nickName: '@last',
-      phone: /^1[34578]\d{9}$/,
-      'age|11-99': 1,
-      address: '@county(true)',
-      isMale: '@boolean',
-      email: '@email',
-      avatar() {
-        return Mock.Random.image(
-          '100x100',
-          Mock.Random.color(),
-          '#757575',
-          'png',
-          this.nickName.substr(0, 1)
-        )
-      },
-    }),
-  },
-  {
-    ...transform(updateUser),
-    data: Mock.mock({
-      id: '@id',
-      name: '@cname',
-    }),
-  },
-  {
-    ...transform(removeUser),
-    data: Mock.mock({
-      id: '@id',
-    }),
-  },
-  {
-    url: '/api/v2/test',
-    desc: 'intercept request by mock.js',
-    method: 'get',
-  },
-]
-
-export default class RequestPage extends React.Component {
+let uuid = 2
+@Form.create()
+class RequestPage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      currntRequest: requestOptions[0],
-      method: 'get',
-      result: '',
+      method: 'GET',
+      url: '/api/v1/routes',
+      keys: [1],
+      result: null,
+      visible: true,
     }
-  }
-  componentDidMount() {
-    this.handleRequest()
   }
 
   handleRequest = () => {
-    const { currntRequest } = this.state
-    const { desc, ...requestParams } = currntRequest
-    this.setState({
-      ...this.state,
-      result: (
-        <div key="sending">
-          请求中
-          <br />
-          url:
-          {currntRequest.url}
-          <br />
-          method:
-          {currntRequest.method}
-          <br />
-          params:
-          {currntRequest.data ? JSON.stringify(currntRequest.data) : 'null'}
-          <br />
-        </div>
-      ),
-    })
-    request({ ...requestParams }).then(data => {
-      const { state } = this
-      state.result = [
-        this.state.result,
-        <div key="complete">
-          <div>请求完成</div>
-          {JSON.stringify(data)}
-        </div>,
-      ]
-      this.setState(state)
+    const { method, url } = this.state
+
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        const params = {}
+        if (values.key) {
+          values.key.forEach((item, index) => {
+            if (item && values.check[index]) {
+              params[item] = values.value[index]
+            }
+          })
+        }
+
+        request({ method, url, data: params }).then(data => {
+          this.setState({
+            result: JSON.stringify(data),
+          })
+        })
+      }
     })
   }
 
-  handeleURLChange = value => {
-    const { state } = this
-    const curretUrl = value.split('?')[0]
-    const curretMethod = value.split('?')[1]
-    const currntItem = requestOptions.filter(item => {
-      const { method = 'get' } = item
-      return curretUrl === item.url && curretMethod === method
+  handleClickListItem = ({ method, url }) => {
+    this.setState({
+      method,
+      url,
+      keys: [uuid++],
+      result: null,
     })
-    const [currntRequest] = currntItem
-    state.currntRequest = currntRequest
-    this.setState(state)
+  }
+
+  handleInputChange = e => {
+    this.setState({
+      url: e.target.value,
+    })
+  }
+
+  handleSelectChange = method => {
+    this.setState({
+      method,
+    })
+  }
+
+  handleAddField = () => {
+    const { keys } = this.state
+    const nextKeys = keys.concat(uuid)
+    uuid++
+    this.setState({
+      keys: nextKeys,
+    })
+  }
+
+  handleRemoveField = key => {
+    const { keys } = this.state
+    this.setState({
+      keys: keys.filter(item => item !== key),
+    })
+  }
+
+  handleVisible = () => {
+    this.setState({
+      visible: !this.state.visible,
+    })
   }
 
   render() {
-    const colProps = {
-      lg: 12,
-      md: 24,
-    }
-    const { result, currntRequest } = this.state
-    const { method = 'get' } = currntRequest
+    const { result, url, method, keys, visible } = this.state
+    const { getFieldDecorator } = this.props.form
 
     return (
-      <div className="content-inner">
-        <Row gutter={32}>
-          <Col {...colProps}>
-            <Card
-              title="Request"
-              style={{
-                overflow: 'visible',
-              }}
-            >
-              <div className={styles.option}>
-                <Select
-                  style={{
-                    width: '100%',
-                    flex: 1,
-                  }}
-                  defaultValue={`${method.toLocaleUpperCase()}   ${
-                    requestOptions[0].url
-                  }`}
-                  size="large"
-                  onChange={this.handeleURLChange}
-                >
-                  {requestOptions.map((item, index) => {
-                    const m = item.method || 'get'
-                    return (
-                      <Select.Option key={index} value={`${item.url}?${m}`}>
-                        {`${m.toLocaleUpperCase()}    `}
-                        {item.url}
-                      </Select.Option>
-                    )
+      <Page inner>
+        <Row>
+          <Col lg={8} md={24}>
+            <List
+              className={styles.requestList}
+              dataSource={requests}
+              renderItem={item => (
+                <List.Item
+                  className={classnames(styles.listItem, {
+                    [styles.lstItemActive]:
+                      item.method === method && item.url === url,
                   })}
-                </Select>
-                <Button
-                  type="primary"
-                  style={{ width: 100, marginLeft: 16 }}
-                  onClick={this.handleRequest}
+                  onClick={this.handleClickListItem.bind(this, item)}
                 >
-                  发送
-                </Button>
-              </div>
-              <div className={styles.params}>
-                <div className={styles.label}>Params：</div>
-                <Input
-                  disabled
-                  value={
-                    currntRequest.data
-                      ? JSON.stringify(currntRequest.data)
-                      : 'null'
-                  }
+                  <span style={{ width: 72 }}>
+                    <Tag
+                      style={{ marginRight: 8 }}
+                      color={methodTagColor[item.method]}
+                    >
+                      {item.method}
+                    </Tag>
+                  </span>
+                  {item.url}
+                </List.Item>
+              )}
+            />
+          </Col>
+          <Col lg={16} md={24}>
+            <Row type="flex" justify="space-between">
+              <InputGroup compact size="large" style={{ flex: 1 }}>
+                <Select
                   size="large"
-                  style={{ width: 200 }}
-                  placeholder="null"
+                  value={method}
+                  style={{ width: 100 }}
+                  onChange={this.handleSelectChange}
+                >
+                  {methods.map(item => (
+                    <Option value={item} key={item}>
+                      {item}
+                    </Option>
+                  ))}
+                </Select>
+                <Input
+                  value={url}
+                  onChange={this.handleInputChange}
+                  style={{ width: 'calc(100% - 200px)' }}
                 />
-                <div style={{ flex: 1, marginLeft: 16 }}>
-                  {currntRequest.desc}
-                </div>
-              </div>
-              <div className={styles.result}>{result}</div>
-            </Card>
+                <Button
+                  ghost={visible}
+                  type={visible ? 'primary' : ''}
+                  onClick={this.handleVisible}
+                  size="large"
+                >
+                  <Trans>Params</Trans>
+                </Button>
+              </InputGroup>
+
+              <Button
+                size="large"
+                type="primary"
+                style={{ width: 100 }}
+                onClick={this.handleRequest}
+              >
+                <Trans>Send</Trans>
+              </Button>
+            </Row>
+
+            <div
+              className={classnames(styles.paramsBlock, {
+                [styles.hideParams]: !visible,
+              })}
+            >
+              {keys.map((key, index) => (
+                <Row
+                  gutter={8}
+                  type="flex"
+                  justify="start"
+                  align="middle"
+                  key={key}
+                >
+                  <Col style={{ marginTop: 8 }}>
+                    {getFieldDecorator(`check[${key}]`, {
+                      initialValue: true,
+                    })(<Checkbox defaultChecked />)}
+                  </Col>
+                  <Col style={{ marginTop: 8 }}>
+                    {getFieldDecorator(`key[${key}]`)(
+                      <Input placeholder="Key" />
+                    )}
+                  </Col>
+                  <Col style={{ marginTop: 8 }}>
+                    {getFieldDecorator(`value[${key}]`)(
+                      <Input placeholder="Value" />
+                    )}
+                  </Col>
+                  <Col style={{ marginTop: 8 }}>
+                    <Icon
+                      onClick={this.handleRemoveField.bind(this, key)}
+                      style={{ cursor: 'pointer' }}
+                      type="close"
+                      theme="outlined"
+                    />
+                  </Col>
+                </Row>
+              ))}
+
+              <Row style={{ marginTop: 8 }}>
+                <Button onClick={this.handleAddField}>Add Param</Button>
+              </Row>
+            </div>
+
+            <div className={styles.result}>{result}</div>
           </Col>
         </Row>
-      </div>
+      </Page>
     )
   }
 }
+
+export default RequestPage

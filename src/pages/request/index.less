@@ -1,29 +1,39 @@
-.option {
-  display: flex;
-  justify-content: space-between;
-}
+@import '~themes/vars';
 
 .result {
   height: 600px;
   width: 100%;
-  background: #f7f7f7;
-  border-color: #f1f1f1;
-  padding: 16px 8px;
+  background: @hover-color;
+  border-color: #ddd;
+  padding: 16px;
   margin-top: 16px;
   word-break: break-word;
-  line-height: 24px;
+  line-height: 2;
   overflow: scroll;
 }
 
-.params {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 16px;
-  line-height: 32px;
+.requestList {
+  padding-right: 24px;
+  margin-bottom: 24px;
+  .listItem {
+    cursor: pointer;
+    padding-left: 8px;
+    &.lstItemActive {
+      background-color: @hover-color;
+    }
+    .background-hover();
+  }
+}
 
-  .label {
-    width: 100px;
-    margin-right: 2px;
-    text-transform: uppercase;
+.paramsBlock {
+  overflow: visible;
+  opacity: 1;
+  height: auto;
+  transition: opacity 0.3s;
+  &.hideParams {
+    width: 0;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
   }
 }
