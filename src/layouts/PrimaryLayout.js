@@ -50,8 +50,8 @@ class PrimaryLayout extends PureComponent {
       user,
       theme,
       routeList,
-      permissions,
       collapsed,
+      permissions,
       notifications,
     } = app
     const { isMobile } = this.state
@@ -89,6 +89,7 @@ class PrimaryLayout extends PureComponent {
       onCollapseChange,
       avatar: user.avatar,
       username: user.username,
+      fixed: config.fixedHeader,
       onAllNotificationsRead() {
         dispatch({ type: 'app/allNotificationsRead' })
       },
@@ -132,7 +133,11 @@ class PrimaryLayout extends PureComponent {
           ) : (
             <Sider {...siderProps} />
           )}
-          <div className={styles.container} id="primaryLayout">
+          <div
+            className={styles.container}
+            style={{ paddingTop: config.fixedHeader ? 72 : 0 }}
+            id="primaryLayout"
+          >
             <ScrollBar
               option={{
                 // Disabled horizontal scrolling, https://github.com/utatti/perfect-scrollbar#options

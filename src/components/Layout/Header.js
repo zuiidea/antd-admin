@@ -19,6 +19,7 @@ class Header extends PureComponent {
   render() {
     const {
       i18n,
+      fixed,
       avatar,
       username,
       collapsed,
@@ -130,7 +131,13 @@ class Header extends PureComponent {
     )
 
     return (
-      <Layout.Header className={styles.header} id="layoutHeader">
+      <Layout.Header
+        className={classnames(styles.header, {
+          [styles.fixed]: fixed,
+          [styles.collapsed]: collapsed,
+        })}
+        id="layoutHeader"
+      >
         <div
           className={styles.button}
           onClick={onCollapseChange.bind(this, !collapsed)}

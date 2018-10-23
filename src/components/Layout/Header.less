@@ -11,6 +11,19 @@
   align-items: center;
   background-color: #fff;
 
+  &.fixed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: ~'calc(100% - 256px)';
+    z-index: 9;
+    transition: width 0.2s;
+
+    &.collapsed {
+      width: ~'calc(100% - 80px)';
+    }
+  }
+
   :global {
     .ant-menu-submenu-title {
       height: 72px;
@@ -131,5 +144,11 @@
       flex: 0;
       margin-left: 16px;
     }
+  }
+}
+
+@media (max-width: 767px) {
+  .header {
+    width: 100% !important;
   }
 }
