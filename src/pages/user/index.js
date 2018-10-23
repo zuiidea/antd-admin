@@ -20,7 +20,6 @@ class User extends PureComponent {
       currentItem,
       modalVisible,
       modalType,
-      isMotion,
       selectedRowKeys,
     } = user
 
@@ -64,7 +63,6 @@ class User extends PureComponent {
       loading: loading.effects['user/query'],
       pagination,
       location,
-      isMotion,
       onChange(page) {
         handleRefresh({
           page: page.current,
@@ -107,7 +105,6 @@ class User extends PureComponent {
     }
 
     const filterProps = {
-      isMotion,
       filter: {
         ...query,
       },
@@ -124,9 +121,6 @@ class User extends PureComponent {
             modalType: 'create',
           },
         })
-      },
-      switchIsMotion() {
-        dispatch({ type: 'user/switchIsMotion' })
       },
     }
 

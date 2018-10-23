@@ -157,8 +157,9 @@ class Header extends PureComponent {
 }
 
 Header.propTypes = {
-  menus: PropTypes.array,
+  fixed: PropTypes.bool,
   user: PropTypes.object,
+  menus: PropTypes.array,
   collapsed: PropTypes.bool,
   onSignOut: PropTypes.func,
   notifications: PropTypes.array,

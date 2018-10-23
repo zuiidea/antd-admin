@@ -3,16 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import { FilterItem } from 'components'
-import {
-  Form,
-  Button,
-  Row,
-  Col,
-  DatePicker,
-  Input,
-  Cascader,
-  Switch,
-} from 'antd'
+import { Form, Button, Row, Col, DatePicker, Input, Cascader } from 'antd'
 import city from 'utils/city'
 
 const { Search } = Input
@@ -33,8 +24,6 @@ const TwoColProps = {
 
 const Filter = ({
   onAdd,
-  isMotion,
-  switchIsMotion,
   onFilterChange,
   filter,
   form: { getFieldDecorator, getFieldsValue, setFieldsValue },
@@ -130,13 +119,7 @@ const Filter = ({
         md={{ span: 24 }}
         sm={{ span: 24 }}
       >
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-          }}
-        >
+        <Row type="flex" align="middle" justify="space-between">
           <div>
             <Button
               type="primary"
@@ -147,20 +130,10 @@ const Filter = ({
             </Button>
             <Button onClick={handleReset}>Reset</Button>
           </div>
-          <div className="flex-vertical-center">
-            <Switch
-              className="ant-switch-large"
-              style={{ marginRight: 16 }}
-              defaultChecked={isMotion}
-              onChange={switchIsMotion}
-              checkedChildren="Motion"
-              unCheckedChildren="Motion"
-            />
-            <Button type="ghost" onClick={onAdd}>
-              Create
-            </Button>
-          </div>
-        </div>
+          <Button type="ghost" onClick={onAdd}>
+            Create
+          </Button>
+        </Row>
       </Col>
     </Row>
   )
@@ -168,8 +141,6 @@ const Filter = ({
 
 Filter.propTypes = {
   onAdd: PropTypes.func,
-  isMotion: PropTypes.bool,
-  switchIsMotion: PropTypes.func,
   form: PropTypes.object,
   filter: PropTypes.object,
   onFilterChange: PropTypes.func,

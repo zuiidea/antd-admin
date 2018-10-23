@@ -1,21 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Table, Modal } from 'antd'
-import classnames from 'classnames'
 import { DropOption } from 'components'
 import Link from 'umi/link'
-import AnimTableBody from 'components/DataTable/AnimTableBody'
 import styles from './List.less'
 
 const { confirm } = Modal
 
-const List = ({
-  onDeleteItem,
-  onEditItem,
-  isMotion,
-  location,
-  ...tableProps
-}) => {
+const List = ({ onDeleteItem, onEditItem, location, ...tableProps }) => {
   const handleMenuClick = (record, e) => {
     if (e.key === '1') {
       onEditItem(record)
@@ -98,26 +90,15 @@ const List = ({
     },
   ]
 
-  const AnimateBody = props => {
-    return <AnimTableBody {...props} />
-  }
-
-  const CommonBody = props => {
-    return <tbody {...props} />
-  }
-
   return (
     <Table
       {...tableProps}
-      className={classnames(styles.table, { [styles.motion]: isMotion })}
+      className={styles.table}
       bordered
       scroll={{ x: 1250 }}
       columns={columns}
       simple
       rowKey={record => record.id}
-      components={{
-        body: { wrapper: isMotion ? AnimateBody : CommonBody },
-      }}
     />
   )
 }
@@ -125,7 +106,6 @@ const List = ({
 List.propTypes = {
   onDeleteItem: PropTypes.func,
   onEditItem: PropTypes.func,
-  isMotion: PropTypes.bool,
   location: PropTypes.object,
 }
 
