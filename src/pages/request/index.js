@@ -237,7 +237,9 @@ class RequestPage extends React.Component {
               ))}
 
               <Row style={{ marginTop: 8 }}>
-                <Button onClick={this.handleAddField}>Add Param</Button>
+                <Button onClick={this.handleAddField}>
+                  <Trans>Add Param</Trans>
+                </Button>
               </Row>
             </div>
 

@@ -1,63 +1,69 @@
-import React from 'react'
-import { Table } from 'antd'
-import styles from './List.less'
+import React, { PureComponent } from 'react'
+import { Table, Avatar } from 'antd'
+import { withI18n } from '@lingui/react'
 
-const List = ({ ...tableProps }) => {
-  const columns = [
-    {
-      title: 'Image',
-      dataIndex: 'image',
-      className: styles.image,
-      width: 64,
-      render: text => <img alt="Feture" width={26} src={text} />,
-    },
-    {
-      title: 'Title',
-      dataIndex: 'title',
-    },
-    {
-      title: 'Author',
-      dataIndex: 'author',
-    },
-    {
-      title: 'Categories',
-      dataIndex: 'categories',
-    },
-    {
-      title: 'Tags',
-      dataIndex: 'tags',
-    },
-    {
-      title: 'Visibility',
-      dataIndex: 'visibility',
-    },
-    {
-      title: 'Comments',
-      dataIndex: 'comments',
-    },
-    {
-      title: 'Views',
-      dataIndex: 'views',
-    },
-    {
-      title: 'Date',
-      dataIndex: 'date',
-    },
-  ]
+@withI18n()
+class List extends PureComponent {
+  render() {
+    const { i18n, ...tableProps } = this.props
+    const columns = [
+      {
+        title: i18n.t`Image`,
+        dataIndex: 'image',
+        width: 100,
+        render: text => <Avatar shape="square" src={text} />,
+      },
+      {
+        title: i18n.t`Title`,
+        dataIndex: 'title',
+      },
+      {
+        title: i18n.t`Author`,
+        dataIndex: 'author',
+      },
+      {
+        title: i18n.t`Categories`,
+        dataIndex: 'categories',
+      },
+      {
+        title: i18n.t`Tags`,
+        dataIndex: 'tags',
+      },
+      {
+        title: i18n.t`Visibility`,
+        dataIndex: 'visibility',
+      },
+      {
+        title: i18n.t`Comments`,
+        dataIndex: 'comments',
+      },
+      {
+        title: i18n.t`Views`,
+        dataIndex: 'views',
+      },
+      {
+        title: i18n.t`Publish Date`,
+        dataIndex: 'date',
+      },
+    ]
 
-  return (
-    <div>
-      <Table
-        {...tableProps}
-        bordered
-        scroll={{ x: 1200 }}
-        columns={columns}
-        simple
-        className={styles.table}
-        rowKey={record => record.id}
-      />
-    </div>
-  )
+    return (
+      <div>
+        <Table
+          {...tableProps}
+          pagination={{
+            ...tableProps.pagination,
+            showTotal: total => i18n.t`Total ${total} Items`,
+          }}
+          bordered
+          scroll={{ x: 1200 }}
+          columns={columns}
+          simple
+          rowKey={record => record.id}
+        />
+      </div>
+    )
+  }
 }
 
 export default List

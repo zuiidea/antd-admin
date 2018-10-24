@@ -15,13 +15,7 @@ let usersListData = Mock.mock({
       email: '@email',
       createTime: '@datetime',
       avatar() {
-        return Mock.Random.image(
-          '100x100',
-          Mock.Random.color(),
-          '#757575',
-          'png',
-          this.nickName.substr(0, 1)
-        )
+        return randomAvatar()
       },
     },
   ],

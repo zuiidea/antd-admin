@@ -3,16 +3,18 @@ import PropTypes from 'prop-types'
 import { router } from 'utils'
 import { connect } from 'dva'
 import { Row, Col, Button, Popconfirm } from 'antd'
+import { withI18n } from '@lingui/react'
 import { Page } from 'components'
 import { stringify } from 'qs'
 import List from './components/List'
 import Filter from './components/Filter'
 import Modal from './components/Modal'
 
+@withI18n()
 @connect(({ user, loading }) => ({ user, loading }))
 class User extends PureComponent {
   render() {
-    const { location, dispatch, user, loading } = this.props
+    const { location, dispatch, user, loading, i18n } = this.props
     const { query, pathname } = location
     const {
       list,
@@ -41,7 +43,9 @@ class User extends PureComponent {
       visible: modalVisible,
       maskClosable: false,
       confirmLoading: loading.effects[`user/${modalType}`],
-      title: `${modalType === 'create' ? 'Create User' : 'Update User'}`,
+      title: `${
+        modalType === 'create' ? i18n.t`Create User` : i18n.t`Update User`
+      }`,
       wrapClassName: 'vertical-center-modal',
       onOk(data) {
         dispatch({
@@ -62,7 +66,6 @@ class User extends PureComponent {
       dataSource: list,
       loading: loading.effects['user/query'],
       pagination,
-      location,
       onChange(page) {
         handleRefresh({
           page: page.current,

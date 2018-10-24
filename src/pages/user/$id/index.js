@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
+import { Page } from 'components'
 import styles from './index.less'
 
 @connect(({ userDetail }) => ({ userDetail }))
@@ -20,9 +21,9 @@ class UserDetail extends PureComponent {
       }
     }
     return (
-      <div className="content-inner">
+      <Page inner>
         <div className={styles.content}>{content}</div>
-      </div>
+      </Page>
     )
   }
 }
