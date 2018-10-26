@@ -93,16 +93,6 @@ export default {
     [
       'import',
       {
-        libraryName: 'ant-design-pro',
-        libraryDirectory: 'lib',
-        style: true,
-        camel2DashComponentName: false,
-      },
-      'ant-design-pro',
-    ],
-    [
-      'import',
-      {
         libraryName: 'lodash',
         libraryDirectory: '',
         camel2DashComponentName: false,
