@@ -55,8 +55,7 @@ export default {
         dll: {
           include: ['dva', 'dva/router', 'dva/saga', 'dva/fetch', 'antd/es'],
         },
-        hardSource: /* isMac */ process.platform === 'darwin',
-        pwa: true,
+        hardSource: /* isMac */ process.platform === 'darwin'
       },
     ],
   ],
