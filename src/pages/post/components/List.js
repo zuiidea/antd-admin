@@ -56,7 +56,7 @@ class List extends PureComponent {
             showTotal: total => i18n.t`Total ${total} Items`,
           }}
           bordered
-          scroll={{ x: 1200 }}
+          scroll={{ x: 1200, y: 'auto' }}
           columns={columns}
           simple
           rowKey={record => record.id}

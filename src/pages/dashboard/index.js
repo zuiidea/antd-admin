@@ -25,10 +25,15 @@ const bodyStyle = {
   },
 }
 
-@connect(({ dashboard, loading }) => ({ dashboard, loading }))
+@connect(({ app, dashboard, loading }) => ({
+  avatar: app.user.avatar,
+  username: app.user.username,
+  dashboard,
+  loading,
+}))
 class Dashboard extends PureComponent {
   render() {
-    const { dashboard, loading } = this.props
+    const { avatar, username, dashboard, loading } = this.props
     const {
       weather,
       sales,
@@ -50,7 +55,7 @@ class Dashboard extends PureComponent {
 
     return (
       <Page
-        loading={loading.models.dashboard && sales.length === 0}
+        // loading={loading.models.dashboard && sales.length === 0}
         className={styles.dashboard}
       >
         <Row gutter={24}>
@@ -139,7 +144,7 @@ class Dashboard extends PureComponent {
               bordered={false}
               bodyStyle={{ ...bodyStyle.bodyStyle, padding: 0 }}
             >
-              <User {...user} />
+              <User {...user} avatar={avatar} username={username} />
             </Card>
           </Col>
         </Row>
@@ -149,6 +154,8 @@ class Dashboard extends PureComponent {
 }
 
 Dashboard.propTypes = {
+  avatar: PropTypes.string,
+  username: PropTypes.string,
   dashboard: PropTypes.object,
   loading: PropTypes.object,
 }

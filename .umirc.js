@@ -5,7 +5,6 @@ import { i18n } from './src/utils/config'
 export default {
   ignoreMomentLocale: true,
   targets: { ie: 9 },
-  urlLoaderExcludes: [/\.svg$/],
   plugins: [
     [
       // https://umijs.org/plugin/umi-plugin-react.html
@@ -13,7 +12,10 @@ export default {
       {
         dva: { immer: true },
         antd: true,
-        dynamicImport: true,
+        dynamicImport: {
+          webpackChunkName: true,
+          loadingComponent: './components/Loader/Loader',
+        },
         routes: {
           exclude: [
             /model\.(j|t)sx?$/,
@@ -55,7 +57,7 @@ export default {
         dll: {
           include: ['dva', 'dva/router', 'dva/saga', 'dva/fetch', 'antd/es'],
         },
-        hardSource: /* isMac */ process.platform === 'darwin'
+        hardSource: /* isMac */ process.platform === 'darwin',
       },
     ],
   ],
@@ -79,13 +81,6 @@ export default {
     services: resolve(__dirname, './src/services'),
     themes: resolve(__dirname, './src/themes'),
     utils: resolve(__dirname, './src/utils'),
-  },
-  chainWebpack(config) {
-    config.module
-      .rule('svg')
-      .test(/\.svg$/i)
-      .use('svg-sprite-loader')
-      .loader(require.resolve('svg-sprite-loader'))
   },
   extraBabelPresets: ['@lingui/babel-preset-react'],
   extraBabelPlugins: [
