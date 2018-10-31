@@ -1,5 +1,5 @@
 - 入门
-  - [快速开始](quickstart.md)
+  - [开始使用](getting-started.md)
 - 定制化
   - [配置项](configuration.md)
 - 指南
