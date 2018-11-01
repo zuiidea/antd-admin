@@ -27,7 +27,6 @@ export function randomAvatar() {
     'https://pbs.twimg.com/profile_images/584098247641300992/N25WgvW_.png',
     'https://d3iw72m71ie81c.cloudfront.net/male-5.jpg',
     'https://images.pexels.com/photos/413723/pexels-photo-413723.jpeg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/61100/pexels-photo-61100.jpeg?h=350&auto=compress&cs=tinysrgb',
     'https://randomuser.me/api/portraits/women/44.jpg',
     'https://randomuser.me/api/portraits/women/68.jpg',
     'https://randomuser.me/api/portraits/women/65.jpg',

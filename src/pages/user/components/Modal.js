@@ -139,7 +139,6 @@ class UserModal extends PureComponent {
 }
 
 UserModal.propTypes = {
-  form: PropTypes.object.isRequired,
   type: PropTypes.string,
   item: PropTypes.object,
   onOk: PropTypes.func,

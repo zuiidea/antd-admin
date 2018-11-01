@@ -4,7 +4,7 @@ import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import withRouter from 'umi/withRouter'
 import { connect } from 'dva'
-import { MyLayout, ScrollBar } from 'components'
+import { MyLayout } from 'components'
 import { BackTop, Layout, Drawer } from 'antd'
 import { GlobalFooter } from 'ant-design-pro'
 import { enquireScreen, unenquireScreen } from 'enquire-js'
@@ -138,26 +138,19 @@ class PrimaryLayout extends PureComponent {
             style={{ paddingTop: config.fixedHeader ? 72 : 0 }}
             id="primaryLayout"
           >
-            <ScrollBar
-              option={{
-                // Disabled horizontal scrolling, https://github.com/utatti/perfect-scrollbar#options
-                suppressScrollX: true,
-              }}
-            >
-              <Header {...headerProps} />
-              <Content className={styles.content}>
-                <Bread routeList={newRouteList} />
-                {hasPermission ? children : <Error />}
-              </Content>
-              <BackTop
-                className={styles.backTop}
-                target={() => document.querySelector('#primaryLayout>div')}
-              />
-              <GlobalFooter
-                className={styles.footer}
-                copyright={config.copyright}
-              />
-            </ScrollBar>
+            <Header {...headerProps} />
+            <Content className={styles.content}>
+              <Bread routeList={newRouteList} />
+              {hasPermission ? children : <Error />}
+            </Content>
+            <BackTop
+              className={styles.backTop}
+              target={() => document.querySelector('#primaryLayout>div')}
+            />
+            <GlobalFooter
+              className={styles.footer}
+              copyright={config.copyright}
+            />
           </div>
         </Layout>
       </Fragment>

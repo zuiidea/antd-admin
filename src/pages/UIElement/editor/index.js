@@ -24,6 +24,9 @@ export default class EditorPage extends React.Component {
     const colProps = {
       lg: 12,
       md: 24,
+      style: {
+        marginBottom: 32,
+      },
     }
     const textareaStyle = {
       minHeight: 496,

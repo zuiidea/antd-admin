@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 import { Table, Avatar } from 'antd'
 import { withI18n } from '@lingui/react'
+import { Ellipsis } from 'ant-design-pro'
+import styles from './List.less'
 
 @withI18n()
 class List extends PureComponent {
@@ -10,12 +12,12 @@ class List extends PureComponent {
       {
         title: i18n.t`Image`,
         dataIndex: 'image',
-        width: 100,
         render: text => <Avatar shape="square" src={text} />,
       },
       {
         title: i18n.t`Title`,
         dataIndex: 'title',
+        render: text => <Ellipsis length={30}>{text}</Ellipsis>,
       },
       {
         title: i18n.t`Author`,
@@ -56,7 +58,7 @@ class List extends PureComponent {
             showTotal: total => i18n.t`Total ${total} Items`,
           }}
           bordered
-          scroll={{ x: 1200, y: 'auto' }}
+          className={styles.table}
           columns={columns}
           simple
           rowKey={record => record.id}

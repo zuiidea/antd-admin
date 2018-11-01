@@ -49,15 +49,6 @@ const database = [
     icon: 'camera-o',
   },
   {
-    id: '43',
-    breadcrumbParentId: '4',
-    menuParentId: '4',
-    name: 'DropOption',
-    zhName: 'DropOption',
-    icon: 'bars',
-    route: '/UIElement/dropOption',
-  },
-  {
     id: '45',
     breadcrumbParentId: '4',
     menuParentId: '4',

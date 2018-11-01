@@ -4,6 +4,7 @@ import { Table, Modal, Avatar } from 'antd'
 import { DropOption } from 'components'
 import { Trans, withI18n } from '@lingui/react'
 import Link from 'umi/link'
+import styles from './List.less'
 
 const { confirm } = Modal
 
@@ -38,7 +39,8 @@ class List extends PureComponent {
         title: <Trans>Avatar</Trans>,
         dataIndex: 'avatar',
         key: 'avatar',
-        width: 100,
+        width: 72,
+        fixed: 'left',
         render: text => <Avatar style={{ marginLeft: 8 }} src={text} />,
       },
       {
@@ -86,7 +88,7 @@ class List extends PureComponent {
       {
         title: <Trans>Operation</Trans>,
         key: 'operation',
-        width: 100,
+        fixed: 'right',
         render: (text, record) => {
           return (
             <DropOption
@@ -108,8 +110,9 @@ class List extends PureComponent {
           ...tableProps.pagination,
           showTotal: total => i18n.t`Total ${total} Items`,
         }}
+        className={styles.table}
         bordered
-        scroll={{ x: 1250, y: 'auto' }}
+        scroll={{ x: 1600 }}
         columns={columns}
         simple
         rowKey={record => record.id}
