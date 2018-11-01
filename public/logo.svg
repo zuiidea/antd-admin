@@ -1,23 +1,24 @@
 
-<svg width="581px" height="341px" viewBox="0 0 581 341" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="169px" height="141px" viewBox="0 0 169 141" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
     <desc>Created with Sketch.</desc>
     <defs>
-        <linearGradient x1="70.2198382%" y1="6.53250582%" x2="20.4256691%" y2="106.178216%" id="linearGradient-1">
+        <linearGradient x1="54.0428975%" y1="4.39752391%" x2="54.0428975%" y2="108.456714%" id="linearGradient-1">
             <stop stop-color="#29CDFF" offset="0%"></stop>
-            <stop stop-color="#148EFF" offset="37.8600687%"></stop>
+            <stop stop-color="#148EFF" offset="62.3089445%"></stop>
             <stop stop-color="#0A60FF" offset="100%"></stop>
         </linearGradient>
-        <linearGradient x1="12.5047704%" y1="15.4328311%" x2="82.8904461%" y2="114.226409%" id="linearGradient-2">
+        <linearGradient x1="50%" y1="14.2201464%" x2="50%" y2="113.263844%" id="linearGradient-2">
             <stop stop-color="#FA816E" offset="0%"></stop>
-            <stop stop-color="#F74A5C" offset="41.472606%"></stop>
+            <stop stop-color="#F74A5C" offset="65.9092442%"></stop>
             <stop stop-color="#F51D2C" offset="100%"></stop>
         </linearGradient>
     </defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Group-4">
-            <polygon id="Polygon" fill="url(#linearGradient-1)" points="0.428955078 340.5896 40.2050781 340.420898 79.2480469 257.922222 220.954346 257.922222 208.883545 231.790955 90.1933594 231.916992 150.117188 104.470703 259.027196 340.420898 291.21875 340.420898 328.451172 257.922222 195.021684 0.744940372 156.966388 0.744940372"></polygon>
-            <polygon id="Polygon-2" fill="url(#linearGradient-2)" points="415 0.420898438 424.585938 0.420898438 580.886719 340.104858 494.994141 340.104858 377.897974 84.7118067"></polygon>
+        <g id="Group" transform="translate(0.000000, -5.000000)">
+            <rect id="Rectangle" fill="url(#linearGradient-1)" transform="translate(83.718923, 75.312358) rotate(-24.000000) translate(-83.718923, -75.312358) " x="68.7189234" y="0.312357954" width="30" height="150" rx="15"></rect>
+            <rect id="Rectangle" fill="url(#linearGradient-1)" transform="translate(129.009910, 75.580213) rotate(-24.000000) translate(-129.009910, -75.580213) " x="114.00991" y="0.580212739" width="30" height="150" rx="15"></rect>
+            <circle id="Oval" fill="url(#linearGradient-2)" cx="25" cy="120" r="25"></circle>
         </g>
     </g>
 </svg>
