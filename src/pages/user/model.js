@@ -1,6 +1,6 @@
 /* global window */
 import modelExtend from 'dva-model-extend'
-import { pathMatchRegexp, config } from 'utils'
+import { pathMatchRegexp } from 'utils'
 import {
   queryUserList,
   createUser,
@@ -10,8 +10,6 @@ import {
 } from 'api'
 import { pageModel } from 'utils/model'
 
-const { prefix } = config
-
 export default modelExtend(pageModel, {
   namespace: 'user',
 
@@ -20,7 +18,6 @@ export default modelExtend(pageModel, {
     modalVisible: false,
     modalType: 'create',
     selectedRowKeys: [],
-    isMotion: window.localStorage.getItem(`${prefix}userIsMotion`) === 'true',
   },
 
   subscriptions: {
@@ -107,11 +104,6 @@ export default modelExtend(pageModel, {
 
     hideModal(state) {
       return { ...state, modalVisible: false }
-    },
-
-    switchIsMotion(state) {
-      window.localStorage.setItem(`${prefix}userIsMotion`, !state.isMotion)
-      return { ...state, isMotion: !state.isMotion }
     },
   },
 })

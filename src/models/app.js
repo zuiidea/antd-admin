@@ -3,7 +3,7 @@
 import { router } from 'utils'
 import { stringify } from 'qs'
 import store from 'store'
-import { RoleType } from 'utils/constant'
+import { ROLE_TYPE } from 'utils/constant'
 import { queryLayout, pathMatchRegexp } from 'utils'
 import { CANCEL_REQUEST_MESSAGE } from 'utils/constant'
 import { queryRouteList, logoutUser, queryUserInfo } from 'api'
@@ -80,8 +80,8 @@ export default {
         const { permissions } = user
         let routeList = list
         if (
-          permissions.role === RoleType.ADMIN ||
-          permissions.role === RoleType.DEVELOPER
+          permissions.role === ROLE_TYPE.ADMIN ||
+          permissions.role === ROLE_TYPE.DEVELOPER
         ) {
           permissions.visit = list.map(item => item.id)
         } else {

@@ -97,7 +97,11 @@ class Header extends PureComponent {
               renderItem={item => (
                 <List.Item className={styles.notificationItem}>
                   <List.Item.Meta
-                    title={<Ellipsis lines={1}>{item.title}</Ellipsis>}
+                    title={
+                      <Ellipsis tooltip lines={1}>
+                        {item.title}
+                      </Ellipsis>
+                    }
                     description={moment(item.date).fromNow()}
                   />
                   <Icon

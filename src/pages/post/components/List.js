@@ -17,7 +17,11 @@ class List extends PureComponent {
       {
         title: i18n.t`Title`,
         dataIndex: 'title',
-        render: text => <Ellipsis length={30}>{text}</Ellipsis>,
+        render: text => (
+          <Ellipsis tooltip length={30}>
+            {text}
+          </Ellipsis>
+        ),
       },
       {
         title: i18n.t`Author`,
@@ -50,20 +54,19 @@ class List extends PureComponent {
     ]
 
     return (
-      <div>
-        <Table
-          {...tableProps}
-          pagination={{
-            ...tableProps.pagination,
-            showTotal: total => i18n.t`Total ${total} Items`,
-          }}
-          bordered
-          className={styles.table}
-          columns={columns}
-          simple
-          rowKey={record => record.id}
-        />
-      </div>
+      <Table
+        {...tableProps}
+        pagination={{
+          ...tableProps.pagination,
+          showTotal: total => i18n.t`Total ${total} Items`,
+        }}
+        bordered
+        scroll={{ x: 1200 }}
+        className={styles.table}
+        columns={columns}
+        simple
+        rowKey={record => record.id}
+      />
     )
   }
 }
