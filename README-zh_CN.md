@@ -3,7 +3,7 @@
 
 <div align="center">
 
-A excellent front-end solution for enterprise applications.
+一套优秀的中后台前端解决方案
 
 [![antd](https://img.shields.io/badge/antd-^3.10.0-blue.svg?style=flat-square)](https://github.com/ant-design/ant-design)
 [![umi](https://img.shields.io/badge/umi-^2.2.1-orange.svg?style=flat-square)](https://github.com/umijs/umi)
@@ -15,66 +15,67 @@ A excellent front-end solution for enterprise applications.
 
 </div>
 
-- Preview - [https://antd-admin.zuiidea.com](https://antd-admin.zuiidea.com)
-- Documentation - [https://doc.antd-admin.zuiidea.com](https://doc.antd-admin.zuiidea.com)
-- FAQ - [https://doc.antd-admin.zuiidea.com/#/faq](https://doc.antd-admin.zuiidea.com/#/faq)
-- ChangeLog - [https://doc.antd-admin.zuiidea.com/#/change-log](https://doc.antd-admin.zuiidea.com/#/change-log)
+- 在线演示 - [https://antd-admin.zuiidea.com](https://antd-admin.zuiidea.com)
+- 使用文档 - [https://doc.antd-admin.zuiidea.com/#/zh-cn/](https://doc.antd-admin.zuiidea.com/#/zh-cn/)
+- 常见问题 - [https://doc.antd-admin.zuiidea.com/#/zh-cn/faq](https://doc.antd-admin.zuiidea.com/#/zh-cn/faq)
+- 更新日志 - [https://doc.antd-admin.zuiidea.com/#/zh-cn/change-log](https://doc.antd-admin.zuiidea.com/#/zh-cn/change-log)
 
-English | [简体中文](./README-zh_CN.md) 
+[English](./README.md) | 简体中文
 
-## Features
+## 特性
 
-- Internationalization, extracting translation fields from source code, loading language packs on demand
-- Dynamic permissions, different permissions for different menus
-- Elegant and beautiful, Ant Design system
-- Mock data, local data debugging
+- 国际化，源码中抽离翻译字段，按需加载语言包
+- 动态权限，不同权限对应不同菜单
+- 优雅美观，Ant Design 设计体系
+- Mock 数据，本地数据调试
 
 
-## Usage
+## 使用
 
-1. Clone project code.
+1. 下载项目代码。
 
 ```bash
 git clone https://github.com/zuiidea/antd-admin.git my-project
 cd my-project
 ```
 
-2. Installation dependence.
+2. 进入目录安装依赖，国内用户推荐使用 [cnpm](https://cnpmjs.org) 进行加速。
 
 ```bash
 yarn install
 ```
 
-Or
+或者
 
 ```bash
 npm install
 ```
 
-3. Start local server.
+3. 启动本地服务器。
 
 ```bash
 npm run start
 ```
 
-4. After the startup is complete, open a browser and visit [http://localhost:7000](http://localhost:7000), If you need to change the startup port, you can configure it in the `.env` file.
+4. 启动完成后打开浏览器访问 [http://localhost:7000](http://localhost:7000)，如果需要更改启动端口，可在 `.env` 文件中配置。
 
 
-> More instructions at [documentation](https://doc.antd-admin.zuiidea.com)。
+> 更多信息请参考 [使用文档](https://doc.antd-admin.zuiidea.com/#/zh-cn/)。
 
 
-## Browsers support
+## 支持环境
 
-Modern browsers and IE9.
+现代浏览器及 IE9。
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Opera |
 | --------- | --------- | --------- | --------- | --------- | 
 | IE9, IE10, IE11, Edge| last 2 versions| last 2 versions| last 2 versions| last 2 versions
 
-## Contributing
+## 参与贡献  
 
-We very much welcome your contribution, you can build together with us in the following ways :smiley: 
+我们非常欢迎你的贡献，你可以通过以下方式和我们一起共建 :smiley:
+- 在你的公司或个人项目中使用 AntD Admin。
+- 通过 [Issue](http://github.com/zuiidea/antd-admin/issues) 报告 bug 或进行咨询。
+- 提交 [Pull Request](http://github.com/zuiidea/antd-admin/pulls) 改进代码。
 
-- Use Ant Design Pro in your daily work.
-- Submit [GitHub issues](http://github.com/zuiidea/antd-admin/issues)s to report bugs or ask questions.
-- Propose [Pull Request](http://github.com/zuiidea/antd-admin/pulls) to improve our code.
+> 强烈推荐阅读 [《提问的智慧》](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way)、[《如何向开源社区提问题》](https://github.com/seajs/seajs/issues/545) 和 [《如何有效地报告 Bug》](http://www.chiark.greenend.org.uk/%7Esgtatham/bugs-cn.html)、[《如何向开源项目提交无法解答的问题》](https://zhuanlan.zhihu.com/p/25795393)，更好的问题更容易获得帮助。
