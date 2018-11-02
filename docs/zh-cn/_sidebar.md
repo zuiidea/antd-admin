@@ -1,8 +1,8 @@
 - 入门
-  - [开始使用](getting-started.md)
+  - [快速上手](zh-cn/getting-started.md)
 - 定制化
-  - [配置项](configuration.md)
+  - [配置项](zh-cn/configuration.md)
 - 指南
-  - [部署](deploy.md)
+  - [部署](zh-cn/deploy.md)
 - 更新日志
   - 5.0.0
