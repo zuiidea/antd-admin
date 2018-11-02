@@ -3,7 +3,7 @@ node_js:
 - node
 script:
 - npm run build
-before_deploy:
+before_install:
 - |
     if [ "$TRAVIS_BRANCH" = "develop" ]; then
       for prefixed_envvar in ${!DEV_*}; do
@@ -18,6 +18,6 @@ before_deploy:
 - chmod 600 ~/.ssh/id_rsa
 - echo -e "Host $HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 - yarn global add now
-deploy:
+after_script:
 - scp -o stricthostkeychecking=no -r ./dist root@$HOST:$BUILD_DIR
 - cd ./docs && now -A $DOC_NOW_CONFIG -t $NOW_TOKEN && now alias -A $DOC_NOW_CONFIG -t $NOW_TOKEN
