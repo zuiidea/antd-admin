@@ -13,7 +13,7 @@ cd my-project
 
 应用的目录结构如下
 
-```text
+```bash
 ├── dist/               # 默认build输出目录
 ├── mock/               # Mock文件目录
 ├── public/             # 静态资源文件目录

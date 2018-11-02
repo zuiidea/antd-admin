@@ -1,5 +1,5 @@
 - Getting started
-  - [Quick Start](quickstart.md)
+  - [Quick Start](getting-started.md)
 - Customization
   - [Configuration](configuration.md)
 - Guide
