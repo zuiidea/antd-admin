@@ -182,7 +182,7 @@ module.exports = {
   },
 
   [`POST ${ApiPrefix}/users/delete`](req, res) {
-    const { ids } = req.body
+    const { ids=[] } = req.body
     database = database.filter(item => !ids.some(_ => _ === item.id))
     res.status(204).end()
   },
@@ -212,7 +212,7 @@ module.exports = {
     if (data) {
       res.status(200).json(data)
     } else {
-      res.status(404).json(NOTFOUND)
+      res.status(200).json(NOTFOUND)
     }
   },
 
@@ -223,7 +223,7 @@ module.exports = {
       database = database.filter(item => item.id !== id)
       res.status(204).end()
     } else {
-      res.status(404).json(NOTFOUND)
+      res.status(200).json(NOTFOUND)
     }
   },
 
@@ -243,7 +243,7 @@ module.exports = {
     if (isExist) {
       res.status(201).end()
     } else {
-      res.status(404).json(NOTFOUND)
+      res.status(200).json(NOTFOUND)
     }
   },
 }
