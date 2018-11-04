@@ -4,5 +4,4 @@
   - [Configuration](configuration.md)
 - Guide
   - [Deploy](deploy.md)
-- Changelog
-  - 5.0.0
+- [Change Log](change-log.md)

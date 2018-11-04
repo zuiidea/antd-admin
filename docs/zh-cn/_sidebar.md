@@ -4,5 +4,4 @@
   - [配置项](zh-cn/configuration.md)
 - 指南
   - [部署](zh-cn/deploy.md)
-- 更新日志
-  - 5.0.0
+- [更新日志](zh-cn/change-log.md)
