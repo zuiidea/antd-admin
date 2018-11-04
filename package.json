@@ -8,6 +8,7 @@
     "ant-design-pro": "^2.1.0",
     "antd": "^3.10.0",
     "axios": "^0.18.0",
+    "babel-core": "7.0.0-bridge.0",
     "classnames": "^2.2.6",
     "d3-shape": "^1.2.2",
     "draftjs-to-html": "^0.8.4",
