@@ -28,7 +28,7 @@
     "path-to-regexp": "^2.4.0",
     "prop-types": "^15.6.2",
     "qs": "^6.5.2",
-    "rc-tween-one": "^2.2.8",
+    "rc-tween-one": "^2.2.15",
     "react-adsense": "^0.0.6",
     "react-countup": "^4.0.0-alpha.6",
     "react-draft-wysiwyg": "^1.12.13",
@@ -63,8 +63,8 @@
     "stylelint": "^9.6.0",
     "stylelint-config-prettier": "^4.0.0",
     "stylelint-config-standard": "^18.2.0",
-    "umi": "^2.2.5",
-    "umi-plugin-react": "^1.2.2"
+    "umi": "^2.3.0-beta.1",
+    "umi-plugin-react": "^1.2.3"
   },
   "optionalDependencies": {
     "puppeteer": "^1.10.0"
