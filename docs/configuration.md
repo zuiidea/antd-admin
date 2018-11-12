@@ -24,7 +24,7 @@ You can do some custom configuration in `/src/utils/config.js`:
 
 - Type： `String`
 
-  Configure the prefix of the interface in the project. The interface related documents can be viewed [API configuration]()
+  Configure the prefix of the interface in the project. The interface related documents can be viewed [API configuration](API-configuration.md)
 
 ## fixedHeader
 

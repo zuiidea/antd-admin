@@ -2,6 +2,7 @@
   - [Quick Start](getting-started.md)
 - Customization
   - [Configuration](configuration.md)
+  - [API Configuration](API-configuration.md)
 - Guide
   - [Deploy](deploy.md)
 - [Change Log](change-log.md)

@@ -1,4 +1,4 @@
-const api = {
+export default {
   queryRouteList: '/routes',
 
   queryUserInfo: '/user',
@@ -16,5 +16,3 @@ const api = {
 
   queryDashboard: '/dashboard',
 }
-
-export default api
