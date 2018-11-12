@@ -26,13 +26,7 @@ class List extends PureComponent {
   }
 
   render() {
-    const {
-      handleMenuClick,
-      onDeleteItem,
-      onEditItem,
-      i18n,
-      ...tableProps
-    } = this.props
+    const { onDeleteItem, onEditItem, i18n, ...tableProps } = this.props
 
     const columns = [
       {
@@ -92,7 +86,7 @@ class List extends PureComponent {
         render: (text, record) => {
           return (
             <DropOption
-              onMenuClick={e => handleMenuClick(record, e)}
+              onMenuClick={e => this.handleMenuClick(record, e)}
               menuOptions={[
                 { key: '1', name: i18n.t`Update` },
                 { key: '2', name: i18n.t`Delete` },

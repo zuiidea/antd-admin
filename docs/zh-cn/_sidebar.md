@@ -1,6 +1,7 @@
 - 入门
   - [快速上手](zh-cn/getting-started.md)
 - 定制化
+  - [http请求](zh-cn/request.md)
   - [配置项](zh-cn/configuration.md)
   - [接口配置](zh-cn/API-configuration.md)
 - 指南

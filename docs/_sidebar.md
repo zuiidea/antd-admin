@@ -1,6 +1,7 @@
 - Getting started
   - [Quick Start](getting-started.md)
 - Customization
+  - [Request](request.md)
   - [Configuration](configuration.md)
   - [API Configuration](API-configuration.md)
 - Guide
