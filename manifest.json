@@ -1,20 +1,17 @@
 {
-    "name": "Antd-Admin",
-    "start_url": ".",
-    "display": "standalone",
-    "background_color": "#fff",
-    "description": "A front-end solution for enterprise applications built upon Ant Design and UmiJS",
-    "icons": [{
-      "src": "logo48x48.png",
-      "sizes": "48x48"
-    }, {
-      "src": "logo144x144.png",
-      "sizes": "144x144"
-    }, {
-      "src": "logo172x172.png",
-      "sizes": "172x172"
-    }],
-    "related_applications": [{
-      "platform": "web"
-    }]
+  "name": "Antd-Admin",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "A front-end solution for enterprise applications built upon Ant Design and UmiJS",
+  "icons": {
+    "72": "logo.svg",
+    "96": "logo.svg",
+    "128": "logo.svg",
+    "144": "logo.svg",
+    "152": "logo.svg",
+    "192": "logo.svg",
+    "384": "logo.svg",
+    "512": "logo.svg"
   }
+}
