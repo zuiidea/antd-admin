@@ -56,9 +56,21 @@ const transform = async ({ from, to, locales, outputPath }) => {
       let res = key
       let way = 'youdao'
       if (key.indexOf('/') !== 0) {
-        res = await youdao({
-          q: key,
-        })
+        const reg = '{([^{}]*)}'
+        const tasks = key
+          .match(new RegExp(`${reg}|((?<=(${reg}|^)).*?(?=(${reg}|$)))`, 'g'))
+          .map(item => {
+            if (new RegExp(reg).test(item)) {
+              return Promise.resolve(item)
+            }
+            return youdao({
+              q: item,
+              from,
+              to,
+            })
+          })
+
+        res = (await Promise.all(tasks)).join('')
       } else {
         res = `/${to + key}`
         way = 'link'
