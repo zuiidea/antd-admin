@@ -4,14 +4,10 @@
   "display": "standalone",
   "background_color": "#fff",
   "description": "A front-end solution for enterprise applications built upon Ant Design and UmiJS",
-  "icons": {
-    "72": "logo.svg",
-    "96": "logo.svg",
-    "128": "logo.svg",
-    "144": "logo.svg",
-    "152": "logo.svg",
-    "192": "logo.svg",
-    "384": "logo.svg",
-    "512": "logo.svg"
-  }
+  "icons": [
+    {
+      "src": "logo.svg",
+      "sizes": "72x72 96x96 128x128 144x144 152x152 192x192 384x384 512x512"
+    }
+  ]
 }
