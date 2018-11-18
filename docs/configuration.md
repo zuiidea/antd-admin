@@ -39,7 +39,7 @@ You can do some custom configuration in `/src/utils/config.js`:
   Configuration? Which routes use which layout, unspecified route uses the default layout `Public`, the project currently has `Primary` and `Public` layouts,
      The default configuration is as follows：
   
-    ```js
+    ```javascript
         layouts: [
             {
                 name: 'primary',
@@ -57,7 +57,7 @@ You can do some custom configuration in `/src/utils/config.js`:
   
     - `exlude` - Specifies a list of routing rules that do not use this layout, which can be a regular expression or a string.
   
- > Note: `exlude` takes precedence over `include`, and the layout behind it has a higher priority than the previous layout. The development process may need to be combined with the layout in the `src/layouts` directory. For details, see [Using Layout]().
+ > Note: `exlude` takes precedence over `include`, and the layout previous it has a higher priority than the behind layout. The development process may need to be combined with the layout in the `src/layouts` directory. For details, see [Using Layout](./layout.md).
 
 ## i18n
 
@@ -65,7 +65,7 @@ You can do some custom configuration in `/src/utils/config.js`:
 
   Configure internationalization, the default configuration is as follows:
 
-  ```js
+  ```javascript
   i18n: {
       languages: [
         {

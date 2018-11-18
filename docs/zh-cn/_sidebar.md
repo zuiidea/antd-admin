@@ -4,6 +4,7 @@
   - [配置项](zh-cn/configuration.md)
   - [接口配置](zh-cn/API-configuration.md)
   - [国际化](zh-cn/i18n.md)
+  - [布局](zh-cn/layout.md)
   - [http 请求](zh-cn/request.md)
 - 指南
   - [部署](zh-cn/deploy.md)
