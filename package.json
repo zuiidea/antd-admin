@@ -1,6 +1,6 @@
 {
   "name": "antd-admin",
-  "version": "5.0.0-beta",
+  "version": "5.0.0",
   "private": true,
   "description": "An admin dashboard application demo built upon Ant Design and UmiJS",
   "dependencies": {
