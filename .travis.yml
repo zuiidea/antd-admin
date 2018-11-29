@@ -1,10 +1,10 @@
 language: node_js
 node_js:
-- node
+  - node
 script:
-- npm run build
+  - npm run build
 before_install:
-- |
+  - |
     if [ "$TRAVIS_BRANCH" = "develop" ]; then
       for prefixed_envvar in ${!DEV_*}; do
         eval export ${prefixed_envvar#DEV_}="${!prefixed_envvar}"
@@ -13,11 +13,15 @@ before_install:
       for prefixed_envvar in ${!PROD_*}; do
         eval export ${prefixed_envvar#PROD_}="${!prefixed_envvar}"
       done
+    else
+     for prefixed_envvar in ${!TEST_*}; do
+        eval export ${prefixed_envvar#TEST_}="${!prefixed_envvar}"
+     done
     fi
-- openssl aes-256-cbc -K $encrypted_18b2305b78c9_key -iv $encrypted_18b2305b78c9_iv -in config/id_rsa.enc -out ~/.ssh/id_rsa -d
-- chmod 600 ~/.ssh/id_rsa
-- echo -e "Host $HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-- yarn global add now
+  - openssl aes-256-cbc -K $encrypted_18b2305b78c9_key -iv $encrypted_18b2305b78c9_iv -in config/id_rsa.enc -out ~/.ssh/id_rsa -d
+  - chmod 600 ~/.ssh/id_rsa
+  - echo -e "Host $HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  - yarn global add now
 after_script:
-- scp -o stricthostkeychecking=no -r ./dist root@$HOST:$BUILD_DIR
-- cd ./docs && now -A $DOC_NOW_CONFIG -t $NOW_TOKEN && now alias -A $DOC_NOW_CONFIG -t $NOW_TOKEN
+  - scp -o stricthostkeychecking=no -r ./dist root@$HOST:$BUILD_DIR
+  - cd ./docs && now -A $DOC_NOW_CONFIG -t $NOW_TOKEN && now alias -A $DOC_NOW_CONFIG -t $NOW_TOKEN
