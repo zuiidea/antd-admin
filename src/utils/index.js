@@ -246,9 +246,8 @@ export function getLocale() {
 export function setLocale(language) {
   if (getLocale() !== language) {
     umiRouter.push({
-      pathname: `/${language}${deLangPrefix(window.location.pathname)}${
-        window.location.search
-      }`,
+      pathname: `/${language}${deLangPrefix(window.location.pathname)}`,
+      search: window.location.search,
     })
   }
 }
