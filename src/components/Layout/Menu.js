@@ -89,12 +89,17 @@ class SiderMenu extends PureComponent {
       ? queryAncestors(menus, currentMenu, 'menuParentId').map(_ => _.id)
       : []
 
+    const menuProps = collapsed
+      ? {}
+      : {
+          openKeys: this.state.openKeys,
+        }
+
     return (
       <Menu
         mode="inline"
         theme={theme}
         onOpenChange={this.onOpenChange}
-        openKeys={this.state.openKeys}
         inlineCollapsed={collapsed}
         selectedKeys={selectedKeys}
         onClick={
@@ -104,6 +109,7 @@ class SiderMenu extends PureComponent {
               }
             : undefined
         }
+        {...menuProps}
       >
         {this.generateMenus(menuTree)}
       </Menu>

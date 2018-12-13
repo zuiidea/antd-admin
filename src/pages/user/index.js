@@ -46,7 +46,7 @@ class User extends PureComponent {
       title: `${
         modalType === 'create' ? i18n.t`Create User` : i18n.t`Update User`
       }`,
-      wrapClassName: 'vertical-center-modal',
+      centered: true,
       onOk(data) {
         dispatch({
           type: `user/${modalType}`,
