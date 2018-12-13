@@ -4,7 +4,7 @@ import { Breadcrumb, Icon } from 'antd'
 import Link from 'umi/navlink'
 import withRouter from 'umi/withRouter'
 import { withI18n } from '@lingui/react'
-import { pathMatchRegexp, queryAncestors } from 'utils'
+import { pathMatchRegexp, queryAncestors, addLangPrefix } from 'utils'
 import styles from './Bread.less'
 
 @withI18n()
@@ -24,7 +24,7 @@ class Bread extends PureComponent {
       return (
         <Breadcrumb.Item key={key}>
           {paths.length - 1 !== key ? (
-            <Link to={item.route || '#'}>{content}</Link>
+            <Link to={addLangPrefix(item.route) || '#'}>{content}</Link>
           ) : (
             content
           )}
