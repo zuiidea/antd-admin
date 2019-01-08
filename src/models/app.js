@@ -6,8 +6,10 @@ import store from 'store'
 import { ROLE_TYPE } from 'utils/constant'
 import { queryLayout, pathMatchRegexp } from 'utils'
 import { CANCEL_REQUEST_MESSAGE } from 'utils/constant'
-import { queryRouteList, logoutUser, queryUserInfo } from 'api'
+import api from 'api'
 import config from 'config'
+
+const { queryRouteList, logoutUser, queryUserInfo } = api
 
 export default {
   namespace: 'app',

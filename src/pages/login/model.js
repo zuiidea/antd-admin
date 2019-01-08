@@ -1,5 +1,7 @@
 import { router, pathMatchRegexp } from 'utils'
-import { loginUser } from 'api'
+import api from 'api'
+
+const { loginUser } = api
 
 export default {
   namespace: 'login',

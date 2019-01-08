@@ -1,8 +1,10 @@
 import { parse } from 'qs'
 import modelExtend from 'dva-model-extend'
-import { queryDashboard, queryWeather } from 'api'
+import api from 'api'
 import { pathMatchRegexp } from 'utils'
 import { model } from 'utils/model'
+
+const { queryDashboard, queryWeather } = api
 
 export default modelExtend(model, {
   namespace: 'dashboard',

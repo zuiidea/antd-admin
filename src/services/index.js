@@ -35,4 +35,4 @@ APIFunction.queryWeather = params => {
   })
 }
 
-module.exports = APIFunction
+export default APIFunction

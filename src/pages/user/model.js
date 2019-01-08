@@ -1,14 +1,16 @@
 /* global window */
 import modelExtend from 'dva-model-extend'
 import { pathMatchRegexp } from 'utils'
-import {
+import api from 'api'
+import { pageModel } from 'utils/model'
+
+const {
   queryUserList,
   createUser,
   removeUser,
   updateUser,
   removeUserList,
-} from 'api'
-import { pageModel } from 'utils/model'
+} = api
 
 export default modelExtend(pageModel, {
   namespace: 'user',
