@@ -106,7 +106,7 @@ export default {
             routeList,
           },
         })
-        if (pathMatchRegexp('/login', window.location.pathname)) {
+        if (pathMatchRegexp(['/','/login'], window.location.pathname)) {
           router.push({
             pathname: '/dashboard',
           })
