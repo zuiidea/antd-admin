@@ -34,6 +34,6 @@ module.exports = {
         flag: '/china.svg',
       },
     ],
-    defaultLanguage: 'pt-br',
+    defaultLanguage: 'en',
   },
 }
