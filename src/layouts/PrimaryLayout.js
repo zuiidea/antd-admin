@@ -58,16 +58,19 @@ class PrimaryLayout extends PureComponent {
     const { onCollapseChange } = this
 
     // Localized route name.
+
+    const lang = langFromPath(location.pathname);
     const newRouteList =
-      langFromPath(location.pathname) === 'zh'
+    lang !== 'en'
         ? routeList.map(item => {
-            const { zhName, ...other } = item
+            const { name , ...other } = item
             return {
               ...other,
-              name: zhName,
+              name: ((item[lang] || {}).name || name),
             }
           })
         : routeList
+
 
     // Find a route that matches the pathname.
     const currentRoute = newRouteList.find(
