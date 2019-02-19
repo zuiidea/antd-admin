@@ -6,7 +6,7 @@
   "dependencies": {
     "@lingui/react": "^2.7.2",
     "ant-design-pro": "^2.2.0",
-    "antd": "3.13.0",
+    "antd": "^3.13.0",
     "axios": "^0.18.0",
     "babel-core": "7.0.0-bridge.0",
     "classnames": "^2.2.6",
@@ -26,16 +26,16 @@
     "md5": "^2.2.1",
     "nprogress": "^0.2.0",
     "path-to-regexp": "^3.0.0",
-    "prop-types": "^15.6.2",
+    "prop-types": "^15.7.2",
     "qs": "^6.6.0",
     "rc-tween-one": "^2.2.18",
     "react-adsense": "^0.0.6",
-    "react-countup": "^4.0.0-alpha.6",
+    "react-countup": "^4.1.0",
     "react-draft-wysiwyg": "^1.12.13",
     "react-helmet": "^5.2.0",
     "react-highcharts": "^16.0.2",
     "react-perfect-scrollbar": "^1.4.2",
-    "recharts": "^1.4.1",
+    "recharts": "^1.5.0",
     "store": "^2.0.12"
   },
   "devDependencies": {
@@ -45,12 +45,12 @@
     "babel-eslint": "^10.0.1",
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-import": "^1.10.0",
-    "babel-plugin-macros": "^2.4.2",
-    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-macros": "^2.5.0",
+    "babel-plugin-module-resolver": "^3.2.0",
     "cross-env": "^5.2.0",
-    "eslint": "^5.13.0",
+    "eslint": "^5.14.0",
     "eslint-config-react-app": "^3.0.5",
-    "eslint-plugin-flowtype": "^3.0.0",
+    "eslint-plugin-flowtype": "^3.4.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.0",
     "eslint-plugin-react": "^7.1.0",
@@ -63,8 +63,8 @@
     "stylelint": "^9.10.0",
     "stylelint-config-prettier": "^4.0.0",
     "stylelint-config-standard": "^18.2.0",
-    "umi": "^2.4.0",
-    "umi-plugin-react": "^1.4.0"
+    "umi": "^2.5.0",
+    "umi-plugin-react": "^1.5.0"
   },
   "optionalDependencies": {
     "puppeteer": "^1.11.0"
