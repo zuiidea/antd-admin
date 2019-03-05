@@ -59,18 +59,17 @@ class PrimaryLayout extends PureComponent {
 
     // Localized route name.
 
-    const lang = langFromPath(location.pathname);
+    const lang = langFromPath(location.pathname)
     const newRouteList =
-    lang !== 'en'
+      lang !== 'en'
         ? routeList.map(item => {
-            const { name , ...other } = item
+            const { name, ...other } = item
             return {
               ...other,
-              name: ((item[lang] || {}).name || name),
+              name: (item[lang] || {}).name || name,
             }
           })
         : routeList
-
 
     // Find a route that matches the pathname.
     const currentRoute = newRouteList.find(
@@ -148,7 +147,7 @@ class PrimaryLayout extends PureComponent {
             </Content>
             <BackTop
               className={styles.backTop}
-              target={() => document.querySelector('#primaryLayout>div')}
+              target={() => document.querySelector('#primaryLayout')}
             />
             <GlobalFooter
               className={styles.footer}
