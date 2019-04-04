@@ -24,7 +24,7 @@ const TwoColProps = {
 }
 
 @withI18n()
-@Form.create()
+@Form.create({ enableReinitialize: true })
 class Filter extends PureComponent {
   handleFields = fields => {
     const { createTime } = fields

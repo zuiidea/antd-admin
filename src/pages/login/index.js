@@ -12,7 +12,7 @@ const FormItem = Form.Item
 
 @withI18n()
 @connect(({ loading }) => ({ loading }))
-@Form.create()
+@Form.create({ enableReinitialize: true })
 class Login extends PureComponent {
   handleOk = () => {
     const { dispatch, form } = this.props

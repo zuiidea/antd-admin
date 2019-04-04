@@ -15,7 +15,7 @@ const formItemLayout = {
   },
 }
 @withI18n()
-@Form.create()
+@Form.create({ enableReinitialize: true })
 class UserModal extends PureComponent {
   handleOk = () => {
     const { item = {}, onOk, form } = this.props

@@ -36,7 +36,7 @@ File sizes after gzip:
 
 `build` 命令会打包所有的资源，包含 JavaScript, CSS, web fonts, images, html 等。你可以在 `dist/` 目录下找到这些文件。
 
-> 如果  有使用 HashHistory 、 部署 html 到非根目录、静态化等需求，请查看[Umi 部署](https://umijs.org/zh/guide/deploy.html)。
+> 如果有使用 HashHistory 、 部署 html 到非根目录、静态化等需求，请查看[Umi 部署](https://umijs.org/zh/guide/deploy.html)。
 
 ## 本地验证
 

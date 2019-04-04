@@ -46,7 +46,7 @@ const requests = Object.values(api).map(item => {
 })
 
 let uuid = 2
-@Form.create()
+@Form.create({ enableReinitialize: true })
 class RequestPage extends React.Component {
   constructor(props) {
     super(props)
