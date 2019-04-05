@@ -1,5 +1,5 @@
 /* global document */
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import { FilterItem } from 'components'
@@ -24,8 +24,13 @@ const TwoColProps = {
 }
 
 @withI18n()
-@Form.create({ enableReinitialize: true })
-class Filter extends PureComponent {
+@Form.create()
+class Filter extends Component {
+  componentDidUpdate(prevProps, prevState) {
+    if (Object.keys(prevProps.filter).length === 0) {
+      this.handleReset()
+    }
+  }
   handleFields = fields => {
     const { createTime } = fields
     if (createTime.length) {
