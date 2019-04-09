@@ -9,7 +9,7 @@
 
 <div align="center">
 
-A excellent front-end solution for enterprise applications.
+An excellent front-end solution for enterprise applications.
 
 [![antd](https://img.shields.io/badge/antd-^3.10.0-blue.svg?style=flat-square)](https://github.com/ant-design/ant-design)
 [![umi](https://img.shields.io/badge/umi-^2.2.1-orange.svg?style=flat-square)](https://github.com/umijs/umi)
