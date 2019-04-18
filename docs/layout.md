@@ -11,7 +11,7 @@ Take a new layout named `secondary` as an example to make the route starting wit
            {
                name: 'primary',
                include: [/.*/],
-               exlude: [/(\/(en|zh))*\/login/, /(\/(en|zh))*\/seconday\/(.*)/],
+               exclude: [/(\/(en|zh))*\/login/, /(\/(en|zh))*\/seconday\/(.*)/],
            },
            {
                name: 'secondary',
