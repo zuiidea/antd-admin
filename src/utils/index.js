@@ -211,7 +211,7 @@ export function queryLayout(layouts, pathname) {
 
   for (const item of layouts) {
     let include = false
-    let exlude = false
+    let exclude = false
     if (item.include) {
       for (const regepx of item.include) {
         if (isMatch(regepx)) {
@@ -221,16 +221,16 @@ export function queryLayout(layouts, pathname) {
       }
     }
 
-    if (include && item.exlude) {
-      for (const regepx of item.exlude) {
+    if (include && item.exclude) {
+      for (const regepx of item.exclude) {
         if (isMatch(regepx)) {
-          exlude = true
+          exclude = true
           break
         }
       }
     }
 
-    if (include && !exlude) {
+    if (include && !exclude) {
       result = item.name
       break
     }
