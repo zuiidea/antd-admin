@@ -41,6 +41,7 @@ class User extends PureComponent {
     const modalProps = {
       item: modalType === 'create' ? {} : currentItem,
       visible: modalVisible,
+      destroyOnClose: true,
       maskClosable: false,
       confirmLoading: loading.effects[`user/${modalType}`],
       title: `${
@@ -163,7 +164,7 @@ class User extends PureComponent {
           </Row>
         )}
         <List {...listProps} />
-        {modalVisible && <Modal {...modalProps} />}
+        <Modal {...modalProps} />
       </Page>
     )
   }
