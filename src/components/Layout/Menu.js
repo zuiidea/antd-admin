@@ -100,7 +100,6 @@ class SiderMenu extends PureComponent {
         mode="inline"
         theme={theme}
         onOpenChange={this.onOpenChange}
-        inlineCollapsed={collapsed}
         selectedKeys={selectedKeys}
         onClick={
           isMobile
@@ -121,7 +120,6 @@ SiderMenu.propTypes = {
   menus: PropTypes.array,
   theme: PropTypes.string,
   isMobile: PropTypes.bool,
-  collapsed: PropTypes.bool,
   onCollapseChange: PropTypes.func,
 }
 
