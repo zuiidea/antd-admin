@@ -17,7 +17,7 @@ export default function request(options) {
     const urlMatch = url.match(/[a-zA-z]+:\/\/[^/]*/)
     if (urlMatch) {
       [domain] = urlMatch
-      url = url.slice(urlMatch.index)
+      url = url.slice(urlMatch.index + domain.length)
     }
 
     const match = pathToRegexp.parse(url)
