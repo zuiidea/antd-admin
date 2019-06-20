@@ -27,7 +27,7 @@
     "path-to-regexp": "^3.0.0",
     "prop-types": "^15.7.0",
     "qs": "^6.7.0",
-    "react-adsense": "^0.0.6",
+    "react-adsense": "^0.1.0",
     "react-countup": "^4.1.0",
     "react-draft-wysiwyg": "^1.13.0",
     "react-helmet": "^5.2.0",
@@ -63,11 +63,8 @@
     "stylelint": "^10.0.0",
     "stylelint-config-prettier": "^5.2.0",
     "stylelint-config-standard": "^18.3.0",
-    "umi": "^2.7.0",
-    "umi-plugin-react": "^1.8.0"
-  },
-  "optionalDependencies": {
-    "puppeteer": "^1.17.0"
+    "umi": "^2.8.1",
+    "umi-plugin-react": "^1.9.1"
   },
   "lint-staged": {
     "src/**/*.js": [
