@@ -14,10 +14,6 @@ const { queryRouteList, logoutUser, queryUserInfo } = api
 export default {
   namespace: 'app',
   state: {
-    user: {},
-    permissions: {
-      visit: [],
-    },
     routeList: [
       {
         id: '1',
@@ -94,14 +90,9 @@ export default {
             return cases.every(_ => _)
           })
         }
-        yield put({
-          type: 'updateState',
-          payload: {
-            user,
-            permissions,
-            routeList,
-          },
-        })
+        store.set('routeList', routeList)
+        store.set('permissions', permissions)
+        store.set('user', user)
         if (pathMatchRegexp(['/', '/login'], window.location.pathname)) {
           router.push({
             pathname: '/dashboard',
@@ -120,22 +111,9 @@ export default {
     *signOut({ payload }, { call, put }) {
       const data = yield call(logoutUser)
       if (data.success) {
-        yield put({
-          type: 'updateState',
-          payload: {
-            user: {},
-            permissions: { visit: [] },
-            menu: [
-              {
-                id: '1',
-                icon: 'laptop',
-                name: 'Dashboard',
-                zhName: '仪表盘',
-                router: '/dashboard',
-              },
-            ],
-          },
-        })
+        store.set('routeList', [])
+        store.set('permissions', { visit: [] })
+        store.set('user', {})
         yield put({ type: 'query' })
       } else {
         throw data

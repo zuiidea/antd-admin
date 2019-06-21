@@ -11,6 +11,7 @@ import { enquireScreen, unenquireScreen } from 'enquire-js'
 import { config, pathMatchRegexp, langFromPath } from 'utils'
 import Error from '../pages/404'
 import styles from './PrimaryLayout.less'
+import store from 'store'
 
 const { Content } = Layout
 const { Header, Bread, Sider } = MyLayout
@@ -46,14 +47,10 @@ class PrimaryLayout extends PureComponent {
 
   render() {
     const { app, location, dispatch, children } = this.props
-    const {
-      user,
-      theme,
-      routeList,
-      collapsed,
-      permissions,
-      notifications,
-    } = app
+    const { theme, collapsed, notifications } = app
+    const user = store.get('user') || {}
+    const permissions = store.get('permissions') || {}
+    const routeList = store.get('routeList') || []
     const { isMobile } = this.state
     const { onCollapseChange } = this
 

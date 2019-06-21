@@ -17,6 +17,7 @@ import {
   User,
 } from './components'
 import styles from './index.less'
+import store from 'store'
 
 const bodyStyle = {
   bodyStyle: {
@@ -26,14 +27,14 @@ const bodyStyle = {
 }
 
 @connect(({ app, dashboard, loading }) => ({
-  avatar: app.user.avatar,
-  username: app.user.username,
   dashboard,
   loading,
 }))
 class Dashboard extends PureComponent {
   render() {
-    const { avatar, username, dashboard, loading } = this.props
+    const userDetail = store.get('user')
+    const { avatar, username } = userDetail
+    const { dashboard, loading } = this.props
     const {
       weather,
       sales,
@@ -154,8 +155,6 @@ class Dashboard extends PureComponent {
 }
 
 Dashboard.propTypes = {
-  avatar: PropTypes.string,
-  username: PropTypes.string,
   dashboard: PropTypes.object,
   loading: PropTypes.object,
 }
