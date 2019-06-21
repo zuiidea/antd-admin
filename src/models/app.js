@@ -67,10 +67,6 @@ export default {
         })
       })
     },
-
-    setup({ dispatch }) {
-      dispatch({ type: 'query' })
-    },
   },
   effects: {
     *query({ payload }, { call, put, select }) {
@@ -106,7 +102,7 @@ export default {
             routeList,
           },
         })
-        if (pathMatchRegexp(['/','/login'], window.location.pathname)) {
+        if (pathMatchRegexp(['/', '/login'], window.location.pathname)) {
           router.push({
             pathname: '/dashboard',
           })
