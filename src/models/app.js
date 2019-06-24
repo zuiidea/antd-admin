@@ -39,6 +39,9 @@ export default {
     ],
   },
   subscriptions: {
+    setup({ dispatch }) {
+      dispatch({ type: 'query' })
+    },
     setupHistory({ dispatch, history }) {
       history.listen(location => {
         dispatch({
