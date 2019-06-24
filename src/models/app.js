@@ -69,9 +69,11 @@ export default {
   },
   effects: {
     *query({ payload }, { call, put, select }) {
-      const { success, user } = yield call(queryUserInfo, payload)
+      // store isInit to prevent query trigger by refresh
+      const isInit = store.get('isInit')
+      if (isInit) return
       const { locationPathname } = yield select(_ => _.app)
-
+      const { success, user } = yield call(queryUserInfo, payload)
       if (success && user) {
         const { list } = yield call(queryRouteList)
         const { permissions } = user
@@ -96,6 +98,7 @@ export default {
         store.set('routeList', routeList)
         store.set('permissions', permissions)
         store.set('user', user)
+        store.set('isInit', true)
         if (pathMatchRegexp(['/', '/login'], window.location.pathname)) {
           router.push({
             pathname: '/dashboard',
@@ -117,6 +120,7 @@ export default {
         store.set('routeList', [])
         store.set('permissions', { visit: [] })
         store.set('user', {})
+        store.set('isInit', false)
         yield put({ type: 'query' })
       } else {
         throw data
