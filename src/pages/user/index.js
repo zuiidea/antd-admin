@@ -13,9 +13,30 @@ import Modal from './components/Modal'
 @withI18n()
 @connect(({ user, loading }) => ({ user, loading }))
 class User extends PureComponent {
+  componentDidMount() {
+    this.handleRefresh({ page: 1, pageSize: 10 })
+  }
+
+  handleRefresh = newQuery => {
+    const { location, dispatch } = this.props
+    const { query, pathname } = location
+    const payload = {
+      ...query,
+      ...newQuery,
+    }
+    dispatch({
+      type: 'user/query',
+      payload,
+    })
+    router.push({
+      pathname,
+      search: stringify(payload, { arrayFormat: 'repeat' }),
+    })
+  }
+
   render() {
     const { location, dispatch, user, loading, i18n } = this.props
-    const { query, pathname } = location
+    const { query } = location
     const {
       list,
       pagination,
@@ -24,19 +45,6 @@ class User extends PureComponent {
       modalType,
       selectedRowKeys,
     } = user
-
-    const handleRefresh = newQuery => {
-      router.push({
-        pathname,
-        search: stringify(
-          {
-            ...query,
-            ...newQuery,
-          },
-          { arrayFormat: 'repeat' }
-        ),
-      })
-    }
 
     const modalProps = {
       item: modalType === 'create' ? {} : currentItem,
@@ -53,7 +61,7 @@ class User extends PureComponent {
           type: `user/${modalType}`,
           payload: data,
         }).then(() => {
-          handleRefresh()
+          this.handleRefresh()
         })
       },
       onCancel() {
@@ -67,8 +75,8 @@ class User extends PureComponent {
       dataSource: list,
       loading: loading.effects['user/query'],
       pagination,
-      onChange(page) {
-        handleRefresh({
+      onChange: page => {
+        this.handleRefresh({
           page: page.current,
           pageSize: page.pageSize,
         })
@@ -78,7 +86,7 @@ class User extends PureComponent {
           type: 'user/delete',
           payload: id,
         }).then(() => {
-          handleRefresh({
+          this.handleRefresh({
             page:
               list.length === 1 && pagination.current > 1
                 ? pagination.current - 1
@@ -112,10 +120,9 @@ class User extends PureComponent {
       filter: {
         ...query,
       },
-      onFilterChange(value) {
-        handleRefresh({
+      onFilterChange: value => {
+        this.handleRefresh({
           ...value,
-          page: 1,
         })
       },
       onAdd() {
@@ -135,7 +142,7 @@ class User extends PureComponent {
           ids: selectedRowKeys,
         },
       }).then(() => {
-        handleRefresh({
+        this.handleRefresh({
           page:
             list.length === selectedRowKeys.length && pagination.current > 1
               ? pagination.current - 1

@@ -22,20 +22,6 @@ export default modelExtend(pageModel, {
     selectedRowKeys: [],
   },
 
-  subscriptions: {
-    setup({ dispatch, history }) {
-      history.listen(location => {
-        if (pathMatchRegexp('/user', location.pathname)) {
-          const payload = location.query || { page: 1, pageSize: 10 }
-          dispatch({
-            type: 'query',
-            payload,
-          })
-        }
-      })
-    },
-  },
-
   effects: {
     *query({ payload = {} }, { call, put }) {
       const data = yield call(queryUserList, payload)

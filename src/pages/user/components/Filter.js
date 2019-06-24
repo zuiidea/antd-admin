@@ -26,11 +26,6 @@ const TwoColProps = {
 @withI18n()
 @Form.create()
 class Filter extends Component {
-  componentDidUpdate(prevProps, prevState) {
-    if (Object.keys(prevProps.filter).length === 0) {
-      this.handleReset()
-    }
-  }
   handleFields = fields => {
     const { createTime } = fields
     if (createTime.length) {

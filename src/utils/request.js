@@ -33,11 +33,8 @@ export default function request(options) {
     message.error(e.message)
   }
 
-  options.url =
-    method.toLocaleLowerCase() === 'get'
-      ? `${url}${isEmpty(cloneData) ? '' : '?'}${qs.stringify(cloneData)}`
-      : url
-
+  options.url = url
+  options.params = cloneData
   options.cancelToken = new CancelToken(cancel => {
     window.cancelRequest.set(Symbol(Date.now()), {
       pathname: window.location.pathname,
