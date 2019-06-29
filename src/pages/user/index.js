@@ -56,7 +56,7 @@ class User extends PureComponent {
         modalType === 'create' ? i18n.t`Create User` : i18n.t`Update User`
       }`,
       centered: true,
-      onOk(data) {
+      onOk: data => {
         dispatch({
           type: `user/${modalType}`,
           payload: data,
@@ -81,7 +81,7 @@ class User extends PureComponent {
           pageSize: page.pageSize,
         })
       },
-      onDeleteItem(id) {
+      onDeleteItem: id => {
         dispatch({
           type: 'user/delete',
           payload: id,
