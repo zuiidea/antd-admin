@@ -1,6 +1,6 @@
 module.exports = {
   siteName: 'AntD Admin',
-  copyright: 'Ant Design Admin  © 2018 zuiidea',
+  copyright: 'Ant Design Admin  ©2019 zuiidea',
   logoPath: '/logo.svg',
   apiPrefix: '/api/v1',
   fixedHeader: true, // sticky primary layout header
