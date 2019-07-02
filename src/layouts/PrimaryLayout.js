@@ -134,7 +134,7 @@ class PrimaryLayout extends PureComponent {
           )}
           <div
             className={styles.container}
-            style={{ paddingTop: config.fixedHeader ? 72 : 0 }}
+            style={{ paddingTop: config.fixedHeader ? 52 : 0 }}
             id="primaryLayout"
           >
             <Header {...headerProps} />

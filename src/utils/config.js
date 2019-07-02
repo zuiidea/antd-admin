@@ -1,6 +1,6 @@
 module.exports = {
-  siteName: 'AntD Admin',
-  copyright: 'Ant Design Admin  ©2019 zuiidea',
+  siteName: '物模块管理',
+  copyright: '物模块管理',
   logoPath: '/logo.svg',
   apiPrefix: '/api/v1',
   fixedHeader: true, // sticky primary layout header
@@ -18,22 +18,22 @@ module.exports = {
   i18n: {
     /* Countrys flags: https://www.flaticon.com/packs/countrys-flags */
     languages: [
-      {
-        key: 'pt-br',
-        title: 'Português',
-        flag: '/brazil.svg',
-      },
-      {
-        key: 'en',
-        title: 'English',
-        flag: '/america.svg',
-      },
+      // {
+      //   key: 'pt-br',
+      //   title: 'Português',
+      //   flag: '/brazil.svg',
+      // },
+      // {
+      //   key: 'en',
+      //   title: 'English',
+      //   flag: '/america.svg',
+      // },
       {
         key: 'zh',
         title: '中文',
         flag: '/china.svg',
       },
     ],
-    defaultLanguage: 'en',
+    defaultLanguage: 'zh',
   },
 }
