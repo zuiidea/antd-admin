@@ -21,7 +21,7 @@ module.exports = {
       {
         key: 'pt-br',
         title: 'Português',
-        flag: '/brazil.svg',
+        flag: '/portugal.svg',
       },
       {
         key: 'en',

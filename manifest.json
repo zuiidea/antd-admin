@@ -4,10 +4,33 @@
   "display": "standalone",
   "background_color": "#fff",
   "description": "A front-end solution for enterprise applications built upon Ant Design and UmiJS",
-  "icons": [
+  "icons": [{
+      "src": "logo/logo@96.png",
+      "sizes": "72x72"
+    },
     {
-      "src": "logo.svg",
-      "sizes": "72x72 96x96 128x128 144x144 152x152 192x192 384x384 512x512"
+      "src": "logo/logo@128.png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "logo/logo@144.png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "logo/logo@152.png",
+      "sizes": "152x152"
+    },
+    {
+      "src": "logo/logo@192.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo/logo@384.png",
+      "sizes": "384x384"
+    },
+    {
+      "src": "logo/logo@512.png",
+      "sizes": "512x512"
     }
   ]
 }
