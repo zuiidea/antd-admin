@@ -140,7 +140,8 @@ class PrimaryLayout extends PureComponent {
             <Header {...headerProps} />
             <Content className={styles.content}>
               <Bread routeList={newRouteList} />
-              {hasPermission ? children : <Error />}
+              {/* {hasPermission ? children : <Error />} */}
+              {children}
             </Content>
             <BackTop
               className={styles.backTop}

@@ -58,7 +58,7 @@ class Login extends PureComponent {
           </div>
           <form>
             <FormItem hasFeedback>
-              {getFieldDecorator('username', {
+              {getFieldDecorator('userName', {
                 rules: [
                   {
                     required: true,

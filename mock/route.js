@@ -41,6 +41,19 @@ const database = [
     route: '/amap',
   },
   {
+    id: '8',
+    breadcrumbParentId: '1',
+    name: 'Dict',
+    zh: {
+      name: '物模型'
+    },
+    'pt-br': {
+      name: 'wmx'
+    },
+    icon: 'setting',
+    route: '/dict',
+  },
+  {
     id: '7',
     breadcrumbParentId: '1',
     name: 'Posts',

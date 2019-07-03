@@ -10,6 +10,7 @@ import {
   addLangPrefix,
 } from 'utils'
 import store from 'store'
+import { isEmpty } from 'lodash'
 
 const { SubMenu } = Menu
 
@@ -21,7 +22,8 @@ class SiderMenu extends PureComponent {
 
   onOpenChange = openKeys => {
     const { menus } = this.props
-    const rootSubmenuKeys = menus.filter(_ => !_.menuParentId).map(_ => _.id)
+    //const rootSubmenuKeys = menus.filter(_ => !_.menuParentId).map(_ => _.id)
+    const rootSubmenuKeys = menus.filter(_ => !_.parentId).map(_ => _.id)
 
     const latestOpenKey = openKeys.find(
       key => this.state.openKeys.indexOf(key) === -1
@@ -38,28 +40,55 @@ class SiderMenu extends PureComponent {
     store.set('openKeys', newOpenKeys)
   }
 
+  // generateMenus = data => {
+  //   return data.map(item => {
+  //     if (item.children) {
+  //       return (
+  //         <SubMenu
+  //           key={item.id}
+  //           title={
+  //             <Fragment>
+  //               {item.icon && <Icon type={item.icon} />}
+  //               <span>{item.name}</span>
+  //             </Fragment>
+  //           }
+  //         >
+  //           {this.generateMenus(item.children)}
+  //         </SubMenu>
+  //       )
+  //     }
+  //     return (
+  //       <Menu.Item key={item.id}>
+  //         <Navlink to={addLangPrefix(item.route) || '#'}>
+  //           {item.icon && <Icon type={item.icon} />}
+  //           <span>{item.name}</span>
+  //         </Navlink>
+  //       </Menu.Item>
+  //     )
+  //   })
+  // }
   generateMenus = data => {
     return data.map(item => {
-      if (item.children) {
+      if (!isEmpty(item.childMenu)) {
         return (
           <SubMenu
             key={item.id}
             title={
               <Fragment>
                 {item.icon && <Icon type={item.icon} />}
-                <span>{item.name}</span>
+                <span>{item.menuName}</span>
               </Fragment>
             }
           >
-            {this.generateMenus(item.children)}
+            {this.generateMenus(item.childMenu)}
           </SubMenu>
         )
       }
       return (
         <Menu.Item key={item.id}>
-          <Navlink to={addLangPrefix(item.route) || '#'}>
+          <Navlink to={addLangPrefix(item.url) || '#'}>
             {item.icon && <Icon type={item.icon} />}
-            <span>{item.name}</span>
+            <span>{item.menuName}</span>
           </Navlink>
         </Menu.Item>
       )
@@ -77,7 +106,8 @@ class SiderMenu extends PureComponent {
     } = this.props
 
     // Generating tree-structured data for menu content.
-    const menuTree = arrayToTree(menus, 'id', 'menuParentId')
+    //const menuTree = arrayToTree(menus, 'id', 'menuParentId')
+    const menuTree = arrayToTree(menus, 'id', 'parentId')
 
     // Find a menu that matches the pathname.
     const currentMenu = menus.find(
@@ -85,8 +115,11 @@ class SiderMenu extends PureComponent {
     )
 
     // Find the key that should be selected according to the current menu.
+    // const selectedKeys = currentMenu
+    //   ? queryAncestors(menus, currentMenu, 'menuParentId').map(_ => _.id)
+    //   : []
     const selectedKeys = currentMenu
-      ? queryAncestors(menus, currentMenu, 'menuParentId').map(_ => _.id)
+      ? queryAncestors(menus, currentMenu, 'parentId').map(_ => _.id)
       : []
 
     const menuProps = collapsed

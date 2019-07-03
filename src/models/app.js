@@ -40,18 +40,18 @@ export default {
   },
   subscriptions: {
     setup({ dispatch }) {
-      dispatch({ type: 'query' })
+      //dispatch({ type: 'query' })
     },
     setupHistory({ dispatch, history }) {
-      history.listen(location => {
-        dispatch({
-          type: 'updateState',
-          payload: {
-            locationPathname: location.pathname,
-            locationQuery: location.query,
-          },
-        })
-      })
+      // history.listen(location => {
+      //   dispatch({
+      //     type: 'updateState',
+      //     payload: {
+      //       locationPathname: location.pathname,
+      //       locationQuery: location.query,
+      //     },
+      //   })
+      // })
     },
 
     setupRequestCancel({ history }) {
@@ -122,6 +122,8 @@ export default {
         store.set('user', {})
         store.set('isInit', false)
         yield put({ type: 'query' })
+        window.localStorage.removeItem('loginInfo')
+        router.push('/login')
       } else {
         throw data
       }
