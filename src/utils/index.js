@@ -2,6 +2,8 @@ import { cloneDeep, isString, flow, curry } from 'lodash'
 import umiRouter from 'umi/router'
 import pathToRegexp from 'path-to-regexp'
 import { i18n } from './config'
+import moment from 'moment'
+import 'moment/locale/zh-cn'
 
 export classnames from 'classnames'
 export config from './config'
@@ -245,6 +247,7 @@ export function getLocale() {
 
 export function setLocale(language) {
   if (getLocale() !== language) {
+    moment.locale(language === 'zh' ? 'zh-cn' : language)
     umiRouter.push({
       pathname: `/${language}${deLangPrefix(window.location.pathname)}`,
       search: window.location.search,
