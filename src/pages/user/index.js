@@ -13,24 +13,19 @@ import Modal from './components/Modal'
 @withI18n()
 @connect(({ user, loading }) => ({ user, loading }))
 class User extends PureComponent {
-  componentDidMount() {
-    this.handleRefresh({ page: 1, pageSize: 10 })
-  }
-
   handleRefresh = newQuery => {
-    const { location, dispatch } = this.props
+    const { location } = this.props
     const { query, pathname } = location
-    const payload = {
-      ...query,
-      ...newQuery,
-    }
-    dispatch({
-      type: 'user/query',
-      payload,
-    })
+
     router.push({
       pathname,
-      search: stringify(payload, { arrayFormat: 'repeat' }),
+      search: stringify(
+        {
+          ...query,
+          ...newQuery,
+        },
+        { arrayFormat: 'repeat' }
+      ),
     })
   }
 
