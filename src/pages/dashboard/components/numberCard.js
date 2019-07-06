@@ -22,7 +22,7 @@ function NumberCard({ icon, color, title, number, countUp }) {
             useEasing
             useGrouping
             separator=","
-            {...countUp || {}}
+            {...(countUp || {})}
           />
         </p>
       </div>
