@@ -73,7 +73,7 @@ function Completed({ data }) {
               return (
                 <div className={styles.tooltip}>
                   <p className={styles.tiptitle}>{content.label}</p>
-                  <ul>{list}</ul>
+                  {content.payload && <ul>{list}</ul>}
                 </div>
               )
             }}
