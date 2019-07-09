@@ -1,8 +1,8 @@
 module.exports = {
-  siteName: 'AntD Admin',
-  copyright: 'Ant Design Admin  ©2019 zuiidea',
+  siteName: '物模块管理',
+  copyright: '物模块管理',
   logoPath: '/logo.svg',
-  apiPrefix: '/api/v1',
+  apiPrefix: 'http://192.168.1.102:8062', //'/api/v1',
   fixedHeader: true, // sticky primary layout header
 
   /* Layout configuration, specify which layout to use for route. */
@@ -34,6 +34,6 @@ module.exports = {
         flag: '/china.svg',
       },
     ],
-    defaultLanguage: 'en',
+    defaultLanguage: 'zh',
   },
 }

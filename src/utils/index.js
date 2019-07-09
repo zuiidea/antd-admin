@@ -254,3 +254,7 @@ export function setLocale(language) {
     })
   }
 }
+
+
+export const YOUR_AMAP_KEY = '13bb523a3a9e339d4e2f763073fa7292';
+export const VERSION = '1.4.0';

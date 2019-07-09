@@ -22,7 +22,8 @@ class Sider extends PureComponent {
 
     return (
       <Layout.Sider
-        width={256}
+        //width={256}
+        width={176}
         theme={theme}
         breakpoint="lg"
         trigger={null}

@@ -1,8 +1,9 @@
 import axios from 'axios'
 import { cloneDeep, isEmpty } from 'lodash'
 import pathToRegexp from 'path-to-regexp'
-import { message } from 'antd'
+import { message, Modal } from 'antd'
 import { CANCEL_REQUEST_MESSAGE } from 'utils/constant'
+import { router } from 'utils'
 import qs from 'qs'
 
 const { CancelToken } = axios
@@ -30,7 +31,10 @@ export default function request(options) {
     }
     url = domain + url
   } catch (e) {
-    message.error(e.message)
+    //message.error(e.message)
+    Modal.error({
+      title: e.message,
+    })
   }
 
   options.url = url
@@ -81,7 +85,7 @@ export default function request(options) {
         msg = data.message || statusText
       } else {
         statusCode = 600
-        msg = error.message || 'Network Error'
+        msg = error.message || '网络故障，请检查网络!'
       }
 
       /* eslint-disable */
@@ -92,3 +96,82 @@ export default function request(options) {
       })
     })
 }
+
+//登录失效处理
+const loginOvertimeProcess = msg => {
+  const warning = Modal.warning({
+    title: msg,
+    okText: '返回登录页',
+    okButtonProps: {
+      onClick: () => {
+        warning.destroy()
+        router.push({
+          pathname: '/login',
+          search: qs.stringify({
+            from: window.location.pathname,
+          }),
+        })
+      },
+    },
+  })
+}
+
+// 添加请求拦截器
+axios.interceptors.request.use(
+  config => {
+    const loginInfo = JSON.parse(window.localStorage.getItem('loginInfo'))
+    if (loginInfo && loginInfo.token) {
+      config.headers.ml_token = loginInfo.token
+    }
+    return config
+  },
+  error => {
+    return Promise.reject(error)
+  }
+)
+
+//添加响应拦截器
+axios.interceptors.response.use(
+  response => {
+    const {
+      config,
+      data: { code, data, msg },
+    } = response
+    //4:刷新token
+    if (code == '4' && data && data.token) {
+      let loginInfoStr = window.localStorage.getItem('loginInfo')
+      if (loginInfoStr) {
+        let loginInfo = JSON.parse(loginInfoStr)
+        loginInfo['token'] = data.token
+        window.localStorage.setItem('loginInfo', JSON.stringify(loginInfo))
+      } else {
+        loginOvertimeProcess(msg)
+      }
+      //重新上一次请求
+      return axios(config)
+    }
+    //5:登录失效
+    else if (code == '5') {
+      loginOvertimeProcess(msg)
+    }
+    //7:未登录
+    else if (code == '7') {
+      router.push({
+        pathname: '/login',
+        search: qs.stringify({
+          from: window.location.pathname,
+        }),
+      })
+    }
+    //1:操作失败,2:没有权限,3:无效token
+    else if (code == '1' || code == '2' || code == '3') {
+      Modal.warning({
+        title: msg,
+      })
+    }
+    return response
+  },
+  error => {
+    return Promise.reject(error)
+  }
+)

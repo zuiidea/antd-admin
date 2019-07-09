@@ -28,11 +28,37 @@ const database = [
     route: '/user',
   },
   {
+    id: '6',
+    breadcrumbParentId: '1',
+    name: 'Amap',
+    zh: {
+      name: '高德地图'
+    },
+    'pt-br': {
+      name: 'gaode'
+    },
+    icon: 'map',
+    route: '/amap',
+  },
+  {
+    id: '8',
+    breadcrumbParentId: '1',
+    name: 'Dict',
+    zh: {
+      name: '物模型'
+    },
+    'pt-br': {
+      name: 'wmx'
+    },
+    icon: 'setting',
+    route: '/dict',
+  },
+  {
     id: '7',
     breadcrumbParentId: '1',
     name: 'Posts',
     zh: {
-      name: '用户管理'
+      name: '文章管理'
     },
     'pt-br': {
       name: 'Posts'

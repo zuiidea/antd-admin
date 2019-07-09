@@ -1,0 +1,27 @@
+.dashboard {
+  position: relative;
+  :global {
+    .ant-card {
+      border-radius: 0;
+      margin-bottom: 24px;
+      &:hover {
+        box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.05);
+      }
+    }
+    .ant-card-body {
+      overflow-x: hidden;
+    }
+  }
+
+  .weather {
+    &:hover {
+      box-shadow: 4px 4px 40px rgba(143, 201, 251, 0.6);
+    }
+  }
+
+  .quote {
+    &:hover {
+      box-shadow: 4px 4px 40px rgba(246, 152, 153, 0.6);
+    }
+  }
+}

@@ -6,7 +6,7 @@
   position: relative;
   display: flex;
   justify-content: space-between;
-  height: 72px;
+  height: 52px;
   z-index: 9;
   align-items: center;
   background-color: #fff;
@@ -15,7 +15,8 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: ~'calc(100% - 256px)';
+    //width: ~'calc(100% - 256px)';
+    width: ~'calc(100% - 176px)';
     z-index: 29;
     transition: width 0.2s;
 
@@ -26,11 +27,11 @@
 
   :global {
     .ant-menu-submenu-title {
-      height: 72px;
+      height: 52px;
     }
 
     .ant-menu-horizontal {
-      line-height: 72px;
+      line-height: 52px;
 
       & > .ant-menu-submenu:hover {
         color: @primary-color;
@@ -40,7 +41,7 @@
 
     .ant-menu {
       border-bottom: none;
-      height: 72px;
+      height: 52px;
     }
 
     .ant-menu-horizontal > .ant-menu-submenu {
@@ -71,9 +72,9 @@
   }
 
   .button {
-    width: 72px;
-    height: 72px;
-    line-height: 72px;
+    width: 52px;
+    height: 52px;
+    line-height: 52px;
     text-align: center;
     font-size: 18px;
     cursor: pointer;

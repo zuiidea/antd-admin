@@ -2,8 +2,10 @@ export default {
   queryRouteList: '/routes',
 
   queryUserInfo: '/user',
-  logoutUser: '/user/logout',
-  loginUser: 'POST /user/login',
+  //logoutUser: '/user/logout',
+  logoutUser: '/system/login/loginOut',
+  //loginUser: 'POST /user/login',
+  loginUser: 'POST /system/login/ajaxLogin',
 
   queryUser: '/user/:id',
   queryUserList: '/users',
@@ -15,4 +17,6 @@ export default {
   queryPostList: '/posts',
 
   queryDashboard: '/dashboard',
+
+  queryDictTypeList: '/system/dict/getListByPage',
 }
