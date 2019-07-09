@@ -5,12 +5,14 @@ import { I18nProvider } from '@lingui/react'
 import { langFromPath, defaultLanguage } from 'utils'
 import zh_CN from 'antd/lib/locale-provider/zh_CN'
 import en_US from 'antd/lib/locale-provider/en_US'
+import pt_BR from 'antd/lib/locale-provider/pt_BR'
 
 import BaseLayout from './BaseLayout'
 
 const languages = {
   zh: zh_CN,
   en: en_US,
+  'pt-br': pt_BR,
 }
 
 @withRouter
@@ -43,8 +45,10 @@ class Layout extends Component {
   }
 
   loadCatalog = async language => {
-    const catalog = await import(/* webpackMode: "lazy", webpackChunkName: "i18n-[index]" */
-    `@lingui/loader!../locales/${language}/messages.json`)
+    const catalog = await import(
+      /* webpackMode: "lazy", webpackChunkName: "i18n-[index]" */
+      `@lingui/loader!../locales/${language}/messages.json`
+    )
 
     this.setState(state => ({
       catalogs: {

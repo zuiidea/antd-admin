@@ -1,4 +1,3 @@
-/* global window */
 import modelExtend from 'dva-model-extend'
 import { pathMatchRegexp } from 'utils'
 import api from 'api'
@@ -20,6 +19,20 @@ export default modelExtend(pageModel, {
     modalVisible: false,
     modalType: 'create',
     selectedRowKeys: [],
+  },
+
+  subscriptions: {
+    setup({ dispatch, history }) {
+      history.listen(location => {
+        if (pathMatchRegexp('/user', location.pathname)) {
+          const payload = location.query || { page: 1, pageSize: 10 }
+          dispatch({
+            type: 'query',
+            payload,
+          })
+        }
+      })
+    },
   },
 
   effects: {

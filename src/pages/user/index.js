@@ -13,40 +13,46 @@ import Modal from './components/Modal'
 @withI18n()
 @connect(({ user, loading }) => ({ user, loading }))
 class User extends PureComponent {
-  componentDidMount() {
-    this.handleRefresh({ page: 1, pageSize: 10 })
-  }
-
   handleRefresh = newQuery => {
-    const { location, dispatch } = this.props
+    const { location } = this.props
     const { query, pathname } = location
-    const payload = {
-      ...query,
-      ...newQuery,
-    }
-    dispatch({
-      type: 'user/query',
-      payload,
-    })
+
     router.push({
       pathname,
-      search: stringify(payload, { arrayFormat: 'repeat' }),
+      search: stringify(
+        {
+          ...query,
+          ...newQuery,
+        },
+        { arrayFormat: 'repeat' }
+      ),
     })
   }
 
-  render() {
-    const { location, dispatch, user, loading, i18n } = this.props
-    const { query } = location
-    const {
-      list,
-      pagination,
-      currentItem,
-      modalVisible,
-      modalType,
-      selectedRowKeys,
-    } = user
+  handleDeleteItems = () => {
+    const { dispatch, user } = this.props
+    const { list, pagination, selectedRowKeys } = user
 
-    const modalProps = {
+    dispatch({
+      type: 'user/multiDelete',
+      payload: {
+        ids: selectedRowKeys,
+      },
+    }).then(() => {
+      this.handleRefresh({
+        page:
+          list.length === selectedRowKeys.length && pagination.current > 1
+            ? pagination.current - 1
+            : pagination.current,
+      })
+    })
+  }
+
+  get modalProps() {
+    const { dispatch, user, loading, i18n } = this.props
+    const { currentItem, modalVisible, modalType } = user
+
+    return {
       item: modalType === 'create' ? {} : currentItem,
       visible: modalVisible,
       destroyOnClose: true,
@@ -56,7 +62,7 @@ class User extends PureComponent {
         modalType === 'create' ? i18n.t`Create User` : i18n.t`Update User`
       }`,
       centered: true,
-      onOk(data) {
+      onOk: data => {
         dispatch({
           type: `user/${modalType}`,
           payload: data,
@@ -70,8 +76,13 @@ class User extends PureComponent {
         })
       },
     }
+  }
 
-    const listProps = {
+  get listProps() {
+    const { dispatch, user, loading } = this.props
+    const { list, pagination, selectedRowKeys } = user
+
+    return {
       dataSource: list,
       loading: loading.effects['user/query'],
       pagination,
@@ -81,7 +92,7 @@ class User extends PureComponent {
           pageSize: page.pageSize,
         })
       },
-      onDeleteItem(id) {
+      onDeleteItem: id => {
         dispatch({
           type: 'user/delete',
           payload: id,
@@ -115,8 +126,13 @@ class User extends PureComponent {
         },
       },
     }
+  }
 
-    const filterProps = {
+  get filterProps() {
+    const { location, dispatch } = this.props
+    const { query } = location
+
+    return {
       filter: {
         ...query,
       },
@@ -134,26 +150,15 @@ class User extends PureComponent {
         })
       },
     }
+  }
 
-    const handleDeleteItems = () => {
-      dispatch({
-        type: 'user/multiDelete',
-        payload: {
-          ids: selectedRowKeys,
-        },
-      }).then(() => {
-        this.handleRefresh({
-          page:
-            list.length === selectedRowKeys.length && pagination.current > 1
-              ? pagination.current - 1
-              : pagination.current,
-        })
-      })
-    }
+  render() {
+    const { user } = this.props
+    const { selectedRowKeys } = user
 
     return (
       <Page inner>
-        <Filter {...filterProps} />
+        <Filter {...this.filterProps} />
         {selectedRowKeys.length > 0 && (
           <Row style={{ marginBottom: 24, textAlign: 'right', fontSize: 13 }}>
             <Col>
@@ -161,7 +166,7 @@ class User extends PureComponent {
               <Popconfirm
                 title="Are you sure delete these items?"
                 placement="left"
-                onConfirm={handleDeleteItems}
+                onConfirm={this.handleDeleteItems}
               >
                 <Button type="primary" style={{ marginLeft: 8 }}>
                   Remove
@@ -170,8 +175,8 @@ class User extends PureComponent {
             </Col>
           </Row>
         )}
-        <List {...listProps} />
-        <Modal {...modalProps} />
+        <List {...this.listProps} />
+        <Modal {...this.modalProps} />
       </Page>
     )
   }
