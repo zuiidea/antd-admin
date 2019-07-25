@@ -85,7 +85,7 @@ class Header extends PureComponent {
         trigger="click"
         key="notifications"
         overlayClassName={styles.notificationPopover}
-        getPopupContainer={() => document.querySelector('#layoutHeader')}
+        getPopupContainer={() => document.querySelector('#primaryLayout')}
         content={
           <div className={styles.notification}>
             <List
