@@ -11,6 +11,14 @@ import config from 'config'
 
 const { queryRouteList, logoutUser, queryUserInfo } = api
 
+const goDashboard = () => {
+  if (pathMatchRegexp(['/', '/login'], window.location.pathname)) {
+    router.push({
+      pathname: '/dashboard',
+    })
+  }
+}
+
 export default {
   namespace: 'app',
   state: {
@@ -71,7 +79,10 @@ export default {
     *query({ payload }, { call, put, select }) {
       // store isInit to prevent query trigger by refresh
       const isInit = store.get('isInit')
-      if (isInit) return
+      if (isInit) {
+        goDashboard()
+        return
+      }
       const { locationPathname } = yield select(_ => _.app)
       const { success, user } = yield call(queryUserInfo, payload)
       if (success && user) {
@@ -99,11 +110,7 @@ export default {
         store.set('permissions', permissions)
         store.set('user', user)
         store.set('isInit', true)
-        if (pathMatchRegexp(['/', '/login'], window.location.pathname)) {
-          router.push({
-            pathname: '/dashboard',
-          })
-        }
+        goDashboard()
       } else if (queryLayout(config.layouts, locationPathname) !== 'public') {
         router.push({
           pathname: '/login',
