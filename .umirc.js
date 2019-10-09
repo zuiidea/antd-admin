@@ -60,9 +60,9 @@ export default {
         },
         pwa: {
           manifestOptions: {
-            srcPath: 'manifest.json'
+            srcPath: 'manifest.json',
           },
-        }
+        },
       },
     ],
   ],

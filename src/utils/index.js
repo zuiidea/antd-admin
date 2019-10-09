@@ -10,8 +10,10 @@ export config from './config'
 export request from './request'
 export { Color } from './theme'
 
-export const { defaultLanguage } = i18n
-export const languages = i18n.languages.map(item => item.key)
+// export const { defaultLanguage } = i18n
+// export const languages = i18n.languages.map(item => item.key)
+export const languages = i18n ? i18n.languages.map(item => item.key) : []
+export const defaultLanguage = i18n ? i18n.defaultLanguage : ''
 
 /**
  * Query objects that specify keys and values in an array where all values are objects.
@@ -61,23 +63,32 @@ export function arrayToTree(
   return result
 }
 
-export const langFromPath = curry(
-  /**
-   * Query language from pathname.
-   * @param   {array}     languages         Specify which languages are currently available.
-   * @param   {string}    defaultLanguage   Specify the default language.
-   * @param   {string}    pathname          Pathname to be queried.
-   * @return  {string}    Return the queryed language.
-   */
-  (languages, defaultLanguage, pathname) => {
-    for (const item of languages) {
-      if (pathname.startsWith(`/${item}/`)) {
-        return item
-      }
+// export const langFromPath = curry(
+//   /**
+//    * Query language from pathname.
+//    * @param   {array}     languages         Specify which languages are currently available.
+//    * @param   {string}    defaultLanguage   Specify the default language.
+//    * @param   {string}    pathname          Pathname to be queried.
+//    * @return  {string}    Return the queryed language.
+//    */
+//   (languages, defaultLanguage, pathname) => {
+//     for (const item of languages) {
+//       if (pathname.startsWith(`/${item}/`)) {
+//         return item
+//       }
+//     }
+//     return defaultLanguage
+//   }
+// )(languages)(defaultLanguage)
+
+export const langFromPath = pathname => {
+  for (const item of languages) {
+    if (pathname.startsWith(`/${item}/`)) {
+      return item
     }
-    return defaultLanguage
   }
-)(languages)(defaultLanguage)
+  return defaultLanguage
+}
 
 export const deLangPrefix = curry(
   /**
@@ -106,11 +117,18 @@ export const deLangPrefix = curry(
  * @return  {string}    Return the pathname after adding the language prefix.
  */
 export function addLangPrefix(pathname) {
+  if (!i18n) {
+    return pathname
+  }
+
   const prefix = langFromPath(window.location.pathname)
   return `/${prefix}${deLangPrefix(pathname)}`
 }
 
 const routerAddLangPrefix = params => {
+  if (!i18n) {
+    return params
+  }
   if (isString(params)) {
     params = addLangPrefix(params)
   } else {
