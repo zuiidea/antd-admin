@@ -14,9 +14,7 @@ class Bread extends PureComponent {
     return paths.map((item, key) => {
       const content = item && (
         <Fragment>
-          {item.icon ? (
-            <Icon type={item.icon} style={{ marginRight: 4 }} />
-          ) : null}
+          {item.icon && <Icon type={item.icon} style={{ marginRight: 4 }} />}
           {item.name}
         </Fragment>
       )

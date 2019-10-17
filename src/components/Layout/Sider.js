@@ -28,13 +28,13 @@ class Sider extends PureComponent {
         trigger={null}
         collapsible
         collapsed={collapsed}
-        onBreakpoint={isMobile ? null : onCollapseChange}
+        onBreakpoint={!isMobile && onCollapseChange}
         className={styles.sider}
       >
         <div className={styles.brand}>
           <div className={styles.logo}>
             <img alt="logo" src={config.logoPath} />
-            {collapsed ? null : <h1>{config.siteName}</h1>}
+            {!collapsed && <h1>{config.siteName}</h1>}
           </div>
         </div>
 
@@ -54,7 +54,7 @@ class Sider extends PureComponent {
             />
           </ScrollBar>
         </div>
-        {collapsed ? null : (
+        {!collapsed && (
           <div className={styles.switchTheme}>
             <span>
               <Icon type="bulb" />
