@@ -26,7 +26,7 @@ class Layout extends Component {
   componentDidMount() {
     const language = langFromPath(this.props.location.pathname)
     this.language = language
-    this.loadCatalog(language)
+    language && this.loadCatalog(language)
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -35,7 +35,7 @@ class Layout extends Component {
     const { catalogs } = nextState
 
     if (preLanguage !== language && !catalogs[language]) {
-      this.loadCatalog(language)
+      language && this.loadCatalog(language)
       this.language = language
       return false
     }
