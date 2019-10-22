@@ -1,6 +1,6 @@
 {
   "name": "antd-admin",
-  "version": "5.1.2",
+  "version": "5.1.3",
   "license": "MIT",
   "description": "An admin dashboard application demo built upon Ant Design and UmiJS",
   "dependencies": {
