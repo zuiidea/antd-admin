@@ -1,8 +1,11 @@
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
-import { Button, Row, Form, Icon, Input } from 'antd'
+import { Button, Row, Input } from 'antd'
 import { GlobalFooter } from 'ant-design-pro'
+import { Form } from '@ant-design/compatible'
+import '@ant-design/compatible/assets/index.css'
+import { GithubOutlined } from '@ant-design/icons'
 import { Trans, withI18n } from '@lingui/react'
 import { setLocale } from 'utils'
 import config from 'utils/config'
@@ -32,7 +35,7 @@ class Login extends PureComponent {
     let footerLinks = [
       {
         key: 'github',
-        title: <Icon type="github" />,
+        title: <GithubOutlined />,
         href: 'https://github.com/zuiidea/antd-admin',
         blankTarget: true,
       },

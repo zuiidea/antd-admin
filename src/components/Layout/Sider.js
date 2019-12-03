@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Icon, Switch, Layout } from 'antd'
+import { Switch, Layout } from 'antd'
+import { BulbOutlined } from '@ant-design/icons'
 import { withI18n, Trans } from '@lingui/react'
 import ScrollBar from '../ScrollBar'
 import { config } from 'utils'
@@ -57,7 +58,7 @@ class Sider extends PureComponent {
         {!collapsed && (
           <div className={styles.switchTheme}>
             <span>
-              <Icon type="bulb" />
+              <BulbOutlined />
               <Trans>Switch Theme</Trans>
             </span>
             <Switch

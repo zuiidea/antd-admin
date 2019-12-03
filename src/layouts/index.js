@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import withRouter from 'umi/withRouter'
-import { LocaleProvider } from 'antd'
+import { ConfigProvider } from 'antd'
 import { I18nProvider } from '@lingui/react'
 import { langFromPath, defaultLanguage } from 'utils'
 import zh_CN from 'antd/lib/locale-provider/zh_CN'
@@ -67,11 +67,11 @@ class Layout extends Component {
     if (!catalogs[language]) language = defaultLanguage
 
     return (
-      <LocaleProvider locale={languages[language]}>
+      <ConfigProvider locale={languages[language]}>
         <I18nProvider language={language} catalogs={catalogs}>
           <BaseLayout>{children}</BaseLayout>
         </I18nProvider>
-      </LocaleProvider>
+      </ConfigProvider>
     )
   }
 }
