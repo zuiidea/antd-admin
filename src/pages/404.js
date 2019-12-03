@@ -1,12 +1,12 @@
 import React from 'react'
-import { Icon } from 'antd'
+import { FrownOutlined } from '@ant-design/icons'
 import { Page } from 'components'
 import styles from './404.less'
 
 const Error = () => (
   <Page inner>
     <div className={styles.error}>
-      <Icon type="frown-o" />
+      <FrownOutlined />
       <h1>404 Not Found</h1>
     </div>
   </Page>

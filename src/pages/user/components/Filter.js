@@ -1,10 +1,14 @@
-/* global document */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import { FilterItem } from 'components'
+
+/* global document */
+import { Form } from '@ant-design/compatible'
+
+import '@ant-design/compatible/assets/index.css'
 import { Trans, withI18n } from '@lingui/react'
-import { Form, Button, Row, Col, DatePicker, Input, Cascader } from 'antd'
+import { Button, Row, Col, DatePicker, Input, Cascader } from 'antd'
 import city from 'utils/city'
 
 const { Search } = Input

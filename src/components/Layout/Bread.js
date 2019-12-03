@@ -1,8 +1,9 @@
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { Breadcrumb, Icon } from 'antd'
+import { Breadcrumb } from 'antd'
 import Link from 'umi/navlink'
 import withRouter from 'umi/withRouter'
+import { Icon as LegacyIcon } from '@ant-design/compatible'
 import { withI18n } from '@lingui/react'
 import { pathMatchRegexp, queryAncestors, addLangPrefix } from 'utils'
 import styles from './Bread.less'
@@ -14,9 +15,9 @@ class Bread extends PureComponent {
     return paths.map((item, key) => {
       const content = item && (
         <Fragment>
-          {item.icon ? (
-            <Icon type={item.icon} style={{ marginRight: 4 }} />
-          ) : null}
+          {item.icon && (
+            <LegacyIcon type={item.icon} style={{ marginRight: 4 }} />
+          )}
           {item.name}
         </Fragment>
       )

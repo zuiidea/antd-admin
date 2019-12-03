@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Icon, Switch, Layout } from 'antd'
+import { Switch, Layout } from 'antd'
+import { BulbOutlined } from '@ant-design/icons'
 import { withI18n, Trans } from '@lingui/react'
 import ScrollBar from '../ScrollBar'
 import { config } from 'utils'
@@ -28,13 +29,13 @@ class Sider extends PureComponent {
         trigger={null}
         collapsible
         collapsed={collapsed}
-        onBreakpoint={isMobile ? null : onCollapseChange}
+        onBreakpoint={!isMobile && onCollapseChange}
         className={styles.sider}
       >
         <div className={styles.brand}>
           <div className={styles.logo}>
             <img alt="logo" src={config.logoPath} />
-            {collapsed ? null : <h1>{config.siteName}</h1>}
+            {!collapsed && <h1>{config.siteName}</h1>}
           </div>
         </div>
 
@@ -54,10 +55,10 @@ class Sider extends PureComponent {
             />
           </ScrollBar>
         </div>
-        {collapsed ? null : (
+        {!collapsed && (
           <div className={styles.switchTheme}>
             <span>
-              <Icon type="bulb" />
+              <BulbOutlined />
               <Trans>Switch Theme</Trans>
             </span>
             <Switch

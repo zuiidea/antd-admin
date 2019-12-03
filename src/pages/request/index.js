@@ -1,19 +1,11 @@
 import React from 'react'
 import { request } from 'utils'
 import { apiPrefix } from 'utils/config'
-import {
-  Row,
-  Col,
-  Select,
-  Input,
-  Button,
-  List,
-  Tag,
-  Form,
-  Icon,
-  Checkbox,
-} from 'antd'
+import { Row, Col, Select, Input, Button, List, Tag, Checkbox } from 'antd'
 import classnames from 'classnames'
+import { Form } from '@ant-design/compatible'
+import '@ant-design/compatible/assets/index.css'
+import { CloseOutlined } from '@ant-design/icons'
 import { Trans } from '@lingui/react'
 import api from '@/services/api'
 import { Page } from 'components'
@@ -226,11 +218,9 @@ class RequestPage extends React.Component {
                     )}
                   </Col>
                   <Col style={{ marginTop: 8 }}>
-                    <Icon
+                    <CloseOutlined
                       onClick={this.handleRemoveField.bind(this, key)}
                       style={{ cursor: 'pointer' }}
-                      type="close"
-                      theme="outlined"
                     />
                   </Col>
                 </Row>

@@ -1,7 +1,9 @@
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { Menu, Icon, Layout, Avatar, Popover, Badge, List } from 'antd'
+import { Menu, Layout, Avatar, Popover, Badge, List } from 'antd'
 import { Ellipsis } from 'ant-design-pro'
+import { Icon as LegacyIcon } from '@ant-design/compatible'
+import { BellOutlined, RightOutlined } from '@ant-design/icons'
 import { Trans, withI18n } from '@lingui/react'
 import { setLocale } from 'utils'
 import moment from 'moment'
@@ -104,11 +106,7 @@ class Header extends PureComponent {
                     }
                     description={moment(item.date).fromNow()}
                   />
-                  <Icon
-                    style={{ fontSize: 10, color: '#ccc' }}
-                    type="right"
-                    theme="outlined"
-                  />
+                  <RightOutlined style={{ fontSize: 10, color: '#ccc' }} />
                 </List.Item>
               )}
             />
@@ -129,7 +127,7 @@ class Header extends PureComponent {
           offset={[-10, 10]}
           className={styles.iconButton}
         >
-          <Icon className={styles.iconFont} type="bell" />
+          <BellOutlined className={styles.iconFont} />
         </Badge>
       </Popover>
     )
@@ -146,7 +144,7 @@ class Header extends PureComponent {
           className={styles.button}
           onClick={onCollapseChange.bind(this, !collapsed)}
         >
-          <Icon
+          <LegacyIcon
             type={classnames({
               'menu-unfold': collapsed,
               'menu-fold': !collapsed,
