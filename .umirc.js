@@ -3,6 +3,8 @@ import { resolve } from 'path'
 import { i18n } from './src/utils/config'
 
 export default {
+  publicPath: 'https://cdn.antd-admin.zuiidea.com/',
+  hash: true,
   ignoreMomentLocale: true,
   targets: { ie: 9 },
   treeShaking: true,
@@ -99,4 +101,58 @@ export default {
       'lodash',
     ],
   ],
+  chainWebpack: function(config, { webpack }) {
+    config.merge({
+      optimization: {
+        minimize: true,
+        splitChunks: {
+          chunks: 'all',
+          minSize: 30000,
+          minChunks: 3,
+          automaticNameDelimiter: '.',
+          cacheGroups: {
+            react: {
+              name: 'react',
+              priority: 20,
+              test: /[\\/]node_modules[\\/](react|react-dom|react-dom-router)[\\/]/,
+            },
+            antd: {
+              name: 'antd',
+              priority: 20,
+              test: /[\\/]node_modules[\\/](antd|@ant-design\/icons|@ant-design\/compatible|ant-design-pro)[\\/]/,
+            },
+            echarts: {
+              name: 'echarts',
+              priority: 20,
+              test: /[\\/]node_modules[\\/]echarts|echarts-for-react|echarts-gl|echarts-liquidfill[\\/]/,
+            },
+            highcharts: {
+              name: 'highcharts',
+              priority: 20,
+              test: /[\\/]node_modules[\\/](highcharts-exporting|highcharts-more|react-highcharts)[\\/]/,
+            },
+            recharts: {
+              name: 'recharts',
+              priority: 20,
+              test: /[\\/]node_modules[\\/](recharts)[\\/]/,
+            },
+            draftjs: {
+              name: 'draftjs',
+              priority: 20,
+              test: /[\\/]node_modules[\\/](draftjs-to-html|draftjs-to-markdown)[\\/]/,
+            },
+            async: {
+              chunks: 'async',
+              minChunks: 2,
+              name: 'async',
+              maxInitialRequests: 1,
+              minSize: 0,
+              priority: 5,
+              reuseExistingChunk: true,
+            },
+          },
+        },
+      },
+    })
+  },
 }
