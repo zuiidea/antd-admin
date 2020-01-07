@@ -9,3 +9,4 @@
 - Guide
   - [Deploy](deploy.md)
 - [Change Log](change-log.md)
+- [FAQ](faq.md)
