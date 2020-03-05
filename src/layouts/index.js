@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import withRouter from 'umi/withRouter'
+import { withRouter } from 'umi'
 import { ConfigProvider } from 'antd'
 import { I18nProvider } from '@lingui/react'
 import { langFromPath, defaultLanguage } from 'utils'

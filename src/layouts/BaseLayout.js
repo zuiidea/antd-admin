@@ -6,7 +6,7 @@ import { Loader } from 'components'
 import { queryLayout } from 'utils'
 import NProgress from 'nprogress'
 import config from 'utils/config'
-import withRouter from 'umi/withRouter'
+import { withRouter } from 'umi'
 
 import PublicLayout from './PublicLayout'
 import PrimaryLayout from './PrimaryLayout'

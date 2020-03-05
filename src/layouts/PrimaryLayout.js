@@ -2,7 +2,7 @@
 /* global document */
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import withRouter from 'umi/withRouter'
+import { withRouter } from 'umi'
 import { connect } from 'dva'
 import { MyLayout } from 'components'
 import { BackTop, Layout, Drawer } from 'antd'

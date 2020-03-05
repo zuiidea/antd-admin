@@ -1,5 +1,5 @@
 import { cloneDeep, isString, flow, curry } from 'lodash'
-import umiRouter from 'umi/router'
+import { history } from 'umi'
 import pathToRegexp from 'path-to-regexp'
 import { i18n } from './config'
 import moment from 'moment'
@@ -140,11 +140,11 @@ const routerAddLangPrefix = params => {
 /**
  * Adjust the router to automatically add the current language prefix before the pathname in push and replace.
  */
-const myRouter = { ...umiRouter }
+const myRouter = { ...history }
 
 myRouter.push = flow(
   routerAddLangPrefix,
-  umiRouter.push
+  history.push
 )
 
 myRouter.replace = flow(
@@ -266,7 +266,7 @@ export function getLocale() {
 export function setLocale(language) {
   if (getLocale() !== language) {
     moment.locale(language === 'zh' ? 'zh-cn' : language)
-    umiRouter.push({
+    history.push({
       pathname: `/${language}${deLangPrefix(window.location.pathname)}`,
       search: window.location.search,
     })

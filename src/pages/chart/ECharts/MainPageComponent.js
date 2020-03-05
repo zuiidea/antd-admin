@@ -1,6 +1,6 @@
 import React from 'react'
 import AdSense from 'react-adsense'
-import { Link } from 'react-router'
+import { Link } from 'umi'
 import DynamicChartComponent from './DynamicChartComponent.js'
 
 const MainPageComponent = () => {
