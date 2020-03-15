@@ -6,7 +6,6 @@ import classnames from 'classnames'
 import { Form } from '@ant-design/compatible'
 import '@ant-design/compatible/assets/index.css'
 import { CloseOutlined } from '@ant-design/icons'
-import { Trans } from '@lingui/react'
 import api from '@/services/api'
 import { Page } from 'components'
 

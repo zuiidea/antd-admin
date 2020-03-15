@@ -3,11 +3,9 @@ import PropTypes from 'prop-types'
 import { Breadcrumb } from 'antd'
 import { Link, withRouter } from 'umi'
 import { Icon as LegacyIcon } from '@ant-design/compatible'
-import { withI18n } from '@lingui/react'
 import { pathMatchRegexp, queryAncestors, addLangPrefix } from 'utils'
 import styles from './Bread.less'
 
-@withI18n()
 @withRouter
 class Bread extends PureComponent {
   generateBreadcrumbs = paths => {

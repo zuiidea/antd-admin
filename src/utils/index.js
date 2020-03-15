@@ -1,19 +1,11 @@
-import { cloneDeep, isString, flow, curry } from 'lodash'
-import { history } from 'umi'
-import pathToRegexp from 'path-to-regexp'
-import { i18n } from './config'
-import moment from 'moment'
+import { cloneDeep } from 'lodash'
+const { pathToRegexp } = require("path-to-regexp")
 import 'moment/locale/zh-cn'
 
 export classnames from 'classnames'
 export config from './config'
 export request from './request'
 export { Color } from './theme'
-
-// export const { defaultLanguage } = i18n
-// export const languages = i18n.languages.map(item => item.key)
-export const languages = i18n ? i18n.languages.map(item => item.key) : []
-export const defaultLanguage = i18n ? i18n.defaultLanguage : ''
 
 /**
  * Query objects that specify keys and values in an array where all values are objects.
@@ -62,97 +54,6 @@ export function arrayToTree(
   })
   return result
 }
-
-// export const langFromPath = curry(
-//   /**
-//    * Query language from pathname.
-//    * @param   {array}     languages         Specify which languages are currently available.
-//    * @param   {string}    defaultLanguage   Specify the default language.
-//    * @param   {string}    pathname          Pathname to be queried.
-//    * @return  {string}    Return the queryed language.
-//    */
-//   (languages, defaultLanguage, pathname) => {
-//     for (const item of languages) {
-//       if (pathname.startsWith(`/${item}/`)) {
-//         return item
-//       }
-//     }
-//     return defaultLanguage
-//   }
-// )(languages)(defaultLanguage)
-
-export const langFromPath = pathname => {
-  for (const item of languages) {
-    if (pathname.startsWith(`/${item}/`)) {
-      return item
-    }
-  }
-  return defaultLanguage
-}
-
-export const deLangPrefix = curry(
-  /**
-   * Remove the language prefix in pathname.
-   * @param   {array}     languages  Specify which languages are currently available.
-   * @param   {string}    pathname   Remove the language prefix in the pathname.
-   * @return  {string}    Return the pathname after removing the language prefix.
-   */
-  (languages, pathname) => {
-    if (!pathname) {
-      return
-    }
-    for (const item of languages) {
-      if (pathname.startsWith(`/${item}/`)) {
-        return pathname.replace(`/${item}/`, '/')
-      }
-    }
-
-    return pathname
-  }
-)(languages)
-
-/**
- * Add the language prefix in pathname.
- * @param   {string}    pathname   Add the language prefix in the pathname.
- * @return  {string}    Return the pathname after adding the language prefix.
- */
-export function addLangPrefix(pathname) {
-  if (!i18n) {
-    return pathname
-  }
-
-  const prefix = langFromPath(window.location.pathname)
-  return `/${prefix}${deLangPrefix(pathname)}`
-}
-
-const routerAddLangPrefix = params => {
-  if (!i18n) {
-    return params
-  }
-  if (isString(params)) {
-    params = addLangPrefix(params)
-  } else {
-    params.pathname = addLangPrefix(params.pathname)
-  }
-  return params
-}
-
-/**
- * Adjust the router to automatically add the current language prefix before the pathname in push and replace.
- */
-const myRouter = { ...history }
-
-myRouter.push = flow(
-  routerAddLangPrefix,
-  history.push
-)
-
-myRouter.replace = flow(
-  routerAddLangPrefix,
-  myRouter.replace
-)
-
-export const router = myRouter
 
 /**
  * Whether the path matches the regexp if the language prefix is ignored, https://github.com/pillarjs/path-to-regexp.
@@ -257,18 +158,4 @@ export function queryLayout(layouts, pathname) {
   }
 
   return result
-}
-
-export function getLocale() {
-  return langFromPath(window.location.pathname)
-}
-
-export function setLocale(language) {
-  if (getLocale() !== language) {
-    moment.locale(language === 'zh' ? 'zh-cn' : language)
-    history.push({
-      pathname: `/${language}${deLangPrefix(window.location.pathname)}`,
-      search: window.location.search,
-    })
-  }
 }

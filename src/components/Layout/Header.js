@@ -2,9 +2,9 @@ import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Menu, Layout, Avatar, Popover, Badge, List } from 'antd'
 import { Ellipsis } from 'ant-design-pro'
+import { useIntl } from 'umi'
 import { Icon as LegacyIcon } from '@ant-design/compatible'
 import { BellOutlined, RightOutlined } from '@ant-design/icons'
-import { Trans, withI18n } from '@lingui/react'
 import { setLocale } from 'utils'
 import moment from 'moment'
 import classnames from 'classnames'
@@ -13,7 +13,6 @@ import styles from './Header.less'
 
 const { SubMenu } = Menu
 
-@withI18n()
 class Header extends PureComponent {
   handleClickMenu = e => {
     e.key === 'SignOut' && this.props.onSignOut()
@@ -29,14 +28,16 @@ class Header extends PureComponent {
       onCollapseChange,
       onAllNotificationsRead,
     } = this.props
-
+    const intl = useIntl()
     const rightContent = [
       <Menu key="user" mode="horizontal" onClick={this.handleClickMenu}>
         <SubMenu
           title={
             <Fragment>
               <span style={{ color: '#999', marginRight: 4 }}>
-                <Trans>Hi,</Trans>
+                {intl.formatMessage({
+                  id: 'Hi,'
+                })}
               </span>
               <span>{username}</span>
               <Avatar style={{ marginLeft: 8 }} src={avatar} />
@@ -44,7 +45,9 @@ class Header extends PureComponent {
           }
         >
           <Menu.Item key="SignOut">
-            <Trans>Sign out</Trans>
+            {intl.formatMessage({
+                  id: 'Sign out'
+                })}
           </Menu.Item>
         </SubMenu>
       </Menu>,

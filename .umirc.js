@@ -6,14 +6,15 @@ const path = require('path')
 const lessToJs = require('less-vars-to-js')
 
 export default {
-  publicPath: 'https://cdn.antd-admin.zuiidea.com/',
+  // IMPORTANT! change next line to yours or delete. And hide in dev
+  // publicPath: 'https://cdn.antd-admin.zuiidea.com/',
   hash: true,
   ignoreMomentLocale: true,
   targets: { ie: 9 },
   dva: { immer: true },
   antd: {},
   dynamicImport: {
-    loading: 'components/Loader/Loader'
+    // loading: 'components/Loader/Loader'
   },
   // TODO: routes need to be array
   // routes: {
@@ -66,7 +67,6 @@ export default {
     themes: resolve(__dirname, './src/themes'),
     utils: resolve(__dirname, './src/utils'),
   },
-  extraBabelPresets: ['@lingui/babel-preset-react'],
   extraBabelPlugins: [
     [
       'import',

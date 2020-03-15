@@ -1,5 +1,5 @@
 import { pathMatchRegexp } from './index'
-import pathToRegexp from 'path-to-regexp'
+const { pathToRegexp } = require("path-to-regexp")
 
 describe('test pathMatchRegexp', () => {
   it('get right', () => {

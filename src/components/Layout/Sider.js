@@ -2,13 +2,11 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Switch, Layout } from 'antd'
 import { BulbOutlined } from '@ant-design/icons'
-import { withI18n, Trans } from '@lingui/react'
 import ScrollBar from '../ScrollBar'
 import { config } from 'utils'
 import SiderMenu from './Menu'
 import styles from './Sider.less'
 
-@withI18n()
 class Sider extends PureComponent {
   render() {
     const {
@@ -59,7 +57,11 @@ class Sider extends PureComponent {
           <div className={styles.switchTheme}>
             <span>
               <BulbOutlined />
-              <Trans>Switch Theme</Trans>
+              {intl.formatMessage(
+                {
+                  id: 'Switch Theme',
+                  defaultMessage: '你好，旅行者',
+                })}
             </span>
             <Switch
               onChange={onThemeChange.bind(

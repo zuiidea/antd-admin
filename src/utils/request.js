@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { cloneDeep, isEmpty } from 'lodash'
-import pathToRegexp from 'path-to-regexp'
+const { pathToRegexp } = require("path-to-regexp")
 import { message } from 'antd'
 import { CANCEL_REQUEST_MESSAGE } from 'utils/constant'
 import qs from 'qs'
