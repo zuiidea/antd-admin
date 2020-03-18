@@ -1,6 +1,5 @@
 // https://umijs.org/config/
 import { resolve } from 'path'
-import { i18n } from './src/utils/config'
 const fs = require('fs')
 const path = require('path')
 const lessToJs = require('less-vars-to-js')
@@ -14,32 +13,8 @@ export default {
   dva: { immer: true },
   antd: {},
   dynamicImport: {
-    // loading: 'components/Loader/Loader'
+    loading: 'components/Loader/Loader'
   },
-  // TODO: routes need to be array
-  // routes: {
-  //   update: routes => {
-  //     if (!i18n) return routes
-
-  //     const newRoutes = []
-  //     for (const item of routes[0].routes) {
-  //       newRoutes.push(item)
-  //       if (item.path) {
-  //         newRoutes.push(
-  //           Object.assign({}, item, {
-  //             path:
-  //               `/:lang(${i18n.languages
-  //                 .map(item => item.key)
-  //                 .join('|')})` + item.path,
-  //           })
-  //         )
-  //       }
-  //     }
-  //     routes[0].routes = newRoutes
-
-  //     return routes
-  //   },
-  // },
   // not support in umi@3
   // pwa: {
   //   manifestOptions: {
@@ -67,6 +42,7 @@ export default {
     themes: resolve(__dirname, './src/themes'),
     utils: resolve(__dirname, './src/utils'),
   },
+  extraBabelPresets: ['@lingui/babel-preset-react'],
   extraBabelPlugins: [
     [
       'import',

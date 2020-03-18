@@ -1,9 +1,8 @@
 import axios from 'axios'
 import { cloneDeep, isEmpty } from 'lodash'
-const { pathToRegexp } = require("path-to-regexp")
+const { parse, compile } = require("path-to-regexp")
 import { message } from 'antd'
 import { CANCEL_REQUEST_MESSAGE } from 'utils/constant'
-import qs from 'qs'
 
 const { CancelToken } = axios
 window.cancelRequest = new Map()
@@ -20,8 +19,8 @@ export default function request(options) {
       url = url.slice(domain.length)
     }
 
-    const match = pathToRegexp.parse(url)
-    url = pathToRegexp.compile(url)(data)
+    const match = parse(url)
+    url = compile(url)(data)
 
     for (const item of match) {
       if (item instanceof Object && item.name in cloneData) {

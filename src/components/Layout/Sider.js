@@ -1,12 +1,14 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Switch, Layout } from 'antd'
+import { withI18n, Trans } from '@lingui/react'
 import { BulbOutlined } from '@ant-design/icons'
 import ScrollBar from '../ScrollBar'
 import { config } from 'utils'
 import SiderMenu from './Menu'
 import styles from './Sider.less'
 
+@withI18n()
 class Sider extends PureComponent {
   render() {
     const {

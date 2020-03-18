@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
 import { Tabs } from 'antd'
-import { router } from 'utils'
+import { history } from 'umi'
 import { stringify } from 'qs'
 import { Page } from 'components'
 import List from './components/List'
@@ -19,7 +19,7 @@ class Post extends PureComponent {
   handleTabClick = key => {
     const { pathname } = this.props.location
 
-    router.push({
+    history.push({
       pathname,
       search: stringify({
         status: key,
@@ -37,7 +37,7 @@ class Post extends PureComponent {
       dataSource: list,
       loading: loading.effects['post/query'],
       onChange(page) {
-        router.push({
+        history.push({
           pathname,
           search: stringify({
             ...query,

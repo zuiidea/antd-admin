@@ -6,6 +6,7 @@
   "dependencies": {
     "@ant-design/compatible": "^1.0.0",
     "@ant-design/icons": "^4.0.0",
+    "@lingui/react": "^2.8.0",
     "ant-design-pro": "^2.3.0",
     "antd": "^4.0.0",
     "axios": "^0.19.0",
@@ -38,6 +39,9 @@
     "store": "^2.0.0"
   },
   "devDependencies": {
+    "@lingui/babel-preset-react": "^2.8.2",
+    "@lingui/cli": "^2.8.2",
+    "@lingui/loader": "^2.8.2",
     "@umijs/preset-react": "^1.4.0",
     "babel-eslint": "^10.0.1",
     "babel-plugin-dev-expression": "^0.2.1",

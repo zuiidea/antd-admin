@@ -56,16 +56,6 @@ export function arrayToTree(
 }
 
 /**
- * Whether the path matches the regexp if the language prefix is ignored, https://github.com/pillarjs/path-to-regexp.
- * @param   {string|regexp|array}     regexp     Specify a string, array of strings, or a regular expression.
- * @param   {string}                  pathname   Specify the pathname to match.
- * @return  {array|null}              Return the result of the match or null.
- */
-export function pathMatchRegexp(regexp, pathname) {
-  return pathToRegexp(regexp).exec(deLangPrefix(pathname))
-}
-
-/**
  * In an array object, traverse all parent IDs based on the value of an object.
  * @param   {array}     array     The Array need to Converted.
  * @param   {string}    current   Specify the value of the object that needs to be queried.
@@ -127,7 +117,7 @@ export function queryLayout(layouts, pathname) {
   const isMatch = regepx => {
     return regepx instanceof RegExp
       ? regepx.test(pathname)
-      : pathMatchRegexp(regepx, pathname)
+      : pathToRegexp(regepx, pathname)
   }
 
   for (const item of layouts) {

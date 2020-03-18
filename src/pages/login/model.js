@@ -1,4 +1,5 @@
-import { router, pathMatchRegexp } from 'utils'
+import { history } from 'umi'
+const { pathToRegexp } = require("path-to-regexp")
 import api from 'api'
 
 const { loginUser } = api
@@ -15,11 +16,11 @@ export default {
       if (data.success) {
         const { from } = locationQuery
         yield put({ type: 'app/query' })
-        if (!pathMatchRegexp('/login', from)) {
-          if (['', '/'].includes(from)) router.push('/dashboard')
-          else router.push(from)
+        if (!pathToRegexp('/login', from)) {
+          if (['', '/'].includes(from)) history.push('/dashboard')
+          else history.push(from)
         } else {
-          router.push('/dashboard')
+          history.push('/dashboard')
         }
       } else {
         throw data

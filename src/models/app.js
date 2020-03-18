@@ -1,10 +1,11 @@
 /* global window */
 
-import { router } from 'utils'
+import { history } from 'umi'
 import { stringify } from 'qs'
 import store from 'store'
+const { pathToRegexp } = require("path-to-regexp")
 import { ROLE_TYPE } from 'utils/constant'
-import { queryLayout, pathMatchRegexp } from 'utils'
+import { queryLayout } from 'utils'
 import { CANCEL_REQUEST_MESSAGE } from 'utils/constant'
 import api from 'api'
 import config from 'config'
@@ -12,8 +13,8 @@ import config from 'config'
 const { queryRouteList, logoutUser, queryUserInfo } = api
 
 const goDashboard = () => {
-  if (pathMatchRegexp(['/', '/login'], window.location.pathname)) {
-    router.push({
+  if (pathToRegexp(['/', '/login'], window.location.pathname)) {
+    history.push({
       pathname: '/dashboard',
     })
   }
@@ -112,7 +113,7 @@ export default {
         store.set('isInit', true)
         goDashboard()
       } else if (queryLayout(config.layouts, locationPathname) !== 'public') {
-        router.push({
+        history.push({
           pathname: '/login',
           search: stringify({
             from: locationPathname,

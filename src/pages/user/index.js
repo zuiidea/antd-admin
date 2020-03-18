@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { router } from 'utils'
+import { history } from 'umi'
 import { connect } from 'dva'
 import { Row, Col, Button, Popconfirm } from 'antd'
 import { Page } from 'components'
@@ -16,7 +16,7 @@ class User extends PureComponent {
     const { location } = this.props
     const { query, pathname } = location
 
-    router.push({
+    history.push({
       pathname,
       search: stringify(
         {

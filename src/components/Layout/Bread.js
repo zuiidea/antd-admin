@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { Breadcrumb } from 'antd'
 import { Link, withRouter } from 'umi'
 import { Icon as LegacyIcon } from '@ant-design/compatible'
-import { pathMatchRegexp, queryAncestors, addLangPrefix } from 'utils'
+const { pathToRegexp } = require("path-to-regexp")
+import { queryAncestors } from 'utils'
 import styles from './Bread.less'
 
 @withRouter
@@ -23,7 +24,7 @@ class Bread extends PureComponent {
         item && (
           <Breadcrumb.Item key={key}>
             {paths.length - 1 !== key ? (
-              <Link to={addLangPrefix(item.route) || '#'}>{content}</Link>
+              <Link to={item.route || '#'}>{content}</Link>
             ) : (
               content
             )}
@@ -37,7 +38,7 @@ class Bread extends PureComponent {
 
     // Find a route that matches the pathname.
     const currentRoute = routeList.find(
-      _ => _.route && pathMatchRegexp(_.route, location.pathname)
+      _ => _.route && pathToRegexp(_.route, location.pathname)
     )
 
     // Find the breadcrumb navigation of the current route match and all its ancestors.

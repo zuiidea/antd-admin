@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react'
-import { Redirect, useIntl } from 'umi'
+import { Redirect } from 'umi'
+import { withI18n } from '@lingui/react'
 
+@withI18n()
 class Index extends PureComponent {
   render() {
-    return <Redirect to={intl.formatMessage(
-      {
-        id: '/dashboard',
-      }) } />
+    const { i18n } = this.props
+    return <Redirect to={i18n.t`/dashboard`} />
   }
 }
 

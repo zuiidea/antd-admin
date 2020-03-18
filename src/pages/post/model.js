@@ -1,6 +1,6 @@
 import modelExtend from 'dva-model-extend'
 import api from 'api'
-import { pathMatchRegexp } from 'utils'
+const { pathToRegexp } = require("path-to-regexp")
 import { pageModel } from 'utils/model'
 
 const { queryPostList } = api
@@ -11,7 +11,7 @@ export default modelExtend(pageModel, {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(location => {
-        if (pathMatchRegexp('/post', location.pathname)) {
+        if (pathToRegexp('/post', location.pathname)) {
           dispatch({
             type: 'query',
             payload: {

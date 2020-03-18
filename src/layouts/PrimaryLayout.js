@@ -2,13 +2,14 @@
 /* global document */
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { withRouter } from 'umi'
+import { withRouter, getLocale } from 'umi'
 import { connect } from 'dva'
 import { MyLayout } from 'components'
 import { BackTop, Layout, Drawer } from 'antd'
 import { GlobalFooter } from 'ant-design-pro'
 import { enquireScreen, unenquireScreen } from 'enquire-js'
-import { config, pathMatchRegexp, langFromPath } from 'utils'
+const { pathToRegexp } = require("path-to-regexp")
+import { config } from 'utils'
 import Error from '../pages/404'
 import styles from './PrimaryLayout.less'
 import store from 'store'
@@ -56,7 +57,7 @@ class PrimaryLayout extends PureComponent {
 
     // Localized route name.
 
-    const lang = langFromPath(location.pathname)
+    const lang = getLocale()
     const newRouteList =
       lang !== 'en'
         ? routeList.map(item => {
@@ -70,7 +71,7 @@ class PrimaryLayout extends PureComponent {
 
     // Find a route that matches the pathname.
     const currentRoute = newRouteList.find(
-      _ => _.route && pathMatchRegexp(_.route, location.pathname)
+      _ => _.route && pathToRegexp(_.route, location.pathname)
     )
 
     // Query whether you have permission to enter this page
