@@ -63,6 +63,7 @@
     "stylelint": "^13.2.0",
     "stylelint-config-prettier": "^8.0.0",
     "stylelint-config-standard": "^20.0.0",
+    "typescript": "^3.8.3",
     "umi": "^3.0.0"
   },
   "engines": {
@@ -93,7 +94,7 @@
     "format": "minimal",
     "extractBabelOptions": {
       "presets": [
-        "umi/babel"
+        "@umijs/babel-preset-umi"
       ]
     }
   },

@@ -2,11 +2,13 @@ import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Breadcrumb } from 'antd'
 import { Link, withRouter } from 'umi'
+import { withI18n } from '@lingui/react'
 import { Icon as LegacyIcon } from '@ant-design/compatible'
 const { pathToRegexp } = require("path-to-regexp")
 import { queryAncestors } from 'utils'
 import styles from './Bread.less'
 
+@withI18n()
 @withRouter
 class Bread extends PureComponent {
   generateBreadcrumbs = paths => {

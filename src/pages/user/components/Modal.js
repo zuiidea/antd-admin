@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import { Input, InputNumber, Radio, Modal, Cascader } from 'antd'
 import { Form } from '@ant-design/compatible'
 import '@ant-design/compatible/assets/index.css'
-import { useIntl } from 'umi';
-
+import { Trans, withI18n } from '@lingui/react'
 import city from 'utils/city'
 
 const FormItem = Form.Item
@@ -17,7 +16,7 @@ const formItemLayout = {
     span: 14,
   },
 }
-
+@withI18n()
 @Form.create()
 class UserModal extends PureComponent {
   handleOk = () => {
@@ -54,10 +53,7 @@ class UserModal extends PureComponent {
               ],
             })(<Input />)}
           </FormItem>
-          <FormItem label={intl.formatMessage(
-        {
-          id: 'NickName'
-        })} hasFeedback {...formItemLayout}>
+          <FormItem label={i18n.t`NickName`} hasFeedback {...formItemLayout}>
             {getFieldDecorator('nickName', {
               initialValue: item.nickName,
               rules: [
@@ -79,18 +75,10 @@ class UserModal extends PureComponent {
             })(
               <Radio.Group>
                 <Radio value>
-                {intl.formatMessage(
-                  {
-                    id: 'Male',
-                    defaultMessage: '你好，旅行者',
-                  })}
+                  <Trans>Male</Trans>
                 </Radio>
                 <Radio value={false}>
-                  {intl.formatMessage(
-                  {
-                    id: 'Female',
-                    defaultMessage: '你好，旅行者',
-                  })}
+                  <Trans>Female</Trans>
                 </Radio>
               </Radio.Group>
             )}

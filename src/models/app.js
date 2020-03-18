@@ -52,6 +52,7 @@ export default {
       dispatch({ type: 'query' })
     },
     setupHistory({ dispatch, history }) {
+      console.log(history)
       history.listen(location => {
         dispatch({
           type: 'updateState',

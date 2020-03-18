@@ -6,13 +6,14 @@ import { GlobalFooter } from 'ant-design-pro'
 import { Form } from '@ant-design/compatible'
 import '@ant-design/compatible/assets/index.css'
 import { GithubOutlined } from '@ant-design/icons'
-
+import { Trans, withI18n } from '@lingui/react'
 import { setLocale } from 'utils'
 import config from 'utils/config'
 
 import styles from './index.less'
 const FormItem = Form.Item
 
+@withI18n()
 @connect(({ loading }) => ({ loading }))
 @Form.create()
 class Login extends PureComponent {
@@ -94,15 +95,15 @@ class Login extends PureComponent {
                 onClick={this.handleOk}
                 loading={loading.effects.login}
               >
-                {Intl.formatMessage({id: 'Sign in'})}
+                <Trans>Sign in</Trans>
               </Button>
               <p>
                 <span>
-                  {Intl.formatMessage({id: 'Username'})}
+                  <Trans>Username</Trans>
                   ：guest
                 </span>
                 <span>
-                  {Intl.formatMessage({id: 'Password'})}
+                  <Trans>Password</Trans>
                   ：guest
                 </span>
               </p>

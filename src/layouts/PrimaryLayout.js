@@ -2,14 +2,14 @@
 /* global document */
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { withRouter, getLocale } from 'umi'
+import { withRouter } from 'umi'
 import { connect } from 'dva'
 import { MyLayout } from 'components'
 import { BackTop, Layout, Drawer } from 'antd'
 import { GlobalFooter } from 'ant-design-pro'
 import { enquireScreen, unenquireScreen } from 'enquire-js'
 const { pathToRegexp } = require("path-to-regexp")
-import { config } from 'utils'
+import { config, getLocale } from 'utils'
 import Error from '../pages/404'
 import styles from './PrimaryLayout.less'
 import store from 'store'

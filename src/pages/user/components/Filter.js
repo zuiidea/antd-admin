@@ -7,6 +7,7 @@ import { FilterItem } from 'components'
 import { Form } from '@ant-design/compatible'
 
 import '@ant-design/compatible/assets/index.css'
+import { Trans, withI18n } from '@lingui/react'
 import { Button, Row, Col, DatePicker, Input, Cascader } from 'antd'
 import city from 'utils/city'
 
@@ -26,6 +27,7 @@ const TwoColProps = {
   xl: 96,
 }
 
+@withI18n()
 @Form.create()
 class Filter extends Component {
   handleFields = fields => {

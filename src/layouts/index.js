@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { withRouter, setLocale } from 'umi'
+import { withRouter } from 'umi'
 import { ConfigProvider } from 'antd'
-import { langFromPath, defaultLanguage } from 'utils'
+import { I18nProvider } from '@lingui/react'
+import { getLocale } from 'utils'
 import zh_CN from 'antd/lib/locale-provider/zh_CN'
 import en_US from 'antd/lib/locale-provider/en_US'
 import pt_BR from 'antd/lib/locale-provider/pt_BR'
@@ -23,14 +24,38 @@ class Layout extends Component {
   language = defaultLanguage
 
   componentDidMount() {
+    const language = getLocale()
+    this.language = language
+    language && this.loadCatalog(language)
   }
 
   shouldComponentUpdate(nextProps, nextState) {
+    const language = getLocale()
+    const preLanguage = this.language
+    const { catalogs } = nextState
+
+    if (preLanguage !== language && !catalogs[language]) {
+      language && this.loadCatalog(language)
+      this.language = language
+      return false
+    }
+    this.language = language
+
+    return true
   }
 
   loadCatalog = async language => {
-    // false means no refresh
-    setLocale(language, false)
+    const catalog = await import(
+      /* webpackMode: "lazy", webpackChunkName: "i18n-[index]" */
+      `@lingui/loader!../locales/${language}/messages.json`
+    )
+
+    this.setState(state => ({
+      catalogs: {
+        ...state.catalogs,
+        [language]: catalog,
+      },
+    }))
   }
 
   render() {

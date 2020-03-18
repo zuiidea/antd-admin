@@ -2,23 +2,22 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Table, Modal, Avatar } from 'antd'
 import { DropOption } from 'components'
-import { Link, useIntl } from 'umi'
+import { Trans, withI18n } from '@lingui/react'
+import { Link } from 'umi'
 import styles from './List.less'
 
 const { confirm } = Modal
 
+@withI18n()
 class List extends PureComponent {
   handleMenuClick = (record, e) => {
-    const { onDeleteItem, onEditItem } = this.props
+    const { onDeleteItem, onEditItem, i18n } = this.props
 
     if (e.key === '1') {
       onEditItem(record)
     } else if (e.key === '2') {
       confirm({
-        title: intl.formatMessage(
-          {
-            id: 'Are you sure delete this record?',
-          }),
+        title: i18n.t`Are you sure delete this record?`,
         onOk() {
           onDeleteItem(record.id)
         },
@@ -27,11 +26,11 @@ class List extends PureComponent {
   }
 
   render() {
-    const { onDeleteItem, onEditItem, ...tableProps } = this.props
-    const intl = useIntl()
+    const { onDeleteItem, onEditItem, i18n, ...tableProps } = this.props
+
     const columns = [
       {
-        title: intl.formatMessage({id: 'Avatar'}),
+        title: <Trans>Avatar</Trans>,
         dataIndex: 'avatar',
         key: 'avatar',
         width: 72,
@@ -39,49 +38,49 @@ class List extends PureComponent {
         render: text => <Avatar style={{ marginLeft: 8 }} src={text} />,
       },
       {
-        title: intl.formatMessage({id: 'Name'}),
+        title: <Trans>Name</Trans>,
         dataIndex: 'name',
         key: 'name',
         render: (text, record) => <Link to={`user/${record.id}`}>{text}</Link>,
       },
       {
-        title: intl.formatMessage({id: 'NickName'}),
+        title: <Trans>NickName</Trans>,
         dataIndex: 'nickName',
         key: 'nickName',
       },
       {
-        title: intl.formatMessage({id: 'Age'}),
+        title: <Trans>Age</Trans>,
         dataIndex: 'age',
         key: 'age',
       },
       {
-        title: intl.formatMessage({id: 'Gender'}),
+        title: <Trans>Gender</Trans>,
         dataIndex: 'isMale',
         key: 'isMale',
         render: text => <span>{text ? 'Male' : 'Female'}</span>,
       },
       {
-        title: intl.formatMessage({id: 'Phone'}),
+        title: <Trans>Phone</Trans>,
         dataIndex: 'phone',
         key: 'phone',
       },
       {
-        title: intl.formatMessage({id: 'Email'}),
+        title: <Trans>Email</Trans>,
         dataIndex: 'email',
         key: 'email',
       },
       {
-        title: intl.formatMessage({id: 'Address'}),
+        title: <Trans>Address</Trans>,
         dataIndex: 'address',
         key: 'address',
       },
       {
-        title: intl.formatMessage({id: 'CreateTime'}),
+        title: <Trans>CreateTime</Trans>,
         dataIndex: 'createTime',
         key: 'createTime',
       },
       {
-        title: intl.formatMessage({id: 'Operation'}),
+        title: <Trans>Operation</Trans>,
         key: 'operation',
         fixed: 'right',
         render: (text, record) => {
@@ -89,14 +88,8 @@ class List extends PureComponent {
             <DropOption
               onMenuClick={e => this.handleMenuClick(record, e)}
               menuOptions={[
-                { key: '1', name: intl.formatMessage(
-                  {
-                    id: 'Update',
-                  }) },
-                { key: '2', name: intl.formatMessage(
-                  {
-                    id: 'Delete',
-                  }) },
+                { key: '1', name: i18n.t`Update` },
+                { key: '2', name: i18n.t`Delete` },
               ]}
             />
           )
@@ -109,7 +102,7 @@ class List extends PureComponent {
         {...tableProps}
         pagination={{
           ...tableProps.pagination,
-          showTotal: total => intl.formatMessage({name: 'Total '},{id: 'Avatar'}, { name: 'Items'}),
+          showTotal: total => i18n.t`Total ${total} Items`,
         }}
         className={styles.table}
         bordered

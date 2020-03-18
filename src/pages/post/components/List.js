@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react'
 import { Table, Avatar } from 'antd'
+import { withI18n } from '@lingui/react'
 import { Ellipsis } from 'ant-design-pro'
 import styles from './List.less'
 
+@withI18n()
 class List extends PureComponent {
   render() {
     const { i18n, ...tableProps } = this.props

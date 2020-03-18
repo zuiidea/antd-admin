@@ -59,11 +59,7 @@ class Sider extends PureComponent {
           <div className={styles.switchTheme}>
             <span>
               <BulbOutlined />
-              {intl.formatMessage(
-                {
-                  id: 'Switch Theme',
-                  defaultMessage: '你好，旅行者',
-                })}
+              <Trans>Switch Theme</Trans>
             </span>
             <Switch
               onChange={onThemeChange.bind(

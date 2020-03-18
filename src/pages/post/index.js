@@ -4,6 +4,7 @@ import { connect } from 'dva'
 import { Tabs } from 'antd'
 import { history } from 'umi'
 import { stringify } from 'qs'
+import { withI18n } from '@lingui/react'
 import { Page } from 'components'
 import List from './components/List'
 

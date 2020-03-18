@@ -1,11 +1,16 @@
 import { cloneDeep } from 'lodash'
 const { pathToRegexp } = require("path-to-regexp")
 import 'moment/locale/zh-cn'
+import store from 'store'
+import { i18n } from './config'
 
 export classnames from 'classnames'
 export config from './config'
 export request from './request'
 export { Color } from './theme'
+
+export const languages = i18n ? i18n.languages.map(item => item.key) : []
+export const defaultLanguage = i18n ? i18n.defaultLanguage : ''
 
 /**
  * Query objects that specify keys and values in an array where all values are objects.
@@ -54,6 +59,8 @@ export function arrayToTree(
   })
   return result
 }
+
+
 
 /**
  * In an array object, traverse all parent IDs based on the value of an object.
@@ -148,4 +155,20 @@ export function queryLayout(layouts, pathname) {
   }
 
   return result
+}
+
+
+export function getLocale() {
+  return store.get('locale')
+}
+
+export function setLocale(language) {
+  if (getLocale() !== language) {
+    moment.locale(language === 'zh' ? 'zh-cn' : language)
+    store.set('locale', language)
+    history.push({
+      pathname: `/${window.location.pathname}`,
+      search: window.location.search,
+    })
+  }
 }

@@ -90,7 +90,7 @@ const database = [
       name: 'Editor'
     },
     icon: 'edit',
-    route: '/UIElement/editor',
+    route: '/editor',
   },
   {
     id: '5',
