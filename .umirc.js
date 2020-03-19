@@ -13,7 +13,7 @@ export default {
   dva: { immer: true },
   antd: {},
   dynamicImport: {
-    loading: 'components/Loader/Loader'
+    loading: 'components/Loader/Loader',
   },
   // not support in umi@3
   // pwa: {
@@ -23,7 +23,9 @@ export default {
   // },
   // Theme for antd
   // https://ant.design/docs/react/customize-theme
-  theme: lessToJs(fs.readFileSync(path.join(__dirname, './src/themes/default.less'), 'utf8')),
+  theme: lessToJs(
+    fs.readFileSync(path.join(__dirname, './src/themes/default.less'), 'utf8')
+  ),
   // Webpack Configuration
   proxy: {
     '/api/v1/weather': {
@@ -54,7 +56,17 @@ export default {
       'lodash',
     ],
   ],
-  chainWebpack: function (config, { webpack }) {
+  chainWebpack: function(config, { webpack }) {
+    config.module
+      .rule('js-in-node_modules')
+      .exclude.add(/node_modules/)
+      .end()
+
+    config.module
+      .rule('ts-in-node_modules')
+      .exclude.add(/node_modules/)
+      .end()
+
     config.merge({
       optimization: {
         minimize: true,
