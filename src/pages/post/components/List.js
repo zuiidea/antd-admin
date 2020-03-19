@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Table, Avatar } from 'antd'
 import { withI18n } from '@lingui/react'
-import { Ellipsis } from 'ant-design-pro'
+import { Ellipsis } from 'components'
 import styles from './List.less'
 
 @withI18n()

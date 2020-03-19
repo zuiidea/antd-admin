@@ -3,12 +3,8 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 import { FilterItem } from 'components'
 
-/* global document */
-import { Form } from '@ant-design/compatible'
-
-import '@ant-design/compatible/assets/index.css'
 import { Trans, withI18n } from '@lingui/react'
-import { Button, Row, Col, DatePicker, Input, Cascader } from 'antd'
+import { Button, Row, Col, DatePicker, Form, Input, Cascader } from 'antd'
 import city from 'utils/city'
 
 const { Search } = Input
@@ -28,7 +24,6 @@ const TwoColProps = {
 }
 
 @withI18n()
-@Form.create()
 class Filter extends Component {
   handleFields = fields => {
     const { createTime } = fields
@@ -42,7 +37,8 @@ class Filter extends Component {
   }
 
   handleSubmit = () => {
-    const { onFilterChange, form } = this.props
+    const { onFilterChange } = this.props
+    const [form] = Form.useForm()
     const { getFieldsValue } = form
 
     let fields = getFieldsValue()
@@ -51,7 +47,7 @@ class Filter extends Component {
   }
 
   handleReset = () => {
-    const { form } = this.props
+    const [form] = Form.useForm()
     const { getFieldsValue, setFieldsValue } = form
 
     const fields = getFieldsValue()
@@ -78,7 +74,8 @@ class Filter extends Component {
   }
 
   render() {
-    const { onAdd, filter, form, i18n } = this.props
+    const { onAdd, filter, i18n } = this.props
+    const [form] = Form.useForm()
     const { getFieldDecorator } = form
     const { name, address } = filter
 
@@ -91,14 +88,15 @@ class Filter extends Component {
     }
 
     return (
+      <Form initialValue={{ name, address, createTime: initialCreateTime }}>
       <Row gutter={24}>
         <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }}>
-          {getFieldDecorator('name', { initialValue: name })(
+          <Form.Item name = "name">
             <Search
-              placeholder={i18n.t`Search Name`}
-              onSearch={this.handleSubmit}
-            />
-          )}
+                placeholder={i18n.t`Search Name`}
+                onSearch={this.handleSubmit}
+              />
+          </Form.Item>
         </Col>
         <Col
           {...ColProps}
@@ -106,7 +104,7 @@ class Filter extends Component {
           md={{ span: 8 }}
           id="addressCascader"
         >
-          {getFieldDecorator('address', { initialValue: address })(
+          <Form.Item name = "address">
             <Cascader
               style={{ width: '100%' }}
               options={city}
@@ -116,7 +114,7 @@ class Filter extends Component {
                 document.getElementById('addressCascader')
               }
             />
-          )}
+          </Form.Item>
         </Col>
         <Col
           {...ColProps}
@@ -126,9 +124,7 @@ class Filter extends Component {
           id="createTimeRangePicker"
         >
           <FilterItem label={i18n.t`CreateTime`}>
-            {getFieldDecorator('createTime', {
-              initialValue: initialCreateTime,
-            })(
+            <Form.Item name="createTime">
               <RangePicker
                 style={{ width: '100%' }}
                 onChange={this.handleChange.bind(this, 'createTime')}
@@ -136,7 +132,7 @@ class Filter extends Component {
                   return document.getElementById('createTimeRangePicker')
                 }}
               />
-            )}
+            </Form.Item>
           </FilterItem>
         </Col>
         <Col
@@ -163,7 +159,7 @@ class Filter extends Component {
             </Button>
           </Row>
         </Col>
-      </Row>
+      </Row></Form>
     )
   }
 }

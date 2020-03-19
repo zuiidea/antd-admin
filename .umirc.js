@@ -72,7 +72,7 @@ export default {
             antd: {
               name: 'antd',
               priority: 20,
-              test: /[\\/]node_modules[\\/](antd|@ant-design\/icons|@ant-design\/compatible|ant-design-pro)[\\/]/,
+              test: /[\\/]node_modules[\\/](antd|@ant-design\/icons|@ant-design\/compatible)[\\/]/,
             },
             echarts: {
               name: 'echarts',

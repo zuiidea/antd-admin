@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Input, InputNumber, Radio, Modal, Cascader } from 'antd'
-import { Form } from '@ant-design/compatible'
-import '@ant-design/compatible/assets/index.css'
+import { Form, Input, InputNumber, Radio, Modal, Cascader } from 'antd'
 import { Trans, withI18n } from '@lingui/react'
 import city from 'utils/city'
 
@@ -17,10 +15,10 @@ const formItemLayout = {
   },
 }
 @withI18n()
-@Form.create()
 class UserModal extends PureComponent {
   handleOk = () => {
-    const { item = {}, onOk, form } = this.props
+    const { item = {}, onOk } = this.props
+    const [form] = Form.useForm()
     const { validateFields, getFieldsValue } = form
 
     validateFields(errors => {
@@ -42,37 +40,17 @@ class UserModal extends PureComponent {
 
     return (
       <Modal {...modalProps} onOk={this.handleOk}>
-        <Form layout="horizontal">
-          <FormItem label={i18n.t`Name`} hasFeedback {...formItemLayout}>
-            {getFieldDecorator('name', {
-              initialValue: item.name,
-              rules: [
-                {
-                  required: true,
-                },
-              ],
-            })(<Input />)}
+        <Form initialValues={{ ...item, address:item.address && item.address.split(' ') , }} layout="horizontal">
+          <FormItem name='name' rules={{required: true}}
+            label={i18n.t`Name`} hasFeedback {...formItemLayout}>
+            <Input />
           </FormItem>
-          <FormItem label={i18n.t`NickName`} hasFeedback {...formItemLayout}>
-            {getFieldDecorator('nickName', {
-              initialValue: item.nickName,
-              rules: [
-                {
-                  required: true,
-                },
-              ],
-            })(<Input />)}
+          <FormItem name='nickName' rules={{required: true}} 
+            label={i18n.t`NickName`} hasFeedback {...formItemLayout}>
+            <Input />
           </FormItem>
-          <FormItem label={i18n.t`Gender`} hasFeedback {...formItemLayout}>
-            {getFieldDecorator('isMale', {
-              initialValue: item.isMale,
-              rules: [
-                {
-                  required: true,
-                  type: 'boolean',
-                },
-              ],
-            })(
+          <FormItem name='isMale' rules={{required: true}}
+            label={i18n.t`Gender`} hasFeedback {...formItemLayout}>
               <Radio.Group>
                 <Radio value>
                   <Trans>Male</Trans>
@@ -81,58 +59,25 @@ class UserModal extends PureComponent {
                   <Trans>Female</Trans>
                 </Radio>
               </Radio.Group>
-            )}
           </FormItem>
-          <FormItem label={i18n.t`Age`} hasFeedback {...formItemLayout}>
-            {getFieldDecorator('age', {
-              initialValue: item.age,
-              rules: [
-                {
-                  required: true,
-                  type: 'number',
-                },
-              ],
-            })(<InputNumber min={18} max={100} />)}
+          <FormItem name='age' label={i18n.t`Age`} hasFeedback {...formItemLayout}>
+            <InputNumber min={18} max={100} />
           </FormItem>
-          <FormItem label={i18n.t`Phone`} hasFeedback {...formItemLayout}>
-            {getFieldDecorator('phone', {
-              initialValue: item.phone,
-              rules: [
-                {
-                  required: true,
-                  pattern: /^1[34578]\d{9}$/,
-                  message: i18n.t`The input is not valid phone!`,
-                },
-              ],
-            })(<Input />)}
+          <FormItem name='phone' rules={{required: true,pattern: /^1[34578]\d{9}$/,message: i18n.t`The input is not valid phone!`,}}
+            label={i18n.t`Phone`} hasFeedback {...formItemLayout}>
+            <Input />
           </FormItem>
-          <FormItem label={i18n.t`Email`} hasFeedback {...formItemLayout}>
-            {getFieldDecorator('email', {
-              initialValue: item.email,
-              rules: [
-                {
-                  required: true,
-                  pattern: /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/,
-                  message: i18n.t`The input is not valid E-mail!`,
-                },
-              ],
-            })(<Input />)}
+          <FormItem name='email' rules={{ required: true, pattern: /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/, message: i18n.t`The input is not valid E-mail!`, }}
+            label={i18n.t`Email`} hasFeedback {...formItemLayout}>
+            <Input />
           </FormItem>
-          <FormItem label={i18n.t`Address`} hasFeedback {...formItemLayout}>
-            {getFieldDecorator('address', {
-              initialValue: item.address && item.address.split(' '),
-              rules: [
-                {
-                  required: true,
-                },
-              ],
-            })(
+          <FormItem name='address' rules={{ required: true, }}
+            label={i18n.t`Address`} hasFeedback {...formItemLayout}>
               <Cascader
                 style={{ width: '100%' }}
                 options={city}
                 placeholder={i18n.t`Pick an address`}
               />
-            )}
           </FormItem>
         </Form>
       </Modal>

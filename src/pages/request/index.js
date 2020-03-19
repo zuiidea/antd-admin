@@ -1,10 +1,8 @@
 import React from 'react'
 import { request } from 'utils'
 import { apiPrefix } from 'utils/config'
-import { Row, Col, Select, Input, Button, List, Tag, Checkbox } from 'antd'
+import { Row, Col, Select, Form, Input, Button, List, Tag, Checkbox } from 'antd'
 import classnames from 'classnames'
-import { Form } from '@ant-design/compatible'
-import '@ant-design/compatible/assets/index.css'
 import { CloseOutlined } from '@ant-design/icons'
 import { Trans } from '@lingui/react'
 import api from '@/services/api'
@@ -38,7 +36,6 @@ const requests = Object.values(api).map(item => {
 })
 
 let uuid = 2
-@Form.create()
 class RequestPage extends React.Component {
   constructor(props) {
     super(props)
@@ -188,7 +185,7 @@ class RequestPage extends React.Component {
                 <Trans>Send</Trans>
               </Button>
             </Row>
-
+            <Form >
             <div
               className={classnames(styles.paramsBlock, {
                 [styles.hideParams]: !visible,
@@ -203,19 +200,19 @@ class RequestPage extends React.Component {
                   key={key}
                 >
                   <Col style={{ marginTop: 8 }}>
-                    {getFieldDecorator(`check[${key}]`, {
-                      initialValue: true,
-                    })(<Checkbox defaultChecked />)}
+                    <Form.Item name={`check[${key}]`}>
+                      <Checkbox defaultChecked />
+                    </Form.Item>
                   </Col>
                   <Col style={{ marginTop: 8 }}>
-                    {getFieldDecorator(`key[${key}]`)(
+                    <Form.Item name={`key[${key}]`}>
                       <Input placeholder="Key" />
-                    )}
+                    </Form.Item>
                   </Col>
                   <Col style={{ marginTop: 8 }}>
-                    {getFieldDecorator(`value[${key}]`)(
+                    <Form.Item name={`value[${key}]`}>
                       <Input placeholder="Value" />
-                    )}
+                    </Form.Item>
                   </Col>
                   <Col style={{ marginTop: 8 }}>
                     <CloseOutlined
@@ -232,7 +229,7 @@ class RequestPage extends React.Component {
                 </Button>
               </Row>
             </div>
-
+            </Form>
             <div className={styles.result}>{result}</div>
           </Col>
         </Row>
