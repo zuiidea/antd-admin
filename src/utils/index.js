@@ -124,7 +124,7 @@ export function queryLayout(layouts, pathname) {
   const isMatch = regepx => {
     return regepx instanceof RegExp
       ? regepx.test(pathname)
-      : pathToRegexp(regepx, pathname)
+      : pathToRegexp(regepx).exec(pathname)
   }
 
   for (const item of layouts) {

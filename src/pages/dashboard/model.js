@@ -35,8 +35,8 @@ export default modelExtend(model, {
     setup({ dispatch, history }) {
       history.listen(({ pathname }) => {
         if (
-          pathToRegexp('/dashboard', pathname) ||
-          pathToRegexp('/', pathname)
+          pathToRegexp('/dashboard').exec(pathname) ||
+          pathToRegexp('/').exec(pathname)
         ) {
           dispatch({ type: 'query' })
           dispatch({ type: 'queryWeather' })

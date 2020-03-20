@@ -80,7 +80,7 @@ class SiderMenu extends PureComponent {
 
     // Find a menu that matches the pathname.
     const currentMenu = menus.find(
-      _ => _.route && pathToRegexp(_.route, location.pathname)
+      _ => _.route && pathToRegexp(_.route).exec(location.pathname)
     )
 
     // Find the key that should be selected according to the current menu.

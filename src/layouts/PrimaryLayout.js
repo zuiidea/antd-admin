@@ -70,7 +70,7 @@ class PrimaryLayout extends PureComponent {
 
     // Find a route that matches the pathname.
     const currentRoute = newRouteList.find(
-      _ => _.route && pathToRegexp(_.route, location.pathname)
+      _ => _.route && pathToRegexp(_.route).exec(location.pathname)
     )
 
     // Query whether you have permission to enter this page

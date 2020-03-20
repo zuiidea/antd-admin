@@ -13,7 +13,7 @@ import config from 'config'
 const { queryRouteList, logoutUser, queryUserInfo } = api
 
 const goDashboard = () => {
-  if (pathToRegexp(['/', '/login'], window.location.pathname)) {
+  if (pathToRegexp(['/', '/login']).exec(window.location.pathname)) {
     history.push({
       pathname: '/dashboard',
     })

@@ -16,7 +16,7 @@ export default {
       if (data.success) {
         const { from } = locationQuery
         yield put({ type: 'app/query' })
-        if (!pathToRegexp('/login', from)) {
+        if (!pathToRegexp('/login').exec(from)) {
           if (['', '/'].includes(from)) history.push('/dashboard')
           else history.push(from)
         } else {

@@ -40,7 +40,7 @@ class Bread extends PureComponent {
 
     // Find a route that matches the pathname.
     const currentRoute = routeList.find(
-      _ => _.route && pathToRegexp(_.route, location.pathname)
+      _ => _.route && pathToRegexp(_.route).exec(location.pathname)
     )
 
     // Find the breadcrumb navigation of the current route match and all its ancestors.
