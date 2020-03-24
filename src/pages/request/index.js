@@ -37,6 +37,7 @@ const requests = Object.values(api).map(item => {
 
 let uuid = 2
 class RequestPage extends React.Component {
+  formRef = React.createRef()
   constructor(props) {
     super(props)
     this.state = {
@@ -51,15 +52,17 @@ class RequestPage extends React.Component {
   handleRequest = () => {
     const { method, url } = this.state
 
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
+    this.formRef.current.validateFields()
+      .then(values => {
+        // values: { check[1]: true, key[1]: 'username', value[1]: 'admin' }
+
         const params = {}
-        if (values.key) {
-          values.key.forEach((item, index) => {
-            if (item && values.check[index]) {
-              params[item] = values.value[index]
-            }
-          })
+        for (let i in values) {
+          if (i.startsWith('check')) {
+            const index = i.match(/check\[(\d+)\]/)[1]
+            const key = values[`key[${index}]`]
+            params[key] = values[`value[${index}]`]
+          }
         }
 
         request({ method, url, data: params }).then(data => {
@@ -67,8 +70,23 @@ class RequestPage extends React.Component {
             result: JSON.stringify(data),
           })
         })
-      }
-    })
+      })
+      .catch(errorInfo => {
+        console.log(errorInfo)
+        /*
+        errorInfo:
+          {
+            values: {
+              username: 'username',
+              password: 'password',
+            },
+            errorFields: [
+              { password: ['username'], errors: ['Please input your Password!'] },
+            ],
+            outOfDate: false,
+          }
+        */
+      })
   }
 
   handleClickListItem = ({ method, url }) => {
@@ -116,7 +134,6 @@ class RequestPage extends React.Component {
 
   render() {
     const { result, url, method, keys, visible } = this.state
-    const { getFieldDecorator } = this.props.form
 
     return (
       <Page inner>
@@ -185,50 +202,50 @@ class RequestPage extends React.Component {
                 <Trans>Send</Trans>
               </Button>
             </Row>
-            <Form >
-            <div
-              className={classnames(styles.paramsBlock, {
-                [styles.hideParams]: !visible,
-              })}
-            >
-              {keys.map((key, index) => (
-                <Row
-                  gutter={8}
-                  type="flex"
-                  justify="start"
-                  align="middle"
-                  key={key}
-                >
-                  <Col style={{ marginTop: 8 }}>
-                    <Form.Item name={`check[${key}]`}>
-                      <Checkbox defaultChecked />
-                    </Form.Item>
-                  </Col>
-                  <Col style={{ marginTop: 8 }}>
-                    <Form.Item name={`key[${key}]`}>
-                      <Input placeholder="Key" />
-                    </Form.Item>
-                  </Col>
-                  <Col style={{ marginTop: 8 }}>
-                    <Form.Item name={`value[${key}]`}>
-                      <Input placeholder="Value" />
-                    </Form.Item>
-                  </Col>
-                  <Col style={{ marginTop: 8 }}>
-                    <CloseOutlined
-                      onClick={this.handleRemoveField.bind(this, key)}
-                      style={{ cursor: 'pointer' }}
-                    />
-                  </Col>
-                </Row>
-              ))}
+            <Form ref={this.formRef} name="control-ref" >
+              <div
+                className={classnames(styles.paramsBlock, {
+                  [styles.hideParams]: !visible,
+                })}
+              >
+                {keys.map((key, index) => (
+                  <Row
+                    gutter={8}
+                    type="flex"
+                    justify="start"
+                    align="middle"
+                    key={key}
+                  >
+                    <Col style={{ marginTop: 8 }}>
+                      <Form.Item name={`check[${key}]`} valuePropName="checked">
+                        <Checkbox defaultChecked />
+                      </Form.Item>
+                    </Col>
+                    <Col style={{ marginTop: 8 }}>
+                      <Form.Item name={`key[${key}]`}>
+                        <Input placeholder="Key" />
+                      </Form.Item>
+                    </Col>
+                    <Col style={{ marginTop: 8 }}>
+                      <Form.Item name={`value[${key}]`}>
+                        <Input placeholder="Value" />
+                      </Form.Item>
+                    </Col>
+                    <Col style={{ marginTop: 8 }}>
+                      <CloseOutlined
+                        onClick={this.handleRemoveField.bind(this, key)}
+                        style={{ cursor: 'pointer' }}
+                      />
+                    </Col>
+                  </Row>
+                ))}
 
-              <Row style={{ marginTop: 8 }}>
-                <Button onClick={this.handleAddField}>
-                  <Trans>Add Param</Trans>
-                </Button>
-              </Row>
-            </div>
+                <Row style={{ marginTop: 8 }}>
+                  <Button onClick={this.handleAddField}>
+                    <Trans>Add Param</Trans>
+                  </Button>
+                </Row>
+              </div>
             </Form>
             <div className={styles.result}>{result}</div>
           </Col>

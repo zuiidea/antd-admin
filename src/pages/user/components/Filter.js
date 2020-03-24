@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 import { FilterItem } from 'components'
 
-import { Trans, withI18n } from '@lingui/react'
+import { Trans } from '@lingui/react'
 import { Button, Row, Col, DatePicker, Form, Input, Cascader } from 'antd'
 import city from 'utils/city'
 
@@ -23,14 +23,12 @@ const TwoColProps = {
   xl: 96,
 }
 
-@withI18n()
 class Filter extends Component {
   formRef = React.createRef()
 
   handleFields = fields => {
-    console.log(fields)
     const { createTime } = fields
-    if (createTime.length) {
+    if (createTime && createTime.length) {
       fields.createTime = [
         moment(createTime[0]).format('YYYY-MM-DD'),
         moment(createTime[1]).format('YYYY-MM-DD'),
@@ -39,10 +37,10 @@ class Filter extends Component {
     return fields
   }
 
-  handleSubmit = values => {
+  handleSubmit = () => {
     const { onFilterChange } = this.props
-
-    fields = this.handleFields(values)
+    const values = this.formRef.current.getFieldsValue()
+    const fields = this.handleFields(values)
     onFilterChange(fields)
   }
 
@@ -62,7 +60,6 @@ class Filter extends Component {
   }
   handleChange = (key, values) => {
     const { onFilterChange } = this.props
-
     let fields = this.formRef.current.getFieldsValue()
     fields[key] = values
     fields = this.handleFields(fields)
@@ -103,9 +100,6 @@ class Filter extends Component {
                 style={{ width: '100%' }}
                 options={city}
                 placeholder={i18n.t`Please pick an address`}
-                getPopupContainer={() =>
-                  document.getElementById('addressCascader')
-                }
               />
             </Form.Item>
           </Col>
@@ -120,9 +114,6 @@ class Filter extends Component {
               <Form.Item name="createTime">
                 <RangePicker
                   style={{ width: '100%' }}
-                  getCalendarContainer={() => {
-                    return document.getElementById('createTimeRangePicker')
-                  }}
                 />
               </Form.Item>
             </FilterItem>

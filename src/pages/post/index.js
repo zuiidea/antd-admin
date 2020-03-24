@@ -15,6 +15,7 @@ const EnumPostStatus = {
   PUBLISHED: 2,
 }
 
+@withI18n()
 @connect(({ post, loading }) => ({ post, loading }))
 class Post extends PureComponent {
   handleTabClick = key => {

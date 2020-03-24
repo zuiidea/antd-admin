@@ -53,6 +53,7 @@ class User extends PureComponent {
     const { currentItem, modalVisible, modalType } = user
 
     return {
+      i18n,
       item: modalType === 'create' ? {} : currentItem,
       visible: modalVisible,
       destroyOnClose: true,
@@ -129,10 +130,11 @@ class User extends PureComponent {
   }
 
   get filterProps() {
-    const { location, dispatch } = this.props
+    const { location, dispatch, i18n } = this.props
     const { query } = location
 
     return {
+      i18n,
       filter: {
         ...query,
       },
