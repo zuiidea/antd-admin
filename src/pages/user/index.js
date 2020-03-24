@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { history } from 'umi'
-import { connect } from 'dva'
+import { connect } from 'umi'
 import { Row, Col, Button, Popconfirm } from 'antd'
 import { withI18n } from '@lingui/react'
 import { Page } from 'components'

@@ -25,7 +25,10 @@ const TwoColProps = {
 
 @withI18n()
 class Filter extends Component {
+  formRef = React.createRef()
+
   handleFields = fields => {
+    console.log(fields)
     const { createTime } = fields
     if (createTime.length) {
       fields.createTime = [
@@ -36,21 +39,15 @@ class Filter extends Component {
     return fields
   }
 
-  handleSubmit = () => {
+  handleSubmit = values => {
     const { onFilterChange } = this.props
-    const [form] = Form.useForm()
-    const { getFieldsValue } = form
 
-    let fields = getFieldsValue()
-    fields = this.handleFields(fields)
+    fields = this.handleFields(values)
     onFilterChange(fields)
   }
 
   handleReset = () => {
-    const [form] = Form.useForm()
-    const { getFieldsValue, setFieldsValue } = form
-
-    const fields = getFieldsValue()
+    const fields = this.formRef.current.getFieldsValue()
     for (let item in fields) {
       if ({}.hasOwnProperty.call(fields, item)) {
         if (fields[item] instanceof Array) {
@@ -60,14 +57,13 @@ class Filter extends Component {
         }
       }
     }
-    setFieldsValue(fields)
+    this.formRef.current.setFieldsValue(fields)
     this.handleSubmit()
   }
   handleChange = (key, values) => {
-    const { form, onFilterChange } = this.props
-    const { getFieldsValue } = form
+    const { onFilterChange } = this.props
 
-    let fields = getFieldsValue()
+    let fields = this.formRef.current.getFieldsValue()
     fields[key] = values
     fields = this.handleFields(fields)
     onFilterChange(fields)
@@ -75,8 +71,6 @@ class Filter extends Component {
 
   render() {
     const { onAdd, filter, i18n } = this.props
-    const [form] = Form.useForm()
-    const { getFieldDecorator } = form
     const { name, address } = filter
 
     let initialCreateTime = []
@@ -88,85 +82,83 @@ class Filter extends Component {
     }
 
     return (
-      <Form initialValue={{ name, address, createTime: initialCreateTime }}>
-      <Row gutter={24}>
-        <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }}>
-          <Form.Item name = "name">
-            <Search
+      <Form ref={this.formRef} name="control-ref" initialValues={{ name, address, createTime: initialCreateTime }}>
+        <Row gutter={24}>
+          <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }}>
+            <Form.Item name="name">
+              <Search
                 placeholder={i18n.t`Search Name`}
                 onSearch={this.handleSubmit}
               />
-          </Form.Item>
-        </Col>
-        <Col
-          {...ColProps}
-          xl={{ span: 4 }}
-          md={{ span: 8 }}
-          id="addressCascader"
-        >
-          <Form.Item name = "address">
-            <Cascader
-              style={{ width: '100%' }}
-              options={city}
-              placeholder={i18n.t`Please pick an address`}
-              onChange={this.handleChange.bind(this, 'address')}
-              getPopupContainer={() =>
-                document.getElementById('addressCascader')
-              }
-            />
-          </Form.Item>
-        </Col>
-        <Col
-          {...ColProps}
-          xl={{ span: 6 }}
-          md={{ span: 8 }}
-          sm={{ span: 12 }}
-          id="createTimeRangePicker"
-        >
-          <FilterItem label={i18n.t`CreateTime`}>
-            <Form.Item name="createTime">
-              <RangePicker
+            </Form.Item>
+          </Col>
+          <Col
+            {...ColProps}
+            xl={{ span: 4 }}
+            md={{ span: 8 }}
+            id="addressCascader"
+          >
+            <Form.Item name="address">
+              <Cascader
                 style={{ width: '100%' }}
-                onChange={this.handleChange.bind(this, 'createTime')}
-                getCalendarContainer={() => {
-                  return document.getElementById('createTimeRangePicker')
-                }}
+                options={city}
+                placeholder={i18n.t`Please pick an address`}
+                getPopupContainer={() =>
+                  document.getElementById('addressCascader')
+                }
               />
             </Form.Item>
-          </FilterItem>
-        </Col>
-        <Col
-          {...TwoColProps}
-          xl={{ span: 10 }}
-          md={{ span: 24 }}
-          sm={{ span: 24 }}
-        >
-          <Row type="flex" align="middle" justify="space-between">
-            <div>
-              <Button
-                type="primary"
-                className="margin-right"
-                onClick={this.handleSubmit}
-              >
-                <Trans>Search</Trans>
+          </Col>
+          <Col
+            {...ColProps}
+            xl={{ span: 6 }}
+            md={{ span: 8 }}
+            sm={{ span: 12 }}
+            id="createTimeRangePicker"
+          >
+            <FilterItem label={i18n.t`CreateTime`}>
+              <Form.Item name="createTime">
+                <RangePicker
+                  style={{ width: '100%' }}
+                  getCalendarContainer={() => {
+                    return document.getElementById('createTimeRangePicker')
+                  }}
+                />
+              </Form.Item>
+            </FilterItem>
+          </Col>
+          <Col
+            {...TwoColProps}
+            xl={{ span: 10 }}
+            md={{ span: 24 }}
+            sm={{ span: 24 }}
+          >
+            <Row type="flex" align="middle" justify="space-between">
+              <div>
+                <Button
+                  type="primary" htmlType="submit"
+                  className="margin-right"
+                  onClick={this.handleSubmit}
+                >
+                  <Trans>Search</Trans>
+                </Button>
+                <Button onClick={this.handleReset}>
+                  <Trans>Reset</Trans>
+                </Button>
+              </div>
+              <Button type="ghost" onClick={onAdd}>
+                <Trans>Create</Trans>
               </Button>
-              <Button onClick={this.handleReset}>
-                <Trans>Reset</Trans>
-              </Button>
-            </div>
-            <Button type="ghost" onClick={onAdd}>
-              <Trans>Create</Trans>
-            </Button>
-          </Row>
-        </Col>
-      </Row></Form>
+            </Row>
+          </Col>
+        </Row>
+      </Form>
     )
   }
 }
 
 Filter.propTypes = {
   onAdd: PropTypes.func,
-  form: PropTypes.object,
   filter: PropTypes.object,
   onFilterChange: PropTypes.func,
 }

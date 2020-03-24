@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'dva'
+import { connect } from 'umi'
 import { Helmet } from 'react-helmet'
 import { Loader } from 'components'
 import { queryLayout } from 'utils'

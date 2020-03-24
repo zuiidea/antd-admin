@@ -8,7 +8,14 @@ export default {
   namespace: 'login',
 
   state: {},
-
+  // subscriptions: {
+  //   setup({ dispatch, history }) {
+  //     history.listen(location => {
+  //       if (pathToRegexp('/login').exec(location.pathname)) {
+  //       }
+  //     })
+  //   },
+  // },
   effects: {
     *login({ payload }, { put, call, select }) {
       const data = yield call(loginUser, payload)

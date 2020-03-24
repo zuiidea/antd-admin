@@ -1,5 +1,6 @@
 import { cloneDeep } from 'lodash'
 const { pathToRegexp } = require("path-to-regexp")
+import moment from 'moment'
 import 'moment/locale/zh-cn'
 import store from 'store'
 import { i18n } from './config'
@@ -159,16 +160,13 @@ export function queryLayout(layouts, pathname) {
 
 
 export function getLocale() {
-  return store.get('locale')
+  return store.get('locale') || defaultLanguage
 }
 
 export function setLocale(language) {
   if (getLocale() !== language) {
     moment.locale(language === 'zh' ? 'zh-cn' : language)
     store.set('locale', language)
-    history.push({
-      pathname: `/${window.location.pathname}`,
-      search: window.location.search,
-    })
+    window.location.reload()
   }
 }

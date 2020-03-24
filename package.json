@@ -100,6 +100,7 @@
   "scripts": {
     "analyze": "cross-env ANALYZE=1 umi build",
     "build": "umi build",
+    "check:model": "umi dva list model",
     "lint:js": "eslint --ext .js src",
     "lint:style": "stylelint \"src/**/*.less\" --syntax less",
     "start": "umi dev",
