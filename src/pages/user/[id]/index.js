@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'dva'
+import { connect } from 'umi'
 import { Page } from 'components'
 import styles from './index.less'
 

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import withRouter from 'umi/withRouter'
+import { withRouter } from 'umi'
 import { ConfigProvider } from 'antd'
 import { I18nProvider } from '@lingui/react'
-import { langFromPath, defaultLanguage } from 'utils'
+import { getLocale } from 'utils'
+const { i18n } = require('../../src/utils/config')
 import zh_CN from 'antd/lib/locale-provider/zh_CN'
 import en_US from 'antd/lib/locale-provider/en_US'
 import pt_BR from 'antd/lib/locale-provider/pt_BR'
@@ -14,6 +15,7 @@ const languages = {
   en: en_US,
   'pt-br': pt_BR,
 }
+const { defaultLanguage } = i18n
 
 @withRouter
 class Layout extends Component {
@@ -24,13 +26,13 @@ class Layout extends Component {
   language = defaultLanguage
 
   componentDidMount() {
-    const language = langFromPath(this.props.location.pathname)
+    const language = getLocale()
     this.language = language
     language && this.loadCatalog(language)
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    const language = langFromPath(nextProps.location.pathname)
+    const language = getLocale()
     const preLanguage = this.language
     const { catalogs } = nextState
 
@@ -59,10 +61,10 @@ class Layout extends Component {
   }
 
   render() {
-    const { location, children } = this.props
+    const { children } = this.props
     const { catalogs } = this.state
 
-    let language = langFromPath(location.pathname)
+    let language = getLocale()
     // If the language pack is not loaded or is loading, use the default language
     if (!catalogs[language]) language = defaultLanguage
 

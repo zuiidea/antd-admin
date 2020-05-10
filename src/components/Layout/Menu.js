@@ -2,13 +2,11 @@ import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Icon as LegacyIcon } from '@ant-design/compatible'
 import { Menu } from 'antd'
-import Navlink from 'umi/navlink'
-import withRouter from 'umi/withRouter'
+import { NavLink, withRouter } from 'umi'
+const { pathToRegexp } = require("path-to-regexp")
 import {
   arrayToTree,
   queryAncestors,
-  pathMatchRegexp,
-  addLangPrefix,
 } from 'utils'
 import store from 'store'
 
@@ -58,10 +56,10 @@ class SiderMenu extends PureComponent {
       }
       return (
         <Menu.Item key={item.id}>
-          <Navlink to={addLangPrefix(item.route) || '#'}>
+          <NavLink to={item.route || '#'}>
             {item.icon && <LegacyIcon type={item.icon} />}
             <span>{item.name}</span>
-          </Navlink>
+          </NavLink>
         </Menu.Item>
       )
     })
@@ -82,7 +80,7 @@ class SiderMenu extends PureComponent {
 
     // Find a menu that matches the pathname.
     const currentMenu = menus.find(
-      _ => _.route && pathMatchRegexp(_.route, location.pathname)
+      _ => _.route && pathToRegexp(_.route).exec(location.pathname)
     )
 
     // Find the key that should be selected according to the current menu.

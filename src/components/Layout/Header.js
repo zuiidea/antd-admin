@@ -1,7 +1,7 @@
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Menu, Layout, Avatar, Popover, Badge, List } from 'antd'
-import { Ellipsis } from 'ant-design-pro'
+import { Ellipsis } from 'components'
 import { Icon as LegacyIcon } from '@ant-design/compatible'
 import { BellOutlined, RightOutlined } from '@ant-design/icons'
 import { Trans, withI18n } from '@lingui/react'

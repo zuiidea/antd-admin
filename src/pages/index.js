@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import Redirect from 'umi/redirect'
+import { Redirect } from 'umi'
 import { withI18n } from '@lingui/react'
 
 @withI18n()

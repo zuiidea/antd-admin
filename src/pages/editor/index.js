@@ -1,11 +1,11 @@
-import React from 'react'
-import { Editor } from 'components'
+import { Component } from 'react'
+import { Editor, Page } from 'components'
 import { convertToRaw } from 'draft-js'
 import { Row, Col, Card } from 'antd'
 import draftToHtml from 'draftjs-to-html'
 import draftToMarkdown from 'draftjs-to-markdown'
 
-export default class EditorPage extends React.Component {
+export default class EditorPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -26,17 +26,18 @@ export default class EditorPage extends React.Component {
       md: 24,
       style: {
         marginBottom: 32,
-      },
+      }
     }
     const textareaStyle = {
       minHeight: 496,
       width: '100%',
       background: '#f7f7f7',
       borderColor: '#F1F1F1',
-      padding: '16px 8px',
+      padding: '16px 8px'
     }
+
     return (
-      <div className="content-inner">
+      <Page inner>
         <Row gutter={32}>
           <Col {...colProps}>
             <Card title="Editor" style={{ overflow: 'visible' }}>
@@ -98,7 +99,7 @@ export default class EditorPage extends React.Component {
             </Card>
           </Col>
         </Row>
-      </div>
+      </Page>
     )
   }
 }

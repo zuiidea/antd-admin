@@ -1,7 +1,7 @@
 import { parse } from 'qs'
 import modelExtend from 'dva-model-extend'
 import api from 'api'
-import { pathMatchRegexp } from 'utils'
+const { pathToRegexp } = require("path-to-regexp")
 import { model } from 'utils/model'
 
 const { queryDashboard, queryWeather } = api
@@ -35,8 +35,8 @@ export default modelExtend(model, {
     setup({ dispatch, history }) {
       history.listen(({ pathname }) => {
         if (
-          pathMatchRegexp('/dashboard', pathname) ||
-          pathMatchRegexp('/', pathname)
+          pathToRegexp('/dashboard').exec(pathname) ||
+          pathToRegexp('/').exec(pathname)
         ) {
           dispatch({ type: 'query' })
           dispatch({ type: 'queryWeather' })
