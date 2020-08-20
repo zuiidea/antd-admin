@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Icon as LegacyIcon } from '@ant-design/compatible'
 import { Card } from 'antd'
 import CountUp from 'react-countup'
+import iconMap from 'utils/iconMap'
 import styles from './numberCard.less'
+
 
 function NumberCard({ icon, color, title, number, countUp }) {
   return (
@@ -12,7 +13,9 @@ function NumberCard({ icon, color, title, number, countUp }) {
       bordered={false}
       bodyStyle={{ padding: 10 }}
     >
-      <LegacyIcon className={styles.iconWarp} style={{ color }} type={icon} />
+      <span className={styles.iconWarp} style={{ color }}>
+        {iconMap[icon]}
+      </span>
       <div className={styles.content}>
         <p className={styles.title}>{title || 'No Title'}</p>
         <p className={styles.number}>

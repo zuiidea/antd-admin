@@ -38,7 +38,7 @@ function Browser({ data }) {
       pagination={false}
       showHeader={false}
       columns={columns}
-      rowKey={(record, key) => key}
+      rowKey='name'
       dataSource={data}
     />
   )

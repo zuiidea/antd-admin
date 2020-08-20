@@ -54,7 +54,7 @@ function Comments({ data }) {
         pagination={false}
         showHeader={false}
         columns={columns}
-        rowKey={(record, key) => key}
+        rowKey='avatar'
         dataSource={data.filter((item, key) => key < 3)}
       />
     </div>

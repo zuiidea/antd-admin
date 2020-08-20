@@ -1,6 +1,0 @@
-{
-  "version": 2,
-  "name": "antd-admin-devdoc",
-  "alias": ["devdoc-antd-admin.now.sh", "devdoc.antd-admin.zuiidea.com"],
-  "public": true
-}

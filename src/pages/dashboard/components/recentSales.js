@@ -53,7 +53,7 @@ function RecentSales({ data }) {
       <Table
         pagination={false}
         columns={columns}
-        rowKey={(record, key) => key}
+        rowKey='id'
         dataSource={data.filter((item, key) => key < 5)}
       />
     </div>

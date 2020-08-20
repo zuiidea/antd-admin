@@ -1,13 +1,10 @@
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { Icon as LegacyIcon } from '@ant-design/compatible'
 import { Menu } from 'antd'
 import { NavLink, withRouter } from 'umi'
-const { pathToRegexp } = require("path-to-regexp")
-import {
-  arrayToTree,
-  queryAncestors,
-} from 'utils'
+import { pathToRegexp } from 'path-to-regexp'
+import { arrayToTree, queryAncestors } from 'utils'
+import iconMap from 'utils/iconMap'
 import store from 'store'
 
 const { SubMenu } = Menu
@@ -45,7 +42,7 @@ class SiderMenu extends PureComponent {
             key={item.id}
             title={
               <Fragment>
-                {item.icon && <LegacyIcon type={item.icon} />}
+                {item.icon && iconMap[item.icon]}
                 <span>{item.name}</span>
               </Fragment>
             }
@@ -57,7 +54,7 @@ class SiderMenu extends PureComponent {
       return (
         <Menu.Item key={item.id}>
           <NavLink to={item.route || '#'}>
-            {item.icon && <LegacyIcon type={item.icon} />}
+            {item.icon && iconMap[item.icon]}
             <span>{item.name}</span>
           </NavLink>
         </Menu.Item>

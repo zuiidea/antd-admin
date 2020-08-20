@@ -2,8 +2,12 @@ import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Menu, Layout, Avatar, Popover, Badge, List } from 'antd'
 import { Ellipsis } from 'components'
-import { Icon as LegacyIcon } from '@ant-design/compatible'
-import { BellOutlined, RightOutlined } from '@ant-design/icons'
+import {
+  BellOutlined,
+  RightOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+} from '@ant-design/icons'
 import { Trans, withI18n } from '@lingui/react'
 import { setLocale } from 'utils'
 import moment from 'moment'
@@ -144,14 +148,8 @@ class Header extends PureComponent {
           className={styles.button}
           onClick={onCollapseChange.bind(this, !collapsed)}
         >
-          <LegacyIcon
-            type={classnames({
-              'menu-unfold': collapsed,
-              'menu-fold': !collapsed,
-            })}
-          />
+          {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
         </div>
-
         <div className={styles.rightContainer}>{rightContent}</div>
       </Layout.Header>
     )

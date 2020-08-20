@@ -3,20 +3,20 @@ import PropTypes from 'prop-types'
 import { Breadcrumb } from 'antd'
 import { Link, withRouter } from 'umi'
 import { withI18n } from '@lingui/react'
-import { Icon as LegacyIcon } from '@ant-design/compatible'
-const { pathToRegexp } = require("path-to-regexp")
+import iconMap from 'utils/iconMap'
+const { pathToRegexp } = require('path-to-regexp')
 import { queryAncestors } from 'utils'
 import styles from './Bread.less'
 
 @withI18n()
 @withRouter
 class Bread extends PureComponent {
-  generateBreadcrumbs = paths => {
+  generateBreadcrumbs = (paths) => {
     return paths.map((item, key) => {
       const content = item && (
         <Fragment>
           {item.icon && (
-            <LegacyIcon type={item.icon} style={{ marginRight: 4 }} />
+            <span style={{ marginRight: 4 }}>{iconMap[item.icon]}</span>
           )}
           {item.name}
         </Fragment>
@@ -40,7 +40,7 @@ class Bread extends PureComponent {
 
     // Find a route that matches the pathname.
     const currentRoute = routeList.find(
-      _ => _.route && pathToRegexp(_.route).exec(location.pathname)
+      (_) => _.route && pathToRegexp(_.route).exec(location.pathname)
     )
 
     // Find the breadcrumb navigation of the current route match and all its ancestors.

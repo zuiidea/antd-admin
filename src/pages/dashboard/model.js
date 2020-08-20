@@ -5,6 +5,7 @@ const { pathToRegexp } = require("path-to-regexp")
 import { model } from 'utils/model'
 
 const { queryDashboard, queryWeather } = api
+const avatar = '//cdn.antd-admin.zuiidea.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236.jpeg'
 
 export default modelExtend(model, {
   namespace: 'dashboard',
@@ -13,12 +14,11 @@ export default modelExtend(model, {
       city: '深圳',
       temperature: '30',
       name: '晴',
-      icon: '//s5.sencdn.com/web/icons/3d_50/2.png',
+      icon: '//cdn.antd-admin.zuiidea.com/sun.png',
     },
     sales: [],
     quote: {
-      avatar:
-        'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236',
+      avatar,
     },
     numbers: [],
     recentSales: [],
@@ -27,8 +27,7 @@ export default modelExtend(model, {
     browser: [],
     cpu: {},
     user: {
-      avatar:
-        'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236',
+      avatar,
     },
   },
   subscriptions: {
@@ -62,7 +61,7 @@ export default modelExtend(model, {
           city: data.location.name,
           temperature: data.now.temperature,
           name: data.now.text,
-          icon: `//s5.sencdn.com/web/icons/3d_50/${data.now.code}.png`,
+          icon: `//cdn.antd-admin.zuiidea.com/web/icons/3d_50/${data.now.code}.png`,
         }
         yield put({
           type: 'updateState',
