@@ -26,9 +26,9 @@ Take a new layout named `secondary` as an example to make the route starting wit
    import SecondaryLayout from './SecondaryLayout'
 
    const LayoutMap = {
-     Primary: PrimaryLayout,
-     Public: PublicLayout,
-     Secondary: SecondaryLayout,
+     primary: PrimaryLayout,
+     public: PublicLayout,
+     secondary: SecondaryLayout,
    }
 ```
 
@@ -38,7 +38,7 @@ Take a new layout named `secondary` as an example to make the route starting wit
    import React from 'react'
 
    export default ({ children }) => {
-     Return (
+     return (
        <div>
          <h1>Secondary</h1>
          {children}
