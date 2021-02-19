@@ -38,7 +38,7 @@
 
 ## 使用
 
-1. 下载项目代码。
+1. 下载项目代码。
 
 ```bash
 git clone https://github.com/zuiidea/antd-admin.git my-project
