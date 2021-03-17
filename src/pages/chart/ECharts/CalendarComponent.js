@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactEcharts from 'echarts-for-react'
-import echarts from 'echarts'
+import * as echarts from 'echarts'
 
 const CalendarComponent = () => {
   const getVirtulData = year => {
