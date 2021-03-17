@@ -38,6 +38,7 @@
     "store": "^2.0.0"
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.12.13",
     "@lingui/cli": "^3.7.0",
     "@lingui/macro": "^3.7.2",
     "@umijs/preset-react": "^1.4.0",
@@ -82,12 +83,14 @@
     ]
   },
   "lingui": {
-    "fallbackLocale": "en",
+    "fallbackLocales": {
+      "default": "en"
+    },
     "sourceLocale": "en",
     "locales": [
       "en",
       "zh",
-      "pr"
+      "pt-br"
     ],
     "catalogs": [
       {
@@ -103,7 +106,8 @@
     "format": "minimal",
     "extractBabelOptions": {
       "presets": [
-        "@umijs/babel-preset-umi"
+        "@umijs/babel-preset-umi",
+        "@babel/preset-react"
       ]
     }
   },
