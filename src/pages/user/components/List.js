@@ -2,22 +2,22 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Table, Modal, Avatar } from 'antd'
 import { DropOption } from 'components'
-import { Trans, withI18n } from '@lingui/react'
+import { t } from "@lingui/macro"
+import { Trans } from "@lingui/macro"
 import { Link } from 'umi'
 import styles from './List.less'
 
 const { confirm } = Modal
 
-@withI18n()
 class List extends PureComponent {
   handleMenuClick = (record, e) => {
-    const { onDeleteItem, onEditItem, i18n } = this.props
+    const { onDeleteItem, onEditItem } = this.props
 
     if (e.key === '1') {
       onEditItem(record)
     } else if (e.key === '2') {
       confirm({
-        title: i18n.t`Are you sure delete this record?`,
+        title: t`Are you sure delete this record?`,
         onOk() {
           onDeleteItem(record.id)
         },
@@ -26,14 +26,14 @@ class List extends PureComponent {
   }
 
   render() {
-    const { onDeleteItem, onEditItem, i18n, ...tableProps } = this.props
+    const { onDeleteItem, onEditItem, ...tableProps } = this.props
 
     const columns = [
       {
         title: <Trans>Avatar</Trans>,
         dataIndex: 'avatar',
         key: 'avatar',
-        width: 72,
+        width: '7%',
         fixed: 'left',
         render: text => <Avatar style={{ marginLeft: 8 }} src={text} />,
       },
@@ -51,12 +51,14 @@ class List extends PureComponent {
       {
         title: <Trans>Age</Trans>,
         dataIndex: 'age',
+        width: '6%',
         key: 'age',
       },
       {
         title: <Trans>Gender</Trans>,
         dataIndex: 'isMale',
         key: 'isMale',
+        width: '7%',
         render: text => <span>{text ? 'Male' : 'Female'}</span>,
       },
       {
@@ -83,13 +85,14 @@ class List extends PureComponent {
         title: <Trans>Operation</Trans>,
         key: 'operation',
         fixed: 'right',
+        width: '8%',
         render: (text, record) => {
           return (
             <DropOption
               onMenuClick={e => this.handleMenuClick(record, e)}
               menuOptions={[
-                { key: '1', name: i18n.t`Update` },
-                { key: '2', name: i18n.t`Delete` },
+                { key: '1', name: t`Update` },
+                { key: '2', name: t`Delete` },
               ]}
             />
           )
@@ -102,7 +105,7 @@ class List extends PureComponent {
         {...tableProps}
         pagination={{
           ...tableProps.pagination,
-          showTotal: total => i18n.t`Total ${total} Items`,
+          showTotal: total => t`Total ${total} Items`,
         }}
         className={styles.table}
         bordered

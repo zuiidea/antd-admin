@@ -8,8 +8,8 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
 } from '@ant-design/icons'
-import { Trans, withI18n } from '@lingui/react'
-import { setLocale } from 'utils'
+import { Trans } from "@lingui/macro"
+import { getLocale, setLocale } from 'utils'
 import moment from 'moment'
 import classnames from 'classnames'
 import config from 'config'
@@ -17,14 +17,12 @@ import styles from './Header.less'
 
 const { SubMenu } = Menu
 
-@withI18n()
 class Header extends PureComponent {
   handleClickMenu = e => {
     e.key === 'SignOut' && this.props.onSignOut()
   }
   render() {
     const {
-      i18n,
       fixed,
       avatar,
       username,
@@ -56,8 +54,9 @@ class Header extends PureComponent {
 
     if (config.i18n) {
       const { languages } = config.i18n
+      const language = getLocale()
       const currentLanguage = languages.find(
-        item => item.key === i18n._language
+        item => item.key === language
       )
 
       rightContent.unshift(

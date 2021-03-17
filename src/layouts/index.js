@@ -1,14 +1,21 @@
 import React, { Component } from 'react'
 import { withRouter } from 'umi'
 import { ConfigProvider } from 'antd'
+import { i18n } from "@lingui/core"
 import { I18nProvider } from '@lingui/react'
 import { getLocale } from 'utils'
-const { i18n } = require('../../src/utils/config')
+import { zh, en, pt } from 'make-plural/plurals'
 import zh_CN from 'antd/lib/locale-provider/zh_CN'
 import en_US from 'antd/lib/locale-provider/en_US'
 import pt_BR from 'antd/lib/locale-provider/pt_BR'
 
 import BaseLayout from './BaseLayout'
+
+const plurals =  {
+  zh,
+  en,
+  'pt-br': pt,
+}
 
 const languages = {
   zh: zh_CN,
@@ -20,7 +27,6 @@ const { defaultLanguage } = i18n
 @withRouter
 class Layout extends Component {
   state = {
-    catalogs: {},
   }
 
   language = defaultLanguage
@@ -34,9 +40,8 @@ class Layout extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     const language = getLocale()
     const preLanguage = this.language
-    const { catalogs } = nextState
 
-    if (preLanguage !== language && !catalogs[language]) {
+    if (preLanguage !== language && !languages[language]) {
       language && this.loadCatalog(language)
       this.language = language
       return false
@@ -48,29 +53,27 @@ class Layout extends Component {
 
   loadCatalog = async language => {
     const catalog = await import(
-      /* webpackMode: "lazy", webpackChunkName: "i18n-[index]" */
-      `@lingui/loader!../locales/${language}/messages.json`
+      `../locales/${language}/messages.json`
     )
 
-    this.setState(state => ({
-      catalogs: {
-        ...state.catalogs,
-        [language]: catalog,
-      },
-    }))
+    i18n.load(language, catalog)
+    i18n.activate(language)
   }
 
   render() {
     const { children } = this.props
-    const { catalogs } = this.state
 
     let language = getLocale()
     // If the language pack is not loaded or is loading, use the default language
-    if (!catalogs[language]) language = defaultLanguage
+    if (!languages[language]) language = defaultLanguage
+
+    i18n.loadLocaleData(language, { plurals: plurals[language] })
+    i18n.load(language, languages[language])
+    i18n.activate(language)
 
     return (
-      <ConfigProvider locale={languages[language]}>
-        <I18nProvider language={language} catalogs={catalogs}>
+      <ConfigProvider locale={language}>
+        <I18nProvider i18n={i18n}>
           <BaseLayout>{children}</BaseLayout>
         </I18nProvider>
       </ConfigProvider>

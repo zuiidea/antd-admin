@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import { FilterItem } from 'components'
-
-import { Trans } from '@lingui/react'
+import { Trans } from "@lingui/macro"
+import { t } from "@lingui/macro"
 import { Button, Row, Col, DatePicker, Form, Input, Cascader } from 'antd'
 import city from 'utils/city'
 
@@ -67,7 +67,7 @@ class Filter extends Component {
   }
 
   render() {
-    const { onAdd, filter, i18n } = this.props
+    const { onAdd, filter } = this.props
     const { name, address } = filter
 
     let initialCreateTime = []
@@ -84,7 +84,7 @@ class Filter extends Component {
           <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }}>
             <Form.Item name="name">
               <Search
-                placeholder={i18n.t`Search Name`}
+                placeholder={t`Search Name`}
                 onSearch={this.handleSubmit}
               />
             </Form.Item>
@@ -99,7 +99,7 @@ class Filter extends Component {
               <Cascader
                 style={{ width: '100%' }}
                 options={city}
-                placeholder={i18n.t`Please pick an address`}
+                placeholder={t`Please pick an address`}
               />
             </Form.Item>
           </Col>
@@ -110,7 +110,7 @@ class Filter extends Component {
             sm={{ span: 12 }}
             id="createTimeRangePicker"
           >
-            <FilterItem label={i18n.t`CreateTime`}>
+            <FilterItem label={t`CreateTime`}>
               <Form.Item name="createTime">
                 <RangePicker
                   style={{ width: '100%' }}

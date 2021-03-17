@@ -3,14 +3,13 @@ import PropTypes from 'prop-types'
 import { history } from 'umi'
 import { connect } from 'umi'
 import { Row, Col, Button, Popconfirm } from 'antd'
-import { withI18n } from '@lingui/react'
+import { t } from "@lingui/macro"
 import { Page } from 'components'
 import { stringify } from 'qs'
 import List from './components/List'
 import Filter from './components/Filter'
 import Modal from './components/Modal'
 
-@withI18n()
 @connect(({ user, loading }) => ({ user, loading }))
 class User extends PureComponent {
   handleRefresh = newQuery => {
@@ -49,18 +48,17 @@ class User extends PureComponent {
   }
 
   get modalProps() {
-    const { dispatch, user, loading, i18n } = this.props
+    const { dispatch, user, loading } = this.props
     const { currentItem, modalVisible, modalType } = user
 
     return {
-      i18n,
       item: modalType === 'create' ? {} : currentItem,
       visible: modalVisible,
       destroyOnClose: true,
       maskClosable: false,
       confirmLoading: loading.effects[`user/${modalType}`],
       title: `${
-        modalType === 'create' ? i18n.t`Create User` : i18n.t`Update User`
+        modalType === 'create' ? t`Create User` : t`Update User`
       }`,
       centered: true,
       onOk: data => {
@@ -130,11 +128,10 @@ class User extends PureComponent {
   }
 
   get filterProps() {
-    const { location, dispatch, i18n } = this.props
+    const { location, dispatch } = this.props
     const { query } = location
 
     return {
-      i18n,
       filter: {
         ...query,
       },

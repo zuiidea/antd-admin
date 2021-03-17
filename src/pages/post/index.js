@@ -4,7 +4,7 @@ import { connect } from 'umi'
 import { Tabs } from 'antd'
 import { history } from 'umi'
 import { stringify } from 'qs'
-import { withI18n } from '@lingui/react'
+import { t } from "@lingui/macro"
 import { Page } from 'components'
 import List from './components/List'
 
@@ -15,7 +15,6 @@ const EnumPostStatus = {
   PUBLISHED: 2,
 }
 
-@withI18n()
 @connect(({ post, loading }) => ({ post, loading }))
 class Post extends PureComponent {
   handleTabClick = key => {
@@ -52,7 +51,7 @@ class Post extends PureComponent {
   }
 
   render() {
-    const { location, i18n } = this.props
+    const { location } = this.props
     const { query } = location
 
     return (
@@ -66,13 +65,13 @@ class Post extends PureComponent {
           onTabClick={this.handleTabClick}
         >
           <TabPane
-            tab={i18n.t`Publised`}
+            tab={t`Publised`}
             key={String(EnumPostStatus.PUBLISHED)}
           >
             <List {...this.listProps} />
           </TabPane>
           <TabPane
-            tab={i18n.t`Unpublished`}
+            tab={t`Unpublished`}
             key={String(EnumPostStatus.UNPUBLISH)}
           >
             <List {...this.listProps} />

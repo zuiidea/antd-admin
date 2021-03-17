@@ -23,7 +23,6 @@ export default {
   dynamicImport: {
     loading: 'components/Loader/Loader',
   },
-  extraBabelPresets: ['@lingui/babel-preset-react'],
   extraBabelPlugins: [
     [
       'import',
@@ -43,6 +42,9 @@ export default {
       },
       'ant-design-icons',
     ],
+    [
+      'macros'
+    ]
   ],
   hash: true,
   ignoreMomentLocale: true,
@@ -65,6 +67,7 @@ export default {
   theme: lessToJs(
     fs.readFileSync(path.join(__dirname, './src/themes/default.less'), 'utf8')
   ),
+  webpack5: {},
   chainWebpack: function (config, { webpack }) {
     config.merge({
       optimization: {

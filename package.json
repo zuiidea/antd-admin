@@ -5,11 +5,11 @@
   "description": "An admin dashboard application demo built upon Ant Design and UmiJS",
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
-    "@lingui/react": "^2.8.0",
+    "@lingui/react": "^3.7.0",
     "antd": "^4.0.0",
-    "axios": "^0.19.0",
+    "axios": "^0.21.0",
     "classnames": "^2.2.6",
-    "d3-shape": "^1.3.0",
+    "d3-shape": "^2.1.0",
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.0",
     "draftjs-to-markdown": "^0.6.0",
@@ -38,12 +38,13 @@
     "store": "^2.0.0"
   },
   "devDependencies": {
-    "@lingui/babel-preset-react": "^2.9.0",
-    "@lingui/cli": "^2.9.0",
-    "@lingui/loader": "^2.9.0",
+    "@lingui/cli": "^3.7.0",
+    "@lingui/macro": "^3.7.2",
     "@umijs/preset-react": "^1.4.0",
     "babel-eslint": "^10.0.1",
     "babel-plugin-dev-expression": "^0.2.1",
+    "babel-plugin-import": "^1.13.3",
+    "babel-plugin-macros": "^3.0.1",
     "babel-plugin-module-resolver": "^4.0.0",
     "cross-env": "^7.0.0",
     "eslint": "^7.0.0",
@@ -83,12 +84,21 @@
   "lingui": {
     "fallbackLocale": "en",
     "sourceLocale": "en",
-    "localeDir": "src/locales",
-    "srcPathDirs": [
-      "src/pages",
-      "src/layouts",
-      "src/components",
-      "src/layouts"
+    "locales": [
+      "en",
+      "zh",
+      "pr"
+    ],
+    "catalogs": [
+      {
+        "path": "src/locales/{locale}/messages",
+        "include": [
+          "src/pages",
+          "src/layouts",
+          "src/components",
+          "src/layouts"
+        ]
+      }
     ],
     "format": "minimal",
     "extractBabelOptions": {

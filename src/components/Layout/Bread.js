@@ -2,13 +2,12 @@ import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Breadcrumb } from 'antd'
 import { Link, withRouter } from 'umi'
-import { withI18n } from '@lingui/react'
+import { t } from "@lingui/macro"
 import iconMap from 'utils/iconMap'
 const { pathToRegexp } = require('path-to-regexp')
 import { queryAncestors } from 'utils'
 import styles from './Bread.less'
 
-@withI18n()
 @withRouter
 class Bread extends PureComponent {
   generateBreadcrumbs = (paths) => {
@@ -36,7 +35,7 @@ class Bread extends PureComponent {
     })
   }
   render() {
-    const { routeList, location, i18n } = this.props
+    const { routeList, location } = this.props
 
     // Find a route that matches the pathname.
     const currentRoute = routeList.find(
@@ -50,7 +49,7 @@ class Bread extends PureComponent {
           routeList[0],
           {
             id: 404,
-            name: i18n.t`Not Found`,
+            name: t`Not Found`,
           },
         ]
 

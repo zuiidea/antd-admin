@@ -4,7 +4,7 @@ import { apiPrefix } from 'utils/config'
 import { Row, Col, Select, Form, Input, Button, List, Tag, Checkbox } from 'antd'
 import classnames from 'classnames'
 import { CloseOutlined } from '@ant-design/icons'
-import { Trans } from '@lingui/react'
+import { Trans } from "@lingui/macro"
 import api from '@/services/api'
 import { Page } from 'components'
 
