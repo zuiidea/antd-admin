@@ -61,7 +61,6 @@ export default {
       pathRewrite: { '^/api/v1/weather': '/v3/weather' },
     },
   },
-  targets: { ie: 9 },
   // Theme for antd
   // https://ant.design/docs/react/customize-theme
   theme: lessToJs(
