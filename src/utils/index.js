@@ -120,19 +120,19 @@ const routerAddLangPrefix = params => {
 /**
  * Adjust the router to automatically add the current language prefix before the pathname in push and replace.
  */
-const myRouter = { ...umiRouter }
+// const myRouter = { ...umiRouter }
 
-myRouter.push = flow(
-  routerAddLangPrefix,
-  umiRouter.push
-)
+// myRouter.push = flow(
+//   routerAddLangPrefix,
+//   umiRouter.push
+// )
 
-myRouter.replace = flow(
-  routerAddLangPrefix,
-  myRouter.replace
-)
+// myRouter.replace = flow(
+//   routerAddLangPrefix,
+//   myRouter.replace
+// )
 
-export const router = myRouter
+// export const router = myRouter
 
 /**
  * Whether the path matches the regexp if the language prefix is ignored, https://github.com/pillarjs/path-to-regexp.

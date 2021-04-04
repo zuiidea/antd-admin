@@ -23,15 +23,20 @@
     "path-to-regexp": "^2.4.0",
     "prop-types": "^15.6.2",
     "qs": "^6.5.2",
+    "react": "^17.0.2",
     "react-countup": "^4.0.0-alpha.6",
+    "react-dom": "^17.0.2",
     "react-helmet": "^5.2.0",
     "react-perfect-scrollbar": "^1.4.2",
+    "recharts": "^2.0.9",
     "store": "^2.0.12"
   },
   "devDependencies": {
     "@lingui/babel-preset-react": "^2.7.1",
     "@lingui/cli": "^2.7.1",
     "@lingui/loader": "^2.7.1",
+    "@umijs/preset-react": "^1.8.3",
+    "@umijs/preset-ui": "^2.2.9",
     "babel-eslint": "^10.0.1",
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-import": "^1.10.0",
@@ -52,8 +57,8 @@
     "stylelint": "^9.8.0",
     "stylelint-config-prettier": "^4.0.0",
     "stylelint-config-standard": "^18.2.0",
-    "umi": "^2.3.0-beta.1",
-    "umi-plugin-react": "^1.2.3"
+    "typescript": "^4.2.3",
+    "umi": "^3.4.8"
   },
   "optionalDependencies": {
     "puppeteer": "^1.10.0"

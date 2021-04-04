@@ -1,7 +1,7 @@
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Menu, Icon } from 'antd'
-import Navlink from 'umi/navlink'
+import { Link, Navlink } from 'umi'
 import withRouter from 'umi/withRouter'
 import {
   arrayToTree,
