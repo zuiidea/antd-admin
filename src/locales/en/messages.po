@@ -1,0 +1,20 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2021-04-04 17:32+0800\n"
+"Mime-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en\n"
+
+#: src/pages/login/index.tsx:14
+msgid "Sign in"
+msgstr "Sign in"
+
+#: src/pages/login/index.tsx:18
+msgid "Username"
+msgstr "Username"
+
+#: src/pages/login/index.tsx:22
+msgid "Password"
+msgstr "Password"

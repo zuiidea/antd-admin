@@ -1,15 +1,10 @@
 import React from 'react'
-import { Icon } from 'antd'
-import { Page } from '@/components'
 import styles from './404.less'
 
-const NoFoundPage = () => (
-  <Page inner>
-    <div className={styles.error}>
-      <Icon type="frown-o" />
-      <h1>404 Not Found</h1>
-    </div>
-  </Page>
+const NoFoundPage: React.FC = () => (
+  <div className={styles.error}>
+    <h1>404 Not Found</h1>
+  </div>
 )
 
 export default NoFoundPage

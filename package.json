@@ -4,9 +4,12 @@
   "private": true,
   "description": "An admin dashboard application demo built upon Ant Design and UmiJS",
   "dependencies": {
-    "@lingui/react": "^2.7.1",
+    "@ant-design/pro-layout": "^6.16.0",
+    "@lingui/core": "^3.8.2",
+    "@lingui/detect-locale": "^3.8.2",
+    "@lingui/react": "^3.8.2",
     "ant-design-pro": "^2.1.1",
-    "antd": "^3.10.7",
+    "antd": "^4.15.0",
     "axios": "^0.18.0",
     "babel-core": "7.0.0-bridge.0",
     "classnames": "^2.2.6",
@@ -32,23 +35,28 @@
     "store": "^2.0.12"
   },
   "devDependencies": {
-    "@lingui/babel-preset-react": "^2.7.1",
-    "@lingui/cli": "^2.7.1",
-    "@lingui/loader": "^2.7.1",
+    "@lingui/babel-preset-react": "^2.9.2",
+    "@lingui/cli": "^3.8.2",
+    "@lingui/loader": "^3.8.2",
+    "@lingui/macro": "^3.8.2",
     "@umijs/preset-react": "^1.8.3",
     "@umijs/preset-ui": "^2.2.9",
     "babel-eslint": "^10.0.1",
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-import": "^1.10.0",
-    "babel-plugin-macros": "^2.4.2",
+    "babel-plugin-macros": "^3.0.1",
     "babel-plugin-module-resolver": "^3.1.1",
     "cross-env": "^5.2.0",
-    "eslint": "^5.9.0",
-    "eslint-config-react-app": "^3.0.5",
-    "eslint-plugin-flowtype": "^3.0.0",
-    "eslint-plugin-import": "^2.6.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.1.0",
+    "eslint": "^7.23.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-flowtype": "^5.4.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.23.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^1.1.4",
     "less-vars-to-js": "^1.3.0",
     "lint-staged": "^8.0.4",
@@ -76,28 +84,34 @@
     ]
   },
   "lingui": {
-    "fallbackLocale": "en",
-    "sourceLocale": "en",
-    "localeDir": "src/locales",
-    "srcPathDirs": [
-      "src/pages",
-      "src/layouts",
-      "src/components",
-      "src/layouts"
+    "locales": [
+      "en",
+      "zh"
     ],
-    "format": "minimal",
-    "extractBabelOptions": {
-      "presets": [
-        "umi/babel"
-      ]
-    }
+    "sourceLocale": "en",
+    "catalogs": [
+      {
+        "path": "src/locales/{locale}/messages",
+        "include": [
+          "src"
+        ],
+        "exclude": [
+          "**/node_modules/**"
+        ]
+      }
+    ],
+    "orderBy": "origin",
+    "runtimeConfigModule": [
+      "@/i18n",
+      "i18n"
+    ]
   },
   "scripts": {
     "analyze": "cross-env ANALYZE=1 umi build",
     "build": "umi build",
     "lint:js": "eslint --ext .js src",
     "lint:style": "stylelint \"src/**/*.less\" --syntax less",
-    "start": "umi dev",
+    "start": "cross-env umi dev",
     "test": "cross-env BABELRC=none umi test",
     "prettier": "prettier --write 'src/**/*.(js|less)'",
     "precommit": "lint-staged",
