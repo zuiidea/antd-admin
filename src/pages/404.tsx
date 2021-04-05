@@ -1,10 +1,15 @@
 import React from 'react'
+import { FrownOutlined } from '@ant-design/icons'
+import { Page } from 'components'
 import styles from './404.less'
 
-const NoFoundPage: React.FC = () => (
-  <div className={styles.error}>
-    <h1>404 Not Found</h1>
-  </div>
+const Error = () => (
+  <Page inner>
+    <div className={styles.error}>
+      <FrownOutlined />
+      <h1>404 Not Found</h1>
+    </div>
+  </Page>
 )
 
-export default NoFoundPage
+export default Error

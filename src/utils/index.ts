@@ -1,5 +1,5 @@
 import { cloneDeep } from 'lodash'
-import pathToRegexp from 'path-to-regexp'
+import { pathToRegexp } from 'path-to-regexp'
 
 /**
  * Query objects that specify keys and values in an array where all values are objects.
@@ -12,7 +12,7 @@ export function queryArray(array, key, value) {
   if (!Array.isArray(array)) {
     return
   }
-  return array.find(_ => _[key] === value)
+  return array.find((_) => _[key] === value)
 }
 
 /**
@@ -29,7 +29,7 @@ export function arrayToTree(
   parentId = 'pid',
   children = 'children'
 ) {
-  const result = []
+  const result: any = []
   const hash = {}
   const data = cloneDeep(array)
 
@@ -37,7 +37,7 @@ export function arrayToTree(
     hash[data[index][id]] = data[index]
   })
 
-  data.forEach(item => {
+  data.forEach((item) => {
     const hashParent = hash[item[parentId]]
     if (hashParent) {
       !hashParent[children] && (hashParent[children] = [])
@@ -58,7 +58,7 @@ export function arrayToTree(
 export function queryLayout(layouts, pathname) {
   let result = 'public'
 
-  const isMatch = regepx => {
+  const isMatch = (regepx) => {
     return regepx instanceof RegExp
       ? regepx.test(pathname)
       : pathToRegexp(regepx).exec(pathname)

@@ -35,4 +35,8 @@ APIFunction.queryWeather = params => {
   })
 }
 
+<<<<<<< HEAD
 // module.exports = APIFunction
+=======
+export default APIFunction
+>>>>>>> master

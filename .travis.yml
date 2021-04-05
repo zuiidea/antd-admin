@@ -1,23 +1,18 @@
 language: node_js
 node_js:
-- node
+  - node
 script:
-- npm run build
+  - npm run build
 before_install:
-- |
-    if [ "$TRAVIS_BRANCH" = "develop" ]; then
-      for prefixed_envvar in ${!DEV_*}; do
-        eval export ${prefixed_envvar#DEV_}="${!prefixed_envvar}"
-      done
-    elif [ "$TRAVIS_BRANCH" = "master" ]; then
-      for prefixed_envvar in ${!PROD_*}; do
-        eval export ${prefixed_envvar#PROD_}="${!prefixed_envvar}"
-      done
-    fi
-- openssl aes-256-cbc -K $encrypted_18b2305b78c9_key -iv $encrypted_18b2305b78c9_iv -in config/id_rsa.enc -out ~/.ssh/id_rsa -d
-- chmod 600 ~/.ssh/id_rsa
-- echo -e "Host $HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-- yarn global add now
+  - yarn global add now
 after_script:
-- scp -o stricthostkeychecking=no -r ./dist root@$HOST:$BUILD_DIR
-- cd ./docs && now -A $DOC_NOW_CONFIG -t $NOW_TOKEN && now alias -A $DOC_NOW_CONFIG -t $NOW_TOKEN
+  - |
+    if [[ $TRAVIS_BRANCH == 'master' ]]; then
+      echo $PROD_SITE_NOW_CONFIG >> dist/vercel.json && echo $PROD_DOC_NOW_CONFIG >> docs/vercel.json;
+    else
+      echo $DEV_SITE_NOW_CONFIG >> dist/vercel.json && echo $DEV_DOC_NOW_CONFIG >> docs/vercel.json;
+    fi
+  - cd ./dist
+  - now -A vercel.json -t $NOW_TOKEN --prod -c
+  - cd ../docs
+  - now -A vercel.json -t $NOW_TOKEN --prod -c

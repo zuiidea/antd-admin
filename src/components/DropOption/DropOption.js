@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Dropdown, Button, Icon, Menu } from 'antd'
+import { BarsOutlined, DownOutlined } from '@ant-design/icons'
+import { Dropdown, Button, Menu } from 'antd'
 
 const DropOption = ({
   onMenuClick,
@@ -17,8 +18,8 @@ const DropOption = ({
       {...dropdownProps}
     >
       <Button style={{ border: 'none', ...buttonStyle }}>
-        <Icon style={{ marginRight: 2 }} type="bars" />
-        <Icon type="down" />
+        <BarsOutlined style={{ marginRight: 2 }} />
+        <DownOutlined />
       </Button>
     </Dropdown>
   )

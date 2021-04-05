@@ -1,5 +1,6 @@
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
+<<<<<<< HEAD
 import { Menu, Icon } from 'antd'
 import { Link, Navlink } from 'umi'
 import withRouter from 'umi/withRouter'
@@ -9,6 +10,13 @@ import {
   pathMatchRegexp,
   addLangPrefix,
 } from 'utils'
+=======
+import { Menu } from 'antd'
+import { NavLink, withRouter } from 'umi'
+import { pathToRegexp } from 'path-to-regexp'
+import { arrayToTree, queryAncestors } from 'utils'
+import iconMap from 'utils/iconMap'
+>>>>>>> master
 import store from 'store'
 
 const { SubMenu } = Menu
@@ -46,7 +54,7 @@ class SiderMenu extends PureComponent {
             key={item.id}
             title={
               <Fragment>
-                {item.icon && <Icon type={item.icon} />}
+                {item.icon && iconMap[item.icon]}
                 <span>{item.name}</span>
               </Fragment>
             }
@@ -57,10 +65,10 @@ class SiderMenu extends PureComponent {
       }
       return (
         <Menu.Item key={item.id}>
-          <Navlink to={addLangPrefix(item.route) || '#'}>
-            {item.icon && <Icon type={item.icon} />}
+          <NavLink to={item.route || '#'}>
+            {item.icon && iconMap[item.icon]}
             <span>{item.name}</span>
-          </Navlink>
+          </NavLink>
         </Menu.Item>
       )
     })
@@ -81,7 +89,7 @@ class SiderMenu extends PureComponent {
 
     // Find a menu that matches the pathname.
     const currentMenu = menus.find(
-      _ => _.route && pathMatchRegexp(_.route, location.pathname)
+      _ => _.route && pathToRegexp(_.route).exec(location.pathname)
     )
 
     // Find the key that should be selected according to the current menu.
@@ -89,13 +97,17 @@ class SiderMenu extends PureComponent {
       ? queryAncestors(menus, currentMenu, 'menuParentId').map(_ => _.id)
       : []
 
+    const menuProps = collapsed
+      ? {}
+      : {
+          openKeys: this.state.openKeys,
+        }
+
     return (
       <Menu
         mode="inline"
         theme={theme}
         onOpenChange={this.onOpenChange}
-        openKeys={this.state.openKeys}
-        inlineCollapsed={collapsed}
         selectedKeys={selectedKeys}
         onClick={
           isMobile
@@ -104,6 +116,7 @@ class SiderMenu extends PureComponent {
               }
             : undefined
         }
+        {...menuProps}
       >
         {this.generateMenus(menuTree)}
       </Menu>
@@ -115,7 +128,6 @@ SiderMenu.propTypes = {
   menus: PropTypes.array,
   theme: PropTypes.string,
   isMobile: PropTypes.bool,
-  collapsed: PropTypes.bool,
   onCollapseChange: PropTypes.func,
 }
 

@@ -1,9 +1,15 @@
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { Menu, Icon, Layout, Avatar, Popover, Badge, List } from 'antd'
-import { Ellipsis } from 'ant-design-pro'
-import { Trans, withI18n } from '@lingui/react'
-import { setLocale } from 'utils'
+import { Menu, Layout, Avatar, Popover, Badge, List } from 'antd'
+import { Ellipsis } from 'components'
+import {
+  BellOutlined,
+  RightOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+} from '@ant-design/icons'
+import { Trans } from "@lingui/macro"
+import { getLocale, setLocale } from 'utils'
 import moment from 'moment'
 import classnames from 'classnames'
 import config from 'config'
@@ -11,14 +17,12 @@ import styles from './Header.less'
 
 const { SubMenu } = Menu
 
-@withI18n()
 class Header extends PureComponent {
   handleClickMenu = e => {
     e.key === 'SignOut' && this.props.onSignOut()
   }
   render() {
     const {
-      i18n,
       fixed,
       avatar,
       username,
@@ -50,8 +54,9 @@ class Header extends PureComponent {
 
     if (config.i18n) {
       const { languages } = config.i18n
+      const language = getLocale()
       const currentLanguage = languages.find(
-        item => item.key === i18n._language
+        item => item.key === language
       )
 
       rightContent.unshift(
@@ -85,7 +90,7 @@ class Header extends PureComponent {
         trigger="click"
         key="notifications"
         overlayClassName={styles.notificationPopover}
-        getPopupContainer={() => document.querySelector('#layoutHeader')}
+        getPopupContainer={() => document.querySelector('#primaryLayout')}
         content={
           <div className={styles.notification}>
             <List
@@ -104,11 +109,7 @@ class Header extends PureComponent {
                     }
                     description={moment(item.date).fromNow()}
                   />
-                  <Icon
-                    style={{ fontSize: 10, color: '#ccc' }}
-                    type="right"
-                    theme="outlined"
-                  />
+                  <RightOutlined style={{ fontSize: 10, color: '#ccc' }} />
                 </List.Item>
               )}
             />
@@ -129,7 +130,7 @@ class Header extends PureComponent {
           offset={[-10, 10]}
           className={styles.iconButton}
         >
-          <Icon className={styles.iconFont} type="bell" />
+          <BellOutlined className={styles.iconFont} />
         </Badge>
       </Popover>
     )
@@ -146,14 +147,8 @@ class Header extends PureComponent {
           className={styles.button}
           onClick={onCollapseChange.bind(this, !collapsed)}
         >
-          <Icon
-            type={classnames({
-              'menu-unfold': collapsed,
-              'menu-fold': !collapsed,
-            })}
-          />
+          {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
         </div>
-
         <div className={styles.rightContainer}>{rightContent}</div>
       </Layout.Header>
     )

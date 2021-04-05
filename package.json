@@ -1,52 +1,51 @@
 {
   "name": "antd-admin",
-  "version": "5.0.0-beta",
-  "private": true,
+  "version": "5.3.0",
+  "license": "MIT",
   "description": "An admin dashboard application demo built upon Ant Design and UmiJS",
   "dependencies": {
+    "@ant-design/icons": "^4.6.2",
     "@ant-design/pro-layout": "^6.16.0",
     "@lingui/core": "^3.8.2",
     "@lingui/detect-locale": "^3.8.2",
     "@lingui/react": "^3.8.2",
-    "ant-design-pro": "^2.1.1",
     "antd": "^4.15.0",
-    "axios": "^0.18.0",
-    "babel-core": "7.0.0-bridge.0",
+    "axios": "^0.21.0",
     "classnames": "^2.2.6",
     "dva-model-extend": "^0.1.2",
-    "echarts": "^4.2.0-rc.2",
-    "echarts-for-react": "^2.0.15-beta.0",
-    "echarts-gl": "^1.1.1",
-    "echarts-liquidfill": "^2.0.2",
+    "echarts": "^5.0.0",
+    "echarts-for-react": "^3.0.0",
+    "echarts-gl": "^2.0.2",
+    "echarts-liquidfill": "^3.0.0",
     "enquire-js": "^0.2.1",
     "json-format": "^1.0.1",
     "lodash": "^4.17.11",
     "md5": "^2.2.1",
     "nprogress": "^0.2.0",
-    "path-to-regexp": "^2.4.0",
-    "prop-types": "^15.6.2",
-    "qs": "^6.5.2",
-    "react": "^17.0.2",
-    "react-countup": "^4.0.0-alpha.6",
-    "react-dom": "^17.0.2",
-    "react-helmet": "^5.2.0",
-    "react-perfect-scrollbar": "^1.4.2",
-    "recharts": "^2.0.9",
-    "store": "^2.0.12"
+    "path-to-regexp": "^6.1.0",
+    "prop-types": "^15.7.0",
+    "qs": "^6.10.0",
+    "react-adsense": "^0.1.0",
+    "react-countup": "^4.2.0",
+    "react-helmet": "^6.0.0",
+    "react-highcharts": "^16.1.0",
+    "react-perfect-scrollbar": "^1.5.0",
+    "recharts": "^2.0.0",
+    "store": "^2.0.0"
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.12.13",
     "@lingui/babel-preset-react": "^2.9.2",
     "@lingui/cli": "^3.8.2",
     "@lingui/loader": "^3.8.2",
     "@lingui/macro": "^3.8.2",
-    "@umijs/preset-react": "^1.8.3",
-    "@umijs/preset-ui": "^2.2.9",
-    "babel-eslint": "^10.0.1",
+    "@umijs/preset-react": "^1.8.0",
+    "babel-eslint": "^10.0.0",
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-import": "^1.10.0",
     "babel-plugin-macros": "^3.0.1",
     "babel-plugin-module-resolver": "^3.1.1",
-    "cross-env": "^5.2.0",
+    "cross-env": "^7.0.0",
     "eslint": "^7.23.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-config-react-app": "^6.0.0",
@@ -57,19 +56,19 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.23.1",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "husky": "^1.1.4",
+    "husky": "^4.2.0",
     "less-vars-to-js": "^1.3.0",
-    "lint-staged": "^8.0.4",
-    "mockjs": "^1.0.1-beta3",
-    "prettier": "^1.15.2",
-    "stylelint": "^9.8.0",
-    "stylelint-config-prettier": "^4.0.0",
-    "stylelint-config-standard": "^18.2.0",
+    "lint-staged": "^10.0.0",
+    "mockjs": "^1.1.0",
+    "prettier": "^2.0.0",
+    "stylelint": "^13.2.0",
+    "stylelint-config-prettier": "^8.0.0",
+    "stylelint-config-standard": "^21.0.0",
     "typescript": "^4.2.3",
     "umi": "^3.4.8"
   },
-  "optionalDependencies": {
-    "puppeteer": "^1.10.0"
+  "engines": {
+    "node": ">= 10.0.0"
   },
   "lint-staged": {
     "src/**/*.js": [
@@ -84,16 +83,20 @@
     ]
   },
   "lingui": {
+    "fallbackLocales": {
+      "default": "en"
+    },
+    "sourceLocale": "en",
     "locales": [
       "en",
-      "zh"
+      "zh",
+      "pt-br"
     ],
-    "sourceLocale": "en",
     "catalogs": [
       {
         "path": "src/locales/{locale}/messages",
         "include": [
-          "src"
+          "src/pages"
         ],
         "exclude": [
           "**/node_modules/**"
@@ -109,11 +112,12 @@
   "scripts": {
     "analyze": "cross-env ANALYZE=1 umi build",
     "build": "umi build",
+    "check:model": "umi dva list model",
     "lint:js": "eslint --ext .js src",
     "lint:style": "stylelint \"src/**/*.less\" --syntax less",
     "start": "cross-env umi dev",
     "test": "cross-env BABELRC=none umi test",
-    "prettier": "prettier --write 'src/**/*.(js|less)'",
+    "prettier": "prettier --write 'src/**/*.{js,less}'",
     "precommit": "lint-staged",
     "add-locale": "lingui add-locale",
     "extract": "lingui extract",

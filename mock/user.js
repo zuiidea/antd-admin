@@ -1,4 +1,5 @@
-import { Mock, Constant, qs, randomAvatar } from './_utils'
+import { Mock, Constant, randomAvatar } from './_utils'
+import qs from 'qs'
 
 const { ApiPrefix } = Constant
 

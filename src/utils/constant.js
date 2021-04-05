@@ -4,4 +4,4 @@ export const ROLE_TYPE = {
   DEVELOPER: 'developer',
 }
 
-export const CANCEL_REQUEST_MESSAGE = 'cancle request'
+export const CANCEL_REQUEST_MESSAGE = 'cancel request'

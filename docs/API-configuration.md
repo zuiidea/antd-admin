@@ -5,11 +5,11 @@
 In the use of `redux` or `dva` projects, we often write functions like the following `service` layer to make the code structure clearer, but it is easy to see that we will write a lot of similar code in `antd -admin@5.0`, using the more concise configuration method to achieve the same function.
 
 ```javascript
-Export async function login(data) {
-  Return request({
-    Url: '/api/v1/user/login',
-    Method: 'post',
-    Data,
+export async function login(data) {
+  return request({
+    url: '/api/v1/user/login',
+    method: 'post',
+    data,
   })
 }
 ```
@@ -19,7 +19,7 @@ Export async function login(data) {
 In the `src/services/api.js` file, you will see the following configuration object, the object's key is used to call the function name, the object's value is the requested `url`, the default request method is `GET`, The format of the value of the other request mode object is `'method url'`.
 
 ```javascript
-Export default {
+export default {
   ...
   queryUser: '/user/:id',
   queryUserList: '/users',
@@ -34,7 +34,7 @@ Export default {
 Used in other files
 
 ```javascript
-Import { queryUser } from 'api'
+import { queryUser } from 'api'
 
 // in the general file
 ...
@@ -43,7 +43,7 @@ queryUser(option).then(data => console.log(data))
 
 / / Model file
 ...
-Yield call(queryUser, option)
+yield call(queryUser, option)
 ...
 ```
 
@@ -52,35 +52,35 @@ Yield call(queryUser, option)
 Refer to the `src/services/index.js` file to traverse the api configuration. Each property returns the corresponding encapsulated request function.
 
 ```javascript
-Import request from 'utils/request'
-Import { apiPrefix } from 'utils/config'
+import request from 'utils/request'
+import { apiPrefix } from 'utils/config'
 
-Import api from './api'
+import api from './api'
 
-Const gen = params => {
-  Let url = apiPrefix + params
-  Let method = 'GET'
+const gen = params => {
+  let url = apiPrefix + params
+  let method = 'GET'
 
-  Const paramsArray = params.split(' ')
-  If (paramsArray.length === 2) {
-    Method = paramsArray[0]
-    Url = apiPrefix + paramsArray[1]
+  const paramsArray = params.split(' ')
+  if (paramsArray.length === 2) {
+    method = paramsArray[0]
+    url = apiPrefix + paramsArray[1]
   }
 
-  Return function(data) {
-    Return request({
-      Url,
-      Data,
-      Method,
+  return function(data) {
+    return request({
+      url,
+      data,
+      method,
     })
   }
 }
 
-Const APIFunction = {}
-For (const key in api) {
+const APIFunction = {}
+for (const key in api) {
   APIFunction[key] = gen(api[key])
 }
 
-Module.exports = APIFunction
+module.exports = APIFunction
 
 ```

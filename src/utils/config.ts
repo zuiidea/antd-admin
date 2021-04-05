@@ -1,6 +1,6 @@
 const config = {
   siteName: 'AntD Admin',
-  copyright: 'Ant Design Admin  © 2018 zuiidea',
+  copyright: 'Ant Design Admin  ©2020 zuiidea',
   logoPath: '/logo.svg',
   apiPrefix: '/api/v1',
   fixedHeader: true,
@@ -10,7 +10,7 @@ const config = {
     {
       name: 'primary',
       include: [/.*/],
-      exlude: [/(\/(en|zh))*\/login/],
+      exclude: [/(\/(en|zh))*\/login/],
     },
   ],
 
@@ -18,6 +18,11 @@ const config = {
   i18n: {
     /* Countrys flags: https://www.flaticon.com/packs/countrys-flags */
     languages: [
+      {
+        key: 'pt-br',
+        title: 'Português',
+        flag: '/portugal.svg',
+      },
       {
         key: 'en',
         title: 'English',

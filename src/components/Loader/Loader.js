@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import styles from './Loader.less'
 
-const Loader = ({ spinning = true, fullScreen }) => {
+const Loader = ({ spinning = false, fullScreen }) => {
   return (
     <div
       className={classNames(styles.loader, {

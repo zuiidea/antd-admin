@@ -12,7 +12,7 @@ You can do some custom configuration in `/src/utils/config.js`:
 
 - Type： `String`
 
-  Configure the copyright notice to apply to the login page, at the bottom of the `Primay` layout.
+  Configure the copyright notice to apply to the login page, at the bottom of the `Primary` layout.
 
 ## logoPath
 
@@ -39,25 +39,25 @@ You can do some custom configuration in `/src/utils/config.js`:
   Configuration? Which routes use which layout, unspecified route uses the default layout `Public`, the project currently has `Primary` and `Public` layouts,
      The default configuration is as follows：
   
-    ```js
+    ```javascript
         layouts: [
             {
                 name: 'primary',
                 include: [/.*/],
-                exlude: [/(\/(en|zh))*\/login/],
+                exclude: [/(\/(en|zh))*\/login/],
             },
         ],
     ```
 
     The object properties for each layout are as follows:
 
-    - `name` - The name of the layout;
+    - `name` - The name of the layout;
   
     - `include` - Specifies a list of routing rules that use this layout, which can be a regular expression or a string;
   
-    - `exlude` - Specifies a list of routing rules that do not use this layout, which can be a regular expression or a string.
+    - `exclude` - Specifies a list of routing rules that do not use this layout, which can be a regular expression or a string.
   
- > Note: `exlude` takes precedence over `include`, and the layout behind it has a higher priority than the previous layout. The development process may need to be combined with the layout in the `src/layouts` directory. For details, see [Using Layout]().
+ > Note: `exclude` takes precedence over `include`, and the layout previous it has a higher priority than the behind layout. The development process may need to be combined with the layout in the `src/layouts` directory. For details, see [Using Layout](./layout.md).
 
 ## i18n
 
@@ -65,7 +65,7 @@ You can do some custom configuration in `/src/utils/config.js`:
 
   Configure internationalization, the default configuration is as follows:
 
-  ```js
+  ```javascript
   i18n: {
       languages: [
         {
@@ -91,9 +91,9 @@ You can do some custom configuration in `/src/utils/config.js`:
 
     - `key` - The `key` of the language is applied to the page url to distinguish the language, and also corresponds to the language package folder name in the `src/locales` directory;
 
-    - `title` - The name of the language, at the bottom of the login page, at the top of the `Primay` layout, the language switch is displayed;
+    - `title` - The name of the language, at the bottom of the login page, at the top of the `Primary` layout, the language switch is displayed;
 
-    - `flag` - The path of the flag icon of the language, the language switching display at the top of the `Primay` layout.
+    - `flag` - The path of the flag icon of the language, the language switching display at the top of the `Primary` layout.
 
  ### i18n.defaultLanguage
    

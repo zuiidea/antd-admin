@@ -2,6 +2,8 @@
 
 After the development is completed and verified in the development environment, it needs to be deployed to our users.
 
+![i18n](./_media/term_build.svg)
+
 ## Build
 
 First execute the following command,

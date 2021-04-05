@@ -28,7 +28,7 @@
 
 - Support internationalization, extract source fields from source code, load language packs on demand, and automatically translate online.
 
-- Support for the introduction of `ant-design-pro` components, `lodash` functions on demand.
+- Support for the introduction `lodash` functions on demand.
   
 - Support multiple layouts, which rules can be used according to the rules.
 
