@@ -1,20 +1,12 @@
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
-<<<<<<< HEAD
-import { Breadcrumb, Icon } from 'antd'
-import { Link } from 'umi'
-import withRouter from 'umi/withRouter'
-import { withI18n } from '@lingui/react'
-import { pathMatchRegexp, queryAncestors } from 'utils'
-=======
 import { Breadcrumb } from 'antd'
 import { Link, withRouter } from 'umi'
-import { t } from "@lingui/macro"
+import { t } from '@lingui/macro'
 import iconMap from 'utils/iconMap'
-const { pathToRegexp } = require('path-to-regexp')
 import { queryAncestors } from 'utils'
->>>>>>> master
 import styles from './Bread.less'
+const { pathToRegexp } = require('path-to-regexp')
 
 @withRouter
 class Bread extends PureComponent {

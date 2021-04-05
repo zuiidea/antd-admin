@@ -1,22 +1,10 @@
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
-<<<<<<< HEAD
-import { Menu, Icon } from 'antd'
-import { Link, Navlink } from 'umi'
-import withRouter from 'umi/withRouter'
-import {
-  arrayToTree,
-  queryAncestors,
-  pathMatchRegexp,
-  addLangPrefix,
-} from 'utils'
-=======
 import { Menu } from 'antd'
 import { NavLink, withRouter } from 'umi'
 import { pathToRegexp } from 'path-to-regexp'
 import { arrayToTree, queryAncestors } from 'utils'
 import iconMap from 'utils/iconMap'
->>>>>>> master
 import store from 'store'
 
 const { SubMenu } = Menu
@@ -27,12 +15,14 @@ class SiderMenu extends PureComponent {
     openKeys: store.get('openKeys') || [],
   }
 
-  onOpenChange = openKeys => {
+  onOpenChange = (openKeys) => {
     const { menus } = this.props
-    const rootSubmenuKeys = menus.filter(_ => !_.menuParentId).map(_ => _.id)
+    const rootSubmenuKeys = menus
+      .filter((_) => !_.menuParentId)
+      .map((_) => _.id)
 
     const latestOpenKey = openKeys.find(
-      key => this.state.openKeys.indexOf(key) === -1
+      (key) => this.state.openKeys.indexOf(key) === -1
     )
 
     let newOpenKeys = openKeys
@@ -46,8 +36,8 @@ class SiderMenu extends PureComponent {
     store.set('openKeys', newOpenKeys)
   }
 
-  generateMenus = data => {
-    return data.map(item => {
+  generateMenus = (data) => {
+    return data.map((item) => {
       if (item.children) {
         return (
           <SubMenu
@@ -89,12 +79,12 @@ class SiderMenu extends PureComponent {
 
     // Find a menu that matches the pathname.
     const currentMenu = menus.find(
-      _ => _.route && pathToRegexp(_.route).exec(location.pathname)
+      (_) => _.route && pathToRegexp(_.route).exec(location.pathname)
     )
 
     // Find the key that should be selected according to the current menu.
     const selectedKeys = currentMenu
-      ? queryAncestors(menus, currentMenu, 'menuParentId').map(_ => _.id)
+      ? queryAncestors(menus, currentMenu, 'menuParentId').map((_) => _.id)
       : []
 
     const menuProps = collapsed

@@ -14,6 +14,12 @@ export interface ILanguage {
   [key: string]: ILanguageItem
 }
 
+export interface ILanguages {
+  key: string
+  flag: string
+  value: string
+}
+
 export interface IAntdI18nMap {
   [key: string]: string
 }

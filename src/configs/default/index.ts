@@ -12,13 +12,13 @@ const language = detect(
   checkLanguage(fromUrl('lang')),
   checkLanguage(fromStorage(LOCALE_LANGUAGE)),
   checkLanguage(fromNavigator()),
-  'zh'
+  'en'
 )
 
 export const config: IConfig = {
-  title: 'React Seed',
+  title: 'Antd Admin',
   logo: 'logo.svg',
-  copyright: 'Ant Design Admin  © 2018 zuiidea',
+  copyright: 'Ant Design Admin  © 2021 zuiidea',
   language: language as ISupportedLocales,
 
   /* Layout configuration, specify which layout to use for route. */
