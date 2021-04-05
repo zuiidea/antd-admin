@@ -1,8 +1,13 @@
 import React from 'react'
 import { config } from '@/configs'
-import { IConfigContext } from '@/typings'
+import { ISupportedLocales } from '@/typings'
+
+interface IConfigContext {
+  language: ISupportedLocales
+  setLanguage: (language: ISupportedLocales) => void
+}
 
 export const ConfigContext = React.createContext<IConfigContext>({
   language: config.language,
-  setLanguage: language => null,
+  setLanguage: (language) => null,
 })

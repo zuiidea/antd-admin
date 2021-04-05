@@ -11,7 +11,7 @@ const LayoutMap = {
   public: PublicLayout,
 }
 
-const BaseLayout: React.FC = props => {
+const BaseLayout: React.FC = (props) => {
   const location = useLocation()
   const Container = LayoutMap[queryLayout(config.layouts, location.pathname)]
   return <Container>{props.children}</Container>

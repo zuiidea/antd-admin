@@ -4020,11 +4020,11 @@ let DICT = {
   990100: '海外',
 }
 
-const tree = list => {
+const tree = (list) => {
   let hashTable = Object.create(null)
-  list.forEach(aData => (hashTable[aData.id] = { ...aData, children: [] }))
+  list.forEach((aData) => (hashTable[aData.id] = { ...aData, children: [] }))
   let dataTree = []
-  list.forEach(aData => {
+  list.forEach((aData) => {
     if (aData.pid) {
       if (hashTable[aData.pid])
         hashTable[aData.pid].children.push(hashTable[aData.id])
@@ -4033,7 +4033,7 @@ const tree = list => {
   return dataTree
 }
 
-let DICT_FIXED = (function() {
+let DICT_FIXED = (function () {
   let fixed = []
   for (let id in DICT) {
     if ({}.hasOwnProperty.call(DICT, id)) {

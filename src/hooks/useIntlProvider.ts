@@ -12,7 +12,7 @@ const useIntlProvider = () => {
 
   useEffect(() => {
     const path = antdI18nMap[language]
-    import(`antd/lib/locale/${path}.js`).then(data => {
+    import(`antd/lib/locale/${path}.js`).then((data) => {
       setLocale(data.default)
     })
     localStorage.setItem(LOCALE_LANGUAGE, language)

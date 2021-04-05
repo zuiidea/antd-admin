@@ -11,12 +11,13 @@ import ProBasicLayout, {
   SettingDrawerProps,
 } from '@ant-design/pro-layout'
 import { Link } from 'umi'
-import { Dropdown, Menu } from 'antd'
+import { Dropdown, Menu, Avatar } from 'antd'
 import { useLocation } from '@/hooks'
 import { ConfigContext } from '@/utils/context'
 import { menus, menuIcon, language, languages, config } from '@/configs'
 import defaultSettings from '@/defaultSettings'
-import type { MenuProps } from 'antd/es/menu';
+import { ISupportedLocales } from '@/typings'
+import type { MenuProps } from 'antd/es/menu'
 import styles from './index.less'
 
 const renderMenuItem = (menus: MenuDataItem[]): MenuDataItem[] =>
@@ -26,7 +27,7 @@ const renderMenuItem = (menus: MenuDataItem[]): MenuDataItem[] =>
     children: children && renderMenuItem(children),
   }))
 
-const PrimaryLayout: React.FC = props => {
+const PrimaryLayout: React.FC = (props) => {
   const location = useLocation()
   const [settings] = useState<SettingDrawerProps['settings']>(defaultSettings)
   const [openKeys, setOpenKeys] = useState<string[]>([])
@@ -54,7 +55,7 @@ const PrimaryLayout: React.FC = props => {
   }, [])
 
   const handleOnOpenChange = useCallback(
-    keys => setOpenKeys(keys as string[]),
+    (keys) => setOpenKeys(keys as string[]),
     []
   )
 
@@ -70,10 +71,15 @@ const PrimaryLayout: React.FC = props => {
   const rightContentRender = () => (
     <Dropdown
       overlay={
-        <Menu>
-          {languages.map(item => (
-            <Menu.Item key={item.key} onClick={() => setLanguage(item.key)}>
-              <span className={styles.headerFlag}>{item.flag}</span>
+        <Menu
+          selectedKeys={[currentLanguage.value]}
+          onClick={(data) => {
+            setLanguage(data.key as ISupportedLocales)
+          }}
+        >
+          {languages.map((item) => (
+            <Menu.Item key={item.key}>
+              <Avatar size="small" style={{ marginRight: 8 }} src={item.flag} />
               {item.value}
             </Menu.Item>
           ))}
@@ -81,8 +87,7 @@ const PrimaryLayout: React.FC = props => {
       }
     >
       <div className={styles.headerButton}>
-        <span className={styles.headerFlag}>{currentLanguage.flag}</span>
-        {currentLanguage.value}
+        <Avatar size="small" src={currentLanguage.flag} />
       </div>
     </Dropdown>
   )

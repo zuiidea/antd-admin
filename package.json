@@ -39,6 +39,8 @@
     "@lingui/cli": "^3.8.2",
     "@lingui/loader": "^3.8.2",
     "@lingui/macro": "^3.8.2",
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.20.0",
     "@umijs/preset-react": "^1.8.0",
     "babel-eslint": "^10.0.0",
     "babel-plugin-dev-expression": "^0.2.1",
@@ -71,15 +73,13 @@
     "node": ">= 10.0.0"
   },
   "lint-staged": {
-    "src/**/*.js": [
-      "eslint --ext .js --fix",
-      "npm run prettier",
-      "git add"
+    "*.{ts,tsx,js,jsx}": [
+      "npm run eslint",
+      "npm run prettier"
     ],
-    "**/*.less": [
-      "stylelint --syntax less",
-      "npm run prettier",
-      "git add"
+    "*.less": [
+      "npm run stylelint",
+      "npm run prettier"
     ]
   },
   "lingui": {
@@ -110,14 +110,13 @@
     ]
   },
   "scripts": {
-    "analyze": "cross-env ANALYZE=1 umi build",
+    "start": "umi dev",
     "build": "umi build",
-    "check:model": "umi dva list model",
-    "lint:js": "eslint --ext .js src",
-    "lint:style": "stylelint \"src/**/*.less\" --syntax less",
-    "start": "cross-env umi dev",
     "test": "cross-env BABELRC=none umi test",
-    "prettier": "prettier --write 'src/**/*.{js,less}'",
+    "analyze": "cross-env ANALYZE=1 umi build",
+    "eslint": "eslint --fix 'src/**/*.{ts,tsx,js.jsx}'",
+    "stylelint": "stylelint src/**/*.less --syntax less",
+    "prettier": "prettier --write 'src/**/*.{ts,tsx,js.jsx,less}'",
     "precommit": "lint-staged",
     "add-locale": "lingui add-locale",
     "extract": "lingui extract",

@@ -1,10 +1,34 @@
-import React from 'react'
-import { HomeOutlined, AppstoreOutlined } from '@ant-design/icons'
+import {
+  PayCircleOutlined,
+  ShoppingCartOutlined,
+  MessageOutlined,
+  TeamOutlined,
+  UserOutlined,
+  DashboardOutlined,
+  ApiOutlined,
+  CameraOutlined,
+  EditOutlined,
+  CodeOutlined,
+  LineOutlined,
+  BarChartOutlined,
+  AreaChartOutlined,
+} from '@ant-design/icons'
 import { IMenuIcon } from '@/typings'
 
 const menuIcon: IMenuIcon = {
-  home: <HomeOutlined />,
-  other: <AppstoreOutlined />,
+  'pay-circle-o': <PayCircleOutlined />,
+  'shopping-cart': <ShoppingCartOutlined />,
+  'camera-o': <CameraOutlined />,
+  'line-chart': <LineOutlined />,
+  'code-o': <CodeOutlined />,
+  'area-chart': <AreaChartOutlined />,
+  'bar-chart': <BarChartOutlined />,
+  message: <MessageOutlined />,
+  team: <TeamOutlined />,
+  dashboard: <DashboardOutlined />,
+  user: <UserOutlined />,
+  api: <ApiOutlined />,
+  edit: <EditOutlined />,
 }
 
 export default menuIcon

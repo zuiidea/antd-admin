@@ -1,9 +1,13 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import styles from './Loader.less'
+import styles from './index.less'
 
-const Loader = ({ spinning = false, fullScreen }) => {
+interface LoaderProps {
+  spinning?: boolean
+  fullScreen?: boolean
+}
+
+const Loader: React.FC<LoaderProps> = ({ spinning = false, fullScreen }) => {
   return (
     <div
       className={classNames(styles.loader, {
@@ -17,11 +21,6 @@ const Loader = ({ spinning = false, fullScreen }) => {
       </div>
     </div>
   )
-}
-
-Loader.propTypes = {
-  spinning: PropTypes.bool,
-  fullScreen: PropTypes.bool,
 }
 
 export default Loader

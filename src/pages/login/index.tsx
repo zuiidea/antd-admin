@@ -23,6 +23,7 @@ const Login: React.FC = () => {
   ]
 
   const handleFinish = (values) => {
+    // eslint-disable-next-line no-console
     console.log(values)
   }
 

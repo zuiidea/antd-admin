@@ -4,9 +4,8 @@ import { I18nProvider } from '@lingui/react'
 import { useIntlProvider } from '@/hooks'
 import { ConfigContext } from '@/utils/context'
 import BaseLayout from './BaseLayout'
-import PrimaryLayout from './PrimaryLayout'
 
-const Layout: React.FC = props => {
+const Layout: React.FC = (props) => {
   const { language, setLanguage, i18n, locale } = useIntlProvider()
   const globalConfig = {
     language,

@@ -3,7 +3,7 @@ import { apiPrefix } from 'utils/config'
 
 import api from './api'
 
-const gen = params => {
+const gen = (params) => {
   let url = apiPrefix + params
   let method = 'GET'
 
@@ -13,7 +13,7 @@ const gen = params => {
     url = apiPrefix + paramsArray[1]
   }
 
-  return function(data) {
+  return function (data) {
     return request({
       url,
       data,
@@ -27,7 +27,7 @@ for (const key in api) {
   APIFunction[key] = gen(api[key])
 }
 
-APIFunction.queryWeather = params => {
+APIFunction.queryWeather = (params) => {
   params.key = 'i7sau1babuzwhycn'
   return request({
     url: `${apiPrefix}/weather/now.json`,
@@ -35,8 +35,4 @@ APIFunction.queryWeather = params => {
   })
 }
 
-<<<<<<< HEAD
-// module.exports = APIFunction
-=======
 export default APIFunction
->>>>>>> master

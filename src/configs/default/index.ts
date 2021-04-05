@@ -1,5 +1,5 @@
 import { IConfig, ISupportedLocales } from '@/typings'
-import { LOCALE_LANGUAGE } from '@/configs'
+import { LOCALE_LANGUAGE } from '@/configs/constants'
 import checkLanguage from '@/utils/checkLanguage'
 import {
   detect,

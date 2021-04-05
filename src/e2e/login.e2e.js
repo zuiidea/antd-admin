@@ -18,7 +18,7 @@ describe('Login', () => {
   afterEach(() => page.close())
 
   it('should login with failure', async () => {
-    await page.waitFor(selector => !!document.querySelector('#username'), {
+    await page.waitFor((selector) => !!document.querySelector('#username'), {
       timeout: 3000,
     })
     await page.type('#username', 'wrong_user')
