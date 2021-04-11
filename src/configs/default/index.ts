@@ -20,6 +20,7 @@ export const config: IConfig = {
   logo: 'logo.svg',
   copyright: 'Ant Design Admin  © 2021 zuiidea',
   language: language as ISupportedLocales,
+  apiPrefix: '/api/v1',
 
   /* Layout configuration, specify which layout to use for route. */
   layouts: [

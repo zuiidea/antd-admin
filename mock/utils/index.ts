@@ -9,7 +9,7 @@ export function queryArray(array, key, value) {
   if (!Array.isArray(array)) {
     return
   }
-  return array.filter(_ => _[key] === value)
+  return array.filter((_) => _[key] === value)
 }
 
 export function randomNumber(min, max) {
@@ -30,9 +30,19 @@ export function randomAvatar() {
     'photo-1551438632-e8c7d9a5d1b7.jpeg',
     'photo-1525879000488-bff3b1c387cf.jpeg',
     'photo-1487412720507-e7ab37603c6f.jpeg',
-    'photo-1510227272981-87123e259b17.jpeg'
+    'photo-1510227272981-87123e259b17.jpeg',
   ]
-  return `//image.zuiidea.com/${avatarList[randomNumber(0, avatarList.length - 1)]}?imageView2/1/w/200/h/200/format/webp/q/75|imageslim`
+  return `//image.zuiidea.com/${
+    avatarList[randomNumber(0, avatarList.length - 1)]
+  }?imageView2/1/w/200/h/200/format/webp/q/75|imageslim`
+}
+
+export const waitTime = (time: number = 300) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(true)
+    }, time)
+  })
 }
 
 export const Constant = {
@@ -54,6 +64,3 @@ export const Constant = {
     sky: '#c1e0fc',
   },
 }
-
-export Mock from 'mockjs'
-export qs from 'qs'

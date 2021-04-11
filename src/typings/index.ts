@@ -12,5 +12,6 @@ export interface IConfig {
   title: string
   logo: string
   copyright: string
+  apiPrefix: string
   layouts: ILayouItem[]
 }

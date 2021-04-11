@@ -3,7 +3,7 @@ import { useLocation } from '@/hooks'
 import { queryLayout } from '@/utils'
 import { config } from '@/configs'
 import PublicLayout from './PublicLayout'
-import PrimaryLayout from './PrimaryLayout'
+import PrimaryLayout from './PrimaryLayout/index'
 import './BaseLayout.less'
 
 const LayoutMap = {

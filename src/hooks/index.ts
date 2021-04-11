@@ -1,4 +1,12 @@
-import { useHistory, useLocation } from 'umi'
+import { useHistory, useLocation, useRequest, UseRequestProvider } from 'umi'
 import useIntlProvider from './useIntlProvider'
+import useConfig from './useConfig'
 
-export { useIntlProvider, useHistory, useLocation }
+export {
+  useIntlProvider,
+  useHistory,
+  useLocation,
+  useRequest,
+  UseRequestProvider,
+  useConfig,
+}

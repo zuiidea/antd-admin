@@ -1,4 +1,4 @@
-import { Constant } from './_utils'
+import { Constant } from './utils'
 const { ApiPrefix } = Constant
 
 const database = [
@@ -148,7 +148,7 @@ const database = [
   },
 ]
 
-module.exports = {
+export default {
   [`GET ${ApiPrefix}/routes`](req, res) {
     res.status(200).json(database)
   },

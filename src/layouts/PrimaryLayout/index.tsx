@@ -1,24 +1,15 @@
-import React, {
-  useState,
-  useEffect,
-  useMemo,
-  useCallback,
-  useContext,
-} from 'react'
+import React, { useState, useEffect, useMemo, useCallback } from 'react'
 import ProBasicLayout, {
   getMenuData,
   MenuDataItem,
   SettingDrawerProps,
 } from '@ant-design/pro-layout'
 import { Link } from 'umi'
-import { Dropdown, Menu, Avatar } from 'antd'
 import { useLocation } from '@/hooks'
-import { ConfigContext } from '@/utils/context'
-import { menus, menuIcon, language, languages, config } from '@/configs'
+import { menus, menuIcon, config } from '@/configs'
 import defaultSettings from '@/defaultSettings'
-import { ISupportedLocales } from '@/typings'
 import type { MenuProps } from 'antd/es/menu'
-import styles from './index.less'
+import HeaderRightContent from './HeaderRightContent'
 
 const renderMenuItem = (menus: MenuDataItem[]): MenuDataItem[] =>
   menus.map(({ icon, children, ...item }) => ({
@@ -34,8 +25,6 @@ const PrimaryLayout: React.FC = (props) => {
   const [selectedKeys, setSelectedKeys] = useState<string[]>(['/'])
   const { pathname } = location
   const { breadcrumbMap, menuData } = useMemo(() => getMenuData(menus), [])
-  const { language: locale, setLanguage } = useContext(ConfigContext)
-  const currentLanguage = language[locale]
 
   useEffect(() => {
     const select = breadcrumbMap.get(pathname)
@@ -68,30 +57,6 @@ const PrimaryLayout: React.FC = (props) => {
     [handleOnOpenChange, openKeys, selectedKeys]
   )
 
-  const rightContentRender = () => (
-    <Dropdown
-      overlay={
-        <Menu
-          selectedKeys={[currentLanguage.value]}
-          onClick={(data) => {
-            setLanguage(data.key as ISupportedLocales)
-          }}
-        >
-          {languages.map((item) => (
-            <Menu.Item key={item.key}>
-              <Avatar size="small" style={{ marginRight: 8 }} src={item.flag} />
-              {item.value}
-            </Menu.Item>
-          ))}
-        </Menu>
-      }
-    >
-      <div className={styles.headerButton}>
-        <Avatar size="small" src={currentLanguage.flag} />
-      </div>
-    </Dropdown>
-  )
-
   return (
     <>
       <ProBasicLayout
@@ -101,7 +66,7 @@ const PrimaryLayout: React.FC = (props) => {
         menuDataRender={menuDataRender}
         menuItemRender={menuItemRender}
         menuProps={menuProps}
-        rightContentRender={rightContentRender}
+        rightContentRender={() => <HeaderRightContent />}
       >
         {props.children}
       </ProBasicLayout>

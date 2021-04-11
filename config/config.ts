@@ -25,6 +25,9 @@ const config: IConfig = {
     type: 'none',
     exclude: [],
   },
+  mock: {
+    exclude: ['utils/index'],
+  },
   extraBabelPresets: ['@lingui/babel-preset-react'],
   extraBabelPlugins: [
     'macros',
