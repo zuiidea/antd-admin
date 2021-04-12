@@ -12,6 +12,11 @@ const menus = [
     name: t`Dashboard`,
     icon: 'dashboard',
   },
+  {
+    path: '/user',
+    name: t`User`,
+    icon: 'user',
+  },
 ]
 
 export default menus

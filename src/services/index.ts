@@ -17,7 +17,6 @@ for (const key in APIs) {
 export const {
   logoutUser,
   queryUser,
-  queryUserList,
   updateUser,
   createUser,
   removeUser,
@@ -42,3 +41,30 @@ export interface ILoginUserParams {
 }
 
 export const loginUser = createService<any, ILoginUserParams>(user.loginUser)
+
+export interface IUserItem {
+  address: string
+  age: number
+  avatar: string
+  createTime: string
+  email: string
+  id: string
+  isMale: boolean
+  name: string
+  nickName: string
+  phone: string
+}
+export interface IUserListReault {
+  data: IUserItem[]
+  total: number
+}
+
+export interface IQueryUserListParams {
+  page?: number
+  pageSize?: number
+}
+
+export const queryUserList = createService<
+  IUserListReault,
+  IQueryUserListParams
+>(user.queryUserList)
