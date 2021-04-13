@@ -15,7 +15,7 @@ const config: IConfig = {
   publicPath: isDevelopment ? '/' : 'https://cdn.antd-admin.zuiidea.com/',
   hash: true,
   ignoreMomentLocale: true,
-  targets: { ie: 9 },
+  targets: { ie: 11 },
   dynamicImport: {},
   theme,
   proxy,
@@ -44,6 +44,9 @@ const config: IConfig = {
   chainWebpack: (memo) => {
     memo.module.rule('po').test(/\.po$/).use('po').loader('@lingui/loader')
   },
+  // 快速刷新功能 https://umijs.org/config#fastrefresh
+  fastRefresh: {},
+  esbuild: {},
 }
 
 export default config
