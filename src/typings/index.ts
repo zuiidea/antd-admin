@@ -1,6 +1,7 @@
 import { ISupportedLocales } from '@/typings'
 export * from './language'
 export * from './menu'
+export * from './antd'
 export interface ILayouItem {
   name: string
   include?: any[]

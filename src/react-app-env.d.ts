@@ -8,3 +8,4 @@ declare module '*.po' {
     [key: string]: string | string[]
   }
 }
+

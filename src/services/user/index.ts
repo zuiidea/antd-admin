@@ -22,3 +22,4 @@ export default {
   removeUser: 'DELETE /user/:id',
   removeUserList: 'POST /users/delete',
 } as TUserAPI
+

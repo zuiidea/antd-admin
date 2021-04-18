@@ -3,10 +3,16 @@ import { Avatar, Button, Table } from 'antd'
 import { Link } from 'umi'
 import { useRequest } from '@/hooks'
 import { queryUserList } from '@/services'
+import type {
+  IUserItem,
+  IUserListResult,
+  IQueryUserListParams,
+} from '@/services'
 import { Trans } from '@lingui/macro'
+import { ColumnType } from '@/typings'
 import styles from './index.less'
 
-const columns = [
+const columns: ColumnType<IUserItem>[] = [
   {
     title: <Trans>Avatar</Trans>,
     dataIndex: 'avatar',
@@ -76,15 +82,15 @@ const columns = [
 ]
 
 const UserPage: React.FC = () => {
-  const [current, setCurrent] = useState(1)
-  const [pageSize, setPageSize] = useState(10)
+  const [current, setCurrent] = useState<number>(1)
+  const [pageSize, setPageSize] = useState<number>(10)
   const {
-    data: { data, total },
+    data: { list, total },
     loading,
     run: runQueryUserList,
-  } = useRequest(queryUserList, {
+  } = useRequest<IUserListResult, IQueryUserListParams>(queryUserList, {
     initialData: {
-      data: [],
+      list: [],
       total: 0,
     },
     manual: true,
@@ -108,18 +114,17 @@ const UserPage: React.FC = () => {
   return (
     <div className={styles.error}>
       <Table
-        simple
         bordered
         loading={loading}
-        dataSource={data}
+        dataSource={list}
         columns={columns}
         className={styles.table}
         scroll={{ x: 1200 }}
         rowKey={(record) => record.id}
         pagination={pagination}
         onChange={(page) => {
-          setCurrent(page.current)
-          setPageSize(page.pageSize)
+          setCurrent(page.current as number)
+          setPageSize(page.pageSize as number)
         }}
       />
     </div>

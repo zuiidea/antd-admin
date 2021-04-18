@@ -54,8 +54,8 @@ export interface IUserItem {
   nickName: string
   phone: string
 }
-export interface IUserListReault {
-  data: IUserItem[]
+export interface IUserListResult {
+  list: IUserItem[]
   total: number
 }
 
@@ -65,6 +65,6 @@ export interface IQueryUserListParams {
 }
 
 export const queryUserList = createService<
-  IUserListReault,
+  IUserListResult,
   IQueryUserListParams
 >(user.queryUserList)

@@ -112,9 +112,9 @@
   },
   "scripts": {
     "start": "umi dev",
-    "build": "umi build",
-    "test": "cross-env BABELRC=none umi test",
-    "analyze": "cross-env ANALYZE=1 umi build",
+    "build": "cross-env UMI_ENV=prod umi build",
+    "test": "umi test",
+    "analyze": "cross-env ANALYZE=1 umi dev",
     "eslint": "eslint --fix 'src/**/*.{ts,tsx,js.jsx}'",
     "stylelint": "stylelint src/**/*.less --syntax less",
     "prettier": "prettier --write 'src/**/*.{ts,tsx,js.jsx,less}'",

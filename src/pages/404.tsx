@@ -1,5 +1,4 @@
 import React from 'react'
-import { FrownOutlined } from '@ant-design/icons'
 import styles from './404.less'
 
 const NotFoundPage: React.FC = () => (

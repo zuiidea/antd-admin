@@ -5,16 +5,22 @@ import { ISupportedLocales } from '@/typings'
 import { ConfigProviderProps } from 'antd/lib/config-provider'
 import { antdI18nMap } from '@/configs'
 import { i18n } from '@/i18n'
+import zh_CN from 'antd/lib/locale/zh_CN'
+import en_US from 'antd/lib/locale/en_US'
+import pt_BR from 'antd/lib/locale/pt_BR'
+
+const antdLocaleMap = {
+  zh_CN,
+  en_US,
+  pt_BR
+}
 
 const useIntlProvider = () => {
   const { language } = useContext(ConfigContext)
   const [locale, setLocale] = useState<ConfigProviderProps['locale']>()
 
   useEffect(() => {
-    const path = antdI18nMap[language]
-    import(`antd/lib/locale/${path}.js`).then((data) => {
-      setLocale(data.default)
-    })
+    setLocale(antdLocaleMap[antdI18nMap[language]])
     localStorage.setItem(LOCALE_LANGUAGE, language)
   }, [language])
 

@@ -28,5 +28,5 @@ export const languages: ILanguages[] = Object.entries(language).map(
 export const antdI18nMap: IAntdI18nMap = {
   zh: 'zh_CN',
   en: 'en_US',
-  'pt-br': 'pt_PT',
+  'pt-br': 'pt_BR',
 }

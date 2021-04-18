@@ -189,7 +189,7 @@ export default {
     }
 
     res.status(200).json({
-      data: newData.slice((page - 1) * pageSize, page * pageSize),
+      list: newData.slice((page - 1) * pageSize, page * pageSize),
       total: newData.length,
     })
   },
