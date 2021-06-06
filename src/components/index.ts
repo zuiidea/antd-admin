@@ -2,6 +2,6 @@ import FilterItem from './FilterItem'
 import Loader from './Loader'
 import ScrollBar from './ScrollBar'
 import GlobalFooter from './GlobalFooter'
-import Ellipsis from './Ellipsis'
+import Page from './Page'
 
-export { GlobalFooter, Ellipsis, FilterItem, Loader, ScrollBar }
+export { GlobalFooter, FilterItem, Loader, ScrollBar, Page }

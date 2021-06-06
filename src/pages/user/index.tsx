@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Avatar, Button, Table } from 'antd'
 import { Link } from 'umi'
 import { useRequest } from '@/hooks'
+import { Page } from '@/components'
 import { queryUserList } from '@/services'
 import type {
   IUserItem,
@@ -112,22 +113,24 @@ const UserPage: React.FC = () => {
   }
 
   return (
-    <div className={styles.error}>
-      <Table
-        bordered
-        loading={loading}
-        dataSource={list}
-        columns={columns}
-        className={styles.table}
-        scroll={{ x: 1200 }}
-        rowKey={(record) => record.id}
-        pagination={pagination}
-        onChange={(page) => {
-          setCurrent(page.current as number)
-          setPageSize(page.pageSize as number)
-        }}
-      />
-    </div>
+    <Page inner>
+      <div className={styles.error}>
+        <Table
+          bordered
+          loading={loading}
+          dataSource={list}
+          columns={columns}
+          className={styles.table}
+          scroll={{ x: 1200 }}
+          rowKey={(record) => record.id}
+          pagination={pagination}
+          onChange={(page) => {
+            setCurrent(page.current as number)
+            setPageSize(page.pageSize as number)
+          }}
+        />
+      </div>
+    </Page>
   )
 }
 
