@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Form, Input, InputNumber, Radio, Modal, Cascader } from 'antd'
 import { Trans, t } from '@lingui/macro'
-import city from 'utils/city'
+import city from '../../../utils/city'
 
 const FormItem = Form.Item
 
@@ -15,7 +15,7 @@ const formItemLayout = {
   }
 }
 
-class UserModal extends PureComponent {
+class TaskModal extends PureComponent {
   formRef = React.createRef()
 
   handleOk = () => {
@@ -47,10 +47,16 @@ class UserModal extends PureComponent {
           initialValues={{ ...item, address: item.address && item.address.split(' ') }}
           layout="horizontal"
         >
-          <FormItem name="name" rules={[{ required: true }]} label={t`Name`} hasFeedback {...formItemLayout}>
+          <FormItem name="name" rules={[{ required: true }]} label={t`Task Name`} hasFeedback {...formItemLayout}>
             <Input />
           </FormItem>
-          <FormItem name="nickName" rules={[{ required: true }]} label={t`NickName`} hasFeedback {...formItemLayout}>
+          <FormItem
+            name="description"
+            rules={[{ required: true }]}
+            label={t`Description`}
+            hasFeedback
+            {...formItemLayout}
+          >
             <Input />
           </FormItem>
           <FormItem name="isMale" rules={[{ required: true }]} label={t`Gender`} hasFeedback {...formItemLayout}>
@@ -64,7 +70,7 @@ class UserModal extends PureComponent {
             </Radio.Group>
           </FormItem>
           <FormItem name="age" label={t`Age`} hasFeedback {...formItemLayout}>
-            <InputNumber min={18} max={100} />
+            <InputNumber min={18} max={100} /> <InputNumber min={18} max={100} />
           </FormItem>
           <FormItem
             name="phone"
@@ -99,10 +105,10 @@ class UserModal extends PureComponent {
   }
 }
 
-UserModal.propTypes = {
+TaskModal.propTypes = {
   type: PropTypes.string,
   item: PropTypes.object,
   onOk: PropTypes.func
 }
 
-export default UserModal
+export default TaskModal

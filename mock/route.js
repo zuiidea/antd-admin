@@ -9,23 +9,15 @@ const database = [
     zh: {
       name: '仪表盘'
     },
-    'pt-br': {
-      name: 'Dashboard'
-    },
-    route: '/dashboard',
+    route: '/dashboard'
   },
   {
     id: '2',
     breadcrumbParentId: '1',
-    name: 'Users',
-    zh: {
-      name: '用户管理'
-    },
-    'pt-br': {
-      name: 'Usuário'
-    },
-    icon: 'user',
-    route: '/user',
+    name: 'Task List',
+    zh: { name: '任务列表' },
+    icon: 'task-list',
+    route: '/taskList'
   },
   {
     id: '7',
@@ -34,11 +26,8 @@ const database = [
     zh: {
       name: '用户管理'
     },
-    'pt-br': {
-      name: 'Posts'
-    },
     icon: 'shopping-cart',
-    route: '/post',
+    route: '/post'
   },
   {
     id: '21',
@@ -48,10 +37,7 @@ const database = [
     zh: {
       name: '用户详情'
     },
-    'pt-br': {
-      name: 'Detalhes do usuário'
-    },
-    route: '/user/:id',
+    route: '/user/:id'
   },
   {
     id: '3',
@@ -60,11 +46,8 @@ const database = [
     zh: {
       name: 'Request'
     },
-    'pt-br': {
-      name: 'Requisição'
-    },
     icon: 'api',
-    route: '/request',
+    route: '/request'
   },
   {
     id: '4',
@@ -73,10 +56,7 @@ const database = [
     zh: {
       name: 'UI组件'
     },
-    'pt-br': {
-      name: 'Elementos UI'
-    },
-    icon: 'camera-o',
+    icon: 'camera-o'
   },
   {
     id: '45',
@@ -86,11 +66,8 @@ const database = [
     zh: {
       name: 'Editor'
     },
-    'pt-br': {
-      name: 'Editor'
-    },
     icon: 'edit',
-    route: '/editor',
+    route: '/editor'
   },
   {
     id: '5',
@@ -99,10 +76,7 @@ const database = [
     zh: {
       name: 'Charts'
     },
-    'pt-br': {
-      name: 'Graficos'
-    },
-    icon: 'code-o',
+    icon: 'code-o'
   },
   {
     id: '51',
@@ -112,11 +86,8 @@ const database = [
     zh: {
       name: 'ECharts'
     },
-    'pt-br': {
-      name: 'ECharts'
-    },
     icon: 'line-chart',
-    route: '/chart/ECharts',
+    route: '/chart/ECharts'
   },
   {
     id: '52',
@@ -126,11 +97,8 @@ const database = [
     zh: {
       name: 'HighCharts'
     },
-    'pt-br': {
-      name: 'HighCharts'
-    },
     icon: 'bar-chart',
-    route: '/chart/highCharts',
+    route: '/chart/highCharts'
   },
   {
     id: '53',
@@ -140,16 +108,13 @@ const database = [
     zh: {
       name: 'Rechartst'
     },
-    'pt-br': {
-      name: 'Rechartst'
-    },
     icon: 'area-chart',
-    route: '/chart/Recharts',
-  },
+    route: '/chart/Recharts'
+  }
 ]
 
 module.exports = {
   [`GET ${ApiPrefix}/routes`](req, res) {
     res.status(200).json(database)
-  },
+  }
 }

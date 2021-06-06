@@ -1,17 +1,21 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { history, connect } from 'umi'
-
 import { Row, Col, Button, Popconfirm } from 'antd'
 import { t } from '@lingui/macro'
-import { Page } from 'components'
+import { Page } from '../../components'
 import { stringify } from 'qs'
 import List from './components/List'
 import Filter from './components/Filter'
-import Modal from './components/Modal'
+import TaskModal from './components/Modal'
 
 @connect(({ user, loading }) => ({ user, loading }))
-class User extends PureComponent {
+class Task extends PureComponent {
+  constructor(props) {
+    super(props)
+    console.log(this.props)
+  }
+
   handleRefresh = (newQuery) => {
     const { location } = this.props
     const { query, pathname } = location
@@ -75,7 +79,7 @@ class User extends PureComponent {
 
   get listProps() {
     const { dispatch, user, loading } = this.props
-    const { list, pagination, selectedRowKeys } = user
+    const { list, pagination } = user
 
     return {
       dataSource: list,
@@ -105,17 +109,6 @@ class User extends PureComponent {
             currentItem: item
           }
         })
-      },
-      rowSelection: {
-        selectedRowKeys,
-        onChange: (keys) => {
-          dispatch({
-            type: 'user/updateState',
-            payload: {
-              selectedRowKeys: keys
-            }
-          })
-        }
       }
     }
   }
@@ -164,17 +157,17 @@ class User extends PureComponent {
           </Row>
         )}
         <List {...this.listProps} />
-        <Modal {...this.modalProps} />
+        <TaskModal {...this.modalProps} />
       </Page>
     )
   }
 }
 
-User.propTypes = {
+Task.propTypes = {
   user: PropTypes.object,
   location: PropTypes.object,
   dispatch: PropTypes.func,
   loading: PropTypes.object
 }
 
-export default User
+export default Task

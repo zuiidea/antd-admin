@@ -11,7 +11,7 @@ import {
   CodeOutlined,
   LineOutlined,
   BarChartOutlined,
-  AreaChartOutlined,
+  AreaChartOutlined, OrderedListOutlined,
 } from '@ant-design/icons'
 
 export default {
@@ -22,6 +22,7 @@ export default {
   'code-o': <CodeOutlined />,
   'area-chart': <AreaChartOutlined />,
   'bar-chart': <BarChartOutlined />,
+  'task-list':<OrderedListOutlined />,
   message: <MessageOutlined />,
   team: <TeamOutlined />,
   dashboard: <DashboardOutlined />,
