@@ -164,7 +164,11 @@ class List extends PureComponent {
         title: <Trans>Operation</Trans>,
         key: 'Operation',
         fixed: 'right',
-        render: () => <a>action</a>
+        render: () => (
+          <div>
+            <a>修改</a> <a>删除</a>
+          </div>
+        )
       }
     ]
 

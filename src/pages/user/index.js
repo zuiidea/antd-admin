@@ -55,7 +55,7 @@ class User extends PureComponent {
       destroyOnClose: true,
       maskClosable: false,
       confirmLoading: loading.effects[`user/${modalType}`],
-      title: `${modalType === 'create' ? t`Create User` : t`Update User`}`,
+      title: `${modalType === 'create' ? t`Create Task` : t`Update Task`}`,
       centered: true,
       onOk: (data) => {
         dispatch({

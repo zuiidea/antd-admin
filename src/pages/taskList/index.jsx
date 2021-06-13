@@ -58,9 +58,12 @@ class Task extends PureComponent {
       visible: modalVisible,
       destroyOnClose: true,
       maskClosable: false,
+      cancelText: '取消',
+      okText: '保存',
       confirmLoading: loading.effects[`user/${modalType}`],
-      title: `${modalType === 'create' ? t`Create User` : t`Update User`}`,
+      title: `${modalType === 'create' ? t`Create Task` : t`Update User`}`,
       centered: true,
+      width: 800,
       onOk: (data) => {
         dispatch({
           type: `user/${modalType}`,
