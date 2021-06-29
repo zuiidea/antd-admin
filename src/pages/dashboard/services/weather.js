@@ -1,4 +1,4 @@
-import { request, config } from 'utils'
+import { request, config } from '../../../utils'
 
 const { APIV1 } = config
 
@@ -7,6 +7,6 @@ export function query(params) {
   return request({
     url: `${APIV1}/weather/now.json`,
     method: 'get',
-    data: params,
+    data: params
   })
 }

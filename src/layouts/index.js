@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'umi'
 import { ConfigProvider } from 'antd'
-import { i18n } from "@lingui/core"
+import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { getLocale } from 'utils'
 import { zh, en, pt } from 'make-plural/plurals'
@@ -11,23 +11,22 @@ import pt_BR from 'antd/lib/locale-provider/pt_BR'
 
 import BaseLayout from './BaseLayout'
 
-const plurals =  {
+const plurals = {
   zh,
   en,
-  'pt-br': pt,
+  'pt-br': pt
 }
 
 const languages = {
   zh: zh_CN,
   en: en_US,
-  'pt-br': pt_BR,
+  'pt-br': pt_BR
 }
 const { defaultLanguage } = i18n
 
 @withRouter
 class Layout extends Component {
-  state = {
-  }
+  state = {}
 
   language = defaultLanguage
 
@@ -51,10 +50,8 @@ class Layout extends Component {
     return true
   }
 
-  loadCatalog = async language => {
-    const catalog = await import(
-      `../locales/${language}/messages.json`
-    )
+  loadCatalog = async (language) => {
+    const catalog = await import(`../locales/${language}/messages.json`)
 
     i18n.load(language, catalog)
     i18n.activate(language)

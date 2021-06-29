@@ -13,11 +13,17 @@ const database = [
   },
   {
     id: '2',
-    breadcrumbParentId: '1',
     name: 'Task List',
     zh: { name: '任务列表' },
     icon: 'task-list',
     route: '/taskList'
+  },
+  {
+    id: '3',
+    name: 'Task Log',
+    zh: { name: '调度日志' },
+    icon: 'task-log',
+    route: '/taskLog'
   },
   {
     id: '7',
@@ -40,7 +46,7 @@ const database = [
     route: '/user/:id'
   },
   {
-    id: '3',
+    id: '6',
     breadcrumbParentId: '1',
     name: 'Request',
     zh: {

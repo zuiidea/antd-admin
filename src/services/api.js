@@ -14,5 +14,5 @@ export default {
 
   queryPostList: '/posts',
 
-  queryDashboard: '/dashboard',
+  queryDashboard: '/dashboard'
 }

@@ -1,13 +1,13 @@
-import modelExtend from 'dva-model-extend'
-import api from 'api'
-import { pageModel } from 'utils/model'
+import Model from 'dva-model-extend'
+import api from '../../services'
+import { pageModel } from '../../utils/model'
 import * as u from '../../utils/data'
 const { pathToRegexp } = require('path-to-regexp')
 
 const { queryUserList, createUser, removeUser, updateUser, removeUserList } = api
 
-export default modelExtend(pageModel, {
-  namespace: 'user',
+export default Model(pageModel, {
+  namespace: 'taskList',
 
   state: {
     currentItem: {},
@@ -19,7 +19,7 @@ export default modelExtend(pageModel, {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen((location) => {
-        if (pathToRegexp('/user').exec(location.pathname)) {
+        if (pathToRegexp('/taskList').exec(location.pathname)) {
           const payload = u.isEmpty(location.query) ? { page: 1, pageSize: 10 } : location.query
           dispatch({ type: 'query', payload })
         }
@@ -79,7 +79,7 @@ export default modelExtend(pageModel, {
     },
 
     *update({ payload }, { select, call, put }) {
-      const id = yield select(({ user }) => user.currentItem.id)
+      const id = yield select(({ taskList }) => taskList.currentItem.id)
       const newUser = { ...payload, id }
       const data = yield call(updateUser, newUser)
       if (data.success) {

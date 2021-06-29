@@ -1,13 +1,12 @@
 import modelExtend from 'dva-model-extend'
-import api from 'api'
-import { pageModel } from 'utils/model'
-import * as u from '../../utils/data'
+import api from '../../services/api'
+import { pageModel } from '../../utils/model'
 const { pathToRegexp } = require('path-to-regexp')
 
 const { queryUserList, createUser, removeUser, updateUser, removeUserList } = api
 
 export default modelExtend(pageModel, {
-  namespace: 'user',
+  namespace: 'taskLog',
 
   state: {
     currentItem: {},
@@ -19,9 +18,12 @@ export default modelExtend(pageModel, {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen((location) => {
-        if (pathToRegexp('/user').exec(location.pathname)) {
-          const payload = u.isEmpty(location.query) ? { page: 1, pageSize: 10 } : location.query
-          dispatch({ type: 'query', payload })
+        if (pathToRegexp('/taskLog').exec(location.pathname)) {
+          const payload = location.query || { page: 1, pageSize: 10 }
+          dispatch({
+            type: 'query',
+            payload
+          })
         }
       })
     }

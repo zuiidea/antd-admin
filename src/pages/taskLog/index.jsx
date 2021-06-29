@@ -8,8 +8,8 @@ import List from './components/List'
 import Filter from './components/Filter'
 import TaskModal from './components/Modal'
 
-@connect(({ taskList, loading }) => ({ taskList, loading }))
-class Task extends PureComponent {
+@connect(({ taskLog, loading }) => ({ taskLog, loading }))
+class taskLog extends PureComponent {
   constructor(props) {
     super(props)
     console.log(this.props)
@@ -32,8 +32,8 @@ class Task extends PureComponent {
   }
 
   get modalProps() {
-    const { dispatch, taskList, loading } = this.props
-    const { currentItem, modalVisible, modalType } = taskList
+    const { dispatch, taskLog, loading } = this.props
+    const { currentItem, modalVisible, modalType } = taskLog
 
     return {
       item: modalType === 'create' ? {} : currentItem,
@@ -42,13 +42,13 @@ class Task extends PureComponent {
       maskClosable: false,
       cancelText: '取消',
       okText: '保存',
-      confirmLoading: loading.effects[`taskList/${modalType}`],
+      confirmLoading: loading.effects[`user/${modalType}`],
       title: `${modalType === 'create' ? t`Create Task` : t`Update User`}`,
       centered: true,
       width: 800,
       onOk: (data) => {
         dispatch({
-          type: `taskList/${modalType}`,
+          type: `user/${modalType}`,
           payload: data
         }).then(() => {
           this.handleRefresh()
@@ -56,19 +56,19 @@ class Task extends PureComponent {
       },
       onCancel() {
         dispatch({
-          type: 'taskList/hideModal'
+          type: 'user/hideModal'
         })
       }
     }
   }
 
   get listProps() {
-    const { dispatch, taskList, loading } = this.props
-    const { list, pagination } = taskList
+    const { dispatch, taskLog, loading } = this.props
+    const { list, pagination } = taskLog
 
     return {
       dataSource: list,
-      loading: loading.effects['taskList/query'],
+      loading: loading.effects['user/query'],
       pagination,
       onChange: (page) => {
         this.handleRefresh({
@@ -78,7 +78,7 @@ class Task extends PureComponent {
       },
       onDeleteItem: (id) => {
         dispatch({
-          type: 'taskList/delete',
+          type: 'user/delete',
           payload: id
         }).then(() => {
           this.handleRefresh({
@@ -88,7 +88,7 @@ class Task extends PureComponent {
       },
       onEditItem(item) {
         dispatch({
-          type: 'taskList/showModal',
+          type: 'user/showModal',
           payload: {
             modalType: 'update',
             currentItem: item
@@ -113,7 +113,7 @@ class Task extends PureComponent {
       },
       onAdd() {
         dispatch({
-          type: 'taskList/showModal',
+          type: 'user/showModal',
           payload: {
             modalType: 'create'
           }
@@ -133,11 +133,11 @@ class Task extends PureComponent {
   }
 }
 
-Task.propTypes = {
-  taskList: PropTypes.object,
+taskLog.propTypes = {
+  taskLog: PropTypes.object,
   location: PropTypes.object,
   dispatch: PropTypes.func,
   loading: PropTypes.object
 }
 
-export default Task
+export default taskLog

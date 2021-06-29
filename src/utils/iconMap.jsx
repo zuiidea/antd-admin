@@ -1,3 +1,5 @@
+import React from 'react'
+
 import {
   PayCircleOutlined,
   ShoppingCartOutlined,
@@ -11,7 +13,8 @@ import {
   CodeOutlined,
   LineOutlined,
   BarChartOutlined,
-  AreaChartOutlined, OrderedListOutlined,
+  AreaChartOutlined,
+  OrderedListOutlined
 } from '@ant-design/icons'
 
 export default {
@@ -22,11 +25,12 @@ export default {
   'code-o': <CodeOutlined />,
   'area-chart': <AreaChartOutlined />,
   'bar-chart': <BarChartOutlined />,
-  'task-list':<OrderedListOutlined />,
+  'task-list': <OrderedListOutlined />,
+  'task-log': <OrderedListOutlined />,
   message: <MessageOutlined />,
   team: <TeamOutlined />,
   dashboard: <DashboardOutlined />,
   user: <UserOutlined />,
   api: <ApiOutlined />,
-  edit: <EditOutlined />,
+  edit: <EditOutlined />
 }
