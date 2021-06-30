@@ -8,4 +8,14 @@ import Ellipsis from './Ellipsis'
 import * as MyLayout from './Layout/index.js'
 import Page from './Page'
 
-export { MyLayout, Editor, GlobalFooter, Ellipsis, FilterItem, DropOption, Loader, Page, ScrollBar }
+export {
+  MyLayout,
+  Editor,
+  GlobalFooter,
+  Ellipsis,
+  FilterItem,
+  DropOption,
+  Loader,
+  Page,
+  ScrollBar,
+}

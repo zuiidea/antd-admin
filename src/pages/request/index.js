@@ -1,7 +1,17 @@
 import React from 'react'
 import { request } from 'utils'
 import { apiPrefix } from 'utils/config'
-import { Row, Col, Select, Form, Input, Button, List, Tag, Checkbox } from 'antd'
+import {
+  Row,
+  Col,
+  Select,
+  Form,
+  Input,
+  Button,
+  List,
+  Tag,
+  Checkbox,
+} from 'antd'
 import classnames from 'classnames'
 import { CloseOutlined } from '@ant-design/icons'
 import { Trans } from '@lingui/macro'
@@ -18,7 +28,7 @@ const methodTagColor = {
   GET: 'green',
   POST: 'orange',
   DELETE: 'red',
-  PUT: 'geekblue'
+  PUT: 'geekblue',
 }
 
 const requests = Object.values(api).map((item) => {
@@ -31,7 +41,7 @@ const requests = Object.values(api).map((item) => {
   }
   return {
     method,
-    url
+    url,
   }
 })
 
@@ -45,7 +55,7 @@ class RequestPage extends React.Component {
       url: '/api/v1/routes',
       keys: [1],
       result: null,
-      visible: true
+      visible: true,
     }
   }
 
@@ -68,7 +78,7 @@ class RequestPage extends React.Component {
 
         request({ method, url, data: params }).then((data) => {
           this.setState({
-            result: JSON.stringify(data)
+            result: JSON.stringify(data),
           })
         })
       })
@@ -95,19 +105,19 @@ class RequestPage extends React.Component {
       method,
       url,
       keys: [uuid++],
-      result: null
+      result: null,
     })
   }
 
   handleInputChange = (e) => {
     this.setState({
-      url: e.target.value
+      url: e.target.value,
     })
   }
 
   handleSelectChange = (method) => {
     this.setState({
-      method
+      method,
     })
   }
 
@@ -116,20 +126,20 @@ class RequestPage extends React.Component {
     const nextKeys = keys.concat(uuid)
     uuid++
     this.setState({
-      keys: nextKeys
+      keys: nextKeys,
     })
   }
 
   handleRemoveField = (key) => {
     const { keys } = this.state
     this.setState({
-      keys: keys.filter((item) => item !== key)
+      keys: keys.filter((item) => item !== key),
     })
   }
 
   handleVisible = () => {
     this.setState({
-      visible: !this.state.visible
+      visible: !this.state.visible,
     })
   }
 
@@ -146,12 +156,16 @@ class RequestPage extends React.Component {
               renderItem={(item) => (
                 <List.Item
                   className={classnames(styles.listItem, {
-                    [styles.lstItemActive]: item.method === method && item.url === url
+                    [styles.lstItemActive]:
+                      item.method === method && item.url === url,
                   })}
                   onClick={this.handleClickListItem.bind(this, item)}
                 >
                   <span style={{ width: 72 }}>
-                    <Tag style={{ marginRight: 8 }} color={methodTagColor[item.method]}>
+                    <Tag
+                      style={{ marginRight: 8 }}
+                      color={methodTagColor[item.method]}
+                    >
                       {item.method}
                     </Tag>
                   </span>
@@ -163,31 +177,56 @@ class RequestPage extends React.Component {
           <Col lg={16} md={24}>
             <Row type="flex" justify="space-between">
               <InputGroup compact size="large" style={{ flex: 1 }}>
-                <Select size="large" value={method} style={{ width: 100 }} onChange={this.handleSelectChange}>
+                <Select
+                  size="large"
+                  value={method}
+                  style={{ width: 100 }}
+                  onChange={this.handleSelectChange}
+                >
                   {methods.map((item) => (
                     <Option value={item} key={item}>
                       {item}
                     </Option>
                   ))}
                 </Select>
-                <Input value={url} onChange={this.handleInputChange} style={{ width: 'calc(100% - 200px)' }} />
-                <Button ghost={visible} type={visible ? 'primary' : ''} onClick={this.handleVisible} size="large">
+                <Input
+                  value={url}
+                  onChange={this.handleInputChange}
+                  style={{ width: 'calc(100% - 200px)' }}
+                />
+                <Button
+                  ghost={visible}
+                  type={visible ? 'primary' : ''}
+                  onClick={this.handleVisible}
+                  size="large"
+                >
                   <Trans>Params</Trans>
                 </Button>
               </InputGroup>
 
-              <Button size="large" type="primary" style={{ width: 100 }} onClick={this.handleRequest}>
+              <Button
+                size="large"
+                type="primary"
+                style={{ width: 100 }}
+                onClick={this.handleRequest}
+              >
                 <Trans>Send</Trans>
               </Button>
             </Row>
             <Form ref={this.formRef} name="control-ref">
               <div
                 className={classnames(styles.paramsBlock, {
-                  [styles.hideParams]: !visible
+                  [styles.hideParams]: !visible,
                 })}
               >
                 {keys.map((key, index) => (
-                  <Row gutter={8} type="flex" justify="start" align="middle" key={key}>
+                  <Row
+                    gutter={8}
+                    type="flex"
+                    justify="start"
+                    align="middle"
+                    key={key}
+                  >
                     <Col style={{ marginTop: 8 }}>
                       <Form.Item name={`check[${key}]`} valuePropName="checked">
                         <Checkbox defaultChecked />
@@ -204,7 +243,10 @@ class RequestPage extends React.Component {
                       </Form.Item>
                     </Col>
                     <Col style={{ marginTop: 8 }}>
-                      <CloseOutlined onClick={this.handleRemoveField.bind(this, key)} style={{ cursor: 'pointer' }} />
+                      <CloseOutlined
+                        onClick={this.handleRemoveField.bind(this, key)}
+                        style={{ cursor: 'pointer' }}
+                      />
                     </Col>
                   </Row>
                 ))}

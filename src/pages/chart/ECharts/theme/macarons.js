@@ -1,5 +1,5 @@
 /* global define */
-;(function(root, factory) {
+;(function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     // eslint-disable-line
     // AMD. Register as an anonymous module.
@@ -15,7 +15,7 @@
     factory({}, root.echarts)
   }
 })(this, (exports, echarts) => {
-  let log = function(msg) {
+  let log = function (msg) {
     if (typeof console !== 'undefined') {
       /* eslint-disable */
       console && console.error && console.error(msg)
@@ -192,7 +192,11 @@
     gauge: {
       axisLine: {
         lineStyle: {
-          color: [[0.2, '#2ec7c9'], [0.8, '#5ab1ef'], [1, '#d87a80']],
+          color: [
+            [0.2, '#2ec7c9'],
+            [0.8, '#5ab1ef'],
+            [1, '#d87a80'],
+          ],
           width: 10,
         },
       },

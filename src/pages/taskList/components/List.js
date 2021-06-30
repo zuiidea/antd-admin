@@ -18,7 +18,7 @@ const Data = [
     bind_id: 1,
     tag: 'order',
     maximum_parallel_runnable_num: 3,
-    id: 1
+    id: 1,
   },
   {
     name: '导出任务',
@@ -32,7 +32,7 @@ const Data = [
     bind_id: 1,
     tag: 'order',
     maximum_parallel_runnable_num: 3,
-    id: 2
+    id: 2,
   },
   {
     name: '导出任务',
@@ -46,7 +46,7 @@ const Data = [
     bind_id: 1,
     tag: 'order',
     maximum_parallel_runnable_num: 3,
-    id: 3
+    id: 3,
   },
   {
     name: '导出任务',
@@ -60,7 +60,7 @@ const Data = [
     bind_id: 1,
     tag: 'order',
     maximum_parallel_runnable_num: 3,
-    id: 4
+    id: 4,
   },
   {
     name: '导出任务',
@@ -74,7 +74,7 @@ const Data = [
     bind_id: 1,
     tag: 'order',
     maximum_parallel_runnable_num: 3,
-    id: 5
+    id: 5,
   },
   {
     name: '导出任务',
@@ -88,7 +88,7 @@ const Data = [
     bind_id: 1,
     tag: 'order',
     maximum_parallel_runnable_num: 3,
-    id: 6
+    id: 6,
   },
   {
     name: '导出任务',
@@ -102,7 +102,7 @@ const Data = [
     bind_id: 1,
     tag: 'order',
     maximum_parallel_runnable_num: 3,
-    id: 7
+    id: 7,
   },
   {
     name: '导出任务',
@@ -116,7 +116,7 @@ const Data = [
     bind_id: 1,
     tag: 'order',
     maximum_parallel_runnable_num: 3,
-    id: 8
+    id: 8,
   },
   {
     name: '导出任务',
@@ -130,7 +130,7 @@ const Data = [
     bind_id: 1,
     tag: 'order',
     maximum_parallel_runnable_num: 3,
-    id: 9
+    id: 9,
   },
   {
     name: '导出任务',
@@ -144,8 +144,8 @@ const Data = [
     bind_id: 1,
     tag: 'order',
     maximum_parallel_runnable_num: 3,
-    id: 10
-  }
+    id: 10,
+  },
 ]
 
 class List extends PureComponent {
@@ -157,7 +157,7 @@ class List extends PureComponent {
         dataIndex: 'id',
         key: 'id',
         width: 70,
-        fixed: 'left'
+        fixed: 'left',
       },
       {
         title: <Trans>Task Name</Trans>,
@@ -171,66 +171,66 @@ class List extends PureComponent {
               <a>{text}</a>
             </Tooltip>
           )
-        }
+        },
       },
       {
         title: <Trans>Command</Trans>,
         dataIndex: 'command',
         width: 200,
-        key: 'command'
+        key: 'command',
       },
       {
         title: <Trans>Frequency</Trans>,
         dataIndex: 'frequency',
         width: 300,
-        key: 'frequency'
+        key: 'frequency',
       },
       {
         title: <Trans>Cron Expression</Trans>,
         dataIndex: 'cron_expression',
         width: 120,
-        key: 'cron_expression'
+        key: 'cron_expression',
       },
       {
         title: <Trans>Timeout</Trans>,
         dataIndex: 'timeout',
         key: 'timeout',
-        width: 100
+        width: 100,
       },
       {
         title: <Trans>Retry Times</Trans>,
         dataIndex: 'retry_times',
         key: 'retry_times',
-        width: 130
+        width: 130,
       },
       {
         title: <Trans>Retry Interval</Trans>,
         dataIndex: 'retry_interval',
         key: 'retry_interval',
-        width: 130
+        width: 130,
       },
       {
         title: <Trans>Max Parallel Num</Trans>,
         dataIndex: 'maximum_parallel_runnable_num',
         key: 'maximum_parallel_runnable_num',
-        width: 120
+        width: 120,
       },
       {
         title: <Trans>Task Id</Trans>,
         dataIndex: 'task_id',
         key: 'task_id',
-        width: 100
+        width: 100,
       },
       {
         title: <Trans>Tag</Trans>,
         dataIndex: 'tag',
-        key: 'tag'
+        key: 'tag',
       },
       {
         title: <Trans>Bind Id</Trans>,
         dataIndex: 'bind_id',
         key: 'bind_id',
-        width: 100
+        width: 100,
       },
       {
         title: <Trans>Operation</Trans>,
@@ -242,13 +242,16 @@ class List extends PureComponent {
               编辑
             </a>
             <Dropdown overlay={menu}>
-              <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
+              <a
+                className="ant-dropdown-link"
+                onClick={(e) => e.preventDefault()}
+              >
                 更多 <DownOutlined />
               </a>
             </Dropdown>
           </Space>
-        )
-      }
+        ),
+      },
     ]
 
     const menu = (
@@ -264,7 +267,7 @@ class List extends PureComponent {
       <Table
         pagination={{
           ...tableProps.pagination,
-          showTotal: (total) => t`Total ${total} Items`
+          showTotal: (total) => t`Total ${total} Items`,
         }}
         dataSource={Data}
         className={styles.table}
@@ -280,7 +283,7 @@ class List extends PureComponent {
 List.propTypes = {
   onDeleteItem: PropTypes.func,
   onEditItem: PropTypes.func,
-  location: PropTypes.object
+  location: PropTypes.object,
 }
 
 export default List

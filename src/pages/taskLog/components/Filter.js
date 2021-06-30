@@ -10,7 +10,10 @@ class Filter extends Component {
   handleFields(fields) {
     const { createTime } = fields
     if (createTime && createTime.length) {
-      fields.createTime = [moment(createTime[0]).format('YYYY-MM-DD'), moment(createTime[1]).format('YYYY-MM-DD')]
+      fields.createTime = [
+        moment(createTime[0]).format('YYYY-MM-DD'),
+        moment(createTime[1]).format('YYYY-MM-DD'),
+      ]
     }
     return fields
   }
@@ -50,7 +53,11 @@ class Filter extends Component {
     }
 
     return (
-      <Form ref={this.formRef} name="control-ref" initialValues={{ name, address, createTime: initialCreateTime }}>
+      <Form
+        ref={this.formRef}
+        name="control-ref"
+        initialValues={{ name, address, createTime: initialCreateTime }}
+      >
         <Row gutter={24}>
           <Col xl={{ span: 4 }} md={{ span: 8 }}>
             <Form.Item name="name">
@@ -72,10 +79,18 @@ class Filter extends Component {
               <Input placeholder={t`Tag`} />
             </Form.Item>
           </Col>
-          <Button type="primary" htmlType="submit" className="margin-right" onClick={this.handleSubmit.bind(this)}>
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="margin-right"
+            onClick={this.handleSubmit.bind(this)}
+          >
             <Trans>Search</Trans>
           </Button>
-          <Button className="margin-right" onClick={this.handleReset.bind(this)}>
+          <Button
+            className="margin-right"
+            onClick={this.handleReset.bind(this)}
+          >
             <Trans>Reset</Trans>
           </Button>
           <Button type="ghost" onClick={onAdd}>
@@ -90,7 +105,7 @@ class Filter extends Component {
 Filter.propTypes = {
   onAdd: PropTypes.func,
   filter: PropTypes.object,
-  onFilterChange: PropTypes.func
+  onFilterChange: PropTypes.func,
 }
 
 export default Filter

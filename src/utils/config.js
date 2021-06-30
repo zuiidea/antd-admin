@@ -10,8 +10,8 @@ module.exports = {
     {
       name: 'primary',
       include: [/.*/],
-      exclude: [/(\/(en|zh))*\/login/]
-    }
+      exclude: [/(\/(en|zh))*\/login/],
+    },
   ],
 
   /* I18n configuration, `languages` and `defaultLanguage` are required currently. */
@@ -21,14 +21,14 @@ module.exports = {
       {
         key: 'en',
         title: 'English',
-        flag: '/america.svg'
+        flag: '/america.svg',
       },
       {
         key: 'zh',
         title: '中文',
-        flag: '/china.svg'
-      }
+        flag: '/china.svg',
+      },
     ],
-    defaultLanguage: 'zh'
-  }
+    defaultLanguage: 'zh',
+  },
 }

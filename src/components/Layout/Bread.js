@@ -2,7 +2,7 @@ import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Breadcrumb } from 'antd'
 import { Link, withRouter } from 'umi'
-import { t } from "@lingui/macro"
+import { t } from '@lingui/macro'
 import iconMap from 'utils/iconMap'
 const { pathToRegexp } = require('path-to-regexp')
 import { queryAncestors } from 'utils'

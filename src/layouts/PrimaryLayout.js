@@ -7,7 +7,7 @@ import { connect } from 'umi'
 import { MyLayout, GlobalFooter } from 'components'
 import { BackTop, Layout, Drawer } from 'antd'
 import { enquireScreen, unenquireScreen } from 'enquire-js'
-const { pathToRegexp } = require("path-to-regexp")
+const { pathToRegexp } = require('path-to-regexp')
 import { config, getLocale } from 'utils'
 import Error from '../pages/404'
 import styles from './PrimaryLayout.less'
@@ -24,7 +24,7 @@ class PrimaryLayout extends PureComponent {
   }
 
   componentDidMount() {
-    this.enquireHandler = enquireScreen(mobile => {
+    this.enquireHandler = enquireScreen((mobile) => {
       const { isMobile } = this.state
       if (isMobile !== mobile) {
         this.setState({
@@ -38,7 +38,7 @@ class PrimaryLayout extends PureComponent {
     unenquireScreen(this.enquireHandler)
   }
 
-  onCollapseChange = collapsed => {
+  onCollapseChange = (collapsed) => {
     this.props.dispatch({
       type: 'app/handleCollapseChange',
       payload: collapsed,
@@ -59,7 +59,7 @@ class PrimaryLayout extends PureComponent {
     const lang = getLocale()
     const newRouteList =
       lang !== 'en'
-        ? routeList.map(item => {
+        ? routeList.map((item) => {
             const { name, ...other } = item
             return {
               ...other,
@@ -70,7 +70,7 @@ class PrimaryLayout extends PureComponent {
 
     // Find a route that matches the pathname.
     const currentRoute = newRouteList.find(
-      _ => _.route && pathToRegexp(_.route).exec(location.pathname)
+      (_) => _.route && pathToRegexp(_.route).exec(location.pathname)
     )
 
     // Query whether you have permission to enter this page
@@ -79,7 +79,7 @@ class PrimaryLayout extends PureComponent {
       : false
 
     // MenuParentId is equal to -1 is not a available menu.
-    const menus = newRouteList.filter(_ => _.menuParentId !== '-1')
+    const menus = newRouteList.filter((_) => _.menuParentId !== '-1')
 
     const headerProps = {
       menus,

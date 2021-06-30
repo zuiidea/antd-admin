@@ -4,7 +4,8 @@ import { pageModel } from '../../utils/model'
 import * as u from '../../utils/data'
 const { pathToRegexp } = require('path-to-regexp')
 
-const { queryUserList, createUser, removeUser, updateUser, removeUserList } = api
+const { queryUserList, createUser, removeUser, updateUser, removeUserList } =
+  api
 
 export default Model(pageModel, {
   namespace: 'taskList',
@@ -13,18 +14,20 @@ export default Model(pageModel, {
     currentItem: {},
     modalVisible: false,
     modalType: 'create',
-    selectedRowKeys: []
+    selectedRowKeys: [],
   },
 
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen((location) => {
         if (pathToRegexp('/taskList').exec(location.pathname)) {
-          const payload = u.isEmpty(location.query) ? { page: 1, pageSize: 10 } : location.query
+          const payload = u.isEmpty(location.query)
+            ? { page: 1, pageSize: 10 }
+            : location.query
           dispatch({ type: 'query', payload })
         }
       })
-    }
+    },
   },
 
   effects: {
@@ -38,9 +41,9 @@ export default Model(pageModel, {
             pagination: {
               current: Number(payload.page) || 1,
               pageSize: Number(payload.pageSize) || 10,
-              total: data.total
-            }
-          }
+              total: data.total,
+            },
+          },
         })
       }
     },
@@ -52,8 +55,8 @@ export default Model(pageModel, {
         yield put({
           type: 'updateState',
           payload: {
-            selectedRowKeys: selectedRowKeys.filter((_) => _ !== payload)
-          }
+            selectedRowKeys: selectedRowKeys.filter((_) => _ !== payload),
+          },
         })
       } else {
         throw data
@@ -87,7 +90,7 @@ export default Model(pageModel, {
       } else {
         throw data
       }
-    }
+    },
   },
 
   reducers: {
@@ -97,6 +100,6 @@ export default Model(pageModel, {
 
     hideModal(state) {
       return { ...state, modalVisible: false }
-    }
-  }
+    },
+  },
 })

@@ -68,7 +68,7 @@ class DynamicChartComponent extends React.Component {
         {
           type: 'category',
           boundaryGap: true,
-          data: (function() {
+          data: (function () {
             let now = new Date()
             let res = []
             let len = 50
@@ -82,7 +82,7 @@ class DynamicChartComponent extends React.Component {
         {
           type: 'category',
           boundaryGap: true,
-          data: (function() {
+          data: (function () {
             let res = []
             let len = 50
             while (len--) {
@@ -128,7 +128,7 @@ class DynamicChartComponent extends React.Component {
           animationDelayUpdate(idx) {
             return idx * 10
           },
-          data: (function() {
+          data: (function () {
             let res = []
             let len = 50
             while (len--) {
@@ -140,7 +140,7 @@ class DynamicChartComponent extends React.Component {
         {
           name: '最新成交价',
           type: 'line',
-          data: (function() {
+          data: (function () {
             let res = []
             let len = 0
             while (len < 50) {

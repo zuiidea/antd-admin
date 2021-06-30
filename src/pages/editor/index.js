@@ -13,7 +13,7 @@ export default class EditorPage extends Component {
     }
   }
 
-  onEditorStateChange = editorContent => {
+  onEditorStateChange = (editorContent) => {
     this.setState({
       editorContent,
     })
@@ -26,14 +26,14 @@ export default class EditorPage extends Component {
       md: 24,
       style: {
         marginBottom: 32,
-      }
+      },
     }
     const textareaStyle = {
       minHeight: 496,
       width: '100%',
       background: '#f7f7f7',
       borderColor: '#F1F1F1',
-      padding: '16px 8px'
+      padding: '16px 8px',
     }
 
     return (

@@ -38,7 +38,7 @@ function Browser({ data }) {
       pagination={false}
       showHeader={false}
       columns={columns}
-      rowKey='name'
+      rowKey="name"
       dataSource={data}
     />
   )

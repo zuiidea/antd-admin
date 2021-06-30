@@ -36,7 +36,7 @@ const config = {
   series: [
     {
       name: 'UTC',
-      data: ['IE', 'IS', 'GB', 'PT'].map(code => {
+      data: ['IE', 'IS', 'GB', 'PT'].map((code) => {
         return { code }
       }),
     },
@@ -68,7 +68,7 @@ const config = {
         'ME',
         'AL',
         'MK',
-      ].map(code => {
+      ].map((code) => {
         return { code }
       }),
     },

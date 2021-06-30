@@ -44,26 +44,22 @@ const TreemapComponent = () => {
             {
               value: 24,
               name: 'FacebookAuthenticationPlugin.bundle',
-              path:
-                'Accounts/Authentication/FacebookAuthenticationPlugin.bundle',
+              path: 'Accounts/Authentication/FacebookAuthenticationPlugin.bundle',
             },
             {
               value: 16,
               name: 'LinkedInAuthenticationPlugin.bundle',
-              path:
-                'Accounts/Authentication/LinkedInAuthenticationPlugin.bundle',
+              path: 'Accounts/Authentication/LinkedInAuthenticationPlugin.bundle',
             },
             {
               value: 20,
               name: 'TencentWeiboAuthenticationPlugin.bundle',
-              path:
-                'Accounts/Authentication/TencentWeiboAuthenticationPlugin.bundle',
+              path: 'Accounts/Authentication/TencentWeiboAuthenticationPlugin.bundle',
             },
             {
               value: 16,
               name: 'TwitterAuthenticationPlugin.bundle',
-              path:
-                'Accounts/Authentication/TwitterAuthenticationPlugin.bundle',
+              path: 'Accounts/Authentication/TwitterAuthenticationPlugin.bundle',
             },
             {
               value: 16,
@@ -80,8 +76,7 @@ const TreemapComponent = () => {
             {
               value: 12,
               name: 'SPAAccountsNotificationPlugin.bundle',
-              path:
-                'Accounts/Notification/SPAAccountsNotificationPlugin.bundle',
+              path: 'Accounts/Notification/SPAAccountsNotificationPlugin.bundle',
             },
           ],
         },
@@ -112,8 +107,7 @@ const TreemapComponent = () => {
             {
               value: 28,
               name: 'Contents',
-              path:
-                'AddressBook Plug-Ins/DirectoryServices.sourcebundle/Contents',
+              path: 'AddressBook Plug-Ins/DirectoryServices.sourcebundle/Contents',
             },
           ],
         },

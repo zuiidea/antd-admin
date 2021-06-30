@@ -21,10 +21,10 @@ class User extends PureComponent {
       search: stringify(
         {
           ...query,
-          ...newQuery
+          ...newQuery,
         },
         { arrayFormat: 'repeat' }
-      )
+      ),
     })
   }
 
@@ -35,12 +35,14 @@ class User extends PureComponent {
     dispatch({
       type: 'user/multiDelete',
       payload: {
-        ids: selectedRowKeys
-      }
+        ids: selectedRowKeys,
+      },
     }).then(() => {
       this.handleRefresh({
         page:
-          list.length === selectedRowKeys.length && pagination.current > 1 ? pagination.current - 1 : pagination.current
+          list.length === selectedRowKeys.length && pagination.current > 1
+            ? pagination.current - 1
+            : pagination.current,
       })
     })
   }
@@ -60,16 +62,16 @@ class User extends PureComponent {
       onOk: (data) => {
         dispatch({
           type: `user/${modalType}`,
-          payload: data
+          payload: data,
         }).then(() => {
           this.handleRefresh()
         })
       },
       onCancel() {
         dispatch({
-          type: 'user/hideModal'
+          type: 'user/hideModal',
         })
-      }
+      },
     }
   }
 
@@ -84,16 +86,19 @@ class User extends PureComponent {
       onChange: (page) => {
         this.handleRefresh({
           page: page.current,
-          pageSize: page.pageSize
+          pageSize: page.pageSize,
         })
       },
       onDeleteItem: (id) => {
         dispatch({
           type: 'user/delete',
-          payload: id
+          payload: id,
         }).then(() => {
           this.handleRefresh({
-            page: list.length === 1 && pagination.current > 1 ? pagination.current - 1 : pagination.current
+            page:
+              list.length === 1 && pagination.current > 1
+                ? pagination.current - 1
+                : pagination.current,
           })
         })
       },
@@ -102,8 +107,8 @@ class User extends PureComponent {
           type: 'user/showModal',
           payload: {
             modalType: 'update',
-            currentItem: item
-          }
+            currentItem: item,
+          },
         })
       },
       rowSelection: {
@@ -112,11 +117,11 @@ class User extends PureComponent {
           dispatch({
             type: 'user/updateState',
             payload: {
-              selectedRowKeys: keys
-            }
+              selectedRowKeys: keys,
+            },
           })
-        }
-      }
+        },
+      },
     }
   }
 
@@ -126,21 +131,21 @@ class User extends PureComponent {
 
     return {
       filter: {
-        ...query
+        ...query,
       },
       onFilterChange: (value) => {
         this.handleRefresh({
-          ...value
+          ...value,
         })
       },
       onAdd() {
         dispatch({
           type: 'user/showModal',
           payload: {
-            modalType: 'create'
-          }
+            modalType: 'create',
+          },
         })
-      }
+      },
     }
   }
 
@@ -155,7 +160,11 @@ class User extends PureComponent {
           <Row style={{ marginBottom: 24, textAlign: 'right', fontSize: 13 }}>
             <Col>
               {`Selected ${selectedRowKeys.length} items `}
-              <Popconfirm title="Are you sure delete these items?" placement="left" onConfirm={this.handleDeleteItems}>
+              <Popconfirm
+                title="Are you sure delete these items?"
+                placement="left"
+                onConfirm={this.handleDeleteItems}
+              >
                 <Button type="primary" style={{ marginLeft: 8 }}>
                   Remove
                 </Button>
@@ -174,7 +183,7 @@ User.propTypes = {
   user: PropTypes.object,
   location: PropTypes.object,
   dispatch: PropTypes.func,
-  loading: PropTypes.object
+  loading: PropTypes.object,
 }
 
 export default User

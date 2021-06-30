@@ -15,12 +15,14 @@ class SiderMenu extends PureComponent {
     openKeys: store.get('openKeys') || [],
   }
 
-  onOpenChange = openKeys => {
+  onOpenChange = (openKeys) => {
     const { menus } = this.props
-    const rootSubmenuKeys = menus.filter(_ => !_.menuParentId).map(_ => _.id)
+    const rootSubmenuKeys = menus
+      .filter((_) => !_.menuParentId)
+      .map((_) => _.id)
 
     const latestOpenKey = openKeys.find(
-      key => this.state.openKeys.indexOf(key) === -1
+      (key) => this.state.openKeys.indexOf(key) === -1
     )
 
     let newOpenKeys = openKeys
@@ -34,8 +36,8 @@ class SiderMenu extends PureComponent {
     store.set('openKeys', newOpenKeys)
   }
 
-  generateMenus = data => {
-    return data.map(item => {
+  generateMenus = (data) => {
+    return data.map((item) => {
       if (item.children) {
         return (
           <SubMenu
@@ -63,26 +65,20 @@ class SiderMenu extends PureComponent {
   }
 
   render() {
-    const {
-      collapsed,
-      theme,
-      menus,
-      location,
-      isMobile,
-      onCollapseChange,
-    } = this.props
+    const { collapsed, theme, menus, location, isMobile, onCollapseChange } =
+      this.props
 
     // Generating tree-structured data for menu content.
     const menuTree = arrayToTree(menus, 'id', 'menuParentId')
 
     // Find a menu that matches the pathname.
     const currentMenu = menus.find(
-      _ => _.route && pathToRegexp(_.route).exec(location.pathname)
+      (_) => _.route && pathToRegexp(_.route).exec(location.pathname)
     )
 
     // Find the key that should be selected according to the current menu.
     const selectedKeys = currentMenu
-      ? queryAncestors(menus, currentMenu, 'menuParentId').map(_ => _.id)
+      ? queryAncestors(menus, currentMenu, 'menuParentId').map((_) => _.id)
       : []
 
     const menuProps = collapsed

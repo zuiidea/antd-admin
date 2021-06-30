@@ -2,10 +2,40 @@ import axios from 'axios'
 import { cloneDeep } from 'lodash'
 import { message } from 'antd'
 import { CANCEL_REQUEST_MESSAGE } from './constant'
+import envConfig from './envConfig'
 const { parse, compile } = require('path-to-regexp')
 
 const { CancelToken } = axios
 window.cancelRequest = new Map()
+axios.defaults.baseURL = envConfig('DELICATE_API')
+
+const qs = function (obj) {
+  const rs = []
+  Object.keys(obj).forEach((key) => {
+    if (typeof obj[key] !== 'undefined') {
+      rs.push(key + '=' + encodeURIComponent(obj[key]))
+    }
+  })
+  return rs.join('&')
+}
+
+axios.interceptors.request.use(
+  function (config) {
+    if (config.method === 'get') {
+      config.params = { ...config.params, ...config.data }
+    } else {
+      if (config.headers['Content-Type'] === CONTENT_TYPE_FORM) {
+        config.data = qs(config.data)
+      }
+    }
+    // 在发送请求之前做些什么
+    return config
+  },
+  function (error) {
+    // 对请求错误做些什么
+    return Promise.reject(error)
+  }
+)
 
 export default function request(options) {
   let { data, url } = options
@@ -18,7 +48,6 @@ export default function request(options) {
       ;[domain] = urlMatch
       url = url.slice(domain.length)
     }
-
     const match = parse(url)
     url = compile(url)(data)
 
@@ -36,7 +65,7 @@ export default function request(options) {
   options.cancelToken = new CancelToken((cancel) => {
     window.cancelRequest.set(Symbol(Date.now()), {
       pathname: window.location.pathname,
-      cancel
+      cancel,
     })
   })
 
@@ -58,16 +87,13 @@ export default function request(options) {
         success: true,
         message: statusText,
         statusCode: status,
-        ...result
+        ...result,
       })
     })
     .catch((error) => {
       const { response, message } = error
-
       if (String(message) === CANCEL_REQUEST_MESSAGE) {
-        return {
-          success: false
-        }
+        return { success: false }
       }
 
       let msg
@@ -90,3 +116,6 @@ export default function request(options) {
       })
     })
 }
+
+export const CONTENT_TYPE_FORM =
+  'application/x-www-form-urlencoded;charset=UTF-8'

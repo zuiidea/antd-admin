@@ -8,7 +8,7 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
 } from '@ant-design/icons'
-import { Trans } from "@lingui/macro"
+import { Trans } from '@lingui/macro'
 import { getLocale, setLocale } from 'utils'
 import moment from 'moment'
 import classnames from 'classnames'
@@ -18,7 +18,7 @@ import styles from './Header.less'
 const { SubMenu } = Menu
 
 class Header extends PureComponent {
-  handleClickMenu = e => {
+  handleClickMenu = (e) => {
     e.key === 'SignOut' && this.props.onSignOut()
   }
   render() {
@@ -55,21 +55,19 @@ class Header extends PureComponent {
     if (config.i18n) {
       const { languages } = config.i18n
       const language = getLocale()
-      const currentLanguage = languages.find(
-        item => item.key === language
-      )
+      const currentLanguage = languages.find((item) => item.key === language)
 
       rightContent.unshift(
         <Menu
           key="language"
           selectedKeys={[currentLanguage.key]}
-          onClick={data => {
+          onClick={(data) => {
             setLocale(data.key)
           }}
           mode="horizontal"
         >
           <SubMenu title={<Avatar size="small" src={currentLanguage.flag} />}>
-            {languages.map(item => (
+            {languages.map((item) => (
               <Menu.Item key={item.key}>
                 <Avatar
                   size="small"
@@ -99,7 +97,7 @@ class Header extends PureComponent {
               locale={{
                 emptyText: <Trans>You have viewed all notifications.</Trans>,
               }}
-              renderItem={item => (
+              renderItem={(item) => (
                 <List.Item className={styles.notificationItem}>
                   <List.Item.Meta
                     title={

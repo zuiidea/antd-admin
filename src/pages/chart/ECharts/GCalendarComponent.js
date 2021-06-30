@@ -3,7 +3,7 @@ import ReactEcharts from 'echarts-for-react'
 import * as echarts from 'echarts'
 
 const GCalendarComponent = () => {
-  const getVirtulData = year => {
+  const getVirtulData = (year) => {
     year = year || '2017'
     let date = +echarts.number.parseDate(`${year}-01-01`)
     let end = +echarts.number.parseDate(`${+year + 1}-01-01`)

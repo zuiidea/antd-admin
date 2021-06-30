@@ -35,7 +35,12 @@ export function queryArray(array, key, value) {
  * @param   {string}    children  The alias of children of the object in the array.
  * @return  {array}    Return a tree-structured array.
  */
-export function arrayToTree(array, id = 'id', parentId = 'pid', children = 'children') {
+export function arrayToTree(
+  array,
+  id = 'id',
+  parentId = 'pid',
+  children = 'children'
+) {
   const result = []
   const hash = {}
   const data = cloneDeep(array)
@@ -116,7 +121,9 @@ export function queryLayout(layouts, pathname) {
   let result = 'public'
 
   const isMatch = (regepx) => {
-    return regepx instanceof RegExp ? regepx.test(pathname) : pathToRegexp(regepx).exec(pathname)
+    return regepx instanceof RegExp
+      ? regepx.test(pathname)
+      : pathToRegexp(regepx).exec(pathname)
   }
 
   for (const item of layouts) {

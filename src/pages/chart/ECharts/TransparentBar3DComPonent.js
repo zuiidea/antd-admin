@@ -255,7 +255,7 @@ const option = {
   series: [
     {
       type: 'bar3D',
-      data: data.map(item => {
+      data: data.map((item) => {
         return {
           value: [item[1], item[0], item[2]],
         }

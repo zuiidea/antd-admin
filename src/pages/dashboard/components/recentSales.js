@@ -33,12 +33,14 @@ function RecentSales({ data }) {
     {
       title: 'STATUS',
       dataIndex: 'status',
-      render: text => <Tag color={status[text].color}>{status[text].text}</Tag>,
+      render: (text) => (
+        <Tag color={status[text].color}>{status[text].text}</Tag>
+      ),
     },
     {
       title: 'DATE',
       dataIndex: 'date',
-      render: text => moment(text).format('YYYY-MM-DD'),
+      render: (text) => moment(text).format('YYYY-MM-DD'),
     },
     {
       title: 'PRICE',
@@ -53,7 +55,7 @@ function RecentSales({ data }) {
       <Table
         pagination={false}
         columns={columns}
-        rowKey='id'
+        rowKey="id"
         dataSource={data.filter((item, key) => key < 5)}
       />
     </div>

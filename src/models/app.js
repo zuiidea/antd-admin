@@ -15,7 +15,7 @@ const { queryRouteList, logoutUser, queryUserInfo } = api
 const goDashboard = () => {
   if (pathToRegexp(['/', '/login']).exec(window.location.pathname)) {
     history.push({
-      pathname: '/dashboard'
+      pathname: '/dashboard',
     })
   }
 }
@@ -29,8 +29,8 @@ export default {
         icon: 'laptop',
         name: 'Dashboard',
         zhName: '仪表盘',
-        router: '/dashboard'
-      }
+        router: '/dashboard',
+      },
     ],
     locationPathname: '',
     locationQuery: {},
@@ -45,7 +45,7 @@ export default {
       //   title: 'Application has been approved.',
       //   date: new Date(Date.now() - 50000000)
       // }
-    ]
+    ],
   },
   subscriptions: {
     setup({ dispatch }) {
@@ -57,8 +57,8 @@ export default {
           type: 'updateState',
           payload: {
             locationPathname: location.pathname,
-            locationQuery: location.query
-          }
+            locationQuery: location.query,
+          },
         })
       })
     },
@@ -74,7 +74,7 @@ export default {
           }
         })
       })
-    }
+    },
   },
   effects: {
     *query({ payload }, { call, put, select }) {
@@ -90,14 +90,19 @@ export default {
         const { list } = yield call(queryRouteList)
         const { permissions } = user
         let routeList = list
-        if (permissions.role === ROLE_TYPE.ADMIN || permissions.role === ROLE_TYPE.DEVELOPER) {
+        if (
+          permissions.role === ROLE_TYPE.ADMIN ||
+          permissions.role === ROLE_TYPE.DEVELOPER
+        ) {
           permissions.visit = list.map((item) => item.id)
         } else {
           routeList = list.filter((item) => {
             const cases = [
               permissions.visit.includes(item.id),
-              item.mpid ? permissions.visit.includes(item.mpid) || item.mpid === '-1' : true,
-              item.bpid ? permissions.visit.includes(item.bpid) : true
+              item.mpid
+                ? permissions.visit.includes(item.mpid) || item.mpid === '-1'
+                : true,
+              item.bpid ? permissions.visit.includes(item.bpid) : true,
             ]
             return cases.every((_) => _)
           })
@@ -111,8 +116,8 @@ export default {
         history.push({
           pathname: '/login',
           search: stringify({
-            from: locationPathname
-          })
+            from: locationPathname,
+          }),
         })
       }
     },
@@ -128,13 +133,13 @@ export default {
       } else {
         throw data
       }
-    }
+    },
   },
   reducers: {
     updateState(state, { payload }) {
       return {
         ...state,
-        ...payload
+        ...payload,
       }
     },
 
@@ -150,6 +155,6 @@ export default {
 
     allNotificationsRead(state) {
       state.notifications = []
-    }
-  }
+    },
+  },
 }

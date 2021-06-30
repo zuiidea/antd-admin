@@ -3,6 +3,8 @@ import { apiPrefix } from '../utils/config'
 
 import api from './api'
 
+export const CONTENT_TYPE_JSON = 'application/json;charset=UTF-8'
+
 const gen = (params) => {
   let url = apiPrefix + params
   let method = 'GET'
@@ -14,21 +16,13 @@ const gen = (params) => {
   }
 
   return function (data) {
-    return request({ url, data, method })
+    return request({ url, data, method, contentType: CONTENT_TYPE_JSON })
   }
 }
 
 const APIFunction = {}
 for (const key in api) {
   APIFunction[key] = gen(api[key])
-}
-
-APIFunction.queryWeather = (params) => {
-  params.key = 'i7sau1babuzwhycn'
-  return request({
-    url: `${apiPrefix}/weather/now.json`,
-    data: params
-  })
 }
 
 export default APIFunction

@@ -2,7 +2,7 @@ import React from 'react'
 import ReactEcharts from 'echarts-for-react'
 
 const ChartWithEventComponent = () => {
-  const onChartReady = echart => {
+  const onChartReady = (echart) => {
     /* eslint-disable */
     console.log('echart is ready', echart)
   }

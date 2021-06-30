@@ -8,11 +8,11 @@ const FormItem = Form.Item
 const Option = Select.Option
 const formItemLayout = {
   labelCol: {
-    span: 6
+    span: 6,
   },
   wrapperCol: {
-    span: 14
-  }
+    span: 14,
+  },
 }
 
 class TaskModal extends PureComponent {
@@ -21,7 +21,7 @@ class TaskModal extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      forms: this.initForms()
+      forms: this.initForms(),
     }
   }
 
@@ -38,7 +38,7 @@ class TaskModal extends PureComponent {
       retry_interval: '3',
       maximum_parallel_runnable_num: '5',
       tag: [1, 2],
-      bind_id: ''
+      bind_id: '',
     }
   }
 
@@ -54,7 +54,7 @@ class TaskModal extends PureComponent {
       .then((values) => {
         const data = {
           ...values,
-          key: item.key
+          key: item.key,
         }
         data.address = data.address.join(' ')
         onOk(data)
@@ -69,8 +69,19 @@ class TaskModal extends PureComponent {
     const { forms } = this.state
     return (
       <Modal {...modalProps} onOk={this.handleOk}>
-        <Form ref={this.formRef} name="control-ref" layout="horizontal" initialValues={forms}>
-          <FormItem name="name" label={t`Task Name`} rules={[{ required: true }]} hasFeedback {...formItemLayout}>
+        <Form
+          ref={this.formRef}
+          name="control-ref"
+          layout="horizontal"
+          initialValues={forms}
+        >
+          <FormItem
+            name="name"
+            label={t`Task Name`}
+            rules={[{ required: true }]}
+            hasFeedback
+            {...formItemLayout}
+          >
             <Input placeholder="查看PHP版本" />
           </FormItem>
           <FormItem
@@ -82,7 +93,13 @@ class TaskModal extends PureComponent {
           >
             <Input placeholder="这是一条【查看PHP版本号】的命令" />
           </FormItem>
-          <FormItem name="command" label="命令行" rules={[{ required: true }]} hasFeedback {...formItemLayout}>
+          <FormItem
+            name="command"
+            label="命令行"
+            rules={[{ required: true }]}
+            hasFeedback
+            {...formItemLayout}
+          >
             <Input placeholder="php -v" />
           </FormItem>
           <FormItem
@@ -113,7 +130,15 @@ class TaskModal extends PureComponent {
           >
             <InputCron
               onChange={(v) => console.log(v)}
-              type={['second', 'minute', 'hour', 'day', 'month', 'week', 'year']}
+              type={[
+                'second',
+                'minute',
+                'hour',
+                'day',
+                'month',
+                'week',
+                'year',
+              ]}
             />
           </FormItem>
 
@@ -136,7 +161,11 @@ class TaskModal extends PureComponent {
               name="retry_times"
               label={'重试时间'}
               rules={[{ required: true }]}
-              style={{ display: 'inline-block', width: 'calc(32% - 8px)', margin: '0 8px' }}
+              style={{
+                display: 'inline-block',
+                width: 'calc(32% - 8px)',
+                margin: '0 8px',
+              }}
             >
               <InputNumber placeholder="单位：秒" min={10} max={10000} />
             </Form.Item>
@@ -144,7 +173,11 @@ class TaskModal extends PureComponent {
               name="retry_interval"
               label={'重试间隔'}
               rules={[{ required: true }]}
-              style={{ display: 'inline-block', width: 'calc(32% - 8px)', margin: '0 8px' }}
+              style={{
+                display: 'inline-block',
+                width: 'calc(32% - 8px)',
+                margin: '0 8px',
+              }}
             >
               <InputNumber placeholder="单位：秒" min={1} max={10} />
             </Form.Item>
@@ -159,7 +192,12 @@ class TaskModal extends PureComponent {
             <InputNumber min={1} />
           </FormItem>
           <FormItem name="tag" label="任务标签" hasFeedback {...formItemLayout}>
-            <Select mode="multiple" allowClear style={{ width: '100%' }} placeholder="Please select">
+            <Select
+              mode="multiple"
+              allowClear
+              style={{ width: '100%' }}
+              placeholder="Please select"
+            >
               <Option {...this.optionAttr(1)}>{'标签1'}</Option>
               <Option {...this.optionAttr(2)}>{'标签2'}</Option>
               <Option {...this.optionAttr(3)}>{'标签3'}</Option>
@@ -169,7 +207,13 @@ class TaskModal extends PureComponent {
               <Option {...this.optionAttr(7)}>{'标签7'}</Option>
             </Select>
           </FormItem>
-          <FormItem name="bind_id" rules={[{ required: true }]} label="组ID" hasFeedback {...formItemLayout}>
+          <FormItem
+            name="bind_id"
+            rules={[{ required: true }]}
+            label="组ID"
+            hasFeedback
+            {...formItemLayout}
+          >
             <Select placeholder={'请在【任务组管理】中维护'}>
               <Option {...this.optionAttr(1)}>{'前端组'}</Option>
               <Option {...this.optionAttr(2)}>{'终端组'}</Option>
@@ -185,7 +229,7 @@ class TaskModal extends PureComponent {
 TaskModal.propTypes = {
   type: PropTypes.string,
   item: PropTypes.object,
-  onOk: PropTypes.func
+  onOk: PropTypes.func,
 }
 
 export default TaskModal

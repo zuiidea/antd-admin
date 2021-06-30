@@ -29,7 +29,11 @@ class GaugeComponent extends React.Component {
             // 坐标轴线
             lineStyle: {
               // 属性lineStyle控制线条样式
-              color: [[0.09, 'lime'], [0.82, '#1e90ff'], [1, '#ff4500']],
+              color: [
+                [0.09, 'lime'],
+                [0.82, '#1e90ff'],
+                [1, '#ff4500'],
+              ],
               width: 3,
               shadowColor: '#fff', // 默认透明
               shadowBlur: 10,
@@ -110,7 +114,11 @@ class GaugeComponent extends React.Component {
             // 坐标轴线
             lineStyle: {
               // 属性lineStyle控制线条样式
-              color: [[0.29, 'lime'], [0.86, '#1e90ff'], [1, '#ff4500']],
+              color: [
+                [0.29, 'lime'],
+                [0.86, '#1e90ff'],
+                [1, '#ff4500'],
+              ],
               width: 2,
               shadowColor: '#fff', // 默认透明
               shadowBlur: 10,
@@ -194,7 +202,11 @@ class GaugeComponent extends React.Component {
             // 坐标轴线
             lineStyle: {
               // 属性lineStyle控制线条样式
-              color: [[0.2, 'lime'], [0.8, '#1e90ff'], [1, '#ff4500']],
+              color: [
+                [0.2, 'lime'],
+                [0.8, '#1e90ff'],
+                [1, '#ff4500'],
+              ],
               width: 2,
               shadowColor: '#fff', // 默认透明
               shadowBlur: 10,
@@ -269,7 +281,11 @@ class GaugeComponent extends React.Component {
             // 坐标轴线
             lineStyle: {
               // 属性lineStyle控制线条样式
-              color: [[0.2, 'lime'], [0.8, '#1e90ff'], [1, '#ff4500']],
+              color: [
+                [0.2, 'lime'],
+                [0.8, '#1e90ff'],
+                [1, '#ff4500'],
+              ],
               width: 2,
               shadowColor: '#fff', // 默认透明
               shadowBlur: 10,

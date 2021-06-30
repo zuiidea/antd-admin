@@ -1,5 +1,5 @@
 import { history } from 'umi'
-const { pathToRegexp } = require("path-to-regexp")
+const { pathToRegexp } = require('path-to-regexp')
 import api from 'api'
 
 const { loginUser } = api
@@ -19,7 +19,7 @@ export default {
   effects: {
     *login({ payload }, { put, call, select }) {
       const data = yield call(loginUser, payload)
-      const { locationQuery } = yield select(_ => _.app)
+      const { locationQuery } = yield select((_) => _.app)
       if (data.success) {
         const { from } = locationQuery
         yield put({ type: 'app/query' })

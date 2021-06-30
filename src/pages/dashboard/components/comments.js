@@ -26,7 +26,7 @@ function Comments({ data }) {
       dataIndex: 'avatar',
       width: 48,
       className: styles.avatarcolumn,
-      render: text => (
+      render: (text) => (
         <span
           style={{ backgroundImage: `url(${text})` }}
           className={styles.avatar}
@@ -54,7 +54,7 @@ function Comments({ data }) {
         pagination={false}
         showHeader={false}
         columns={columns}
-        rowKey='avatar'
+        rowKey="avatar"
         dataSource={data.filter((item, key) => key < 3)}
       />
     </div>

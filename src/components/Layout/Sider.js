@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Switch, Layout } from 'antd'
-import { t } from "@lingui/macro"
-import { Trans } from "@lingui/macro"
+import { t } from '@lingui/macro'
+import { Trans } from '@lingui/macro'
 import { BulbOutlined } from '@ant-design/icons'
 import ScrollBar from '../ScrollBar'
 import { config } from 'utils'

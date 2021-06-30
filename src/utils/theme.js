@@ -9,6 +9,6 @@ module.exports = {
     borderBase: '#e5e5e5',
     borderSplit: '#f4f4f4',
     grass: '#d6fbb5',
-    sky: '#c1e0fc'
-  }
+    sky: '#c1e0fc',
+  },
 }

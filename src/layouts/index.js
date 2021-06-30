@@ -14,13 +14,13 @@ import BaseLayout from './BaseLayout'
 const plurals = {
   zh,
   en,
-  'pt-br': pt
+  'pt-br': pt,
 }
 
 const languages = {
   zh: zh_CN,
   en: en_US,
-  'pt-br': pt_BR
+  'pt-br': pt_BR,
 }
 const { defaultLanguage } = i18n
 

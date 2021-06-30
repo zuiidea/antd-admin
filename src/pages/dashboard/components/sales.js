@@ -22,7 +22,7 @@ function Sales({ data }) {
         <LineChart data={data}>
           <Legend
             verticalAlign="top"
-            content={prop => {
+            content={(prop) => {
               const { payload } = prop
               return (
                 <ul
@@ -60,7 +60,7 @@ function Sales({ data }) {
               border: 'none',
               boxShadow: '4px 4px 40px rgba(0, 0, 0, 0.05)',
             }}
-            content={content => {
+            content={(content) => {
               const list = content.payload.map((item, key) => (
                 <li key={key} className={styles.tipitem}>
                   <span

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Table, Avatar } from 'antd'
-import { t } from "@lingui/macro"
+import { t } from '@lingui/macro'
 import { Ellipsis } from 'components'
 import styles from './List.less'
 
@@ -11,12 +11,12 @@ class List extends PureComponent {
       {
         title: t`Image`,
         dataIndex: 'image',
-        render: text => <Avatar shape="square" src={text} />,
+        render: (text) => <Avatar shape="square" src={text} />,
       },
       {
         title: t`Title`,
         dataIndex: 'title',
-        render: text => (
+        render: (text) => (
           <Ellipsis tooltip length={30}>
             {text}
           </Ellipsis>
@@ -57,14 +57,14 @@ class List extends PureComponent {
         {...tableProps}
         pagination={{
           ...tableProps.pagination,
-          showTotal: total => t`Total ${total} Items`,
+          showTotal: (total) => t`Total ${total} Items`,
         }}
         bordered
         scroll={{ x: 1200 }}
         className={styles.table}
         columns={columns}
         simple
-        rowKey={record => record.id}
+        rowKey={(record) => record.id}
       />
     )
   }
