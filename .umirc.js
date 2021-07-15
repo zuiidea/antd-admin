@@ -66,7 +66,7 @@ export default {
   theme: lessToJs(
     fs.readFileSync(path.join(__dirname, './src/themes/default.less'), 'utf8')
   ),
-  webpack5: {},
+  // webpack5: {},
   chainWebpack: function (config, { webpack }) {
     config.merge({
       optimization: {
