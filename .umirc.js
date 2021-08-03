@@ -69,7 +69,7 @@ export default {
   webpack5: {},
   mfsu: {},
   chainWebpack: function (config, { webpack }) {
-    config.merge({
+    !isDevelopment && config.merge({
       optimization: {
         minimize: false,
         splitChunks: {
