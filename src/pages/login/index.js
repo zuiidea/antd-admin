@@ -4,8 +4,7 @@ import { connect } from 'umi'
 import { Button, Row, Input, Form } from 'antd'
 import { GlobalFooter } from 'components'
 import { GithubOutlined } from '@ant-design/icons'
-import { t } from "@lingui/macro"
-import { Trans } from "@lingui/macro"
+import { t, Trans } from "@lingui/macro"
 import { setLocale } from 'utils'
 import config from 'utils/config'
 
@@ -60,9 +59,8 @@ class Login extends PureComponent {
             </FormItem>
             <FormItem name="password"
               rules={[{ required: true }]} hasFeedback>
-                <Input
-                  type="password"
-                  placeholder={t`Password`}
+                <Trans id="Password" render={({translation}) => (
+                  <Input type='password' placeholder={translation} required />)} 
                 />
             </FormItem>
             <Row>
