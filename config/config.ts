@@ -1,30 +1,22 @@
 /**
  * see more, https://umijs.org/config
  */
-import type { IConfig } from 'umi'
 import lessToJs from 'less-vars-to-js'
 import fs from 'fs'
 import path from 'path'
-import routes from './routes'
 import proxy from './proxy'
 
 const theme = lessToJs(
   fs.readFileSync(path.join(__dirname, '../src/themes/default.less'), 'utf8')
 )
 
-const config: IConfig = {
+const config = {
   hash: true,
   ignoreMomentLocale: true,
   targets: { ie: 11 },
-  dynamicImport: {},
   theme,
   proxy,
-  routes,
   devtool: 'eval',
-  nodeModulesTransform: {
-    type: 'none',
-    exclude: [],
-  },
   mock: {
     exclude: ['utils/index'],
   },
@@ -62,8 +54,6 @@ const config: IConfig = {
   chainWebpack: (memo) => {
     memo.module.rule('po').test(/\.po$/).use('po').loader('@lingui/loader')
   },
-  fastRefresh: {},
-  esbuild: {},
 }
 
 export default config

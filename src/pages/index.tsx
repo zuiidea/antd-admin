@@ -1,6 +1,6 @@
 import React from 'react'
-import { Redirect } from 'umi'
+import { Navigate } from 'react-router-dom'
 
-const Index: React.FC = () => <Redirect to="/dashboard" />
+const Index: React.FC = () => <Navigate to="/user" />
 
 export default Index

@@ -1,13 +1,16 @@
-import { useHistory, useLocation, UseRequestProvider } from 'umi'
-import useIntlProvider from './useIntlProvider'
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useLingui } from '@lingui/react';
 import useConfig from './useConfig'
-import useRequest from './useRequest'
+import useIntlProvider from './useIntlProvider'
+import useLocalStorage from './useLocalStorage';
+import useRequest from './useRequest';
 
 export {
-  useIntlProvider,
-  useHistory,
+  useConfig,
+  useNavigate,
   useLocation,
   useRequest,
-  UseRequestProvider,
-  useConfig,
+  useLocalStorage,
+  useIntlProvider,
+  useLingui,
 }

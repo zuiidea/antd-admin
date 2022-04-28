@@ -1,42 +1,47 @@
-import { useEffect, useContext, useState, useCallback } from 'react'
-import { ConfigContext } from '@/utils/context'
-import { LOCALE_LANGUAGE } from '@/configs'
-import { ISupportedLocales } from '@/typings'
-import { ConfigProviderProps } from 'antd/lib/config-provider'
-import { antdI18nMap } from '@/configs'
-import { i18n } from '@/i18n'
-import zh_CN from 'antd/lib/locale/zh_CN'
-import en_US from 'antd/lib/locale/en_US'
-import pt_BR from 'antd/lib/locale/pt_BR'
+import { useEffect, useContext, useState } from 'react';
+import { setupI18n } from '@lingui/core';
+import { LOCALE_LANGUAGE } from '@/configs/constants';
+import { ConfigContext } from '@/utils/context';
+import { useLocalStorage } from '@/hooks';
+import { antdI18nMap } from '@/configs';
+import { SupportedLocales } from '@/typings';
+import { ConfigProviderProps } from 'antd/lib/config-provider';
+import { en, zh } from 'make-plural/plurals';
 
-const antdLocaleMap = {
-  zh_CN,
-  en_US,
-  pt_BR
-}
+export const i18n = setupI18n({
+  localeData: {
+    en: { plurals: en },
+    zh: { plurals: zh },
+  },
+});
 
 const useIntlProvider = () => {
-  const { language } = useContext(ConfigContext)
-  const [locale, setLocale] = useState<ConfigProviderProps['locale']>()
+  const { language: defaultLocale } = useContext(ConfigContext);
+  const [language, setLanguage] = useLocalStorage<SupportedLocales>(
+    LOCALE_LANGUAGE,
+    defaultLocale
+  );
+
+  const [locale, setLocale] = useState<ConfigProviderProps['locale']>();
 
   useEffect(() => {
-    setLocale(antdLocaleMap[antdI18nMap[language]])
-    localStorage.setItem(LOCALE_LANGUAGE, language)
-  }, [language])
+    import(`@/locales/${language}/messages.json`).then(data => {
+      i18n.load(language, data.default);
+      i18n.activate(language);
+    });
 
-  const setLanguage = useCallback((language: ISupportedLocales) => {
-    if (language !== i18n.locale) {
-      localStorage.setItem(LOCALE_LANGUAGE, language)
-      window.location.reload()
-    }
-  }, [])
+    const path = antdI18nMap[language];
+    import(`antd/lib/locale/${path}.js`).then(data => {
+      setLocale(data.default);
+    });
+  }, [language]);
 
   return {
     language,
     setLanguage,
     locale,
     i18n,
-  }
-}
+  };
+};
 
-export default useIntlProvider
+export default useIntlProvider;

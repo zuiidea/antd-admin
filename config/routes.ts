@@ -1,10 +1,8 @@
-import type { IRoute } from 'umi'
-
-const routes: IRoute[] = [
+const routes = [
   {
     exact: false,
     path: '/',
-    component: '@/layouts',
+    component: '@/layouts/index',
     routes: [
       { exact: true, path: '/login', component: '@/pages/login' },
       { exact: true, path: '/user', component: '@/pages/user' },

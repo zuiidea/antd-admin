@@ -54,11 +54,13 @@ const columns: ColumnType<IUserItem>[] = [
   {
     title: <Trans>Email</Trans>,
     dataIndex: 'email',
+    ellipsis: true,
     key: 'email',
   },
   {
     title: <Trans>Address</Trans>,
     dataIndex: 'address',
+    ellipsis: true,
     key: 'address',
   },
   {

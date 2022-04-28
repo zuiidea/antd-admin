@@ -3,7 +3,8 @@ import { Dropdown, Menu, Avatar } from 'antd'
 import { language, languages } from '@/configs'
 import { ISupportedLocales } from '@/typings'
 import { Trans } from '@lingui/macro'
-import { useRequest, useHistory, useConfig } from '@/hooks'
+import { history } from 'umi'
+import { useRequest, useConfig } from '@/hooks'
 import { logoutUser } from '@/services'
 import styles from './index.less'
 
@@ -12,7 +13,6 @@ const { SubMenu } = Menu
 const NotFoundPage: React.FC = () => {
   const { language: locale, setLanguage, userInfo } = useConfig()
   const currentLanguage = language[locale]
-  const history = useHistory()
   const { run: runLogoutUser } = useRequest(logoutUser, {
     manual: true,
     onSuccess: () => history.push('/login'),

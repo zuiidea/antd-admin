@@ -1,6 +1,4 @@
-import type { IConfig } from 'umi'
-
-const config: IConfig = {
+const config = {
   publicPath: 'https://cdn.antd-admin.zuiidea.com/',
 }
 

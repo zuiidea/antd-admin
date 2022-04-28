@@ -1,10 +1,11 @@
 import React from 'react'
+import { history } from 'umi'
 import { Button, Row, Input, Form } from 'antd'
 import { GithubOutlined } from '@ant-design/icons'
 import { GlobalFooter } from '@/components'
 import { Trans, t } from '@lingui/macro'
 import { config, languages } from '@/configs'
-import { useRequest, useHistory, useConfig } from '@/hooks'
+import { useRequest, useConfig } from '@/hooks'
 import { loginUser, ILoginUserParams } from '@/services'
 import styles from './index.less'
 
@@ -27,7 +28,7 @@ const Login: React.FC = () => {
   const { run: runLogin, loading } = useRequest(loginUser, {
     manual: true,
   })
-  const history = useHistory()
+
   const { queryUserInfo } = useConfig()
 
   const handleFinish = (values: ILoginUserParams) => {
