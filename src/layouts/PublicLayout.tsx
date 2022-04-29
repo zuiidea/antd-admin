@@ -1,7 +1,8 @@
 import React from 'react'
+import { Outlet } from 'umi'
 
 const PublicLayout: React.FC = (props) => {
-  return <>{props.children}</>
+  return <><Outlet /></>
 }
 
 export default PublicLayout

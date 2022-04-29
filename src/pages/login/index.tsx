@@ -34,7 +34,7 @@ const Login: React.FC = () => {
   const handleFinish = (values: ILoginUserParams) => {
     runLogin(values).then(() => {
       queryUserInfo()
-      history.push('/dashborad')
+      history.push('/user')
     })
   }
 

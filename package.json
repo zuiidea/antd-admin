@@ -5,7 +5,7 @@
   "description": "An admin dashboard application demo built upon Ant Design and UmiJS",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-    "@ant-design/pro-layout": "^6.35.0",
+    "@ant-design/pro-layout": "^6.37.0",
     "@lingui/core": "^3.13.3",
     "@lingui/detect-locale": "^3.13.3",
     "@lingui/react": "^3.13.3",
@@ -66,8 +66,8 @@
     "stylelint": "^14.8.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^25.0.0",
-    "typescript": "^4.6.3",
-    "umi": "4.0.0-canary.20220428.1"
+    "typescript": "^4.6.4",
+    "umi": "4.0.0-canary.20220429.4"
   },
   "engines": {
     "node": ">= 10.0.0"
@@ -83,18 +83,31 @@
     ]
   },
   "lingui": {
-    "fallbackLocales": { "default": "en" },
+    "fallbackLocales": {
+      "default": "en"
+    },
     "sourceLocale": "en",
-    "locales": [ "en", "zh", "pt-br"],
+    "locales": [
+      "en",
+      "zh",
+      "pt-br"
+    ],
     "catalogs": [
       {
         "path": "src/locales/{locale}/messages",
-        "include": ["src"],
-        "exclude": ["**/node_modules/**"]
+        "include": [
+          "src"
+        ],
+        "exclude": [
+          "**/node_modules/**"
+        ]
       }
     ],
     "format": "minimal",
-    "runtimeConfigModule": ["@/hooks/useIntlProvider", "i18n"]
+    "runtimeConfigModule": [
+      "@/hooks/useIntlProvider",
+      "i18n"
+    ]
   },
   "scripts": {
     "start": "umi dev",

@@ -3,6 +3,7 @@
  */
 import lessToJs from 'less-vars-to-js'
 import fs from 'fs'
+import routes from './routes'
 import path from 'path'
 import proxy from './proxy'
 
@@ -16,6 +17,7 @@ const config = {
   targets: { ie: 11 },
   theme,
   proxy,
+  routes,
   devtool: 'eval',
   mock: {
     exclude: ['utils/index'],

@@ -4,7 +4,7 @@ import ProBasicLayout, {
   MenuDataItem,
   SettingDrawerProps,
 } from '@ant-design/pro-layout'
-import { Link } from 'umi'
+import { Link, Outlet } from 'umi'
 import { useLocation } from '@/hooks'
 import { menus, menuIcon, config } from '@/configs'
 import defaultSettings from '@/defaultSettings'
@@ -68,7 +68,7 @@ const PrimaryLayout: React.FC = (props) => {
         menuProps={menuProps}
         rightContentRender={() => <HeaderRightContent />}
       >
-        {props.children}
+        <Outlet />
       </ProBasicLayout>
     </>
   )
