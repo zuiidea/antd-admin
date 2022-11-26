@@ -112,17 +112,17 @@ class PrimaryLayout extends PureComponent {
     }
 
     return (
-      <Fragment>
+      (<Fragment>
         <Layout>
           {isMobile ? (
             <Drawer
               maskClosable
               closable={false}
               onClose={onCollapseChange.bind(this, !collapsed)}
-              visible={!collapsed}
+              open={!collapsed}
               placement="left"
               width={200}
-              style={{
+              rootStyle={{
                 padding: 0,
                 height: '100vh',
               }}
@@ -152,8 +152,8 @@ class PrimaryLayout extends PureComponent {
             />
           </div>
         </Layout>
-      </Fragment>
-    )
+      </Fragment>)
+    );
   }
 }
 

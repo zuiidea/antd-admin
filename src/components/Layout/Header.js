@@ -141,6 +141,7 @@ class Header extends PureComponent {
           [styles.fixed]: fixed,
           [styles.collapsed]: collapsed,
         })}
+        style={{height: 72, backgroundColor: 'white', paddingInline: 0}}
         id="layoutHeader"
       >
         <div
