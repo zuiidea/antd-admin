@@ -16,7 +16,7 @@ export default modelExtend(pageModel, {
 
   state: {
     currentItem: {},
-    modalVisible: false,
+    modalOpen: false,
     modalType: 'create',
     selectedRowKeys: [],
   },
@@ -100,11 +100,11 @@ export default modelExtend(pageModel, {
 
   reducers: {
     showModal(state, { payload }) {
-      return { ...state, ...payload, modalVisible: true }
+      return { ...state, ...payload, modalOpen: true }
     },
 
     hideModal(state) {
-      return { ...state, modalVisible: false }
+      return { ...state, modalOpen: false }
     },
   },
 })

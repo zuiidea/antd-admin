@@ -49,11 +49,11 @@ class User extends PureComponent {
 
   get modalProps() {
     const { dispatch, user, loading } = this.props
-    const { currentItem, modalVisible, modalType } = user
+    const { currentItem, modalOpen, modalType } = user
 
     return {
       item: modalType === 'create' ? {} : currentItem,
-      visible: modalVisible,
+      open: modalOpen,
       destroyOnClose: true,
       maskClosable: false,
       confirmLoading: loading.effects[`user/${modalType}`],
