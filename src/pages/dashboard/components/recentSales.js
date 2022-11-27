@@ -1,5 +1,5 @@
 import React from 'react'
-import moment from 'moment'
+import dayjs from 'dayjs'
 import PropTypes from 'prop-types'
 import { Table, Tag } from 'antd'
 import { Color } from 'utils'
@@ -38,7 +38,7 @@ function RecentSales({ data }) {
     {
       title: 'DATE',
       dataIndex: 'date',
-      render: text => moment(text).format('YYYY-MM-DD'),
+      render: text => dayjs(text).format('YYYY-MM-DD'),
     },
     {
       title: 'PRICE',

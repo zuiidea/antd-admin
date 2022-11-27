@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import moment from 'moment'
+import dayjs from 'dayjs'
 import { FilterItem } from 'components'
 import { Trans } from "@lingui/macro"
 import { t } from "@lingui/macro"
@@ -30,8 +30,8 @@ class Filter extends Component {
     const { createTime } = fields
     if (createTime && createTime.length) {
       fields.createTime = [
-        moment(createTime[0]).format('YYYY-MM-DD'),
-        moment(createTime[1]).format('YYYY-MM-DD'),
+        dayjs(createTime[0]).format('YYYY-MM-DD'),
+        dayjs(createTime[1]).format('YYYY-MM-DD'),
       ]
     }
     return fields
@@ -72,10 +72,10 @@ class Filter extends Component {
 
     let initialCreateTime = []
     if (filter.createTime && filter.createTime[0]) {
-      initialCreateTime[0] = moment(filter.createTime[0])
+      initialCreateTime[0] = dayjs(filter.createTime[0])
     }
     if (filter.createTime && filter.createTime[1]) {
-      initialCreateTime[1] = moment(filter.createTime[1])
+      initialCreateTime[1] = dayjs(filter.createTime[1])
     }
 
     return (
