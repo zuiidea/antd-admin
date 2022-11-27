@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { withRouter } from 'umi'
 import { connect } from 'umi'
 import { MyLayout, GlobalFooter } from 'components'
-import { BackTop, Layout, Drawer } from 'antd'
+import { Drawer, FloatButton, Layout } from 'antd';
 import { enquireScreen, unenquireScreen } from 'enquire-js'
 const { pathToRegexp } = require("path-to-regexp")
 import { config, getLocale } from 'utils'
@@ -112,17 +112,17 @@ class PrimaryLayout extends PureComponent {
     }
 
     return (
-      <Fragment>
+      (<Fragment>
         <Layout>
           {isMobile ? (
             <Drawer
               maskClosable
               closable={false}
               onClose={onCollapseChange.bind(this, !collapsed)}
-              visible={!collapsed}
+              open={!collapsed}
               placement="left"
               width={200}
-              style={{
+              rootStyle={{
                 padding: 0,
                 height: '100vh',
               }}
@@ -142,7 +142,7 @@ class PrimaryLayout extends PureComponent {
               <Bread routeList={newRouteList} />
               {hasPermission ? children : <Error />}
             </Content>
-            <BackTop
+            <FloatButton.BackTop
               className={styles.backTop}
               target={() => document.querySelector('#primaryLayout')}
             />
@@ -152,8 +152,8 @@ class PrimaryLayout extends PureComponent {
             />
           </div>
         </Layout>
-      </Fragment>
-    )
+      </Fragment>)
+    );
   }
 }
 

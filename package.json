@@ -6,7 +6,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
     "@lingui/react": "^3.8.0",
-    "antd": "^4.0.0",
+    "antd": "^5.0.0",
     "axios": "^0.21.0",
     "classnames": "^2.2.6",
     "d3-shape": "^2.1.0",
@@ -38,6 +38,7 @@
     "store": "^2.0.0"
   },
   "devDependencies": {
+    "@ant-design/compatible": "^5.1.0",
     "@babel/preset-react": "^7.12.13",
     "@lingui/cli": "^3.8.0",
     "@lingui/macro": "^3.8.0",

@@ -10,7 +10,7 @@ import {
 } from '@ant-design/icons'
 import { Trans } from "@lingui/macro"
 import { getLocale, setLocale } from 'utils'
-import moment from 'moment'
+import dayjs from 'dayjs'
 import classnames from 'classnames'
 import config from 'config'
 import styles from './Header.less'
@@ -107,7 +107,7 @@ class Header extends PureComponent {
                         {item.title}
                       </Ellipsis>
                     }
-                    description={moment(item.date).fromNow()}
+                    description={dayjs(item.date).fromNow()}
                   />
                   <RightOutlined style={{ fontSize: 10, color: '#ccc' }} />
                 </List.Item>
@@ -141,6 +141,7 @@ class Header extends PureComponent {
           [styles.fixed]: fixed,
           [styles.collapsed]: collapsed,
         })}
+        style={{height: 72, backgroundColor: 'white', paddingInline: 0}}
         id="layoutHeader"
       >
         <div

@@ -5,6 +5,12 @@ const path = require('path')
 const lessToJs = require('less-vars-to-js')
 const isDevelopment = process.env.NODE_ENV === 'development'
 
+const { theme } = require('antd/lib')
+const { convertLegacyToken } = require('@ant-design/compatible/lib')
+
+const mapToken = theme.defaultAlgorithm(theme.defaultSeed)
+const v4Token = convertLegacyToken(mapToken)
+
 // how to speed compile: https://umijs.org/guide/boost-compile-speed
 export default {
   // IMPORTANT! change next line to yours or delete. And hide in dev
@@ -63,9 +69,12 @@ export default {
   },
   // Theme for antd
   // https://ant.design/docs/react/customize-theme
-  theme: lessToJs(
+  theme: {
+    ...v4Token,
+    ...lessToJs(
     fs.readFileSync(path.join(__dirname, './src/themes/default.less'), 'utf8')
-  ),
+    )
+  },
   webpack5: {},
   mfsu: {},
   chainWebpack: function (config, { webpack }) {

@@ -1,9 +1,13 @@
 import { cloneDeep } from 'lodash'
 const { pathToRegexp } = require("path-to-regexp")
-import moment from 'moment'
-import 'moment/locale/zh-cn'
 import store from 'store'
 import { i18n } from './config'
+
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import 'dayjs/locale/zh-cn'
+
+dayjs.extend(relativeTime)
 
 export classnames from 'classnames'
 export config from './config'
@@ -165,7 +169,7 @@ export function getLocale() {
 
 export function setLocale(language) {
   if (getLocale() !== language) {
-    moment.locale(language === 'zh' ? 'zh-cn' : language)
+    dayjs.locale(language === 'zh' ? 'zh-cn' : language)
     store.set('locale', language)
     window.location.reload()
   }
