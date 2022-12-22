@@ -22,7 +22,7 @@ export default {
     themes: resolve(__dirname, './src/themes'),
     utils: resolve(__dirname, './src/utils'),
   },
-  antd: {},
+  antd: false,
   // a lower cost way to genereate sourcemap, default is cheap-module-source-map, could save 60% time in dev hotload
   devtool: 'eval',
   dva: { immer: true },
