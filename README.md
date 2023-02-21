@@ -22,7 +22,7 @@ An excellent front-end solution for enterprise applications.
 </div>
 
 - Preview - [https://antd-admin.zuiidea.com](https://antd-admin.zuiidea.com)
-- Documentation - [https://doc.antd-admin.zuiidea.com](https://doc.antd-admin.zuiidea.com)
+- Documentation - [https://superlbr.gitee.io/antd-admin](https://superlbr.gitee.io/antd-admin)
 - FAQ - [https://doc.antd-admin.zuiidea.com/#/faq](https://doc.antd-admin.zuiidea.com/#/faq)
 - ChangeLog - [https://doc.antd-admin.zuiidea.com/#/change-log](https://doc.antd-admin.zuiidea.com/#/change-log)
 
