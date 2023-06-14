@@ -28,7 +28,7 @@ class Sider extends PureComponent {
         trigger={null}
         collapsible
         collapsed={collapsed}
-        onBreakpoint={!isMobile && onCollapseChange}
+        onBreakpoint={!isMobile ? onCollapseChange : (broken) => {}}
         className={styles.sider}
       >
         <div className={styles.brand}>
