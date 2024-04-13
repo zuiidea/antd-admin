@@ -114,11 +114,11 @@
   },
   "scripts": {
     "analyze": "cross-env ANALYZE=1 umi build",
-    "build": "umi build",
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider umi build",
     "check:model": "umi dva list model",
     "lint:js": "eslint --ext .js src",
     "lint:style": "stylelint \"src/**/*.less\" --syntax less",
-    "start": "umi dev",
+    "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider umi dev",
     "test": "cross-env BABELRC=none umi test",
     "prettier": "prettier --write 'src/**/*.{js,less}'",
     "precommit": "lint-staged",
