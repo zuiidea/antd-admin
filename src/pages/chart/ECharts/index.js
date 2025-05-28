@@ -101,7 +101,7 @@ class Chart extends React.Component {
         <div className={styles.chart}>
           <EchartsComponent type={this.state.type} />
         </div>
-        <div style={{ pading: 24, marginTop: 24 }}>
+        <div style={{ padding: 24, marginTop: 24 }}>
           All demos from{' '}
           <a href="https://github.com/hustcc/echarts-for-react">
             https://github.com/hustcc/echarts-for-react
