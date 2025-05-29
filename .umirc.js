@@ -90,7 +90,7 @@ export default {
             react: {
               name: 'react',
               priority: 20,
-              test: /[\\/]node_modules[\\/](react|react-dom|react-dom-router)[\\/]/,
+              test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom)[\\/]/,
             },
             antd: {
               name: 'antd',
