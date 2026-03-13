@@ -1,0 +1,16 @@
+{
+  "welcome": "欢迎使用 Antd Admin",
+  "login.username": "用户名",
+  "login.password": "密码",
+  "login.usernameRequired": "请输入用户名",
+  "login.passwordRequired": "请输入密码",
+  "login.remember": "记住我",
+  "login.submit": "登录",
+  "login.success": "登录成功",
+  "login.themeLight": "浅色",
+  "login.themeDark": "暗色",
+  "login.switchEnglish": "English",
+  "login.switchChinese": "中文",
+  "guide.i18n.example": "示例：在翻译文件中增加条目并在页面使用：",
+  "guide.i18n.usage": "页面中可使用"
+}

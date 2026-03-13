@@ -1,0 +1,83 @@
+/* Styles adapted from reference login module */
+.page {
+  position: relative;
+  min-height: 100vh;
+}
+
+.form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 36px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  width: 360px;
+  background: #fff;
+
+  h2 {
+    margin-bottom: 4px;
+  }
+
+  p {
+    color: #64748b;
+    margin-bottom: 18px;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 12px;
+  }
+
+  .remember {
+    float: left;
+  }
+}
+
+.logo {
+  height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  img {
+    height: 40px;
+    width: 40px;
+  }
+
+  span {
+    vertical-align: middle;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #0f172a;
+    display: inline-block;
+  }
+}
+
+.toolbar {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  display: flex;
+  gap: 8px;
+  z-index: 20;
+}
+
+@media (max-width: 576px) {
+  .form {
+    width: calc(100vw - 32px);
+    padding: 24px;
+  }
+}
+
+.footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}

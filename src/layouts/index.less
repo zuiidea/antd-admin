@@ -1,0 +1,235 @@
+.navs {
+  ul {
+    padding: 0;
+    list-style: none;
+    display: flex;
+  }
+  li {
+    margin-right: 1em;
+  }
+}
+
+.content {
+  padding: 24px;
+  min-height: calc(100vh - 64px);
+}
+
+.footer {
+  background: #fff;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  min-height: 72px;
+}
+
+.app-sider {
+  .logo {
+    height: 64px;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+    box-shadow: 0 1px 9px -3px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Sider visual refinements (light) */
+.app-sider {
+  background: #ffffff;
+  color: rgba(0, 0, 0, 0.85);
+
+  .logo {
+    background: transparent;
+    letter-spacing: 0.2px;
+  }
+
+  /* Antd light menu tweaks */
+  .ant-menu {
+    padding-top: 6px;
+  }
+
+  .ant-menu-light {
+    background: transparent;
+  }
+
+  .ant-menu-light .ant-menu-item,
+  .ant-menu-light .ant-menu-submenu-title {
+    color: rgba(0, 0, 0, 0.75);
+    padding-left: 20px;
+  }
+
+  .ant-menu-light .ant-menu-item:hover {
+    background: rgba(0, 0, 0, 0.03);
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+  .ant-menu-light .ant-menu-item-selected {
+    background: rgba(24, 144, 255, 0.08) !important;
+    color: rgba(0, 0, 0, 0.9) !important;
+  }
+
+  .ant-menu-light .ant-menu-item .anticon {
+    color: rgba(0, 0, 0, 0.55);
+    font-size: 16px;
+  }
+}
+
+.app-header {
+  background: #fff;
+  padding: 0 16px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.app-header .ant-btn {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.app-header .ant-btn:hover {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.app-content {
+  min-height: 0;
+}
+
+.page-container {
+  padding: 12px 16px 16px;
+}
+
+.page-breadcrumb {
+  margin: 0 0 12px 6px;
+}
+
+.page-content {
+  min-height: calc(100vh - 180px);
+}
+
+/* Mobile responsive tweaks */
+@media (max-width: 768px) {
+  .app-sider {
+    display: none !important;
+  }
+
+  .app-header {
+    padding: 0 8px;
+  }
+
+  .logo {
+    font-size: 16px;
+    padding: 0 12px;
+  }
+
+  .page-container {
+    padding: 8px;
+  }
+
+  .page-breadcrumb {
+    display: none;
+  }
+
+  .page-content {
+    min-height: auto;
+  }
+
+  .ant-menu-item,
+  .ant-menu-submenu-title {
+    padding-left: 12px !important;
+  }
+
+  .mobile-menu-drawer .ant-drawer-body {
+    padding: 0;
+  }
+
+  /* allow tables to scroll horizontally on small screens */
+  .ant-table-wrapper {
+    overflow-x: auto;
+  }
+
+  .ant-table-thead > tr > th,
+  .ant-table-tbody > tr > td {
+    white-space: nowrap;
+  }
+}
+
+/* Dark mode overrides */
+.dark-mode {
+  --bg: #121212;
+  --muted: rgba(255, 255, 255, 0.65);
+  --panel: #1f1f1f;
+  color: rgba(255, 255, 255, 0.88);
+  background: var(--bg);
+}
+
+.dark-mode .app-header {
+  background: #141414;
+  box-shadow: none;
+}
+
+.dark-mode .app-sider {
+  background: #111111;
+}
+
+/* Stronger dark-mode sider contrast */
+.dark-mode .app-sider {
+  background: linear-gradient(180deg, #08090b 0%, #0b0f13 100%);
+}
+
+.dark-mode .app-sider .logo {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.dark-mode .logo {
+  color: #fff;
+}
+
+.dark-mode .app-content,
+.dark-mode .page-content {
+  background: var(--panel);
+}
+
+.dark-mode .page-content {
+  background: transparent;
+}
+
+.page-content .ant-card {
+  border-radius: 10px;
+}
+
+.dark-mode .ant-breadcrumb,
+.dark-mode .page-breadcrumb {
+  color: var(--muted);
+}
+
+.dark-mode .ant-menu-dark .ant-menu-item,
+.dark-mode .ant-menu-dark .ant-menu-submenu-title {
+  color: var(--muted);
+}
+
+/* smooth transition for mode change */
+html,
+body,
+.ant-layout,
+.ant-layout .ant-layout {
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+/* Ensure sider collapse trigger / bottom area stays white */
+.app-sider .ant-layout-sider-trigger {
+  background: #ffffff;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+/* Button styling: primary buttons use black background, general buttons have dark text */
+.ant-btn {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.ant-btn-primary {
+  background: #000000;
+  border-color: #000000;
+  color: #ffffff;
+}

@@ -1,0 +1,16 @@
+{
+  "welcome": "Welcome to Antd Admin",
+  "login.username": "Username",
+  "login.password": "Password",
+  "login.usernameRequired": "Please enter your username",
+  "login.passwordRequired": "Please enter your password",
+  "login.remember": "Remember me",
+  "login.submit": "Sign In",
+  "login.success": "Login success, redirecting...",
+  "login.themeLight": "Light",
+  "login.themeDark": "Dark",
+  "login.switchEnglish": "English",
+  "login.switchChinese": "Chinese",
+  "guide.i18n.example": "Example: add an entry to locale files and use it in pages:",
+  "guide.i18n.usage": "Usage in pages"
+}

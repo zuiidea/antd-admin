@@ -1,5 +1,8 @@
 {
-  "semi": false,
+  "printWidth": 80,
   "singleQuote": true,
-  "trailingComma": "es5"
+  "trailingComma": "all",
+  "proseWrap": "never",
+  "overrides": [{ "files": ".prettierrc", "options": { "parser": "json" } }],
+  "plugins": ["prettier-plugin-organize-imports", "prettier-plugin-packagejson"]
 }

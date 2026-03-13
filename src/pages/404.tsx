@@ -1,15 +1,20 @@
-import React from 'react'
-import { FrownOutlined } from '@ant-design/icons'
-import { Page } from 'components'
-import styles from './404.less'
+import { Button, Result } from 'antd';
+import React from 'react';
+import { history } from 'umi';
 
-const Error = () => (
-  <Page inner>
-    <div className={styles.error}>
-      <FrownOutlined />
-      <h1>404 Not Found</h1>
-    </div>
-  </Page>
-)
+const NotFound: React.FC = () => {
+  return (
+    <Result
+      status="404"
+      title="404"
+      subTitle="抱歉，你访问的页面不存在。"
+      extra={
+        <Button type="primary" onClick={() => history.push('/')}>
+          返回首页
+        </Button>
+      }
+    />
+  );
+};
 
-export default Error
+export default NotFound;

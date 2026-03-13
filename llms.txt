@@ -1,0 +1,36 @@
+项目：antd-admin_next
+
+目标：将仓库中的关键信息写成对大模型（LLM）友好的简短说明，便于自动化理解、代码导航和提示生成。
+
+概览：
+- 技术栈：React + Ant Design + TypeScript（前端单页/多页面结构），源码位于 `src/`。
+- 路由/页面：页面文件放在 `src/pages/` 目录；布局在 `src/layouts/`；组件在 `src/components/`。
+- 重要工具：`src/utils/request.ts` 为 HTTP 请求封装，使用 `fetch`，默认 API 前缀由 `src/utils/config.ts` 提供。
+
+API 与约定：
+- 全局 API 前缀：`/api/v1`（见 `src/utils/config.ts`）。
+- 请求函数 `api(path, options)`：
+	- 自动把 `options.params` 转为查询字符串。
+	- 对对象 body 自动 JSON 序列化并设置 `Content-Type: application/json`（FormData 会被保留）。
+	- 当响应状态为 `204` 返回空对象；当 `res.ok` 为 false 时抛出 Error，错误信息优先使用响应体中的 `message` 字段。
+
+如何使用（对模型说明）：
+- 若要调用后端资源，请调用 `api('/resource', { method: 'GET' | 'POST', params, body })`。
+- 成功响应应为 JSON，失败会抛出 Error。处理调用时应捕获异常并展示 `error.message`。
+
+本文件用途：
+- 作为 LLM 的快速上下文：当模型在代码中自动生成、补全或审阅代码时，可引用此文件以获得仓库结构、关键约定和请求行为的摘要。
+
+快速运行（可能依赖 package manager）：
+- 常用：`npm run dev` 或 `pnpm dev` 启动开发服务器。
+
+如需更详细的接口契约或后端响应示例，请查看对应的 `src/services/` 目录下的 API 封装文件。
+
+Agent Skills：
+- 为方便自动化代理（Agent/LLM）调用，项目在 `llm/skills/` 下提供了若干能力描述与包装：
+	- `llm/skills/admin.skill.ts`：管理员管理相关操作（login、logout、list/create/update/delete）
+	- `llm/skills/menu.skill.ts`：菜单管理操作（list/create/update/delete/sort）
+	- `llm/skills/user.skill.ts`：用户管理操作（list/create/get/update/delete/batch）
+	- `llm/skills/dashboard.skill.ts`：获取仪表盘数据的读取操作
+
+这些 skill 文件导出 `meta`（能力描述）和 `actions`（可直接调用的异步函数），便于代理在运行时发现并调用对应后端逻辑。

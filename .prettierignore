@@ -1,6 +1,9 @@
-*.svg
-*.ejs
-.DS_Store
+node_modules
+dist
+.umi
+build
+coverage
+public
+node_modules
 .umi
 .umi-production
-src/locales/**/*.json

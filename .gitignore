@@ -1,23 +1,14 @@
-coverage
-dist
-node_modules
-npm-debug.log
-yarn-error.log
+/node_modules
+/.env.local
+/.umirc.local.ts
+/config/config.local.ts
+/src/.umi
+/src/.umi-production
+/src/.umi-test
+/dist
+.swc
+.turbopack
+
+pnpm-lock.yaml
 yarn.lock
-package-lock.json
-
-# ide
-.idea
-
-# Mac General
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# umi
-.umi
-.umi-production
-
-# jslingui
-src/locales/_build
-src/locales/**/*.js
+npm-lock.json
