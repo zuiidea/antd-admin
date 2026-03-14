@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="http://github.com/zuiidea/antd-admin">
-    <img alt="antd-admin" height="64" src="./public/logo.svg">
+  <a href="http://github.com/zuiidea/antd-admin" target="_blank">
+    <img alt="antd-admin-logo" height="80" src="./public/logo.svg">
   </a>
 </p>
 
@@ -8,77 +8,107 @@
 
 <div align="center">
 
-An excellent front-end solution for enterprise applications.
+An excellent enterprise-grade front-end solution built with Ant Design 6, Umi 4, and TypeScript.
 
-[![antd](https://img.shields.io/badge/antd-^6.0.0-blue.svg?style=flat-square)](https://github.com/ant-design/ant-design) [![umi](https://img.shields.io/badge/umi-^4.0.0-orange.svg?style=flat-square)](https://github.com/umijs/umi) [![GitHub issues](https://img.shields.io/github/issues/zuiidea/antd-admin.svg?style=flat-square)](https://github.com/zuiidea/antd-admin/issues) [![MIT](https://img.shields.io/dub/l/vibe-d.svg?style=flat-square)](http://opensource.org/licenses/MIT) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/zuiidea/antd-admin/pulls) [![Gitter](https://img.shields.io/gitter/room/antd-admin/antd-admin.svg)](https://gitter.im/antd-admin/antd-admin)
+[![antd](https://img.shields.io/badge/AntD-^6.0.0-1890ff?style=flat-square&logo=ant-design)](https://github.com/ant-design/ant-design)
+[![umi](https://img.shields.io/badge/Umi-^4.0.0-ff9900?style=flat-square&logo=umijs)](https://github.com/umijs/umi)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178c6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![GitHub issues](https://img.shields.io/github/issues/zuiidea/antd-admin?style=flat-square)](https://github.com/zuiidea/antd-admin/issues)
+[![GitHub stars](https://img.shields.io/github/stars/zuiidea/antd-admin?style=flat-square)](https://github.com/zuiidea/antd-admin/stargazers)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](http://opensource.org/licenses/MIT)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)](https://github.com/zuiidea/antd-admin/pulls)
 
-# antd-admin_next
+</div>
 
-Lightweight admin template built with Ant Design, Umi and TypeScript. This project aims to provide a clean, extensible starting point for building admin panels. It includes common pages, sample components, and a local mock server for development.
+---
 
-## Key Features
+## 📖 Introduction
 
-- Ant Design 6 + Umi
-- TypeScript-first codebase
-- Local mock server (`mock/index.js`) for development
-- Lightweight state with `zustand`
-- Example pages: Dashboard, Users, Menu management, AI Chat demo
+**AntD Admin** is a lightweight, high-performance admin template designed to provide a clean and extensible starting point for building enterprise applications. It leverages the latest features of **Ant Design 6**, **Umi 4**, and **TypeScript**, offering a modern development experience with minimal boilerplate.
 
-## Quick Start
+Whether you are building a dashboard, a management system, or an AI-powered tool, this project provides the essential foundation you need.
 
-Recommended: use pnpm.
+## ✨ Key Features
+
+- 🚀 **Modern Stack**: Built on **Ant Design 6** + **Umi 4** + **TypeScript**.
+- 🎨 **Clean Architecture**: Lightweight state management using `zustand`.
+- 🛠 **Dev Experience**: Integrated local mock server (`mock/index.js`) for seamless frontend development without backend dependency.
+- 📦 **Rich Examples**: Includes ready-to-use pages:
+  - 📊 **Dashboard**: Data visualization overview.
+  - 👥 **User Management**: CRUD operations example.
+  - 🧩 **Menu Management**: Dynamic routing configuration.
+  - 🤖 **AI Chat Demo**: Integration example for LLM interfaces.
+- ✅ **CI/CD Ready**: Pre-configured GitHub Actions for linting and building.
+
+## 🚀 Quick Start
+
+We recommend using **pnpm** for package management.
 
 ```bash
-# install dependencies
+# 1. Clone the repository
+git clone https://github.com/zuiidea/antd-admin.git -b master --depth=1
+cd antd-admin
+
+# 2. Install dependencies
 pnpm install
 
-# local development
-pnpm run dev
+# 3. Start local development server (with mock data)
+npm run dev
 
-# build for production
-pnpm run build
+# 4. Build for production
+npm run build
 
-# lint and format
-pnpm run lint
-pnpm run format
+# 5. Code quality checks
+npm run lint
+npm run format
 ```
 
-Scripts are defined in `package.json`.
+🔌 **Development Notes**
 
-## Project Structure (summary)
+#### Mock Server
 
-- `src/`
-  - `layouts/` global layout components
-  - `pages/` routes and views
-  - `components/` shared components
-  - `services/` API wrappers
-  - `store/` global state (zustand)
-  - `utils/` helpers and configuration
+The project includes a built-in mock server defined in `mock/index.js`. This allows you to develop frontend features independently of the backend.
 
-## Development notes
+To disable mocks or switch to a real API, modify the proxy settings in your configuration file (for example, `config/proxy.ts` or `.umirc.ts`).
 
-- Local mock: `mock/index.js` provides mocked API endpoints during development.
-- Common routes:
-  - `/` or `/dashboard` — Dashboard
-  - `/users` — Users list
-  - `/sys/menu` — Menu management
-  - `/ai/chat` — AI Chat demo
+#### Common Routes
 
-## Customization
+| Route | Description |
+| --- | --- |
+| `/` or `/dashboard` | Main Dashboard |
+| `/users` | User List & Management |
+| `/sys/menu` | System Menu Configuration |
+| `/ai/chat` | AI Chat Interface Demo |
 
-- Update API calls in `src/services` to point to real backends.
-- Reuse or extend components in `src/components` (for example `DropOption`).
+#### Customization
 
-## GitHub Actions CI
+- **API Integration:** Update API endpoints in `src/services` to connect to your real backend.
+- **Component Extension:** Reuse or extend existing components in `src/components` (for example, `DropOption`, `StandardTable`).
+- **Theme:** Customize Ant Design tokens in the theme configuration to match your brand identity.
 
-This repository includes a GitHub Actions workflow that installs dependencies with `pnpm`, runs lint and builds the project. The workflow is at `.github/workflows/ci.yml`.
+#### GitHub Actions CI
 
-If you want tests added to CI, add a test script to `package.json` and update the workflow accordingly.
+This repository includes a pre-configured GitHub Actions workflow to ensure code quality:
 
-## Contributing
+- Installs dependencies using `pnpm`.
+- Runs linting checks.
+- Builds the project for production.
 
-Contributions welcome via issues and pull requests. Typical contributions:
-
-- Bug fixes
-- Example pages or components
-- Type and lint improvements
+- **Workflow location:** `.github/workflows/ci.yml`
+- **Tip:** To add automated tests to the CI pipeline, add a test script to `package.json` and update the workflow YAML accordingly.
+🤝 Contributing
+Contributions are always welcome! Whether it's fixing a bug, adding a new feature, or improving documentation, please feel free to submit an Issue or a Pull Request.
+Typical contributions include:
+🐛 Bug fixes
+🧩 New example pages or components
+📝 Type definitions and linting improvements
+🌍 Internationalization (i18n) updates
+How to contribute:
+Fork the repository.
+Create your feature branch (git checkout -b feature/AmazingFeature).
+Commit your changes (git commit -m 'Add some AmazingFeature').
+Push to the branch (git push origin feature/AmazingFeature).
+Open a Pull Request.
+📄 License
+This project is licensed under the MIT License.
+Made with ❤️ by zuiidea and contributors.

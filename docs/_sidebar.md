@@ -1,0 +1,12 @@
+- Getting started
+  - [Quick Start](getting-started.md)
+- Customization
+  - [Configuration](configuration.md)
+  - [API Configuration](API-configuration.md)
+  - [I18n](i18n.md)
+  - [Layout](layout.md)
+  - [Request](request.md)
+- Guide
+  - [Deploy](deploy.md)
+- [Change Log](change-log.md)
+- [FAQ](faq.md)
