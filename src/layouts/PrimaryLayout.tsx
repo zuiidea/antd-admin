@@ -83,6 +83,16 @@ export default function PrimaryLayout({
   const [menus, setMenus] = useState<MenuItem[] | null>(null);
   const [routesDb, setRoutesDb] = useState<RouteEntry[] | null>(null);
 
+  const permissionPaths = useMemo(() => {
+    const permsRaw: Admin['permissions'] | null =
+      (currentAdmin && currentAdmin.permissions) || null;
+    if (typeof permsRaw !== 'string') return [];
+    return permsRaw
+      .split(',')
+      .map((s: string) => s.trim())
+      .filter(Boolean);
+  }, [currentAdmin]);
+
   useEffect(() => {
     const v = localStorage.getItem('app-sider-collapsed');
     if (v !== null) setCollapsed(v === 'true');
@@ -118,21 +128,35 @@ export default function PrimaryLayout({
     })();
   }, [isMounted]);
 
-  const filteredMenu = useMemo(() => {
-    // normalize currentAdmin.permissions to an array of paths or '*' string
-    const permsRaw: Admin['permissions'] | null =
-      (currentAdmin && currentAdmin.permissions) || null;
-    let perms: string[] = [];
-    if (typeof permsRaw === 'string') {
-      perms = permsRaw
-        .split(',')
-        .map((s: string) => s.trim())
-        .filter(Boolean);
+  useEffect(() => {
+    if (!currentAdmin) return;
+    if (!permissionPaths.length || permissionPaths.includes('*')) return;
+
+    const currentPath = pathname.replace(/\/+$/, '') || '/';
+    const allowed = permissionPaths.some((p: string) => {
+      const permPath = p.replace(/\/+$/, '') || '/';
+      return currentPath === permPath || currentPath.startsWith(`${permPath}/`);
+    });
+
+    if (allowed) return;
+
+    if (!WARNED_PATHS.has(pathname)) {
+      WARNED_PATHS.add(pathname);
+      message.warning('You do not have permission to access this page');
     }
 
+    const fallback = permissionPaths[0] || '/';
+    if (pathname !== fallback) {
+      history.replace(fallback);
+    }
+  }, [currentAdmin, pathname, permissionPaths]);
+
+  const filteredMenu = useMemo(() => {
+    const perms = permissionPaths;
+
     const isAllowed = (item: FrontendMenu): boolean => {
-      // if no permissions configured for this user, deny access to guarded items
       if (!perms || !perms.length) return false;
+      if (perms.includes('*')) return true;
       if (item.path && perms.includes(item.path)) return true;
       // also allow matching by menu key (e.g. perms may contain '/dashboard' while item.path is '/')
       if (item.key && perms.includes('/' + String(item.key))) return true;
