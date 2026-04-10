@@ -50,6 +50,31 @@ export const DEFAULT_SETTINGS: AISettings = {
   providers: DEFAULT_CONFIG,
 };
 
+function sanitizeProviders(providers?: Partial<ConfigState>): ConfigState {
+  return {
+    openai: {
+      ...DEFAULT_CONFIG.openai,
+      ...(providers?.openai || {}),
+      apiKey: '',
+    },
+    qwen: {
+      ...DEFAULT_CONFIG.qwen,
+      ...(providers?.qwen || {}),
+      apiKey: '',
+    },
+    deepseek: {
+      ...DEFAULT_CONFIG.deepseek,
+      ...(providers?.deepseek || {}),
+      apiKey: '',
+    },
+    custom: {
+      ...DEFAULT_CONFIG.custom,
+      ...(providers?.custom || {}),
+      apiKey: '',
+    },
+  };
+}
+
 export function loadAISettings(): AISettings {
   try {
     const raw = localStorage.getItem(AI_SETTINGS_STORAGE_KEY);
@@ -65,10 +90,7 @@ export function loadAISettings(): AISettings {
         activeProvider === 'custom'
           ? activeProvider
           : 'openai',
-      providers: {
-        ...DEFAULT_CONFIG,
-        ...(parsed.providers || {}),
-      },
+      providers: sanitizeProviders(parsed.providers),
     };
   } catch (error) {
     return DEFAULT_SETTINGS;
@@ -76,7 +98,13 @@ export function loadAISettings(): AISettings {
 }
 
 export function saveAISettings(settings: AISettings) {
-  localStorage.setItem(AI_SETTINGS_STORAGE_KEY, JSON.stringify(settings));
+  localStorage.setItem(
+    AI_SETTINGS_STORAGE_KEY,
+    JSON.stringify({
+      ...settings,
+      providers: sanitizeProviders(settings.providers),
+    }),
+  );
 }
 
 export function loadAIConfig(): ConfigState {
