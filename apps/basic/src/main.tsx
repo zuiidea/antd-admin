@@ -4,6 +4,10 @@ import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 import { useAuthStore } from "./stores/auth";
 import { fetchSessionAndApplyToStore } from "./utils/session";
+import { installGlobalErrorHandlers } from "./utils/errorReporter";
+
+// 全局兜底异常捕获（window.onerror / unhandledrejection）
+installGlobalErrorHandlers();
 
 const router = createRouter({ routeTree });
 
@@ -13,11 +17,22 @@ declare module "@tanstack/react-router" {
   }
 }
 
+
 async function enableMocking() {
   const enableMockInBuild = import.meta.env.VITE_ENABLE_MOCK === "true";
   if (!import.meta.env.DEV && !enableMockInBuild) return;
   const { worker } = await import("./mocks/browser");
-  return worker.start({ onUnhandledRequest: "bypass" });
+  worker.start({
+    onUnhandledRequest(_, print) {
+      if (import.meta.env.DEV) {
+        // 开发环境下 warn
+        print.warning();
+      } else {
+        // 生产/构建 mock 环境下 error
+        print.error();
+      }
+    },
+  });
 }
 
 enableMocking()

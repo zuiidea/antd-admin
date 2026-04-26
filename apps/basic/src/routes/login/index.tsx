@@ -1,4 +1,4 @@
-import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
+import { Link, createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
 import { Form, Input, Button, Card, App, theme, Typography, Flex, Checkbox, Space } from "antd";
 import type { CSSProperties } from "react";
 import { useMutation } from "@tanstack/react-query";
@@ -171,13 +171,9 @@ function LoginPage() {
                 <Form.Item name="remember" valuePropName="checked" noStyle>
                   <Checkbox>Auto login</Checkbox>
                 </Form.Item>
-                <Typography.Link
-                  href="#"
-                  onClick={(e) => e.preventDefault()}
-                  style={{ fontSize: token.fontSizeSM }}
-                >
-                  Forgot password?
-                </Typography.Link>
+                <Typography.Text type="secondary" style={{ fontSize: token.fontSizeSM }}>
+                  Demo: admin/admin or guest/guest
+                </Typography.Text>
               </Flex>
 
               <Form.Item style={{ marginBottom: 0, marginTop: token.marginLG }}>
@@ -191,6 +187,15 @@ function LoginPage() {
                   Sign In
                 </Button>
               </Form.Item>
+
+              <Flex justify="center" style={{ marginTop: token.margin }}>
+                <Typography.Text type="secondary">
+                  No account?{" "}
+                  <Link to="/register" style={{ color: token.colorPrimary }}>
+                    Create one
+                  </Link>
+                </Typography.Text>
+              </Flex>
             </Form>
           </Card>
         </Flex>

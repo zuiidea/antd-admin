@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useSettingsStore } from "@/stores/settings";
 import { useAppTheme } from "@/hooks/useAppTheme";
 import { NotFound } from "@/components/NotFound";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import "@/index.css";
 
 const queryClient = new QueryClient({
@@ -30,7 +31,9 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <ConfigProvider {...configProviderProps} locale={enUS}>
         <App>
-          <Outlet />
+          <ErrorBoundary>
+            <Outlet />
+          </ErrorBoundary>
         </App>
       </ConfigProvider>
     </QueryClientProvider>

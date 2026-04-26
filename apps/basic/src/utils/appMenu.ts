@@ -1,5 +1,16 @@
 import type { MenuItem } from "@/api/schemas";
 
+export const APP_PERMISSION_OPTIONS = [
+  { label: "Users: View", value: "user:view" },
+  { label: "Users: Create", value: "user:create" },
+  { label: "Users: Edit", value: "user:edit" },
+  { label: "Users: Delete", value: "user:delete" },
+  { label: "Admins: View", value: "admin:view" },
+  { label: "Admins: Create", value: "admin:create" },
+  { label: "Admins: Edit", value: "admin:edit" },
+  { label: "Admins: Delete", value: "admin:delete" },
+] as const;
+
 /**
  * Built-in menu tree. Visibility is computed with {@link filterMenuTreeByPermissions}
  * from `GET /api/auth/permissions` (must stay consistent with route permission map below).
@@ -37,41 +48,74 @@ export const APP_MENU_TREE: MenuItem[] = [
         sort: 1,
         hidden: false,
       },
+      {
+        id: "5",
+        kind: "item",
+        name: "Admins",
+        path: "/admins",
+        icon: "IconLucideShieldCheck",
+        children: null,
+        permissions: ["admin:view"],
+        sort: 2,
+        hidden: false,
+      },
+      {
+        id: "8",
+        kind: "item",
+        name: "Notifications",
+        path: "/notifications",
+        icon: "IconLucideHistory",
+        children: null,
+        permissions: null,
+        sort: 3,
+        hidden: false,
+      },
+      {
+        id: "10",
+        kind: "item",
+        name: "Logs",
+        path: "/logs",
+        icon: "IconLucideBookOpen",
+        children: null,
+        permissions: ["admin:view"],
+        sort: 5,
+        hidden: false,
+      },
     ],
   },
   {
-    id: "g-projects",
+    id: "g-settings",
     kind: "group",
-    name: "Projects",
+    name: "Settings",
     path: null,
-    icon: "IconLucideFolderKanban",
+    icon: "IconLucideSettings",
+    permissions: ["admin:view"],
+    sort: 1,
+    hidden: false,
     children: [
       {
-        id: "3",
+        id: "6",
         kind: "item",
-        name: "Design Engineering",
-        path: "/design-engineering",
-        icon: "IconLucideBookOpen",
+        name: "Menus",
+        path: "/menus",
+        icon: "IconLucideSettings",
         children: null,
-        permissions: null,
+        permissions: ["admin:view"],
         sort: 0,
         hidden: false,
       },
       {
-        id: "4",
+        id: "7",
         kind: "item",
-        name: "Sales & Marketing",
-        path: "/sales-marketing",
-        icon: "IconLucideBriefcase",
+        name: "AI Settings",
+        path: "/ai-settings",
+        icon: "IconLucideSparkles",
         children: null,
-        permissions: ["user:view"],
+        permissions: ["admin:view"],
         sort: 1,
         hidden: false,
       },
     ],
-    permissions: null,
-    sort: 1,
-    hidden: false,
   },
 ];
 
@@ -123,13 +167,20 @@ export function normalizeAppPath(pathname: string): string {
  * Route → permission required to open the page. `null` = no permission gate.
  * Keep in sync with {@link APP_MENU_TREE} paths.
  */
+
+// 更严格的路径权限判断，避免误判/绕过
 export function requiredPermissionForPath(pathname: string): string | null {
   const p = normalizeAppPath(pathname);
+  // 只允许精确匹配和一级子路由
+  if (p === "/admins" || /^\/admins\/[\w-]+$/.test(p)) return "admin:view";
+  if (p === "/users" || /^\/users\/[\w-]+$/.test(p)) return "user:view";
   const map: Record<string, string | null> = {
     "/dashboard": null,
-    "/users": "user:view",
-    "/design-engineering": null,
-    "/sales-marketing": "user:view",
+    "/notifications": null,
+    "/logs": "admin:view",
+    "/profile": null,
+    "/menus": "admin:view",
+    "/ai-settings": "admin:view",
     "/403": null,
   };
   return map[p] ?? null;

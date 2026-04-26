@@ -76,6 +76,47 @@ cd apps/basic && pnpm run test:e2e:core
 
 ## Getting Started
 
+Follow these steps to set up and run the project:
+
+### Prerequisites
+
+- **Node.js 20+**: Ensure you have Node.js installed.
+- **pnpm**: Install pnpm globally using `npm install -g pnpm`.
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/zuiidea/antd-admin.git
+   cd antd-admin
+   ```
+
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+
+### Running the Project
+
+- **Basic App**:
+  ```bash
+  pnpm --filter apps/basic dev
+  ```
+
+- **Lingui i18n App**:
+  ```bash
+  pnpm --filter apps/with-lingui dev
+  ```
+
+### Testing
+
+Run Playwright end-to-end tests:
+```bash
+pnpm test:e2e
+```
+
+## Getting Started
+
 ### Prerequisites
 
 - [Node.js](https://nodejs.org) >= 20

@@ -1,4 +1,4 @@
-import { Form, Input, Select } from "antd";
+import { Form, Input } from "antd";
 import type { FormInstance } from "antd/es/form";
 import type { CreateUserRequest, User } from "@/api/schemas";
 import { BaseFormModal } from "@/components/FormModal";
@@ -39,17 +39,10 @@ export function FormModal({
         <Input />
       </Form.Item>
       <Form.Item
-        name="roles"
-        label="Roles"
-        rules={[{ required: true, message: "Please select roles" }]}
+        name="mobile"
+        label="Mobile"
       >
-        <Select
-          mode="multiple"
-          options={[
-            { label: "Admin", value: "admin" },
-            { label: "Editor", value: "editor" },
-          ]}
-        />
+        <Input />
       </Form.Item>
       <Form.Item name="email" label="Email">
         <Input />

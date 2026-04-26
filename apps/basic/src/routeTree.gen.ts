@@ -11,11 +11,19 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as RegisterIndexRouteImport } from './routes/register/index'
 import { Route as LoginIndexRouteImport } from './routes/login/index'
 import { Route as R404IndexRouteImport } from './routes/404/index'
 import { Route as AuthUsersIndexRouteImport } from './routes/_auth/users/index'
+import { Route as AuthProfileIndexRouteImport } from './routes/_auth/profile/index'
+import { Route as AuthNotificationsIndexRouteImport } from './routes/_auth/notifications/index'
+import { Route as AuthMenusIndexRouteImport } from './routes/_auth/menus/index'
+import { Route as AuthLogsIndexRouteImport } from './routes/_auth/logs/index'
 import { Route as AuthDashboardIndexRouteImport } from './routes/_auth/dashboard/index'
+import { Route as AuthAiSettingsIndexRouteImport } from './routes/_auth/ai-settings/index'
+import { Route as AuthAdminsIndexRouteImport } from './routes/_auth/admins/index'
 import { Route as Auth403IndexRouteImport } from './routes/_auth/403/index'
+import { Route as AuthAdminsIdRouteImport } from './routes/_auth/admins/$id'
 
 const AuthRoute = AuthRouteImport.update({
   id: '/_auth',
@@ -24,6 +32,11 @@ const AuthRoute = AuthRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterIndexRoute = RegisterIndexRouteImport.update({
+  id: '/register/',
+  path: '/register/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginIndexRoute = LoginIndexRouteImport.update({
@@ -41,9 +54,39 @@ const AuthUsersIndexRoute = AuthUsersIndexRouteImport.update({
   path: '/users/',
   getParentRoute: () => AuthRoute,
 } as any)
+const AuthProfileIndexRoute = AuthProfileIndexRouteImport.update({
+  id: '/profile/',
+  path: '/profile/',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthNotificationsIndexRoute = AuthNotificationsIndexRouteImport.update({
+  id: '/notifications/',
+  path: '/notifications/',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthMenusIndexRoute = AuthMenusIndexRouteImport.update({
+  id: '/menus/',
+  path: '/menus/',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthLogsIndexRoute = AuthLogsIndexRouteImport.update({
+  id: '/logs/',
+  path: '/logs/',
+  getParentRoute: () => AuthRoute,
+} as any)
 const AuthDashboardIndexRoute = AuthDashboardIndexRouteImport.update({
   id: '/dashboard/',
   path: '/dashboard/',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthAiSettingsIndexRoute = AuthAiSettingsIndexRouteImport.update({
+  id: '/ai-settings/',
+  path: '/ai-settings/',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthAdminsIndexRoute = AuthAdminsIndexRouteImport.update({
+  id: '/admins/',
+  path: '/admins/',
   getParentRoute: () => AuthRoute,
 } as any)
 const Auth403IndexRoute = Auth403IndexRouteImport.update({
@@ -51,21 +94,42 @@ const Auth403IndexRoute = Auth403IndexRouteImport.update({
   path: '/403/',
   getParentRoute: () => AuthRoute,
 } as any)
+const AuthAdminsIdRoute = AuthAdminsIdRouteImport.update({
+  id: '/admins/$id',
+  path: '/admins/$id',
+  getParentRoute: () => AuthRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/404/': typeof R404IndexRoute
   '/login/': typeof LoginIndexRoute
+  '/register/': typeof RegisterIndexRoute
+  '/admins/$id': typeof AuthAdminsIdRoute
   '/403/': typeof Auth403IndexRoute
+  '/admins/': typeof AuthAdminsIndexRoute
+  '/ai-settings/': typeof AuthAiSettingsIndexRoute
   '/dashboard/': typeof AuthDashboardIndexRoute
+  '/logs/': typeof AuthLogsIndexRoute
+  '/menus/': typeof AuthMenusIndexRoute
+  '/notifications/': typeof AuthNotificationsIndexRoute
+  '/profile/': typeof AuthProfileIndexRoute
   '/users/': typeof AuthUsersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/404': typeof R404IndexRoute
   '/login': typeof LoginIndexRoute
+  '/register': typeof RegisterIndexRoute
+  '/admins/$id': typeof AuthAdminsIdRoute
   '/403': typeof Auth403IndexRoute
+  '/admins': typeof AuthAdminsIndexRoute
+  '/ai-settings': typeof AuthAiSettingsIndexRoute
   '/dashboard': typeof AuthDashboardIndexRoute
+  '/logs': typeof AuthLogsIndexRoute
+  '/menus': typeof AuthMenusIndexRoute
+  '/notifications': typeof AuthNotificationsIndexRoute
+  '/profile': typeof AuthProfileIndexRoute
   '/users': typeof AuthUsersIndexRoute
 }
 export interface FileRoutesById {
@@ -74,23 +138,67 @@ export interface FileRoutesById {
   '/_auth': typeof AuthRouteWithChildren
   '/404/': typeof R404IndexRoute
   '/login/': typeof LoginIndexRoute
+  '/register/': typeof RegisterIndexRoute
+  '/_auth/admins/$id': typeof AuthAdminsIdRoute
   '/_auth/403/': typeof Auth403IndexRoute
+  '/_auth/admins/': typeof AuthAdminsIndexRoute
+  '/_auth/ai-settings/': typeof AuthAiSettingsIndexRoute
   '/_auth/dashboard/': typeof AuthDashboardIndexRoute
+  '/_auth/logs/': typeof AuthLogsIndexRoute
+  '/_auth/menus/': typeof AuthMenusIndexRoute
+  '/_auth/notifications/': typeof AuthNotificationsIndexRoute
+  '/_auth/profile/': typeof AuthProfileIndexRoute
   '/_auth/users/': typeof AuthUsersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/404/' | '/login/' | '/403/' | '/dashboard/' | '/users/'
+  fullPaths:
+    | '/'
+    | '/404/'
+    | '/login/'
+    | '/register/'
+    | '/admins/$id'
+    | '/403/'
+    | '/admins/'
+    | '/ai-settings/'
+    | '/dashboard/'
+    | '/logs/'
+    | '/menus/'
+    | '/notifications/'
+    | '/profile/'
+    | '/users/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/404' | '/login' | '/403' | '/dashboard' | '/users'
+  to:
+    | '/'
+    | '/404'
+    | '/login'
+    | '/register'
+    | '/admins/$id'
+    | '/403'
+    | '/admins'
+    | '/ai-settings'
+    | '/dashboard'
+    | '/logs'
+    | '/menus'
+    | '/notifications'
+    | '/profile'
+    | '/users'
   id:
     | '__root__'
     | '/'
     | '/_auth'
     | '/404/'
     | '/login/'
+    | '/register/'
+    | '/_auth/admins/$id'
     | '/_auth/403/'
+    | '/_auth/admins/'
+    | '/_auth/ai-settings/'
     | '/_auth/dashboard/'
+    | '/_auth/logs/'
+    | '/_auth/menus/'
+    | '/_auth/notifications/'
+    | '/_auth/profile/'
     | '/_auth/users/'
   fileRoutesById: FileRoutesById
 }
@@ -99,6 +207,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRouteWithChildren
   R404IndexRoute: typeof R404IndexRoute
   LoginIndexRoute: typeof LoginIndexRoute
+  RegisterIndexRoute: typeof RegisterIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -115,6 +224,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register/': {
+      id: '/register/'
+      path: '/register'
+      fullPath: '/register/'
+      preLoaderRoute: typeof RegisterIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login/': {
@@ -138,11 +254,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthUsersIndexRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/_auth/profile/': {
+      id: '/_auth/profile/'
+      path: '/profile'
+      fullPath: '/profile/'
+      preLoaderRoute: typeof AuthProfileIndexRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/notifications/': {
+      id: '/_auth/notifications/'
+      path: '/notifications'
+      fullPath: '/notifications/'
+      preLoaderRoute: typeof AuthNotificationsIndexRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/menus/': {
+      id: '/_auth/menus/'
+      path: '/menus'
+      fullPath: '/menus/'
+      preLoaderRoute: typeof AuthMenusIndexRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/logs/': {
+      id: '/_auth/logs/'
+      path: '/logs'
+      fullPath: '/logs/'
+      preLoaderRoute: typeof AuthLogsIndexRouteImport
+      parentRoute: typeof AuthRoute
+    }
     '/_auth/dashboard/': {
       id: '/_auth/dashboard/'
       path: '/dashboard'
       fullPath: '/dashboard/'
       preLoaderRoute: typeof AuthDashboardIndexRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/ai-settings/': {
+      id: '/_auth/ai-settings/'
+      path: '/ai-settings'
+      fullPath: '/ai-settings/'
+      preLoaderRoute: typeof AuthAiSettingsIndexRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/admins/': {
+      id: '/_auth/admins/'
+      path: '/admins'
+      fullPath: '/admins/'
+      preLoaderRoute: typeof AuthAdminsIndexRouteImport
       parentRoute: typeof AuthRoute
     }
     '/_auth/403/': {
@@ -152,18 +310,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Auth403IndexRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/_auth/admins/$id': {
+      id: '/_auth/admins/$id'
+      path: '/admins/$id'
+      fullPath: '/admins/$id'
+      preLoaderRoute: typeof AuthAdminsIdRouteImport
+      parentRoute: typeof AuthRoute
+    }
   }
 }
 
 interface AuthRouteChildren {
+  AuthAdminsIdRoute: typeof AuthAdminsIdRoute
   Auth403IndexRoute: typeof Auth403IndexRoute
+  AuthAdminsIndexRoute: typeof AuthAdminsIndexRoute
+  AuthAiSettingsIndexRoute: typeof AuthAiSettingsIndexRoute
   AuthDashboardIndexRoute: typeof AuthDashboardIndexRoute
+  AuthLogsIndexRoute: typeof AuthLogsIndexRoute
+  AuthMenusIndexRoute: typeof AuthMenusIndexRoute
+  AuthNotificationsIndexRoute: typeof AuthNotificationsIndexRoute
+  AuthProfileIndexRoute: typeof AuthProfileIndexRoute
   AuthUsersIndexRoute: typeof AuthUsersIndexRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
+  AuthAdminsIdRoute: AuthAdminsIdRoute,
   Auth403IndexRoute: Auth403IndexRoute,
+  AuthAdminsIndexRoute: AuthAdminsIndexRoute,
+  AuthAiSettingsIndexRoute: AuthAiSettingsIndexRoute,
   AuthDashboardIndexRoute: AuthDashboardIndexRoute,
+  AuthLogsIndexRoute: AuthLogsIndexRoute,
+  AuthMenusIndexRoute: AuthMenusIndexRoute,
+  AuthNotificationsIndexRoute: AuthNotificationsIndexRoute,
+  AuthProfileIndexRoute: AuthProfileIndexRoute,
   AuthUsersIndexRoute: AuthUsersIndexRoute,
 }
 
@@ -174,6 +353,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRouteWithChildren,
   R404IndexRoute: R404IndexRoute,
   LoginIndexRoute: LoginIndexRoute,
+  RegisterIndexRoute: RegisterIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

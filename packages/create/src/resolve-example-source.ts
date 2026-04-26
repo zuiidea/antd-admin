@@ -1,11 +1,16 @@
 import { DEFAULT_GITHUB_REPO, ENV_REPO } from "./constants.js";
 import { CliError } from "./errors.js";
 import { resolveGitRef } from "./resolve-ref.js";
+import path from "node:path";
 
 export type ResolvedExampleSource = { gigetSource: string; displayName: string };
 
 function defaultRepo(): string {
-  return process.env[ENV_REPO]?.trim() || DEFAULT_GITHUB_REPO;
+  const repo = process.env[ENV_REPO]?.trim() || DEFAULT_GITHUB_REPO;
+  if (!repo) {
+    throw new CliError("Default repository is not configured", "INVALID_INPUT");
+  }
+  return repo;
 }
 
 export function resolveExampleSource(input: {
@@ -16,6 +21,7 @@ export function resolveExampleSource(input: {
   if (!example) {
     throw new CliError("example is required", "INVALID_INPUT");
   }
+
   const { examplePath } = input;
   const ref = resolveGitRef();
 
@@ -27,13 +33,15 @@ export function resolveExampleSource(input: {
 
   if (!example.includes("/")) {
     const sub = examplePath
-      ? `apps/${example}/${examplePath}`.replace(/\/+/g, "/")
+      ? path.join("apps", example, examplePath).replace(/\\+/g, "/")
       : `apps/${example}`;
     const gigetSource = `github:${repo}/${sub}#${ref}`;
     return { gigetSource, displayName: example };
   }
 
-  const pathPart = examplePath ? `${example}/${examplePath}` : example;
+  const pathPart = examplePath
+    ? path.join(example, examplePath).replace(/\\+/g, "/")
+    : example;
   const gigetSource = `github:${pathPart}#${ref}`;
   return { gigetSource, displayName: pathPart };
 }

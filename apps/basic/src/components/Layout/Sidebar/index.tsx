@@ -8,11 +8,13 @@ import {
   Folder,
   Home,
   PanelLeft,
+  ShieldCheck,
   SlidersHorizontal,
   Star,
   User,
   Users,
   Zap,
+  BrainCircuit,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { APP_BRAND_NAME, APP_FAVICON_SRC } from "@/utils/constants";
@@ -30,6 +32,13 @@ const MENU_LABELS: Record<string, string> = {
   Projects: "Projects",
   Dashboard: "Dashboard",
   Users: "Users",
+  Admins: "Admins",
+  Menus: "Menus",
+  Settings: "Settings",
+  Notifications: "Notifications",
+  Logs: "Audit Logs",
+  Profile: "Profile",
+  "AI Settings": "AI Settings",
   "Design Engineering": "Design Engineering",
   "Sales & Marketing": "Sales & Marketing",
 };
@@ -53,6 +62,8 @@ const MENU_ICON_MAP: Record<string, LucideIcon> = {
   IconLucideBookOpen: Book,
   IconLucideFolderKanban: Folder,
   IconLucideSparkles: Zap,
+  IconLucideShieldCheck: ShieldCheck,
+  IconLucideBrainCircuit: BrainCircuit,
 };
 
 function renderMenuIcon(icon: string | null, size = 16) {

@@ -3,7 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 type MutationLifecycle<TValues> = {
   onMutate?: (values: TValues) => void;
   onSuccess?: (values: TValues) => void;
-  onError?: (values: TValues) => void;
+  onError?: (values: TValues, error: unknown) => void;
 };
 
 type UseResourceCRUDOptions<TListData, TCreateValues, TUpdateValues> = {
@@ -39,8 +39,8 @@ export function useResourceCRUD<TListData, TCreateValues, TUpdateValues>(
       void queryClient.invalidateQueries({ queryKey: options.invalidateKey });
       options.createLifecycle?.onSuccess?.(values);
     },
-    onError: (_error, values) => {
-      options.createLifecycle?.onError?.(values);
+    onError: (error, values) => {
+      options.createLifecycle?.onError?.(values, error);
     },
   });
 
@@ -53,8 +53,8 @@ export function useResourceCRUD<TListData, TCreateValues, TUpdateValues>(
       void queryClient.invalidateQueries({ queryKey: options.invalidateKey });
       options.updateLifecycle?.onSuccess?.(values);
     },
-    onError: (_error, values) => {
-      options.updateLifecycle?.onError?.(values);
+    onError: (error, values) => {
+      options.updateLifecycle?.onError?.(values, error);
     },
   });
 
@@ -67,8 +67,8 @@ export function useResourceCRUD<TListData, TCreateValues, TUpdateValues>(
       void queryClient.invalidateQueries({ queryKey: options.invalidateKey });
       options.deleteLifecycle?.onSuccess?.(id);
     },
-    onError: (_error, id) => {
-      options.deleteLifecycle?.onError?.(id);
+    onError: (error, id) => {
+      options.deleteLifecycle?.onError?.(id, error);
     },
   });
 

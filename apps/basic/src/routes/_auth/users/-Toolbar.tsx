@@ -1,9 +1,8 @@
-import { Button, Input, Select, theme } from "antd";
-import { Plus, UserRound } from "lucide-react";
+import { Button, Input, theme } from "antd";
+import { Plus } from "lucide-react";
 import { forwardRef, useMemo } from "react";
 import { FilterToolbar } from "@/components/FilterToolbar";
 
-/** Search + role slot `minWidth` for FilterToolbar collapse math */
 const FILTER_CONTROL_WIDTH = 220;
 
 export type ToolbarProps = {
@@ -11,21 +10,12 @@ export type ToolbarProps = {
   onKeywordChange: (value: string) => void;
   onSearch: (keyword: string) => void;
   onClearSearch: () => void;
-  roleValue: string | undefined;
-  onRoleChange: (role: string) => void;
+  canCreate: boolean;
   onCreateClick: () => void;
 };
 
 export const Toolbar = forwardRef<HTMLDivElement, ToolbarProps>(function Toolbar(
-  {
-    keywordInput,
-    onKeywordChange,
-    onSearch,
-    onClearSearch,
-    roleValue,
-    onRoleChange,
-    onCreateClick,
-  },
+  { keywordInput, onKeywordChange, onSearch, onClearSearch, canCreate, onCreateClick },
   ref,
 ) {
   const { token } = theme.useToken();
@@ -47,26 +37,8 @@ export const Toolbar = forwardRef<HTMLDivElement, ToolbarProps>(function Toolbar
           />
         ),
       },
-      {
-        key: "role",
-        minWidth: FILTER_CONTROL_WIDTH,
-        children: (
-          <Select
-            allowClear
-            placeholder="Role"
-            style={{ width: FILTER_CONTROL_WIDTH }}
-            prefix={<UserRound size={token.fontSize} />}
-            value={roleValue}
-            onChange={(v) => onRoleChange(v ?? "")}
-            options={[
-              { label: "Admin", value: "admin" },
-              { label: "Editor", value: "editor" },
-            ]}
-          />
-        ),
-      },
     ],
-    [keywordInput, onClearSearch, onKeywordChange, onRoleChange, onSearch, roleValue, token.fontSize],
+    [keywordInput, onClearSearch, onKeywordChange, onSearch],
   );
 
   return (
@@ -74,7 +46,12 @@ export const Toolbar = forwardRef<HTMLDivElement, ToolbarProps>(function Toolbar
       ref={ref}
       slots={slots}
       actions={
-        <Button type="primary" icon={<Plus size={token.fontSize} />} onClick={onCreateClick}>
+        <Button
+          type="primary"
+          icon={<Plus size={token.fontSize} />}
+          onClick={onCreateClick}
+          disabled={!canCreate}
+        >
           Create User
         </Button>
       }

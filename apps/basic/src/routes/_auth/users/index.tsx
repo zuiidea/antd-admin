@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { Avatar, Button, Space, Form, App, Dropdown, theme, Tag, Flex } from "antd";
+import { Avatar, Button, Form, App, Dropdown, theme, Flex } from "antd";
 import type { TablePaginationConfig } from "antd/es/table/interface";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { httpClient } from "@/utils/http";
@@ -10,16 +10,17 @@ import { z } from "zod/v4";
 import { MoreVertical, Pencil, Trash2 } from "lucide-react";
 import { DataTable } from "@/components/DataTable";
 import { useResourceCRUD } from "@/hooks/useResourceCRUD";
+import { useAuthStore } from "@/stores/auth";
 import { Toolbar } from "./-Toolbar";
 import { FormModal } from "./-FormModal";
 
 const UserSearchParamsSchema = z.object({
   limit: z.number().int().positive().catch(100),
   offset: z.number().int().nonnegative().catch(0),
-  sortField: z.string().nullable().catch(null),
-  sortOrder: z.enum(["ascend", "descend"]).nullable().catch(null),
+  sortField: z.string().nullable().optional().catch(null),
+  sortOrder: z.enum(["ascend", "descend"]).nullable().optional().catch(null),
   keyword: z.string().catch(""),
-  role: z.string().catch(""),
+  role: z.string().catch("")
 });
 
 export const Route = createFileRoute("/_auth/users/")({
@@ -58,6 +59,10 @@ function UsersPage() {
   });
   const [editingUser, setEditingUser] = useState<User | null>(null);
   const [form] = Form.useForm();
+  const hasPermission = useAuthStore((s) => s.hasPermission);
+  const canCreate = hasPermission("user:create");
+  const canEdit = hasPermission("user:edit");
+  const canDelete = hasPermission("user:delete");
   const [keywordInput, setKeywordInput] = useState(search.keyword);
   const currentPage = Math.floor(search.offset / search.limit) + 1;
 
@@ -215,27 +220,20 @@ function UsersPage() {
       title: "Roles",
       dataIndex: "roles",
       key: "roles",
-      sorter: true,
-      sortOrder: search.sortField === "roles" ? search.sortOrder : null,
-      render: (roles: string[]) => (
-        <Space wrap>
-          {roles.map((role) => (
-            <Tag
-              key={role}
-              variant="outlined"
-              styles={{
-                root: {
-                  borderRadius: 9999,
-                  background: "transparent",
-                  boxShadow: "none",
-                },
-              }}
-            >
-              {role}
-            </Tag>
-          ))}
-        </Space>
-      ),
+      render: (_: unknown, record: User) => {
+        if (!record.roles || record.roles.length === 0) return "—";
+        return (
+          <span style={{ whiteSpace: "nowrap" }}>
+            {record.roles.join(", ")}
+          </span>
+        );
+      },
+    },
+    {
+      title: "Mobile",
+      dataIndex: "mobile",
+      key: "mobile",
+      render: (mobile: string | null | undefined) => mobile || "—",
     },
     {
       title: "Actions",
@@ -243,11 +241,10 @@ function UsersPage() {
       width: 60,
       align: "right" as const,
       sorter: false,
-      render: (_: unknown, record: User) => (
-        <Dropdown
-          menu={{
-            items: [
-              {
+      render: (_: unknown, record: User) => {
+        const items = [
+          canEdit
+            ? {
                 key: "edit",
                 icon: <Pencil size={token.fontSize} />,
                 label: "Edit",
@@ -256,21 +253,29 @@ function UsersPage() {
                   form.setFieldsValue(record);
                   setModalOpen(true);
                 },
-              },
-              {
+              }
+            : null,
+          canDelete
+            ? {
                 key: "delete",
                 icon: <Trash2 size={token.fontSize} />,
                 label: "Delete",
                 danger: true,
                 onClick: () => confirmDelete(record),
-              },
-            ],
-          }}
-          placement="bottomRight"
-        >
-          <Button type="text" icon={<MoreVertical size={token.fontSize} />} />
-        </Dropdown>
-      ),
+              }
+            : null,
+        ].filter((item): item is NonNullable<typeof item> => item != null);
+
+        if (!items.length) {
+          return <span style={{ color: token.colorTextSecondary }}>—</span>;
+        }
+
+        return (
+          <Dropdown menu={{ items }} placement="bottomRight">
+            <Button type="text" icon={<MoreVertical size={token.fontSize} />} />
+          </Dropdown>
+        );
+      },
     },
   ];
 
@@ -420,17 +425,9 @@ function UsersPage() {
           setKeywordInput("");
           applySearch("");
         }}
-        roleValue={search.role || undefined}
-        onRoleChange={(role) =>
-          void navigate({
-            search: {
-              ...search,
-              role,
-              offset: 0,
-            },
-          })
-        }
+        canCreate={canCreate}
         onCreateClick={() => {
+          if (!canCreate) return;
           setEditingUser(null);
           form.resetFields();
           setModalOpen(true);
@@ -455,8 +452,9 @@ function UsersPage() {
         scroll={tableScrollY != null ? { x: "max-content", y: tableScrollY } : { x: "max-content" }}
         onChange={(_pagination, _filters, sorter) => {
           if (Array.isArray(sorter)) return;
-          const nextSortField = sorter.order ? String(sorter.field) : "username";
-          const nextSortOrder = sorter.order ? sorter.order : "descend";
+          // 修正排序回退逻辑：无排序时清空 sortField/sortOrder，否则用当前字段和顺序
+          const nextSortField = sorter.order ? String(sorter.field) : undefined;
+          const nextSortOrder = sorter.order ? sorter.order : undefined;
           void navigate({
             search: {
               ...search,
@@ -479,8 +477,16 @@ function UsersPage() {
         }}
         onFinish={(values) => {
           if (editingUser) {
+            if (!canEdit) {
+              message.error("No permission to edit users");
+              return;
+            }
             updateMutation.mutate({ ...values, id: editingUser.id });
           } else {
+            if (!canCreate) {
+              message.error("No permission to create users");
+              return;
+            }
             createMutation.mutate(values);
           }
         }}

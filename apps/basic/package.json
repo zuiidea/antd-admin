@@ -16,10 +16,10 @@
     "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
-    "@tanstack/react-query": "^5.90.21",
-    "@tanstack/react-router": "^1.167.4",
-    "antd": "^6.3.3",
-    "lucide-react": "^1.7.0",
+    "@tanstack/react-query": "^5.100.3",
+    "@tanstack/react-router": "^1.168.24",
+    "antd": "^6.3.6",
+    "lucide-react": "^1.11.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "zod": "^4.3.6",
@@ -27,25 +27,14 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2",
-    "@tanstack/router-plugin": "^1.166.13",
+    "@tanstack/router-plugin": "^1.167.26",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react-swc": "^4.3.0",
-    "msw": "^2.12.12",
-    "typescript": "~5.9.3",
+    "msw": "^2.13.6",
+    "typescript": "~6.0.3",
     "vite": "npm:@voidzero-dev/vite-plus-core@latest",
     "vite-plus": "latest"
-  },
-  "packageManager": "pnpm@10.32.1",
-  "pnpm": {
-    "overrides": {
-      "vite": "npm:@voidzero-dev/vite-plus-core@latest",
-      "vitest": "npm:@voidzero-dev/vite-plus-test@latest"
-    },
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "msw"
-    ]
   },
   "msw": {
     "workerDirectory": [

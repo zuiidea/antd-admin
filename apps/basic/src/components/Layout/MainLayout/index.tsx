@@ -2,6 +2,7 @@ import { Layout, theme, Flex } from "antd";
 import { Outlet } from "@tanstack/react-router";
 import { Sidebar } from "../Sidebar";
 import { Header } from "../Header";
+import { GlobalAIChat } from "@/components/AIChat/GlobalAIChat";
 
 const { Content } = Layout;
 
@@ -34,6 +35,7 @@ export function MainLayout() {
           <Outlet />
         </Content>
       </Flex>
+      <GlobalAIChat />
     </Layout>
   );
 }

@@ -20,12 +20,12 @@
   background-color: var(--dash-recent-hover-bg);
 }
 
-.dash-chart-placeholder {
-  transition: border-color 0.2s ease;
+.dash-timeline {
+  padding-top: 4px;
 }
 
-.dash-chart-placeholder:hover {
-  border-color: var(--dash-chart-hover-border);
+.dash-timeline .ant-timeline-item-content {
+  min-height: 52px;
 }
 
 .dash-skel-stat .ant-skeleton-input {
