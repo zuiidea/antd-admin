@@ -8,184 +8,191 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from "./routes/__root";
-import { Route as AuthRouteImport } from "./routes/_auth";
-import { Route as IndexRouteImport } from "./routes/index";
-import { Route as RegisterIndexRouteImport } from "./routes/register/index";
-import { Route as LoginIndexRouteImport } from "./routes/login/index";
-import { Route as R404IndexRouteImport } from "./routes/404/index";
-import { Route as AuthUsersIndexRouteImport } from "./routes/_auth/users/index";
-import { Route as AuthDashboardIndexRouteImport } from "./routes/_auth/dashboard/index";
-import { Route as Auth403IndexRouteImport } from "./routes/_auth/403/index";
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as AuthRouteImport } from './routes/_auth'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as RegisterIndexRouteImport } from './routes/register/index'
+import { Route as LoginIndexRouteImport } from './routes/login/index'
+import { Route as R404IndexRouteImport } from './routes/404/index'
+import { Route as AuthUsersIndexRouteImport } from './routes/_auth/users/index'
+import { Route as AuthDashboardIndexRouteImport } from './routes/_auth/dashboard/index'
+import { Route as Auth403IndexRouteImport } from './routes/_auth/403/index'
 
 const AuthRoute = AuthRouteImport.update({
-  id: "/_auth",
+  id: '/_auth',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const IndexRoute = IndexRouteImport.update({
-  id: "/",
-  path: "/",
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const RegisterIndexRoute = RegisterIndexRouteImport.update({
-  id: "/register/",
-  path: "/register/",
+  id: '/register/',
+  path: '/register/',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const LoginIndexRoute = LoginIndexRouteImport.update({
-  id: "/login/",
-  path: "/login/",
+  id: '/login/',
+  path: '/login/',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const R404IndexRoute = R404IndexRouteImport.update({
-  id: "/404/",
-  path: "/404/",
+  id: '/404/',
+  path: '/404/',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const AuthUsersIndexRoute = AuthUsersIndexRouteImport.update({
-  id: "/users/",
-  path: "/users/",
+  id: '/users/',
+  path: '/users/',
   getParentRoute: () => AuthRoute,
-} as any);
+} as any)
 const AuthDashboardIndexRoute = AuthDashboardIndexRouteImport.update({
-  id: "/dashboard/",
-  path: "/dashboard/",
+  id: '/dashboard/',
+  path: '/dashboard/',
   getParentRoute: () => AuthRoute,
-} as any);
+} as any)
 const Auth403IndexRoute = Auth403IndexRouteImport.update({
-  id: "/403/",
-  path: "/403/",
+  id: '/403/',
+  path: '/403/',
   getParentRoute: () => AuthRoute,
-} as any);
+} as any)
 
 export interface FileRoutesByFullPath {
-  "/": typeof IndexRoute;
-  "/404/": typeof R404IndexRoute;
-  "/login/": typeof LoginIndexRoute;
-  "/register/": typeof RegisterIndexRoute;
-  "/403/": typeof Auth403IndexRoute;
-  "/dashboard/": typeof AuthDashboardIndexRoute;
-  "/users/": typeof AuthUsersIndexRoute;
+  '/': typeof IndexRoute
+  '/404/': typeof R404IndexRoute
+  '/login/': typeof LoginIndexRoute
+  '/register/': typeof RegisterIndexRoute
+  '/403/': typeof Auth403IndexRoute
+  '/dashboard/': typeof AuthDashboardIndexRoute
+  '/users/': typeof AuthUsersIndexRoute
 }
 export interface FileRoutesByTo {
-  "/": typeof IndexRoute;
-  "/404": typeof R404IndexRoute;
-  "/login": typeof LoginIndexRoute;
-  "/register": typeof RegisterIndexRoute;
-  "/403": typeof Auth403IndexRoute;
-  "/dashboard": typeof AuthDashboardIndexRoute;
-  "/users": typeof AuthUsersIndexRoute;
+  '/': typeof IndexRoute
+  '/404': typeof R404IndexRoute
+  '/login': typeof LoginIndexRoute
+  '/register': typeof RegisterIndexRoute
+  '/403': typeof Auth403IndexRoute
+  '/dashboard': typeof AuthDashboardIndexRoute
+  '/users': typeof AuthUsersIndexRoute
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport;
-  "/": typeof IndexRoute;
-  "/_auth": typeof AuthRouteWithChildren;
-  "/404/": typeof R404IndexRoute;
-  "/login/": typeof LoginIndexRoute;
-  "/register/": typeof RegisterIndexRoute;
-  "/_auth/403/": typeof Auth403IndexRoute;
-  "/_auth/dashboard/": typeof AuthDashboardIndexRoute;
-  "/_auth/users/": typeof AuthUsersIndexRoute;
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/_auth': typeof AuthRouteWithChildren
+  '/404/': typeof R404IndexRoute
+  '/login/': typeof LoginIndexRoute
+  '/register/': typeof RegisterIndexRoute
+  '/_auth/403/': typeof Auth403IndexRoute
+  '/_auth/dashboard/': typeof AuthDashboardIndexRoute
+  '/_auth/users/': typeof AuthUsersIndexRoute
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: "/" | "/404/" | "/login/" | "/register/" | "/403/" | "/dashboard/" | "/users/";
-  fileRoutesByTo: FileRoutesByTo;
-  to: "/" | "/404" | "/login" | "/register" | "/403" | "/dashboard" | "/users";
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths:
+    | '/'
+    | '/404/'
+    | '/login/'
+    | '/register/'
+    | '/403/'
+    | '/dashboard/'
+    | '/users/'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/404' | '/login' | '/register' | '/403' | '/dashboard' | '/users'
   id:
-    | "__root__"
-    | "/"
-    | "/_auth"
-    | "/404/"
-    | "/login/"
-    | "/register/"
-    | "/_auth/403/"
-    | "/_auth/dashboard/"
-    | "/_auth/users/";
-  fileRoutesById: FileRoutesById;
+    | '__root__'
+    | '/'
+    | '/_auth'
+    | '/404/'
+    | '/login/'
+    | '/register/'
+    | '/_auth/403/'
+    | '/_auth/dashboard/'
+    | '/_auth/users/'
+  fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
-  AuthRoute: typeof AuthRouteWithChildren;
-  R404IndexRoute: typeof R404IndexRoute;
-  LoginIndexRoute: typeof LoginIndexRoute;
-  RegisterIndexRoute: typeof RegisterIndexRoute;
+  IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRouteWithChildren
+  R404IndexRoute: typeof R404IndexRoute
+  LoginIndexRoute: typeof LoginIndexRoute
+  RegisterIndexRoute: typeof RegisterIndexRoute
 }
 
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    "/_auth": {
-      id: "/_auth";
-      path: "";
-      fullPath: "/";
-      preLoaderRoute: typeof AuthRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/": {
-      id: "/";
-      path: "/";
-      fullPath: "/";
-      preLoaderRoute: typeof IndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/register/": {
-      id: "/register/";
-      path: "/register";
-      fullPath: "/register/";
-      preLoaderRoute: typeof RegisterIndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/login/": {
-      id: "/login/";
-      path: "/login";
-      fullPath: "/login/";
-      preLoaderRoute: typeof LoginIndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/404/": {
-      id: "/404/";
-      path: "/404";
-      fullPath: "/404/";
-      preLoaderRoute: typeof R404IndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/_auth/users/": {
-      id: "/_auth/users/";
-      path: "/users";
-      fullPath: "/users/";
-      preLoaderRoute: typeof AuthUsersIndexRouteImport;
-      parentRoute: typeof AuthRoute;
-    };
-    "/_auth/dashboard/": {
-      id: "/_auth/dashboard/";
-      path: "/dashboard";
-      fullPath: "/dashboard/";
-      preLoaderRoute: typeof AuthDashboardIndexRouteImport;
-      parentRoute: typeof AuthRoute;
-    };
-    "/_auth/403/": {
-      id: "/_auth/403/";
-      path: "/403";
-      fullPath: "/403/";
-      preLoaderRoute: typeof Auth403IndexRouteImport;
-      parentRoute: typeof AuthRoute;
-    };
+    '/_auth': {
+      id: '/_auth'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register/': {
+      id: '/register/'
+      path: '/register'
+      fullPath: '/register/'
+      preLoaderRoute: typeof RegisterIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login/': {
+      id: '/login/'
+      path: '/login'
+      fullPath: '/login/'
+      preLoaderRoute: typeof LoginIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/404/': {
+      id: '/404/'
+      path: '/404'
+      fullPath: '/404/'
+      preLoaderRoute: typeof R404IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_auth/users/': {
+      id: '/_auth/users/'
+      path: '/users'
+      fullPath: '/users/'
+      preLoaderRoute: typeof AuthUsersIndexRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/dashboard/': {
+      id: '/_auth/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof AuthDashboardIndexRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/403/': {
+      id: '/_auth/403/'
+      path: '/403'
+      fullPath: '/403/'
+      preLoaderRoute: typeof Auth403IndexRouteImport
+      parentRoute: typeof AuthRoute
+    }
   }
 }
 
 interface AuthRouteChildren {
-  Auth403IndexRoute: typeof Auth403IndexRoute;
-  AuthDashboardIndexRoute: typeof AuthDashboardIndexRoute;
-  AuthUsersIndexRoute: typeof AuthUsersIndexRoute;
+  Auth403IndexRoute: typeof Auth403IndexRoute
+  AuthDashboardIndexRoute: typeof AuthDashboardIndexRoute
+  AuthUsersIndexRoute: typeof AuthUsersIndexRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
   Auth403IndexRoute: Auth403IndexRoute,
   AuthDashboardIndexRoute: AuthDashboardIndexRoute,
   AuthUsersIndexRoute: AuthUsersIndexRoute,
-};
+}
 
-const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren);
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -193,7 +200,7 @@ const rootRouteChildren: RootRouteChildren = {
   R404IndexRoute: R404IndexRoute,
   LoginIndexRoute: LoginIndexRoute,
   RegisterIndexRoute: RegisterIndexRoute,
-};
+}
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>();
+  ._addFileTypes<FileRouteTypes>()
