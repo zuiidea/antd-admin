@@ -44,7 +44,7 @@ jobs:
 
       - name: E2E (core)
         working-directory: apps/with-lingui
-        run: pnpm run test:e2e:core
+        run: pnpm run test:e2e
 
       - name: Build
         working-directory: apps/with-lingui
