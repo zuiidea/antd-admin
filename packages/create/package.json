@@ -26,15 +26,15 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@inquirer/prompts": "^7.10.1",
+    "@inquirer/prompts": "^8.4.2",
     "commander": "^14.0.0",
     "giget": "^3.2.0",
     "picocolors": "^1.0.1"
   },
   "devDependencies": {
-    "@types/node": "^22.10.0",
+    "@types/node": "^25.6.0",
     "tsup": "^8.3.5",
-    "typescript": "~5.9.3",
+    "typescript": "~6.0.3",
     "vitest": "^3.0.5"
   }
 }

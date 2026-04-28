@@ -5,10 +5,12 @@
 Antd Admin provides production-style admin templates with modern frontend tooling, mock-first development, and practical testing coverage.
 
 Available templates:
+
 - `basic`: English-only setup
 - `with-lingui`: Bilingual setup (`en` + `zh`) with Lingui
 
 Scaffolding CLI:
+
 - `init-antd-admin` (from `packages/create`)
 
 ## Key Features
@@ -45,17 +47,19 @@ pnpm dlx init-antd-admin@latest my-app --example with-lingui --skip-install
 
 ### Common options
 
-| Option | Description |
-| --- | --- |
-| `[project-directory]` | Target folder |
-| `-e, --example <name|url>` | Template source |
-| `--example-path <path>` | Subpath inside remote repository |
-| `-m, --package-manager <pm>` | `npm` / `pnpm` / `yarn` / `bun` |
-| `--skip-install` | Skip dependency install |
-| `--skip-transforms` | Skip rewrite transforms |
-| `--no-git` | Skip git initialization |
 
-For detailed CLI behavior, see [`packages/create/README.md`](./packages/create/README.md).
+| Option                       | Description                      |
+| ---------------------------- | -------------------------------- |
+| `[project-directory]`        | Target folder                    |
+| `-e, --example <name         | url>`                            |
+| `--example-path <path>`      | Subpath inside remote repository |
+| `-m, --package-manager <pm>` | `npm` / `pnpm` / `yarn` / `bun`  |
+| `--skip-install`             | Skip dependency install          |
+| `--skip-transforms`          | Skip rewrite transforms          |
+| `--no-git`                   | Skip git initialization          |
+
+
+For detailed CLI behavior, see `[packages/create/README.md](./packages/create/README.md)`.
 
 Production docs: [https://antd-admin-doc.zuiidea.top](https://antd-admin-doc.zuiidea.top)
 

@@ -13,7 +13,6 @@
     "check": "vp check --no-fmt",
     "test:unit": "vitest run",
     "test:e2e": "playwright test",
-    "test:e2e:core": "playwright test e2e/login.spec.ts e2e/users.spec.ts e2e/auth-refresh.spec.ts e2e/rbac.spec.ts e2e/url-state.spec.ts",
     "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
@@ -39,16 +38,6 @@
     "vitest": "3.0.5"
   },
   "packageManager": "pnpm@10.32.1",
-  "pnpm": {
-    "overrides": {
-      "vite": "npm:@voidzero-dev/vite-plus-core@latest",
-      "vitest": "npm:@voidzero-dev/vite-plus-test@latest"
-    },
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "msw"
-    ]
-  },
   "msw": {
     "workerDirectory": [
       "public"

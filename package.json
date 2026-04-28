@@ -1,19 +1,29 @@
 {
-    "name": "antd-admin",
-    "version": "6.0.0",
-    "description": "AI-friendly enterprise front-end best practices",
-    "license": "MIT",
-    "scripts": {
-        "build": "turbo run build",
-        "dev": "turbo run dev",
-        "lint": "turbo run lint",
-        "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-        "setup:git-hooks": "git config core.hooksPath .githooks && git config core.hooksPath"
+  "name": "antd-admin",
+  "version": "6.0.0",
+  "description": "AI-friendly enterprise front-end best practices",
+  "license": "MIT",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "setup:git-hooks": "git config core.hooksPath .githooks && git config core.hooksPath"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "turbo": "^2.9.6"
+  },
+  "packageManager": "pnpm@10.33.2",
+  "pnpm": {
+    "overrides": {
+      "vite": "npm:@voidzero-dev/vite-plus-core@latest",
+      "vitest": "npm:@voidzero-dev/vite-plus-test@latest"
     },
-    "devDependencies": {
-        "eslint": "^8.57.0",
-        "prettier": "^3.2.5",
-        "turbo": "^2.9.6"
-    },
-    "packageManager": "pnpm@8.15.6"
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "msw"
+    ]
+  }
 }

@@ -56,12 +56,9 @@ English-only admin scaffold (no Lingui): MSW mocks, minimal RBAC, full CRUD, and
 
 ### Install & Run
 
-From the monorepo root, or after `cd apps/basic`:
-
 ```bash
-cd apps/basic
-vp install
-vp dev
+pnpm install
+pnpm run dev
 ```
 
 Open [http://localhost:5173](http://localhost:5173) — you'll be redirected to the login page.
@@ -71,75 +68,92 @@ Open [http://localhost:5173](http://localhost:5173) — you'll be redirected to 
 ### Build
 
 ```bash
-vp build
-vp preview
+pnpm run build
+pnpm run preview
+```
+
+### Project Setup
+
+```bash
+pnpm run prepare
+```
+
+### Code Quality
+
+```bash
+pnpm run fmt
+pnpm run lint
+pnpm run check
+```
+
+### Unit Tests
+
+```bash
+pnpm run test:unit
 ```
 
 ### E2E Tests
 
 ```bash
-cd apps/basic
 pnpm run test:e2e
 pnpm run test:e2e:core
 pnpm run test:e2e:ui   # interactive UI mode
 ```
 
-`test:e2e:core` runs the scaffold's highest-value flows only: login and users CRUD.
-
 ## Project Structure
 
-```
+```text
 src/
-├── api/                  # Zod schemas, endpoint constants, type exports
-│   ├── schemas.ts        # Domain models (User, AuthTokens, MenuItem, etc.)
-│   ├── auth.ts           # Auth endpoint constants
-│   └── user.ts           # User CRUD endpoint constants
-├── components/
-│   ├── Aurora/           # Login background effect
-│   ├── Auth/             # Auth (permission gate): index.tsx
-│   ├── DataTable/        # Shared table shell, skeleton, empty state
-│   ├── FilterToolbar/    # Shared filter/action toolbar
-│   ├── FormModal/        # Reusable modal + form shell
-│   ├── Icon/             # Shared icons and theme toggle icon
-│   └── Layout/           # Admin shell (sidebar, header, main)
-│       ├── MainLayout/  # Main layout shell: index.tsx
-│       ├── AppFooter/    # Login footer: Powered by + GitHub → zuiidea/antd-admin
-│       ├── Sidebar/      # Dynamic menu sidebar: index.tsx
-│       ├── UserMenu/     # User dropdown in sidebar: index.tsx + index.css
-│       └── Header/       # Top bar: index.tsx
-├── hooks/
-│   ├── tokenBuilders.ts  # Shared Ant Design token/config builders
-│   ├── useAppTheme.ts    # Theme selection hook (ConfigProvider)
-│   ├── usePermission.ts  # Permission check hook
-│   └── useResourceCRUD.ts # Shared CRUD query/mutation wiring
-├── utils/
-│   ├── constants.ts      # API base URL, static assets
-│   └── http.ts           # HTTP client with JWT injection & error handling
-├── mocks/
-│   ├── browser.ts        # MSW worker setup
-│   ├── createHandler.ts  # Shared MSW success/error/delay helpers
-│   ├── data.ts           # Mock seed data (users, menus)
-│   ├── utils.ts          # Mock-only helpers (filters, pagination, demo avatar URLs)
-│   └── handlers/         # Request handlers (auth, user CRUD)
-├── routes/               # TanStack Router file-based routes
-│   ├── __root.tsx        # Root layout (QueryClient, ConfigProvider, en_US)
-│   ├── _auth.tsx         # Auth guard layout (redirects to /login)
+├── api/                       # Zod models + endpoint contracts
+├── components/                # Reusable UI primitives and layout shells
+│   ├── Layout/                # MainLayout, Header, Sidebar, UserMenu, AppFooter
+│   ├── DataTable/             # Shared table frame/skeleton/empty state
+│   ├── FormModal/             # Generic modal form wrapper
+│   ├── FilterToolbar/         # Reusable list page toolbar
+│   ├── Auth/                  # Permission gate component
+│   ├── Aurora/                # Login page background effect
+│   ├── Icon/                  # Shared icons (GitHub, Theme, etc.)
+│   ├── NotFound/              # Not-found visual component
+│   └── RouteError.tsx         # Route-level error boundary UI
+├── hooks/                     # Shared hooks (theme, CRUD, URL state, permissions)
+│   ├── useAppTheme.ts
+│   ├── usePermission.ts
+│   ├── useResourceCRUD.ts
+│   ├── useCrudToasts.ts
+│   ├── useUrlSearchState.ts
+│   ├── useTableFitHeight.ts
+│   └── tokenBuilders.ts
+├── mocks/                     # MSW bootstrap, handlers, seed data, test helpers
+│   ├── browser.ts
+│   ├── createHandler.ts
+│   ├── createHandler.test.ts
+│   ├── data.ts
+│   ├── utils.ts
+│   └── handlers/
+├── routes/                    # TanStack Router file routes
+│   ├── __root.tsx             # QueryClient + ConfigProvider (en_US) wiring
+│   ├── _auth.tsx              # Protected route layout
 │   ├── _auth/dashboard/index.tsx
-│   ├── _auth/users/index.tsx   # Full CRUD with URL-synced search params
+│   ├── _auth/users/index.tsx
+│   ├── _auth/users/-Toolbar.tsx
+│   ├── _auth/users/-FormModal.tsx
 │   ├── _auth/403/index.tsx
 │   ├── login/index.tsx
+│   ├── register/index.tsx
 │   ├── 404/index.tsx
-│   └── index.tsx         # Redirects / → /login
-├── stores/
-│   ├── auth.ts           # Auth store (tokens, user, menus, permissions)
-│   ├── createPersistentStore.ts # Shared persisted-store factory
-│   └── settings.ts       # Settings store (darkMode, sidebar)
-└── main.tsx              # Entry point (MSW init → React render)
+│   └── index.tsx
+├── stores/                    # Persisted auth/settings stores
+├── utils/                     # HTTP client, constants, session/menu helpers
+├── main.tsx                   # App bootstrap (MSW init + React render)
+└── routeTree.gen.ts           # Generated TanStack route tree
 
-e2e/                    # Playwright E2E tests
+e2e/                           # Playwright E2E suites
 ├── helpers.ts
 ├── login.spec.ts
-└── users.spec.ts
+├── users.spec.ts
+├── auth-refresh.spec.ts
+├── rbac.spec.ts
+└── url-state.spec.ts
 ```
 
 ## Language & i18n
