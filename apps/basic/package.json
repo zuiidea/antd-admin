@@ -35,7 +35,7 @@
     "typescript": "~5.9.3",
     "vite": "npm:@voidzero-dev/vite-plus-core@latest",
     "vite-plus": "latest",
-    "vitest": "3.0.5"
+    "vitest": "4.1.0"
   },
   "packageManager": "pnpm@10.32.1",
   "msw": {
