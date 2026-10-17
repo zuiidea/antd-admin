@@ -1,30 +1,31 @@
 import { theme } from "antd";
 import type { ConfigProviderProps, ThemeConfig } from "antd";
+import { themeConfig } from "@/theme/theme.config";
 
-/**
- * Common theme token builders
- * Reduces duplication between light and dark theme definitions
- */
+const { fontFamily, borderRadius, borderRadiusSM, borderRadiusLG, colorBgLayoutLight } = themeConfig.token;
 
-export const SHARED_DESIGN_TOKENS = {
-  fontFamily:
-    "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif",
-
-  borderRadius: 8,
-  borderRadiusSM: 6,
-  borderRadiusLG: 12,
+const sharedSeed = {
+  fontFamily,
+  borderRadius,
+  borderRadiusSM,
+  borderRadiusLG,
 } as const;
 
-export const CONTROL_COMPONENTS = {
-  Button: {
-    primaryShadow: "none",
-    defaultShadow: "none",
-    dangerShadow: "none",
-  },
-  Input: {
-    activeShadow: "none",
-  },
-} as const;
+function readOptionalPrimary(): string | undefined {
+  if (!("colorPrimary" in themeConfig.token)) return undefined;
+  const value = (themeConfig.token as { colorPrimary?: string }).colorPrimary;
+  return typeof value === "string" && value.length > 0 ? value : undefined;
+}
+
+function primaryTokenFields(): Pick<NonNullable<ThemeConfig["token"]>, "colorPrimary" | "colorLink" | "colorInfo"> {
+  const colorPrimary = readOptionalPrimary();
+  if (!colorPrimary) return {};
+  return {
+    colorPrimary,
+    colorLink: colorPrimary,
+    colorInfo: colorPrimary,
+  };
+}
 
 /**
  * Calculate table row selected color based on theme algorithm
@@ -47,7 +48,7 @@ export const MENU_LIGHT = {
   itemHoverBg: "rgba(0, 0, 0, 0.04)",
   itemHoverColor: "rgba(0, 0, 0, 0.88)",
   itemActiveBg: "rgba(0, 0, 0, 0.08)",
-  itemBorderRadius: SHARED_DESIGN_TOKENS.borderRadiusSM,
+  itemBorderRadius: borderRadiusSM,
   itemMarginInline: 8,
   horizontalItemSelectedColor: "rgba(0, 0, 0, 0.88)",
   horizontalItemHoverColor: "rgba(0, 0, 0, 0.88)",
@@ -63,7 +64,7 @@ export const MENU_DARK = {
   itemHoverBg: "rgba(255, 255, 255, 0.06)",
   itemHoverColor: "rgba(255, 255, 255, 0.85)",
   itemActiveBg: "rgba(255, 255, 255, 0.1)",
-  itemBorderRadius: SHARED_DESIGN_TOKENS.borderRadiusSM,
+  itemBorderRadius: borderRadiusSM,
   itemMarginInline: 8,
   horizontalItemSelectedColor: "rgba(255, 255, 255, 0.85)",
   horizontalItemHoverColor: "rgba(255, 255, 255, 0.85)",
@@ -74,8 +75,9 @@ export const MENU_DARK = {
  */
 export function buildLightThemeConfig(): ConfigProviderProps {
   const lightSeed: ThemeConfig["token"] = {
-    colorBgLayout: "#ffffff",
-    ...SHARED_DESIGN_TOKENS,
+    colorBgLayout: colorBgLayoutLight,
+    ...sharedSeed,
+    ...primaryTokenFields(),
   };
 
   return {
@@ -83,7 +85,7 @@ export function buildLightThemeConfig(): ConfigProviderProps {
       algorithm: theme.defaultAlgorithm,
       token: lightSeed,
       components: {
-        ...CONTROL_COMPONENTS,
+        ...themeConfig.controlComponents,
         Table: buildTableTokens({
           algorithm: theme.defaultAlgorithm,
           token: lightSeed,
@@ -99,7 +101,8 @@ export function buildLightThemeConfig(): ConfigProviderProps {
  */
 export function buildDarkThemeConfig(): ConfigProviderProps {
   const darkSeed: ThemeConfig["token"] = {
-    ...SHARED_DESIGN_TOKENS,
+    ...sharedSeed,
+    ...primaryTokenFields(),
   };
 
   return {
@@ -107,7 +110,7 @@ export function buildDarkThemeConfig(): ConfigProviderProps {
       algorithm: theme.darkAlgorithm,
       token: darkSeed,
       components: {
-        ...CONTROL_COMPONENTS,
+        ...themeConfig.controlComponents,
         Table: buildTableTokens({
           algorithm: theme.darkAlgorithm,
           token: darkSeed,
