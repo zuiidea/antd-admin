@@ -9,32 +9,22 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as RegisterIndexRouteImport } from './routes/register/index'
-import { Route as LoginIndexRouteImport } from './routes/login/index'
+import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as R404IndexRouteImport } from './routes/404/index'
-import { Route as AuthUsersIndexRouteImport } from './routes/_auth/users/index'
-import { Route as AuthDashboardIndexRouteImport } from './routes/_auth/dashboard/index'
+import { Route as LoginIndexRouteImport } from './routes/login/index'
+import { Route as RegisterIndexRouteImport } from './routes/register/index'
 import { Route as Auth403IndexRouteImport } from './routes/_auth/403/index'
+import { Route as AuthDashboardIndexRouteImport } from './routes/_auth/dashboard/index'
+import { Route as AuthUsersIndexRouteImport } from './routes/_auth/users/index'
 
-const AuthRoute = AuthRouteImport.update({
-  id: '/_auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const RegisterIndexRoute = RegisterIndexRouteImport.update({
-  id: '/register/',
-  path: '/register/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LoginIndexRoute = LoginIndexRouteImport.update({
-  id: '/login/',
-  path: '/login/',
+const AuthRoute = AuthRouteImport.update({
+  id: '/_auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const R404IndexRoute = R404IndexRouteImport.update({
@@ -42,9 +32,19 @@ const R404IndexRoute = R404IndexRouteImport.update({
   path: '/404/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthUsersIndexRoute = AuthUsersIndexRouteImport.update({
-  id: '/users/',
-  path: '/users/',
+const LoginIndexRoute = LoginIndexRouteImport.update({
+  id: '/login/',
+  path: '/login/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterIndexRoute = RegisterIndexRouteImport.update({
+  id: '/register/',
+  path: '/register/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Auth403IndexRoute = Auth403IndexRouteImport.update({
+  id: '/403/',
+  path: '/403/',
   getParentRoute: () => AuthRoute,
 } as any)
 const AuthDashboardIndexRoute = AuthDashboardIndexRouteImport.update({
@@ -52,9 +52,9 @@ const AuthDashboardIndexRoute = AuthDashboardIndexRouteImport.update({
   path: '/dashboard/',
   getParentRoute: () => AuthRoute,
 } as any)
-const Auth403IndexRoute = Auth403IndexRouteImport.update({
-  id: '/403/',
-  path: '/403/',
+const AuthUsersIndexRoute = AuthUsersIndexRouteImport.update({
+  id: '/users/',
+  path: '/users/',
   getParentRoute: () => AuthRoute,
 } as any)
 
@@ -121,13 +121,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/_auth': {
-      id: '/_auth'
-      path: ''
-      fullPath: '/'
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -135,18 +128,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/register/': {
-      id: '/register/'
-      path: '/register'
-      fullPath: '/register/'
-      preLoaderRoute: typeof RegisterIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/login/': {
-      id: '/login/'
-      path: '/login'
-      fullPath: '/login/'
-      preLoaderRoute: typeof LoginIndexRouteImport
+    '/_auth': {
+      id: '/_auth'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/404/': {
@@ -156,11 +142,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof R404IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_auth/users/': {
-      id: '/_auth/users/'
-      path: '/users'
-      fullPath: '/users/'
-      preLoaderRoute: typeof AuthUsersIndexRouteImport
+    '/login/': {
+      id: '/login/'
+      path: '/login'
+      fullPath: '/login/'
+      preLoaderRoute: typeof LoginIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register/': {
+      id: '/register/'
+      path: '/register'
+      fullPath: '/register/'
+      preLoaderRoute: typeof RegisterIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_auth/403/': {
+      id: '/_auth/403/'
+      path: '/403'
+      fullPath: '/403/'
+      preLoaderRoute: typeof Auth403IndexRouteImport
       parentRoute: typeof AuthRoute
     }
     '/_auth/dashboard/': {
@@ -170,11 +170,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthDashboardIndexRouteImport
       parentRoute: typeof AuthRoute
     }
-    '/_auth/403/': {
-      id: '/_auth/403/'
-      path: '/403'
-      fullPath: '/403/'
-      preLoaderRoute: typeof Auth403IndexRouteImport
+    '/_auth/users/': {
+      id: '/_auth/users/'
+      path: '/users'
+      fullPath: '/users/'
+      preLoaderRoute: typeof AuthUsersIndexRouteImport
       parentRoute: typeof AuthRoute
     }
   }

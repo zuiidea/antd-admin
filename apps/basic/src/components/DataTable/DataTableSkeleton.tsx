@@ -108,7 +108,7 @@ function mapSkeletonColumn<RecordType extends object>(
     ...c,
     sorter: false,
     sortOrder: undefined,
-    render: (_: unknown, __: RecordType) => {
+    render: () => {
       if (isActionColumn(c)) {
         const w = actionSkeletonDiameter(c);
         return (
