@@ -71,6 +71,9 @@ These commands map to their corresponding tools. For example, `vp dev --port 300
 
 - Run `vp install` after pulling remote changes and before getting started.
 - Run `vp check` and `vp test` to validate changes.
+- For UI/theme work, also run `pnpm verify:ui` (local gate; not CI).
+- On check/`verify:ui` failure, fix the same violation set at most twice, then stop and shrink scope.
+- Keep a single intent per change; do not mix unrelated refactors.
 
 ## Monorepo git hooks
 

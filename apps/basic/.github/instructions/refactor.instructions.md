@@ -14,6 +14,7 @@ Reduce duplication while preserving behavior and public contracts.
 
 - Keep refactors incremental and scoped to one concern per change.
 - Prefer extracting shared utilities/hooks/components over large rewrites.
+- Do not extract a shared module without at least three call sites.
 - Preserve existing external behavior and route/store contracts.
 - Keep diffs reviewable with minimal unrelated formatting churn.
 - Add or update lightweight comments only when logic is non-obvious.
