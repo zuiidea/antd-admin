@@ -11,33 +11,32 @@
     "fmt": "vp fmt",
     "lint": "vp lint",
     "check": "vp check --no-fmt",
-    "test:unit": "vitest run",
+    "test:unit": "vp test run",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
-    "@tanstack/react-query": "^5.90.21",
-    "@tanstack/react-router": "^1.167.4",
-    "antd": "^6.3.3",
-    "lucide-react": "^1.7.0",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "zod": "^4.3.6",
-    "zustand": "^5.0.12"
+    "@tanstack/react-query": "^5.104.3",
+    "@tanstack/react-router": "^1.170.45",
+    "antd": "^6.6.6",
+    "lucide-react": "^1.59.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "zod": "^4.6.7",
+    "zustand": "^5.0.15"
   },
   "devDependencies": {
-    "@playwright/test": "^1.58.2",
-    "@tanstack/router-plugin": "^1.166.13",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react-swc": "^4.3.0",
-    "msw": "^2.12.12",
-    "typescript": "~5.9.3",
-    "vite": "npm:@voidzero-dev/vite-plus-core@latest",
-    "vite-plus": "latest",
-    "vitest": "3.0.5"
+    "@playwright/test": "^1.64.1",
+    "@tanstack/router-plugin": "^1.168.47",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react-swc": "^4.3.3",
+    "msw": "^2.15.0",
+    "typescript": "~6.0.3",
+    "vite": "npm:@voidzero-dev/vite-plus-core@0.3.3",
+    "vite-plus": "0.3.3"
   },
-  "packageManager": "pnpm@10.32.1",
+  "packageManager": "pnpm@10.33.2",
   "msw": {
     "workerDirectory": [
       "public"

@@ -60,7 +60,7 @@ function DashboardSkeleton() {
       active
       style={{
         width: w,
-        height: Math.round(token.fontSizeHeading5 * token.lineHeightHeading5),
+        height: Math.round(Number(token.fontSizeHeading5) * Number(token.lineHeightHeading5)),
       }}
     />
   );

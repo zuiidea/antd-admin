@@ -18,8 +18,7 @@
   "packageManager": "pnpm@10.33.2",
   "pnpm": {
     "overrides": {
-      "vite": "npm:@voidzero-dev/vite-plus-core@latest",
-      "vitest": "npm:@voidzero-dev/vite-plus-test@latest"
+      "vite@*": "npm:@voidzero-dev/vite-plus-core@0.3.3"
     },
     "onlyBuiltDependencies": [
       "esbuild",
