@@ -1,34 +1,16 @@
 import { theme } from "antd";
 import type { ConfigProviderProps, ThemeConfig } from "antd";
+import { readBrandPrimary, themeConfig } from "@/theme/theme.config";
 
-export function readBrandPrimary(): string {
-  const raw = import.meta.env.VITE_BRAND_PRIMARY as string | undefined;
-  if (raw && /^#[0-9a-fA-F]{6}$/.test(raw.trim())) {
-    return raw.trim();
-  }
-  return "#1677ff";
-}
+const { fontFamily, borderRadius, borderRadiusSM, borderRadiusLG, colorBgLayoutLight } = themeConfig.token;
 
 const BRAND_PRIMARY = readBrandPrimary();
 
-export const SHARED_DESIGN_TOKENS = {
-  fontFamily:
-    "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif",
-
-  borderRadius: 8,
-  borderRadiusSM: 6,
-  borderRadiusLG: 12,
-} as const;
-
-export const CONTROL_COMPONENTS = {
-  Button: {
-    primaryShadow: "none",
-    defaultShadow: "none",
-    dangerShadow: "none",
-  },
-  Input: {
-    activeShadow: "none",
-  },
+const sharedSeed = {
+  fontFamily,
+  borderRadius,
+  borderRadiusSM,
+  borderRadiusLG,
 } as const;
 
 export function buildTableTokens(cfg: ThemeConfig) {
@@ -46,7 +28,7 @@ export const MENU_LIGHT = {
   itemHoverBg: "rgba(0, 0, 0, 0.04)",
   itemHoverColor: "rgba(0, 0, 0, 0.88)",
   itemActiveBg: "rgba(0, 0, 0, 0.08)",
-  itemBorderRadius: SHARED_DESIGN_TOKENS.borderRadiusSM,
+  itemBorderRadius: borderRadiusSM,
   itemMarginInline: 8,
   horizontalItemSelectedColor: "rgba(0, 0, 0, 0.88)",
   horizontalItemHoverColor: "rgba(0, 0, 0, 0.88)",
@@ -59,7 +41,7 @@ export const MENU_DARK = {
   itemHoverBg: "rgba(255, 255, 255, 0.06)",
   itemHoverColor: "rgba(255, 255, 255, 0.85)",
   itemActiveBg: "rgba(255, 255, 255, 0.1)",
-  itemBorderRadius: SHARED_DESIGN_TOKENS.borderRadiusSM,
+  itemBorderRadius: borderRadiusSM,
   itemMarginInline: 8,
   horizontalItemSelectedColor: "rgba(255, 255, 255, 0.85)",
   horizontalItemHoverColor: "rgba(255, 255, 255, 0.85)",
@@ -67,11 +49,11 @@ export const MENU_DARK = {
 
 export function buildLightThemeConfig(): ConfigProviderProps {
   const lightSeed: ThemeConfig["token"] = {
-    colorBgLayout: "#ffffff",
+    colorBgLayout: colorBgLayoutLight,
     colorPrimary: BRAND_PRIMARY,
     colorLink: BRAND_PRIMARY,
     colorInfo: BRAND_PRIMARY,
-    ...SHARED_DESIGN_TOKENS,
+    ...sharedSeed,
   };
 
   return {
@@ -79,7 +61,7 @@ export function buildLightThemeConfig(): ConfigProviderProps {
       algorithm: theme.defaultAlgorithm,
       token: lightSeed,
       components: {
-        ...CONTROL_COMPONENTS,
+        ...themeConfig.controlComponents,
         Table: buildTableTokens({
           algorithm: theme.defaultAlgorithm,
           token: lightSeed,
@@ -95,7 +77,7 @@ export function buildDarkThemeConfig(): ConfigProviderProps {
     colorPrimary: BRAND_PRIMARY,
     colorLink: BRAND_PRIMARY,
     colorInfo: BRAND_PRIMARY,
-    ...SHARED_DESIGN_TOKENS,
+    ...sharedSeed,
   };
 
   return {
@@ -103,7 +85,7 @@ export function buildDarkThemeConfig(): ConfigProviderProps {
       algorithm: theme.darkAlgorithm,
       token: darkSeed,
       components: {
-        ...CONTROL_COMPONENTS,
+        ...themeConfig.controlComponents,
         Table: buildTableTokens({
           algorithm: theme.darkAlgorithm,
           token: darkSeed,

@@ -11,6 +11,7 @@
     "fmt": "vp fmt",
     "lint": "vp lint",
     "check": "vp check --no-fmt",
+    "verify:ui": "node ./scripts/verify-ui.mjs",
     "test:unit": "vp test run",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui"
