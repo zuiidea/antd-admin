@@ -1,16 +1,16 @@
 # Design: AI-native UI quality (theme SSOT + thin verify:ui)
 
-> Status: approved for phase-1 implementation  
-> Date: 2026-10-17  
-> Companion plan: [2026-10-17-ai-native-ui-quality-plan.md](./2026-10-17-ai-native-ui-quality-plan.md)
+> Status: approved for phase-1 implementation (leaned)  
+> Date: 2026-10-17
 
 ## Decisions (confirmed)
 
-1. Phase 1 scope: `theme.config` + `verify:ui` + instructions/docs only; no `packages/create` changes; no shared UI package.
+1. Phase 1 scope: `theme.config` + `verify:ui` + frontend/AGENTS only; no `packages/create` changes; no shared UI package.
 2. File name: **`theme.config.ts`** (not `brand.config.ts`); export **`themeConfig`**.
 3. **`colorPrimary` is optional** on `themeConfig.token` (reserved; omit to use Ant Design default / existing env override where present).
 4. **`verify:ui` is local/Agent only** in phase 1 (not wired into CI or `vp check`).
-5. Root **alwaysApply** Cursor rule is OK.
+5. **No** root alwaysApply Cursor rule (avoid overlap with app `frontend.instructions.md` / `AGENTS.md`).
+6. Keep this design spec only; do not keep a separate implementation-plan doc in-tree.
 
 ## 1. Background
 

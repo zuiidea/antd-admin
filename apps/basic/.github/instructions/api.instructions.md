@@ -13,7 +13,6 @@ Maintain strict API contracts and consistent server/client mock behavior.
 ## Do
 
 - Keep request/response shapes schema-driven and type-safe.
-- New endpoints and client mutations/queries must use Zod schemas at the boundary.
 - Reuse endpoint constants and shared response helpers.
 - Keep handler response envelope consistent (`code`, `data`, `message`).
 - Ensure mock handlers reflect real API behavior and error semantics.
