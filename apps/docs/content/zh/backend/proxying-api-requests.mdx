@@ -13,6 +13,8 @@ description: MSW、API 基地址与对接真实后端
 
 ## 对接真实 API
 
-将 **`src/utils/http.ts`（或项目内统一 HTTP 封装）** 中的 **baseURL** 指向真实网关，并按环境关闭或绕过 MSW 初始化（具体开关以模板 `main.tsx` / 环境变量为准）。
+模板传输层为 **`src/api/request.ts`（axios）**：`baseURL` 来自环境变量 **`VITE_API_BASE_URL`**（见 `src/utils/constants.ts`）。业务调用请走 `src/api/*.ts` 中的 `defineApi` 函数，不要在页面里直连 axios。
+
+将 `VITE_API_BASE_URL` 指向真实网关，并按环境关闭或绕过 MSW 初始化（具体开关以模板 `main.tsx` / 环境变量为准）。
 
 跨域时需由**浏览器可访问**的网关配置 **CORS**；或通过开发代理将 `/api` 转发到后端（在 `vite.config.ts` 配置 `server.proxy`，按团队规范填写目标地址）。

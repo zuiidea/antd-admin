@@ -9,14 +9,14 @@ description: 模板应用 src 目录职责说明
 
 ```
 src/
-├── api/           # Zod schema、接口常量与类型
+├── api/           # Zod schema、request（axios + defineApi）、资源 API
 ├── components/    # 通用 UI（表格壳、表单弹窗、布局等）
 ├── hooks/         # 主题、权限、CRUD 等组合逻辑
 ├── locales/       # Lingui：仅 with-lingui（en/zh .po）
 ├── mocks/         # MSW handlers 与浏览器 worker
 ├── routes/        # TanStack Router 文件路由
 ├── stores/        # Zustand（auth、settings 等持久化）
-└── utils/         # HTTP 客户端、常量等
+└── utils/         # 常量、菜单等（传输层在 api/request.ts）
 ```
 
 更完整的树状说明见：

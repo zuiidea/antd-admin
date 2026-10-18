@@ -104,7 +104,7 @@ pnpm run test:e2e:ui   # interactive UI mode
 
 ```text
 src/
-├── api/                       # Zod models + endpoint contracts
+├── api/                       # schemas, request (axios + defineApi), resource APIs
 ├── components/                # Reusable UI primitives and layout shells
 │   ├── Layout/                # MainLayout, Header, Sidebar, UserMenu, AppFooter
 │   ├── DataTable/             # Shared table frame/skeleton/empty state
@@ -143,7 +143,7 @@ src/
 │   ├── 404/index.tsx
 │   └── index.tsx
 ├── stores/                    # Persisted auth/settings stores
-├── utils/                     # HTTP client, constants, session/menu helpers
+├── utils/                     # constants, app menu helpers
 ├── main.tsx                   # App bootstrap (MSW init + React render)
 └── routeTree.gen.ts           # Generated TanStack route tree
 

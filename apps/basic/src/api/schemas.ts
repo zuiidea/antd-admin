@@ -123,6 +123,32 @@ export type PaginatedData<T> = {
   total: number;
 };
 
+/** Unwrapped list payload (envelope `data`); use as `defineApi` `output`. */
+export function PaginatedDataSchema<T extends z.ZodTypeAny>(itemSchema: T) {
+  return z.object({
+    list: z.array(itemSchema),
+    total: z.int(),
+  });
+}
+
+export const ListUsersQuerySchema = z.object({
+  limit: z.number().int().positive().optional(),
+  offset: z.number().int().nonnegative().optional(),
+  keyword: z.string().optional(),
+  role: z.string().optional(),
+  sortField: z.string().optional(),
+  sortOrder: z.enum(["ascend", "descend"]).optional(),
+});
+
+export type ListUsersQuery = z.infer<typeof ListUsersQuerySchema>;
+
+export const IdParamsSchema = z.object({
+  id: z.string().min(1),
+});
+
+export type IdParams = z.infer<typeof IdParamsSchema>;
+
+
 export const SearchParamsSchema = z.object({
   page: z.number().int().positive().catch(1),
   pageSize: z.number().int().positive().catch(10),

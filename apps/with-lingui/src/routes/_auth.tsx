@@ -2,7 +2,7 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 import { useAuthStore } from "@/stores/auth";
 import { MainLayout } from "@/components/Layout/MainLayout";
 import { canAccessPath, normalizeAppPath } from "@/utils/appMenu";
-import { fetchSessionAndApplyToStore } from "@/utils/session";
+import { hydrateSession } from "@/api/auth";
 
 export const Route = createFileRoute("/_auth")({
   beforeLoad: async ({ location }) => {
@@ -13,7 +13,7 @@ export const Route = createFileRoute("/_auth")({
 
     if (tokens && !user) {
       try {
-        await fetchSessionAndApplyToStore();
+        await hydrateSession();
       } catch {
         useAuthStore.getState().logout();
         throw redirect({ to: "/login" });

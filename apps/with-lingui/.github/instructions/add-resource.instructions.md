@@ -19,12 +19,16 @@ pnpm run test:e2e -- e2e/<slug>.spec.ts
 ## 1. Zod and types (`src/api/schemas.ts`)
 
 - Define `<Entity>Schema`, `Create<Entity>RequestSchema`, `Update<Entity>RequestSchema` (`Update` = `Create.partial()`).
-- Reuse `PaginatedResponseSchema(<Entity>Schema)` for list responses.
+- For list `output`, reuse `PaginatedDataSchema(<Entity>Schema)` (unwrapped `data`; envelope stays in `request.ts`).
+- Add list query schema (e.g. `List<Entity>QuerySchema`) when the table has filters/pagination.
 - Export `type <Entity> = z.infer<typeof ...>`.
 
-## 2. Endpoint constants (`src/api/<slug>.ts`)
+## 2. Resource API module (`src/api/<slug>.ts`)
 
-- Export `<SLUG_UPPER>_ENDPOINTS`: `list` / `create` / `update(id)` / `delete(id)` with paths like `/api/<slug>`.
+- Export path constants if useful for MSW/docs.
+- Define APIs with `defineApi` from `@/api/request`: `list` / `create` / `update` / `delete` (and `queryKeys`).
+- `method` defaults to `GET`; mutations set `POST` / `PUT` / `DELETE`.
+- Use segmented `params` / `query` / `body` + `output`; do not call axios from routes.
 
 ## 3. Mock data (`src/mocks/data.ts`)
 
@@ -37,7 +41,7 @@ pnpm run test:e2e -- e2e/<slug>.spec.ts
 
 ## 5. Route page (`src/routes/_auth/<slug>/`)
 
-- `createFileRoute("/_auth/<slug>/")`, wiring `useResourceCRUD` (recommended: `optimistic: { update: true, delete: true }`), `useCrudToasts`, `useUrlSearchState`, `useTableFitHeight` (see `users/` for splitting `-Toolbar` / `-FormModal`).
+- `createFileRoute("/_auth/<slug>/")`, wiring `useResourceCRUD` with resource functions (`listX`, `createX`, …) and `queryKeys` from `@/api/<slug>` (recommended: `optimistic: { update: true, delete: true }`), plus `useCrudToasts`, `useUrlSearchState`, `useTableFitHeight` (see `users/` for splitting `-Toolbar` / `-FormModal`).
 - **Lingui**: run `pnpm run i18n:extract && pnpm run i18n:compile` for new copy (or `vp exec lingui …`).
 
 ## 6. Menu and permissions (`src/utils/appMenu.ts`)

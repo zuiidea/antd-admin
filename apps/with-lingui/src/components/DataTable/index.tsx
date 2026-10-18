@@ -1,4 +1,4 @@
-import { Flex, Table, theme } from "antd";
+import { Table, theme } from "antd";
 import type { TableProps } from "antd";
 import type { CSSProperties, ReactElement, ReactNode, Ref } from "react";
 import { useMemo } from "react";
@@ -12,8 +12,8 @@ export type DataTableProps<RecordType extends object = object> = {
   lockScrollHeight?: boolean;
   maxHeight?: number;
   frameHeight?: number;
-  layoutRef?: Ref<HTMLDivElement | null>;
-  frameRef?: Ref<HTMLDivElement | null>;
+  layoutRef?: Ref<HTMLDivElement>;
+  frameRef?: Ref<HTMLDivElement>;
   bottomExtra?: ReactNode;
 } & TableProps<RecordType>;
 
@@ -67,14 +67,15 @@ export function DataTable<RecordType extends object = object>(
   );
 
   return (
-    <Flex
+    <div
       ref={layoutRef}
-      vertical
-      gap={token.marginSM}
       style={{
         flex: "1 1 0%",
         minHeight: 0,
         overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        gap: token.marginSM,
       }}
     >
       <div ref={frameRef} style={outerStyle}>
@@ -110,6 +111,6 @@ export function DataTable<RecordType extends object = object>(
         </div>
       </div>
       {bottomExtra}
-    </Flex>
+    </div>
   );
 }

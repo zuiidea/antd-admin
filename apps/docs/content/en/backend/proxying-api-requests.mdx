@@ -1,14 +1,20 @@
 ---
 title: Proxying API Requests
-description: Configure API proxying between frontend and backend
+description: MSW, API base URL, and wiring a real backend
 ---
 
 # Proxying API Requests
 
-Use a proxy layer in development to avoid CORS issues and keep API endpoints configurable.
+## MSW (default in development)
 
-Recommended approach:
+Templates use **MSW** to intercept HTTP in development. Handlers live under `src/mocks/handlers`. You can demo login, menus, and user CRUD without a real backend.
 
-- Define a consistent API prefix.
-- Route requests by environment.
-- Keep backend base URLs in environment variables.
+The **worker directory** is configured via `package.json` **`msw.workerDirectory`** as `public`.
+
+## Talking to a real API
+
+Transport lives in **`src/api/request.ts` (axios)**. `baseURL` comes from **`VITE_API_BASE_URL`** (`src/utils/constants.ts`). Call APIs through `defineApi` functions in `src/api/*.ts` — do not call axios from pages.
+
+Point `VITE_API_BASE_URL` at your gateway and disable or bypass MSW per `main.tsx` / env flags when you no longer need mocks.
+
+For CORS, configure the gateway the browser can reach, or proxy `/api` in `vite.config.ts` `server.proxy`.

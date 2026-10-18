@@ -1,6 +1,6 @@
 ---
 description: "API clients, Zod schemas, HTTP, MSW handlers (with-lingui)."
-globs: apps/with-lingui/src/api/**/*.ts,apps/with-lingui/src/utils/http.ts,apps/with-lingui/src/mocks/handlers/**/*.ts,apps/with-lingui/src/mocks/createHandler.ts
+globs: apps/with-lingui/src/api/**/*.ts,apps/with-lingui/src/mocks/handlers/**/*.ts,apps/with-lingui/src/mocks/createHandler.ts
 alwaysApply: false
 ---
 

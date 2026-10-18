@@ -4,8 +4,8 @@ import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 import { useAuthStore } from "./stores/auth";
 import { useSettingsStore } from "./stores/settings";
-import { fetchSessionAndApplyToStore } from "./utils/session";
-import { installHttpRouter } from "./utils/http";
+import { hydrateSession } from "./api/auth";
+import { installHttpRouter } from "./api/request";
 
 const router = createRouter({ routeTree });
 installHttpRouter(router);
@@ -29,7 +29,7 @@ enableMocking()
     const { isAuthenticated, tokens } = useAuthStore.getState();
     if (isAuthenticated && tokens) {
       try {
-        await fetchSessionAndApplyToStore();
+        await hydrateSession();
       } catch {
         useAuthStore.getState().logout();
       }
