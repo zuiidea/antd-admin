@@ -20,6 +20,7 @@ Scaffolding CLI:
 - URL-synced table state (pagination, sorting, search)
 - Dark mode theme switching
 - Mock-first local development (no backend required)
+- Modular API layer (`defineApi` per domain, Zod schemas, shared `API_PREFIX`)
 - Typed API boundaries and reusable CRUD patterns
 - React 19 + Ant Design 6 + TanStack Router/Query + Zustand + Zod
 - Optional Lingui-based i18n workflow (`with-lingui`)
@@ -48,15 +49,15 @@ pnpm dlx init-antd-admin@latest my-app --example with-lingui --skip-install
 ### Common options
 
 
-| Option                       | Description                      |
-| ---------------------------- | -------------------------------- |
-| `[project-directory]`        | Target folder                    |
-| `-e, --example <name         | url>`                            |
-| `--example-path <path>`      | Subpath inside remote repository |
-| `-m, --package-manager <pm>` | `npm` / `pnpm` / `yarn` / `bun`  |
-| `--skip-install`             | Skip dependency install          |
-| `--skip-transforms`          | Skip rewrite transforms          |
-| `--no-git`                   | Skip git initialization          |
+| Option                       | Description                                |
+| ---------------------------- | ------------------------------------------ |
+| `[project-directory]`        | Target folder                              |
+| `-e, --example <name\|url>`  | Template name (`basic`, `with-lingui`) or URL |
+| `--example-path <path>`      | Subpath inside remote repository           |
+| `-m, --package-manager <pm>` | `npm` / `pnpm` / `yarn` / `bun`            |
+| `--skip-install`             | Skip dependency install                    |
+| `--skip-transforms`          | Skip rewrite transforms                    |
+| `--no-git`                   | Skip git initialization                    |
 
 
 For detailed CLI behavior, see `[packages/create/README.md](./packages/create/README.md)`.

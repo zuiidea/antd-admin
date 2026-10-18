@@ -35,7 +35,7 @@ Admin scaffold: MSW mocks, minimal RBAC, full CRUD, and Playwright E2E — built
 | Icons        | [lucide-react](https://lucide.dev/guide/packages/lucide-react)         |
 | API Mocking  | [MSW 2.x](https://mswjs.io) (Service Worker based)                     |
 | E2E Testing  | [Playwright](https://playwright.dev)                                   |
-| Language     | TypeScript 5.9 (strict mode)                                           |
+| Language     | TypeScript (strict mode)                                               |
 
 ## Features
 
@@ -44,6 +44,7 @@ Admin scaffold: MSW mocks, minimal RBAC, full CRUD, and Playwright E2E — built
 - **URL-First State** — Table search params (page, pageSize, keyword, sort) synced to URL
 - **Default locale** — UI copy in plain strings (English by default); Ant Design `ConfigProvider` uses `en_US`.
 - **Dark Mode** — One-click toggle with Ant Design theme algorithm
+- **Modular API layer** — `defineApi` modules under `src/api/<domain>/`, shared Zod helpers, single `API_PREFIX`
 - **Full Type Safety** — Zod schemas validate API boundaries at runtime where used
 - **Zero-Config Mocking** — MSW intercepts API calls in development, no backend needed
 
@@ -96,7 +97,7 @@ pnpm run test:unit
 
 ```bash
 pnpm run test:e2e
-pnpm run test:e2e:core
+pnpm run test:e2e -- e2e/login.spec.ts e2e/users.spec.ts   # core flows only
 pnpm run test:e2e:ui   # interactive UI mode
 ```
 
@@ -106,7 +107,12 @@ pnpm run test:e2e:ui   # interactive UI mode
 AGENTS.md                      # Agent rules (frontend/api/testing/refactor)
 .agents/skills/add-resource/   # CRUD scaffold checklist (Skill)
 src/
-├── api/                       # request.ts, shared/, auth/, users/, … (defineApi per module)
+├── api/                       # HTTP + contracts (see “API layer” below)
+│   ├── request.ts             # axios, defineApi, token refresh, envelope unwrap
+│   ├── schemas.ts             # deprecated barrel; prefer @/api/shared and module schemas
+│   ├── shared/                # API_PREFIX, pagination, params, menu, envelope helpers
+│   ├── auth/                  # paths, schemas, login/register/hydrateSession
+│   └── users/                 # schemas, listUsers CRUD, userQueryKeys, path constants
 ├── components/                # Reusable UI primitives and layout shells
 │   ├── Layout/                # MainLayout, Header, Sidebar, UserMenu, AppFooter
 │   ├── DataTable/             # Shared table frame/skeleton/empty state
@@ -157,6 +163,19 @@ e2e/                           # Playwright E2E suites
 ├── rbac.spec.ts
 └── url-state.spec.ts
 ```
+
+## API layer
+
+Data flow: **Zod schemas → `defineApi` in `src/api/<module>/index.ts` → routes/components call resource functions** (never axios or `@/api/request` directly).
+
+| Piece             | Role                                                                                              |
+| ----------------- | ------------------------------------------------------------------------------------------------- |
+| `request.ts`      | Shared HTTP client, `{ code, data, message }` handling, 401 refresh                               |
+| `shared/`         | `API_PREFIX` (`/api`), pagination/query helpers, shared menu types                                |
+| `auth/`, `users/` | Domain schemas + `defineApi` exports; MSW handlers import the same path constants                 |
+| `schemas.ts`      | Compatibility re-exports; new code should import from `@/api/shared` and `@/api/<module>/schemas` |
+
+Change the REST prefix in one place: `src/api/shared/prefix.ts` (`API_PREFIX`).
 
 ## Language
 

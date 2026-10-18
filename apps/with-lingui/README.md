@@ -25,7 +25,7 @@ Balanced admin scaffold: i18n (Lingui), MSW mocks, minimal RBAC, full CRUD, and 
 | Icons        | [lucide-react](https://lucide.dev/guide/packages/lucide-react)         |
 | API Mocking  | [MSW 2.x](https://mswjs.io) (Service Worker based)                     |
 | E2E Testing  | [Playwright](https://playwright.dev)                                   |
-| Language     | TypeScript 5.9 (strict mode)                                           |
+| Language     | TypeScript (strict mode)                                               |
 
 ## Features
 
@@ -34,6 +34,7 @@ Balanced admin scaffold: i18n (Lingui), MSW mocks, minimal RBAC, full CRUD, and 
 - **URL-First State** — Table search params (page, pageSize, keyword, sort) synced to URL
 - **i18n** — LinguiJS with English (`en`) and Chinese (`zh`); Ant Design locales wired in root
 - **Dark Mode** — One-click toggle with Ant Design theme algorithm
+- **Modular API layer** — `defineApi` modules under `src/api/<domain>/`, shared Zod helpers, single `API_PREFIX`
 - **Full Type Safety** — Zod schemas validate API boundaries at runtime where used
 - **Zero-Config Mocking** — MSW intercepts API calls in development, no backend needed
 
@@ -86,7 +87,7 @@ pnpm run test:unit
 
 ```bash
 pnpm run test:e2e
-pnpm run test:e2e:core
+pnpm run test:e2e -- e2e/login.spec.ts e2e/users.spec.ts   # core flows only
 pnpm run test:e2e:ui   # interactive UI mode
 ```
 
@@ -100,7 +101,7 @@ vp exec lingui extract -- --clean
 vp exec lingui compile
 
 # CI-oriented check: extract + ensure no pending locale diff
-pnpm run i18n:extract && git diff --exit-code -- src/locales
+pnpm run i18n:check
 ```
 
 ## Project Structure
@@ -109,7 +110,12 @@ pnpm run i18n:extract && git diff --exit-code -- src/locales
 AGENTS.md                      # Agent rules (frontend/api/testing/refactor)
 .agents/skills/add-resource/   # CRUD scaffold checklist (Skill)
 src/
-├── api/                       # request.ts, shared/, auth/, users/, … (defineApi per module)
+├── api/                       # HTTP + contracts (see “API layer” below)
+│   ├── request.ts             # axios, defineApi, token refresh, envelope unwrap
+│   ├── schemas.ts             # deprecated barrel; prefer @/api/shared and module schemas
+│   ├── shared/                # API_PREFIX, pagination, params, menu, envelope helpers
+│   ├── auth/                  # paths, schemas, login/register/hydrateSession
+│   └── users/                 # schemas, listUsers CRUD, userQueryKeys, path constants
 ├── components/                # Reusable UI primitives and layout shells
 │   ├── Layout/                # MainLayout, Header, Sidebar, UserMenu, AppFooter
 │   ├── DataTable/             # Shared table frame/skeleton/empty state
@@ -166,9 +172,13 @@ e2e/                           # Playwright E2E suites
 
 ```
 
+## API layer
+
+Same layout as [`apps/basic`](../basic/): **schemas → `defineApi` in `src/api/<module>/index.ts` → UI imports `@/api/users`, `@/api/auth`, etc.** Transport stays in `request.ts`; path constants (`API_PREFIX`, `AUTH_ENDPOINTS`, `USERS_PATH`) are shared with MSW handlers.
+
 ## Internationalization (i18n)
 
-The project uses [LinguiJS](https://lingui.dev) with compile-time macros. Locales: `**en**` (source) and `**zh**`.
+The project uses [LinguiJS](https://lingui.dev) with compile-time macros. Locales: **en** (source) and **zh**.
 
 ### Workflow
 
@@ -181,7 +191,7 @@ Ant Design strings follow the active locale via `ConfigProvider` in `__root.tsx`
 
 ## Extending the template
 
-- **New CRUD resource:** Follow `.agents/skills/add-resource/SKILL.md` (mirror `users`), then `pnpm run i18n:extract && pnpm run i18n:compile`, and `pnpm exec vp check --no-fmt`.
+- **New CRUD resource:** Follow `.agents/skills/add-resource/SKILL.md` (mirror `users`), then `pnpm run i18n:extract && pnpm run i18n:compile`, and `pnpm run check`.
 - **Real backend:** Point `VITE_API_BASE_URL` in env and disable or remove MSW in `main.tsx` when you no longer need mocks.
 - **Drop i18n:** Remove Lingui packages, vite/swc plugins, and replace `t` macros with plain strings (larger refactor).
 
