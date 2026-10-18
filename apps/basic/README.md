@@ -8,7 +8,7 @@
 
 <div align="center">
 
-Admin scaffold: MSW mocks, minimal RBAC, full CRUD, and Playwright E2E — built with React 19, Ant Design 6, and Vite+. AI-friendly with clear patterns, shared abstractions, scoped AI instructions, and type-safe contracts at every boundary. Default UI language is English; for Lingui i18n (en + zh) out of the box, see [`apps/with-lingui`](../with-lingui/).
+Admin scaffold: MSW mocks, minimal RBAC, full CRUD, and Playwright E2E — built with React 19, Ant Design 6, and Vite+. AI-friendly with clear patterns, shared abstractions, **`AGENTS.md`** agent rules, and type-safe contracts at every boundary. Default UI language is English; for Lingui i18n (en + zh) out of the box, see [`apps/with-lingui`](../with-lingui/).
 
 [![antd](https://img.shields.io/badge/AntD-^6.0.0-1890ff?style=flat-square&logo=ant-design)](https://github.com/ant-design/ant-design)
 [![react](https://img.shields.io/badge/React-19.2-61dafb?style=flat-square&logo=react)](https://react.dev)

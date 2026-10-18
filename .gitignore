@@ -42,7 +42,7 @@ yarn-error.log*
 # Git worktrees
 .worktrees/
 
-# Cursor: share project rules only (e.g. .cursor/rules/app.mdx); ignore other local Cursor data (instruction source of truth in each app’s .github/instructions)
+# Cursor: share project rules only; ignore other local Cursor data (agent rules: each app’s AGENTS.md)
 .cursor/*
 !.cursor/rules/
 !.cursor/rules/**

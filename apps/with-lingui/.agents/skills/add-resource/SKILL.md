@@ -1,11 +1,11 @@
 ---
-applyTo: "src/api/**/*.ts,src/mocks/**/*.ts,src/routes/_auth/**/*.tsx,e2e/**/*.spec.ts"
-description: "Use when adding a new CRUD resource (roles, tenants, etc.). Keywords: add resource, new resource, scaffold, CRUD page."
+name: add-resource
+description: Add a new CRUD resource in with-lingui (mirror users). Use when scaffolding roles, tenants, or any list+form resource with MSW, routes, menu, and e2e.
 ---
 
 # Add Resource Recipe
 
-Add a list CRUD flow in `apps/with-lingui` that mirrors **Users** (TanStack Router + Query + MSW + Lingui). There is **no** codegen script: **copy and adapt by hand** using the steps below, or have an Agent follow this checklist. Primary references: `src/routes/_auth/users/` and the matching `e2e/*.spec.ts` files.
+Add a list CRUD flow that mirrors **Users** (TanStack Router + Query + MSW + Lingui). **No codegen** — copy and adapt by hand. References: `src/routes/_auth/users/` and matching `e2e/*.spec.ts`.
 
 ## 0. Verification commands (after your changes)
 

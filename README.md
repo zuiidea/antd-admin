@@ -61,9 +61,9 @@ pnpm dlx init-antd-admin@latest my-app --example with-lingui --skip-install
 
 For detailed CLI behavior, see `[packages/create/README.md](./packages/create/README.md)`.
 
-### Working in this monorepo (Cursor)
+### AI / agent guidance
 
-Template apps ship scoped guidance under each app’s `.github/instructions/` (see each app’s `README.md`). **Monorepo-only:** root [`.cursor/rules/app.mdx`](./.cursor/rules/app.mdx) is a thin router to those files when editing `apps/with-lingui` or `apps/basic`; it is **not** included in `init-antd-admin` output.
+Each template app keeps **`AGENTS.md`** as the single source of truth (Cursor, Claude Code, Codex, etc.). Monorepo overview: [AGENTS.md](./AGENTS.md) at the repo root.
 
 Production docs: [https://antd-admin-doc.zuiidea.top](https://antd-admin-doc.zuiidea.top)
 

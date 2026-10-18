@@ -106,7 +106,8 @@ pnpm run i18n:extract && git diff --exit-code -- src/locales
 ## Project Structure
 
 ```
-.github/instructions/          # Scoped AI guidance (frontend/testing/api/refactor/add-resource)
+AGENTS.md                      # Agent rules (frontend/api/testing/refactor)
+.agents/skills/add-resource/   # CRUD scaffold checklist (Skill)
 src/
 ├── api/                       # schemas, request (axios + defineApi), resource APIs
 ├── components/                # Reusable UI primitives and layout shells
@@ -180,13 +181,13 @@ Ant Design strings follow the active locale via `ConfigProvider` in `__root.tsx`
 
 ## Extending the template
 
-- **New CRUD resource:** See `.github/instructions/add-resource.instructions.md` (checklist; copy from `users`), then `pnpm run i18n:extract && pnpm run i18n:compile`, wire Sidebar labels/icons if needed (§6b in that doc), and `pnpm exec vp check --no-fmt`.
+- **New CRUD resource:** Follow `.agents/skills/add-resource/SKILL.md` (mirror `users`), then `pnpm run i18n:extract && pnpm run i18n:compile`, and `pnpm exec vp check --no-fmt`.
 - **Real backend:** Point `VITE_API_BASE_URL` in env and disable or remove MSW in `main.tsx` when you no longer need mocks.
 - **Drop i18n:** Remove Lingui packages, vite/swc plugins, and replace `t` macros with plain strings (larger refactor).
 
-### AI instruction files
+### AI guidance
 
-**Single source of truth**: `.github/instructions/` (`*.instructions.md`). Both humans and agents should maintain and review guidance from this directory. See also `AGENTS.md` for the Vite+ workflow. In chat, reference files with `@.github/instructions/…` (for example `@.github/instructions/frontend.instructions.md`).
+**Single source of truth:** **`AGENTS.md`** in this app (commands + Frontend/API/Testing/Refactor rules). New CRUD flows: `@.agents/skills/add-resource/SKILL.md`.
 
 ## Developer Notes
 
