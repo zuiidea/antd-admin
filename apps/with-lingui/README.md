@@ -2,8 +2,6 @@
 
 Balanced admin scaffold: i18n (Lingui), MSW mocks, minimal RBAC, full CRUD, and Playwright E2E — built with React 19, Ant Design 6, and Vite+. AI-friendly with clear patterns, shared abstractions, scoped AI instructions, and type-safe contracts at every boundary.
 
-**AI rules (Cursor):** `.cursor/rules/with-lingui-*.mdc` at the repo root mirrors `apps/with-lingui/.github/instructions/*.instructions.md` (same intent; `globs` align with each file’s `applyTo`). Prefer updating **both** when you change guidance.
-
 [antd](https://github.com/ant-design/ant-design)
 [react](https://react.dev)
 [vite](https://viteplus.dev)
@@ -188,9 +186,7 @@ Ant Design strings follow the active locale via `ConfigProvider` in `__root.tsx`
 
 ### AI instruction files
 
-**Single source of truth**: `apps/with-lingui/.github/instructions/` (`*.instructions.md`). Both humans and agents should maintain and review guidance from this directory.
-
-**Cursor**: The root `.cursor/rules/with-lingui-*.mdc` files are intentionally thin rules (Approach A), containing only scope and pointer paths. Keep `globs` aligned with each instruction file's `applyTo`; for full details, reference the target `.instructions.md` file in chat with `@` or open it directly.
+**Single source of truth**: `.github/instructions/` (`*.instructions.md`). Both humans and agents should maintain and review guidance from this directory. See also `AGENTS.md` for the Vite+ workflow. In chat, reference files with `@.github/instructions/…` (for example `@.github/instructions/frontend.instructions.md`).
 
 ## Developer Notes
 

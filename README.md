@@ -6,8 +6,8 @@ Antd Admin provides production-style admin templates with modern frontend toolin
 
 Available templates:
 
-- `basic`: English-only setup
-- `with-lingui`: Bilingual setup (`en` + `zh`) with Lingui
+- `basic`: Admin template with plain-string UI copy (default English; no bundled Lingui)
+- `with-lingui`: Lingui i18n workflow (`en` + `zh`) with locale switching
 
 Scaffolding CLI:
 
@@ -60,6 +60,10 @@ pnpm dlx init-antd-admin@latest my-app --example with-lingui --skip-install
 
 
 For detailed CLI behavior, see `[packages/create/README.md](./packages/create/README.md)`.
+
+### Working in this monorepo (Cursor)
+
+Template apps ship scoped guidance under each app’s `.github/instructions/` (see each app’s `README.md`). **Monorepo-only:** root [`.cursor/rules/app.mdx`](./.cursor/rules/app.mdx) is a thin router to those files when editing `apps/with-lingui` or `apps/basic`; it is **not** included in `init-antd-admin` output.
 
 Production docs: [https://antd-admin-doc.zuiidea.top](https://antd-admin-doc.zuiidea.top)
 

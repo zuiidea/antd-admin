@@ -2,7 +2,7 @@
 
 ## applyTo: "src/\*_/_.{ts,tsx,css}"
 
-description: "Use when editing React UI, route pages, components, styles, layout, i18n text, or Ant Design behavior. Keywords: frontend, component, page, ui, layout, style, antd, i18n."
+description: "Use when editing React UI, route pages, components, styles, layout, copy, or Ant Design behavior. Keywords: frontend, component, page, ui, layout, style, antd, english copy."
 
 # Frontend Instructions
 
@@ -16,7 +16,7 @@ Keep frontend changes predictable, minimal, and reusable for AI-assisted edits.
 - Prefer reusable components and hooks over copy-paste logic.
 - Keep styles token-driven using existing theme/store patterns.
 - For Ant Design styling, follow this priority: component native API (`variant`/`type`/`size`/`styles`/`classNames`) -> `theme.useToken()` with inline `style` -> `className` + external CSS.
-- Keep translations compatible with Lingui macros and catalogs.
+- Keep user-facing copy in English as plain string literals (this template has no i18n layer).
 - Follow current folder conventions under src/components and src/routes.
 
 ## Do Not

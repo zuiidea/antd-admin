@@ -8,7 +8,7 @@
 
 <div align="center">
 
-English-only admin scaffold (no Lingui): MSW mocks, minimal RBAC, full CRUD, and Playwright E2E — built with React 19, Ant Design 6, and Vite+. For Lingui-based i18n (en + zh), use the sibling app [`apps/with-lingui`](../with-lingui/).
+Admin scaffold: MSW mocks, minimal RBAC, full CRUD, and Playwright E2E — built with React 19, Ant Design 6, and Vite+. AI-friendly with clear patterns, shared abstractions, scoped AI instructions, and type-safe contracts at every boundary. Default UI language is English; for Lingui i18n (en + zh) out of the box, see [`apps/with-lingui`](../with-lingui/).
 
 [![antd](https://img.shields.io/badge/AntD-^6.0.0-1890ff?style=flat-square&logo=ant-design)](https://github.com/ant-design/ant-design)
 [![react](https://img.shields.io/badge/React-19.2-61dafb?style=flat-square&logo=react)](https://react.dev)
@@ -31,7 +31,7 @@ English-only admin scaffold (no Lingui): MSW mocks, minimal RBAC, full CRUD, and
 | Async State  | [TanStack Query v5](https://tanstack.com/query)                        |
 | Local State  | [Zustand](https://zustand.docs.pmnd.rs) (persisted auth & settings)    |
 | Validation   | [Zod v4](https://zod.dev) (schemas, API contracts, form validation)    |
-| UI language  | English strings in source (no i18n framework)                          |
+| UI copy      | Plain strings in source (default English); no bundled i18n stack       |
 | Icons        | [lucide-react](https://lucide.dev/guide/packages/lucide-react)         |
 | API Mocking  | [MSW 2.x](https://mswjs.io) (Service Worker based)                     |
 | E2E Testing  | [Playwright](https://playwright.dev)                                   |
@@ -42,7 +42,7 @@ English-only admin scaffold (no Lingui): MSW mocks, minimal RBAC, full CRUD, and
 - **JWT Authentication** — Login with access/refresh token flow, persisted via Zustand
 - **Dynamic Menu & RBAC** — Backend-driven sidebar menu with permission guards and 403 page
 - **URL-First State** — Table search params (page, pageSize, keyword, sort) synced to URL
-- **English-only** — No Lingui or locale catalogs; Ant Design uses a fixed `en_US` locale. See [`apps/with-lingui`](../with-lingui/) for bilingual LinguiJS.
+- **Default locale** — UI copy in plain strings (English by default); Ant Design `ConfigProvider` uses `en_US`.
 - **Dark Mode** — One-click toggle with Ant Design theme algorithm
 - **Full Type Safety** — Zod schemas validate API boundaries at runtime where used
 - **Zero-Config Mocking** — MSW intercepts API calls in development, no backend needed
@@ -156,16 +156,14 @@ e2e/                           # Playwright E2E suites
 └── url-state.spec.ts
 ```
 
-## Language & i18n
+## Language
 
-This template is **English-only**: user-facing copy lives in components and routes as plain strings; there is no Lingui catalog or language switcher.
-
-For **LinguiJS** (English + Chinese, `.po` extract/compile, and Ant Design locale switching), use [`apps/with-lingui`](../with-lingui/).
+User-facing copy lives in components and routes as plain strings. **Default language is English**; Ant Design is wired to `en_US` in `__root.tsx`. This template does not include a locale switcher or translation catalogs—you can add your own i18n library or start from the [`with-lingui`](../with-lingui/) template for LinguiJS (en + zh).
 
 ## Extending the template
 
 - **Real backend:** Point `VITE_API_BASE_URL` in env and disable or remove MSW in `main.tsx` when you no longer need mocks.
-- **Add i18n:** Start from [`apps/with-lingui`](../with-lingui/) or port Lingui setup from that app; this `basic` tree intentionally omits it.
+- **Add i18n:** Integrate your preferred stack, or copy patterns from [`apps/with-lingui`](../with-lingui/).
 
 ## Developer Notes
 

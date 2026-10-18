@@ -8,6 +8,7 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "preinstall": "git config core.hooksPath .githooks && git config --local vp.hooks.disabled true",
     "setup:git-hooks": "git config core.hooksPath .githooks && git config core.hooksPath"
   },
   "devDependencies": {

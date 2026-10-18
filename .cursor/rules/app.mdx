@@ -1,0 +1,66 @@
+---
+description: "Thin Cursor rules for template apps with-lingui / basic — route by path and task to each app's .github/instructions (Approach A, single source of truth)"
+globs: apps/with-lingui/{src,e2e}/**/*.{ts,tsx,css},apps/basic/{src,e2e}/**/*.{ts,tsx,css},apps/with-lingui/playwright.config.ts,apps/basic/playwright.config.ts
+alwaysApply: false
+---
+
+# Template apps — AI rules (thin rule)
+
+This file at the **monorepo root** is the shared **Cursor thin rule** for `apps/with-lingui` and `apps/basic`. It only maps **which files you edit → which instruction file to follow**. Do **not** duplicate long guidance here.
+
+**Single source of truth** (on conflict, these win):
+
+- `apps/with-lingui/.github/instructions/*.instructions.md`
+- `apps/basic/.github/instructions/*.instructions.md`
+
+For full text in chat, `@`-reference the path below.
+
+---
+
+## General
+
+- When editing template app source or tests matched by `globs`, pick the row in the tables below, then follow that file’s **Do / Do Not / Validation**.
+- **with-lingui** includes Lingui i18n; **basic** uses plain string literals in UI (default English; no bundled locale switcher or translation catalogs).
+- When **frontend** and **refactor** both apply: **refactor intent** (dedupe, naming, structure, no behavior change) is governed by `refactor.instructions.md`; UI/interaction details still follow `frontend.instructions.md`.
+- If you change an instruction file’s `applyTo`, keep this file’s frontmatter `globs` aligned so both apps’ TS/TSX/CSS/E2E paths stay covered.
+
+---
+
+## apps/with-lingui
+
+| Scenario | Typical paths | Instruction file |
+| --- | --- | --- |
+| Frontend (UI, routes, components, styles, Ant Design, i18n copy) | `apps/with-lingui/src/**/*.{ts,tsx,css}` | `apps/with-lingui/.github/instructions/frontend.instructions.md` |
+| API (clients, Zod, HTTP, MSW handlers) | `apps/with-lingui/src/api/**`, `apps/with-lingui/src/mocks/handlers/**`, `createHandler.ts` | `apps/with-lingui/.github/instructions/api.instructions.md` |
+| Testing (Playwright, MSW, test config) | `apps/with-lingui/e2e/**`, `apps/with-lingui/src/mocks/**`, `playwright.config.ts` | `apps/with-lingui/.github/instructions/testing.instructions.md` |
+| Refactor (behavior-preserving) | `apps/with-lingui/src/**/*.{ts,tsx}` | `apps/with-lingui/.github/instructions/refactor.instructions.md` |
+| Add CRUD resource | `src/api/**`, `src/mocks/**`, `src/routes/_auth/**`, `e2e/**/*.spec.ts` | `apps/with-lingui/.github/instructions/add-resource.instructions.md` (mirror `users`) |
+
+**@ examples:**
+
+- `@apps/with-lingui/.github/instructions/frontend.instructions.md`
+- `@apps/with-lingui/.github/instructions/add-resource.instructions.md`
+
+See also `apps/with-lingui/AGENTS.md` (Vite+ / `vp` workflow).
+
+---
+
+## apps/basic
+
+| Scenario | Typical paths | Instruction file |
+| --- | --- | --- |
+| Frontend (UI, routes, components, styles, Ant Design, English copy) | `apps/basic/src/**/*.{ts,tsx,css}` | `apps/basic/.github/instructions/frontend.instructions.md` |
+| API | `apps/basic/src/api/**`, `apps/basic/src/mocks/handlers/**`, `createHandler.ts` | `apps/basic/.github/instructions/api.instructions.md` |
+| Testing | `apps/basic/e2e/**`, `apps/basic/src/mocks/**`, `playwright.config.ts` | `apps/basic/.github/instructions/testing.instructions.md` |
+| Refactor | `apps/basic/src/**/*.{ts,tsx}` | `apps/basic/.github/instructions/refactor.instructions.md` |
+
+**@ example:** `@apps/basic/.github/instructions/frontend.instructions.md`
+
+See also `apps/basic/AGENTS.md`.
+
+---
+
+## Maintenance
+
+- Humans and agents should **edit** each app’s `.github/instructions/` first; this file only maintains the routing table and `globs`.
+- Comment language is still governed by `.cursor/rules/english-only-comments.md` (not UI copy or docs).
