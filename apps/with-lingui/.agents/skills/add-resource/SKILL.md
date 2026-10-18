@@ -9,8 +9,9 @@ Add a list CRUD flow that mirrors **Users** (TanStack Router + Query + MSW + Lin
 
 ## 0. Verification commands (after your changes)
 
+Run from the **app root** (this project directory — where `package.json` and `vite.config.ts` live):
+
 ```bash
-cd apps/with-lingui
 pnpm run build             # refresh TanStack routeTree when routes change
 pnpm exec vp check --no-fmt
 pnpm run test:e2e -- e2e/<slug>.spec.ts

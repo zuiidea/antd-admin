@@ -4,7 +4,7 @@ Vite+ template app (React 19, Ant Design 6, TanStack Router/Query, MSW). Default
 
 ## Commands
 
-Run from **`apps/basic`** (this directory):
+Run from **this app root** (directory with `package.json` / `vite.config.ts`):
 
 | Task                      | Command                                              |
 | ------------------------- | ---------------------------------------------------- |
@@ -68,3 +68,9 @@ Run from **`apps/basic`** (this directory):
 **Considerations:** Main chunk ~135KB gzip ~41KB; vendor splits for antd/tanstack — avoid large extra UI libs. Validate at API boundaries (Zod), not app-wide runtime checks.
 
 **Validation:** `vp check --no-fmt`; significant changes → `vp build` and watch chunk sizes in log.
+
+---
+
+## Add CRUD resource
+
+Multi-step checklist (mirror **users**): use skill **`.agents/skills/add-resource/SKILL.md`** (invoke in Copilot/Codex/Claude or `@` that path in chat). After routes change, run `pnpm run build` to refresh `routeTree.gen.ts`.

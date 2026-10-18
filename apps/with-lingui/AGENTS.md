@@ -4,7 +4,7 @@ Vite+ template app (React 19, Ant Design 6, Lingui i18n, TanStack Router/Query, 
 
 ## Commands
 
-Run from **`apps/with-lingui`** (this directory):
+Run from **this app root** (directory with `package.json` / `vite.config.ts`):
 
 | Task                      | Command                                                                      |
 | ------------------------- | ---------------------------------------------------------------------------- |

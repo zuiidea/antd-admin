@@ -103,6 +103,8 @@ pnpm run test:e2e:ui   # interactive UI mode
 ## Project Structure
 
 ```text
+AGENTS.md                      # Agent rules (frontend/api/testing/refactor)
+.agents/skills/add-resource/   # CRUD scaffold checklist (Skill)
 src/
 ├── api/                       # schemas, request (axios + defineApi), resource APIs
 ├── components/                # Reusable UI primitives and layout shells
@@ -162,8 +164,13 @@ User-facing copy lives in components and routes as plain strings. **Default lang
 
 ## Extending the template
 
+- **New CRUD resource:** Follow `.agents/skills/add-resource/SKILL.md` (mirror `users`), then `vp check --no-fmt`.
 - **Real backend:** Point `VITE_API_BASE_URL` in env and disable or remove MSW in `main.tsx` when you no longer need mocks.
 - **Add i18n:** Integrate your preferred stack, or copy patterns from [`apps/with-lingui`](../with-lingui/).
+
+### AI guidance
+
+**Single source of truth:** **`AGENTS.md`** in this app. New CRUD flows: `@.agents/skills/add-resource/SKILL.md`.
 
 ## Developer Notes
 
