@@ -3,7 +3,7 @@ import { Avatar, Button, Space, Form, App, Dropdown, theme, Tag, Flex } from "an
 import type { TablePaginationConfig } from "antd/es/table/interface";
 import { useLingui } from "@lingui/react/macro";
 import { useMemo, useRef, useState } from "react";
-import { createUser, deleteUser, listUsers, updateUser, userQueryKeys } from "@/api/user";
+import { createUser, deleteUser, listUsers, updateUser, userQueryKeys } from "@/api/users";
 import type { User, CreateUserRequest } from "@/api/schemas";
 import { z } from "zod/v4";
 import { MoreVertical, Pencil, Trash2 } from "lucide-react";

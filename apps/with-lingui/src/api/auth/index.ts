@@ -6,26 +6,19 @@ import {
   LoginRequestSchema,
   PermissionsListSchema,
   RegisterRequestSchema,
-  UserSchema,
-} from "@/api/schemas";
+} from "@/api/auth/schemas";
 import type {
   AuthTokens,
   LoginRequest,
-  User,
   PermissionsList,
   RegisterRequest,
-} from "@/api/schemas";
+} from "@/api/auth/schemas";
+import { UserSchema, type User } from "@/api/users/schemas";
+import { AUTH_ENDPOINTS } from "@/api/auth/paths";
 import { APP_MENU_TREE, filterMenuTreeByPermissions } from "@/utils/appMenu";
 import { useAuthStore } from "@/stores/auth";
 
-export const AUTH_ENDPOINTS = {
-  login: "/api/auth/login",
-  register: "/api/auth/register",
-  refresh: "/api/auth/refresh",
-  logout: "/api/auth/logout",
-  user: "/api/auth/user",
-  permissions: "/api/auth/permissions",
-} as const;
+export { AUTH_ENDPOINTS } from "@/api/auth/paths";
 
 export const login = defineApi({
   method: "POST",

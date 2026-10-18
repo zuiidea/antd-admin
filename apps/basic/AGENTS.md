@@ -37,7 +37,7 @@ Run from **this app root** (directory with `package.json` / `vite.config.ts`):
 
 **Purpose:** **schemas → `defineApi` modules → UI**; transport in `src/api/request.ts` only.
 
-**Do:** Define APIs with `defineApi` in `src/api/<resource>.ts` (`method` default `GET`; `params`/`query`/`body` + `output`). Zod in `src/api/schemas.ts`. MSW envelopes `{ code, data, message }` aligned with schemas. Co-locate query keys (e.g. `userQueryKeys`). `hydrateSession` from `@/api/auth` after login/register/session restore.
+**Do:** Define APIs with `defineApi` in `src/api/<module>/index.ts` (`method` default `GET`; `params`/`query`/`body` + `output`). Zod in `src/api/<module>/schemas.ts`; shared helpers in `src/api/shared/`. MSW envelopes `{ code, data, message }` aligned with schemas. Co-locate query keys (e.g. `userQueryKeys`). `hydrateSession` from `@/api/auth` after login/register/session restore.
 
 **Do not:** Call axios or `@/api/request` from routes/components — use resource functions (`listUsers`, …). Ad-hoc response shapes; skip schema parsing; mix unrelated domains in one module.
 

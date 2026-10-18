@@ -15,6 +15,7 @@ import {
   RefreshTokenRequestSchema,
   RegisterRequestSchema,
 } from "@/api/schemas";
+import { AUTH_ENDPOINTS } from "@/api/auth/paths";
 
 const GUEST_REFRESH = "mock-guest-refresh";
 const REGISTERED_ACCESS = "mock-registered-access";
@@ -32,7 +33,7 @@ function isRegisteredAuth(authorization: string | null): boolean {
 }
 
 export const authHandlers = [
-  http.post("/api/auth/login", async ({ request }) => {
+  http.post(AUTH_ENDPOINTS.login, async ({ request }) => {
     await withDelay(300);
     let json: unknown;
     try {
@@ -60,7 +61,7 @@ export const authHandlers = [
     return errorResponse(ERROR_CODES.INVALID_CREDENTIALS, "Invalid username or password");
   }),
 
-  http.post("/api/auth/register", async ({ request }) => {
+  http.post(AUTH_ENDPOINTS.register, async ({ request }) => {
     await withDelay(300);
     let json: unknown;
     try {
@@ -90,7 +91,7 @@ export const authHandlers = [
     });
   }),
 
-  http.post("/api/auth/refresh", async ({ request }) => {
+  http.post(AUTH_ENDPOINTS.refresh, async ({ request }) => {
     await withDelay(100);
     let json: unknown;
     try {
@@ -123,9 +124,9 @@ export const authHandlers = [
     });
   }),
 
-  http.post("/api/auth/logout", () => successWithNullBody()),
+  http.post(AUTH_ENDPOINTS.logout, () => successWithNullBody()),
 
-  http.get("/api/auth/user", ({ request }) => {
+  http.get(AUTH_ENDPOINTS.user, ({ request }) => {
     const auth = request.headers.get("authorization");
     if (isRegisteredAuth(auth)) {
       const session = mockRegisteredSession;
@@ -146,7 +147,7 @@ export const authHandlers = [
     return successWithSchema(AuthUserResponseSchema, userWithoutPermissions);
   }),
 
-  http.get("/api/auth/permissions", ({ request }) => {
+  http.get(AUTH_ENDPOINTS.permissions, ({ request }) => {
     const auth = request.headers.get("authorization");
     if (isRegisteredAuth(auth) && mockRegisteredSession) {
       return successWithSchema(PermissionsListSchema, ["user:view"] as string[]);

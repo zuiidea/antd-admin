@@ -1,11 +1,13 @@
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from "axios";
 import { z } from "zod/v4";
 import { API_BASE_URL } from "@/utils/constants";
-import { AuthTokensSchema, RefreshTokenRequestSchema } from "@/api/schemas";
+import { AuthTokensSchema, RefreshTokenRequestSchema } from "@/api/auth/schemas";
 import { getAccessToken, useAuthStore } from "@/stores/auth";
 
-/** Avoid importing `@/api/auth` here (circular with `defineApi` consumers). */
-const REFRESH_PATH = "/api/auth/refresh";
+import { AUTH_ENDPOINTS } from "@/api/auth/paths";
+
+/** Avoid importing `@/api/auth` index here (circular with `defineApi` consumers). */
+const REFRESH_PATH = AUTH_ENDPOINTS.refresh;
 
 export class ApiError extends Error {
   code: number;

@@ -17,14 +17,14 @@ vp check --no-fmt
 pnpm run test:e2e -- e2e/<slug>.spec.ts
 ```
 
-## 1. Zod and types (`src/api/schemas.ts`)
+## 1. Zod and types (`src/api/<slug>/schemas.ts`)
 
 - Define `<Entity>Schema`, `Create<Entity>RequestSchema`, `Update<Entity>RequestSchema` (`Update` = `Create.partial()`).
 - For list `output`, reuse `PaginatedDataSchema(<Entity>Schema)` (unwrapped `data`; envelope stays in `request.ts`).
 - Add list query schema (e.g. `List<Entity>QuerySchema`) when the table has filters/pagination.
 - Export `type <Entity> = z.infer<typeof ...>`.
 
-## 2. Resource API module (`src/api/<slug>.ts`)
+## 2. Resource API module (`src/api/<slug>/index.ts`)
 
 - Export path constants if useful for MSW/docs.
 - Define APIs with `defineApi` from `@/api/request`: `list` / `create` / `update` / `delete` (and `queryKeys`).

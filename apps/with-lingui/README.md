@@ -109,7 +109,7 @@ pnpm run i18n:extract && git diff --exit-code -- src/locales
 AGENTS.md                      # Agent rules (frontend/api/testing/refactor)
 .agents/skills/add-resource/   # CRUD scaffold checklist (Skill)
 src/
-├── api/                       # schemas, request (axios + defineApi), resource APIs
+├── api/                       # request.ts, shared/, auth/, users/, … (defineApi per module)
 ├── components/                # Reusable UI primitives and layout shells
 │   ├── Layout/                # MainLayout, Header, Sidebar, UserMenu, AppFooter
 │   ├── DataTable/             # Shared table frame/skeleton/empty state
