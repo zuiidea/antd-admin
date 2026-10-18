@@ -16,11 +16,11 @@ run_in_dir() {
 }
 
 if echo "$STAGED" | grep -q '^apps/with-lingui/'; then
-  run_in_dir apps/with-lingui vp staged
+  run_in_dir apps/with-lingui pnpm exec vp staged
 fi
 
 if echo "$STAGED" | grep -q '^apps/basic/'; then
-  run_in_dir apps/basic vp staged
+  run_in_dir apps/basic pnpm exec vp staged
 fi
 
 if echo "$STAGED" | grep -q '^packages/create/'; then

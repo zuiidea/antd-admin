@@ -60,9 +60,7 @@ type Envelope = {
   message?: string;
 };
 
-function cleanParams(
-  params?: Record<string, unknown>,
-): Record<string, unknown> | undefined {
+function cleanParams(params?: Record<string, unknown>): Record<string, unknown> | undefined {
   if (!params) return undefined;
   const out: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(params)) {
@@ -163,10 +161,7 @@ client.interceptors.response.use(
     }
 
     if (status != null) {
-      throw new HttpError(
-        status,
-        `HTTP ${status}: ${error.response?.statusText ?? "Error"}`,
-      );
+      throw new HttpError(status, `HTTP ${status}: ${error.response?.statusText ?? "Error"}`);
     }
 
     throw error;
@@ -248,8 +243,7 @@ export function defineApi<
     : [args: CallArgs<TParams, TQuery, TBody>, options?: CallOptions]
 ) => Promise<z.infer<TOut>> {
   const method: HttpMethod = def.method ?? "GET";
-  const segmentCount =
-    (def.params ? 1 : 0) + (def.query ? 1 : 0) + (def.body ? 1 : 0);
+  const segmentCount = (def.params ? 1 : 0) + (def.query ? 1 : 0) + (def.body ? 1 : 0);
 
   return async (...allArgs: unknown[]): Promise<z.infer<TOut>> => {
     let callArgs: unknown;

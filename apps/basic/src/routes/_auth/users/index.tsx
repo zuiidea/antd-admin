@@ -2,13 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Avatar, Button, Space, Form, App, Dropdown, theme, Tag, Flex } from "antd";
 import type { TablePaginationConfig } from "antd/es/table/interface";
 import { useMemo, useRef, useState } from "react";
-import {
-  createUser,
-  deleteUser,
-  listUsers,
-  updateUser,
-  userQueryKeys,
-} from "@/api/user";
+import { createUser, deleteUser, listUsers, updateUser, userQueryKeys } from "@/api/user";
 import type { User, CreateUserRequest } from "@/api/schemas";
 import { z } from "zod/v4";
 import { MoreVertical, Pencil, Trash2 } from "lucide-react";

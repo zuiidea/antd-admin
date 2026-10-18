@@ -147,7 +147,6 @@ export const IdParamsSchema = z.object({
 
 export type IdParams = z.infer<typeof IdParamsSchema>;
 
-
 export const SearchParamsSchema = z.object({
   page: z.number().int().positive().catch(1),
   pageSize: z.number().int().positive().catch(10),

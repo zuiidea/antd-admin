@@ -8,12 +8,7 @@ import {
   UpdateUserRequestSchema,
   UserSchema,
 } from "@/api/schemas";
-import type {
-  CreateUserRequest,
-  ListUsersQuery,
-  UpdateUserRequest,
-  User,
-} from "@/api/schemas";
+import type { CreateUserRequest, ListUsersQuery, UpdateUserRequest, User } from "@/api/schemas";
 
 export const USER_ENDPOINTS = {
   list: "/api/users",
