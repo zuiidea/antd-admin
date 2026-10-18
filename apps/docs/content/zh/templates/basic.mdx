@@ -13,7 +13,9 @@ description: apps/basic — 默认英文界面的管理后台模板
 
 ## 技术栈摘要
 
-构建：[Vite+](https://viteplus.dev)；UI：Ant Design 6；路由：TanStack Router；数据：TanStack Query；本地状态：Zustand；校验：Zod；Mock：MSW；E2E：Playwright。
+构建：[Vite+](https://viteplus.dev)；UI：Ant Design 6；路由：TanStack Router；数据：TanStack Query；本地状态：Zustand；校验：Zod；API：`defineApi` 分模块（`src/api/shared/`、`auth/`、`users/`）；Mock：MSW；E2E：Playwright。
+
+API 与 Mock 约定见 [开发代理与 Mock](/backend/proxying-api-requests)。
 
 ## 常用命令
 

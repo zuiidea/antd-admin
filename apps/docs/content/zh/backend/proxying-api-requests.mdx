@@ -11,10 +11,26 @@ description: MSW、API 基地址与对接真实后端
 
 **Worker 目录**由 `package.json` 的 **`msw.workerDirectory`** 配置为 `public`，与 [public 目录](/styles-and-assets/public-folder) 说明一致。
 
+## API 层（模板约定）
+
+数据流：**Zod schema → `src/api/<module>/index.ts` 中的 `defineApi` → 路由/组件只调用资源函数**（如 `listUsers`、`login`）。页面不要 import axios 或 `@/api/request`。
+
+```text
+src/api/
+├── request.ts       # axios、响应 envelope、token 刷新
+├── schemas.ts       # 兼容 re-export；新代码用 @/api/shared 与各 module schemas
+├── shared/          # API_PREFIX、分页/查询/菜单等共用 schema
+├── auth/            # paths、schemas、登录与 hydrateSession
+└── users/           # schemas、CRUD、userQueryKeys、路径常量
+```
+
+- REST 前缀：**`API_PREFIX`**（`src/api/shared/prefix.ts`，默认 `/api`）。`AUTH_ENDPOINTS`、`USERS_PATH` 与 **MSW handlers** 共用同一套常量。
+- 新增资源：对照 **`users`**，见各应用 **`.agents/skills/add-resource/SKILL.md`** 与 **`AGENTS.md`**。
+
 ## 对接真实 API
 
-模板传输层为 **`src/api/request.ts`（axios）**：`baseURL` 来自环境变量 **`VITE_API_BASE_URL`**（见 `src/utils/constants.ts`）。业务调用请走 `src/api/*.ts` 中的 `defineApi` 函数，不要在页面里直连 axios。
+模板传输层为 **`src/api/request.ts`（axios）**：`baseURL` 来自环境变量 **`VITE_API_BASE_URL`**（见 `src/utils/constants.ts`）。业务调用请走 **`src/api/<module>/index.ts`** 导出的 `defineApi` 函数，不要在页面里直连 axios。
 
 将 `VITE_API_BASE_URL` 指向真实网关，并按环境关闭或绕过 MSW 初始化（具体开关以模板 `main.tsx` / 环境变量为准）。
 
-跨域时需由**浏览器可访问**的网关配置 **CORS**；或通过开发代理将 `/api` 转发到后端（在 `vite.config.ts` 配置 `server.proxy`，按团队规范填写目标地址）。
+跨域时需由**浏览器可访问**的网关配置 **CORS**；或通过开发代理将 **`API_PREFIX`（默认 `/api`）** 转发到后端（在 `vite.config.ts` 配置 `server.proxy`，按团队规范填写目标地址）。

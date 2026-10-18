@@ -13,7 +13,8 @@ description: 两模板共同具备的产品与技术能力
 - **动态菜单与 RBAC**：服务端菜单、路由权限、403
 - **表格 URL 状态**：分页、关键字、排序等与查询参数同步
 - **MSW**：开发环境 Mock，无需真实后端即可跑通流程
-- **Playwright E2E**：覆盖登录、CRUD、鉴权刷新、RBAC、URL 状态等（`test:e2e:core` 为核心子集）
+- **模块化 API**：`defineApi` 分域、`API_PREFIX`、MSW 与真实后端共用路径常量
+- **Playwright E2E**：覆盖登录、CRUD、鉴权刷新、RBAC、URL 状态等（可用 `pnpm run test:e2e -- e2e/login.spec.ts e2e/users.spec.ts` 跑核心流程）
 
 **With Lingui** 额外包含：LinguiJS 中英文、Ant Design locale 随语言切换、`.po` 抽取/编译工作流。
 

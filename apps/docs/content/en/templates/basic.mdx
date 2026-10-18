@@ -15,9 +15,12 @@ description: Admin template with plain-string UI (default English)
 
 ## Highlights
 
-- Clean route organization
-- Common data table and form patterns
-- Practical defaults for request handling and page layout
+- Modular **`src/api/`** (`defineApi` per domain, shared **`API_PREFIX`**, Zod at boundaries)
+- Clean route organization and reusable CRUD hooks
+- MSW mocks aligned with the same path constants as the API modules
+- **`AGENTS.md`** and **`.agents/skills/add-resource/`** for AI-assisted scaffolding
+
+Full tree and scripts: [apps/basic/README.md](https://github.com/zuiidea/antd-admin/blob/master/apps/basic/README.md).
 
 ## Start Development
 
