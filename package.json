@@ -8,14 +8,11 @@
     "dev": "turbo run dev",
     "fmt": "turbo run fmt",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "preinstall": "git config core.hooksPath .githooks && git config --local vp.hooks.disabled true",
     "setup:git-hooks": "git config core.hooksPath .githooks && git config core.hooksPath"
   },
   "devDependencies": {
-    "eslint": "^8.57.0",
-    "prettier": "^3.2.5",
-    "turbo": "^2.9.6"
+    "turbo": "^2.11.9"
   },
   "packageManager": "pnpm@10.33.2",
   "pnpm": {
