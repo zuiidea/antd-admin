@@ -16,6 +16,7 @@
             ]
         },
         "lint": {},
+        "fmt": {},
         "dev": {
             "cache": false,
             "persistent": true

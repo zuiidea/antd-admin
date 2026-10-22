@@ -2,11 +2,9 @@ import { Link, createFileRoute, redirect, useNavigate } from "@tanstack/react-ro
 import { Form, Input, Button, Card, App, theme, Typography, Flex } from "antd";
 import type { CSSProperties } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { httpClient } from "@/utils/http";
 import { useAuthStore } from "@/stores/auth";
-import { AUTH_ENDPOINTS } from "@/api/auth";
-import { AuthTokensSchema, RegisterRequestSchema } from "@/api/schemas";
-import { fetchSessionAndApplyToStore } from "@/utils/session";
+import { hydrateSession, register } from "@/api/auth";
+import { RegisterRequestSchema } from "@/api/schemas";
 import type { RegisterRequest } from "@/api/auth";
 import { APP_BRAND_NAME, APP_FAVICON_SRC } from "@/utils/constants";
 import { Aurora } from "@/components/Aurora";
@@ -31,11 +29,9 @@ function RegisterPage() {
 
   const registerMutation = useMutation({
     mutationFn: async (values: RegisterRequest) => {
-      const parsed = RegisterRequestSchema.parse(values);
-      const tokens = await httpClient.post(AUTH_ENDPOINTS.register, parsed);
-      const validTokens = AuthTokensSchema.parse(tokens);
-      setTokens(validTokens);
-      await fetchSessionAndApplyToStore();
+      const tokens = await register(values);
+      setTokens(tokens);
+      await hydrateSession();
     },
     onSuccess: () => {
       message.success("Account created successfully");

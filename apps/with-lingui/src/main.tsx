@@ -6,7 +6,7 @@ import { i18n } from "@lingui/core";
 import { loadLocaleCatalog } from "./locales/loadLocaleCatalog";
 import { useSettingsStore } from "./stores/settings";
 import { useAuthStore } from "./stores/auth";
-import { installHttpRouter } from "./utils/http";
+import { installHttpRouter } from "./api/request";
 
 const router = createRouter({ routeTree });
 installHttpRouter(router);

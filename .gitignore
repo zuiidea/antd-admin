@@ -42,7 +42,7 @@ yarn-error.log*
 # Git worktrees
 .worktrees/
 
-# Cursor：仅共享项目规则；其余本机数据仍忽略（方案 A — 细则单源在 apps/with-lingui/.github/instructions）
+# Cursor: share project rules only; ignore other local Cursor data (agent rules: each app’s AGENTS.md)
 .cursor/*
 !.cursor/rules/
 !.cursor/rules/**

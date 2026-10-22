@@ -1,14 +1,36 @@
 ---
 title: Proxying API Requests
-description: Configure API proxying between frontend and backend
+description: MSW, API base URL, and wiring a real backend
 ---
 
 # Proxying API Requests
 
-Use a proxy layer in development to avoid CORS issues and keep API endpoints configurable.
+## MSW (default in development)
 
-Recommended approach:
+Templates use **MSW** to intercept HTTP in development. Handlers live under `src/mocks/handlers`. You can demo login, menus, and user CRUD without a real backend.
 
-- Define a consistent API prefix.
-- Route requests by environment.
-- Keep backend base URLs in environment variables.
+The **worker directory** is configured via `package.json` **`msw.workerDirectory`** as `public`.
+
+## API layer (templates)
+
+Data flow: **Zod schemas → `defineApi` in `src/api/<module>/index.ts` → routes/components call resource functions** (`listUsers`, `login`, …). Do not import axios or `@/api/request` from UI code.
+
+```text
+src/api/
+├── request.ts       # axios, envelope unwrap, token refresh
+├── schemas.ts       # deprecated barrel; prefer @/api/shared and module schemas
+├── shared/          # API_PREFIX, pagination, params, menu helpers
+├── auth/            # paths, schemas, login / hydrateSession
+└── users/           # schemas, CRUD APIs, userQueryKeys, path constants
+```
+
+- REST path prefix: **`API_PREFIX`** in `src/api/shared/prefix.ts` (default `/api`). Auth and user paths (`AUTH_ENDPOINTS`, `USERS_PATH`) and **MSW handlers** import the same constants.
+- New domains: mirror **`users`** — see each app **`.agents/skills/add-resource/SKILL.md`** and **`AGENTS.md`**.
+
+## Talking to a real API
+
+Transport lives in **`src/api/request.ts` (axios)**. `baseURL` comes from **`VITE_API_BASE_URL`** (`src/utils/constants.ts`). Call **`defineApi` exports** from `src/api/<module>/index.ts` — not axios from pages.
+
+Point `VITE_API_BASE_URL` at your gateway and disable or bypass MSW per `main.tsx` / env flags when you no longer need mocks.
+
+For CORS, configure the gateway the browser can reach, or proxy **`API_PREFIX`** (default `/api`) in `vite.config.ts` `server.proxy`.

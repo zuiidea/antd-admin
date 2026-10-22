@@ -3,7 +3,7 @@
 > 状态：已部分落地（更新于 2026-04-27）
 > 计划日期：2026-04-24
 > 范围：以 `apps/with-lingui` 为主模板（`apps/basic` 为英文、无 Lingui 的对照应用；**CRUD 页面级示例仅以 `users` 为样板**，不设第二示例资源）
-> 面向：人类贡献者 + AI Agent（结合 `.github/instructions/` 指令体系执行）
+> 面向：人类贡献者 + AI Agent（**现行**：各 app 的 `AGENTS.md` + `.agents/skills/`；下文若提及 `.github/instructions/*.instructions.md` 为历史方案）
 
 ## 0. 背景
 

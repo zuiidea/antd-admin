@@ -17,7 +17,8 @@ pnpm run test:unit
 
 ```bash
 pnpm run test:e2e          # 全部
-pnpm run test:e2e:core     # 核心子集（登录、users、refresh、RBAC、URL 状态）
+pnpm run test:e2e -- e2e/login.spec.ts e2e/users.spec.ts   # 核心流程
+pnpm run test:e2e -- e2e/auth-refresh.spec.ts e2e/rbac.spec.ts e2e/url-state.spec.ts
 ```
 
 首次在机器上跑 E2E 前，按 Playwright 文档安装浏览器依赖（`pnpm exec playwright install` 等，以官方说明为准）。

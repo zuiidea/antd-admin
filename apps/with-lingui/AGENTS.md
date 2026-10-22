@@ -1,89 +1,79 @@
-# Using Vite+, the Unified Toolchain for the Web
+# antd-admin (with-lingui)
 
-This project is using Vite+, a unified toolchain built on top of Vite, Rolldown, Vitest, tsdown, Oxlint, Oxfmt, and Vite Task. Vite+ wraps runtime management, package management, and frontend tooling in a single global CLI called `vp`. Vite+ is distinct from Vite, but it invokes Vite through `vp dev` and `vp build`.
+Vite+ template app (React 19, Ant Design 6, Lingui i18n, TanStack Router/Query, MSW). CLI details: [viteplus.dev](https://viteplus.dev).
 
-## Vite+ Workflow
+## Commands
 
-`vp` is a global binary that handles the full development lifecycle. Run `vp help` to print a list of commands and `vp <command> --help` for information about a specific command.
+Run from **this app root** (directory with `package.json` / `vite.config.ts`):
 
-### Start
+| Task                      | Command                                                                      |
+| ------------------------- | ---------------------------------------------------------------------------- |
+| Install deps              | `vp install` (after every pull)                                              |
+| Dev / build / preview     | `vp dev`, `vp build`, `vp preview`                                           |
+| Format / lint / typecheck | `vp check`, `vp check --no-fmt`, `vp lint`, `vp fmt`                         |
+| Unit tests                | `vp test run` (`src/**/*.test.ts`)                                           |
+| E2E                       | `pnpm run test:e2e` / `test:e2e:core`                                        |
+| i18n                      | `pnpm run i18n:extract && pnpm run i18n:compile` after new translatable copy |
+| Add/remove deps           | `vp add`, `vp remove` — not raw `pnpm`/`npm`/`yarn`                          |
 
-- create - Create a new project from a template
-- migrate - Migrate an existing project to Vite+
-- config - Configure hooks and agent integration
-- staged - Run linters on staged files
-- install (`i`) - Install dependencies
-- env - Manage Node.js versions
+**Pitfalls:** Do not install Vitest/Oxlint/Oxfmt/tsdown directly; use `vp`. Do not run `vp vitest` — use `vp test`. If a `package.json` script name conflicts with a built-in `vp` command, use `vp run <script>`. Import toolchain modules from `vite-plus`, not standalone `vite`/`vitest` packages.
 
-### Develop
+**Before finishing:** `vp check` and `vp test run`; run focused e2e when UI flows change.
 
-- dev - Run the development server
-- check - Run format, lint, and TypeScript type checks
-- lint - Lint code
-- fmt - Format code
-- test - Run tests
+**Monorepo:** If this app lives under [antd-admin](https://github.com/zuiidea/antd-admin), read repo-root `AGENTS.md` for turbo/git hooks; still run `vp` from this directory.
 
-### Execute
+---
 
-- run - Run monorepo tasks
-- exec - Execute a command from local `node_modules/.bin`
-- dlx - Execute a package binary without installing it as a dependency
-- cache - Manage the task cache
+## Frontend
 
-### Build
+**Purpose:** Predictable, minimal UI changes under `src/`.
 
-- build - Build for production
-- pack - Build libraries
-- preview - Preview production build
+**Do:** Preserve route/UI contracts unless asked. Reuse components/hooks. Token-driven styles. Ant Design styling order: component API → `theme.useToken()` + inline `style` → `className` + CSS. Lingui macros/catalogs for copy. Follow `src/components` and `src/routes` layout.
 
-### Manage Dependencies
+**Do not:** New UI libs when Ant Design suffices; bypass theme/store; CSS-first overrides when props/`styles` work; unrelated refactors in the same change.
 
-Vite+ automatically detects and wraps the underlying package manager such as pnpm, npm, or Yarn through the `packageManager` field in `package.json` or package manager-specific lockfiles.
+**Validation:** `pnpm exec vp check --no-fmt`; focused e2e when flows change.
 
-- add - Add packages to dependencies
-- remove (`rm`, `un`, `uninstall`) - Remove packages from dependencies
-- update (`up`) - Update packages to latest versions
-- dedupe - Deduplicate dependencies
-- outdated - Check for outdated packages
-- list (`ls`) - List installed packages
-- why (`explain`) - Show why a package is installed
-- info (`view`, `show`) - View package information from the registry
-- link (`ln`) / unlink - Manage local package links
-- pm - Forward a command to the package manager
+---
 
-### Maintain
+## API
 
-- upgrade - Update `vp` itself to the latest version
+**Purpose:** **schemas → `defineApi` modules → UI**; transport in `src/api/request.ts` only.
 
-These commands map to their corresponding tools. For example, `vp dev --port 3000` runs Vite's dev server and works the same as Vite. `vp test` runs JavaScript tests through the bundled Vitest. The version of all tools can be checked using `vp --version`. This is useful when researching documentation, features, and bugs.
+**Do:** Define APIs with `defineApi` in `src/api/<module>/index.ts` (`method` default `GET`; `params`/`query`/`body` + `output`). Zod in `src/api/<module>/schemas.ts`; shared helpers in `src/api/shared/`. MSW envelopes `{ code, data, message }` aligned with schemas. Co-locate query keys (e.g. `userQueryKeys`). `hydrateSession` from `@/api/auth` after login/register/session restore.
 
-## Common Pitfalls
+**Do not:** Call axios or `@/api/request` from routes/components — use resource functions (`listUsers`, …). Ad-hoc response shapes; skip schema parsing; mix unrelated domains in one module.
 
-- **Using the package manager directly:** Do not use pnpm, npm, or Yarn directly. Vite+ can handle all package manager operations.
-- **Always use Vite commands to run tools:** Don't attempt to run `vp vitest` or `vp oxlint`. They do not exist. Use `vp test` and `vp lint` instead.
-- **Running scripts:** Vite+ commands take precedence over `package.json` scripts. If there is a `test` script defined in `scripts` that conflicts with the built-in `vp test` command, run it using `vp run test`.
-- **Do not install Vitest, Oxlint, Oxfmt, or tsdown directly:** Vite+ wraps these tools. They must not be installed directly. You cannot upgrade these tools by installing their latest versions. Always use Vite+ commands.
-- **Use Vite+ wrappers for one-off binaries:** Use `vp dlx` instead of package-manager-specific `dlx`/`npx` commands.
-- **Import JavaScript modules from `vite-plus`:** Instead of importing from `vite` or `vitest`, all modules should be imported from the project's `vite-plus` dependency. For example, `import { defineConfig } from 'vite-plus';` or `import { expect, test, vi } from 'vite-plus/test';`. You must not install `vitest` to import test utilities.
-- **Type-Aware Linting:** There is no need to install `oxlint-tsgolint`, `vp lint --type-aware` works out of the box.
+**Validation:** `vp check --no-fmt`.
 
-## Review Checklist for Agents
+---
 
-- Run `vp install` after pulling remote changes and before getting started.
-- Run `vp check` and `vp test` to validate changes.
+## Testing
 
-## Monorepo git hooks
+**Purpose:** Fast, deterministic tests for core flows (auth, users CRUD, permissions).
 
-When this app lives under a monorepo, `git config core.hooksPath` may point at `.vite-hooks/_` here while commits run with the **repository root** as cwd. The checked-in `.vite-hooks/pre-commit` script dispatches `vp staged` into `apps/with-lingui` and `apps/basic` based on staged paths (and runs `pnpm --dir packages/create run check-types` for matching `packages/create` sources) so each app’s `vite.config.ts` is found.
+**Do:** User-visible assertions; reuse test helpers; keep mocks/schemas in sync; focused runs while iterating.
 
-## AI Instruction Files
+**Do not:** Brittle DOM-internal selectors; bloated fixtures; duplicate scenarios.
 
-This repository also uses scoped AI instruction files in `.github/instructions/`.
+**Validation:** Focused tests first; `pnpm exec vp check --no-fmt`; unit/hooks: `pnpm run test:unit`.
 
-- `frontend.instructions.md` for UI/routes/components/style work
-- `testing.instructions.md` for Playwright/MSW/test updates
-- `api.instructions.md` for API/schema/handler changes
-- `refactor.instructions.md` for behavior-preserving cleanup
-- `add-resource.instructions.md` for adding a new CRUD resource (checklist; mirror `users`)
+---
 
-See `.github/instructions/README.md` for usage and authoring rules.
+## Refactor
+
+**Purpose:** Less duplication, same behavior and public contracts.
+
+**Do:** One concern per change; extract shared utils/hooks/components; reviewable diffs; comments only when non-obvious.
+
+**Do not:** Behavior changes unless requested; broad renames; drop unique test coverage; heavy deps for tiny wins.
+
+**Considerations:** Main chunk ~135KB gzip ~41KB; vendor splits for antd/tanstack — avoid large extra UI libs. Validate at API boundaries (Zod), not app-wide runtime checks.
+
+**Validation:** `pnpm exec vp check --no-fmt`; significant changes → `vp build` and watch chunk sizes in log.
+
+---
+
+## Add CRUD resource
+
+Multi-step checklist (mirror **users**): use skill **`.agents/skills/add-resource/SKILL.md`** (invoke in Copilot/Codex/Claude or `@` that path in chat). After routes change, run `pnpm run build` to refresh `routeTree.gen.ts`.

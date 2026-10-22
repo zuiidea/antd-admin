@@ -8,7 +8,7 @@ description: 依赖与模板演进时的建议
 ## 依赖升级
 
 - 使用 **Vite+**（`vp`）管理依赖，避免绕过 `vp` 直接大面积 `pnpm up` 导致与模板锁定的工具链不一致。
-- 升级 **Ant Design / TanStack / React** 大版本前，建议先阅读官方迁移说明，并在单分支上跑通 `vp check`、`test:unit`、`test:e2e:core` 与 `vp build`。
+- 升级 **Ant Design / TanStack / React** 大版本前，建议先阅读官方迁移说明，并在单分支上跑通 `vp check`、`test:unit`、`pnpm run test:e2e`（或指定核心 spec）与 `vp build`。
 
 ## 跟随本仓库模板
 

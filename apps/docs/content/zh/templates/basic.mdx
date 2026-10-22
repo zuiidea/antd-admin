@@ -1,6 +1,6 @@
 ---
 title: Basic 模板
-description: apps/basic — 英文-only 模板说明摘要
+description: apps/basic — 默认英文界面的管理后台模板
 ---
 
 # Basic 模板
@@ -9,11 +9,13 @@ description: apps/basic — 英文-only 模板说明摘要
 
 ## 定位
 
-英文界面、**不包含 Lingui**；Ant Design 使用固定 **`en_US`** locale。依赖相对精简，适合只需英文后台或自行接入其它 i18n 方案的团队。
+完整的管理后台模板，UI 文案以源码中的 plain strings 为主，**默认语言为英文**；Ant Design 固定 **`en_US`**。未内置 Lingui 与语言切换，可自行接入 i18n，或选用 **with-lingui** 模板。
 
 ## 技术栈摘要
 
-构建：[Vite+](https://viteplus.dev)；UI：Ant Design 6；路由：TanStack Router；数据：TanStack Query；本地状态：Zustand；校验：Zod；Mock：MSW；E2E：Playwright。
+构建：[Vite+](https://viteplus.dev)；UI：Ant Design 6；路由：TanStack Router；数据：TanStack Query；本地状态：Zustand；校验：Zod；API：`defineApi` 分模块（`src/api/shared/`、`auth/`、`users/`）；Mock：MSW；E2E：Playwright。
+
+API 与 Mock 约定见 [开发代理与 Mock](/backend/proxying-api-requests)。
 
 ## 常用命令
 

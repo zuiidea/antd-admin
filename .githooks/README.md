@@ -1,26 +1,30 @@
-# Git hooks（仓库根）
+# Git hooks (repository root)
 
-本目录为 **monorepo 根级** Git 钩子。提交时根据暂存文件路径，在对应子项目目录执行检查（例如 `apps/with-lingui` 下执行 `vp staged`，以便正确读取该目录的 `vite.config.ts`）。
+This directory holds **monorepo root-level** Git hooks. On commit, checks run in the matching subproject based on staged file paths (for example, `vp staged` under `apps/with-lingui` so that directory’s `vite.config.ts` is loaded correctly).
 
-模板应用目录内的 `.vite-hooks/`（如 `apps/with-lingui/.vite-hooks/`）留给 **模板单独拷贝出去使用**；在本仓库开发时请使用根级钩子，避免在仓库根执行 `vp staged` 找不到 `vite.config.ts`。
+Per-app `.vite-hooks/` under template apps (e.g. `apps/with-lingui/.vite-hooks/`) are for **copying a template out on its own**. When developing in this repo, use the root hooks so `vp staged` at the repo root does not fail to find `vite.config.ts`.
 
-## 启用方式（一次性）
+## Monorepo and `vp config`
 
-在仓库根目录执行：
+The root `package.json` `preinstall` sets `core.hooksPath=.githooks` before dependencies install and writes `vp.hooks.disabled=true` in **this clone** so parallel `prepare` scripts (`vp config`) from multiple workspaces do not fight over `.git/config` and cause lock conflicts. Template apps still use `"prepare": "vp config"`; when copied out alone they do not get the root `preinstall`.
+
+## Enabling (one-time)
+
+From the repository root:
 
 ```bash
 git config core.hooksPath .githooks
 ```
 
-或使用：
+Or:
 
 ```bash
 pnpm run setup:git-hooks
 ```
 
-验证：
+Verify:
 
 ```bash
 git config core.hooksPath
-# 应输出：.githooks
+# Expected: .githooks
 ```

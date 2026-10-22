@@ -29,7 +29,7 @@ description: package.json 中与开发相关的 npm 脚本
 |------|------|
 | `pnpm run test:unit` | Vitest 单元测试 |
 | `pnpm run test:e2e` | Playwright 全部 E2E |
-| `pnpm run test:e2e:core` | 核心场景子集（登录、users CRUD、refresh、RBAC、URL 状态） |
+| `pnpm run test:e2e -- e2e/login.spec.ts e2e/users.spec.ts` | 核心流程（登录 + users CRUD） |
 | `pnpm run test:e2e:ui` | Playwright UI 模式 |
 
 ## With Lingui 专有

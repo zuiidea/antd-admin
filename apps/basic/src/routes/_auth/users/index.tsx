@@ -2,9 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Avatar, Button, Space, Form, App, Dropdown, theme, Tag, Flex } from "antd";
 import type { TablePaginationConfig } from "antd/es/table/interface";
 import { useMemo, useRef, useState } from "react";
-import { httpClient } from "@/utils/http";
-import { USER_ENDPOINTS } from "@/api/user";
-import { PaginatedResponseSchema, UserSchema, CreateUserRequestSchema } from "@/api/schemas";
+import { createUser, deleteUser, listUsers, updateUser, userQueryKeys } from "@/api/users";
 import type { User, CreateUserRequest } from "@/api/schemas";
 import { z } from "zod/v4";
 import { MoreVertical, Pencil, Trash2 } from "lucide-react";
@@ -31,8 +29,6 @@ export const Route = createFileRoute("/_auth/users/")({
   validateSearch: (search) => UserSearchParamsSchema.parse(search),
   component: UsersPage,
 });
-
-const paginatedUserSchema = PaginatedResponseSchema(UserSchema);
 
 function UsersPage() {
   const search = Route.useSearch();
@@ -62,36 +58,26 @@ function UsersPage() {
     resourceKey: "users",
   });
 
+  const listQuery = {
+    limit: search.limit,
+    offset: search.offset,
+    keyword: search.keyword || undefined,
+    role: search.role || undefined,
+    sortField: search.sortField ?? undefined,
+    sortOrder: search.sortOrder ?? undefined,
+  };
+
   const { data, isLoading, createMutation, updateMutation, deleteMutation } = useResourceCRUD<
     { list: User[]; total: number },
     CreateUserRequest,
     CreateUserRequest & { id: string }
   >({
-    queryKey: [
-      "users",
-      search.limit,
-      search.offset,
-      search.keyword,
-      search.role,
-      search.sortField,
-      search.sortOrder,
-    ],
-    queryFn: () =>
-      httpClient.get(USER_ENDPOINTS.list, {
-        params: {
-          limit: search.limit,
-          offset: search.offset,
-          keyword: search.keyword || undefined,
-          role: search.role || undefined,
-          sortField: search.sortField ?? undefined,
-          sortOrder: search.sortOrder ?? undefined,
-        },
-      }),
-    select: (raw) => paginatedUserSchema.shape.data.parse(raw),
-    createFn: (values) =>
-      httpClient.post(USER_ENDPOINTS.create, CreateUserRequestSchema.parse(values)),
-    updateFn: ({ id, ...values }) => httpClient.put(USER_ENDPOINTS.update(id), values),
-    deleteFn: (id) => httpClient.delete(USER_ENDPOINTS.delete(id)),
+    queryKey: userQueryKeys.list(listQuery),
+    queryFn: () => listUsers(listQuery),
+    select: (raw) => raw as { list: User[]; total: number },
+    createFn: (values) => createUser(values),
+    updateFn: ({ id, ...values }) => updateUser({ params: { id }, body: values }),
+    deleteFn: (id) => deleteUser({ id }),
     optimistic: { update: true, delete: true },
     createLifecycle: {
       onSuccess: (values) => {

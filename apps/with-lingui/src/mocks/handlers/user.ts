@@ -10,13 +10,14 @@ import {
   successWithSchema,
   successWithNullBody,
 } from "../createHandler";
+import { USERS_MEMBER_PATH, USERS_PATH } from "@/api/users";
 
 let users = [...MOCK_USERS];
 
 export const EXPIRED_ACCESS_TOKEN = "__EXPIRED_ACCESS__";
 
 export const userHandlers = [
-  http.get("/api/users", async ({ request }) => {
+  http.get(USERS_PATH, async ({ request }) => {
     await withDelay(200);
     const auth = request.headers.get("authorization");
     if (auth === `Bearer ${EXPIRED_ACCESS_TOKEN}`) {
@@ -33,7 +34,7 @@ export const userHandlers = [
     return paginatedWithSchema(UserSchema, { list, total: filtered.length });
   }),
 
-  http.post("/api/users", async ({ request }) => {
+  http.post(USERS_PATH, async ({ request }) => {
     await withDelay(200);
     const body = (await request.json()) as Record<string, unknown>;
     const newUser = {
@@ -48,7 +49,7 @@ export const userHandlers = [
     return successWithSchema(UserSchema, newUser);
   }),
 
-  http.put("/api/users/:id", async ({ params, request }) => {
+  http.put(USERS_MEMBER_PATH, async ({ params, request }) => {
     await withDelay(200);
     const body = (await request.json()) as Record<string, unknown>;
     const idx = users.findIndex((u) => u.id === params.id);
@@ -59,7 +60,7 @@ export const userHandlers = [
     return successWithSchema(UserSchema, users[idx]);
   }),
 
-  http.delete("/api/users/:id", async ({ params }) => {
+  http.delete(USERS_MEMBER_PATH, async ({ params }) => {
     await withDelay(200);
     users = users.filter((u) => u.id !== params.id);
     return successWithNullBody();

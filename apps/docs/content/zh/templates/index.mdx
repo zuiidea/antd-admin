@@ -12,14 +12,14 @@ asIndexPage: true
 | 项目 | `apps/basic` | `apps/with-lingui` |
 |------|----------------|---------------------|
 | **package.json `name`** | `antd-admin-basic` | `antd-admin` |
-| **Lingui（i18n）** | 无（英文界面） | 有（`@lingui/core`、`@lingui/react`，en / zh） |
+| **Lingui（i18n）** | 无内置（默认英文界面） | 有（`@lingui/core`、`@lingui/react`，en / zh） |
 | **Ant Design `ConfigProvider` locale** | 固定 `antd/locale/en_US` | 随设置切换：`en` → `en_US`，`zh` → `zh_CN`（见 `src/routes/__root.tsx`） |
 | **Zustand persist（settings）`name`** | `settings-storage-basic` | `settings-storage` |
 
 ## 选型建议
 
-- 只要英文、希望依赖最少：选 **[Basic](/templates/basic)**。
-- 需要中英文切换、Lingui 工作流与 Ant Design 随语言联动：选 **[With Lingui](/templates/with-lingui)**。
+- 希望先上手完整模板、默认英文、后续可自行加 i18n：选 **[Basic](/templates/basic)**。
+- 需要开箱即用的中英文切换、Lingui 工作流与 Ant Design 随语言联动：选 **[With Lingui](/templates/with-lingui)**。
 
 ## 子页面
 

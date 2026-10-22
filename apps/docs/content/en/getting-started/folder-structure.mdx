@@ -23,6 +23,28 @@ description: Key directories and responsibilities in the repository
 - `apps/docs`: Documentation site (Nextra + Next.js)
 - `packages`: Shared packages and utilities
 
+## Template app `src/` (basic / with-lingui)
+
+Both templates share the same layout; **with-lingui** adds `src/locales/` and Lingui scripts.
+
+```text
+src/
+├── api/
+│   ├── request.ts     # Transport (axios, defineApi, token refresh)
+│   ├── schemas.ts     # Compatibility re-exports
+│   ├── shared/        # API_PREFIX, pagination, params, menu helpers
+│   ├── auth/          # Auth paths, schemas, login / hydrateSession
+│   └── users/         # User CRUD, query keys, path constants
+├── components/
+├── hooks/
+├── mocks/             # MSW handlers (same path constants as api modules)
+├── routes/
+├── stores/
+└── utils/             # Constants, menu tree — not HTTP transport
+```
+
+See **[Proxying API Requests](/en/backend/proxying-api-requests)** for the API layer and MSW/backend wiring.
+
 ## Recommendation
 
 When creating reusable logic, prioritize placing it in `packages` rather than duplicating in app folders.

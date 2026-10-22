@@ -3,12 +3,10 @@ import { Form, Input, Button, Card, App, theme, Typography, Flex, Checkbox } fro
 import type { CSSProperties } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useLingui } from "@lingui/react/macro";
-import { httpClient } from "@/utils/http";
 import { useAuthStore } from "@/stores/auth";
 import { useSettingsStore } from "@/stores/settings";
-import { AUTH_ENDPOINTS } from "@/api/auth";
-import { LoginRequestSchema, AuthTokensSchema } from "@/api/schemas";
-import { fetchSessionAndApplyToStore } from "@/utils/session";
+import { hydrateSession, login } from "@/api/auth";
+import { LoginRequestSchema } from "@/api/schemas";
 import type { LoginRequest } from "@/api/schemas";
 import { APP_BRAND_NAME, APP_FAVICON_SRC } from "@/utils/constants";
 import { AppFooter } from "@/components/Layout/AppFooter";
@@ -35,11 +33,9 @@ function LoginPage() {
 
   const loginMutation = useMutation({
     mutationFn: async (values: LoginRequest) => {
-      const parsed = LoginRequestSchema.parse(values);
-      const tokens = await httpClient.post(AUTH_ENDPOINTS.login, parsed);
-      const validTokens = AuthTokensSchema.parse(tokens);
-      setTokens(validTokens);
-      await fetchSessionAndApplyToStore();
+      const tokens = await login(values);
+      setTokens(tokens);
+      await hydrateSession();
     },
     onSuccess: () => {
       message.success(t`Login successful`);
